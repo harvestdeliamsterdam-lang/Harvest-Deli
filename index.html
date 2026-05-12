@@ -1450,11 +1450,19 @@ footer {
     video.addEventListener('loadedmetadata', () => {
       try { video.currentTime = 0.01; } catch (e) {}
     });
+    // Seek coalescing: only issue a new seek when the previous one finished.
+    // Combined with the all-keyframe encoded video this gives Chrome the
+    // same smoothness Safari has natively.
+    let seekReady = true;
+    video.addEventListener('seeked', () => { seekReady = true; });
     function frameLoop() {
       const diff = targetTime - currentTime;
       if (Math.abs(diff) > 0.0008) {
         currentTime += diff * 0.13;
-        try { video.currentTime = currentTime; } catch (e) {}
+        if (seekReady) {
+          seekReady = false;
+          try { video.currentTime = currentTime; } catch (e) { seekReady = true; }
+        }
       }
       requestAnimationFrame(frameLoop);
     }
