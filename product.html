@@ -931,7 +931,7 @@ footer {
 <!-- ============ Origin ============ -->
 <section class="product-origin">
   <div class="image-frame reveal">
-    <video autoplay muted loop playsinline preload="auto" poster="harvestdeli.png">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="harvestdeli.png" id="originVideo">
       <source src="origin.mp4" type="video/mp4">
     </video>
     <span class="caption">Pelion &middot; 950m &middot; Late summer</span>
@@ -1079,6 +1079,15 @@ footer {
       opt.classList.add('active');
     });
   });
+
+  /* Force origin video to start on iOS (some Safari versions need a touch nudge) */
+  const originVideo = document.getElementById('originVideo');
+  if (originVideo) {
+    const kick = () => { try { originVideo.play().catch(() => {}); } catch (e) {} };
+    kick();
+    document.addEventListener('touchstart', kick, { once: true, passive: true });
+    document.addEventListener('click', kick, { once: true });
+  }
 
   /* Reveal observer */
   const io = new IntersectionObserver((entries) => {

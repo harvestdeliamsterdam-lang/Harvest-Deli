@@ -1174,7 +1174,7 @@ footer {
 <!-- ============ Hero ============ -->
 <section class="hero">
   <div class="video-stage">
-    <video id="scrollVideo" muted playsinline preload="auto">
+    <video id="scrollVideo" muted playsinline webkit-playsinline preload="auto" loop>
       <source src="video.mp4" type="video/mp4">
     </video>
   </div>
@@ -1382,6 +1382,10 @@ footer {
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
   /* Scroll video */
+  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
+  const isSmall = window.matchMedia('(max-width: 900px)').matches;
+  const useMobileFlow = isTouch || isSmall;
+
   let targetTime = 0;
   let currentTime = 0;
   let heroHeight = hero.offsetHeight;
@@ -1403,22 +1407,32 @@ footer {
   else {
     video.addEventListener('canplaythrough', hideLoader, { once: true });
     video.addEventListener('loadeddata', hideLoader, { once: true });
+    video.addEventListener('playing', hideLoader, { once: true });
     setTimeout(hideLoader, 5000);
   }
 
-  video.addEventListener('loadedmetadata', () => {
-    try { video.currentTime = 0.01; } catch (e) {}
-  });
-
-  function frameLoop() {
-    const diff = targetTime - currentTime;
-    if (Math.abs(diff) > 0.0008) {
-      currentTime += diff * 0.13;
-      try { video.currentTime = currentTime; } catch (e) {}
+  if (useMobileFlow) {
+    video.loop = true;
+    video.muted = true;
+    video.setAttribute('autoplay', '');
+    const tryPlay = () => { try { video.play().catch(() => {}); } catch (e) {} };
+    tryPlay();
+    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+    document.addEventListener('click', tryPlay, { once: true });
+  } else {
+    video.addEventListener('loadedmetadata', () => {
+      try { video.currentTime = 0.01; } catch (e) {}
+    });
+    function frameLoop() {
+      const diff = targetTime - currentTime;
+      if (Math.abs(diff) > 0.0008) {
+        currentTime += diff * 0.13;
+        try { video.currentTime = currentTime; } catch (e) {}
+      }
+      requestAnimationFrame(frameLoop);
     }
     requestAnimationFrame(frameLoop);
   }
-  requestAnimationFrame(frameLoop);
 
   function easeInOutCubic(t) {
     return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -1452,7 +1466,7 @@ footer {
     const heroScrollMax = Math.max(1, heroHeight - viewportH);
     const scrollFraction = Math.max(0, Math.min(1, scrollY / heroScrollMax));
 
-    if (video.duration && !isNaN(video.duration)) {
+    if (!useMobileFlow && video.duration && !isNaN(video.duration)) {
       targetTime = scrollFraction * (video.duration - 0.05);
     }
 
