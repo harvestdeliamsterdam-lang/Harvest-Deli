@@ -388,11 +388,40 @@
 
 /* ----------- Mobile responsive ----------- */
 @media (max-width: 900px) {
-  .cart-head, .cart-foot { padding-left: 24px; padding-right: 24px; }
-  .cart-items { padding-left: 24px; padding-right: 24px; }
-  .cart-line { grid-template-columns: 60px 1fr auto; gap: 16px; }
+  .cart-panel { width: min(420px, 92vw); }
+  .cart-head { padding: 24px 24px 18px; }
+  .cart-foot { padding: 22px 24px 28px; }
+  .cart-items { padding: 6px 24px; }
+  .cart-head .cart-title { font-size: 22px; }
+  .cart-line { grid-template-columns: 60px 1fr auto; gap: 16px; padding: 18px 0; }
   .cart-line .thumb { width: 60px; height: 72px; }
   .cart-line .meta .name { font-size: 17px; }
+  .cart-line .meta .edition { margin-bottom: 10px; font-size: 9px; letter-spacing: 0.3em; }
+  .cart-line .price-col .price { font-size: 18px; }
+  .qty { height: 30px; }
+  .qty button { width: 30px; height: 30px; font-size: 16px; }
+  .cart-checkout { padding: 18px 22px; padding-left: calc(22px + var(--track-button, 0.42em)); gap: 14px; }
+}
+@media (max-width: 600px) {
+  .nav-cart { gap: 8px; padding-left: 0; font-size: 0; letter-spacing: 0; }
+  .nav-cart .cart-glyph,
+  .nav-cart .cart-count { font-size: 9px; letter-spacing: 0.02em; }
+  .nav-cart .cart-glyph svg { width: 16px; height: 16px; }
+  .nav-cart .cart-count { min-width: 16px; height: 16px; padding: 0 5px; }
+  nav.site-nav .nav-acquire { display: none; }
+  .cart-panel { width: 100vw; }
+  .cart-head, .cart-foot, .cart-items { padding-left: 22px; padding-right: 22px; }
+  .cart-head .cart-title { font-size: 20px; }
+  .cart-head .cart-title em { font-size: 12px; }
+  .cart-line { grid-template-columns: 54px 1fr auto; gap: 14px; }
+  .cart-line .thumb { width: 54px; height: 66px; }
+  .cart-line .meta .name { font-size: 16px; }
+  .cart-line .price-col .price { font-size: 17px; }
+  .cart-totals .total { font-size: 26px; }
+  .cart-empty { padding: 8vh 4px; }
+  .cart-empty h4 { font-size: 24px; }
+  .cart-toast { left: 16px; right: 16px; transform: none; bottom: 16px; font-size: 9px; padding: 14px 20px; padding-left: calc(20px + var(--track-label, 0.36em)); }
+  .cart-toast.show { transform: none; }
 }
 
 /* ----------- Grain overlay utility ----------- */

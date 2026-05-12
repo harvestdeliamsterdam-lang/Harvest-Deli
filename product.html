@@ -423,6 +423,85 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 }
 .pd-cta:hover .arrow { width: 30px; }
 
+/* ----- Sticky mobile add-to-cart ----- */
+.sticky-buy {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 70;
+  display: none;
+  background: rgba(245, 239, 228, 0.94);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  border-top: 1px solid rgba(26, 22, 18, 0.06);
+  padding: 12px 18px;
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  align-items: center;
+  gap: 14px;
+  transform: translateY(110%);
+  transition: transform 0.7s var(--ease);
+}
+.sticky-buy.show { transform: translateY(0); }
+.sticky-buy .sb-thumb {
+  width: 44px; height: 52px;
+  background: linear-gradient(180deg, #EDE3D2 0%, #DDCEB5 100%);
+  position: relative; overflow: hidden;
+  flex-shrink: 0;
+}
+.sticky-buy .sb-thumb .mini-jar {
+  position: absolute;
+  bottom: 8%; left: 50%;
+  transform: translateX(-50%);
+  width: 50%; height: 70%;
+  border-radius: 2px 2px 8px 8px;
+  background: linear-gradient(180deg, rgba(120,75,30,0.92) 14%, rgba(80,45,12,0.98) 42%, rgba(50,25,5,1) 78%, rgba(20,10,2,1) 100%);
+  box-shadow: inset 3px 0 6px rgba(255,235,180,0.32), inset -3px 0 6px rgba(50,25,0,0.45), inset 0 -8px 14px rgba(35,18,0,0.5);
+}
+.sticky-buy .sb-thumb .mini-jar::before {
+  content: ''; position: absolute;
+  top: -6px; left: 20%; right: 20%; height: 8px;
+  background: linear-gradient(180deg, #2C231A 0%, #0D0907 100%);
+}
+.sticky-buy .sb-meta { flex: 1; min-width: 0; }
+.sticky-buy .sb-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 400;
+  font-size: 17px;
+  letter-spacing: -0.014em;
+  line-height: 1.15;
+  color: var(--ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.sticky-buy .sb-price {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: var(--track-label);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  margin-top: 2px;
+  padding-left: var(--track-label);
+}
+.sticky-buy button {
+  background: var(--ink);
+  color: var(--cream);
+  border: none;
+  padding: 14px 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.5s var(--ease);
+  padding-left: calc(22px + var(--track-button));
+}
+.sticky-buy button:active { background: var(--gold-deep); }
+@media (max-width: 900px) {
+  .sticky-buy { display: flex; }
+  body.has-sticky-buy { padding-bottom: 80px; }
+}
+
 .pd-notes {
   margin-top: 32px;
   font-family: 'Inter', sans-serif;
@@ -1075,6 +1154,16 @@ footer {
   </div>
 </footer>
 
+<!-- Sticky mobile buy bar -->
+<div class="sticky-buy" id="stickyBuy">
+  <div class="sb-thumb"><span class="mini-jar"></span></div>
+  <div class="sb-meta">
+    <div class="sb-name">Chestnut Honey, Pelion estate</div>
+    <div class="sb-price">€68 &middot; Edition I</div>
+  </div>
+  <button data-add-to-cart="chestnut">Add</button>
+</div>
+
 <script src="shared.js"></script>
 <script>
 (function() {
@@ -1114,6 +1203,20 @@ footer {
     kick();
     document.addEventListener('touchstart', kick, { once: true, passive: true });
     document.addEventListener('click', kick, { once: true });
+  }
+
+  /* Sticky mobile buy bar — show once user scrolls past hero CTA */
+  const stickyBuy = document.getElementById('stickyBuy');
+  const heroCta = document.querySelector('.pd-cta');
+  if (stickyBuy && heroCta) {
+    const stickyIo = new IntersectionObserver((entries) => {
+      entries.forEach(en => {
+        const past = !en.isIntersecting && en.boundingClientRect.top < 0;
+        stickyBuy.classList.toggle('show', past);
+        document.body.classList.toggle('has-sticky-buy', past);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -120px 0px' });
+    stickyIo.observe(heroCta);
   }
 
   /* Reveal observer */

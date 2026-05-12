@@ -605,12 +605,49 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   .checkout-side { padding: 8vh 8% 12vh; border-left: none; border-top: 1px solid rgba(26, 22, 18, 0.06); }
 }
 @media (max-width: 900px) {
-  nav.site-nav { padding: 16px 22px; }
+  nav.site-nav { padding: 14px 20px; }
+  .logo-mark.nav-size { height: 38px; }
+  .secure-link { font-size: 9px; }
   .checkout-step-indicator { display: none; }
   .checkout-main { padding: 4vh 7% 6vh; }
-  .checkout-side { padding: 6vh 7% 10vh; }
+  .checkout-side { padding: 5vh 7% 10vh; }
+  .ck-headline { font-size: clamp(34px, 8.5vw, 52px); margin-bottom: 18px; }
+  .ck-sub { font-size: 15px; margin-bottom: 5vh; }
+  .step-num { margin-bottom: 24px; gap: 14px; }
+  .step-num h3 { font-size: 22px; }
   .field-row, .field-row.three { grid-template-columns: 1fr; gap: 0; }
-  .express-row { grid-template-columns: 1fr; }
+  .field { margin-bottom: 22px; }
+  .field input, .field select { font-size: 17px; padding: 14px 0 14px; }
+  .field input::placeholder { font-style: italic; }
+  .express-row { grid-template-columns: 1fr; gap: 10px; }
+  .express-btn { padding: 20px; min-height: 50px; font-size: 14px; }
+  .ship-opt { padding: 16px 18px; grid-template-columns: 22px 1fr auto; gap: 14px; }
+  .ship-opt .title { font-size: 16px; }
+  .ship-opt .sub { font-size: 11px; }
+  .ship-opt .price { font-size: 16px; }
+  .pay-tabs { overflow-x: auto; flex-wrap: nowrap; scrollbar-width: none; }
+  .pay-tabs::-webkit-scrollbar { display: none; }
+  .pay-tab { white-space: nowrap; padding: 14px 18px; padding-left: calc(18px + var(--track-label)); font-size: 9px; }
+  .stripe-note { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .confirm-btn { padding: 22px 24px; padding-left: calc(24px + var(--track-button)); gap: 18px; }
+  .side-title { font-size: 26px; margin-bottom: 4vh; }
+  .ck-line { grid-template-columns: 50px 1fr auto; gap: 14px; padding: 16px 0; }
+  .ck-line .thumb-mini { width: 50px; height: 62px; }
+  .ck-meta .ck-name { font-size: 17px; }
+  .ck-line-price { font-size: 17px; }
+  .ck-row.ck-grand span:last-child { font-size: 28px; }
+  .packaging-card { padding: 26px 22px; }
+  .packaging-card h4 { font-size: 20px; }
+  .trust-strip { grid-template-columns: 1fr; gap: 8px; }
+  .trust-cell { padding: 14px 16px; display: flex; align-items: center; justify-content: flex-start; gap: 14px; text-align: left; }
+  .trust-cell .ico { margin-bottom: 0; font-size: 18px; }
+  .trust-cell .lbl { line-height: 1.4; }
+  .menu-overlay { padding: 22px 24px; }
+}
+@media (max-width: 480px) {
+  .checkout-main { padding: 3vh 6% 5vh; }
+  .checkout-side { padding: 4vh 6% 8vh; }
+  .step-block { margin-bottom: 5vh; }
 }
 </style>
 </head>
