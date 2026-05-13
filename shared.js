@@ -869,7 +869,7 @@
           const p = localizedProduct(i.slug);
           return `
             <div class="cart-line" data-slug="${i.slug}">
-              <a class="thumb" href="${p.url}"><span class="mini-jar ${p.hue}"></span></a>
+              <a class="thumb" href="${p.url}"><img class="mini-photo ${p.hue}" src="harvestdeli.png" alt="${p.name}"></a>
               <div class="meta">
                 <a class="name" href="${p.url}" style="text-decoration:none;color:inherit;">${p.name}</a>
                 <div class="edition">${p.edition}</div>
@@ -954,7 +954,7 @@
       const p = localizedProduct(i.slug);
       return `
         <div class="ck-line">
-          <span class="thumb-mini"><span class="mini-jar ${p.hue}"></span></span>
+          <span class="thumb-mini"><img class="mini-photo ${p.hue}" src="harvestdeli.png" alt="${p.name}"></span>
           <div class="ck-meta">
             <div class="ck-name">${p.name}</div>
             <div class="ck-edition">${p.edition} &middot; ${p.weight} &middot; ×${i.qty}</div>

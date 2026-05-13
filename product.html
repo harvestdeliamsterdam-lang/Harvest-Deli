@@ -447,19 +447,14 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   position: relative; overflow: hidden;
   flex-shrink: 0;
 }
-.sticky-buy .sb-thumb .mini-jar {
+.sticky-buy .sb-thumb img {
   position: absolute;
-  bottom: 8%; left: 50%;
-  transform: translateX(-50%);
-  width: 50%; height: 70%;
-  border-radius: 2px 2px 8px 8px;
-  background: linear-gradient(180deg, rgba(120,75,30,0.92) 14%, rgba(80,45,12,0.98) 42%, rgba(50,25,5,1) 78%, rgba(20,10,2,1) 100%);
-  box-shadow: inset 3px 0 6px rgba(255,235,180,0.32), inset -3px 0 6px rgba(50,25,0,0.45), inset 0 -8px 14px rgba(35,18,0,0.5);
-}
-.sticky-buy .sb-thumb .mini-jar::before {
-  content: ''; position: absolute;
-  top: -6px; left: 20%; right: 20%; height: 8px;
-  background: linear-gradient(180deg, #2C231A 0%, #0D0907 100%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 .sticky-buy .sb-meta { flex: 1; min-width: 0; }
 .sticky-buy .sb-name {
@@ -1159,7 +1154,7 @@ footer {
 
 <!-- Sticky mobile buy bar -->
 <div class="sticky-buy" id="stickyBuy">
-  <div class="sb-thumb"><span class="mini-jar"></span></div>
+  <div class="sb-thumb"><img src="harvestdeli.png" alt=""></div>
   <div class="sb-meta">
     <div class="sb-name" data-i18n="product.sticky.name">Chestnut Honey, Pelion estate</div>
     <div class="sb-price" data-i18n="product.sticky.price">€68 &middot; Edition I</div>

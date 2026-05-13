@@ -883,33 +883,24 @@ section.chapter { padding: 20vh 8%; position: relative; }
   background: radial-gradient(ellipse at 50% 30%, rgba(255, 220, 170, 0.45), transparent 55%);
   pointer-events: none;
 }
-.card-jar {
+/* Real product photo as mockup with subtle per-hue filter */
+.card-photo {
   position: absolute;
-  bottom: 8%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
-  height: 78%;
-  border-radius: 5px 5px 18px 18px;
-  box-shadow:
-    inset 8px 0 14px rgba(255,235,180,0.35),
-    inset -8px 0 14px rgba(50,25,0,0.5),
-    inset 0 -22px 32px rgba(35,18,0,0.5);
-  transition: transform 0.7s var(--ease);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.9s var(--ease), filter 0.7s var(--ease);
+  will-change: transform;
 }
-.card-link:hover .card-jar { transform: translateX(-50%) translateY(-6px); }
-.card-jar::before {
-  content: '';
-  position: absolute;
-  top: -22px; left: 16%; right: 16%;
-  height: 24px;
-  background: linear-gradient(180deg, #2C231A 0%, #0D0907 100%);
-  border-radius: 3px;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-}
-.card-jar.amber  { background: linear-gradient(180deg, rgba(255,240,200,0.30) 0%, rgba(220,170,100,0.92) 14%, rgba(180,122,55,0.98) 42%, rgba(130,82,28,1) 78%, rgba(70,40,10,1) 100%); }
-.card-jar.straw  { background: linear-gradient(180deg, rgba(255,245,210,0.32) 0%, rgba(240,210,140,0.92) 14%, rgba(210,170,90,0.98) 42%, rgba(170,130,50,1) 78%, rgba(110,80,25,1) 100%); }
-.card-jar.bronze { background: linear-gradient(180deg, rgba(255,235,190,0.28) 0%, rgba(186,140,80,0.92) 14%, rgba(140,90,40,0.98) 42%, rgba(100,55,20,1) 78%, rgba(50,25,5,1) 100%); }
+.card-link:hover .card-photo { transform: scale(1.035); }
+.card-photo.amber  { filter: contrast(1.02) saturate(1.05); }
+.card-photo.straw  { filter: brightness(1.08) saturate(0.85) hue-rotate(-6deg); }
+.card-photo.bronze { filter: brightness(0.88) saturate(1.12) hue-rotate(8deg); }
+.card-photo.pale   { filter: brightness(1.14) saturate(0.82) hue-rotate(-12deg); }
+.card-photo.deep   { filter: brightness(0.75) saturate(1.18) contrast(1.04); }
 
 .card-info { display: flex; flex-direction: column; gap: 8px; }
 .card-row {
@@ -1786,8 +1777,7 @@ footer {
         <article class="preview-card${delay}">
           <a class="card-link" href="${p.url}" aria-label="${p.name}">
             <div class="card-frame">
-              <div class="card-spot"></div>
-              <div class="card-jar ${p.hue}"></div>
+              <img class="card-photo ${p.hue}" src="harvestdeli.png" alt="${p.name}" loading="lazy">
             </div>
           </a>
           <div class="card-info">
