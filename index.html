@@ -761,6 +761,61 @@ section.chapter { padding: 20vh 8%; position: relative; }
   padding-left: var(--track-label);
 }
 
+/* Atmospheric honeycomb texture in the Process section */
+.chapter.process {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.process-honeycomb {
+  position: absolute;
+  top: 50%;
+  right: -22%;
+  width: 78%;
+  max-width: 1100px;
+  aspect-ratio: 3 / 5.5;
+  transform: translateY(-50%);
+  background-image: url('honeycomb.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  filter: saturate(0.78) contrast(0.95) brightness(1.04);
+  mask-image:
+    radial-gradient(ellipse 60% 70% at 55% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0) 90%),
+    linear-gradient(90deg, transparent 0%, black 25%, black 100%);
+  -webkit-mask-image:
+    radial-gradient(ellipse 60% 70% at 55% 50%, rgba(0,0,0,1) 30%, rgba(0,0,0,0.7) 55%, rgba(0,0,0,0) 90%),
+    linear-gradient(90deg, transparent 0%, black 25%, black 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform, opacity;
+}
+.process-honeycomb::after {
+  /* Outer feather + warm champagne vignette tint */
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 75% at 55% 50%,
+    transparent 40%,
+    rgba(245, 239, 228, 0.35) 70%,
+    rgba(245, 239, 228, 0.6) 100%);
+  pointer-events: none;
+}
+.chapter.process > * { position: relative; z-index: 1; }
+
+@media (max-width: 900px) {
+  .process-honeycomb {
+    right: -38%;
+    width: 110%;
+    aspect-ratio: 3 / 5;
+    opacity: 0.4;
+  }
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1495,6 +1550,7 @@ footer {
   </section>
 
   <section class="chapter process" id="process">
+    <div class="process-honeycomb" aria-hidden="true"></div>
     <div class="reveal">
       <div class="chapter-eyebrow" data-i18n="idx.ch2.eyebrow">II — The Process</div>
       <h2 class="chapter-headline" data-i18n="idx.ch2.h">A practice refined by time, not technology.</h2>
