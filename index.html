@@ -761,58 +761,54 @@ section.chapter { padding: 20vh 8%; position: relative; }
   padding-left: var(--track-label);
 }
 
-/* Atmospheric honeycomb texture in the Process section */
+/* Process section: top row is a 2-column grid (headline | honeycomb) */
 .chapter.process {
   position: relative;
   overflow: hidden;
   isolation: isolate;
 }
+.process-top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6%;
+  align-items: center;
+}
 .process-honeycomb {
-  position: absolute;
-  top: 18vh;
-  right: 8%;
-  width: clamp(260px, 30vw, 420px);
+  position: relative;
+  width: clamp(280px, 32vw, 440px);
   aspect-ratio: 4 / 5;
   background-image: url('honeycomb.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  opacity: 0.72;
+  opacity: 0.78;
   mix-blend-mode: multiply;
   filter: saturate(0.85) contrast(0.94) brightness(1.03);
   mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%);
   -webkit-mask-image: radial-gradient(ellipse 72% 80% at 50% 50%, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 95%);
   pointer-events: none;
-  z-index: 0;
   will-change: opacity;
+  justify-self: end;
 }
 .process-honeycomb::after {
-  /* Outer feather: warm champagne tint matching the page bg */
   content: '';
   position: absolute;
   inset: 0;
   background: radial-gradient(ellipse 70% 78% at 50% 50%,
-    transparent 50%,
-    rgba(245, 239, 228, 0.45) 100%);
+    transparent 55%,
+    rgba(245, 239, 228, 0.4) 100%);
   pointer-events: none;
 }
 .chapter.process > * { position: relative; z-index: 1; }
 
-@media (max-width: 1100px) {
-  .process-honeycomb {
-    right: 6%;
-    width: clamp(220px, 28vw, 360px);
-    opacity: 0.6;
-  }
-}
 @media (max-width: 900px) {
+  .process-top { grid-template-columns: 1fr; gap: 6vh; }
   .process-honeycomb {
-    top: auto;
-    bottom: 4vh;
-    right: -10%;
-    width: 55%;
+    width: 60%;
     max-width: 280px;
-    opacity: 0.35;
+    justify-self: start;
+    opacity: 0.55;
+    margin-left: -4%;
   }
 }
 
@@ -1550,10 +1546,12 @@ footer {
   </section>
 
   <section class="chapter process" id="process">
-    <div class="process-honeycomb" aria-hidden="true"></div>
-    <div class="reveal">
-      <div class="chapter-eyebrow" data-i18n="idx.ch2.eyebrow">II — The Process</div>
-      <h2 class="chapter-headline" data-i18n="idx.ch2.h">A practice refined by time, not technology.</h2>
+    <div class="process-top">
+      <div class="reveal">
+        <div class="chapter-eyebrow" data-i18n="idx.ch2.eyebrow">II — The Process</div>
+        <h2 class="chapter-headline" data-i18n="idx.ch2.h">A practice refined by time, not technology.</h2>
+      </div>
+      <div class="process-honeycomb reveal delay-1" aria-hidden="true"></div>
     </div>
     <div class="process-grid">
       <div class="process-step reveal">

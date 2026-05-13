@@ -652,3 +652,12 @@ body nav.site-nav .secure-link::before { border-color: var(--hd-nav-gold); }
 
 /* Make sure the nav logo isn't darkened by the footer-brand filter */
 body nav.site-nav .logo-mark { filter: none; }
+
+/* Logo SVGs use a 260x100 viewBox symbol but the outer <svg> has no
+   viewBox of its own, so without an explicit aspect-ratio some
+   browsers fall back to the SVG default 300x150 and the wordmark
+   reads tiny on the left of a much wider box. Force the correct
+   ratio so width: auto resolves to height * 2.6. */
+.logo-svg {
+  aspect-ratio: 13 / 5;
+}
