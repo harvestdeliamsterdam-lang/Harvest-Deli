@@ -1,12 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Harvest Deli — Premium Greek Products</title>
+<!-- Cinematic intro pre-paint shield — runs before first paint to prevent any homepage flash.
+     Safety net: if shared.js fails to load within 8 s (network drop, blocked script), the shield
+     drops itself so the body is never permanently hidden. -->
+<script>(function(){try{if(!sessionStorage.getItem('hd-intro-played-v1')){document.documentElement.classList.add('hd-intro-pending');setTimeout(function(){var r=document.documentElement;if(r.classList.contains('hd-intro-pending')){r.classList.remove('hd-intro-pending');r.classList.add('hd-intro-done');setTimeout(function(){r.classList.remove('hd-intro-done');},800);}},8000);}}catch(e){}})();</script>
+<title>Harvest Deli — Liquid Sunlight, Slow &amp; Small</title>
+<meta name="description" content="Single estate, cold extracted honey from Pelion, Greece. Numbered editions, sealed in wax, shipped from the cellar.">
+<link rel="canonical" href="https://harvestdeli.gr/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1F1A14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Harvest Deli — Liquid sunlight from Pelion">
+<meta property="og:description" content="Single estate, cold extracted Greek honey. Numbered editions, sealed in wax.">
+<meta property="og:image" content="https://harvestdeli.gr/harvestdeli.png">
+<meta property="og:url" content="https://harvestdeli.gr/">
+<meta property="og:site_name" content="Harvest Deli">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="el_GR">
+<meta name="twitter:card" content="summary_large_image">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://harvestdeli.gr/#organization",
+      "name": "Harvest Deli",
+      "url": "https://harvestdeli.gr/",
+      "logo": "https://harvestdeli.gr/harvestdeli.png",
+      "description": "Single estate Greek honey from Pelion. Cold extracted, numbered, sealed in wax.",
+      "founder": { "@type": "Person", "name": "Stavros Andreou" },
+      "foundingDate": "2015",
+      "email": "hello@harvestdeli.gr",
+      "vatID": "NL000000000B01",
+      "taxID": "00000000",
+      "sameAs": ["https://www.instagram.com/harvestdeli"]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://harvestdeli.gr/#localbusiness",
+      "name": "Harvest Deli",
+      "image": "https://harvestdeli.gr/harvestdeli.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "[Street and number]",
+        "addressLocality": "Pelion",
+        "postalCode": "37006",
+        "addressRegion": "Magnesia",
+        "addressCountry": "GR"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": "39.4", "longitude": "23.0" },
+      "telephone": "+30 24210 88214",
+      "priceRange": "€€€",
+      "currenciesAccepted": "EUR",
+      "paymentAccepted": "Credit card, iDEAL, Bancontact, Klarna, Bank transfer, Apple Pay, Google Pay",
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "17:00" }
+      ],
+      "areaServed": ["NL","BE","DE","FR","AT","DK","IE","IT","ES","FI","SE","PT","GR","EE","LT","LV","PL","CZ","SK","SI","HR","HU","RO","BG","MT","CY","GB","CH","NO"]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://harvestdeli.gr/#website",
+      "url": "https://harvestdeli.gr/",
+      "name": "Harvest Deli",
+      "inLanguage": ["en","nl","el"],
+      "publisher": { "@id": "https://harvestdeli.gr/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://harvestdeli.gr/shop.html?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<!-- Font stylesheet hint only. We deliberately do NOT preload the hero video:
+     it's 41 MB and a `rel="preload" as="video"` with fetchpriority:high will
+     saturate the connection ahead of shared.js, stalling the intro IIFE and
+     leaving the body at opacity 0. The <video preload="auto"> below is enough. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <style>
 :root {
@@ -50,7 +133,7 @@ body {
 ::selection { background: var(--gold-soft); color: var(--ink); }
 
 /* Editorial type primitives */
-.serif { font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif; }
+.serif { font-family: 'Newsreader', 'EB Garamond', Garamond, serif; }
 .label {
   font-family: 'Inter', sans-serif;
   font-size: 10px;
@@ -64,7 +147,7 @@ body {
 .logo-svg { display: block; height: 100%; width: auto; }
 .logo-svg .arched,
 .logo-svg .deli,
-.logo-svg .tagline { font-family: 'Cinzel', serif; }
+.logo-svg .tagline { font-family: 'Newsreader', serif; }
 .logo-mark.nav-size { height: 44px; }
 .logo-mark.loader-size { height: 120px; }
 .logo-mark.hero-size {
@@ -265,7 +348,7 @@ nav.site-nav .nav-right {
 .menu-overlay.open .menu-items li:nth-child(5) { transition-delay: 0.58s; }
 
 .menu-items .roman {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-style: italic;
   font-weight: 400;
   font-size: 14px;
@@ -273,7 +356,7 @@ nav.site-nav .nav-right {
   letter-spacing: 0.1em;
 }
 .menu-items a {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   font-size: clamp(40px, 5vw, 72px);
   line-height: 1.04;
@@ -324,7 +407,7 @@ nav.site-nav .nav-right {
   font-weight: 500;
 }
 .menu-side p {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -373,10 +456,12 @@ nav.site-nav .nav-right {
 /* ============ Hero / Cinematic ============ */
 .hero {
   position: relative;
-  height: 680vh;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
 }
 .video-stage {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
@@ -407,14 +492,13 @@ nav.site-nav .nav-right {
 
 /* Scenes */
 .scene {
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 4;
   pointer-events: none;
   display: flex;
   padding: 0 8%;
-  opacity: 0;
-  will-change: opacity, transform;
+  opacity: 1;
 }
 .scene.align-bottom-left { align-items: flex-end; justify-content: flex-start; padding-bottom: 16vh; }
 .scene.align-bottom-right { align-items: flex-end; justify-content: flex-end; padding-bottom: 16vh; text-align: right; padding-right: calc(8% + var(--track-label)); }
@@ -443,7 +527,7 @@ nav.site-nav .nav-right {
 }
 
 .display {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   color: #F5EFE4;
   line-height: 1.04;
@@ -585,7 +669,7 @@ nav.site-nav .nav-right {
 .glass-cards.active .glass-card:nth-child(3) { transition-delay: 0.40s; }
 
 .glass-card .num {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   font-style: italic;
   font-size: 15px;
@@ -595,7 +679,7 @@ nav.site-nav .nav-right {
   opacity: 0.95;
 }
 .glass-card h3 {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   font-size: 30px;
   letter-spacing: -0.018em;
@@ -694,7 +778,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
   padding-left: var(--track-label);
 }
 .chapter-headline {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   font-size: clamp(42px, 5.6vw, 92px);
   line-height: 1.08;
@@ -821,7 +905,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
 .process-step:nth-child(2) { margin-top: 14vh; }
 .process-step:nth-child(3) { margin-top: 7vh; }
 .process-step .roman {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
@@ -830,7 +914,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
   margin-bottom: 36px;
 }
 .process-step h3 {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   font-size: 34px;
   line-height: 1.14;
@@ -850,7 +934,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
 
 .taste { text-align: center; padding: 28vh 12%; }
 .taste blockquote {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-style: italic;
   font-weight: 400;
   font-size: clamp(32px, 4.2vw, 62px);
@@ -961,7 +1045,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
   gap: 18px;
 }
 .card-name {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 26px;
   letter-spacing: -0.02em;
@@ -969,7 +1053,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
   color: var(--ink);
 }
 .card-price {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 22px;
   letter-spacing: -0.014em;
@@ -1129,7 +1213,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
   padding-left: var(--track-label);
 }
 .product-meta h2 {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-weight: 400;
   font-size: clamp(40px, 5vw, 72px);
   line-height: 1.06;
@@ -1222,7 +1306,7 @@ footer {
 }
 .footer-brand { margin-bottom: 28px; }
 .footer-tagline {
-  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, serif;
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -1326,34 +1410,23 @@ footer {
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#FAE3A3"/>
-      <stop offset="22%" stop-color="#C99948"/>
-      <stop offset="48%" stop-color="#F1CC79"/>
-      <stop offset="72%" stop-color="#9D6F29"/>
-      <stop offset="100%" stop-color="#6E4B1B"/>
+      <stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/>
     </linearGradient>
     <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#E8C982"/>
-      <stop offset="35%" stop-color="#A87A36"/>
-      <stop offset="60%" stop-color="#D4A85F"/>
-      <stop offset="100%" stop-color="#5C3F18"/>
+      <stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/>
     </linearGradient>
     <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
     <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
-      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)">
-        <textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath>
-      </text>
-      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
     </symbol>
     <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
-      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)">
-        <textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath>
-      </text>
-      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
     </symbol>
   </defs>
 </svg>
@@ -1374,6 +1447,8 @@ footer {
       <button data-lang="en">EN</button>
       <span class="sep"></span>
       <button data-lang="nl">NL</button>
+      <span class="sep"></span>
+      <button data-lang="el">EL</button>
     </div>
     <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
     <a href="shop.html" class="nav-acquire" data-i18n="nav.shop">Shop</a>
@@ -1424,14 +1499,10 @@ footer {
         <a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a>
         <span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span>
       </li>
-      <li>
-        <span class="roman">III</span>
-        <a href="#process" data-i18n-html="menu.item.process_html">The <em>Process</em></a>
-        <span class="sub" data-i18n="menu.item.process_sub">Hand harvested</span>
-      </li>
+      <li><span class="roman">III</span><a href="find-us-amsterdam.html" data-i18n-html="markets.menu_html">The <em>Markets</em></a><span class="sub" data-i18n="markets.menu_sub">Find us in Amsterdam</span></li>
       <li>
         <span class="roman">IV</span>
-        <a href="#journal" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a>
+        <a href="journal.html" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a>
         <span class="sub" data-i18n="menu.item.journal_sub">Field notes</span>
       </li>
       <li>
@@ -1463,15 +1534,18 @@ footer {
 </div>
 
 <!-- ============ Hero ============ -->
-<section class="hero">
+<section class="hero" aria-labelledby="homepageH1">
+  <!-- Visually-hidden top-level heading anchors the document for screen readers and SEO.
+       The cinematic scene language is preserved as-is below. -->
+  <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli — Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="scrollVideo" muted playsinline webkit-playsinline preload="auto" loop>
-      <source src="video.mp4" type="video/mp4">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto">
+      <source src="v.webm" type="video/webm">
+        <source src="video.mp4" type="video/mp4">
     </video>
   </div>
 
-  <!-- Scene 0: Brand reveal -->
-  <div class="scene align-center scene-brand" data-start="0.0" data-end="0.13">
+  <div class="scene align-center scene-brand active">
     <div class="brand-reveal">
       <div class="brand-glow" aria-hidden="true"></div>
       <div class="est" data-i18n="idx.scene0.est">Established &middot; Pelion, Greece &middot; Estate №01</div>
@@ -1480,53 +1554,22 @@ footer {
     </div>
   </div>
 
-  <!-- Scene 1: Greek sunrise -->
-  <div class="scene align-bottom-left" data-start="0.17" data-end="0.30">
-    <div class="stagger">
-      <div class="eyebrow" data-i18n-html="idx.scene1.eyebrow_html">Edition I <span class="dot"></span> Chestnut Honey</div>
-      <h1 class="display huge" data-i18n-html="idx.scene1.line_html">Captured from<br><em>the Greek sun.</em></h1>
-    </div>
-  </div>
-
-  <!-- Scene 2: Bees & flowers -->
-  <div class="scene align-bottom-right" data-start="0.34" data-end="0.50">
-    <div class="stagger">
-      <div class="eyebrow" style="color: rgba(245,239,228,0.62);" data-i18n="idx.scene2.eyebrow">A field of stillness</div>
-      <h2 class="display large" data-i18n="idx.scene2.line1">Wild mountain flowers.</h2>
-      <h2 class="display large" data-i18n="idx.scene2.line2">Untouched nature.</h2>
-      <h2 class="display large" data-i18n="idx.scene2.line3">Pure craftsmanship.</h2>
-    </div>
-  </div>
-
-  <!-- Scene 3: Glass cards -->
-  <div class="glass-cards" data-start="0.54" data-end="0.74">
-    <div class="glass-card">
-      <div class="num">I.</div>
-      <h3 data-i18n="idx.card1.h">Raw harvesting</h3>
-      <p data-i18n="idx.card1.p">Combs gathered by hand at altitude, never heated, never processed. Every aromatic note of the season is preserved intact.</p>
-    </div>
-    <div class="glass-card">
-      <div class="num">II.</div>
-      <h3 data-i18n="idx.card2.h">Small batch</h3>
-      <p data-i18n="idx.card2.p">Each estate produces fewer than four hundred jars per harvest. A quiet number, kept deliberately small.</p>
-    </div>
-    <div class="glass-card">
-      <div class="num">III.</div>
-      <h3 data-i18n="idx.card3.h">Natural origin</h3>
-      <p data-i18n="idx.card3.p">Single-source, traceable to a meadow, a mountain, a season. Nothing added. Nothing taken away.</p>
-    </div>
-  </div>
-
-  <!-- Scene 4: CTA -->
-  <div class="scene align-center" data-start="0.78" data-end="0.98">
-    <div class="cta-wrap stagger">
-      <div class="eyebrow" data-i18n="idx.scene4.eyebrow">The collection</div>
-      <h2 class="display huge" data-i18n="idx.scene4.line">Taste the origin.</h2>
-      <a class="cta" href="shop.html"><span data-i18n="idx.scene4.cta">Discover the collection</span> <span class="arrow"></span></a>
-    </div>
-  </div>
-
   <div class="scroll-hint" id="scrollHint" data-i18n="idx.scrollHint">Scroll</div>
+</section>
+
+<!-- ============ Press strip ============ -->
+<section class="press-strip" aria-label="Featured in">
+  <div class="press-inner">
+    <div class="label">— Featured &amp; stocked at</div>
+    <div class="press-row">
+      <span class="press-name bold">Monocle</span>
+      <span class="press-name">Vogue Living</span>
+      <span class="press-name bold">Cereal</span>
+      <span class="press-name">The World of Interiors</span>
+      <span class="press-name bold">Kinfolk</span>
+      <span class="press-name">Slow Food</span>
+    </div>
+  </div>
 </section>
 
 <main class="editorial">
@@ -1539,6 +1582,7 @@ footer {
     </div>
     <div class="image-frame reveal delay-1">
       <video autoplay muted loop playsinline webkit-playsinline preload="auto" id="originHomeVideo">
+        <source src="origin-.webm" type="video/webm">
         <source src="origin-home.mp4" type="video/mp4">
       </video>
       <span class="caption" data-i18n="idx.ch1.caption">Pelion &middot; Spring harvest</span>
@@ -1597,7 +1641,7 @@ footer {
     <div class="product-stage">
       <a href="product.html" class="jar-link reveal">
         <div class="jar-photo-frame">
-          <img src="harvestdeli.png" alt="Harvest Deli Chestnut Honey jar on stone with honeycomb" />
+          <img src="harvestdeli.png" alt="Harvest Deli Chestnut Honey jar on stone with honeycomb" / loading="lazy">
         </div>
       </a>
       <div class="product-meta reveal delay-1">
@@ -1611,6 +1655,328 @@ footer {
   </section>
 
 </main>
+
+<!-- ============ Instagram grid ============ -->
+<section class="ig-strip" aria-label="Instagram">
+  <div class="ig-inner">
+    <div class="ig-head">
+      <div>
+        <div class="eyebrow">— @harvestdeli &middot; Pelion</div>
+        <h2>A quiet feed, in <em>slow rotation.</em></h2>
+      </div>
+      <a href="https://www.instagram.com/harvestdeli" rel="external noopener" class="follow">Follow on Instagram <span aria-hidden="true">→</span></a>
+    </div>
+    <div class="ig-grid">
+      <a class="ig-tile" href="https://www.instagram.com/harvestdeli" rel="external noopener" aria-label="View on Instagram">
+        <div class="bg ig-tone-1"></div>
+        <span class="ig-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.instagram.com/harvestdeli" rel="external noopener" aria-label="View on Instagram">
+        <div class="bg ig-tone-2"></div>
+        <span class="ig-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.instagram.com/harvestdeli" rel="external noopener" aria-label="View on Instagram">
+        <div class="bg ig-tone-3"></div>
+        <span class="ig-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.instagram.com/harvestdeli" rel="external noopener" aria-label="View on Instagram">
+        <div class="bg ig-tone-4"></div>
+        <span class="ig-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.instagram.com/harvestdeli" rel="external noopener" aria-label="View on Instagram">
+        <div class="bg ig-tone-5"></div>
+        <span class="ig-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg></span>
+      </a>
+      <a class="ig-tile" href="https://www.instagram.com/harvestdeli" rel="external noopener" aria-label="View on Instagram">
+        <div class="bg ig-tone-6"></div>
+        <span class="ig-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.7" fill="currentColor"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Find Us in Amsterdam — editorial teaser ============ -->
+<style>
+  .idx-markets {
+    position: relative;
+    padding: clamp(80px, 12vh, 140px) 6vw;
+    background: #F5EDDC;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .idx-markets__inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.95fr 1.15fr;
+    gap: clamp(40px, 6vw, 80px);
+    align-items: center;
+  }
+  .idx-markets__media {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    border-radius: 4px;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+      radial-gradient(120% 80% at 30% 30%, #C58F3F 0%, #8E5B23 38%, #4F3415 80%, #2A1B0A 100%);
+  }
+  .idx-markets__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0 0.42  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.45;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .idx-markets__media-tag {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: rgba(250, 246, 238, 0.84);
+    background: rgba(14, 11, 8, 0.40);
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border: 1px solid rgba(232, 200, 152, 0.18);
+    padding: 8px 14px;
+    border-radius: 999px;
+  }
+  .idx-markets__media-tag .dot { width: 5px; height: 5px; border-radius: 50%; background: #E8C982; }
+  .idx-markets__media-foot {
+    position: absolute;
+    bottom: 22px;
+    left: 22px;
+    right: 22px;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(250, 246, 238, 0.78);
+  }
+  .idx-markets__media-foot small {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(250, 246, 238, 0.45);
+    margin-top: 4px;
+  }
+  .idx-markets__body { max-width: 56ch; }
+  .idx-markets__eyebrow {
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #B8945A;
+    margin-bottom: 24px;
+  }
+  .idx-markets__h {
+    font-family: 'Newsreader', serif;
+    font-variation-settings: 'opsz' 48, 'wght' 400;
+    font-weight: 400;
+    font-size: clamp(34px, 5vw, 60px);
+    line-height: 1.04;
+    letter-spacing: -0.008em;
+    margin: 0 0 26px;
+    color: #1F1A14;
+  }
+  .idx-markets__h em {
+    font-style: italic;
+    color: #B8945A;
+    font-variation-settings: 'opsz' 48, 'wght' 350;
+  }
+  .idx-markets__lead {
+    font-family: 'Newsreader', serif;
+    font-size: 17px;
+    line-height: 1.66;
+    color: rgba(31, 26, 20, 0.72);
+    margin: 0 0 28px;
+  }
+  .idx-markets__rows {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 0 0 36px;
+    padding: 22px 0;
+    border-top: 1px solid rgba(31, 26, 20, 0.10);
+    border-bottom: 1px solid rgba(31, 26, 20, 0.10);
+  }
+  .idx-markets__row strong {
+    display: block;
+    font-family: 'Newsreader', serif;
+    font-variation-settings: 'opsz' 24, 'wght' 500;
+    font-weight: 500;
+    font-size: 16px;
+    color: #1F1A14;
+    margin-bottom: 4px;
+    font-style: italic;
+  }
+  .idx-markets__row span {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(31, 26, 20, 0.55);
+    font-variant-numeric: tabular-nums;
+  }
+  .idx-markets__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 26px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #FAF6EE;
+    text-decoration: none;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #D4AC6A 0%, #B8945A 50%, #8A6228 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 250, 235, 0.40), inset 0 -6px 14px rgba(80, 50, 14, 0.30), 0 8px 20px rgba(80, 50, 14, 0.25);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .idx-markets__cta:hover { transform: translateY(-2px); }
+  .idx-markets__cta .arrow {
+    display: inline-block;
+    width: 14px;
+    height: 1px;
+    background: currentColor;
+    position: relative;
+  }
+  .idx-markets__cta .arrow::after {
+    content: '';
+    position: absolute;
+    right: -1px;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border-right: 1px solid currentColor;
+    border-top: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  @media (max-width: 900px) {
+    .idx-markets__inner { grid-template-columns: 1fr; gap: 36px; }
+    .idx-markets__media { aspect-ratio: 4 / 3; }
+  }
+  @media (max-width: 480px) {
+    .idx-markets__rows { grid-template-columns: 1fr; gap: 16px; }
+  }
+</style>
+<section class="idx-markets" aria-labelledby="idxMarketsH">
+  <div class="idx-markets__inner">
+    <div class="idx-markets__media reveal" aria-hidden="true">
+      <span class="idx-markets__media-tag"><span class="dot"></span> From Pelion to Amsterdam</span>
+      <div class="idx-markets__media-foot">
+        <em>Tenkate Market</em>
+        <em>Westerpark <small>First Sunday</small></em>
+      </div>
+    </div>
+    <div class="idx-markets__body reveal delay-1">
+      <span class="idx-markets__eyebrow" data-i18n="idx.markets.eyebrow">VI — In Amsterdam</span>
+      <h2 class="idx-markets__h" id="idxMarketsH" data-i18n-html="idx.markets.h_html">Find us at the <em>market table.</em></h2>
+      <p class="idx-markets__lead" data-i18n="idx.markets.body">From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee — quietly brought from the hills of Greece to the markets of Amsterdam.</p>
+      <div class="idx-markets__rows">
+        <div class="idx-markets__row">
+          <strong data-i18n="markets.tenkate.title">Tenkate Market</strong>
+          <span data-i18n="markets.tenkate.hours">Monday — Saturday · 09:00 — 17:00</span>
+        </div>
+        <div class="idx-markets__row">
+          <strong data-i18n="markets.westerpark.title">Sunday Market · Westerpark</strong>
+          <span data-i18n="markets.westerpark.hours">First Sunday of every month · 11:00 — 17:00</span>
+        </div>
+      </div>
+      <a href="find-us-amsterdam.html" class="idx-markets__cta">
+        <span data-i18n="idx.markets.cta">Find us in Amsterdam</span>
+        <span class="arrow" aria-hidden="true"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How quickly do you ship?", "acceptedAnswer": { "@type": "Answer", "text": "Orders are shipped from our Dutch depot within three working days. Once in transit, allow one to two working days within the Netherlands and two to eight working days across the EU. Full breakdown on the shipping page." } },
+    { "@type": "Question", "name": "Where do you ship?", "acceptedAnswer": { "@type": "Answer", "text": "We ship throughout the Netherlands, across the entire European Union, and worldwide on request. Free shipping above 90 euro within the Netherlands and above 120 euro across the EU." } },
+    { "@type": "Question", "name": "Is your honey raw?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our honey is never heated above 18 degrees Celsius, never fine-filtered, and rests for fourteen days in oak vats. Every enzyme, pollen grain and seasonal aromatic note remains intact." } },
+    { "@type": "Question", "name": "How long does the honey keep?", "acceptedAnswer": { "@type": "Answer", "text": "Indefinitely when sealed. Honey does not spoil thanks to its low water content. Store cool, dry and away from light. Crystallisation is natural and reversible: warm the jar gently in a water bath at no more than 35 degrees Celsius to return it to liquid." } },
+    { "@type": "Question", "name": "Can I return an order?", "acceptedAnswer": { "@type": "Answer", "text": "Within fourteen days of receipt you may return unopened jars in their original wax seal without giving a reason. Opened or broken-seal jars cannot be taken back for hygiene reasons. Full instructions on the returns page." } },
+    { "@type": "Question", "name": "Do you offer gift packaging?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We dispatch in an oak-veneered presentation box with a handwritten card, for one to three jars. Select gift packaging in the checkout, with a 9 euro 50 surcharge." } },
+    { "@type": "Question", "name": "Is raw honey safe for young children?", "acceptedAnswer": { "@type": "Answer", "text": "Do not give honey to children under twelve months, in line with the Dutch Voedingscentrum advice on infant botulism. For everyone above one year, honey is safe to enjoy." } },
+    { "@type": "Question", "name": "Can I visit the estate?", "acceptedAnswer": { "@type": "Answer", "text": "By appointment we welcome small groups between April and October at the Andreou cellar in Pelion, Greece. Send a request to hello@harvestdeli.gr with your preferred dates." } }
+  ]
+}
+</script>
+<style>
+/* Inline overrides so the FAQ block inherits the homepage's exact tokens */
+.faq-block { background: var(--bg-deep); }
+</style>
+<section class="faq-block" id="faq" aria-labelledby="faqHeading">
+  <div class="faq-block-inner">
+    <div class="faq-intro reveal">
+      <div class="faq-eyebrow"><span class="num">VII.</span><span data-i18n="idx.faq.eyebrow">Frequently asked</span></div>
+      <h2 id="faqHeading" data-i18n-html="idx.faq.title_html">Slowly <em>answered.</em></h2>
+      <p class="faq-desc" data-i18n="idx.faq.desc">The short replies we send to first-time visitors of the cellar. Tap a question to read the longer answer.</p>
+      <p class="faq-help" data-i18n-html="idx.faq.help_html">Cannot find your question? Write to <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.</p>
+    </div>
+
+    <ul class="faq-list reveal delay-1">
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q1">How quickly do you ship?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a1_html">Orders leave our Dutch depot within three working days. From dispatch you can expect one to two working days inside the Netherlands and two to eight working days across the EU. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q2">Where do you ship to?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a2_html">The whole of the Netherlands, every EU member state, plus the United Kingdom, Switzerland and Norway. Worldwide on request. Shipping is complimentary above &euro;90 in the Netherlands and above &euro;120 across the EU.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q3">Is your honey raw?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a3_html">Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-taste-the-greek-sun.html">tasting essay</a>.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q4">How long does the honey keep?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a4_html">Indefinitely, sealed. Honey contains almost no water and is naturally antibacterial. Store cool, dry and out of direct light. Crystallisation is natural and reversible: warm the jar in a water bath at no more than 35&deg;C to return it to liquid without damaging it.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q5">Can I return an order?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a5_html">Within fourteen days of receipt you may return unopened, wax-sealed jars without giving a reason. Once the seal is broken, the jar cannot be returned for hygiene reasons. Full instructions and the model form are on the <a href="legal-returns.html">returns page</a>.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q6">Do you offer gift packaging?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a6_html">Yes. An oak-veneered presentation box, lined in linen, holds one to three jars and travels with a handwritten card. Select gift packaging in the checkout, with a small &euro;9,50 surcharge.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q7">Is raw honey safe for young children?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a7_html">Do not give honey to children under twelve months of age. This is the standard advice of the Dutch Voedingscentrum, due to a very small risk of infant botulism in any unprocessed honey. For everyone above one year, honey is safe to enjoy.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="idx.faq.q8">Can I visit the estate?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="idx.faq.a8_html">By appointment we welcome small groups between April and October at the Andreou cellar in Pelion, Greece. A single day, an accompanied tasting, a walk to the higher hives if the weather allows. Send your preferred dates to <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
 
 <footer id="journal">
   <div class="footer-grid">
@@ -1628,16 +1994,22 @@ footer {
     <div class="footer-col">
       <h4 data-i18n="footer.col.house">House</h4>
       <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
       <a href="#process" data-i18n="footer.link.estate">Estate</a>
-      <a href="#" data-i18n="footer.link.journal">Journal</a>
+      <a href="journal.html" data-i18n="footer.link.journal">Journal</a>
+      <a href="partners.html">Wholesale</a>
+      <a href="legal-shipping.html">Shipping</a>
       <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4 data-i18n="footer.col.care">Care</h4>
-      <a href="#" data-i18n="footer.link.shipping">Shipping</a>
-      <a href="#" data-i18n="footer.link.sourcing">Sourcing</a>
-      <a href="#" data-i18n="footer.link.trade">Trade</a>
-      <a href="#" data-i18n="footer.link.press">Press</a>
+      <h4>Legal</h4>
+      <a href="legal-terms.html">Algemene voorwaarden</a>
+      <a href="legal-privacy.html">Privacyverklaring</a>
+      <a href="legal-cookies.html">Cookieverklaring</a>
+      <a href="legal-returns.html">Retour &amp; herroeping</a>
+      <a href="legal-shipping.html">Verzending</a>
+      <a href="legal-imprint.html">Bedrijfsgegevens</a>
+      <button class="linkish" type="button" data-open-cookie-prefs>Cookievoorkeuren</button>
     </div>
   </div>
   <div class="footer-bottom">
@@ -1649,14 +2021,10 @@ footer {
 <script src="shared.js"></script>
 <script>
 (function() {
-  const video = document.getElementById('scrollVideo');
-  const videoStage = document.querySelector('.video-stage');
-  const hero = document.querySelector('.hero');
+  const video = document.getElementById('heroVideo');
   const nav = document.querySelector('nav.site-nav');
   const scrollHint = document.getElementById('scrollHint');
   const loader = document.getElementById('loader');
-  const scenes = document.querySelectorAll('.scene');
-  const glassWrap = document.querySelector('.glass-cards');
   const reveals = document.querySelectorAll('.reveal');
 
   /* Menu overlay */
@@ -1692,23 +2060,7 @@ footer {
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  /* Scroll video */
-  const isTouch = ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  const isSmall = window.matchMedia('(max-width: 900px)').matches;
-  const useMobileFlow = isTouch || isSmall;
-
-  let targetTime = 0;
-  let currentTime = 0;
-  let heroHeight = hero.offsetHeight;
-  let viewportH = window.innerHeight;
-  let ticking = false;
-
-  function recalc() {
-    heroHeight = hero.offsetHeight;
-    viewportH = window.innerHeight;
-  }
-  window.addEventListener('resize', recalc);
-
+  /* Hero video — simple autoplay loop */
   function hideLoader() {
     if (loader.classList.contains('hidden')) return;
     loader.classList.add('hidden');
@@ -1721,86 +2073,19 @@ footer {
     video.addEventListener('playing', hideLoader, { once: true });
     setTimeout(hideLoader, 5000);
   }
+  const tryPlay = () => { try { video.play().catch(() => {}); } catch (e) {} };
+  tryPlay();
+  document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
+  document.addEventListener('click', tryPlay, { once: true });
 
-  if (useMobileFlow) {
-    video.loop = true;
-    video.muted = true;
-    video.setAttribute('autoplay', '');
-    const tryPlay = () => { try { video.play().catch(() => {}); } catch (e) {} };
-    tryPlay();
-    document.addEventListener('touchstart', tryPlay, { once: true, passive: true });
-    document.addEventListener('click', tryPlay, { once: true });
-  } else {
-    video.addEventListener('loadedmetadata', () => {
-      try { video.currentTime = 0.01; } catch (e) {}
-    });
-    // Seek coalescing: only issue a new seek when the previous one finished.
-    // Combined with the all-keyframe encoded video this gives Chrome the
-    // same smoothness Safari has natively.
-    let seekReady = true;
-    video.addEventListener('seeked', () => { seekReady = true; });
-    function frameLoop() {
-      const diff = targetTime - currentTime;
-      if (Math.abs(diff) > 0.0008) {
-        currentTime += diff * 0.13;
-        if (seekReady) {
-          seekReady = false;
-          try { video.currentTime = currentTime; } catch (e) { seekReady = true; }
-        }
-      }
-      requestAnimationFrame(frameLoop);
-    }
-    requestAnimationFrame(frameLoop);
-  }
-
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  function updateScene(scene, fraction) {
-    const start = parseFloat(scene.dataset.start);
-    const end = parseFloat(scene.dataset.end);
-    if (fraction >= start && fraction <= end) {
-      const progress = (fraction - start) / (end - start);
-      let opacity;
-      if (progress < 0.2) opacity = easeInOutCubic(progress / 0.2);
-      else if (progress > 0.8) opacity = easeInOutCubic((1 - progress) / 0.2);
-      else opacity = 1;
-      opacity = Math.max(0, Math.min(1, opacity));
-
-      const parallaxY = (1 - Math.min(progress / 0.25, 1)) * 24;
-      scene.style.opacity = opacity;
-      if (!scene.classList.contains('glass-cards')) {
-        scene.style.transform = `translateY(${parallaxY * 0.4}px)`;
-      }
-      if (!scene.classList.contains('active')) scene.classList.add('active');
-    } else {
-      if (scene.style.opacity !== '0') scene.style.opacity = 0;
-      if (scene.classList.contains('active')) scene.classList.remove('active');
-    }
-  }
-
+  /* Nav state + scroll hint fade */
+  let ticking = false;
   function onScroll() {
     const scrollY = window.scrollY;
-    const heroScrollMax = Math.max(1, heroHeight - viewportH);
-    const scrollFraction = Math.max(0, Math.min(1, scrollY / heroScrollMax));
-
-    if (!useMobileFlow && video.duration && !isNaN(video.duration)) {
-      targetTime = scrollFraction * (video.duration - 0.05);
-    }
-
-    scenes.forEach(s => updateScene(s, scrollFraction));
-    updateScene(glassWrap, scrollFraction);
-
-    if (scrollY > heroScrollMax * 0.985) videoStage.classList.add('fade-out');
-    else videoStage.classList.remove('fade-out');
-
     if (scrollY > 80) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
-
     if (scrollY > 140) scrollHint.classList.add('hidden');
     else scrollHint.classList.remove('hidden');
-
     ticking = false;
   }
   window.addEventListener('scroll', () => {

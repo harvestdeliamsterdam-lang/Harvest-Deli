@@ -2,6 +2,107 @@
    Harvest Deli — shared logic
    Product catalog + cart state + drawer + menu wiring
    ============================================================ */
+
+/* =================================================================
+   CINEMATIC INTRO — runs once per session, before anything else.
+   Pre-paint shield is set by inline head script; this builds the
+   real cinematic overlay (wordmark + halo + sweep + grain) and
+   choreographs the entrance / exit, then unveils the homepage.
+   ================================================================= */
+(function () {
+  'use strict';
+  const SESSION_KEY = 'hd-intro-played-v1';
+  const root = document.documentElement;
+  const isPending = root.classList.contains('hd-intro-pending');
+  // Intro is the brand's "front door" — only plays on entries through index.html.
+  // The head shield script only ships on the homepage, so any page without
+  // .hd-intro-pending wasn't meant to show the intro and we exit early.
+  if (!isPending) return;
+  let alreadyPlayed = false;
+  try { alreadyPlayed = !!sessionStorage.getItem(SESSION_KEY); } catch (e) {}
+  // If sessionStorage says we already played but the head shield is up
+  // (e.g. came back to / after viewing shop), drop the shield and unveil.
+  if (alreadyPlayed) {
+    root.classList.remove('hd-intro-pending');
+    root.classList.add('hd-intro-done');
+    setTimeout(() => root.classList.remove('hd-intro-done'), 800);
+    return;
+  }
+
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- Build the overlay (uses #harvestDeliLogoDark which is defined in each page's <defs>) ----
+  function build() {
+    const wrap = document.createElement('div');
+    wrap.className = 'hd-intro';
+    wrap.setAttribute('role', 'presentation');
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML =
+      '<div class="hd-intro__pattern"  aria-hidden="true"></div>' +
+      '<div class="hd-intro__halo"     aria-hidden="true"></div>' +
+      '<div class="hd-intro__sweep"    aria-hidden="true"></div>' +
+      '<div class="hd-intro__vignette" aria-hidden="true"></div>' +
+      '<div class="hd-intro__grain"    aria-hidden="true"></div>' +
+      '<div class="hd-intro__stage">' +
+        '<span class="hd-intro__rule" aria-hidden="true"></span>' +
+        '<svg class="hd-intro__mark" viewBox="0 0 260 100" aria-label="Harvest Deli">' +
+          '<use href="#harvestDeliLogoDark"/>' +
+        '</svg>' +
+        '<span class="hd-intro__rule hd-intro__rule--bot" aria-hidden="true"></span>' +
+        '<span class="hd-intro__tagline">Pelion · Greece</span>' +
+      '</div>';
+    return wrap;
+  }
+
+  function mount() {
+    if (document.querySelector('.hd-intro')) return;
+    const overlay = build();
+    document.body.appendChild(overlay);
+    // Drop the pre-paint shield class — the real overlay is now in place
+    root.classList.remove('hd-intro-pending');
+    root.classList.add('hd-intro-active');
+
+    const HOLD = reduced ? 900 : 2600;   // ms before the curtain begins to rise
+    const EXIT = reduced ? 600 : 1100;   // ms for the curtain transition itself
+
+    let dismissed = false;
+    let exitTimer = setTimeout(beginExit, HOLD);
+
+    function beginExit() {
+      if (dismissed) return;
+      dismissed = true;
+      clearTimeout(exitTimer);
+      overlay.classList.add('exiting');
+      try { sessionStorage.setItem(SESSION_KEY, '1'); } catch (e) {}
+      // Unveil the homepage simultaneously
+      root.classList.remove('hd-intro-active');
+      root.classList.add('hd-intro-done');
+      setTimeout(() => {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        // Body opacity transition is short — clear the helper class after
+        setTimeout(() => root.classList.remove('hd-intro-done'), 800);
+      }, EXIT);
+    }
+
+    // Skip on tap / click / keypress — anywhere
+    function skip(e) {
+      if (e && e.type === 'keydown') {
+        const k = e.key;
+        if (k !== 'Enter' && k !== ' ' && k !== 'Escape') return;
+      }
+      beginExit();
+    }
+    overlay.addEventListener('click', skip, { once: true });
+    document.addEventListener('keydown', skip, { once: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', mount);
+  } else {
+    mount();
+  }
+})();
+
 (function () {
   'use strict';
 
@@ -65,6 +166,74 @@
       'footer.link.chestnut': 'Chestnut Honey',
       'footer.bottom1': '© Harvest Deli · Pelion, Greece',
       'footer.bottom2': 'Crafted slowly · MMXXV',
+      'footer.builtBy': 'Designed & built by',
+      'a11y.skipLink': 'Skip to content',
+      'idx.h1': 'Harvest Deli — single-estate Greek honey from the hills of Pelion',
+      // ---------- Harvest Concierge (floating chat) ----------
+      'concierge.fab': 'Chat',
+      'concierge.title': 'Chat with Harvest Deli',
+      'concierge.subtitle': 'Pelion, Greece',
+      'concierge.online': 'Real human · Replies within hours',
+      'concierge.greeting': 'Welcome to Harvest Deli.\nHow may we help you today?',
+      'concierge.intro': 'Choose a topic below — we’ll continue the conversation on WhatsApp.',
+      'concierge.action.product': 'Ask about a product',
+      'concierge.action.retail': 'Retail & hospitality',
+      'concierge.action.shipping': 'Shipping & delivery',
+      'concierge.action.gift': 'Gifts & corporate orders',
+      'concierge.action.concierge': 'Speak with our team',
+      'concierge.msg.product': 'Hello Harvest Deli, I would like to know more about your collection.',
+      'concierge.msg.retail': 'Hello Harvest Deli, I would like to explore a retail or hospitality partnership.',
+      'concierge.msg.shipping': 'Hello Harvest Deli, I have a question about shipping and delivery.',
+      'concierge.msg.gift': 'Hello Harvest Deli, I would like to arrange a gift or corporate order.',
+      'concierge.msg.concierge': 'Hello Harvest Deli, I would like to speak with your team.',
+      'concierge.close': 'Close',
+      'concierge.privacy': 'Conversations open in WhatsApp. We never share your number.',
+      // ---------- Find Us in Amsterdam ----------
+      'markets.nav': 'Markets',
+      'markets.menu_html': 'The <em>Markets</em>',
+      'markets.menu_sub': 'Find us in Amsterdam',
+      'markets.eyebrow': 'From Pelion to Amsterdam',
+      'markets.hero.h_html': 'Find us<br><em>in Amsterdam.</em>',
+      'markets.hero.sub': 'Meet Harvest Deli in person at our weekly and monthly market locations — quietly brought from the hills of Greece to the markets of Amsterdam.',
+      'markets.cards.eyebrow': 'Two tables',
+      'markets.cards.h_html': 'Where you can find <em>the harvest.</em>',
+      'markets.tenkate.tag': 'Weekly · West',
+      'markets.tenkate.title': 'Tenkate Market',
+      'markets.tenkate.hours': 'Monday — Saturday · 09:00 — 17:00',
+      'markets.tenkate.addr': 'Ten Katestraat · Amsterdam-West',
+      'markets.tenkate.desc': 'Our weekly table — a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we’ll pour the morning coffee.',
+      'markets.westerpark.tag': 'Monthly · Sunday',
+      'markets.westerpark.title': 'Sunday Market · Westerpark',
+      'markets.westerpark.hours': 'First Sunday of every month · 11:00 — 17:00',
+      'markets.westerpark.addr': 'Westergasterrein · Amsterdam-West',
+      'markets.westerpark.desc': 'A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.',
+      'markets.story.eyebrow': 'The table',
+      'markets.story.lead_html': '“For us, markets are not only about selling honey. They are about <em>conversation, tasting</em> and sharing the harvest.”',
+      'markets.story.body': 'Each morning we set out the same way our family has for four generations on the slopes of Pelion — linen folded, jars uncapped, a spoon laid across the rim. Amsterdam, with its bicycles and its grey-morning light, has welcomed our small ritual. Come early. Stay slow. Taste before you speak.',
+      'markets.story.sig': 'Stelios &amp; Eleni Andreou',
+      'markets.story.sigsub': 'Pelion · Amsterdam',
+      'markets.gallery.eyebrow': 'A photo journal',
+      'markets.gallery.h_html': '<em>Mornings</em> at the table.',
+      'markets.gallery.cap1': 'Sunlight through the linen, just after opening.',
+      'markets.gallery.cap2': 'The first tasting of the day.',
+      'markets.gallery.cap3': 'A regular guest, a regular spoon.',
+      'markets.gallery.cap4': 'Wax-sealed editions in a wooden crate.',
+      'markets.gallery.cap5': 'A quiet conversation about provenance.',
+      'markets.gallery.cap6': 'Westerpark · first Sunday, late afternoon.',
+      'markets.map.eyebrow': 'Two locations · Amsterdam-West',
+      'markets.map.h_html': 'A short walk from the canals.',
+      'markets.map.lead': 'Both tables are within Amsterdam-West, a fifteen-minute cycle from the centre. Tram 7 stops near both. The light is best before noon.',
+      'markets.map.pin1': 'Tenkate Market',
+      'markets.map.pin2': 'Westerpark',
+      'markets.cta.eyebrow': 'Visit the table',
+      'markets.cta.h_html': 'Come and <em>taste the harvest.</em>',
+      'markets.cta.lead': 'Bring an empty afternoon and an honest appetite. There is always coffee, always a spoon, always a story.',
+      'markets.cta.schedule': 'View Market Schedule',
+      'markets.cta.trade': 'Retail & Hospitality',
+      'idx.markets.eyebrow': 'VI — In Amsterdam',
+      'idx.markets.h_html': 'Find us at the <em>market table.</em>',
+      'idx.markets.body': 'From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee — quietly brought from the hills of Greece to the markets of Amsterdam.',
+      'idx.markets.cta': 'Find us in Amsterdam',
       // ---------- index hero ----------
       'idx.scene0.est': 'Established · Pelion, Greece · Estate №01',
       'idx.scene1.eyebrow_html': 'Edition I <span class="dot"></span> Chestnut Honey',
@@ -376,6 +545,72 @@
       'footer.link.chestnut': 'Tamme Kastanje',
       'footer.bottom1': '© Harvest Deli · Pelion, Griekenland',
       'footer.bottom2': 'Met aandacht gemaakt · MMXXV',
+      'footer.builtBy': 'Ontworpen & gebouwd door',
+      'a11y.skipLink': 'Ga naar inhoud',
+      'idx.h1': 'Harvest Deli — Griekse honing van één landgoed in Pelion',
+      'concierge.fab': 'Chat',
+      'concierge.title': 'Chat met Harvest Deli',
+      'concierge.subtitle': 'Pelion, Griekenland',
+      'concierge.online': 'Echte mens · Reactie binnen enkele uren',
+      'concierge.greeting': 'Welkom bij Harvest Deli.\nWaar kunnen we u mee helpen?',
+      'concierge.intro': 'Kies een onderwerp hieronder — we zetten het gesprek voort op WhatsApp.',
+      'concierge.action.product': 'Vraag over een product',
+      'concierge.action.retail': 'Retail & horeca',
+      'concierge.action.shipping': 'Verzending & levering',
+      'concierge.action.gift': 'Geschenken & zakelijke orders',
+      'concierge.action.concierge': 'Spreek met ons team',
+      'concierge.msg.product': 'Hallo Harvest Deli, ik wil graag meer weten over uw collectie.',
+      'concierge.msg.retail': 'Hallo Harvest Deli, ik wil graag de mogelijkheden voor retail of horeca verkennen.',
+      'concierge.msg.shipping': 'Hallo Harvest Deli, ik heb een vraag over verzending en levering.',
+      'concierge.msg.gift': 'Hallo Harvest Deli, ik wil graag een geschenk of zakelijke order plaatsen.',
+      'concierge.msg.concierge': 'Hallo Harvest Deli, ik wil graag met uw team spreken.',
+      'concierge.close': 'Sluiten',
+      'concierge.privacy': 'Gesprekken openen in WhatsApp. We delen uw nummer nooit.',
+      'markets.nav': 'Markten',
+      'markets.menu_html': 'De <em>Markten</em>',
+      'markets.menu_sub': 'Vind ons in Amsterdam',
+      'markets.eyebrow': 'Van Pelion naar Amsterdam',
+      'markets.hero.h_html': 'Vind ons<br><em>in Amsterdam.</em>',
+      'markets.hero.sub': 'Ontmoet Harvest Deli in het echt op onze wekelijkse en maandelijkse markten — stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
+      'markets.cards.eyebrow': 'Twee tafels',
+      'markets.cards.h_html': 'Waar u <em>de oogst</em> kunt vinden.',
+      'markets.tenkate.tag': 'Wekelijks · West',
+      'markets.tenkate.title': 'Ten Kate Markt',
+      'markets.tenkate.hours': 'Maandag — zaterdag · 09:00 — 17:00',
+      'markets.tenkate.addr': 'Ten Katestraat · Amsterdam-West',
+      'markets.tenkate.desc': 'Onze wekelijkse tafel — een paar kratten honing, een proeflepel, een geopende pot. Loop binnen tussen uw boodschappen door; we schenken de ochtendkoffie.',
+      'markets.westerpark.tag': 'Maandelijks · Zondag',
+      'markets.westerpark.title': 'Zondagsmarkt · Westerpark',
+      'markets.westerpark.hours': 'Eerste zondag van elke maand · 11:00 — 17:00',
+      'markets.westerpark.addr': 'Westergasterrein · Amsterdam-West',
+      'markets.westerpark.desc': 'Een rustigere zondagse samenkomst in de oude gasfabriek. Linnen, kaarslicht bij schemering, en de oogst — één lepel tegelijk geschonken.',
+      'markets.story.eyebrow': 'De tafel',
+      'markets.story.lead_html': '"Voor ons gaan markten niet alleen over het verkopen van honing. Ze gaan over <em>gesprek, proeven</em> en het delen van de oogst."',
+      'markets.story.body': 'Elke ochtend dekken we de tafel op dezelfde manier als onze familie dat al vier generaties doet op de hellingen van Pelion — linnen gevouwen, potten geopend, een lepel over de rand. Amsterdam, met zijn fietsen en zijn grijze ochtendlicht, heeft ons kleine ritueel verwelkomd. Kom vroeg. Blijf rustig. Proef voordat u spreekt.',
+      'markets.story.sig': 'Stelios &amp; Eleni Andreou',
+      'markets.story.sigsub': 'Pelion · Amsterdam',
+      'markets.gallery.eyebrow': 'Een fotojournaal',
+      'markets.gallery.h_html': '<em>Ochtenden</em> aan de tafel.',
+      'markets.gallery.cap1': 'Zonlicht door het linnen, vlak na opening.',
+      'markets.gallery.cap2': 'De eerste proeverij van de dag.',
+      'markets.gallery.cap3': 'Een vaste gast, een vaste lepel.',
+      'markets.gallery.cap4': 'Wax-verzegelde edities in een houten krat.',
+      'markets.gallery.cap5': 'Een rustig gesprek over herkomst.',
+      'markets.gallery.cap6': 'Westerpark · eerste zondag, laat in de middag.',
+      'markets.map.eyebrow': 'Twee locaties · Amsterdam-West',
+      'markets.map.h_html': 'Een korte wandeling vanaf de grachten.',
+      'markets.map.lead': 'Beide tafels liggen in Amsterdam-West, op een fietsritje van vijftien minuten vanaf het centrum. Tram 7 stopt vlakbij. Het licht is het mooist voor de middag.',
+      'markets.map.pin1': 'Ten Kate Markt',
+      'markets.map.pin2': 'Westerpark',
+      'markets.cta.eyebrow': 'Bezoek de tafel',
+      'markets.cta.h_html': 'Kom <em>de oogst proeven.</em>',
+      'markets.cta.lead': 'Breng een lege middag mee en een eerlijke honger. Er is altijd koffie, altijd een lepel, altijd een verhaal.',
+      'markets.cta.schedule': 'Bekijk marktagenda',
+      'markets.cta.trade': 'Retail & horeca',
+      'idx.markets.eyebrow': 'VI — In Amsterdam',
+      'idx.markets.h_html': 'Vind ons aan de <em>markttafel.</em>',
+      'idx.markets.body': 'Van Pelion naar Amsterdam. Twee tafels, gedekt met linnen, een proeflepel en de ochtendkoffie — stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
+      'idx.markets.cta': 'Vind ons in Amsterdam',
       // ---------- index hero ----------
       'idx.scene0.est': 'Opgericht · Pelion, Griekenland · Landgoed №01',
       'idx.scene1.eyebrow_html': 'Editie I <span class="dot"></span> Tamme Kastanje',
@@ -630,16 +865,698 @@
       'product.sticky.name': 'Tamme Kastanje, landgoed Pelion',
       'product.sticky.price': '€68 · Editie I',
       'product.sticky.add': 'Voeg toe'
+    },
+    el: {
+      'nav.menu': 'Μενού',
+      'nav.shop': 'Κατάστημα',
+      'nav.acquire': 'Αγορά',
+      'nav.cellar': 'Κελάρι',
+      'nav.secureCheckout': 'Ασφαλής Πληρωμή',
+      'menu.close': 'Κλείσιμο',
+      'menu.item.collection_html': 'Η <em>Συλλογή</em>',
+      'menu.item.collection_sub': 'Όλες οι εκδόσεις',
+      'menu.item.origin_html': 'Η <em>Προέλευση</em>',
+      'menu.item.origin_sub': 'Πήλιο · Ελλάδα',
+      'menu.item.process_html': 'Η <em>Διαδικασία</em>',
+      'menu.item.process_sub': 'Χειροποίητη συγκομιδή',
+      'menu.item.journal_html': 'Το <em>Ημερολόγιο</em>',
+      'menu.item.journal_sub': 'Σημειώσεις από το πεδίο',
+      'menu.item.contact': 'Επικοινωνία',
+      'menu.item.contact_sub': 'Χονδρική & Τύπος',
+      'menu.estate.h': 'Επισκεφθείτε το κτήμα',
+      'menu.estate.p': 'Με ραντεβού από Απρίλιο έως Οκτώβριο. Μικρές ομάδες, μία ημέρα, συνοδευόμενες γευσιγνωσίες στο κελάρι.',
+      'menu.social.instagram': 'Instagram',
+      'menu.social.journal': 'Ημερολόγιο',
+      'menu.social.wholesale': 'Χονδρική',
+      'menu.copyright': '© Harvest Deli MMXXV',
+      'cart.title_html': 'Το <em>Κελάρι</em> σας',
+      'cart.close': 'Κλείσιμο',
+      'cart.empty.h': 'Το κελάρι σας είναι ήσυχο.',
+      'cart.empty.p': 'Ξεκινήστε τη συλλογή. Κάθε βάζο είναι αριθμημένο, σφραγισμένο με κερί, και αποστέλλεται από το Πήλιο εντός της εβδομάδας.',
+      'cart.empty.cta': 'Δείτε τη συλλογή',
+      'cart.subtotal': 'Μερικό σύνολο',
+      'cart.note': 'Τα μεταφορικά υπολογίζονται κατά την πληρωμή. Δωρεάν εντός ΕΕ άνω των €120.',
+      'cart.checkout': 'Συνέχεια στην πληρωμή',
+      'cart.remove': 'Αφαίρεση',
+      'cart.added': 'Προστέθηκε',
+      'footer.tagline': 'Υγρό ηλιόφως, κρατημένο αργά και μικρό, από τα βουνά της Ελλάδας.',
+      'footer.col.collection': 'Συλλογή',
+      'footer.col.house': 'Οίκος',
+      'footer.col.care': 'Φροντίδα',
+      'footer.link.allEditions': 'Όλες οι εκδόσεις',
+      'footer.link.rawHoney': 'Ωμό μέλι',
+      'footer.link.limited': 'Περιορισμένο απόθεμα',
+      'footer.link.reserve': 'Ρεζέρβα',
+      'footer.link.gift': 'Σετ δώρου',
+      'footer.link.origin': 'Προέλευση',
+      'footer.link.estate': 'Κτήμα',
+      'footer.link.journal': 'Ημερολόγιο',
+      'footer.link.contact': 'Επικοινωνία',
+      'footer.link.shipping': 'Αποστολές',
+      'footer.link.sourcing': 'Προμήθεια',
+      'footer.link.trade': 'Συνεργασίες',
+      'footer.link.press': 'Τύπος',
+      'footer.link.wildThyme': 'Άγριο Θυμάρι',
+      'footer.link.pineHeather': 'Πεύκο & Ρείκι',
+      'footer.link.springWildflower': 'Ανοιξιάτικα Αγριολούλουδα',
+      'footer.link.chestnut': 'Καστανόμελο',
+      'footer.bottom1': '© Harvest Deli · Πήλιο, Ελλάδα',
+      'footer.bottom2': 'Φτιαγμένο αργά · MMXXV',
+      'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
+      'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
+      'idx.h1': 'Harvest Deli — μονοκτηματικό ελληνικό μέλι από το Πήλιο',
+      'concierge.fab': 'Συνομιλία',
+      'concierge.title': 'Συνομιλία με Harvest Deli',
+      'concierge.subtitle': 'Πήλιο, Ελλάδα',
+      'concierge.online': 'Πραγματικός άνθρωπος · Απάντηση σε λίγες ώρες',
+      'concierge.greeting': 'Καλώς ήρθατε στη Harvest Deli.\nΠώς μπορούμε να σας βοηθήσουμε;',
+      'concierge.intro': 'Επιλέξτε ένα θέμα παρακάτω — η συνομιλία θα συνεχιστεί στο WhatsApp.',
+      'concierge.action.product': 'Ερώτηση για κάποιο προϊόν',
+      'concierge.action.retail': 'Λιανική & φιλοξενία',
+      'concierge.action.shipping': 'Αποστολή & παράδοση',
+      'concierge.action.gift': 'Δώρα & εταιρικές παραγγελίες',
+      'concierge.action.concierge': 'Συνομιλία με την ομάδα μας',
+      'concierge.msg.product': 'Γεια σας Harvest Deli, θα ήθελα να μάθω περισσότερα για τη συλλογή σας.',
+      'concierge.msg.retail': 'Γεια σας Harvest Deli, θα ήθελα να εξερευνήσω συνεργασία λιανικής ή φιλοξενίας.',
+      'concierge.msg.shipping': 'Γεια σας Harvest Deli, έχω μια ερώτηση για αποστολή και παράδοση.',
+      'concierge.msg.gift': 'Γεια σας Harvest Deli, θα ήθελα να κανονίσω ένα δώρο ή εταιρική παραγγελία.',
+      'concierge.msg.concierge': 'Γεια σας Harvest Deli, θα ήθελα να μιλήσω με την ομάδα σας.',
+      'concierge.close': 'Κλείσιμο',
+      'concierge.privacy': 'Οι συνομιλίες ανοίγουν στο WhatsApp. Δεν μοιραζόμαστε ποτέ τον αριθμό σας.',
+      'markets.nav': 'Αγορές',
+      'markets.menu_html': 'Οι <em>Αγορές</em>',
+      'markets.menu_sub': 'Βρείτε μας στο Άμστερνταμ',
+      'markets.eyebrow': 'Από το Πήλιο στο Άμστερνταμ',
+      'markets.hero.h_html': 'Βρείτε μας<br><em>στο Άμστερνταμ.</em>',
+      'markets.hero.sub': 'Συναντήστε τη Harvest Deli από κοντά στις εβδομαδιαίες και μηνιαίες αγορές μας — ήσυχα φερμένες από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
+      'markets.cards.eyebrow': 'Δύο τραπέζια',
+      'markets.cards.h_html': 'Εκεί όπου θα βρείτε <em>τη σοδειά.</em>',
+      'markets.tenkate.tag': 'Εβδομαδιαία · Δυτικά',
+      'markets.tenkate.title': 'Αγορά Tenkate',
+      'markets.tenkate.hours': 'Δευτέρα — Σάββατο · 09:00 — 17:00',
+      'markets.tenkate.addr': 'Ten Katestraat · Άμστερνταμ-Δυτικά',
+      'markets.tenkate.desc': 'Το εβδομαδιαίο τραπέζι μας — λίγα τελάρα μέλι, ένα κουταλάκι για δοκιμή, ένα ανοιχτό βάζο. Περάστε ανάμεσα στα θελήματά σας· σερβίρουμε τον πρωινό καφέ.',
+      'markets.westerpark.tag': 'Μηνιαία · Κυριακή',
+      'markets.westerpark.title': 'Κυριακάτικη Αγορά · Westerpark',
+      'markets.westerpark.hours': 'Πρώτη Κυριακή κάθε μήνα · 11:00 — 17:00',
+      'markets.westerpark.addr': 'Westergasterrein · Άμστερνταμ-Δυτικά',
+      'markets.westerpark.desc': 'Μια πιο αργή Κυριακάτικη συνάντηση μέσα στο παλιό εργοστάσιο φωταερίου. Λινό, φως κεριών το σούρουπο, και η σοδειά — μια κουταλιά τη φορά.',
+      'markets.story.eyebrow': 'Το τραπέζι',
+      'markets.story.lead_html': '"Για εμάς, οι αγορές δεν είναι μόνο πώληση μελιού. Είναι <em>συνομιλία, δοκιμή</em> και μοίρασμα της σοδειάς."',
+      'markets.story.body': 'Κάθε πρωί στρώνουμε το τραπέζι όπως η οικογένειά μας τέσσερις γενιές τώρα στις πλαγιές του Πηλίου — λινό διπλωμένο, βάζα ανοιχτά, ένα κουτάλι πάνω στο χείλος. Το Άμστερνταμ, με τα ποδήλατά του και το γκρίζο πρωινό του φως, υποδέχτηκε το μικρό μας τελετουργικό. Ελάτε νωρίς. Μείνετε αργά. Δοκιμάστε πριν μιλήσετε.',
+      'markets.story.sig': 'Στέλιος &amp; Ελένη Ανδρέου',
+      'markets.story.sigsub': 'Πήλιο · Άμστερνταμ',
+      'markets.gallery.eyebrow': 'Ένα φωτογραφικό ημερολόγιο',
+      'markets.gallery.h_html': '<em>Πρωινά</em> στο τραπέζι.',
+      'markets.gallery.cap1': 'Ηλιαχτίδα μέσα από το λινό, μετά το άνοιγμα.',
+      'markets.gallery.cap2': 'Η πρώτη δοκιμή της ημέρας.',
+      'markets.gallery.cap3': 'Ένας τακτικός επισκέπτης, ένα τακτικό κουτάλι.',
+      'markets.gallery.cap4': 'Εκδόσεις σφραγισμένες με κερί σε ξύλινο τελάρο.',
+      'markets.gallery.cap5': 'Ήσυχη συζήτηση για την προέλευση.',
+      'markets.gallery.cap6': 'Westerpark · πρώτη Κυριακή, αργά το απόγευμα.',
+      'markets.map.eyebrow': 'Δύο τοποθεσίες · Άμστερνταμ-Δυτικά',
+      'markets.map.h_html': 'Λίγα βήματα από τα κανάλια.',
+      'markets.map.lead': 'Και τα δύο τραπέζια βρίσκονται στο Άμστερνταμ-Δυτικά, δεκαπέντε λεπτά με ποδήλατο από το κέντρο. Το τραμ 7 σταματά κοντά. Το φως είναι καλύτερο πριν το μεσημέρι.',
+      'markets.map.pin1': 'Αγορά Tenkate',
+      'markets.map.pin2': 'Westerpark',
+      'markets.cta.eyebrow': 'Επισκεφθείτε το τραπέζι',
+      'markets.cta.h_html': 'Ελάτε να <em>δοκιμάσετε τη σοδειά.</em>',
+      'markets.cta.lead': 'Φέρτε ένα άδειο απόγευμα και μια ειλικρινή όρεξη. Υπάρχει πάντα καφές, πάντα ένα κουτάλι, πάντα μια ιστορία.',
+      'markets.cta.schedule': 'Πρόγραμμα αγορών',
+      'markets.cta.trade': 'Λιανική & φιλοξενία',
+      'idx.markets.eyebrow': 'VI — Στο Άμστερνταμ',
+      'idx.markets.h_html': 'Βρείτε μας στο <em>τραπέζι της αγοράς.</em>',
+      'idx.markets.body': 'Από το Πήλιο στο Άμστερνταμ. Δύο τραπέζια, στρωμένα με λινό, ένα κουτάλι για δοκιμή και ο πρωινός καφές — ήσυχα φερμένα από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
+      'idx.markets.cta': 'Βρείτε μας στο Άμστερνταμ',
+      'idx.scene0.est': 'Ιδρύθηκε · Πήλιο, Ελλάδα · Κτήμα №01',
+      'idx.scene1.eyebrow_html': 'Έκδοση I <span class="dot"></span> Καστανόμελο',
+      'idx.scene1.line_html': 'Αιχμαλωτισμένο από<br><em>τον ελληνικό ήλιο.</em>',
+      'idx.scene2.eyebrow': 'Ένα πεδίο γαλήνης',
+      'idx.scene2.line1': 'Άγρια ορεινά λουλούδια.',
+      'idx.scene2.line2': 'Ανέγγιχτη φύση.',
+      'idx.scene2.line3': 'Αληθινή τεχνική.',
+      'idx.card1.h': 'Φυσική συγκομιδή',
+      'idx.card1.p': 'Κηρήθρες συλλέγονται με το χέρι σε υψόμετρο. Ποτέ θερμασμένες, ποτέ επεξεργασμένες. Κάθε αρωματική νότα της εποχής διατηρείται ανέπαφη.',
+      'idx.card2.h': 'Μικρή παρτίδα',
+      'idx.card2.p': 'Κάθε κτήμα παράγει λιγότερα από τετρακόσια βάζα ανά συγκομιδή. Ένας ήσυχος αριθμός, σκοπίμως μικρός.',
+      'idx.card3.h': 'Φυσική προέλευση',
+      'idx.card3.p': 'Από μία πηγή, ιχνηλάσιμη σε ένα λιβάδι, ένα βουνό, μια εποχή. Τίποτα δεν προστίθεται. Τίποτα δεν αφαιρείται.',
+      'idx.scene4.eyebrow': 'Η συλλογή',
+      'idx.scene4.line': 'Γευτείτε την προέλευση.',
+      'idx.scene4.cta': 'Ανακαλύψτε τη συλλογή',
+      'idx.scrollHint': 'Κύλιση',
+      'idx.ch1.eyebrow': 'I — Η Προέλευση',
+      'idx.ch1.h': 'Γεννημένο στους ήσυχους λόφους της Βόρειας Ελλάδας.',
+      'idx.ch1.body': 'Επί πέντε γενιές, μία οικογένεια φροντίζει χίλιες κυψέλες πάνω στις ασβεστολιθικές κορυφογραμμές του Πηλίου. Άγριο θυμάρι, ρείκι και κουμαριά ανθίζουν σε μία και μόνη, αμετάφραστη εποχή. Το μέλι παίρνει σχήμα από αυτή τη γη, και από τίποτα άλλο.',
+      'idx.ch1.caption': 'Πήλιο · Ανοιξιάτικη συγκομιδή',
+      'idx.ch2.eyebrow': 'II — Η Διαδικασία',
+      'idx.ch2.h': 'Μια πρακτική εξευγενισμένη από τον χρόνο, όχι από την τεχνολογία.',
+      'idx.step1.h': 'Συλλεγμένο σε υψόμετρο',
+      'idx.step1.p': 'Οι κυψέλες τοποθετούνται εκεί όπου τα αγριολούλουδα μεγαλώνουν αφρόντιστα. Ποτέ κοντά σε καλλιέργειες, ποτέ κοντά σε δρόμο. Οι μέλισσες αποφασίζουν πού θα τραφούν· εμείς απλά ακούμε.',
+      'idx.step2.h': 'Ψυχρή εκχύλιση',
+      'idx.step2.p': 'Οι κηρήθρες φυγοκεντρούνται στη θερμοκρασία του κελαριού, ποτέ δεν θερμαίνονται. Κάθε ένζυμο, κάθε γύρη, κάθε μνήμη της εποχής παραμένει ανέπαφη.',
+      'idx.step3.h': 'Καθίζηση, χωρίς διήθηση',
+      'idx.step3.p': 'Το μέλι ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός. Ο αέρας ανεβαίνει, το ίζημα κατακάθεται. Τίποτα δεν εξαναγκάζεται, τίποτα δεν φιλτράρεται, και η υφή παραμένει ζωντανή.',
+      'idx.taste.quote': 'Μια γεύση που κρατά τη μνήμη ενός ορεινού πρωινού. Ζεστή, χρυσαφένια, αργή να φύγει.',
+      'idx.taste.cite': '— Σημειώσεις από το δωμάτιο γευσιγνωσίας',
+      'idx.preview.eyebrow': '— Η Συλλογή',
+      'idx.preview.h_html': 'Τρία από το κελάρι, <em>αριθμημένα.</em>',
+      'idx.preview.addToCellar': 'Προσθήκη στο Κελάρι',
+      'idx.preview.exploreAll': 'Δείτε και τις έξι εκδόσεις',
+      'idx.product.eyebrow': 'Η Συλλογή · Έκδοση I',
+      'idx.product.title_html': 'Καστανόμελο, <em>συγκομιδή 2025.</em>',
+      'idx.product.originLine_html': 'Πήλιο <span class="dot"></span> 950μ <span class="dot"></span> 384 βάζα',
+      'idx.product.desc': 'Μέλι μιας μοναδικής λιβαδιάς αξιοσημείωτης διαύγειας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, αριθμημένο με το χέρι, διατηρημένο ανεπεξέργαστο.',
+      'idx.product.cta_html': 'Δείτε το βάζο &mdash; €68',
+      'shop.eyebrow': 'Η Συλλογή · 2025',
+      'shop.headline_html': 'Μια μικρή, <em>αριθμημένη</em> βιβλιοθήκη ελληνικού μελιού.',
+      'shop.intro': 'Πέντε εκδόσεις, αντλημένες από πέντε τόπους. Κάθε εποχή κυκλοφορούμε όχι περισσότερα από τετρακόσια αριθμημένα βάζα ανά κτήμα, διατηρημένα ανεπεξέργαστα και αποστελλόμενα ήσυχα από το Πήλιο εντός της εβδομάδας.',
+      'shop.filterLabel': 'Φίλτρο κατά',
+      'shop.filter.all': 'Όλα',
+      'shop.filter.floral': 'Ανθόσπαρτα',
+      'shop.filter.forest': 'Δάσος',
+      'shop.filter.mountain': 'Βουνό',
+      'shop.filter.wildflower': 'Αγριολούλουδα',
+      'shop.filter.raw': 'Ωμό Μέλι',
+      'shop.filter.limited': 'Περιορισμένη Συγκομιδή',
+      'shop.filter.cold': 'Ψυχρή Εκχύλιση',
+      'shop.filter.dark': 'Σκούρο Μέλι',
+      'shop.filter.light': 'Ανοιχτό Μέλι',
+      'shop.editionsInCollection': 'εκδόσεις στη συλλογή',
+      'shop.sortedBy': 'Ταξινομημένα κατά συγκομιδή',
+      'shop.empty.h': 'Καμία έκδοση δεν ταιριάζει με αυτό το φίλτρο.',
+      'shop.empty.p': 'Κάθε εποχή η συλλογή αλλάζει. Δοκιμάστε μια άλλη κατηγορία ή δείτε ολόκληρη τη βιβλιοθήκη.',
+      'shop.empty.cta': 'Δείτε όλες τις εκδόσεις',
+      'about.eyebrow': 'Η Προέλευση · Ένας οίκος στο Πήλιο',
+      'about.headline_html': 'Ένα ταξίδι στην <em>προέλευση.</em>',
+      'about.intro': 'Πέντε γενιές μιας οικογένειας, που εργάζονται σε χίλιες κυψέλες πάνω σε ένα και μόνο βουνό. Το μέλι είναι το αποτέλεσμα. Αυτή είναι η ιστορία πίσω από το βάζο.',
+      'about.frameCaption': 'Όρος Πήλιο · Βόρεια Ελλάδα',
+      'about.ch1.eyebrow': 'Ελλάδα · Η γη',
+      'about.ch1.h': 'Ένα βουνό που η θάλασσα δεν μπορεί να φτάσει.',
+      'about.ch1.p1': 'Το Πήλιο ανυψώνεται εξακόσια μέτρα από την ακτή του Αιγαίου σε μία και μόνη, αργή χειρονομία. Οι ασβεστολιθικές κορυφογραμμές του κρατούν άγριο θυμάρι, ρείκι, ρίγανη, κουμαριά και καστανιά σε μία και μόνη, αμετάφραστη εποχή. Δουλεύουμε τη νότια πλευρά, όπου ο ήλιος έρχεται νωρίς και ο αέρας κρατά την ξηρότητά του μέχρι το απόγευμα.',
+      'about.ch1.p2': 'Τίποτα εδώ δεν καλλιεργείται. Οι μέλισσες αποφασίζουν πού θα τραφούν, και η εποχή αποφασίζει τι θα φέρουν πίσω.',
+      'about.ch1.caption': 'Κορυφογραμμές Πηλίου · 1100μ',
+      'about.quote.text': '"Ο παππούς μου κρατούσε τριάντα κυψέλες. Ο πατέρας μου, τριακόσιες. Εγώ κρατώ χίλιες, και όμως, λιγότερες."',
+      'about.quote.cite': 'Σταύρος Ανδρέου · Μελισσοκόμος, πέμπτη γενιά',
+      'about.ch2.eyebrow': 'Ο μελισσοκόμος',
+      'about.ch2.h': 'Σταύρος, που έμαθε να ακούει.',
+      'about.ch2.p1': 'Ο Σταύρος Ανδρέου είναι η πέμπτη γενιά της οικογένειάς του που κρατά μέλισσες σε αυτό το βουνό. Κληρονόμησε το κελάρι από τον πατέρα του το 2009, και τα χειρόγραφα του προπάππου του στέκονται σε ένα ράφι πάνω από τις δεξαμενές, καταγράφοντας θερμοκρασίες και αποδόσεις μέχρι το 1882.',
+      'about.ch2.p2': 'Δουλεύει μόνος δέκα μήνες τον χρόνο. Δύο νεότεροι ανιψιοί τον συνοδεύουν στη συγκομιδή. Οι μέλισσες, λέει, δίδαξαν στην οικογένεια πολύ περισσότερα απ’όσα η οικογένεια έμαθε ποτέ στις μέλισσες.',
+      'about.ch2.caption': 'Το κελάρι · δεξαμενές δρυός',
+      'about.ch3.eyebrow': 'Τα βουνά',
+      'about.ch3.h': 'Οι κυψέλες τοποθετούνται εκεί που τελειώνει ο δρόμος.',
+      'about.ch3.p1': 'Κάθε μελισσοκομείο βρίσκεται μεταξύ 600 και 1400 μέτρων στις νότιες πλαγιές. Ποτέ κοντά σε δρόμο. Ποτέ κοντά σε καλλιεργημένο χωράφι. Το περπάτημα προς τις υψηλότερες κυψέλες παίρνει ένα ολόκληρο πρωινό, και προσέχουμε να μην ενοχλούμε τις μέλισσες περισσότερο απ’όσο απαιτεί η εποχή.',
+      'about.ch3.p2': 'Το υψόμετρο διαμορφώνει το μέλι περισσότερο από οποιοδήποτε μεμονωμένο λουλούδι. Οι ψυχρότερες νύχτες επιβραδύνουν τις μέλισσες. Το μέλι πυκνώνει. Ο χαρακτήρας βαθαίνει.',
+      'about.ch3.caption': 'Κυψέλη №47 · 1280μ',
+      'about.n1.lbl': 'Κυψέλες κατά μήκος της νότιας πλευράς του Πηλίου',
+      'about.n2.lbl': 'Γενιές μιας οικογένειας στο βουνό',
+      'about.n3.lbl': 'Αριθμημένα βάζα στην έκδοση Καστανιάς',
+      'about.n4.lbl': 'Πρόσθετα, ποτέ. Ωμό μέλι, σφραγισμένο με κερί.',
+      'about.ch4.eyebrow': 'Η συγκομιδή',
+      'about.ch4.h': 'Οι κηρήθρες φυγοκεντρούνται κρύες, σε θερμοκρασία κελαριού.',
+      'about.ch4.p1': 'Ποτέ δεν θερμαίνουμε το μέλι. Οι κηρήθρες κατεβαίνουν από το βουνό σε ρηχούς δίσκους, ξεσφραγίζονται με το χέρι, και φυγοκεντρούνται στη θερμοκρασία του κελαριού. Δεκαέξι βαθμοί την άνοιξη, δεκαοκτώ το καλοκαίρι. Κάθε ένζυμο, κάθε κόκκος γύρης, κάθε αρωματική νότα της εποχής παραμένει ανέπαφη.',
+      'about.ch4.p2': 'Το μέλι ξεκουράζεται μετά σε δεξαμενές δρυός για δεκατέσσερις ημέρες. Ο αέρας ανεβαίνει. Το ίζημα κατακάθεται. Τίποτα δεν εξαναγκάζεται.',
+      'about.ch4.caption': 'Πρωινό συγκομιδής · Απρίλιος',
+      'about.ch5.eyebrow': 'Οικογενειακή παράδοση',
+      'about.ch5.h': 'Μια πρακτική που περνά ήσυχα από χέρι σε χέρι.',
+      'about.ch5.p1': 'Μερικά απ’αυτά που κάνουμε γίνονται με τον ίδιο τρόπο για πέντε γενιές. Άλλα αλλάζουν κάθε χρόνο. Οι μέλισσες μας κρατούν ειλικρινείς. Το βουνό μας κρατά μικρούς.',
+      'about.ch5.p2': 'Δεν κλιμακώνουμε. Δεν αναμειγνύουμε. Δεν αφαιρούμε το κερί από τα καπάκια των βάζων. Τριακόσια ογδόντα τέσσερα βάζα στην έκδοση Καστανιάς, και όταν τελειώσουν, η εποχή έχει τελειώσει.',
+      'about.ch5.caption': 'Αρχείο κελαριού · 1882 — 2025',
+      'about.cta.label': 'Η Συλλογή · 2025',
+      'about.cta.h_html': 'Γευτείτε το <em>βουνό.</em>',
+      'about.cta.btn': 'Δείτε τη συλλογή',
+      'contact.eyebrow': 'Επικοινωνία · Πήλιο, Ελλάδα',
+      'contact.headline_html': 'Γράψτε στον <em>οίκο.</em>',
+      'contact.intro': 'Για χονδρική, φιλοξενία, τύπο, ή απλά μια ήσυχη ερώτηση για ένα βάζο. Ο Σταύρος και η οικογένεια διαβάζουν κάθε μήνυμα, και απαντούν εντός δύο εργάσιμων ημερών.',
+      'contact.form.h': 'Ξεκινήστε ένα αίτημα.',
+      'contact.form.sub': 'Λίγες γραμμές αρκούν. Απαντούμε προσωπικά.',
+      'contact.pill.general': 'Γενικά',
+      'contact.pill.wholesale': 'Χονδρική',
+      'contact.pill.hospitality': 'Φιλοξενία',
+      'contact.pill.retail': 'Λιανοπωλητές',
+      'contact.pill.press': 'Τύπος',
+      'contact.pill.collab': 'Συνεργασία',
+      'contact.label.name': 'Όνομα',
+      'contact.label.house': 'Οίκος / επιχείρηση',
+      'contact.label.email': 'Email',
+      'contact.label.country': 'Χώρα',
+      'contact.label.message': 'Μήνυμα',
+      'contact.ph.name': 'Μαρία Ανδρέου',
+      'contact.ph.house': 'Προαιρετικό',
+      'contact.ph.email': 'maria@example.com',
+      'contact.ph.country': 'Ελλάδα',
+      'contact.ph.message': 'Πείτε μας τι έχετε κατά νου. Ποσότητες, χρονοδιαγράμματα, το δωμάτιο που στρώνετε το τραπέζι.',
+      'contact.submit': 'Αποστολή αιτήματος',
+      'contact.formNote': 'Γράφοντάς μας συμφωνείτε ότι μπορούμε να αποθηκεύσουμε το μήνυμά σας με σκοπό την απάντηση. Δεν πουλάμε ούτε μοιραζόμαστε στοιχεία. Ποτέ.',
+      'contact.success.h': 'Το μήνυμά σας είναι καθ’οδόν.',
+      'contact.success.p': 'Ο Σταύρος ή κάποιος από την οικογένεια θα το διαβάσει προσωπικά και θα απαντήσει εντός δύο εργάσιμων ημερών.',
+      'contact.info.h': 'Ή γράψτε μας απευθείας.',
+      'contact.info.wholesale.lbl': 'Χονδρική',
+      'contact.info.wholesale.title_html': 'Στοκάροντας τη <em>συλλογή.</em>',
+      'contact.info.wholesale.p': 'Μικρές κατανομές διαθέσιμες σε ανεξάρτητες μπουτίκ, ντελικατέσεν και τεϊοποτεία σε όλη την ΕΕ και επιλεγμένες διεθνείς αγορές.',
+      'contact.info.hospitality.lbl': 'Φιλοξενία · Εστιατόρια',
+      'contact.info.hospitality.title_html': 'Για το <em>τραπέζι.</em>',
+      'contact.info.hospitality.p': 'Συνεργαζόμαστε ήσυχα με ένα μικρό αριθμό εστιατορίων και ξενοδοχείων κάθε χρόνο. Δειγματοκιβώτια αποστέλλονται από το Πήλιο εντός της εβδομάδας.',
+      'contact.info.retail.lbl': 'Επιλεγμένοι λιανοπωλητές',
+      'contact.info.retail.title_html': 'Ένα διακριτικό <em>ράφι.</em>',
+      'contact.info.retail.p': 'Επιλεγμένοι συνεργάτες λιανικής λαμβάνουν ετήσια κατανομή, έκδοση προς έκδοση, με προτεραιότητα στις περιορισμένες ρεζέρβες.',
+      'contact.info.press.lbl': 'Τύπος · Συνεργασία',
+      'contact.info.press.title_html': 'Μια πιο ήσυχη <em>συζήτηση.</em>',
+      'contact.info.press.p': 'Συντακτικά αιτήματα, φωτογραφία και δημιουργικές συνεργασίες. Απαντούμε αργά, αλλά απαντούμε.',
+      'contact.location.lbl': 'Το κτήμα',
+      'contact.location.h_html': 'Πήλιο, <em>Βόρεια Ελλάδα.</em>',
+      'contact.address_html': 'Harvest Deli &middot; Κτήμα №01<br>37006 Πήλιο, Μαγνησία<br>Ελλάδα',
+      'checkout.step.cellar': 'Κελάρι',
+      'checkout.step.checkout': 'Πληρωμή',
+      'checkout.step.confirmation': 'Επιβεβαίωση',
+      'checkout.eyebrow': 'Πληρωμή · Έκδοση I',
+      'checkout.headline_html': 'Μια ήσυχη, <em>προσεκτική</em> παράδοση.',
+      'checkout.sub': 'Τρία βήματα. Αριθμημένα, σφραγισμένα, αποστελλόμενα από το Πήλιο εντός της εβδομάδας.',
+      'checkout.express.divider': 'Ή πληρώστε με κάρτα',
+      'checkout.step1.h_html': 'Επικοινωνία &middot; <em>πού να απαντήσουμε.</em>',
+      'checkout.label.email': 'Email',
+      'checkout.label.phone': 'Τηλέφωνο',
+      'checkout.step2.h_html': 'Αποστολή &middot; <em>η διεύθυνση.</em>',
+      'checkout.label.first': 'Όνομα',
+      'checkout.label.last': 'Επώνυμο',
+      'checkout.label.addr1': 'Διεύθυνση γραμμή 1',
+      'checkout.label.addr1Ph': 'Αριθμός, οδός',
+      'checkout.label.addr2': 'Διεύθυνση γραμμή 2 — προαιρετικό',
+      'checkout.label.addr2Ph': 'Διαμέρισμα, κτίριο, όροφος',
+      'checkout.label.city': 'Πόλη',
+      'checkout.label.postcode': 'Ταχ. κώδικας',
+      'checkout.label.country': 'Χώρα',
+      'checkout.ship.standard.title': 'Κανονική · με ιχνηλάτηση',
+      'checkout.ship.standard.sub': '5 — 8 εργάσιμες ημέρες, παράδοση με υπογραφή',
+      'checkout.ship.express.title': 'Express · κούριερ',
+      'checkout.ship.express.sub': '2 — 3 εργάσιμες ημέρες, παράδοση στο χέρι',
+      'checkout.ship.intl.title': 'Διεθνής · εκτός ΕΕ',
+      'checkout.ship.intl.sub': '7 — 12 εργάσιμες ημέρες, φόροι προπληρωμένοι',
+      'checkout.step3.h_html': 'Πληρωμή &middot; <em>ήσυχα ασφαλής.</em>',
+      'checkout.tab.card': 'Κάρτα',
+      'checkout.tab.bank': 'Τραπεζική μεταφορά',
+      'checkout.tab.klarna': 'Klarna',
+      'checkout.label.cardNumber': 'Αριθμός κάρτας',
+      'checkout.label.cardName': 'Όνομα στην κάρτα',
+      'checkout.label.expiry': 'Λήξη',
+      'checkout.label.cvc': 'CVC',
+      'checkout.stripeNote': 'Κρυπτογραφημένο και επεξεργασμένο από άκρο σε άκρο. Δεν βλέπουμε ποτέ ούτε αποθηκεύουμε την κάρτα σας.',
+      'checkout.confirm': 'Επιβεβαίωση παραγγελίας',
+      'checkout.terms_html': 'Με την υποβολή αυτής της παραγγελίας συμφωνείτε με τους <a href="#">όρους</a> και την <a href="#">πολιτική απορρήτου</a>. Διεθνείς παραγγελίες ενδέχεται να έχουν τοπικούς φόρους.',
+      'checkout.side.eyebrow': 'Το κελάρι σας',
+      'checkout.side.title_html': 'Σύνοψη <em>παραγγελίας</em>',
+      'checkout.empty.h': 'Το κελάρι σας είναι άδειο.',
+      'checkout.empty.p': 'Προσθέστε ένα βάζο από τη συλλογή για να ξεκινήσετε την πληρωμή.',
+      'checkout.empty.cta': 'Δείτε τη συλλογή',
+      'checkout.package.lbl': 'Πολυτελής συσκευασία',
+      'checkout.package.h_html': 'Σφραγισμένο σε <em>κερί.</em> Συσκευασμένο σε καπλαμά δρυός.',
+      'checkout.package.p': 'Κάθε βάζο τυλίγεται με το χέρι, σφραγίζεται με μαύρο κερί, και τοποθετείται σε ένα κουτί παρουσίασης με καπλαμά δρυός. Μια χειρόγραφη κάρτα ταξιδεύει με την παραγγελία.',
+      'checkout.package.tag': 'Έκδοση I · Συγκομιδή 2025',
+      'checkout.trust.stripe1': 'Stripe',
+      'checkout.trust.stripe2': 'κρυπτογραφημένο',
+      'checkout.trust.intl1': 'Διεθνής',
+      'checkout.trust.intl2': 'αποστολή',
+      'checkout.trust.sealed1': 'Σφραγισμένο στο',
+      'checkout.trust.sealed2': 'Πήλιο',
+      'checkout.row.subtotal': 'Μερικό σύνολο',
+      'checkout.row.shipping': 'Αποστολή',
+      'checkout.row.total': 'Σύνολο',
+      'checkout.row.shippingFree': 'Δωρεάν',
+      'product.crumb.collection': 'Συλλογή',
+      'product.crumb.current': 'Έκδοση I — Καστανόμελο',
+      'product.eyebrow_html': 'Έκδοση I <span class="dot"></span> Συγκομιδή 2025',
+      'product.title_html': 'Καστανόμελο, <em>κτήμα Πηλίου.</em>',
+      'product.tag.singleMeadow': 'Μία Λιβαδιά',
+      'product.tag.coldExtracted': 'Ψυχρή Εκχύλιση',
+      'product.tag.numbered': 'Αριθμημένα · 384',
+      'product.desc': 'Ένα διαυγές, αργό μέλι συγκομισμένο από τους καστανεώνες της νότιας πλαγιάς του Πηλίου. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, σφραγισμένο με κερί, διατηρημένο ανεπεξέργαστο.',
+      'product.priceSub_html': 'με ΦΠΑ &middot; αποστολή παγκοσμίως',
+      'product.size.tasting': 'Γευσιγνωσία',
+      'product.size.estate': 'Κτήμα',
+      'product.size.reserve': 'Ρεζέρβα',
+      'product.cta': 'Προσθήκη στο κελάρι',
+      'product.notes_html': 'Δωρεάν αποστολή στην ΕΕ άνω των €120 <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
+      'product.tasting.eyebrow': 'Η Γευσιγνωσία',
+      'product.tasting.h_html': 'Τι γεύεστε, αργά.',
+      'product.tasting.first.h': 'I — Πρώτη',
+      'product.tasting.first.quote': '"Ζεστή ρετσίνα, ήλιος σε πέτρα."',
+      'product.tasting.first.p': 'Μια άμεση ανάσα πεύκου και ξερού βοτάνου. Η μυρωδιά του ίδιου του βουνού στα τέλη Ιουνίου, όταν ο αέρας πάνω από το θυμάρι αρχίζει να τρεμοπαίζει.',
+      'product.tasting.body.h': 'II — Σώμα',
+      'product.tasting.body.quote': '"Απαλό κεχριμπάρι, αργό μέλι."',
+      'product.tasting.body.p': 'Η υφή παίρνει σειρά μετά, ένα ιξώδες που ρέει σαν κρατημένη ανάσα. Αγριολούλουδο και μια καθαρή, απαλή γλυκύτητα κρατημένη στο κέντρο της γλώσσας.',
+      'product.tasting.finish.h': 'III — Επίγευση',
+      'product.tasting.finish.quote': '"Μεταλλική, μακρά, χρυσαφένια."',
+      'product.tasting.finish.p': 'Μια αργή κάθοδος προς την πέτρα και το αλάτι. Διακριτική, σχεδόν ξηρή. Το είδος της επίγευσης που παραμένει στο δωμάτιο πολύ μετά την απόθεση του κουταλιού.',
+      'product.origin.eyebrow': 'Η Προέλευση',
+      'product.origin.h_html': 'Μία λιβαδιά, μία εποχή.',
+      'product.origin.p1': 'Η συγκομιδή 2025 προέρχεται από έναν μοναδικό, νότιο καστανεώνα στα 950 μέτρα στις πλαγιές του Όρους Πηλίου, όπου τα δέντρα ανθίζουν σε ένα στενό παράθυρο κάθε αργό καλοκαίρι.',
+      'product.origin.p2': 'Τριακόσια ογδόντα τέσσερα βάζα αντλήθηκαν από αυτή την εποχή. Καθένα αριθμημένο με το χέρι, σφραγισμένο με μαύρο κερί, και διατηρημένο ακριβώς όπως άφησε την κηρήθρα.',
+      'product.origin.caption': 'Πήλιο · 950μ · Αργό καλοκαίρι',
+      'product.details.eyebrow': 'Οι Λεπτομέρειες',
+      'product.details.h_html': 'Ήσυχα, προσεκτικά φτιαγμένο.',
+      'product.det.weight.lbl': 'Καθαρό βάρος',
+      'product.det.weight.val_html': '250g <em>γυάλινο βάζο</em>',
+      'product.det.origin.lbl': 'Προέλευση',
+      'product.det.origin.val_html': 'Πήλιο, <em>Ελλάδα</em>',
+      'product.det.vintage.lbl': 'Εσοδεία',
+      'product.det.vintage.val_html': 'Αργό καλοκαίρι <em>2025</em>',
+      'product.det.edition.lbl': 'Έκδοση',
+      'product.det.edition.val_html': '384 βάζα, <em>αριθμημένα</em>',
+      'product.det.ingredients.lbl': 'Συστατικά',
+      'product.det.ingredients.val_html': 'Ωμό μέλι. <em>Τίποτα άλλο.</em>',
+      'product.det.storage.lbl': 'Διατήρηση',
+      'product.det.storage.val_html': 'Δροσερό, ξηρό, <em>μακριά από το φως</em>',
+      'product.det.shelf.lbl': 'Διάρκεια ζωής',
+      'product.det.shelf.val_html': 'Αόριστη, <em>σφραγισμένο</em>',
+      'product.det.package.lbl': 'Συσκευασία',
+      'product.det.package.val_html': 'Χειροπίεστο γυαλί, <em>μαύρο κερί</em>',
+      'product.also.eyebrow': 'Επίσης Από Τη Συλλογή',
+      'product.also.h_html': 'Τα υπόλοιπα του οίκου.',
+      'product.sticky.name': 'Καστανόμελο, κτήμα Πηλίου',
+      'product.sticky.price': '€68 · Έκδοση I',
+      'product.sticky.add': 'Προσθήκη'
     }
   };
   window.HD_T = T;
 
+  // =====================================================
+  //  FAQ i18n bundle (homepage + contact) — extends T
+  // =====================================================
+  Object.assign(T.en, {
+    'idx.faq.eyebrow': 'Frequently asked',
+    'idx.faq.title_html': 'Slowly <em>answered.</em>',
+    'idx.faq.desc': 'The short replies we send to first-time visitors of the cellar. Tap a question to read the longer answer.',
+    'idx.faq.help_html': 'Cannot find your question? Write to <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+    'idx.faq.q1': 'How quickly do you ship?',
+    'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch you can expect one to two working days inside the Netherlands and two to eight working days across the EU. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.',
+    'idx.faq.q2': 'Where do you ship to?',
+    'idx.faq.a2_html': 'The whole of the Netherlands, every EU member state, plus the United Kingdom, Switzerland and Norway. Worldwide on request. Shipping is complimentary above &euro;90 in the Netherlands and above &euro;120 across the EU.',
+    'idx.faq.q3': 'Is your honey raw?',
+    'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-taste-the-greek-sun.html">tasting essay</a>.',
+    'idx.faq.q4': 'How long does the honey keep?',
+    'idx.faq.a4_html': 'Indefinitely, sealed. Honey contains almost no water and is naturally antibacterial. Store cool, dry and out of direct light. Crystallisation is natural and reversible: warm the jar in a water bath at no more than 35&deg;C to return it to liquid without damaging it.',
+    'idx.faq.q5': 'Can I return an order?',
+    'idx.faq.a5_html': 'Within fourteen days of receipt you may return unopened, wax-sealed jars without giving a reason. Once the seal is broken, the jar cannot be returned for hygiene reasons. Full instructions and the model form are on the <a href="legal-returns.html">returns page</a>.',
+    'idx.faq.q6': 'Do you offer gift packaging?',
+    'idx.faq.a6_html': 'Yes. An oak-veneered presentation box, lined in linen, holds one to three jars and travels with a handwritten card. Select gift packaging in the checkout, with a small &euro;9,50 surcharge.',
+    'idx.faq.q7': 'Is raw honey safe for young children?',
+    'idx.faq.a7_html': 'Do not give honey to children under twelve months of age. This is the standard advice of the Dutch Voedingscentrum, due to a very small risk of infant botulism in any unprocessed honey. For everyone above one year, honey is safe to enjoy.',
+    'idx.faq.q8': 'Can I visit the estate?',
+    'idx.faq.a8_html': 'By appointment we welcome small groups between April and October at the Andreou cellar in Pelion, Greece. A single day, an accompanied tasting, a walk to the higher hives if the weather allows. Send your preferred dates to <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>.',
+
+    'cnt.faq.eyebrow': 'Before you write',
+    'cnt.faq.title_html': 'Frequently <em>asked.</em>',
+    'cnt.faq.desc': 'Six small notes that may save you a message. If the answer is not here, write to us. We read every letter.',
+    'cnt.faq.help_html': 'For wholesale or hospitality, the <a href="partners.html">partnership programme</a> has a dedicated form. For privacy and data requests, <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a>.',
+    'cnt.faq.q1': 'How quickly do you reply?',
+    'cnt.faq.a1_html': 'Within two working days, often faster. On Monday mornings, Friday afternoons and during harvest weeks it can take a little longer. For urgent order matters, write directly to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+    'cnt.faq.q2': 'Which channel should I use?',
+    'cnt.faq.a2_html': 'Use <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> for general questions, <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> for shipping and delivery, <a href="mailto:wholesale@harvestdeli.gr">wholesale@harvestdeli.gr</a> for retail and hospitality, and <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a> for data and access requests under the GDPR.',
+    'cnt.faq.q3': 'Wholesale or hospitality enquiry?',
+    'cnt.faq.a3_html': 'Send a short note via the form on our <a href="partners.html">partnership programme</a>. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Pelion the same week.',
+    'cnt.faq.q4': 'My order has not arrived or arrived damaged.',
+    'cnt.faq.a4_html': 'Email <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> with your order number and, where possible, a photograph of the outer box. We arrange a free replacement shipment or full refund within two working days. Read more on the <a href="legal-shipping.html">shipping</a> and <a href="legal-returns.html">returns</a> pages.',
+    'cnt.faq.q5': 'Can I visit the estate or the depot?',
+    'cnt.faq.a5_html': 'By appointment, yes. Press, wholesale partners and existing clients are welcome. Send a request with date and reason to <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>. The Andreou cellar in Pelion is open to small groups between April and October.',
+    'cnt.faq.q6': 'Do you exist on social media?',
+    'cnt.faq.a6_html': 'Quietly, on Instagram. We do not run paid advertising and we do not chase the algorithm. Subscribe to the <a href="journal.html">journal</a> for slower correspondence, three or four times a year.'
+  });
+
+  Object.assign(T.nl, {
+    'idx.faq.eyebrow': 'Veelgestelde vragen',
+    'idx.faq.title_html': 'Rustig <em>beantwoord.</em>',
+    'idx.faq.desc': 'De korte antwoorden die wij aan eerste bezoekers van het kelder sturen. Tik op een vraag voor het uitgebreide antwoord.',
+    'idx.faq.help_html': 'Staat uw vraag er niet bij? Schrijf naar <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> en wij reageren binnen twee werkdagen. Voor bestellingen: <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+    'idx.faq.q1': 'Hoe snel wordt mijn bestelling verzonden?',
+    'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en twee tot acht werkdagen binnen de EU. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="legal-shipping.html">verzendpagina</a>.',
+    'idx.faq.q2': 'Waar verzenden jullie naartoe?',
+    'idx.faq.a2_html': 'Heel Nederland, alle EU-lidstaten, plus het Verenigd Koninkrijk, Zwitserland en Noorwegen. Wereldwijd op aanvraag. Verzending is gratis vanaf &euro;90 binnen Nederland en vanaf &euro;120 binnen de EU.',
+    'idx.faq.q3': 'Is jullie honing rauw?',
+    'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="article-taste-the-greek-sun.html">proefverslag</a>.',
+    'idx.faq.q4': 'Hoe lang blijft de honing goed?',
+    'idx.faq.a4_html': 'Onbeperkt, mits gesloten bewaard. Honing bevat vrijwel geen water en is van nature antibacterieel. Bewaar koel, droog en uit het licht. Kristallisatie is natuurlijk en omkeerbaar: plaats de pot in een waterbad van maximaal 35&deg;C om hem voorzichtig vloeibaar te maken.',
+    'idx.faq.q5': 'Kan ik mijn bestelling retourneren?',
+    'idx.faq.a5_html': 'Binnen veertien dagen na ontvangst kunt u ongeopende, verzegelde potten zonder opgaaf van reden retourneren. Eenmaal verbroken zegel kan om hygi&euml;nische redenen niet meer worden teruggenomen. Volledige instructies en het modelformulier op de <a href="legal-returns.html">retourpagina</a>.',
+    'idx.faq.q6': 'Hebben jullie cadeauverpakkingen?',
+    'idx.faq.a6_html': 'Ja. In een houtfineer cadeaudoos met linnen voering, voor &eacute;&eacute;n tot drie potten, met een handgeschreven kaartje. Selecteer cadeauverpakking in de checkout, met een toeslag van &euro;9,50.',
+    'idx.faq.q7': 'Is rauwe honing veilig voor jonge kinderen?',
+    'idx.faq.a7_html': 'Geef geen honing aan kinderen jonger dan twaalf maanden. Dit advies komt van het Voedingscentrum, vanwege een zeer klein risico op zuigelingenbotulisme in alle ongepasteuriseerde honing. Voor iedereen ouder dan &eacute;&eacute;n jaar is honing veilig.',
+    'idx.faq.q8': 'Kan ik het landgoed bezoeken?',
+    'idx.faq.a8_html': 'Op afspraak ontvangen wij kleine groepen tussen april en oktober op het Andreou-kelder in Pelion, Griekenland. &Eacute;&eacute;n dag, een begeleide proeverij, en bij goed weer een wandeling naar de hogere kasten. Stuur uw voorkeursdata naar <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>.',
+
+    'cnt.faq.eyebrow': 'Voordat u schrijft',
+    'cnt.faq.title_html': 'Veel<em>gestelde vragen.</em>',
+    'cnt.faq.desc': 'Zes korte notities die u een bericht kunnen besparen. Staat uw antwoord er niet bij, schrijf ons. Wij lezen elke brief.',
+    'cnt.faq.help_html': 'Voor wholesale of horeca heeft het <a href="partners.html">partnership-programma</a> een apart formulier. Voor privacy- en datavragen: <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a>.',
+    'cnt.faq.q1': 'Hoe snel reageren jullie?',
+    'cnt.faq.a1_html': 'Binnen twee werkdagen, vaak sneller. Op maandagochtend, vrijdagmiddag en in oogstweken duurt het soms iets langer. Voor dringende ordervragen schrijft u direct aan <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+    'cnt.faq.q2': 'Welk kanaal kan ik het beste gebruiken?',
+    'cnt.faq.a2_html': 'Gebruik <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> voor algemene vragen, <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> voor verzending en levering, <a href="mailto:wholesale@harvestdeli.gr">wholesale@harvestdeli.gr</a> voor wholesale en horeca, en <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a> voor inzage- en datavragen onder de AVG.',
+    'cnt.faq.q3': 'Wholesale- of horeca-aanvraag?',
+    'cnt.faq.a3_html': 'Stuur een korte boodschap via het formulier op het <a href="partners.html">partnership-programma</a>. Wij beantwoorden elke aanvraag persoonlijk en reageren doorgaans binnen 24 tot 48 uur, vaak met een sampledoos die nog dezelfde week vanuit Pelion vertrekt.',
+    'cnt.faq.q4': 'Mijn bestelling is niet aangekomen of beschadigd.',
+    'cnt.faq.a4_html': 'Mail <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> met uw bestelnummer en, indien mogelijk, een foto van de buitendoos. Wij regelen kosteloos een vervangende zending of volledige terugbetaling binnen twee werkdagen. Lees verder op de <a href="legal-shipping.html">verzend-</a> en <a href="legal-returns.html">retourpagina</a>.',
+    'cnt.faq.q5': 'Kan ik het landgoed of het depot bezoeken?',
+    'cnt.faq.a5_html': 'Op afspraak, ja. Pers, wholesale-partners en bestaande klanten zijn welkom. Stuur een verzoek met datum en reden naar <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>. Het Andreou-kelder in Pelion is geopend voor kleine groepen tussen april en oktober.',
+    'cnt.faq.q6': 'Bestaan jullie op social media?',
+    'cnt.faq.a6_html': 'Zachtjes, op Instagram. Wij draaien geen betaalde advertenties en jagen niet op het algoritme. Abonneer u op het <a href="journal.html">journal</a> voor langzamere correspondentie, drie tot vier keer per jaar.'
+  });
+
+  Object.assign(T.el, {
+    'idx.faq.eyebrow': 'Συχνές ερωτήσεις',
+    'idx.faq.title_html': 'Αργές <em>απαντήσεις.</em>',
+    'idx.faq.desc': 'Οι σύντομες απαντήσεις που στέλνουμε στους πρώτους επισκέπτες του κελαριού. Πατήστε μια ερώτηση για την εκτενέστερη απάντηση.',
+    'idx.faq.help_html': 'Δεν βρίσκετε την ερώτησή σας; Γράψτε στο <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> και απαντούμε εντός δύο εργάσιμων ημερών. Για παραγγελίες: <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+    'idx.faq.q1': 'Πόσο γρήγορα αποστέλλετε;',
+    'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες εντός Ολλανδίας και δύο έως οκτώ εργάσιμες σε όλη την ΕΕ. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="legal-shipping.html">σελίδα αποστολών</a>.',
+    'idx.faq.q2': 'Πού αποστέλλετε;',
+    'idx.faq.a2_html': 'Σε όλη την Ολλανδία, σε κάθε κράτος μέλος της ΕΕ, καθώς και στο Ηνωμένο Βασίλειο, την Ελβετία και τη Νορβηγία. Παγκοσμίως κατόπιν αιτήματος. Δωρεάν αποστολή άνω των &euro;90 εντός Ολλανδίας και άνω των &euro;120 εντός ΕΕ.',
+    'idx.faq.q3': 'Είναι ωμό το μέλι σας;',
+    'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="article-taste-the-greek-sun.html">δοκίμιο γευσιγνωσίας</a>.',
+    'idx.faq.q4': 'Πόσο διαρκεί το μέλι;',
+    'idx.faq.a4_html': 'Επ’ αόριστον, σφραγισμένο. Το μέλι έχει σχεδόν καθόλου νερό και είναι από τη φύση του αντιβακτηριδιακό. Φυλάξτε δροσερό, ξηρό και μακριά από το φως. Η κρυστάλλωση είναι φυσική και αντιστρέψιμη: ζεστάνετε το βάζο σε υδατόλουτρο μέχρι 35&deg;C για να επιστρέψει σε υγρή μορφή.',
+    'idx.faq.q5': 'Μπορώ να επιστρέψω μια παραγγελία;',
+    'idx.faq.a5_html': 'Εντός δεκατεσσάρων ημερών από την παραλαβή μπορείτε να επιστρέψετε άθικτα, σφραγισμένα βάζα χωρίς να δώσετε λόγο. Μόλις σπάσει η σφραγίδα, το βάζο δεν μπορεί να επιστραφεί για λόγους υγιεινής. Πλήρεις οδηγίες και έντυπο στη <a href="legal-returns.html">σελίδα επιστροφών</a>.',
+    'idx.faq.q6': 'Προσφέρετε συσκευασία δώρου;',
+    'idx.faq.a6_html': 'Ναι. Ένα κουτί παρουσίασης από καπλαμά δρυός με λινό εσωτερικό, για ένα έως τρία βάζα, με χειρόγραφη κάρτα. Επιλέξτε συσκευασία δώρου στο checkout, με μικρή επιβάρυνση &euro;9,50.',
+    'idx.faq.q7': 'Είναι ασφαλές το ωμό μέλι για μικρά παιδιά;',
+    'idx.faq.a7_html': 'Μη δίνετε μέλι σε παιδιά κάτω των δώδεκα μηνών. Αυτή είναι η συμβουλή του Ολλανδικού Voedingscentrum, λόγω ελάχιστου κινδύνου παιδικής αλλαντίασης σε κάθε μη επεξεργασμένο μέλι. Για όλους άνω του ενός έτους, το μέλι είναι ασφαλές.',
+    'idx.faq.q8': 'Μπορώ να επισκεφθώ το κτήμα;',
+    'idx.faq.a8_html': 'Κατόπιν ραντεβού δεχόμαστε μικρές ομάδες μεταξύ Απριλίου και Οκτωβρίου στο κελάρι Ανδρέου στο Πήλιο. Μία ημέρα, μια συνοδευόμενη γευσιγνωσία και, αν ο καιρός το επιτρέπει, μια βόλτα στις υψηλότερες κυψέλες. Στείλτε τις προτιμώμενες ημερομηνίες στο <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>.',
+
+    'cnt.faq.eyebrow': 'Πριν γράψετε',
+    'cnt.faq.title_html': 'Συχνές <em>ερωτήσεις.</em>',
+    'cnt.faq.desc': 'Έξι σύντομες σημειώσεις που ίσως σας γλιτώσουν ένα μήνυμα. Αν δεν είναι εδώ η απάντηση, γράψτε μας. Διαβάζουμε κάθε επιστολή.',
+    'cnt.faq.help_html': 'Για χονδρική ή φιλοξενία, το <a href="partners.html">πρόγραμμα συνεργασίας</a> έχει ξεχωριστή φόρμα. Για ερωτήματα ιδιωτικότητας: <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a>.',
+    'cnt.faq.q1': 'Πόσο γρήγορα απαντάτε;',
+    'cnt.faq.a1_html': 'Εντός δύο εργάσιμων ημερών, συχνά γρηγορότερα. Δευτέρα πρωί, Παρασκευή απόγευμα και κατά τη διάρκεια εβδομάδων συγκομιδής μπορεί να καθυστερήσουμε λίγο. Για επείγοντα θέματα παραγγελίας γράψτε απευθείας στο <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+    'cnt.faq.q2': 'Ποιο κανάλι να χρησιμοποιήσω;',
+    'cnt.faq.a2_html': 'Χρησιμοποιήστε <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> για γενικές ερωτήσεις, <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> για αποστολές και παραδόσεις, <a href="mailto:wholesale@harvestdeli.gr">wholesale@harvestdeli.gr</a> για χονδρική και φιλοξενία, και <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a> για αιτήματα προσωπικών δεδομένων σύμφωνα με τον ΓΚΠΔ.',
+    'cnt.faq.q3': 'Αίτημα χονδρικής ή φιλοξενίας;',
+    'cnt.faq.a3_html': 'Στείλτε ένα σύντομο μήνυμα μέσω της φόρμας στο <a href="partners.html">πρόγραμμα συνεργασίας</a>. Απαντάμε σε κάθε αίτημα προσωπικά, συνήθως εντός 24 έως 48 ωρών, συχνά με μια δειγματοθήκη να φεύγει από το Πήλιο την ίδια εβδομάδα.',
+    'cnt.faq.q4': 'Η παραγγελία μου δεν έφτασε ή έφτασε φθαρμένη.',
+    'cnt.faq.a4_html': 'Στείλτε email στο <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> με τον αριθμό παραγγελίας και, αν είναι δυνατόν, μια φωτογραφία του εξωτερικού κουτιού. Κανονίζουμε δωρεάν αντικατάσταση ή πλήρη επιστροφή χρημάτων εντός δύο εργάσιμων ημερών. Διαβάστε περισσότερα στις σελίδες <a href="legal-shipping.html">αποστολών</a> και <a href="legal-returns.html">επιστροφών</a>.',
+    'cnt.faq.q5': 'Μπορώ να επισκεφθώ το κτήμα ή την αποθήκη;',
+    'cnt.faq.a5_html': 'Κατόπιν ραντεβού, ναι. Δεχόμαστε τύπο, συνεργάτες χονδρικής και υπάρχοντες πελάτες. Στείλτε αίτημα με ημερομηνία και λόγο στο <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>. Το κελάρι Ανδρέου στο Πήλιο είναι ανοιχτό για μικρές ομάδες μεταξύ Απριλίου και Οκτωβρίου.',
+    'cnt.faq.q6': 'Είστε στα social media;',
+    'cnt.faq.a6_html': 'Διακριτικά, στο Instagram. Δεν τρέχουμε επί πληρωμή διαφημίσεις και δεν κυνηγάμε τον αλγόριθμο. Εγγραφείτε στο <a href="journal.html">ημερολόγιο</a> για πιο αργή αλληλογραφία, τρεις με τέσσερις φορές τον χρόνο.'
+  });
+
+  // =====================================================
+  //  SHOP FILTER i18n bundle — extends T
+  // =====================================================
+  Object.assign(T.en, {
+    'shop.tb.editions': 'editions', 'shop.tb.of': 'of',
+    'shop.tb.sortLabel': 'Sort', 'shop.tb.filter': 'Filter',
+    'shop.chips.refining': 'Refining by', 'shop.chips.clearAll': 'Clear all',
+    'shop.chips.limited': 'Limited editions', 'shop.chips.raw': 'Raw & unprocessed',
+    'shop.sort.recommended': 'Recommended', 'shop.sort.popular': 'Most popular',
+    'shop.sort.harvest': 'Latest harvest', 'shop.sort.lightest': 'Lightest flavour',
+    'shop.sort.richest': 'Richest flavour', 'shop.sort.limited': 'Limited editions',
+    'shop.fp.eyebrow': 'Refine the collection',
+    'shop.fp.title_html': 'Six estates, <em>one mountain at a time.</em>',
+    'shop.fp.close': 'Close',
+    'shop.fp.g.type': 'Honey type', 'shop.fp.g.region': 'Origin region',
+    'shop.fp.g.flavor': 'Flavour profile', 'shop.fp.g.color': 'Colour',
+    'shop.fp.g.texture': 'Texture', 'shop.fp.g.season': 'Harvest season',
+    'shop.fp.g.house': 'House attributes', 'shop.fp.g.pairings': 'Pairings',
+    'shop.fp.type.chestnut': 'Chestnut', 'shop.fp.type.thyme': 'Wild thyme',
+    'shop.fp.type.pine_html': 'Pine &amp; heather', 'shop.fp.type.wildflower': 'Wildflower',
+    'shop.fp.type.mountain': 'Mountain reserve', 'shop.fp.type.orange': 'Orange blossom',
+    'shop.fp.flavor.warm': 'Warm & resinous', 'shop.fp.flavor.floral': 'Floral',
+    'shop.fp.flavor.citrus': 'Citrus', 'shop.fp.flavor.herbal': 'Herbal',
+    'shop.fp.flavor.smoky': 'Smoky', 'shop.fp.flavor.mineral': 'Mineral',
+    'shop.fp.flavor.woody': 'Woody',
+    'shop.fp.color.pale': 'Pale gold', 'shop.fp.color.light': 'Light amber',
+    'shop.fp.color.dark': 'Dark amber', 'shop.fp.color.mahogany': 'Mahogany',
+    'shop.fp.texture.liquid': 'Liquid', 'shop.fp.texture.creamy': 'Creamy',
+    'shop.fp.texture.set': 'Set / waxy', 'shop.fp.texture.dense': 'Dense',
+    'shop.fp.season.spring': 'Spring', 'shop.fp.season.summer': 'Summer',
+    'shop.fp.season.lateSummer': 'Late summer', 'shop.fp.season.autumn': 'Autumn',
+    'shop.fp.limited.title': 'Limited editions only',
+    'shop.fp.limited.sub': 'Fewer than 100 numbered jars per harvest',
+    'shop.fp.raw.title': 'Raw & unprocessed only',
+    'shop.fp.raw.sub': 'Never heated above cellar temperature',
+    'shop.fp.pairings.cheese': 'Aged cheese', 'shop.fp.pairings.bread_html': 'Bread &amp; butter',
+    'shop.fp.pairings.yogurt_html': 'Yogurt &amp; granola', 'shop.fp.pairings.tea_html': 'Tea &amp; tisanes',
+    'shop.fp.pairings.chocolate': 'Dark chocolate', 'shop.fp.pairings.savory': 'Savoury / grill',
+    'shop.fp.reset': 'Reset', 'shop.fp.applyPrefix': 'Show', 'shop.fp.applySuffix': 'editions',
+    'shop.empty.title_html': 'No matching harvests <em>found.</em>',
+    'shop.empty.desc': 'Try exploring a different flavour profile, or remove a filter to widen the search.',
+    'shop.empty.cta': 'Clear all filters'
+  });
+
+  Object.assign(T.nl, {
+    'shop.tb.editions': 'edities', 'shop.tb.of': 'van',
+    'shop.tb.sortLabel': 'Sorteren', 'shop.tb.filter': 'Filter',
+    'shop.chips.refining': 'Verfijnen op', 'shop.chips.clearAll': 'Alles wissen',
+    'shop.chips.limited': 'Beperkte edities', 'shop.chips.raw': 'Rauw & onbewerkt',
+    'shop.sort.recommended': 'Aanbevolen', 'shop.sort.popular': 'Meest populair',
+    'shop.sort.harvest': 'Laatste oogst', 'shop.sort.lightest': 'Lichtste smaak',
+    'shop.sort.richest': 'Rijkste smaak', 'shop.sort.limited': 'Beperkte edities',
+    'shop.fp.eyebrow': 'Verfijn de collectie',
+    'shop.fp.title_html': 'Zes landgoederen, <em>één berg per keer.</em>',
+    'shop.fp.close': 'Sluiten',
+    'shop.fp.g.type': 'Honingsoort', 'shop.fp.g.region': 'Herkomstregio',
+    'shop.fp.g.flavor': 'Smaakprofiel', 'shop.fp.g.color': 'Kleur',
+    'shop.fp.g.texture': 'Textuur', 'shop.fp.g.season': 'Oogstseizoen',
+    'shop.fp.g.house': 'Huiskenmerken', 'shop.fp.g.pairings': 'Combinaties',
+    'shop.fp.type.chestnut': 'Tamme kastanje', 'shop.fp.type.thyme': 'Wilde tijm',
+    'shop.fp.type.pine_html': 'Den &amp; heide', 'shop.fp.type.wildflower': 'Wilde bloem',
+    'shop.fp.type.mountain': 'Berg reserve', 'shop.fp.type.orange': 'Sinaasappelbloesem',
+    'shop.fp.flavor.warm': 'Warm & harsig', 'shop.fp.flavor.floral': 'Bloemig',
+    'shop.fp.flavor.citrus': 'Citrus', 'shop.fp.flavor.herbal': 'Kruidig',
+    'shop.fp.flavor.smoky': 'Rokerig', 'shop.fp.flavor.mineral': 'Mineraal',
+    'shop.fp.flavor.woody': 'Houtig',
+    'shop.fp.color.pale': 'Bleekgoud', 'shop.fp.color.light': 'Licht amber',
+    'shop.fp.color.dark': 'Donker amber', 'shop.fp.color.mahogany': 'Mahonie',
+    'shop.fp.texture.liquid': 'Vloeibaar', 'shop.fp.texture.creamy': 'Romig',
+    'shop.fp.texture.set': 'Vast / wasachtig', 'shop.fp.texture.dense': 'Dik',
+    'shop.fp.season.spring': 'Lente', 'shop.fp.season.summer': 'Zomer',
+    'shop.fp.season.lateSummer': 'Nazomer', 'shop.fp.season.autumn': 'Herfst',
+    'shop.fp.limited.title': 'Alleen beperkte edities',
+    'shop.fp.limited.sub': 'Minder dan 100 genummerde potten per oogst',
+    'shop.fp.raw.title': 'Alleen rauw & onbewerkt',
+    'shop.fp.raw.sub': 'Nooit boven keldertemperatuur verhit',
+    'shop.fp.pairings.cheese': 'Belegen kaas', 'shop.fp.pairings.bread_html': 'Brood &amp; boter',
+    'shop.fp.pairings.yogurt_html': 'Yoghurt &amp; granola', 'shop.fp.pairings.tea_html': 'Thee &amp; infusies',
+    'shop.fp.pairings.chocolate': 'Pure chocolade', 'shop.fp.pairings.savory': 'Hartig / gegrild',
+    'shop.fp.reset': 'Reset', 'shop.fp.applyPrefix': 'Toon', 'shop.fp.applySuffix': 'edities',
+    'shop.empty.title_html': 'Geen passende oogst <em>gevonden.</em>',
+    'shop.empty.desc': 'Probeer een ander smaakprofiel, of verwijder een filter om de zoekopdracht te verbreden.',
+    'shop.empty.cta': 'Wis alle filters'
+  });
+
+  Object.assign(T.el, {
+    'shop.tb.editions': 'εκδόσεις', 'shop.tb.of': 'από',
+    'shop.tb.sortLabel': 'Ταξινόμηση', 'shop.tb.filter': 'Φίλτρο',
+    'shop.chips.refining': 'Φιλτράρισμα κατά', 'shop.chips.clearAll': 'Καθαρισμός',
+    'shop.chips.limited': 'Περιορισμένες εκδόσεις', 'shop.chips.raw': 'Ωμό & ανεπεξέργαστο',
+    'shop.sort.recommended': 'Συνιστώμενα', 'shop.sort.popular': 'Πιο δημοφιλή',
+    'shop.sort.harvest': 'Τελευταία συγκομιδή', 'shop.sort.lightest': 'Πιο ελαφριά γεύση',
+    'shop.sort.richest': 'Πιο πλούσια γεύση', 'shop.sort.limited': 'Περιορισμένες εκδόσεις',
+    'shop.fp.eyebrow': 'Βελτιώστε τη συλλογή',
+    'shop.fp.title_html': 'Έξι κτήματα, <em>ένα βουνό κάθε φορά.</em>',
+    'shop.fp.close': 'Κλείσιμο',
+    'shop.fp.g.type': 'Τύπος μελιού', 'shop.fp.g.region': 'Περιοχή προέλευσης',
+    'shop.fp.g.flavor': 'Προφίλ γεύσης', 'shop.fp.g.color': 'Χρώμα',
+    'shop.fp.g.texture': 'Υφή', 'shop.fp.g.season': 'Εποχή συγκομιδής',
+    'shop.fp.g.house': 'Χαρακτηριστικά οίκου', 'shop.fp.g.pairings': 'Συνδυασμοί',
+    'shop.fp.type.chestnut': 'Καστανιά', 'shop.fp.type.thyme': 'Άγριο θυμάρι',
+    'shop.fp.type.pine_html': 'Πεύκο &amp; ρείκι', 'shop.fp.type.wildflower': 'Αγριολούλουδα',
+    'shop.fp.type.mountain': 'Ορεινή ρεζέρβα', 'shop.fp.type.orange': 'Άνθος πορτοκαλιάς',
+    'shop.fp.flavor.warm': 'Ζεστό & ρετσινάτο', 'shop.fp.flavor.floral': 'Λουλουδάτο',
+    'shop.fp.flavor.citrus': 'Εσπεριδοειδή', 'shop.fp.flavor.herbal': 'Βοτανικό',
+    'shop.fp.flavor.smoky': 'Καπνιστό', 'shop.fp.flavor.mineral': 'Μεταλλικό',
+    'shop.fp.flavor.woody': 'Ξυλώδες',
+    'shop.fp.color.pale': 'Χλωμό χρυσό', 'shop.fp.color.light': 'Ανοιχτό κεχριμπάρι',
+    'shop.fp.color.dark': 'Σκούρο κεχριμπάρι', 'shop.fp.color.mahogany': 'Μαόνι',
+    'shop.fp.texture.liquid': 'Υγρό', 'shop.fp.texture.creamy': 'Κρεμώδες',
+    'shop.fp.texture.set': 'Συμπαγές / κέρινο', 'shop.fp.texture.dense': 'Πυκνό',
+    'shop.fp.season.spring': 'Άνοιξη', 'shop.fp.season.summer': 'Καλοκαίρι',
+    'shop.fp.season.lateSummer': 'Αργό καλοκαίρι', 'shop.fp.season.autumn': 'Φθινόπωρο',
+    'shop.fp.limited.title': 'Μόνο περιορισμένες εκδόσεις',
+    'shop.fp.limited.sub': 'Λιγότερα από 100 αριθμημένα βάζα ανά συγκομιδή',
+    'shop.fp.raw.title': 'Μόνο ωμό & ανεπεξέργαστο',
+    'shop.fp.raw.sub': 'Ποτέ δεν θερμαίνεται πάνω από τη θερμοκρασία κελαριού',
+    'shop.fp.pairings.cheese': 'Παλαιωμένο τυρί', 'shop.fp.pairings.bread_html': 'Ψωμί &amp; βούτυρο',
+    'shop.fp.pairings.yogurt_html': 'Γιαούρτι &amp; γκρανόλα', 'shop.fp.pairings.tea_html': 'Τσάι &amp; αφεψήματα',
+    'shop.fp.pairings.chocolate': 'Μαύρη σοκολάτα', 'shop.fp.pairings.savory': 'Αλμυρό / στη σχάρα',
+    'shop.fp.reset': 'Επαναφορά', 'shop.fp.applyPrefix': 'Δείξε', 'shop.fp.applySuffix': 'εκδόσεις',
+    'shop.empty.title_html': 'Δεν βρέθηκε αντίστοιχη <em>συγκομιδή.</em>',
+    'shop.empty.desc': 'Δοκιμάστε ένα διαφορετικό προφίλ γεύσης ή αφαιρέστε ένα φίλτρο για να διευρύνετε την αναζήτηση.',
+    'shop.empty.cta': 'Καθαρισμός όλων των φίλτρων'
+  });
+
+  // =====================================================
+  //  WISHLIST i18n bundle — extends T
+  // =====================================================
+  Object.assign(T.en, {
+    'nav.wishlist': 'Wishlist',
+    'menu.item.wishlist_html': 'The <em>Cellar Notes</em>',
+    'menu.item.wishlist_sub': 'Your wishlist',
+    'wl.eyebrow': 'The cellar notes',
+    'wl.title_html': 'Set aside for the <em>cellar.</em>',
+    'wl.sub': 'Editions you have marked to come back to. Saved quietly to this browser. They wait until you are ready.',
+    'wl.itemsLabel': 'edition saved',
+    'wl.privacyNote': 'Stored locally · never sent',
+    'wl.toolbarInfo': 'Tap a heart to remove an edition, or move it to the cellar in one click.',
+    'wl.clearAll': 'Clear wishlist',
+    'wl.remove': 'Remove',
+    'wl.moveToCellar': 'Move to cellar',
+    'wl.view': 'View',
+    'wl.empty.title_html': 'Your cellar notes are <em>quiet.</em>',
+    'wl.empty.desc': 'Browse the collection, tap a heart on any edition you would like to come back to, and it appears here. We keep nothing on our side.',
+    'wl.empty.cta': 'View the collection'
+  });
+  Object.assign(T.nl, {
+    'nav.wishlist': 'Verlanglijst',
+    'menu.item.wishlist_html': 'De <em>Kelder&shy;notities</em>',
+    'menu.item.wishlist_sub': 'Jouw verlanglijst',
+    'wl.eyebrow': 'De keldernotities',
+    'wl.title_html': 'Apart gezet voor het <em>kelder.</em>',
+    'wl.sub': 'Edities die u opzij heeft gezet om op terug te komen. Stil bewaard in deze browser. Ze wachten tot u klaar bent.',
+    'wl.itemsLabel': 'editie opgeslagen',
+    'wl.privacyNote': 'Lokaal bewaard · nooit verzonden',
+    'wl.toolbarInfo': 'Tik op een hartje om een editie te verwijderen, of verplaats hem in &eacute;&eacute;n klik naar het kelder.',
+    'wl.clearAll': 'Verlanglijst leegmaken',
+    'wl.remove': 'Verwijderen',
+    'wl.moveToCellar': 'Naar het kelder',
+    'wl.view': 'Bekijken',
+    'wl.empty.title_html': 'Uw keldernotities zijn <em>stil.</em>',
+    'wl.empty.desc': 'Blader door de collectie, tik op een hartje bij elke editie waar u op terug wilt komen, en hij verschijnt hier. Wij bewaren niets aan onze kant.',
+    'wl.empty.cta': 'Bekijk de collectie'
+  });
+  Object.assign(T.el, {
+    'nav.wishlist': 'Λίστα επιθυμιών',
+    'menu.item.wishlist_html': 'Οι <em>Σημειώσεις Κελαριού</em>',
+    'menu.item.wishlist_sub': 'Η λίστα επιθυμιών σας',
+    'wl.eyebrow': 'Οι σημειώσεις κελαριού',
+    'wl.title_html': 'Ξεχωρισμένα για το <em>κελάρι.</em>',
+    'wl.sub': 'Εκδόσεις που έχετε σημειώσει για να επιστρέψετε. Φυλάσσονται ήσυχα σε αυτόν τον φυλλομετρητή. Περιμένουν μέχρι να είστε έτοιμοι.',
+    'wl.itemsLabel': 'έκδοση αποθηκευμένη',
+    'wl.privacyNote': 'Αποθηκευμένο τοπικά · ποτέ δεν αποστέλλεται',
+    'wl.toolbarInfo': 'Πατήστε μια καρδιά για να αφαιρέσετε μια έκδοση, ή μετακινήστε τη στο κελάρι με ένα κλικ.',
+    'wl.clearAll': 'Καθαρισμός λίστας',
+    'wl.remove': 'Αφαίρεση',
+    'wl.moveToCellar': 'Στο κελάρι',
+    'wl.view': 'Προβολή',
+    'wl.empty.title_html': 'Οι σημειώσεις του κελαριού σας είναι <em>ήσυχες.</em>',
+    'wl.empty.desc': 'Περιηγηθείτε στη συλλογή, πατήστε καρδιά σε όποια έκδοση θέλετε να επιστρέψετε, και θα εμφανιστεί εδώ. Δεν κρατάμε τίποτα από τη δική μας πλευρά.',
+    'wl.empty.cta': 'Δείτε τη συλλογή'
+  });
+
   let currentLang = (function () {
+    // Saved user choice always wins
     try {
       const stored = localStorage.getItem('hd-lang');
-      if (stored === 'en' || stored === 'nl') return stored;
+      if (stored === 'en' || stored === 'nl' || stored === 'el') return stored;
     } catch (e) {}
-    return (navigator.language || 'en').toLowerCase().startsWith('nl') ? 'nl' : 'en';
+    // Otherwise: NL-based business — default to Dutch.
+    // Greek visitors still get EL automatically (brand origin language).
+    const nav = (navigator.language || '').toLowerCase();
+    if (nav.startsWith('el')) return 'el';
+    return 'nl';
   })();
   window.HD_lang = function () { return currentLang; };
 
@@ -677,7 +1594,7 @@
   window.HD_applyTranslations = applyTranslations;
 
   function setLang(lang) {
-    if (lang !== 'en' && lang !== 'nl') return;
+    if (lang !== 'en' && lang !== 'nl' && lang !== 'el') return;
     currentLang = lang;
     try { localStorage.setItem('hd-lang', lang); } catch (e) {}
     applyTranslations();
@@ -686,95 +1603,95 @@
   window.HD_setLang = setLang;
 
   // ---------- Product catalog (with per-language strings) ----------
-  function loc(en, nl) { return { en: en, nl: nl }; }
+  function loc(en, nl, el) { return { en: en, nl: nl, el: el }; }
   const PRODUCTS = {
     'chestnut': {
-      name: loc('Chestnut Honey', 'Tamme Kastanje'),
-      edition: loc('Edition I', 'Editie I'),
-      region: loc('Pelion · Greece', 'Pelion · Griekenland'),
+      name: loc('Chestnut Honey', 'Tamme Kastanje', 'Καστανόμελο'),
+      edition: loc('Edition I', 'Editie I', 'Έκδοση I'),
+      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
       altitude: '950m',
       price: 68,
       hue: 'amber',
-      notes: loc('Warm resin, sun-baked herb, mineral finish.', 'Warme hars, in de zon gerijpte kruiden, minerale afdronk.'),
-      texture: loc('Liquid, slow-pouring', 'Vloeibaar, traag schenkend'),
+      notes: loc('Warm resin, sun-baked herb, mineral finish.', 'Warme hars, in de zon gerijpte kruiden, minerale afdronk.', 'Ζεστή ρετσίνα, λιοφρυμένο βότανο, μεταλλική επίγευση.'),
+      texture: loc('Liquid, slow-pouring', 'Vloeibaar, traag schenkend', 'Υγρό, αργής ροής'),
       weight: '250g',
       tags: ['mountain', 'forest', 'raw', 'cold-extracted', 'dark'],
-      badges: [loc('Raw', 'Rauw'), loc('Mountain Honey', 'Berg Honing')],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berg Honing', 'Ορεινό Μέλι')],
       slug: 'chestnut',
       url: 'product.html'
     },
     'wild-thyme': {
-      name: loc('Wild Thyme', 'Wilde Tijm'),
-      edition: loc('Edition II', 'Editie II'),
-      region: loc('Lakonia · Greece', 'Lakonia · Griekenland'),
+      name: loc('Wild Thyme', 'Wilde Tijm', 'Άγριο Θυμάρι'),
+      edition: loc('Edition II', 'Editie II', 'Έκδοση II'),
+      region: loc('Lakonia · Greece', 'Lakonia · Griekenland', 'Λακωνία · Ελλάδα'),
       altitude: '750m',
       price: 58,
       hue: 'straw',
-      notes: loc('Bright herb, citrus blossom, honeycomb wax.', 'Frisse kruiden, citrusbloesem, honingraat-was.'),
-      texture: loc('Light, fluid', 'Licht, vloeibaar'),
+      notes: loc('Bright herb, citrus blossom, honeycomb wax.', 'Frisse kruiden, citrusbloesem, honingraat-was.', 'Φωτεινό βότανο, ανθός εσπεριδοειδών, κερί κηρήθρας.'),
+      texture: loc('Light, fluid', 'Licht, vloeibaar', 'Ελαφρύ, ρευστό'),
       weight: '250g',
       tags: ['floral', 'mountain', 'cold-extracted', 'light'],
-      badges: [loc('Estate Batch', 'Landgoed Batch'), loc('Spring Harvest', 'Voorjaars Oogst')],
+      badges: [loc('Estate Batch', 'Landgoed Batch', 'Παρτίδα Κτήματος'), loc('Spring Harvest', 'Voorjaars Oogst', 'Ανοιξιάτικη Συγκομιδή')],
       slug: 'wild-thyme',
       url: 'product.html?p=wild-thyme'
     },
     'pine-heather': {
-      name: loc('Pine & Heather', 'Den & Heide'),
-      edition: loc('Edition III', 'Editie III'),
-      region: loc('Halkidiki · Greece', 'Halkidiki · Griekenland'),
+      name: loc('Pine & Heather', 'Den & Heide', 'Πεύκο & Ρείκι'),
+      edition: loc('Edition III', 'Editie III', 'Έκδοση III'),
+      region: loc('Halkidiki · Greece', 'Halkidiki · Griekenland', 'Χαλκιδική · Ελλάδα'),
       altitude: '1200m',
       price: 72,
       hue: 'bronze',
-      notes: loc('Smoked pine, dried fig, dark woodland.', 'Gerookte den, gedroogde vijg, donker bos.'),
-      texture: loc('Set, almost waxy', 'Vast, bijna wasachtig'),
+      notes: loc('Smoked pine, dried fig, dark woodland.', 'Gerookte den, gedroogde vijg, donker bos.', 'Καπνιστό πεύκο, ξερό σύκο, σκούρο δάσος.'),
+      texture: loc('Set, almost waxy', 'Vast, bijna wasachtig', 'Συμπαγές, σχεδόν κέρινο'),
       weight: '250g',
       tags: ['forest', 'raw', 'dark', 'mountain'],
-      badges: [loc('Raw', 'Rauw'), loc('Forest Honey', 'Bos Honing')],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Bos Honing', 'Δασικό Μέλι')],
       slug: 'pine-heather',
       url: 'product.html?p=pine-heather'
     },
     'spring-wildflower': {
-      name: loc('Spring Wildflower', 'Lente Wilde Bloem'),
-      edition: loc('Edition IV', 'Editie IV'),
-      region: loc('Pelion · Greece', 'Pelion · Griekenland'),
+      name: loc('Spring Wildflower', 'Lente Wilde Bloem', 'Ανοιξιάτικα Αγριολούλουδα'),
+      edition: loc('Edition IV', 'Editie IV', 'Έκδοση IV'),
+      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
       altitude: '600m',
       price: 54,
       hue: 'pale',
-      notes: loc('Apple blossom, soft pollen, fresh meadow.', 'Appelbloesem, zacht stuifmeel, frisse weide.'),
-      texture: loc('Smooth, creamy', 'Glad, romig'),
+      notes: loc('Apple blossom, soft pollen, fresh meadow.', 'Appelbloesem, zacht stuifmeel, frisse weide.', 'Άνθος μηλιάς, απαλή γύρη, φρέσκο λιβάδι.'),
+      texture: loc('Smooth, creamy', 'Glad, romig', 'Απαλό, κρεμώδες'),
       weight: '250g',
       tags: ['wildflower', 'floral', 'light', 'cold-extracted'],
-      badges: [loc('Spring Harvest', 'Voorjaars Oogst'), loc('Creamy', 'Romig')],
+      badges: [loc('Spring Harvest', 'Voorjaars Oogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Creamy', 'Romig', 'Κρεμώδες')],
       slug: 'spring-wildflower',
       url: 'product.html?p=spring-wildflower'
     },
     'mountain-reserve': {
-      name: loc('Mountain Reserve', 'Berg Reserve'),
-      edition: loc('Reserve · 2025', 'Reserve · 2025'),
-      region: loc('Mt Olympus · Greece', 'Berg Olympus · Griekenland'),
+      name: loc('Mountain Reserve', 'Berg Reserve', 'Ορεινή Ρεζέρβα'),
+      edition: loc('Reserve · 2025', 'Reserve · 2025', 'Ρεζέρβα · 2025'),
+      region: loc('Mt Olympus · Greece', 'Berg Olympus · Griekenland', 'Όλυμπος · Ελλάδα'),
       altitude: '1400m',
       price: 148,
       hue: 'deep',
-      notes: loc('Black walnut, slate, long mineral echo.', 'Zwarte walnoot, leisteen, lange minerale echo.'),
-      texture: loc('Dense, dark, viscous', 'Dik, donker, stroperig'),
+      notes: loc('Black walnut, slate, long mineral echo.', 'Zwarte walnoot, leisteen, lange minerale echo.', 'Μαύρο καρύδι, σχιστόλιθος, μακρά μεταλλική ηχώ.'),
+      texture: loc('Dense, dark, viscous', 'Dik, donker, stroperig', 'Πυκνό, σκούρο, παχύρρευστο'),
       weight: '250g',
       tags: ['mountain', 'forest', 'limited', 'raw', 'dark'],
-      badges: [loc('Limited 48', 'Beperkt 48'), loc('Estate Batch', 'Landgoed Batch')],
+      badges: [loc('Limited 48', 'Beperkt 48', 'Περιορισμένα 48'), loc('Estate Batch', 'Landgoed Batch', 'Παρτίδα Κτήματος')],
       slug: 'mountain-reserve',
       url: 'product.html?p=mountain-reserve'
     },
     'orange-blossom': {
-      name: loc('Orange Blossom', 'Sinaasappelbloesem'),
-      edition: loc('Edition V', 'Editie V'),
-      region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland'),
+      name: loc('Orange Blossom', 'Sinaasappelbloesem', 'Άνθος Πορτοκαλιάς'),
+      edition: loc('Edition V', 'Editie V', 'Έκδοση V'),
+      region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
       altitude: '200m',
       price: 52,
       hue: 'pale',
-      notes: loc('Neroli, orange peel, warm vanilla.', 'Neroli, sinaasappelschil, warme vanille.'),
-      texture: loc('Liquid, perfumed', 'Vloeibaar, geparfumeerd'),
+      notes: loc('Neroli, orange peel, warm vanilla.', 'Neroli, sinaasappelschil, warme vanille.', 'Νερολί, φλούδα πορτοκαλιού, ζεστή βανίλια.'),
+      texture: loc('Liquid, perfumed', 'Vloeibaar, geparfumeerd', 'Υγρό, αρωματικό'),
       weight: '250g',
       tags: ['floral', 'wildflower', 'light', 'cold-extracted'],
-      badges: [loc('Spring Harvest', 'Voorjaars Oogst'), loc('Floral', 'Bloemig')],
+      badges: [loc('Spring Harvest', 'Voorjaars Oogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Floral', 'Bloemig', 'Ανθόσπαρτο')],
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     }
@@ -915,6 +1832,7 @@
   }
   window.HD_openCart = openCart;
   window.HD_closeCart = closeCart;
+  window.HD_renderCart = render;
 
   // ---------- Toast ----------
   let toastT;
@@ -1090,4 +2008,1877 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else { init(); }
+})();
+
+/* =================================================================
+   COOKIE CONSENT BAR
+   Persists choice in localStorage as hd-cookie-consent-v1
+   Auto-injects on every page that loads shared.js.
+   Re-openable via any element with [data-open-cookie-prefs].
+   Dispatches 'hd:cookie-consent' CustomEvent when consent changes.
+   ================================================================= */
+(function () {
+  'use strict';
+  const STORAGE_KEY = 'hd-cookie-consent-v1';
+  const VERSION = 1;
+
+  function loadConsent() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.version === VERSION) return parsed;
+    } catch (e) {}
+    return null;
+  }
+
+  function saveConsent(state) {
+    const payload = {
+      version: VERSION,
+      timestamp: new Date().toISOString(),
+      necessary: true,
+      analytics: !!state.analytics,
+      marketing: !!state.marketing
+    };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(payload)); } catch (e) {}
+    window.dispatchEvent(new CustomEvent('hd:cookie-consent', { detail: payload }));
+    return payload;
+  }
+
+  // Public API
+  window.HD_cookies = {
+    get: loadConsent,
+    has: function () { return loadConsent() !== null; },
+    open: function () { renderBar(true); },
+    revoke: function () {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      renderBar(false);
+    }
+  };
+
+  function svgGlyph() {
+    return '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">'
+      + '<circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1"/>'
+      + '<circle cx="5" cy="6" r="0.7" fill="currentColor"/>'
+      + '<circle cx="9" cy="5.5" r="0.6" fill="currentColor"/>'
+      + '<circle cx="7.5" cy="9" r="0.7" fill="currentColor"/>'
+      + '</svg>';
+  }
+
+  function renderBar(forceExpanded) {
+    let bar = document.getElementById('cookieBar');
+    if (bar) bar.remove();
+
+    const existing = loadConsent();
+    bar = document.createElement('div');
+    bar.id = 'cookieBar';
+    bar.className = 'cookie-bar' + (forceExpanded ? ' expanded' : '');
+    bar.setAttribute('role', 'dialog');
+    bar.setAttribute('aria-label', 'Cookievoorkeuren');
+    bar.setAttribute('aria-live', 'polite');
+    bar.innerHTML = ''
+      + '<div class="cb-eyebrow">' + svgGlyph() + ' Cookies &middot; Privacy</div>'
+      + '<h3>A quiet word about cookies.</h3>'
+      + '<p>We gebruiken alleen strikt noodzakelijke cookies om de winkel te laten werken. '
+      + 'Voor analyse en marketing vragen we eerst om je toestemming. '
+      + 'Meer info in onze <a href="legal-cookies.html">cookieverklaring</a> en '
+      + '<a href="legal-privacy.html">privacyverklaring</a>.</p>'
+
+      + '<div class="cb-prefs" id="cbPrefs">'
+        + '<div class="cb-row">'
+          + '<span class="cb-row-title">Strikt noodzakelijk</span>'
+          + '<label class="cb-toggle" aria-label="Strikt noodzakelijke cookies (altijd actief)">'
+            + '<input type="checkbox" checked disabled data-cb-tier="necessary">'
+            + '<span class="track"><span class="knob"></span></span>'
+          + '</label>'
+          + '<span class="cb-row-desc">Sessie, taalvoorkeur, winkelmandje, beveiliging. Zonder deze werkt de site niet. Geen toestemming nodig.</span>'
+        + '</div>'
+        + '<div class="cb-row">'
+          + '<span class="cb-row-title">Analyse</span>'
+          + '<label class="cb-toggle" aria-label="Analytische cookies">'
+            + '<input type="checkbox" id="cbAnalytics" data-cb-tier="analytics"'
+              + (existing && existing.analytics ? ' checked' : '') + '>'
+            + '<span class="track"><span class="knob"></span></span>'
+          + '</label>'
+          + '<span class="cb-row-desc">Anonieme statistieken (bezoekersaantallen, populaire pagina&rsquo;s) om de winkel te verbeteren. Wordt pas geladen na jouw toestemming.</span>'
+        + '</div>'
+        + '<div class="cb-row">'
+          + '<span class="cb-row-title">Marketing</span>'
+          + '<label class="cb-toggle" aria-label="Marketingcookies">'
+            + '<input type="checkbox" id="cbMarketing" data-cb-tier="marketing"'
+              + (existing && existing.marketing ? ' checked' : '') + '>'
+            + '<span class="track"><span class="knob"></span></span>'
+          + '</label>'
+          + '<span class="cb-row-desc">Cookies van derden voor advertenties en gepersonaliseerde inhoud op andere platforms. Uitsluitend met jouw toestemming.</span>'
+        + '</div>'
+      + '</div>'
+
+      + '<div class="cb-actions">'
+        + '<button type="button" class="cb-btn cb-reject" data-cb-action="reject">Alleen noodzakelijk</button>'
+        + '<button type="button" class="cb-btn cb-customize" data-cb-action="customize" aria-expanded="' + (forceExpanded ? 'true' : 'false') + '">Voorkeuren</button>'
+        + '<button type="button" class="cb-btn cb-accept" data-cb-action="accept">Alle accepteren</button>'
+      + '</div>';
+
+    document.body.appendChild(bar);
+    // Animate in
+    requestAnimationFrame(() => requestAnimationFrame(() => bar.classList.add('visible')));
+
+    bar.addEventListener('click', e => {
+      const t = e.target.closest('[data-cb-action]');
+      if (!t) return;
+      const a = t.dataset.cbAction;
+      if (a === 'accept') {
+        saveConsent({ analytics: true, marketing: true });
+        dismiss(bar);
+      } else if (a === 'reject') {
+        saveConsent({ analytics: false, marketing: false });
+        dismiss(bar);
+      } else if (a === 'customize') {
+        if (bar.classList.contains('expanded')) {
+          // Save current toggle state then close
+          const an = bar.querySelector('#cbAnalytics');
+          const mk = bar.querySelector('#cbMarketing');
+          saveConsent({ analytics: an && an.checked, marketing: mk && mk.checked });
+          dismiss(bar);
+        } else {
+          bar.classList.add('expanded');
+          t.setAttribute('aria-expanded', 'true');
+          t.textContent = 'Voorkeuren opslaan';
+        }
+      }
+    });
+  }
+
+  function dismiss(bar) {
+    bar.classList.remove('visible');
+    setTimeout(() => { if (bar && bar.parentNode) bar.parentNode.removeChild(bar); }, 600);
+  }
+
+  function bindReopen() {
+    document.addEventListener('click', e => {
+      const t = e.target.closest('[data-open-cookie-prefs]');
+      if (!t) return;
+      e.preventDefault();
+      renderBar(true);
+    });
+  }
+
+  function start() {
+    bindReopen();
+    if (!loadConsent()) {
+      // Slight delay so the page paints first
+      setTimeout(() => renderBar(false), 600);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else { start(); }
+})();
+
+/* =================================================================
+   FAQ accordion (global) — attaches to any .faq-block .faq-row
+   Reused on index.html, contact.html, and any future page.
+   ================================================================= */
+(function () {
+  'use strict';
+  function init() {
+    document.querySelectorAll('.faq-block .faq-row').forEach(row => {
+      const btn = row.querySelector('.faq-q');
+      if (!btn || btn.dataset.faqBound) return;
+      btn.dataset.faqBound = '1';
+      btn.addEventListener('click', () => {
+        const isOpen = row.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+})();
+
+/* =================================================================
+   E-COMMERCE UPGRADES — shared behaviours
+   ================================================================= */
+
+/* ---------- HARVEST CONCIERGE — luxury floating support (auto-inject) ---------- */
+/* Replaces the generic WhatsApp bubble with a custom Mediterranean-concierge
+   experience: gold glass FAB → cinematic dark chat panel → only THEN open WA. */
+(function () {
+  'use strict';
+  const PHONE = '31000000000'; // TODO: replace with real business WhatsApp number (no + or spaces)
+  const ACTIONS = [
+    { key: 'product',   i18nKey: 'concierge.action.product',   msgKey: 'concierge.msg.product' },
+    { key: 'retail',    i18nKey: 'concierge.action.retail',    msgKey: 'concierge.msg.retail' },
+    { key: 'shipping',  i18nKey: 'concierge.action.shipping',  msgKey: 'concierge.msg.shipping' },
+    { key: 'gift',      i18nKey: 'concierge.action.gift',      msgKey: 'concierge.msg.gift' },
+    { key: 'concierge', i18nKey: 'concierge.action.concierge', msgKey: 'concierge.msg.concierge' }
+  ];
+
+  // Inline SVGs
+  // Olive sprig — used as the brand avatar inside the chat panel header
+  const SPRIG_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
+    '<path d="M12 21V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
+    '<path d="M12 14C12 11 9 9 6 9.5C6.5 12.5 8.5 14.5 12 14Z" fill="currentColor" opacity="0.85"/>' +
+    '<path d="M12 11C12 8.5 14.5 7 17 7.5C16.5 10 14.5 11.5 12 11Z" fill="currentColor" opacity="0.85"/>' +
+    '<path d="M12 8C12 5.5 14 4 16 4.5C15.5 6.5 14 8 12 8Z" fill="currentColor" opacity="0.85"/></svg>';
+
+  // Gold-coin medallion with embossed chat bubble — used as the floating button.
+  // Built as a single inline SVG: radial gold gradient base, top-left gloss,
+  // engraved rim, cream chat bubble with three dots. Crisp at any size, ~1.4 KB.
+  const COIN_CHAT_SVG = (
+    '<svg viewBox="0 0 80 80" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs>' +
+        '<radialGradient id="hdCoinFace" cx="35%" cy="28%" r="78%">' +
+          '<stop offset="0%"  stop-color="#FBE7B0"/>' +
+          '<stop offset="38%" stop-color="#E1B871"/>' +
+          '<stop offset="72%" stop-color="#B2853C"/>' +
+          '<stop offset="100%" stop-color="#6E4B1B"/>' +
+        '</radialGradient>' +
+        '<linearGradient id="hdCoinRim" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%"   stop-color="#FFEFC2" stop-opacity="0.85"/>' +
+          '<stop offset="55%"  stop-color="#C9963E" stop-opacity="0.55"/>' +
+          '<stop offset="100%" stop-color="#3F2A0C" stop-opacity="0.85"/>' +
+        '</linearGradient>' +
+        '<radialGradient id="hdCoinGloss" cx="32%" cy="22%" r="34%">' +
+          '<stop offset="0%"   stop-color="#FFF8E1" stop-opacity="0.70"/>' +
+          '<stop offset="60%"  stop-color="#FFF8E1" stop-opacity="0.18"/>' +
+          '<stop offset="100%" stop-color="#FFF8E1" stop-opacity="0"/>' +
+        '</radialGradient>' +
+        '<radialGradient id="hdCoinDarken" cx="65%" cy="78%" r="48%">' +
+          '<stop offset="0%"   stop-color="#3F2A0C" stop-opacity="0"/>' +
+          '<stop offset="70%"  stop-color="#3F2A0C" stop-opacity="0.10"/>' +
+          '<stop offset="100%" stop-color="#3F2A0C" stop-opacity="0.32"/>' +
+        '</radialGradient>' +
+      '</defs>' +
+      // outer rim (slightly larger than the face — gives a beveled edge)
+      '<circle cx="40" cy="40" r="39" fill="url(#hdCoinRim)"/>' +
+      // coin face
+      '<circle cx="40" cy="40" r="37" fill="url(#hdCoinFace)"/>' +
+      // bottom-right darken (3D shading)
+      '<circle cx="40" cy="40" r="37" fill="url(#hdCoinDarken)"/>' +
+      // top-left gloss highlight
+      '<circle cx="40" cy="40" r="37" fill="url(#hdCoinGloss)"/>' +
+      // engraved inner groove
+      '<circle cx="40" cy="40" r="33" fill="none" stroke="rgba(60,40,12,0.28)" stroke-width="0.6"/>' +
+      '<circle cx="40" cy="40" r="33" fill="none" stroke="rgba(255,245,205,0.30)" stroke-width="0.6" transform="translate(0,-0.7)"/>' +
+      // chat bubble shadow (engraved depth)
+      '<g transform="translate(0.8,0.8)" opacity="0.55">' +
+        '<path d="M28 32 h24 a4 4 0 0 1 4 4 v9 a4 4 0 0 1 -4 4 h-13 l-5 5 v-5 h-6 a4 4 0 0 1 -4 -4 v-9 a4 4 0 0 1 4 -4 z" fill="none" stroke="#3F2A0C" stroke-width="2.4" stroke-linejoin="round"/>' +
+      '</g>' +
+      // chat bubble (cream stroke)
+      '<path d="M28 32 h24 a4 4 0 0 1 4 4 v9 a4 4 0 0 1 -4 4 h-13 l-5 5 v-5 h-6 a4 4 0 0 1 -4 -4 v-9 a4 4 0 0 1 4 -4 z" fill="none" stroke="#FBEFD0" stroke-width="2.2" stroke-linejoin="round"/>' +
+      // three dots
+      '<circle cx="34" cy="40.5" r="1.7" fill="#FBEFD0"/>' +
+      '<circle cx="40" cy="40.5" r="1.7" fill="#FBEFD0"/>' +
+      '<circle cx="46" cy="40.5" r="1.7" fill="#FBEFD0"/>' +
+    '</svg>'
+  );
+  const ARROW_SVG = '<svg viewBox="0 0 14 14" fill="none" aria-hidden="true">' +
+    '<path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const CLOSE_SVG = '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true">' +
+    '<path d="M2 2L10 10M10 2L2 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+  const LOCK_SVG = '<svg viewBox="0 0 14 14" fill="none" aria-hidden="true">' +
+    '<rect x="2.5" y="6" width="9" height="6" rx="1.2" stroke="currentColor" stroke-width="1.2"/>' +
+    '<path d="M4.5 6V4.2C4.5 2.9 5.6 1.8 7 1.8C8.4 1.8 9.5 2.9 9.5 4.2V6" stroke="currentColor" stroke-width="1.2"/></svg>';
+
+  function t(key, fallback) {
+    try {
+      if (window.HD_T && window.HD_lang) {
+        const lang = window.HD_lang();
+        const dict = window.HD_T[lang] || window.HD_T.en || {};
+        return dict[key] || (window.HD_T.en && window.HD_T.en[key]) || fallback || key;
+      }
+    } catch (e) {}
+    return fallback || key;
+  }
+
+  function openWhatsApp(msgKey) {
+    const text = encodeURIComponent(t(msgKey, 'Hello Harvest Deli'));
+    const url = 'https://wa.me/' + PHONE + '?text=' + text;
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
+
+  function buildFab() {
+    const btn = document.createElement('button');
+    btn.id = 'hdConciergeFab';
+    btn.className = 'hd-concierge-fab';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', t('concierge.title', 'Harvest Concierge'));
+    btn.setAttribute('aria-haspopup', 'dialog');
+    btn.setAttribute('aria-expanded', 'false');
+    // Inline gold-coin medallion SVG — sharp at any size, ~1.4 KB.
+    btn.innerHTML =
+      '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>' +
+      '<span class="hd-fab-glyph" aria-hidden="true">' + COIN_CHAT_SVG + '</span>';
+    return btn;
+  }
+
+  function buildPanel() {
+    const root = document.createElement('div');
+    root.id = 'hdConcierge';
+    root.className = 'hd-concierge';
+    root.setAttribute('role', 'dialog');
+    root.setAttribute('aria-modal', 'false');
+    root.setAttribute('aria-labelledby', 'hdConciergeTitle');
+    root.setAttribute('aria-hidden', 'true');
+
+    const chips = ACTIONS.map(function (a) {
+      return '<button type="button" class="hd-concierge__chip" data-concierge-msg="' + a.msgKey + '">' +
+        '<span class="hd-concierge__chip-label" data-i18n="' + a.i18nKey + '">' + a.key + '</span>' +
+        '<span class="hd-concierge__chip-arrow">' + ARROW_SVG + '</span>' +
+        '</button>';
+    }).join('');
+
+    root.innerHTML =
+      '<div class="hd-concierge__scrim" data-concierge-dismiss></div>' +
+      '<div class="hd-concierge__panel" role="document">' +
+        '<div class="hd-concierge__header">' +
+          '<span class="hd-concierge__avatar">' + SPRIG_SVG + '</span>' +
+          '<div class="hd-concierge__id">' +
+            '<h2 class="hd-concierge__title" id="hdConciergeTitle" data-i18n="concierge.title">Harvest Concierge</h2>' +
+            '<p class="hd-concierge__sub" data-i18n="concierge.subtitle">Pelion, Greece</p>' +
+            '<span class="hd-concierge__status">' +
+              '<span class="hd-concierge__dot" aria-hidden="true"></span>' +
+              '<span data-i18n="concierge.online">Real human · Replies within hours</span>' +
+            '</span>' +
+          '</div>' +
+          '<button type="button" class="hd-concierge__close" data-concierge-dismiss aria-label="' +
+            t('concierge.close', 'Close') + '">' + CLOSE_SVG + '</button>' +
+        '</div>' +
+        '<div class="hd-concierge__body">' +
+          '<div class="hd-concierge__bubble" data-i18n="concierge.greeting">' +
+            'Welcome to Harvest Deli.\nHow may we help you today?' +
+          '</div>' +
+          '<p class="hd-concierge__intro" data-i18n="concierge.intro">' +
+            'Choose a topic below — we will continue the conversation on WhatsApp.' +
+          '</p>' +
+          '<div class="hd-concierge__actions" role="group" aria-label="' +
+            t('concierge.title', 'Harvest Concierge') + '">' +
+            chips +
+          '</div>' +
+        '</div>' +
+        '<div class="hd-concierge__footer">' +
+          LOCK_SVG +
+          '<span data-i18n="concierge.privacy">Conversations open in WhatsApp. We never share your number.</span>' +
+        '</div>' +
+      '</div>';
+    return root;
+  }
+
+  function init() {
+    if (document.body.dataset.noFab === '1') return;
+    if (document.getElementById('hdConciergeFab') || document.getElementById('hdConcierge')) return;
+
+    const fab = buildFab();
+    const panel = buildPanel();
+    document.body.appendChild(fab);
+    document.body.appendChild(panel);
+
+    // Translate any newly injected i18n nodes
+    try { if (window.HD_applyTranslations) window.HD_applyTranslations(); } catch (e) {}
+
+    requestAnimationFrame(() => requestAnimationFrame(() => fab.classList.add('ready')));
+
+    let lastFocus = null;
+    function open() {
+      lastFocus = document.activeElement;
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      fab.setAttribute('aria-expanded', 'true');
+      // Focus the first chip for keyboard users (after slide animation begins)
+      setTimeout(() => {
+        const first = panel.querySelector('.hd-concierge__chip');
+        if (first) first.focus({ preventScroll: true });
+      }, 220);
+    }
+    function close() {
+      panel.classList.remove('open');
+      panel.setAttribute('aria-hidden', 'true');
+      fab.setAttribute('aria-expanded', 'false');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus({ preventScroll: true });
+    }
+
+    fab.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (panel.classList.contains('open')) close(); else open();
+    });
+
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('[data-concierge-dismiss]')) {
+        close();
+        return;
+      }
+      const chip = e.target.closest('[data-concierge-msg]');
+      if (chip) {
+        const msgKey = chip.dataset.conciergeMsg;
+        // Brief tactile feedback before WhatsApp opens
+        chip.style.transition = 'transform 160ms cubic-bezier(0.22,1,0.36,1), background 160ms ease';
+        chip.style.transform = 'scale(0.97)';
+        setTimeout(() => {
+          chip.style.transform = '';
+          openWhatsApp(msgKey);
+          close();
+        }, 140);
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && panel.classList.contains('open')) close();
+    });
+
+    // Re-translate dynamic strings when language changes
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.lang-toggle button[data-lang]')) {
+        setTimeout(() => {
+          try { if (window.HD_applyTranslations) window.HD_applyTranslations(); } catch (err) {}
+          const closeBtn = panel.querySelector('.hd-concierge__close');
+          if (closeBtn) closeBtn.setAttribute('aria-label', t('concierge.close', 'Close'));
+          fab.setAttribute('aria-label', t('concierge.title', 'Harvest Concierge'));
+        }, 40);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Skip-to-content link (auto-inject, keyboard a11y) ---------- */
+(function () {
+  'use strict';
+  function init() {
+    if (document.querySelector('.skip-link')) return;
+    // Find a usable jump target — prefer <main>, fall back to first <section>
+    let target = document.querySelector('main');
+    if (!target) target = document.querySelector('main, [role="main"], article, section');
+    if (!target) return;
+    if (!target.id) target.id = 'content';
+    const a = document.createElement('a');
+    a.className = 'skip-link';
+    a.href = '#' + target.id;
+    a.textContent = 'Skip to content';
+    a.dataset.i18n = 'a11y.skipLink';
+    document.body.insertBefore(a, document.body.firstChild);
+    // Re-run i18n if available so NL/EL pick up
+    try { if (typeof window.HD_applyTranslations === 'function') window.HD_applyTranslations(); } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- The Creativity Lab signature (auto-inject in footer) ---------- */
+(function () {
+  'use strict';
+  function init() {
+    const bottom = document.querySelector('.site-footer .footer-bottom');
+    if (!bottom) return;
+    if (bottom.querySelector('.tcl-signature')) return;
+    const credit = document.createElement('div');
+    credit.className = 'footer-credit';
+    credit.innerHTML =
+      '<p class="footer-credit__by"><span data-i18n="footer.builtBy">Designed &amp; built by</span></p>' +
+      '<a href="https://thecreativitylab.nl" target="_blank" rel="noopener noreferrer" class="tcl-signature">The Creativity Lab</a>';
+    bottom.appendChild(credit);
+    // Re-apply translations on the freshly injected node
+    try { if (typeof window.HD_applyTranslations === 'function') window.HD_applyTranslations(); } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Honeypot anti-spam (auto-inject on every form) ---------- */
+(function () {
+  'use strict';
+  function inject(form) {
+    if (form.dataset.hpBound) return;
+    form.dataset.hpBound = '1';
+    const wrap = document.createElement('div');
+    wrap.className = 'hp-field';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML = '<label>Leave this field empty</label>' +
+      '<input type="text" name="website_url" tabindex="-1" autocomplete="off">';
+    form.appendChild(wrap);
+    form.addEventListener('submit', e => {
+      const hp = form.querySelector('input[name="website_url"]');
+      if (hp && hp.value) {
+        // Bot detected — silently swallow
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        console.warn('[hd] form submission blocked by honeypot');
+      }
+    }, true);
+  }
+  function init() {
+    document.querySelectorAll('form').forEach(inject);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Free-shipping progress bar in cart drawer ---------- */
+(function () {
+  'use strict';
+  const THRESHOLD_NL = 90;
+  const THRESHOLD_EU = 120;
+  function getCartTotal() {
+    // Reuse total from #cartTotal which shared.js render() sets to "€NN"
+    const el = document.getElementById('cartTotal');
+    if (!el) return 0;
+    const m = el.textContent.replace(/[^\d.,]/g, '').replace(',', '.');
+    return parseFloat(m) || 0;
+  }
+  function ensureBar() {
+    const foot = document.querySelector('.cart-foot');
+    if (!foot) return null;
+    let bar = document.getElementById('cartProgress');
+    if (bar) return bar;
+    bar = document.createElement('div');
+    bar.className = 'cart-progress';
+    bar.id = 'cartProgress';
+    bar.innerHTML =
+      '<div class="label"><span>Free shipping</span><span class="remaining" id="cartRemaining"></span></div>' +
+      '<div class="track"><div class="fill" id="cartFill"></div></div>';
+    foot.parentNode.insertBefore(bar, foot);
+    return bar;
+  }
+  function update() {
+    const bar = ensureBar();
+    if (!bar) return;
+    const total = getCartTotal();
+    const threshold = THRESHOLD_NL; // default Netherlands; can be smarter with country detection
+    const pct = Math.min(100, (total / threshold) * 100);
+    const fill = document.getElementById('cartFill');
+    const rem = document.getElementById('cartRemaining');
+    if (fill) fill.style.width = pct.toFixed(1) + '%';
+    if (rem) {
+      if (total >= threshold) {
+        rem.textContent = 'Unlocked';
+        rem.classList.add('unlocked');
+      } else {
+        rem.textContent = '€' + (threshold - total).toFixed(2).replace('.', ',') + ' to go';
+        rem.classList.remove('unlocked');
+      }
+    }
+  }
+  function init() {
+    update();
+    // Re-run on storage events (cart changes from other tabs)
+    window.addEventListener('storage', e => { if (e.key === 'hd-cart') setTimeout(update, 60); });
+    // Patch cart render: re-run after any DOM mutation under #cartItems
+    const items = document.getElementById('cartItems');
+    if (items && 'MutationObserver' in window) {
+      const mo = new MutationObserver(() => setTimeout(update, 40));
+      mo.observe(items, { childList: true, subtree: true });
+    }
+    // Also re-run when total changes
+    const totalEl = document.getElementById('cartTotal');
+    if (totalEl && 'MutationObserver' in window) {
+      const mo2 = new MutationObserver(() => update());
+      mo2.observe(totalEl, { childList: true, characterData: true, subtree: true });
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Wishlist (localStorage) ---------- */
+(function () {
+  'use strict';
+  const KEY = 'hd-wishlist-v1';
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+  }
+  function save(arr) {
+    try { localStorage.setItem(KEY, JSON.stringify(arr)); } catch (e) {}
+    window.dispatchEvent(new CustomEvent('hd:wishlist-change', { detail: arr }));
+  }
+  function toggle(slug) {
+    const arr = load();
+    const i = arr.indexOf(slug);
+    if (i >= 0) arr.splice(i, 1); else arr.push(slug);
+    save(arr);
+    return arr.indexOf(slug) >= 0;
+  }
+  window.HD_wishlist = { has: s => load().indexOf(s) >= 0, all: load, toggle: toggle };
+
+  const HEART_SVG =
+    '<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.2C11 20.2 1.8 14 1.8 8C1.8 4.7 4.4 2.2 7.5 2.2C9.1 2.2 10.5 3 11 4.3C11.5 3 12.9 2.2 14.5 2.2C17.6 2.2 20.2 4.7 20.2 8C20.2 14 11 20.2 11 20.2Z"/></svg>';
+
+  function render() {
+    const cur = load();
+    document.querySelectorAll('[data-wishlist-toggle]').forEach(btn => {
+      const slug = btn.dataset.wishlistToggle;
+      const on = cur.indexOf(slug) >= 0;
+      btn.classList.toggle('active', on);
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.setAttribute('aria-label', on ? 'Remove from wishlist' : 'Add to wishlist');
+    });
+    const count = document.querySelectorAll('.wishlist-count');
+    count.forEach(el => {
+      el.textContent = cur.length ? '(' + cur.length + ')' : '';
+      el.classList.toggle('visible', cur.length > 0);
+    });
+  }
+
+  function init() {
+    // Inject icons inside .wishlist-btn that have empty content
+    document.querySelectorAll('.wishlist-btn, .product-wishlist-line').forEach(btn => {
+      if (!btn.querySelector('svg')) btn.insertAdjacentHTML('afterbegin', HEART_SVG);
+    });
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('[data-wishlist-toggle]');
+      if (!btn) return;
+      e.preventDefault();
+      toggle(btn.dataset.wishlistToggle);
+      render();
+    });
+    window.addEventListener('hd:wishlist-change', render);
+    render();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Recently viewed products ---------- */
+(function () {
+  'use strict';
+  const KEY = 'hd-recent-v1';
+  const MAX = 4;
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; }
+  }
+  function save(arr) {
+    try { localStorage.setItem(KEY, JSON.stringify(arr)); } catch (e) {}
+  }
+  // Public API
+  window.HD_recent = {
+    add: function (slug) {
+      let arr = load().filter(s => s !== slug);
+      arr.unshift(slug);
+      if (arr.length > MAX + 2) arr = arr.slice(0, MAX + 2);
+      save(arr);
+    },
+    list: function (excludeSlug) {
+      return load().filter(s => s !== excludeSlug).slice(0, MAX);
+    }
+  };
+  // Auto-track on product page (uses meta tag)
+  function init() {
+    const meta = document.querySelector('meta[name="hd-product-slug"]');
+    if (meta && meta.content) window.HD_recent.add(meta.content);
+    renderStrip();
+  }
+  function renderStrip() {
+    const wrap = document.getElementById('recentGrid');
+    if (!wrap || !window.HD_product) return;
+    const current = (document.querySelector('meta[name="hd-product-slug"]') || {}).content || '';
+    const slugs = window.HD_recent.list(current);
+    if (!slugs.length) {
+      const section = document.querySelector('.recent-section');
+      if (section) section.setAttribute('hidden', '');
+      return;
+    }
+    wrap.innerHTML = slugs.map(s => {
+      const p = window.HD_product(s);
+      if (!p) return '';
+      return '<a href="' + p.url + '" class="recent-card">' +
+        '<div class="frame"><img src="harvestdeli.png" alt="' + p.name + '"></div>' +
+        '<div class="name">' + p.name + '</div>' +
+        '<div class="region">' + p.region + '</div>' +
+        '</a>';
+    }).join('');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- "You may also like" renderer (product page) ---------- */
+(function () {
+  'use strict';
+  function init() {
+    const wrap = document.getElementById('alsoGrid');
+    if (!wrap || !window.HD_product) return;
+    const meta = document.querySelector('meta[name="hd-product-slug"]');
+    const current = meta ? meta.content : '';
+    const all = ['chestnut','wild-thyme','pine-heather','spring-wildflower','mountain-reserve','orange-blossom'];
+    const others = all.filter(s => s !== current).slice(0, 3);
+    wrap.innerHTML = others.map(s => {
+      const p = window.HD_product(s);
+      if (!p) return '';
+      return '<a href="' + p.url + '" class="also-card">' +
+        '<div class="frame"><img src="harvestdeli.png" alt="' + p.name + '" loading="lazy"></div>' +
+        '<div><span class="name">' + p.name + '</span><span class="price">€' + p.price + '</span></div>' +
+        '<div class="region">' + p.region + '</div>' +
+        '</a>';
+    }).join('');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Variant selector (product page) ---------- */
+(function () {
+  'use strict';
+  function init() {
+    const radios = document.querySelectorAll('input[name="hd-variant"]');
+    if (!radios.length) return;
+    const priceEl = document.getElementById('productPrice');
+    const skuEl = document.getElementById('productSku');
+    radios.forEach(r => {
+      r.addEventListener('change', () => {
+        if (!r.checked) return;
+        const newPrice = r.dataset.price;
+        const newSku = r.dataset.sku;
+        if (priceEl && newPrice) priceEl.textContent = '€' + newPrice;
+        if (skuEl && newSku) skuEl.textContent = newSku;
+      });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Search modal ---------- */
+(function () {
+  'use strict';
+  let overlay, input, list, results, focusIdx = -1;
+
+  function build() {
+    overlay = document.createElement('div');
+    overlay.className = 'search-overlay';
+    overlay.id = 'searchOverlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-label', 'Search the collection');
+    overlay.innerHTML =
+      '<button class="close" type="button" id="searchClose"><span>Close</span><span class="x"></span></button>' +
+      '<div class="search-input-wrap">' +
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>' +
+        '<input id="searchInput" type="search" placeholder="Search the collection" autocomplete="off" spellcheck="false" aria-controls="searchResults">' +
+      '</div>' +
+      '<div class="search-results" id="searchResults" role="listbox"></div>';
+    document.body.appendChild(overlay);
+    input = overlay.querySelector('#searchInput');
+    list = overlay.querySelector('#searchResults');
+    overlay.querySelector('#searchClose').addEventListener('click', close);
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+    input.addEventListener('input', render);
+    input.addEventListener('keydown', onKey);
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+      if (e.key === '/' && !overlay.classList.contains('open') &&
+          !/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) {
+        e.preventDefault(); open();
+      }
+    });
+  }
+
+  function open() {
+    if (!overlay) build();
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    input.value = '';
+    render();
+    setTimeout(() => input.focus(), 100);
+  }
+  function close() {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    focusIdx = -1;
+  }
+  window.HD_search = { open, close };
+
+  function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function render() {
+    if (!window.HD_product) return;
+    const q = (input.value || '').toLowerCase().trim();
+    const slugs = ['chestnut','wild-thyme','pine-heather','spring-wildflower','mountain-reserve','orange-blossom'];
+    const matches = slugs.map(s => window.HD_product(s)).filter(p => {
+      if (!p) return false;
+      if (!q) return true;
+      const hay = (p.name + ' ' + p.region + ' ' + (p.notes || '') + ' ' + (p.altitude || '') + ' ' + (p.edition || '')).toLowerCase();
+      return hay.includes(q);
+    });
+    if (matches.length === 0) {
+      list.innerHTML = '<div class="search-empty">No match for &ldquo;' + escapeHtml(q) + '&rdquo;. Try <a href="shop.html">view all editions</a>.</div>';
+      return;
+    }
+    list.innerHTML = matches.map((p, i) =>
+      '<a class="search-result" data-idx="' + i + '" href="' + p.url + '" role="option">' +
+        '<div class="thumb"><img src="harvestdeli.png" alt=""></div>' +
+        '<div><div class="name">' + escapeHtml(p.name) + '</div><div class="region">' + escapeHtml(p.region) + ' &middot; ' + escapeHtml(p.altitude || '') + '</div></div>' +
+        '<div class="price">€' + p.price + '</div>' +
+      '</a>'
+    ).join('');
+  }
+
+  function onKey(e) {
+    const items = list.querySelectorAll('.search-result');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault(); focusIdx = Math.min(items.length - 1, focusIdx + 1); applyFocus(items);
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault(); focusIdx = Math.max(0, focusIdx - 1); applyFocus(items);
+    } else if (e.key === 'Enter' && focusIdx >= 0) {
+      e.preventDefault(); items[focusIdx].click();
+    }
+  }
+  function applyFocus(items) {
+    items.forEach((it, i) => it.classList.toggle('focused', i === focusIdx));
+    if (items[focusIdx]) items[focusIdx].scrollIntoView({ block: 'nearest' });
+  }
+
+  function init() {
+    document.addEventListener('click', e => {
+      const t = e.target.closest('[data-open-search]');
+      if (!t) return;
+      e.preventDefault(); open();
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* =================================================================
+   NAV STABILITY — Cart + Wishlist auto-injectors
+   Every page gets the SAME nav layout: [...] [Heart] [Cart]
+   Pages that ship without a .nav-cart get one injected so the
+   wishlist heart anchors to a consistent position on every page.
+   ================================================================= */
+(function () {
+  'use strict';
+  const HEART_SVG = '<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.2C11 20.2 1.8 14 1.8 8C1.8 4.7 4.4 2.2 7.5 2.2C9.1 2.2 10.5 3 11 4.3C11.5 3 12.9 2.2 14.5 2.2C17.6 2.2 20.2 4.7 20.2 8C20.2 14 11 20.2 11 20.2Z"/></svg>';
+  const CART_SVG = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">' +
+    '<path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/>' +
+    '<path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg>';
+
+  function ensureDrawer() {
+    if (document.getElementById('cartDrawer')) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'cart-drawer';
+    wrap.id = 'cartDrawer';
+    wrap.setAttribute('aria-hidden', 'true');
+    wrap.innerHTML =
+      '<div class="cart-backdrop"></div>' +
+      '<aside class="cart-panel">' +
+        '<header class="cart-head">' +
+          '<span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>' +
+          '<button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>' +
+        '</header>' +
+        '<div class="cart-items" id="cartItems"></div>' +
+        '<footer class="cart-foot">' +
+          '<div class="cart-totals">' +
+            '<span class="label" data-i18n="cart.subtotal">Subtotal</span>' +
+            '<span class="total" id="cartTotal">€0</span>' +
+          '</div>' +
+          '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>' +
+          '<a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>' +
+        '</footer>' +
+      '</aside>';
+    document.body.appendChild(wrap);
+    // Wire close affordances (the shared.js cart-drawer init already ran;
+    // bind these manually for the freshly injected nodes).
+    const closeFn = function () {
+      wrap.classList.remove('open');
+      wrap.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+    wrap.querySelector('.cart-backdrop').addEventListener('click', closeFn);
+    wrap.querySelector('.cart-close').addEventListener('click', closeFn);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && wrap.classList.contains('open')) closeFn();
+    });
+  }
+
+  function ensureCart(navRight) {
+    let cart = navRight.querySelector('.nav-cart');
+    if (cart) return cart;
+    // Page didn't ship with a cart button — inject one so the heart
+    // can always anchor to it. Identical markup to the hand-authored ones.
+    cart = document.createElement('button');
+    cart.className = 'nav-cart';
+    cart.id = navRight.querySelector('#navCart') ? '' : 'navCart';
+    cart.type = 'button';
+    cart.setAttribute('aria-label', 'Open cart');
+    cart.innerHTML =
+      '<span class="cart-glyph">' + CART_SVG + '</span>' +
+      '<span data-i18n="nav.cellar">Cellar</span>' +
+      '<span class="cart-count">0</span>';
+    navRight.appendChild(cart);
+    // Wire the click to openCart (the cart-drawer init also auto-binds
+    // .nav-cart click → openCart, but it ran already, so bind here too).
+    cart.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (typeof window.HD_openCart === 'function') window.HD_openCart();
+    });
+    // Sync count for users returning with items already in cart from another page
+    try {
+      if (window.HD_CART && typeof window.HD_CART.count === 'function') {
+        const n = window.HD_CART.count();
+        cart.querySelector('.cart-count').textContent = n;
+        cart.classList.toggle('has-items', n > 0);
+      }
+    } catch (e) {}
+    return cart;
+  }
+
+  function injectAll() {
+    // 0. Make sure the cart drawer DOM exists so the cart button actually
+    //    opens something on legal / wishlist / track-order pages.
+    ensureDrawer();
+    document.querySelectorAll('nav.site-nav .nav-right').forEach(navRight => {
+      // 1. Make sure the cart button exists — every page should have it.
+      const cart = ensureCart(navRight);
+
+      // 2. Inject the wishlist heart immediately BEFORE the cart.
+      if (!navRight.querySelector('.nav-wishlist')) {
+        const a = document.createElement('a');
+        a.className = 'nav-wishlist';
+        a.href = 'wishlist.html';
+        const lang = (window.HD_lang && window.HD_lang()) || 'en';
+        const label = (window.HD_T && window.HD_T[lang] && window.HD_T[lang]['nav.wishlist']) || 'Wishlist';
+        a.setAttribute('aria-label', label);
+        a.dataset.i18nAttr = 'aria-label:nav.wishlist';
+        a.innerHTML = HEART_SVG + '<span class="nav-wl-badge" aria-live="polite">0</span>';
+        navRight.insertBefore(a, cart);
+      }
+    });
+    // Translate any freshly injected data-i18n nodes (e.g. "Cellar" label)
+    try { if (window.HD_applyTranslations) window.HD_applyTranslations(); } catch (e) {}
+    // Re-render the cart so the auto-injected drawer reflects current items
+    try { if (window.HD_renderCart) window.HD_renderCart(); } catch (e) {}
+    syncBadge();
+  }
+
+  function syncBadge() {
+    const slugs = (window.HD_wishlist && window.HD_wishlist.all()) || [];
+    document.querySelectorAll('.nav-wishlist').forEach(a => {
+      a.classList.toggle('has-items', slugs.length > 0);
+      const b = a.querySelector('.nav-wl-badge');
+      if (b) b.textContent = slugs.length;
+    });
+  }
+
+  window.addEventListener('hd:wishlist-change', syncBadge);
+  // Re-apply when lang switches (so aria-label updates via HD_applyTranslations)
+  document.addEventListener('click', e => {
+    if (e.target.closest('.lang-toggle button[data-lang]')) {
+      setTimeout(() => { if (window.HD_applyTranslations) window.HD_applyTranslations(); }, 40);
+    }
+  });
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', injectAll);
+  else injectAll();
+})();
+
+/* =================================================================
+   MENU OVERLAY background image injector
+   Adds .menu-bg-img + .menu-bg-scrim layers inside every .menu-overlay
+   so the cinematic background is consistent across all pages.
+   ================================================================= */
+(function () {
+  'use strict';
+  function inject() {
+    document.querySelectorAll('.menu-overlay').forEach(overlay => {
+      if (overlay.querySelector('.menu-bg-img')) return;
+      const img = document.createElement('div');
+      img.className = 'menu-bg-img';
+      img.setAttribute('aria-hidden', 'true');
+      const scrim = document.createElement('div');
+      scrim.className = 'menu-bg-scrim';
+      scrim.setAttribute('aria-hidden', 'true');
+      overlay.insertBefore(scrim, overlay.firstChild);
+      overlay.insertBefore(img, overlay.firstChild);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
+  else inject();
+})();
+
+/* =================================================================
+   GLOBAL BUTTON SYSTEM — soft, rounded, premium
+   Injected as <style> after existing inline styles so it wins
+   the cascade on equal specificity (no !important needed).
+   Replaces "black slide-up" hover with calm lift + amber shimmer.
+   ================================================================= */
+(function () {
+  'use strict';
+  const CSS = `
+:root {
+  --btn-radius: 999px;
+  --btn-bg-primary: #1F1A14;
+  --btn-bg-primary-hover: #2A211A;
+  --btn-fg-primary: #FAF6EE;
+  --btn-border-primary: rgba(212, 172, 106, 0.32);
+  --btn-border-primary-hover: rgba(212, 172, 106, 0.62);
+  --btn-bg-secondary: rgba(250, 246, 238, 0.5);
+  --btn-bg-secondary-hover: #FAF6EE;
+  --btn-fg-secondary: #1F1A14;
+  --btn-border-secondary: rgba(184, 148, 90, 0.32);
+  --btn-border-secondary-hover: rgba(184, 148, 90, 0.62);
+  --btn-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.06) inset,
+    0 14px 30px rgba(26, 22, 18, 0.16),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  --btn-shadow-hover:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.08) inset,
+    0 22px 40px rgba(26, 22, 18, 0.22),
+    0 4px 14px rgba(212, 172, 106, 0.22);
+  --btn-shadow-soft:
+    0 1px 0 rgba(255, 255, 255, 0.04) inset,
+    0 8px 20px rgba(26, 22, 18, 0.08);
+  --btn-shadow-soft-hover:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 14px 28px rgba(26, 22, 18, 0.14),
+    0 2px 8px rgba(212, 172, 106, 0.18);
+  --btn-ease: cubic-bezier(0.32, 0.72, 0.24, 1);
+  --btn-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* --- Kill legacy "black slide-up" / fill pseudo-elements globally --- */
+.cta::before, .pd-cta::before, .cta-primary::before, .cta-link::before,
+.form-submit::before, .cart-checkout::before, .fp-apply::before,
+.confirm-btn::before, .wl-add::before, .es-reset::before,
+.final-cta::before, .track-cta::before, .preview-cta .explore-link::before,
+.card-add::before, .cb-btn.cb-accept::before {
+  display: none;
+  content: none;
+}
+
+/* --- PRIMARY filled button — espresso ink + warm ivory text --- */
+.cta, .pd-cta, .cta-primary, .cta-link, .about-cta .cta-link,
+.form-submit, .cart-checkout, .fp-apply,
+.confirm-btn, .track-cta, .wl-add, .es-reset, .empty-state .es-reset,
+.final-cta, .preview-cta .explore-link, .preview-card .card-add,
+.card-add, .product-cta,
+.newsletter-form button[type="submit"],
+.cb-btn.cb-accept {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  position: relative;
+  background: var(--btn-bg-primary);
+  color: var(--btn-fg-primary);
+  border: 1px solid var(--btn-border-primary);
+  border-radius: var(--btn-radius);
+  padding: 18px 36px;
+  padding-left: calc(36px + 0.18em);
+  min-height: 52px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: var(--btn-shadow);
+  transition:
+    background 0.45s var(--btn-ease),
+    color 0.45s var(--btn-ease),
+    border-color 0.45s var(--btn-ease),
+    box-shadow 0.45s var(--btn-ease),
+    transform 0.45s var(--btn-ease);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Amber shimmer that softly sweeps across on hover */
+.cta::after, .pd-cta::after, .cta-primary::after, .cta-link::after,
+.form-submit::after, .cart-checkout::after, .fp-apply::after,
+.confirm-btn::after, .wl-add::after, .es-reset::after,
+.final-cta::after, .track-cta::after, .preview-cta .explore-link::after,
+.preview-card .card-add::after, .card-add::after, .product-cta::after,
+.newsletter-form button[type="submit"]::after,
+.cb-btn.cb-accept::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(248, 215, 140, 0.22) 50%,
+    transparent 70%
+  );
+  transform: translateX(-110%);
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: -1;
+  transition: transform 0.75s var(--btn-ease-out);
+}
+
+/* Hover — calm lift + amber border glow + shimmer swipe */
+.cta:hover, .pd-cta:hover, .cta-primary:hover, .cta-link:hover,
+.about-cta .cta-link:hover, .form-submit:hover, .cart-checkout:hover,
+.fp-apply:hover, .confirm-btn:hover, .track-cta:hover, .wl-add:hover,
+.es-reset:hover, .empty-state .es-reset:hover, .final-cta:hover,
+.preview-cta .explore-link:hover, .preview-card .card-add:hover,
+.card-add:hover, .product-cta:hover,
+.newsletter-form button[type="submit"]:hover,
+.cb-btn.cb-accept:hover {
+  background: var(--btn-bg-primary-hover);
+  color: var(--btn-fg-primary);
+  border-color: var(--btn-border-primary-hover);
+  box-shadow: var(--btn-shadow-hover);
+  transform: translateY(-1px) scale(1.008);
+}
+.cta:hover::after, .pd-cta:hover::after, .cta-primary:hover::after,
+.cta-link:hover::after, .form-submit:hover::after, .cart-checkout:hover::after,
+.fp-apply:hover::after, .confirm-btn:hover::after, .wl-add:hover::after,
+.track-cta:hover::after, .preview-cta .explore-link:hover::after,
+.preview-card .card-add:hover::after, .card-add:hover::after,
+.product-cta:hover::after,
+.newsletter-form button[type="submit"]:hover::after,
+.cb-btn.cb-accept:hover::after {
+  transform: translateX(110%);
+}
+
+/* Active — pressed */
+.cta:active, .pd-cta:active, .cta-primary:active, .form-submit:active,
+.cart-checkout:active, .fp-apply:active, .confirm-btn:active,
+.track-cta:active, .wl-add:active, .es-reset:active,
+.final-cta:active, .preview-card .card-add:active,
+.card-add:active, .product-cta:active {
+  transform: translateY(0) scale(0.992);
+  transition-duration: 0.15s;
+  box-shadow: var(--btn-shadow);
+}
+
+/* Focus visible — accessible warm gold ring */
+.cta:focus-visible, .pd-cta:focus-visible, .cta-primary:focus-visible,
+.cta-link:focus-visible, .form-submit:focus-visible,
+.cart-checkout:focus-visible, .fp-apply:focus-visible,
+.confirm-btn:focus-visible, .track-cta:focus-visible, .wl-add:focus-visible,
+.es-reset:focus-visible, .final-cta:focus-visible,
+.preview-card .card-add:focus-visible, .card-add:focus-visible,
+.product-cta:focus-visible,
+.newsletter-form button[type="submit"]:focus-visible,
+.cb-btn.cb-accept:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.42), var(--btn-shadow-hover);
+}
+
+/* Disabled */
+.cta:disabled, .pd-cta:disabled, .cta-primary:disabled, .form-submit:disabled,
+.fp-apply:disabled, .confirm-btn:disabled, .wl-add:disabled, .card-add:disabled,
+.preview-card .card-add:disabled,
+.newsletter-form button[type="submit"]:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--btn-shadow-soft);
+}
+
+/* --- SECONDARY ghost/outline button — warm transparent + dark text --- */
+.cta-ghost, .fp-reset, .wl-view, .cb-btn.cb-reject, .cb-btn.cb-customize,
+.empty-state .es-reset.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  background: var(--btn-bg-secondary);
+  color: var(--btn-fg-secondary);
+  border: 1px solid var(--btn-border-secondary);
+  border-radius: var(--btn-radius);
+  padding: 16px 28px;
+  padding-left: calc(28px + 0.18em);
+  min-height: 48px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: var(--btn-shadow-soft);
+  transition:
+    background 0.45s var(--btn-ease),
+    color 0.45s var(--btn-ease),
+    border-color 0.45s var(--btn-ease),
+    box-shadow 0.45s var(--btn-ease),
+    transform 0.45s var(--btn-ease);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.cta-ghost:hover, .fp-reset:hover, .wl-view:hover,
+.cb-btn.cb-reject:hover, .cb-btn.cb-customize:hover {
+  background: var(--btn-bg-secondary-hover);
+  border-color: var(--btn-border-secondary-hover);
+  color: var(--btn-fg-secondary);
+  box-shadow: var(--btn-shadow-soft-hover);
+  transform: translateY(-1px) scale(1.008);
+}
+.cta-ghost:active, .fp-reset:active, .wl-view:active,
+.cb-btn.cb-reject:active, .cb-btn.cb-customize:active {
+  transform: translateY(0) scale(0.994);
+  transition-duration: 0.15s;
+}
+.cta-ghost:focus-visible, .fp-reset:focus-visible, .wl-view:focus-visible,
+.cb-btn.cb-reject:focus-visible, .cb-btn.cb-customize:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.38), var(--btn-shadow-soft-hover);
+}
+
+/* Ghost on dark surfaces (e.g. menu overlay) keeps the same shape but inverts colors */
+.menu-close, .fp-close {
+  border-radius: var(--btn-radius);
+  padding: 12px 22px 12px 22px;
+  padding-left: calc(22px + 0.36em);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  transition: background 0.4s var(--btn-ease), color 0.4s var(--btn-ease);
+}
+.menu-close:hover { background: rgba(245, 239, 228, 0.08); }
+.fp-close:hover { background: rgba(26, 22, 18, 0.05); }
+
+/* --- PILL nav controls (calm hover, no aggressive slide) --- */
+.filter-trigger, .sort-trigger, .nav-acquire {
+  transition:
+    background 0.4s var(--btn-ease),
+    color 0.4s var(--btn-ease),
+    border-color 0.4s var(--btn-ease),
+    box-shadow 0.4s var(--btn-ease),
+    transform 0.4s var(--btn-ease);
+}
+.filter-trigger { box-shadow: var(--btn-shadow); }
+.filter-trigger:hover { box-shadow: var(--btn-shadow-hover); transform: translateY(-1px); }
+.sort-trigger:hover { box-shadow: var(--btn-shadow-soft-hover); transform: translateY(-1px); border-color: var(--btn-border-secondary-hover); }
+
+/* Filter pill chips inside the panel */
+.fp-chip span { transition: background 0.4s var(--btn-ease), color 0.4s var(--btn-ease), border-color 0.4s var(--btn-ease), transform 0.4s var(--btn-ease), padding-left 0.4s var(--btn-ease); }
+.fp-chip:hover span { transform: translateY(-1px) scale(1.008); }
+.fp-chip input:checked + span { box-shadow: var(--btn-shadow-soft); }
+
+/* Active filter chips (above grid) — soft press */
+.ac-chip { transition: background 0.4s var(--btn-ease), transform 0.4s var(--btn-ease), opacity 0.4s var(--btn-ease), box-shadow 0.4s var(--btn-ease); }
+.ac-chip:hover { transform: translateY(-1px); box-shadow: var(--btn-shadow-soft-hover); }
+
+/* --- Plus / arrow micro-interactions inside buttons --- */
+.card-add .add-icon, .wl-add svg, .preview-card .card-add .add-icon {
+  transition: transform 0.5s var(--btn-ease);
+}
+.card-add:hover .add-icon, .wl-add:hover svg, .preview-card .card-add:hover .add-icon {
+  transform: rotate(90deg);
+}
+.cta .arrow, .pd-cta .arrow, .cta-primary .arrow, .form-submit .arrow,
+.cart-checkout .arrow, .fp-apply .arrow, .confirm-btn .arrow,
+.wl-add .arrow, .final-cta .arrow, .product-cta .arrow,
+.cta-ghost .arrow, .fp-reset .arrow, .preview-cta .explore-link .arrow,
+.read-link .arrow {
+  transition: width 0.5s var(--btn-ease);
+}
+.cta:hover .arrow, .pd-cta:hover .arrow, .cta-primary:hover .arrow,
+.form-submit:hover .arrow, .cart-checkout:hover .arrow,
+.fp-apply:hover .arrow, .confirm-btn:hover .arrow, .wl-add:hover .arrow,
+.final-cta:hover .arrow, .product-cta:hover .arrow,
+.cta-ghost:hover .arrow, .fp-reset:hover .arrow,
+.preview-cta .explore-link:hover .arrow, .read-link:hover .arrow {
+  width: 26px;
+}
+
+/* --- Cookie bar buttons — keep them consistent with the new shape --- */
+.cookie-bar .cb-btn {
+  border-radius: var(--btn-radius);
+  padding: 12px 22px;
+  padding-left: calc(22px + 0.36em);
+  min-height: 44px;
+  transition: background 0.4s var(--btn-ease), border-color 0.4s var(--btn-ease), color 0.4s var(--btn-ease), transform 0.4s var(--btn-ease);
+}
+.cookie-bar .cb-btn:hover { transform: translateY(-1px); }
+
+/* --- Reduced motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .cta, .pd-cta, .cta-primary, .cta-link, .form-submit, .cart-checkout,
+  .fp-apply, .confirm-btn, .track-cta, .wl-add, .es-reset, .final-cta,
+  .cta-ghost, .fp-reset, .wl-view, .preview-card .card-add, .product-cta,
+  .card-add, .filter-trigger, .sort-trigger, .nav-acquire, .cookie-bar .cb-btn {
+    transition: background 0.2s linear, border-color 0.2s linear, color 0.2s linear;
+    transform: none !important;
+  }
+  .cta::after, .pd-cta::after, .cta-primary::after, .form-submit::after,
+  .cart-checkout::after, .fp-apply::after, .confirm-btn::after, .wl-add::after,
+  .card-add::after, .preview-card .card-add::after, .cb-btn.cb-accept::after {
+    display: none;
+  }
+}
+
+/* --- Mobile tweaks --- */
+@media (max-width: 600px) {
+  .cta, .pd-cta, .cta-primary, .form-submit, .cart-checkout, .fp-apply,
+  .confirm-btn, .wl-add, .es-reset, .final-cta, .track-cta {
+    padding: 16px 28px;
+    padding-left: calc(28px + 0.18em);
+    min-height: 48px;
+  }
+  .cta-ghost, .fp-reset, .wl-view {
+    padding: 14px 22px;
+    padding-left: calc(22px + 0.18em);
+    min-height: 44px;
+  }
+}
+  `;
+
+  function inject() {
+    if (document.getElementById('hd-btn-system')) return;
+    const style = document.createElement('style');
+    style.id = 'hd-btn-system';
+    style.setAttribute('data-hd', 'button-system');
+    style.textContent = CSS;
+    document.head.appendChild(style);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
+  else inject();
+})();
+
+/* =================================================================
+   POLISH PASS — 17 no-account improvements (global JS)
+   ================================================================= */
+(function () {
+  'use strict';
+
+  /* 10. Page transition — gentle fade-out on internal navigation clicks (no flash on initial load) */
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+    const href = a.getAttribute('href');
+    if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+    if (a.target === '_blank' || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.hasAttribute('download')) return;
+    try {
+      const url = new URL(href, location.href);
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname && url.search === location.search) return;
+    } catch (err) { return; }
+    document.body.style.transition = 'opacity 220ms ease-in';
+    document.body.style.opacity = '0';
+    setTimeout(() => { document.body.style.opacity = ''; document.body.style.transition = ''; }, 700);
+  });
+
+  /* 1. Smart sticky nav */
+  (function smartNav() {
+    let lastY = 0, ticking = false;
+    function onScroll() {
+      const nav = document.querySelector('nav.site-nav');
+      if (!nav) { ticking = false; return; }
+      const y = window.scrollY || window.pageYOffset;
+      const delta = y - lastY;
+      if (y < 80) { nav.classList.remove('nav-hidden'); }
+      else if (delta > 8) { nav.classList.add('nav-hidden'); }
+      else if (delta < -6) { nav.classList.remove('nav-hidden'); }
+      lastY = y;
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+  })();
+
+  /* 2. Active page indicator in menu overlay */
+  function markCurrent() {
+    const path = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
+    document.querySelectorAll('.menu-overlay .menu-items a').forEach(a => {
+      const href = (a.getAttribute('href') || '').split('#')[0].split('/').pop().toLowerCase();
+      const isHome = (href === 'index.html' && (path === '' || path === 'index.html'));
+      if ((href && href === path) || isHome) {
+        a.classList.add('current');
+        const li = a.closest('li');
+        if (li) li.classList.add('current-item');
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', markCurrent);
+  else markCurrent();
+
+  /* 3. Scroll progress bar (only on long content pages) */
+  (function scrollProgress() {
+    function init() {
+      const docH = document.documentElement.scrollHeight - window.innerHeight;
+      if (docH < 800) return; // short page — skip
+      const bar = document.createElement('div');
+      bar.className = 'hd-progress';
+      bar.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(bar);
+      let ticking = false;
+      function update() {
+        const y = window.scrollY || window.pageYOffset;
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = 'scaleX(' + Math.min(1, Math.max(0, y / h)) + ')';
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      window.addEventListener('resize', () => requestAnimationFrame(update), { passive: true });
+      update();
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 4. Scroll-to-top button */
+  (function sttButton() {
+    function init() {
+      if (document.body.dataset.noFab === '1') return;
+      if (document.getElementById('hdStt')) return;
+      const btn = document.createElement('button');
+      btn.id = 'hdStt';
+      btn.className = 'hd-stt';
+      btn.type = 'button';
+      btn.setAttribute('aria-label', 'Back to top');
+      btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M3 8L8 3L13 8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      document.body.appendChild(btn);
+      let ticking = false;
+      function update() {
+        const y = window.scrollY || window.pageYOffset;
+        btn.classList.toggle('ready', y > 600);
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+      }, { passive: true });
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 5. Rich add-to-cart toast (named product + view cart button) */
+  /* 16. Sparkle moment (triggered with toast on first add) */
+  (function richToast() {
+    let toastTimer = null;
+    let firstAddDone = false;
+    try { firstAddDone = !!localStorage.getItem('hd-first-add-done'); } catch (e) {}
+
+    function showSparkles(x, y) {
+      for (let i = 0; i < 8; i++) {
+        const sp = document.createElement('span');
+        sp.className = 'hd-sparkle';
+        sp.style.left = x + 'px';
+        sp.style.top = y + 'px';
+        const angle = (Math.PI * 2 * i) / 8 + Math.random() * 0.3;
+        const dist = 30 + Math.random() * 36;
+        sp.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+        sp.style.setProperty('--dy', (Math.sin(angle) * dist - 20) + 'px');
+        sp.style.animationDelay = (i * 30) + 'ms';
+        document.body.appendChild(sp);
+        setTimeout(() => sp.remove(), 1100);
+      }
+    }
+
+    function openCartDrawer() {
+      const d = document.querySelector('.cart-drawer');
+      if (d) {
+        d.classList.add('open');
+        d.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function showRich(slug, ev) {
+      if (!window.HD_product) return;
+      const p = window.HD_product(slug);
+      if (!p) return;
+      let toast = document.getElementById('hdRichToast');
+      if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'hdRichToast';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        document.body.appendChild(toast);
+      }
+      toast.innerHTML =
+        '<span class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6 L5 9 L10 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
+        '<span class="toast-text">' +
+          '<span class="toast-title">Added to your cellar</span>' +
+          '<span class="toast-name">' + p.name + '</span>' +
+        '</span>' +
+        '<button type="button" class="toast-cta" data-toast-view>View cart</button>';
+      requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
+      toast.querySelector('[data-toast-view]').addEventListener('click', () => {
+        toast.classList.remove('show');
+        openCartDrawer();
+      });
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 3600);
+
+      // Sparkle on first-ever add — triggered from click location
+      if (!firstAddDone && ev) {
+        const x = ev.clientX || ev.touches?.[0]?.clientX || window.innerWidth / 2;
+        const y = ev.clientY || ev.touches?.[0]?.clientY || window.innerHeight / 2;
+        showSparkles(x, y);
+        firstAddDone = true;
+        try { localStorage.setItem('hd-first-add-done', '1'); } catch (e) {}
+      }
+    }
+
+    document.addEventListener('click', e => {
+      const t = e.target.closest('[data-add-to-cart]');
+      if (!t) return;
+      const slug = t.dataset.addToCart;
+      // small delay so existing shared.js handler runs first
+      setTimeout(() => showRich(slug, e), 60);
+    }, true);
+  })();
+
+  /* 7. Free-shipping celebration — observe progress bar text */
+  (function fsCelebrate() {
+    let lastUnlocked = false;
+    function check() {
+      const rem = document.getElementById('cartRemaining');
+      const bar = document.getElementById('cartProgress');
+      if (!rem || !bar) return;
+      const isUnlocked = rem.classList.contains('unlocked');
+      if (isUnlocked && !lastUnlocked) {
+        bar.classList.add('fs-celebrate');
+        setTimeout(() => bar.classList.remove('fs-celebrate'), 1300);
+      }
+      lastUnlocked = isUnlocked;
+    }
+    function init() {
+      // poll every 600ms while cart is open
+      setInterval(check, 600);
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 9. Skeleton loading on shop grid (first paint flash) */
+  (function shopSkeleton() {
+    function init() {
+      const grid = document.getElementById('shopGrid');
+      if (!grid) return;
+      // Only show skeleton if grid has no children yet (i.e., before HD_product renders)
+      if (grid.children.length > 0) return;
+      const skel = Array.from({ length: 6 }).map(() =>
+        '<div class="hd-skeleton-card">' +
+          '<div class="sk-image"></div>' +
+          '<div class="sk-line tall"></div>' +
+          '<div class="sk-line short"></div>' +
+          '<div class="sk-line"></div>' +
+        '</div>'
+      ).join('');
+      grid.innerHTML = skel;
+      // The shop's own render() will overwrite the innerHTML
+    }
+    init();
+  })();
+
+  /* 12. Cart drawer drag-to-close on mobile */
+  (function cartDragClose() {
+    function init() {
+      const panel = document.querySelector('.cart-panel');
+      const drawer = document.querySelector('.cart-drawer');
+      if (!panel || !drawer) return;
+      let startY = 0, currentY = 0, dragging = false;
+      panel.addEventListener('touchstart', e => {
+        if (window.innerWidth > 760) return;
+        if (e.touches[0].clientY > 100 && !panel.scrollTop) {
+          startY = e.touches[0].clientY;
+          dragging = true;
+        }
+      }, { passive: true });
+      panel.addEventListener('touchmove', e => {
+        if (!dragging) return;
+        currentY = e.touches[0].clientY;
+        const dy = currentY - startY;
+        if (dy > 0) {
+          panel.style.transform = 'translateX(0) translateY(' + dy + 'px)';
+        }
+      }, { passive: true });
+      panel.addEventListener('touchend', () => {
+        if (!dragging) return;
+        const dy = currentY - startY;
+        if (dy > 100) {
+          drawer.classList.remove('open');
+          drawer.setAttribute('aria-hidden', 'true');
+          document.body.style.overflow = '';
+        }
+        panel.style.transform = '';
+        dragging = false;
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 13 + 14. Inject "Continue shopping" link and empty-cart suggestions */
+  (function cartEnhancements() {
+    function init() {
+      const foot = document.querySelector('.cart-foot');
+      const empty = document.querySelector('.cart-empty');
+      // 13. Continue shopping link in footer
+      if (foot && !foot.querySelector('.cart-continue-link')) {
+        const a = document.createElement('a');
+        a.href = 'shop.html';
+        a.className = 'cart-continue-link';
+        a.textContent = 'Continue browsing the collection';
+        foot.appendChild(a);
+      }
+      // 14. Empty-cart suggestions
+      if (empty && !empty.querySelector('.cart-empty-suggestions') && window.HD_product) {
+        const sug = document.createElement('div');
+        sug.className = 'cart-empty-suggestions visible';
+        const slugs = ['chestnut', 'wild-thyme'];
+        const items = slugs.map(s => window.HD_product(s)).filter(Boolean);
+        sug.innerHTML =
+          '<div class="ces-label">Begin with</div>' +
+          '<div class="ces-row">' +
+            items.map(p =>
+              '<a class="ces-card" href="' + p.url + '">' +
+                '<span class="ces-name">' + p.name + '</span>' +
+                '<span class="ces-price">€' + p.price + '</span>' +
+              '</a>'
+            ).join('') +
+          '</div>';
+        empty.appendChild(sug);
+      }
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 15. Variant price diff display (product page) */
+  (function variantDiff() {
+    function init() {
+      const radios = document.querySelectorAll('input[name="hd-variant"]');
+      if (!radios.length) return;
+      let basePrice = 0;
+      const checked = document.querySelector('input[name="hd-variant"]:checked');
+      if (checked) basePrice = parseFloat(checked.dataset.price) || 0;
+      radios.forEach(r => {
+        const label = r.nextElementSibling;
+        if (!label || label.querySelector('.price-diff')) return;
+        const p = parseFloat(r.dataset.price) || 0;
+        const diff = p - basePrice;
+        if (diff === 0) return;
+        const span = document.createElement('span');
+        span.className = 'price-diff';
+        span.textContent = (diff > 0 ? '+€' : '−€') + Math.abs(diff);
+        label.appendChild(span);
+      });
+      // Recompute diffs when base changes
+      radios.forEach(r => {
+        r.addEventListener('change', () => {
+          if (!r.checked) return;
+          basePrice = parseFloat(r.dataset.price) || 0;
+          document.querySelectorAll('.variant-options .price-diff').forEach(el => el.remove());
+          radios.forEach(rr => {
+            const lbl = rr.nextElementSibling;
+            if (!lbl) return;
+            const pp = parseFloat(rr.dataset.price) || 0;
+            const d = pp - basePrice;
+            if (d === 0) return;
+            const s = document.createElement('span');
+            s.className = 'price-diff';
+            s.textContent = (d > 0 ? '+€' : '−€') + Math.abs(d);
+            lbl.appendChild(s);
+          });
+        });
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 17. Custom select wrapping for native <select> elements */
+  (function customSelects() {
+    function init() {
+      document.querySelectorAll('select').forEach(sel => {
+        if (sel.closest('.hd-select-wrap')) return;
+        if (sel.closest('[data-no-wrap]')) return;
+        // Skip if parent already provides chevron styling (filter panel etc.)
+        if (sel.id === 'f-type' || sel.classList.contains('no-hd-select')) return;
+        const wrap = document.createElement('span');
+        wrap.className = 'hd-select-wrap';
+        sel.parentNode.insertBefore(wrap, sel);
+        wrap.appendChild(sel);
+      });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 20. Service worker registration (cache-first PWA) */
+  (function swRegister() {
+    if (!('serviceWorker' in navigator)) return;
+    // Only on https or localhost
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  })();
+})();
+
+/* =================================================================
+   6. QUICK-VIEW MODAL behavior
+   Listens for clicks on [data-quick-view="slug"] anywhere in the doc.
+   ================================================================= */
+(function () {
+  'use strict';
+  let overlay = null;
+
+  function buildOverlay() {
+    overlay = document.createElement('div');
+    overlay.className = 'qv-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Product quick view');
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay || e.target.closest('[data-qv-close]')) close();
+    });
+  }
+
+  function open(slug) {
+    if (!window.HD_product) return;
+    const p = window.HD_product(slug);
+    if (!p) return;
+    if (!overlay) buildOverlay();
+
+    const badges = (p.badges || []).slice(0, 3).map(b => '<span class="qv-badge">' + b + '</span>').join('');
+
+    overlay.innerHTML =
+      '<div class="qv-panel">' +
+        '<button type="button" class="qv-close" data-qv-close aria-label="Close"></button>' +
+        '<div class="qv-image">' +
+          '<span class="qv-edition">' + (p.edition || '') + '</span>' +
+          '<img src="harvestdeli.png" alt="' + p.name + '" loading="lazy">' +
+        '</div>' +
+        '<div class="qv-content">' +
+          '<div class="qv-eyebrow">' + (p.region || '') + ' &middot; ' + (p.altitude || '') + '</div>' +
+          '<h2>' + p.name + '</h2>' +
+          '<div class="qv-region">' + (p.edition || '') + '</div>' +
+          '<p class="qv-notes">&ldquo;' + (p.notes || '') + '&rdquo;</p>' +
+          (badges ? '<div class="qv-badges">' + badges + '</div>' : '') +
+          '<div class="qv-meta">' +
+            '<div><div class="lbl">Texture</div><div class="val">' + (p.texture || '—') + '</div></div>' +
+            '<div><div class="lbl">Weight</div><div class="val">' + (p.weight || '250g') + '</div></div>' +
+          '</div>' +
+          '<div class="qv-price-row">' +
+            '<span class="qv-price">€' + p.price + '</span>' +
+            '<span class="qv-price-sub">incl. VAT &middot; ships worldwide</span>' +
+          '</div>' +
+          '<div class="qv-actions">' +
+            '<button class="cta qv-add" type="button" data-add-to-cart="' + p.slug + '">Add to cellar <span class="arrow" aria-hidden="true"></span></button>' +
+            '<a class="cta-ghost qv-view" href="' + p.url + '">Full details</a>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+
+    requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => overlay.querySelector('.qv-close')?.focus(), 200);
+  }
+
+  function close() {
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => { overlay.innerHTML = ''; }, 500);
+  }
+
+  document.addEventListener('click', e => {
+    const t = e.target.closest('[data-quick-view]');
+    if (!t) return;
+    e.preventDefault();
+    open(t.dataset.quickView);
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) close();
+  });
+})();
+
+/* =================================================================
+   8. Auto-calculated reading time on article pages
+   ================================================================= */
+(function () {
+  'use strict';
+  function init() {
+    const body = document.querySelector('.article-body');
+    if (!body) return;
+    const text = body.innerText || body.textContent || '';
+    const words = text.trim().split(/\s+/).filter(Boolean).length;
+    const minutes = Math.max(1, Math.round(words / 220)); // 220 wpm = thoughtful reading pace
+    const meta = document.querySelector('.article-meta');
+    if (!meta) return;
+    // Replace any hard-coded "X min read" span if present
+    const spans = meta.querySelectorAll('span');
+    let replaced = false;
+    spans.forEach(s => {
+      if (/min\s+read/i.test(s.textContent)) {
+        s.textContent = minutes + ' min read';
+        replaced = true;
+      }
+    });
+    if (!replaced) {
+      // Inject before first dot/separator
+      const dot = meta.querySelector('.dot');
+      const node = document.createElement('span');
+      node.textContent = minutes + ' min read';
+      if (dot) meta.insertBefore(node, dot);
+      else meta.appendChild(node);
+    }
+    // Append word count subtly as title attribute on the reading-time span (hover reveals)
+    meta.setAttribute('title', '~' + words.toLocaleString() + ' words');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* =================================================================
+   9b. Skeleton loading on language switch (shop grid)
+   ================================================================= */
+(function () {
+  'use strict';
+  function init() {
+    const grid = document.getElementById('shopGrid');
+    if (!grid) return;
+    const skel = Array.from({ length: 6 }).map(() =>
+      '<div class="hd-skeleton-card"><div class="sk-image"></div><div class="sk-line tall"></div><div class="sk-line short"></div><div class="sk-line"></div></div>'
+    ).join('');
+    document.querySelectorAll('.lang-toggle button[data-lang]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        grid.innerHTML = skel;
+        // shop.html's own renderGrid() runs ~30-60ms after the click via its setTimeout
+        // so the skeleton is briefly visible before the real cards replace it
+      }, true); // capture phase so it runs BEFORE shop.html's listener
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* =================================================================
+   18. Hover-image-swap plumbing (activates when product has altImage)
+   ================================================================= */
+(function () {
+  'use strict';
+  function init() {
+    // Enrich shop cards that already exist with a 2nd image overlay if data-alt-src is set
+    document.querySelectorAll('.p-card').forEach(card => {
+      if (card.dataset.altSrc && !card.querySelector('.card-photo-alt')) {
+        const img = card.querySelector('.card-photo');
+        if (!img) return;
+        const alt = document.createElement('img');
+        alt.src = card.dataset.altSrc;
+        alt.alt = '';
+        alt.className = 'card-photo-alt ' + (img.className.replace('card-photo', '').trim());
+        alt.setAttribute('loading', 'lazy');
+        img.parentNode.appendChild(alt);
+      }
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

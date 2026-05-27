@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Journal — Field notes from Pelion · Harvest Deli</title>
+<meta name="description" content="Slow notes from a single Greek mountain. Tasting essays, harvest journals and field reports from the Andreou family estate in Pelion.">
+<link rel="canonical" href="https://harvestdeli.gr/journal.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The Journal — Field notes from Pelion · Harvest Deli">
+<meta property="og:description" content="Slow notes from a single Greek mountain. Tasting essays, harvest journals and field reports from the Andreou family estate.">
+<meta property="og:image" content="https://harvestdeli.gr/harvestdeli.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1F1A14">
+<link rel="stylesheet" href="shared.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "The Harvest Deli Journal",
+  "description": "Field notes, tasting essays and harvest journals from the Andreou family estate in Pelion, Greece.",
+  "url": "https://harvestdeli.gr/journal.html",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Harvest Deli",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://harvestdeli.gr/harvestdeli.png"
+    }
+  },
+  "blogPost": [{
+    "@type": "BlogPosting",
+    "headline": "Taste the Greek Sun: a field guide to honey from Pelion",
+    "description": "What the Greek sun actually tastes like, why Pelion makes honey unlike anywhere else, and how to taste a single jar properly.",
+    "datePublished": "2026-05-26",
+    "url": "https://harvestdeli.gr/article-taste-the-greek-sun.html",
+    "author": { "@type": "Person", "name": "Stavros Andreou" },
+    "image": "https://harvestdeli.gr/harvestdeli.png"
+  }]
+}
+</script>
+
+<style>
+:root {
+  --bg: #F5EFE4;
+  --bg-deep: #EDE3D2;
+  --ink: #1F1A14;
+  --ink-soft: #5C5247;
+  --ink-warm: #756859;
+  --stone: #C9BBA3;
+  --gold: #B8945A;
+  --gold-light: #D4AC6A;
+  --gold-deep: #8A6228;
+  --gold-soft: rgba(184, 148, 90, 0.32);
+  --cream: #FAF6EE;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --track-label: 0.36em;
+  --track-button: 0.42em;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+::selection { background: var(--gold-soft); color: var(--ink); }
+
+.logo-svg { display: block; height: 100%; width: auto; }
+.logo-mark.nav-size { height: 44px; }
+.logo-mark.menu-size { height: 70px; }
+.logo-mark.footer-size { height: 80px; }
+
+nav.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 48px;
+  color: var(--ink);
+  background: rgba(245, 239, 228, 0.78);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(26, 22, 18, 0.05);
+}
+nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; color: inherit; }
+nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
+.menu-btn, .nav-acquire {
+  background: none; border: none; color: inherit; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
+  font-weight: 500; padding: 6px 0;
+  display: inline-flex; align-items: center; gap: 16px;
+  text-decoration: none; transition: opacity 0.5s var(--ease);
+  opacity: 0.92; padding-left: var(--track-label);
+}
+.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
+.menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
+.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before { width: 100%; }
+.menu-btn .lines::after { width: 70%; }
+
+/* ============ Journal hero ============ */
+.journal-hero {
+  padding: 22vh 8% 6vh;
+  text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.journal-eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 500;
+  margin-bottom: 32px;
+  padding-left: 0.42em;
+}
+.journal-headline {
+  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-weight: 300;
+  font-size: clamp(54px, 8.4vw, 124px);
+  line-height: 1.0;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  margin-bottom: 36px;
+}
+.journal-headline em { font-style: italic; color: var(--gold-deep); }
+.journal-intro {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+/* ============ Featured article ============ */
+.featured-section {
+  padding: 6vh 8% 10vh;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+.featured-card {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 72px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+}
+.featured-image {
+  position: relative;
+  height: 560px;
+  background:
+    linear-gradient(135deg, rgba(255, 220, 150, 0.18), rgba(0, 0, 0, 0.45)),
+    radial-gradient(ellipse at 30% 40%, rgba(212, 172, 106, 0.55), transparent 60%),
+    linear-gradient(160deg, #2A1F12 0%, #110B05 100%);
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.18),
+    0 10px 30px rgba(0,0,0,0.08);
+  transition: transform 1.2s var(--ease);
+}
+.featured-image::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(248, 215, 140, 0.32), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(184, 148, 90, 0.28), transparent 60%);
+  mix-blend-mode: screen;
+}
+.featured-image::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 1px; height: 80px;
+  background: linear-gradient(180deg, transparent, rgba(248, 215, 140, 0.7), transparent);
+  transform: translate(-50%, -50%);
+}
+.featured-card:hover .featured-image { transform: scale(1.015); }
+.featured-tag {
+  position: absolute;
+  top: 28px; left: 28px;
+  font-size: 9px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: rgba(248, 215, 140, 0.92);
+  padding: 8px 14px;
+  border: 1px solid rgba(248, 215, 140, 0.4);
+  font-weight: 500;
+  padding-left: calc(14px + 0.46em);
+  background: rgba(0,0,0,0.18);
+  backdrop-filter: blur(6px);
+}
+.featured-caption {
+  position: absolute;
+  bottom: 28px; left: 28px;
+  font-size: 9px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(248, 215, 140, 0.7);
+  padding-left: 0.36em;
+}
+.featured-text { padding-right: 24px; }
+.featured-meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 9.5px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 500;
+  margin-bottom: 38px;
+  padding-left: 0.36em;
+}
+.featured-meta .dot {
+  width: 2px; height: 2px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+.featured-title {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: clamp(38px, 4.8vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.featured-title em { font-style: italic; color: var(--gold-deep); }
+.featured-excerpt {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+  font-weight: 300;
+  max-width: 460px;
+}
+.read-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 10px;
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+  padding-left: var(--track-button);
+  transition: color 0.6s var(--ease), border-color 0.6s var(--ease);
+}
+.read-link:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+.read-link .arrow {
+  width: 18px; height: 1px; background: currentColor;
+  position: relative; transition: width 0.5s var(--ease);
+}
+.read-link .arrow::after {
+  content: ''; position: absolute; right: 0; top: -3px;
+  width: 6px; height: 6px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.read-link:hover .arrow { width: 26px; }
+
+/* ============ Article grid ============ */
+.grid-section {
+  padding: 10vh 8% 14vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(26, 22, 18, 0.08);
+}
+.grid-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 8vh;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.grid-head .eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 500;
+  padding-left: 0.42em;
+}
+.grid-head h2 {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-size: clamp(34px, 4.4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin-top: 18px;
+}
+.grid-head h2 em { font-style: italic; color: var(--gold-deep); }
+.grid-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 500;
+  padding-left: 0.38em;
+}
+.grid-filter span { cursor: pointer; transition: color 0.4s var(--ease); }
+.grid-filter span:hover, .grid-filter span.active { color: var(--ink); }
+.grid-filter .sep { width: 1px; height: 11px; background: var(--ink-soft); opacity: 0.3; }
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 56px 40px;
+}
+.article-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  position: relative;
+}
+.article-card.upcoming { pointer-events: none; opacity: 0.78; }
+.article-card .card-image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  margin-bottom: 24px;
+  transition: transform 1s var(--ease);
+}
+.article-card:hover .card-image { transform: translateY(-4px); }
+.article-card .card-image::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.32) 100%);
+  pointer-events: none;
+}
+.tone-honey  { background: linear-gradient(160deg, #3D2A14 0%, #0F0A05 100%), radial-gradient(ellipse at 35% 35%, rgba(248,215,140,0.45), transparent 55%); }
+.tone-thyme  { background: linear-gradient(160deg, #2D2515 0%, #120D05 100%), radial-gradient(ellipse at 60% 40%, rgba(196,170,100,0.32), transparent 55%); }
+.tone-pine   { background: linear-gradient(160deg, #1B1F18 0%, #0A0C08 100%), radial-gradient(ellipse at 40% 50%, rgba(120, 100, 60, 0.32), transparent 55%); }
+.tone-cellar { background: linear-gradient(160deg, #2B1B0E 0%, #0F0A05 100%), radial-gradient(ellipse at 50% 50%, rgba(212, 172, 106, 0.28), transparent 60%); }
+.tone-bee    { background: linear-gradient(160deg, #3E2D15 0%, #150F08 100%), radial-gradient(ellipse at 30% 30%, rgba(255, 200, 110, 0.32), transparent 55%); }
+.tone-jar    { background: linear-gradient(160deg, #1F1610 0%, #0B0805 100%), radial-gradient(ellipse at 50% 50%, rgba(184, 148, 90, 0.42), transparent 55%); }
+
+.card-tag {
+  position: absolute;
+  top: 18px; left: 18px;
+  font-size: 8.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(248, 215, 140, 0.9);
+  font-weight: 500;
+  padding: 6px 10px;
+  border: 1px solid rgba(248, 215, 140, 0.36);
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(6px);
+  padding-left: calc(10px + 0.42em);
+}
+.card-status {
+  position: absolute;
+  bottom: 18px; left: 18px;
+  font-size: 8.5px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: rgba(248, 215, 140, 0.62);
+  font-weight: 500;
+  padding-left: 0.46em;
+}
+.card-meta {
+  font-size: 9.5px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 500;
+  margin-bottom: 14px;
+  padding-left: 0.36em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-meta .dot { width: 2px; height: 2px; background: var(--gold); border-radius: 50%; }
+.card-title {
+  font-family: 'Newsreader', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.18;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin-bottom: 14px;
+  transition: color 0.5s var(--ease);
+}
+.article-card:hover .card-title { color: var(--gold-deep); }
+.card-title em { font-style: italic; color: var(--gold-deep); }
+.card-excerpt {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+/* ============ Newsletter strip ============ */
+.newsletter-strip {
+  background: #0E0B08;
+  color: var(--cream);
+  padding: 14vh 8%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.newsletter-strip::before {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 700px; height: 320px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center, rgba(212, 172, 106, 0.22), transparent 60%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.newsletter-strip > * { position: relative; z-index: 2; }
+.newsletter-strip .eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 500;
+  margin-bottom: 30px;
+  padding-left: 0.42em;
+}
+.newsletter-strip h2 {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.022em;
+  margin-bottom: 24px;
+  max-width: 760px;
+  margin-left: auto; margin-right: auto;
+}
+.newsletter-strip h2 em { font-style: italic; color: var(--gold-light); }
+.newsletter-strip p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: rgba(245, 239, 228, 0.7);
+  max-width: 480px;
+  margin: 0 auto 44px;
+  font-weight: 300;
+}
+.newsletter-form {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border-bottom: 1px solid rgba(245, 239, 228, 0.4);
+  padding-bottom: 12px;
+  max-width: 460px;
+  width: 100%;
+}
+.newsletter-form input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--cream);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 8px 4px;
+  outline: none;
+  letter-spacing: 0.01em;
+}
+.newsletter-form input::placeholder { color: rgba(245, 239, 228, 0.42); }
+.newsletter-form button {
+  background: transparent;
+  border: none;
+  color: var(--gold-light);
+  font-family: inherit;
+  font-size: 9.5px;
+  letter-spacing: var(--track-button);
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 0 8px 18px;
+  padding-left: calc(18px + var(--track-button));
+  transition: color 0.5s var(--ease);
+}
+.newsletter-form button:hover { color: var(--cream); }
+
+/* ============ Menu overlay (shared) ============ */
+.menu-overlay {
+  position: fixed; inset: 0; z-index: 150;
+  background: #0B0907; color: var(--cream);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.9s var(--ease);
+  display: flex; flex-direction: column;
+  padding: 32px 48px;
+}
+.menu-overlay.open { opacity: 1; pointer-events: auto; }
+.menu-top { display: flex; justify-content: space-between; align-items: center; }
+.menu-top .nav-brand { display: flex; height: 70px; }
+.menu-close {
+  background: none; border: none; color: var(--cream); cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 10px;
+  letter-spacing: var(--track-button); text-transform: uppercase;
+  font-weight: 500;
+  display: inline-flex; align-items: center; gap: 18px;
+  padding-left: var(--track-button);
+}
+.menu-close .x { width: 18px; height: 1px; background: currentColor; position: relative; }
+.menu-close .x::before, .menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
+.menu-close .x::before { transform: rotate(45deg); }
+.menu-close .x::after { transform: rotate(-45deg); }
+.menu-content {
+  flex: 1; display: grid; grid-template-columns: 2.4fr 1fr;
+  gap: 6vw; align-items: center; padding: 8vh 0;
+}
+.menu-items { list-style: none; }
+.menu-items li {
+  display: grid; grid-template-columns: 48px 1fr auto;
+  gap: 20px; padding: 26px 0;
+  border-bottom: 1px solid rgba(245, 239, 228, 0.08);
+  align-items: baseline;
+}
+.menu-items li .roman {
+  font-family: 'Newsreader', serif;
+  font-style: italic; font-size: 14px;
+  color: var(--gold-light); opacity: 0.85;
+}
+.menu-items li a {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1; color: var(--cream);
+  text-decoration: none; letter-spacing: -0.018em;
+  transition: color 0.5s var(--ease);
+}
+.menu-items li a:hover { color: var(--gold-light); }
+.menu-items li a em { font-style: italic; color: var(--gold-light); }
+.menu-items .sub {
+  font-size: 9.5px; letter-spacing: 0.4em;
+  text-transform: uppercase; color: rgba(245, 239, 228, 0.5);
+  padding-left: 0.4em;
+}
+.menu-side { padding-left: 6%; border-left: 1px solid rgba(245,239,228,0.08); }
+.menu-side h5 {
+  font-family: 'Newsreader', serif;
+  font-weight: 400; font-size: 22px;
+  letter-spacing: -0.012em; margin-bottom: 22px;
+  color: var(--gold-light);
+}
+.menu-side p {
+  font-size: 13.5px; line-height: 1.85;
+  color: rgba(245, 239, 228, 0.7);
+  font-weight: 300; margin-bottom: 28px;
+}
+.menu-side .contact {
+  font-size: 12px; line-height: 2;
+  letter-spacing: 0.04em; color: rgba(245, 239, 228, 0.7);
+}
+.menu-side .contact a { color: var(--gold-light); text-decoration: none; }
+.menu-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-top: 4vh;
+  border-top: 1px solid rgba(245, 239, 228, 0.08);
+  font-size: 9px; letter-spacing: 0.42em;
+  text-transform: uppercase; color: rgba(245, 239, 228, 0.45);
+  font-weight: 500; padding-left: 0.42em;
+}
+.menu-bottom .social { display: inline-flex; gap: 32px; }
+.menu-bottom .social a { color: inherit; text-decoration: none; transition: color 0.5s var(--ease); }
+.menu-bottom .social a:hover { color: var(--gold-light); }
+
+/* ============ Footer (shared) ============ */
+.site-footer {
+  background: #0E0B08; color: var(--cream);
+  padding: 18vh 8% 6vh;
+  position: relative; overflow: hidden;
+}
+.site-footer::before {
+  content: '';
+  position: absolute; left: 50%; top: -100px;
+  width: 800px; height: 400px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(212, 172, 106, 0.16), transparent 60%);
+  filter: blur(40px); pointer-events: none;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 8vh 6%; margin-bottom: 14vh;
+  position: relative; z-index: 2;
+}
+.footer-brand { height: 80px; margin-bottom: 22px; }
+.footer-tagline {
+  font-family: 'Newsreader', serif; font-style: italic;
+  font-size: 18px; line-height: 1.5;
+  color: rgba(245, 239, 228, 0.65); max-width: 280px;
+}
+.footer-col h4 {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 9.5px; letter-spacing: var(--track-label);
+  text-transform: uppercase; color: var(--gold-light);
+  margin-bottom: 28px; padding-left: var(--track-label);
+}
+.footer-col a {
+  display: block; font-size: 13.5px; line-height: 2.1;
+  color: rgba(245, 239, 228, 0.62); text-decoration: none;
+  transition: color 0.5s var(--ease); font-weight: 300;
+}
+.footer-col a:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 9px; letter-spacing: 0.42em;
+  text-transform: uppercase; color: rgba(245, 239, 228, 0.36);
+  font-weight: 500;
+  padding-top: 3vh;
+  border-top: 1px solid rgba(245, 239, 228, 0.08);
+  padding-left: 0.42em;
+  position: relative; z-index: 2;
+}
+
+/* ============ Reveals ============ */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 1.4s var(--ease), transform 1.4s var(--ease); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.delay-1 { transition-delay: 0.18s; }
+.reveal.delay-2 { transition-delay: 0.34s; }
+.reveal.delay-3 { transition-delay: 0.5s; }
+
+/* ============ Cart drawer (minimal — full styles in shared.css) ============ */
+.cart-drawer { position: fixed; inset: 0; z-index: 140; pointer-events: none; }
+
+/* ============ Responsive ============ */
+@media (max-width: 1000px) {
+  .featured-card { grid-template-columns: 1fr; gap: 44px; }
+  .featured-image { height: 420px; }
+  .articles-grid { grid-template-columns: repeat(2, 1fr); gap: 48px 28px; }
+  .grid-head { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 700px) {
+  nav.site-nav { padding: 16px 22px; }
+  nav.site-nav .nav-right { gap: 16px; }
+  .journal-hero { padding: 18vh 7% 4vh; }
+  .featured-section { padding: 4vh 7% 8vh; }
+  .featured-image { height: 360px; }
+  .grid-section { padding: 8vh 7% 12vh; }
+  .articles-grid { grid-template-columns: 1fr; gap: 40px; }
+  .newsletter-strip { padding: 10vh 7%; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 6vh 8%; margin-bottom: 8vh; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+  .menu-overlay { padding: 22px 24px; }
+  .menu-content { grid-template-columns: 1fr; gap: 6vh; align-items: start; }
+  .menu-side { padding-left: 0; border-left: none; border-top: 1px solid rgba(245,239,228,0.08); padding-top: 5vh; }
+  .menu-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/>
+    </linearGradient>
+    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/>
+    </linearGradient>
+    <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
+    <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+    <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button>
+    </div>
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
+    <a href="shop.html" class="nav-acquire" data-i18n="nav.shop">Shop</a>
+    <button class="nav-cart" id="navCart" aria-label="Open cart">
+      <span class="cart-glyph"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.2 4 L11.8 4 L10.8 12 L3.2 12 Z" stroke="currentColor" stroke-width="0.9" fill="none"/><path d="M5 4 V3.2 A2 2 0 0 1 9 3.2 V4" stroke="currentColor" stroke-width="0.9" fill="none"/></svg></span>
+      <span data-i18n="nav.cellar">Cellar</span>
+      <span class="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="menu-top">
+    <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
+    <button class="menu-close" id="menuClose"><span data-i18n="menu.close">Close</span> <span class="x"></span></button>
+  </div>
+  <div class="menu-content">
+    <ol class="menu-items">
+      <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
+      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
+      <li><span class="roman">III</span><a href="find-us-amsterdam.html" data-i18n-html="markets.menu_html">The <em>Markets</em></a><span class="sub" data-i18n="markets.menu_sub">Find us in Amsterdam</span></li>
+      <li><span class="roman">IV</span><a href="journal.html" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
+    </ol>
+    <aside class="menu-side">
+      <h5 data-i18n="menu.estate.h">Visit the estate</h5>
+      <p data-i18n="menu.estate.p">By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <div class="contact">
+        <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a><br>
+        +30 24210 882 14<br>Pelion, 37006 &middot; Greece
+      </div>
+    </aside>
+  </div>
+  <div class="menu-bottom">
+    <span data-i18n="menu.copyright">© Harvest Deli MMXXV</span>
+    <div class="social"><a href="#" data-i18n="menu.social.instagram">Instagram</a><a href="journal.html" data-i18n="menu.social.journal">Journal</a><a href="#" data-i18n="menu.social.wholesale">Wholesale</a></div>
+  </div>
+</div>
+
+<main id="content">
+
+
+<!-- ============ Journal hero ============ -->
+<section class="journal-hero">
+  <div class="journal-eyebrow">The Journal &middot; Field notes from Pelion</div>
+  <h1 class="journal-headline">Slow notes from a <em>single mountain.</em></h1>
+  <p class="journal-intro">Tasting essays, harvest journals and quiet reports from the cellar. We publish only when the season has something to say.</p>
+</section>
+
+<!-- ============ Featured article ============ -->
+<section class="featured-section">
+  <a class="featured-card reveal" href="article-taste-the-greek-sun.html" aria-label="Read: Taste the Greek Sun">
+    <div class="featured-image">
+      <span class="featured-tag">Edition I &middot; Tasting</span>
+      <span class="featured-caption">Pelion &middot; Late summer 2026</span>
+    </div>
+    <div class="featured-text">
+      <div class="featured-meta">
+        <span>Tasting</span>
+        <span class="dot"></span>
+        <span>26 May 2026</span>
+        <span class="dot"></span>
+        <span>8 min read</span>
+      </div>
+      <h2 class="featured-title">Taste the Greek <em>Sun.</em></h2>
+      <p class="featured-excerpt">What the Greek sun actually tastes like, why Pelion makes honey unlike anywhere else, and how to taste a single jar — slowly, in three movements.</p>
+      <span class="read-link">Read the essay <span class="arrow"></span></span>
+    </div>
+  </a>
+</section>
+
+<!-- ============ Article grid ============ -->
+<section class="grid-section">
+  <div class="grid-head reveal">
+    <div>
+      <div class="eyebrow">— More from the cellar</div>
+      <h2>From the <em>archive.</em></h2>
+    </div>
+    <div class="grid-filter">
+      <span class="active">All</span>
+      <span class="sep"></span>
+      <span>Tasting</span>
+      <span class="sep"></span>
+      <span>Harvest</span>
+      <span class="sep"></span>
+      <span>Process</span>
+      <span class="sep"></span>
+      <span>Estate</span>
+    </div>
+  </div>
+
+  <div class="articles-grid">
+    <article class="article-card upcoming reveal">
+      <div class="card-image tone-thyme">
+        <span class="card-tag">Harvest</span>
+        <span class="card-status">Publishing &middot; June</span>
+      </div>
+      <div class="card-meta"><span>Harvest</span><span class="dot"></span><span>Coming June 2026</span><span class="dot"></span><span>6 min read</span></div>
+      <h3 class="card-title">The thyme bloom: <em>seven days</em> a year.</h3>
+      <p class="card-excerpt">A field journal from the wild-thyme harvest in Lakonia. The window is short, the bees are exact, and the honey is almost translucent.</p>
+    </article>
+
+    <article class="article-card upcoming reveal delay-1">
+      <div class="card-image tone-cellar">
+        <span class="card-tag">Process</span>
+        <span class="card-status">Publishing &middot; June</span>
+      </div>
+      <div class="card-meta"><span>Process</span><span class="dot"></span><span>Coming June 2026</span><span class="dot"></span><span>5 min read</span></div>
+      <h3 class="card-title">Why we never <em>heat</em> the honey.</h3>
+      <p class="card-excerpt">A quiet defence of cold extraction — what dies at 40 degrees, what survives at sixteen, and why temperature is the most important number in the cellar.</p>
+    </article>
+
+    <article class="article-card upcoming reveal delay-2">
+      <div class="card-image tone-pine">
+        <span class="card-tag">Estate</span>
+        <span class="card-status">Publishing &middot; July</span>
+      </div>
+      <div class="card-meta"><span>Estate</span><span class="dot"></span><span>Coming July 2026</span><span class="dot"></span><span>7 min read</span></div>
+      <h3 class="card-title">Hive №47, at <em>twelve eighty.</em></h3>
+      <p class="card-excerpt">The highest hive on the estate. A morning's walk from the road. What the altitude does to the honey, the bees, and the man who climbs to find them.</p>
+    </article>
+
+    <article class="article-card upcoming reveal">
+      <div class="card-image tone-jar">
+        <span class="card-tag">Pairing</span>
+        <span class="card-status">Publishing &middot; July</span>
+      </div>
+      <div class="card-meta"><span>Pairing</span><span class="dot"></span><span>Coming July 2026</span><span class="dot"></span><span>9 min read</span></div>
+      <h3 class="card-title">Honey at the <em>table.</em></h3>
+      <p class="card-excerpt">Six pairings, written by a chef from Athens. Chestnut with aged manouri. Pine with smoked almond. Orange blossom with goat's milk and bay.</p>
+    </article>
+
+    <article class="article-card upcoming reveal delay-1">
+      <div class="card-image tone-bee">
+        <span class="card-tag">Estate</span>
+        <span class="card-status">Publishing &middot; August</span>
+      </div>
+      <div class="card-meta"><span>Estate</span><span class="dot"></span><span>Coming August 2026</span><span class="dot"></span><span>4 min read</span></div>
+      <h3 class="card-title">A year on the <em>mountain.</em></h3>
+      <p class="card-excerpt">Twelve photographs and twelve sentences. The estate in January, in March, in the heat of August. The cellar in the cold light of November.</p>
+    </article>
+
+    <article class="article-card upcoming reveal delay-2">
+      <div class="card-image tone-honey">
+        <span class="card-tag">Origin</span>
+        <span class="card-status">Publishing &middot; September</span>
+      </div>
+      <div class="card-meta"><span>Origin</span><span class="dot"></span><span>Coming September 2026</span><span class="dot"></span><span>11 min read</span></div>
+      <h3 class="card-title">The <em>1882</em> notebook.</h3>
+      <p class="card-excerpt">A great-grandfather's harvest book, pulled from above the oak vats. Yields and temperatures and one sentence about a bear that came in October.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ Newsletter ============ -->
+<section class="newsletter-strip">
+  <div class="eyebrow">— Quiet correspondence</div>
+  <h2>Once a season, a <em>letter</em> from Pelion.</h2>
+  <p>Three or four times a year. Harvest notes, allocation updates and a single, slow essay. No noise, no marketing.</p>
+  <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed';">
+    <label for="journalNewsletterEmail" class="vh">Email address</label>
+    <input id="journalNewsletterEmail" type="email" placeholder="your@email.com" autocomplete="email" required>
+    <button type="submit">Subscribe <span aria-hidden="true">→</span></button>
+  </form>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.collection">Collection</h4>
+      <a href="shop.html" data-i18n="footer.link.allEditions">All editions</a>
+      <a href="shop.html" data-i18n="footer.link.rawHoney">Raw honey</a>
+      <a href="shop.html" data-i18n="footer.link.reserve">Reserve</a>
+      <a href="shop.html" data-i18n="footer.link.gift">Gift sets</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.house">House</h4>
+      <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
+      <a href="index.html#process" data-i18n="footer.link.estate">Estate</a>
+      <a href="journal.html" data-i18n="footer.link.journal">Journal</a>
+      <a href="partners.html">Wholesale</a>
+      <a href="legal-shipping.html">Shipping</a>
+      <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="legal-terms.html">Algemene voorwaarden</a>
+      <a href="legal-privacy.html">Privacyverklaring</a>
+      <a href="legal-cookies.html">Cookieverklaring</a>
+      <a href="legal-returns.html">Retour &amp; herroeping</a>
+      <a href="legal-shipping.html">Verzending</a>
+      <a href="legal-imprint.html">Bedrijfsgegevens</a>
+      <button class="linkish" type="button" data-open-cookie-prefs>Cookievoorkeuren</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.bottom1">© Harvest Deli &middot; Pelion, Greece</span>
+    <span data-i18n="footer.bottom2">Crafted slowly &middot; MMXXV</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+(function () {
+  const menuBtn = document.getElementById('menuBtn');
+  const menuOverlay = document.getElementById('menuOverlay');
+  const menuClose = document.getElementById('menuClose');
+  const open = () => { menuOverlay.classList.add('open'); document.body.style.overflow='hidden'; };
+  const close = () => { menuOverlay.classList.remove('open'); document.body.style.overflow=''; };
+  menuBtn.addEventListener('click', open);
+  menuClose.addEventListener('click', close);
+  menuOverlay.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+</body>
+</html>

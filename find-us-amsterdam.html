@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Us in Amsterdam — Tenkate &amp; Westerpark · Harvest Deli</title>
+<meta name="description" content="Meet Harvest Deli at our Amsterdam markets — Tenkate (Mon–Sat) and the Sunday Market at Westerpark (first Sunday of every month). From Pelion to Amsterdam.">
+<link rel="canonical" href="https://harvestdeli.gr/find-us-amsterdam.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Find Us in Amsterdam · Harvest Deli">
+<meta property="og:description" content="From the hills of Pelion to the markets of Amsterdam. Tenkate, weekly. Westerpark, the first Sunday of every month.">
+<meta property="og:image" content="https://harvestdeli.gr/harvestdeli.png">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:locale:alternate" content="en_GB">
+<meta property="og:locale:alternate" content="el_GR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1F1A14">
+<link rel="stylesheet" href="shared.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home",      "item": "https://harvestdeli.gr/" },
+        { "@type": "ListItem", "position": 2, "name": "Find Us in Amsterdam", "item": "https://harvestdeli.gr/find-us-amsterdam.html" }
+      ]
+    },
+    {
+      "@type": "Place",
+      "name": "Harvest Deli — Tenkate Market",
+      "description": "Harvest Deli weekly market table at the Ten Kate Markt in Amsterdam-West.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Ten Katestraat",
+        "addressLocality": "Amsterdam",
+        "addressCountry": "NL"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    },
+    {
+      "@type": "Event",
+      "name": "Harvest Deli at Sunday Market — Westerpark",
+      "eventSchedule": {
+        "@type": "Schedule",
+        "byMonthDay": [1,2,3,4,5,6,7],
+        "byDay": "Sunday",
+        "repeatFrequency": "P1M",
+        "startTime": "11:00",
+        "endTime": "17:00"
+      },
+      "location": {
+        "@type": "Place",
+        "name": "Sunday Market · Westerpark",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Westergasterrein",
+          "addressLocality": "Amsterdam",
+          "addressCountry": "NL"
+        }
+      },
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "organizer": { "@type": "Organization", "name": "Harvest Deli", "url": "https://harvestdeli.gr/" }
+    }
+  ]
+}
+</script>
+
+<style>
+/* =========================================================
+   FIND US IN AMSTERDAM — page-scoped styles
+   Warm beige base, deep olive tones, amber accents.
+   ========================================================= */
+:root {
+  --m-beige:        #F5EDDC;
+  --m-beige-soft:   #FAF6EE;
+  --m-beige-deep:   #EADFC6;
+  --m-olive:        #2E3A23;
+  --m-olive-deep:   #1A2014;
+  --m-olive-soft:   #4A5A37;
+  --m-ink:          #1F1A14;
+  --m-gold:         #B8945A;
+  --m-gold-soft:    #D4AC6A;
+  --m-gold-light:   #E8C982;
+  --m-cream:        #FAF6EE;
+  --ease-soft:      cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.markets-page {
+  background: var(--m-beige);
+  color: var(--m-ink);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Nav over warm cream — already correct from shared.css */
+body.markets-page nav.site-nav {
+  background: rgba(245, 237, 220, 0.78);
+  border-bottom: 1px solid rgba(31, 26, 20, 0.06);
+}
+
+/* ----- Hero ----- */
+.m-hero {
+  position: relative;
+  min-height: 92vh;
+  min-height: 92dvh;
+  display: flex;
+  align-items: flex-end;
+  padding: 130px 6vw 60px;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--m-cream);
+}
+.m-hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.m-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 90% at 30% 75%, rgba(26, 32, 20, 0.72) 0%, rgba(26, 32, 20, 0.40) 50%, rgba(26, 32, 20, 0.55) 100%),
+    linear-gradient(180deg, rgba(0,0,0,0.05) 0%, rgba(26, 32, 20, 0.45) 65%, rgba(26, 32, 20, 0.75) 100%);
+}
+.m-hero__grain {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0 0.42  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.m-hero__inner { max-width: 1100px; width: 100%; }
+.m-hero__eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(232, 201, 130, 0.85);
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+.m-hero__eyebrow::before,
+.m-hero__eyebrow::after {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(232, 201, 130, 0.55));
+  vertical-align: middle;
+}
+.m-hero__eyebrow::after {
+  background: linear-gradient(90deg, rgba(232, 201, 130, 0.55), transparent);
+}
+.m-hero__h {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 64, 'wght' 400;
+  font-weight: 400;
+  font-size: clamp(48px, 8vw, 112px);
+  line-height: 0.98;
+  letter-spacing: -0.012em;
+  margin: 0 0 32px;
+  color: var(--m-cream);
+  max-width: 18ch;
+}
+.m-hero__h em {
+  font-style: italic;
+  font-variation-settings: 'opsz' 64, 'wght' 350;
+  color: var(--m-gold-light);
+}
+.m-hero__sub {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(15px, 1.4vw, 19px);
+  line-height: 1.55;
+  font-weight: 400;
+  color: rgba(250, 246, 238, 0.86);
+  max-width: 56ch;
+  margin: 0;
+}
+.m-hero__bottom {
+  position: absolute;
+  bottom: 28px;
+  left: 6vw;
+  right: 6vw;
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(250, 246, 238, 0.50);
+}
+.m-hero__bottom span { display: inline-flex; align-items: center; gap: 12px; }
+.m-hero__bottom .dot { width: 4px; height: 4px; border-radius: 50%; background: var(--m-gold-light); opacity: 0.7; }
+
+/* ----- Section frames ----- */
+.m-section { padding: clamp(80px, 12vh, 160px) 6vw; }
+.m-section--cream { background: var(--m-beige-soft); }
+.m-section--olive { background: var(--m-olive-deep); color: var(--m-cream); }
+.m-section--beige-deep { background: var(--m-beige-deep); }
+
+.m-container { max-width: 1240px; margin: 0 auto; }
+.m-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--m-gold);
+  margin-bottom: 24px;
+}
+.m-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 36px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, currentColor);
+}
+.m-section--olive .m-eyebrow { color: var(--m-gold-light); }
+.m-h2 {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 48, 'wght' 400;
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -0.008em;
+  margin: 0 0 16px;
+  max-width: 22ch;
+  color: var(--m-ink);
+}
+.m-section--olive .m-h2 { color: var(--m-cream); }
+.m-h2 em {
+  font-style: italic;
+  font-variation-settings: 'opsz' 48, 'wght' 350;
+  color: var(--m-gold);
+}
+.m-section--olive .m-h2 em { color: var(--m-gold-light); }
+.m-lead {
+  font-family: 'Newsreader', serif;
+  font-size: clamp(15px, 1.3vw, 18px);
+  line-height: 1.6;
+  font-weight: 400;
+  color: rgba(31, 26, 20, 0.72);
+  max-width: 56ch;
+}
+.m-section--olive .m-lead { color: rgba(250, 246, 238, 0.72); }
+
+/* ----- Market cards ----- */
+.m-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 36px;
+  margin-top: 64px;
+}
+.m-card {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--m-beige-soft);
+  border: 1px solid rgba(31, 26, 20, 0.06);
+  transition: transform 0.6s var(--ease-soft), box-shadow 0.6s var(--ease-soft), border-color 0.5s ease;
+  will-change: transform;
+}
+.m-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(31, 26, 20, 0.12), 0 4px 14px rgba(31, 26, 20, 0.06);
+  border-color: rgba(184, 148, 90, 0.28);
+}
+.m-card__photo {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  isolation: isolate;
+}
+.m-card__photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0 0.42  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.45;
+  mix-blend-mode: overlay;
+}
+.m-card__photo--tenkate {
+  background:
+    radial-gradient(120% 80% at 30% 30%, #C58F3F 0%, #8E5B23 38%, #4F3415 80%, #2A1B0A 100%),
+    #4F3415;
+}
+.m-card__photo--westerpark {
+  background:
+    radial-gradient(120% 80% at 70% 35%, #C2A468 0%, #7F6A3A 35%, #3D3220 75%, #1F1A10 100%),
+    #3D3220;
+}
+.m-card__photo-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 24px;
+  color: var(--m-cream);
+}
+.m-card__tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: rgba(250, 246, 238, 0.78);
+  background: rgba(14, 11, 8, 0.40);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(232, 200, 152, 0.18);
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+.m-card__pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(14, 11, 8, 0.42);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border: 1px solid rgba(232, 200, 152, 0.22);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--m-gold-light);
+}
+.m-card__pin svg { width: 14px; height: 14px; }
+.m-card__body {
+  padding: 36px 32px 38px;
+}
+.m-card__title {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 36, 'wght' 500;
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: var(--m-ink);
+  letter-spacing: -0.005em;
+}
+.m-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--m-olive);
+  margin-bottom: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.m-card__meta-line { display: inline-flex; align-items: center; gap: 10px; }
+.m-card__meta-line svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--m-gold); }
+.m-card__desc {
+  font-family: 'Newsreader', serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(31, 26, 20, 0.70);
+  margin: 0;
+  max-width: 38ch;
+}
+.m-card__rule {
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--m-gold), transparent);
+  margin: 24px 0 22px;
+}
+
+/* ----- Editorial story ----- */
+.m-story {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+}
+.m-story__media {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 4px;
+  background: var(--m-olive);
+}
+.m-story__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.92) brightness(0.95);
+  transition: transform 1.4s var(--ease-soft);
+}
+.m-story__media:hover img { transform: scale(1.04); }
+.m-story__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(26, 32, 20, 0.06), rgba(26, 32, 20, 0.18) 100%);
+}
+.m-story__pull {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 48, 'wght' 350;
+  font-style: normal;
+  font-weight: 400;
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.18;
+  letter-spacing: -0.005em;
+  color: var(--m-ink);
+  margin: 32px 0 36px;
+  max-width: 28ch;
+}
+.m-story__pull em {
+  font-style: italic;
+  color: var(--m-gold);
+  font-variation-settings: 'opsz' 48, 'wght' 350;
+}
+.m-story__body {
+  font-family: 'Newsreader', serif;
+  font-size: 16px;
+  line-height: 1.72;
+  color: rgba(31, 26, 20, 0.78);
+  max-width: 50ch;
+  margin: 0 0 32px;
+}
+.m-story__sig {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Newsreader', serif;
+}
+.m-story__sig strong {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 17px;
+  color: var(--m-ink);
+}
+.m-story__sig span {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  color: rgba(31, 26, 20, 0.48);
+  margin-top: 6px;
+}
+
+/* ----- Photo journal ----- */
+.m-gallery {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  margin-top: 56px;
+}
+.m-gallery__cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  isolation: isolate;
+}
+.m-gallery__cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.85  0 0 0 0 0.72  0 0 0 0 0.42  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.30;
+  mix-blend-mode: overlay;
+}
+.m-gallery__cap {
+  position: absolute;
+  bottom: 16px;
+  left: 18px;
+  right: 18px;
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: rgba(250, 246, 238, 0.92);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.5s var(--ease-soft), transform 0.5s var(--ease-soft);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.55);
+}
+.m-gallery__cell:hover .m-gallery__cap,
+.m-gallery__cell:focus-visible .m-gallery__cap {
+  opacity: 1;
+  transform: translateY(0);
+}
+.m-gallery__cell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(14, 11, 8, 0.50) 100%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-soft);
+  z-index: 1;
+}
+.m-gallery__cap, .m-gallery__cell::before { z-index: 2; pointer-events: none; }
+.m-gallery__cap { z-index: 3; }
+.m-gallery__cell:hover::before { opacity: 1; }
+
+/* Asymmetric tiles using grid-column / grid-row spans */
+.m-gallery .g1 { grid-column: 1 / span 6; aspect-ratio: 16 / 11;
+  background: radial-gradient(120% 80% at 30% 30%, #D2A266 0%, #8C6324 40%, #3F2A11 100%); }
+.m-gallery .g2 { grid-column: 7 / span 6; aspect-ratio: 16 / 11;
+  background: radial-gradient(120% 80% at 70% 35%, #C4A66E 0%, #745A30 38%, #2E2516 100%); }
+.m-gallery .g3 { grid-column: 1 / span 4; aspect-ratio: 1 / 1;
+  background: radial-gradient(120% 80% at 50% 40%, #A88A4E 0%, #5C4520 50%, #221704 100%); }
+.m-gallery .g4 { grid-column: 5 / span 4; aspect-ratio: 1 / 1;
+  background: radial-gradient(120% 80% at 40% 30%, #C8AB76 0%, #745A36 45%, #2A1F12 100%); }
+.m-gallery .g5 { grid-column: 9 / span 4; aspect-ratio: 1 / 1;
+  background: radial-gradient(120% 80% at 55% 35%, #B8945A 0%, #6E531F 50%, #1F1808 100%); }
+.m-gallery .g6 { grid-column: 1 / span 12; aspect-ratio: 21 / 8;
+  background: radial-gradient(120% 80% at 35% 45%, #C19659 0%, #80582A 35%, #36230E 100%); }
+
+/* ----- Map section ----- */
+.m-map-wrap {
+  display: grid;
+  grid-template-columns: 0.9fr 1.3fr;
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+  margin-top: 48px;
+}
+.m-map-info { max-width: 42ch; }
+.m-map-info ol {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  counter-reset: pin;
+}
+.m-map-info li {
+  counter-increment: pin;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--m-ink);
+}
+.m-map-info li::before {
+  content: counter(pin, decimal-leading-zero);
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--m-olive);
+  color: var(--m-gold-light);
+  font-family: 'Newsreader', serif;
+  font-size: 12.5px;
+  font-variation-settings: 'opsz' 14, 'wght' 500;
+  letter-spacing: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.m-map {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  background: var(--m-beige-soft);
+  border: 1px solid rgba(31, 26, 20, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 32px;
+}
+.m-map svg { width: 100%; height: 100%; display: block; }
+.m-map__legend {
+  position: absolute;
+  bottom: 18px;
+  left: 22px;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(31, 26, 20, 0.40);
+}
+.m-pin {
+  transform-origin: center bottom;
+  animation: mPinFloat 5.5s ease-in-out infinite;
+}
+.m-pin:nth-of-type(2) { animation-delay: 1.2s; }
+@keyframes mPinFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+
+/* ----- CTA section ----- */
+.m-cta {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.m-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(80% 60% at 50% 0%, rgba(212, 172, 106, 0.18) 0%, transparent 60%),
+    radial-gradient(60% 50% at 50% 100%, rgba(212, 172, 106, 0.10) 0%, transparent 60%);
+}
+.m-cta__h {
+  font-family: 'Newsreader', serif;
+  font-variation-settings: 'opsz' 64, 'wght' 400;
+  font-weight: 400;
+  font-size: clamp(38px, 5.4vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.012em;
+  margin: 0 auto 24px;
+  max-width: 18ch;
+  color: var(--m-cream);
+}
+.m-cta__h em {
+  font-style: italic;
+  color: var(--m-gold-light);
+  font-variation-settings: 'opsz' 64, 'wght' 350;
+}
+.m-cta__lead {
+  max-width: 56ch;
+  margin: 0 auto 44px;
+  font-family: 'Newsreader', serif;
+  font-size: 17px;
+  line-height: 1.66;
+  color: rgba(250, 246, 238, 0.78);
+}
+.m-cta__btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+.m-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 30px;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: background 0.4s var(--ease-soft), color 0.4s var(--ease-soft), border-color 0.4s var(--ease-soft), transform 0.4s var(--ease-soft);
+  cursor: pointer;
+  line-height: 1;
+}
+.m-btn--primary {
+  background: linear-gradient(135deg, #D4AC6A 0%, #B8945A 50%, #8A6228 100%);
+  color: var(--m-cream);
+  box-shadow: inset 0 1px 0 rgba(255, 250, 235, 0.40), inset 0 -6px 14px rgba(80, 50, 14, 0.30), 0 8px 20px rgba(80, 50, 14, 0.25);
+}
+.m-btn--primary:hover { transform: translateY(-2px); }
+.m-btn--ghost {
+  background: transparent;
+  color: var(--m-cream);
+  border: 1px solid rgba(232, 200, 152, 0.32);
+}
+.m-btn--ghost:hover {
+  background: rgba(232, 200, 152, 0.10);
+  border-color: rgba(232, 200, 152, 0.55);
+  transform: translateY(-2px);
+}
+.m-btn .arrow {
+  display: inline-block;
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  position: relative;
+}
+.m-btn .arrow::after {
+  content: '';
+  position: absolute;
+  right: -1px;
+  top: -3px;
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+
+/* ----- Reveal-on-scroll (uses .m-reveal + IntersectionObserver in shared.js polish pass) ----- */
+.m-reveal {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  transition: opacity 0.9s var(--ease-soft), transform 0.9s var(--ease-soft);
+  will-change: opacity, transform;
+}
+.m-reveal.in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+.m-reveal--d1 { transition-delay: 0.08s; }
+.m-reveal--d2 { transition-delay: 0.16s; }
+.m-reveal--d3 { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .m-reveal, .m-pin, .m-story__media img, .m-card, .m-gallery__cap { transition: none; animation: none; }
+  .m-reveal { opacity: 1; transform: none; }
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 900px) {
+  .m-cards { grid-template-columns: 1fr; gap: 28px; margin-top: 44px; }
+  .m-story { grid-template-columns: 1fr; gap: 32px; }
+  .m-story__media { aspect-ratio: 4 / 3; }
+  .m-gallery { gap: 12px; }
+  .m-gallery .g1, .m-gallery .g2 { grid-column: span 12; aspect-ratio: 16 / 10; }
+  .m-gallery .g3, .m-gallery .g4, .m-gallery .g5 { grid-column: span 6; }
+  .m-gallery .g6 { aspect-ratio: 21 / 12; }
+  .m-map-wrap { grid-template-columns: 1fr; }
+  .m-map { aspect-ratio: 4 / 3; padding: 24px; }
+  .m-hero { padding: 110px 6vw 56px; min-height: 80vh; }
+  .m-hero__bottom { display: none; }
+}
+@media (max-width: 520px) {
+  .m-gallery .g3, .m-gallery .g4, .m-gallery .g5 { grid-column: span 12; aspect-ratio: 4 / 3; }
+  .m-card__body { padding: 28px 24px 30px; }
+  .m-section { padding: 80px 6vw; }
+  .m-cta__h em, .m-hero__h em { display: inline; }
+  .m-btn { padding: 14px 26px; font-size: 9.5px; }
+}
+</style>
+</head>
+<body class="markets-page">
+
+<!-- SVG defs -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/>
+    </linearGradient>
+    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/>
+    </linearGradient>
+    <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
+    <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+    <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- Nav -->
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button>
+    </div>
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
+    <a href="shop.html" class="nav-acquire" data-i18n="nav.shop">Shop</a>
+  </div>
+</nav>
+
+<!-- Menu overlay (mirrors other pages) -->
+<div class="menu-overlay" id="menuOverlay" aria-hidden="true">
+  <div class="menu-top">
+    <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
+    <button class="menu-close" id="menuClose"><span data-i18n="menu.close">Close</span> <span class="x"></span></button>
+  </div>
+  <div class="menu-content">
+    <ol class="menu-items">
+      <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
+      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
+      <li><span class="roman">III</span><a href="find-us-amsterdam.html" data-i18n-html="markets.menu_html">The <em>Markets</em></a><span class="sub" data-i18n="markets.menu_sub">Find us in Amsterdam</span></li>
+      <li><span class="roman">IV</span><a href="journal.html" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
+    </ol>
+    <aside class="menu-side">
+      <h5 data-i18n="menu.estate.h">Visit the estate</h5>
+      <p data-i18n="menu.estate.p">By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <div class="contact">
+        <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a><br>
+        +30 24210 882 14<br>Pelion, 37006 &middot; Greece
+      </div>
+    </aside>
+  </div>
+</div>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="m-hero" aria-labelledby="markets-hero-h">
+    <video class="m-hero__video" autoplay muted loop playsinline preload="metadata" poster="assets/menu-background.png" aria-hidden="true">
+      <source src="assets/hero-blog1.mp4" type="video/mp4">
+    </video>
+    <div class="m-hero__scrim"></div>
+    <div class="m-hero__grain"></div>
+
+    <div class="m-hero__inner">
+      <span class="m-hero__eyebrow m-reveal" data-i18n="markets.eyebrow">From Pelion to Amsterdam</span>
+      <h1 class="m-hero__h m-reveal m-reveal--d1" id="markets-hero-h" data-i18n-html="markets.hero.h_html">Find us<br><em>in Amsterdam.</em></h1>
+      <p class="m-hero__sub m-reveal m-reveal--d2" data-i18n="markets.hero.sub">Meet Harvest Deli in person at our weekly and monthly market locations — quietly brought from the hills of Greece to the markets of Amsterdam.</p>
+    </div>
+
+    <div class="m-hero__bottom" aria-hidden="true">
+      <span><span class="dot"></span> Estate №01 · Pelion</span>
+      <span>Amsterdam &middot; West</span>
+    </div>
+  </section>
+
+  <!-- ============ MARKET CARDS ============ -->
+  <section class="m-section m-section--cream" aria-labelledby="markets-cards-h">
+    <div class="m-container">
+      <span class="m-eyebrow m-reveal" data-i18n="markets.cards.eyebrow">Two tables</span>
+      <h2 class="m-h2 m-reveal m-reveal--d1" id="markets-cards-h" data-i18n-html="markets.cards.h_html">Where you can find <em>the harvest.</em></h2>
+
+      <div class="m-cards">
+        <!-- Tenkate -->
+        <article class="m-card m-reveal m-reveal--d1">
+          <div class="m-card__photo m-card__photo--tenkate" aria-hidden="true">
+            <div class="m-card__photo-inner">
+              <span class="m-card__tag" data-i18n="markets.tenkate.tag">Weekly · West</span>
+              <span class="m-card__pin" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/>
+                  <circle cx="12" cy="9" r="2.4"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="m-card__body">
+            <h3 class="m-card__title" data-i18n="markets.tenkate.title">Tenkate Market</h3>
+            <div class="m-card__meta">
+              <span class="m-card__meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+                </svg>
+                <span data-i18n="markets.tenkate.hours">Monday — Saturday · 09:00 — 17:00</span>
+              </span>
+              <span class="m-card__meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/>
+                </svg>
+                <span data-i18n="markets.tenkate.addr">Ten Katestraat · Amsterdam-West</span>
+              </span>
+            </div>
+            <div class="m-card__rule"></div>
+            <p class="m-card__desc" data-i18n="markets.tenkate.desc">Our weekly table — a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we'll pour the morning coffee.</p>
+          </div>
+        </article>
+
+        <!-- Westerpark -->
+        <article class="m-card m-reveal m-reveal--d2">
+          <div class="m-card__photo m-card__photo--westerpark" aria-hidden="true">
+            <div class="m-card__photo-inner">
+              <span class="m-card__tag" data-i18n="markets.westerpark.tag">Monthly · Sunday</span>
+              <span class="m-card__pin" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/>
+                  <circle cx="12" cy="9" r="2.4"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="m-card__body">
+            <h3 class="m-card__title" data-i18n="markets.westerpark.title">Sunday Market · Westerpark</h3>
+            <div class="m-card__meta">
+              <span class="m-card__meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+                </svg>
+                <span data-i18n="markets.westerpark.hours">First Sunday of every month · 11:00 — 17:00</span>
+              </span>
+              <span class="m-card__meta-line">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/>
+                </svg>
+                <span data-i18n="markets.westerpark.addr">Westergasterrein · Amsterdam-West</span>
+              </span>
+            </div>
+            <div class="m-card__rule"></div>
+            <p class="m-card__desc" data-i18n="markets.westerpark.desc">A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDITORIAL STORY ============ -->
+  <section class="m-section" aria-labelledby="markets-story-h">
+    <div class="m-container m-story">
+      <div class="m-story__media m-reveal">
+        <img src="assets/menu-background.png" alt="Linen-covered market table in soft morning light" loading="lazy">
+      </div>
+      <div>
+        <span class="m-eyebrow m-reveal" data-i18n="markets.story.eyebrow">The table</span>
+        <h2 class="m-h2 m-reveal m-reveal--d1" id="markets-story-h" data-i18n-html="markets.cards.h_html" hidden></h2>
+        <blockquote class="m-story__pull m-reveal m-reveal--d1" data-i18n-html="markets.story.lead_html">
+          “For us, markets are not only about selling honey. They are about <em>conversation, tasting</em> and sharing the harvest.”
+        </blockquote>
+        <p class="m-story__body m-reveal m-reveal--d2" data-i18n="markets.story.body">
+          Each morning we set out the same way our family has for four generations on the slopes of Pelion — linen folded, jars uncapped, a spoon laid across the rim. Amsterdam, with its bicycles and its grey-morning light, has welcomed our small ritual. Come early. Stay slow. Taste before you speak.
+        </p>
+        <div class="m-story__sig m-reveal m-reveal--d3">
+          <strong data-i18n-html="markets.story.sig">Stelios &amp; Eleni Andreou</strong>
+          <span data-i18n="markets.story.sigsub">Pelion · Amsterdam</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PHOTO JOURNAL ============ -->
+  <section class="m-section m-section--beige-deep" aria-labelledby="markets-gallery-h">
+    <div class="m-container">
+      <span class="m-eyebrow m-reveal" data-i18n="markets.gallery.eyebrow">A photo journal</span>
+      <h2 class="m-h2 m-reveal m-reveal--d1" id="markets-gallery-h" data-i18n-html="markets.gallery.h_html"><em>Mornings</em> at the table.</h2>
+
+      <div class="m-gallery">
+        <figure class="m-gallery__cell g1 m-reveal" tabindex="0">
+          <figcaption class="m-gallery__cap" data-i18n="markets.gallery.cap1">Sunlight through the linen, just after opening.</figcaption>
+        </figure>
+        <figure class="m-gallery__cell g2 m-reveal m-reveal--d1" tabindex="0">
+          <figcaption class="m-gallery__cap" data-i18n="markets.gallery.cap2">The first tasting of the day.</figcaption>
+        </figure>
+        <figure class="m-gallery__cell g3 m-reveal" tabindex="0">
+          <figcaption class="m-gallery__cap" data-i18n="markets.gallery.cap3">A regular guest, a regular spoon.</figcaption>
+        </figure>
+        <figure class="m-gallery__cell g4 m-reveal m-reveal--d1" tabindex="0">
+          <figcaption class="m-gallery__cap" data-i18n="markets.gallery.cap4">Wax-sealed editions in a wooden crate.</figcaption>
+        </figure>
+        <figure class="m-gallery__cell g5 m-reveal m-reveal--d2" tabindex="0">
+          <figcaption class="m-gallery__cap" data-i18n="markets.gallery.cap5">A quiet conversation about provenance.</figcaption>
+        </figure>
+        <figure class="m-gallery__cell g6 m-reveal m-reveal--d1" tabindex="0">
+          <figcaption class="m-gallery__cap" data-i18n="markets.gallery.cap6">Westerpark · first Sunday, late afternoon.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAP ============ -->
+  <section class="m-section" aria-labelledby="markets-map-h">
+    <div class="m-container">
+      <span class="m-eyebrow m-reveal" data-i18n="markets.map.eyebrow">Two locations · Amsterdam-West</span>
+      <h2 class="m-h2 m-reveal m-reveal--d1" id="markets-map-h" data-i18n-html="markets.map.h_html">A short walk from the canals.</h2>
+
+      <div class="m-map-wrap">
+        <div class="m-map-info m-reveal m-reveal--d1">
+          <p class="m-lead" data-i18n="markets.map.lead">Both tables are within Amsterdam-West, a fifteen-minute cycle from the centre. Tram 7 stops near both. The light is best before noon.</p>
+          <ol>
+            <li data-i18n="markets.map.pin1">Tenkate Market</li>
+            <li data-i18n="markets.map.pin2">Westerpark</li>
+          </ol>
+        </div>
+
+        <div class="m-map m-reveal m-reveal--d2" role="img" aria-label="Stylised map of Amsterdam-West with two Harvest Deli pins">
+          <!-- Abstract Amsterdam map (custom SVG, no third-party tiles) -->
+          <svg viewBox="0 0 800 550" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="mapWater" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#E5DAC0"/>
+                <stop offset="100%" stop-color="#D9CBAF"/>
+              </linearGradient>
+              <linearGradient id="mapLand" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#F5EDDC"/>
+                <stop offset="100%" stop-color="#EDE2C6"/>
+              </linearGradient>
+              <radialGradient id="pinGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stop-color="#E8C982" stop-opacity="0.55"/>
+                <stop offset="100%" stop-color="#E8C982" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+
+            <!-- Land -->
+            <rect width="800" height="550" fill="url(#mapLand)"/>
+
+            <!-- Amsterdam's canal-belt arcs (stylised, west-centric) -->
+            <g fill="none" stroke="rgba(46, 58, 35, 0.18)" stroke-width="1.4" stroke-linecap="round">
+              <path d="M 720 50 Q 460 80 320 220 Q 200 360 130 510"/>
+              <path d="M 740 110 Q 480 150 360 280 Q 240 410 180 530"/>
+              <path d="M 760 170 Q 500 220 400 340 Q 290 460 240 545"/>
+              <path d="M 780 230 Q 540 290 460 400 Q 360 500 320 545"/>
+            </g>
+
+            <!-- A horizontal line for the IJ (north water boundary) -->
+            <path d="M 0 50 L 800 38" stroke="rgba(46, 58, 35, 0.10)" stroke-width="2" fill="none"/>
+
+            <!-- Westerpark green (stylised) -->
+            <g opacity="0.62">
+              <ellipse cx="240" cy="200" rx="62" ry="36" fill="rgba(74, 90, 55, 0.16)"/>
+              <ellipse cx="270" cy="190" rx="44" ry="22" fill="rgba(74, 90, 55, 0.20)"/>
+            </g>
+
+            <!-- Compass rose -->
+            <g transform="translate(720, 470)" stroke="rgba(46, 58, 35, 0.45)" fill="none" stroke-width="1">
+              <circle r="20"/>
+              <path d="M 0 -16 L 3 0 L 0 16 L -3 0 Z" fill="rgba(184, 148, 90, 0.55)" stroke="none"/>
+              <text x="0" y="-26" text-anchor="middle" font-family="Inter, sans-serif" font-size="9" letter-spacing="2" fill="rgba(46, 58, 35, 0.55)">N</text>
+            </g>
+
+            <!-- Scale bar -->
+            <g transform="translate(50, 510)" stroke="rgba(46, 58, 35, 0.35)" fill="rgba(46, 58, 35, 0.55)">
+              <line x1="0" y1="0" x2="80" y2="0" stroke-width="1.2"/>
+              <line x1="0" y1="-4" x2="0" y2="4" stroke-width="1.2"/>
+              <line x1="40" y1="-3" x2="40" y2="3" stroke-width="1"/>
+              <line x1="80" y1="-4" x2="80" y2="4" stroke-width="1.2"/>
+              <text x="0" y="18" font-family="Inter, sans-serif" font-size="9" letter-spacing="2" stroke="none">0</text>
+              <text x="80" y="18" text-anchor="end" font-family="Inter, sans-serif" font-size="9" letter-spacing="2" stroke="none">1 KM</text>
+            </g>
+
+            <!-- Pin 1: Tenkate Market -->
+            <g class="m-pin" transform="translate(305, 340)">
+              <circle r="34" fill="url(#pinGlow)"/>
+              <g transform="translate(0, -6)">
+                <path d="M 0 18 C 0 18 -14 4 -14 -6 A 14 14 0 1 1 14 -6 C 14 4 0 18 0 18 Z" fill="#2E3A23" stroke="#E8C982" stroke-width="1"/>
+                <circle cx="0" cy="-6" r="5" fill="#E8C982"/>
+              </g>
+              <text x="22" y="3" font-family="Newsreader, serif" font-style="italic" font-weight="500" font-size="14" fill="#1F1A14">Tenkate</text>
+              <text x="22" y="18" font-family="Inter, sans-serif" font-size="8.5" letter-spacing="2.5" fill="rgba(31, 26, 20, 0.55)">MON — SAT</text>
+            </g>
+
+            <!-- Pin 2: Westerpark -->
+            <g class="m-pin" transform="translate(230, 218)">
+              <circle r="32" fill="url(#pinGlow)"/>
+              <g transform="translate(0, -6)">
+                <path d="M 0 18 C 0 18 -14 4 -14 -6 A 14 14 0 1 1 14 -6 C 14 4 0 18 0 18 Z" fill="#2E3A23" stroke="#E8C982" stroke-width="1"/>
+                <circle cx="0" cy="-6" r="5" fill="#E8C982"/>
+              </g>
+              <text x="22" y="3" font-family="Newsreader, serif" font-style="italic" font-weight="500" font-size="14" fill="#1F1A14">Westerpark</text>
+              <text x="22" y="18" font-family="Inter, sans-serif" font-size="8.5" letter-spacing="2.5" fill="rgba(31, 26, 20, 0.55)">FIRST SUNDAY</text>
+            </g>
+          </svg>
+          <div class="m-map__legend">AMSTERDAM &middot; WEST</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="m-section m-section--olive m-cta" aria-labelledby="markets-cta-h">
+    <div class="m-container">
+      <span class="m-eyebrow m-reveal" data-i18n="markets.cta.eyebrow">Visit the table</span>
+      <h2 class="m-cta__h m-reveal m-reveal--d1" id="markets-cta-h" data-i18n-html="markets.cta.h_html">Come and <em>taste the harvest.</em></h2>
+      <p class="m-cta__lead m-reveal m-reveal--d2" data-i18n="markets.cta.lead">Bring an empty afternoon and an honest appetite. There is always coffee, always a spoon, always a story.</p>
+      <div class="m-cta__btns m-reveal m-reveal--d3">
+        <a href="contact.html#markets" class="m-btn m-btn--primary">
+          <span data-i18n="markets.cta.schedule">View Market Schedule</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+        <a href="partners.html" class="m-btn m-btn--ghost">
+          <span data-i18n="markets.cta.trade">Retail &amp; Hospitality</span>
+          <span class="arrow" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer (mirrors site footer) -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col footer-col--brand">
+      <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.collection">Collection</h4>
+      <a href="shop.html" data-i18n="footer.link.chestnut">Chestnut Honey</a>
+      <a href="shop.html" data-i18n="footer.link.pineHeather">Pine &amp; Heather</a>
+      <a href="shop.html" data-i18n="footer.link.springWildflower">Spring Wildflower</a>
+      <a href="shop.html" data-i18n="footer.link.reserve">Reserve</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.house">House</h4>
+      <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
+      <a href="journal.html" data-i18n="footer.link.journal">Journal</a>
+      <a href="legal-shipping.html" data-i18n="footer.link.shipping">Shipping</a>
+      <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.legal">Legal</h4>
+      <a href="legal-terms.html" data-i18n="footer.link.terms">Terms</a>
+      <a href="legal-privacy.html" data-i18n="footer.link.privacy">Privacy</a>
+      <a href="legal-cookies.html" data-i18n="footer.link.cookies">Cookies</a>
+      <a href="legal-returns.html" data-i18n="footer.link.returns">Returns</a>
+      <a href="legal-imprint.html" data-i18n="footer.link.imprint">Imprint</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-i18n="footer.bottom1">© Harvest Deli · Pelion, Greece</span>
+    <span data-i18n="footer.bottom2">Crafted slowly · MMXXV</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+  // Intersection-observed reveals — calm, restrained, never restless
+  (function () {
+    'use strict';
+    const targets = document.querySelectorAll('.m-reveal');
+    if (!targets.length) return;
+    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      targets.forEach(el => el.classList.add('in'));
+      return;
+    }
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+    targets.forEach(el => io.observe(el));
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Harvest Deli — robots.txt
+# Documentation: https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+Disallow: /checkout.html
+Disallow: /assets/
+Disallow: /*?p=
+Disallow: /*?v=
+
+# Common AI scrapers — adjust to taste
+User-agent: GPTBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://harvestdeli.gr/sitemap.xml

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · Lost on the mountain · Harvest Deli</title>
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+:root {
+  --bg: #F5EFE4; --ink: #1F1A14; --ink-soft: #5C5247;
+  --gold: #B8945A; --gold-light: #D4AC6A; --gold-deep: #8A6228;
+  --cream: #FAF6EE; --olive-deep: #232A1C; --charcoal: #0E0B08;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --track-button: 0.42em; --track-label: 0.36em;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: var(--olive-deep);
+  color: var(--cream);
+  font-family: 'Inter', -apple-system, sans-serif;
+  min-height: 100dvh;
+  display: flex; flex-direction: column;
+  overflow-x: hidden;
+}
+.bg {
+  position: fixed; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse at 22% 38%, rgba(212, 172, 106, 0.22), transparent 55%),
+    radial-gradient(ellipse at 78% 70%, rgba(184, 148, 90, 0.18), transparent 60%),
+    linear-gradient(160deg, #3A4231 0%, #161B11 100%);
+}
+.bg::before {
+  content: ''; position: absolute; inset: -8%;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(248, 215, 140, 0.32), transparent 28%),
+    radial-gradient(circle at 70% 60%, rgba(184, 148, 90, 0.28), transparent 30%);
+  filter: blur(80px); opacity: 0.7;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+@keyframes drift {
+  0% { transform: translate(0, 0) scale(1.02); }
+  50% { transform: translate(-2%, 1%) scale(1.05); }
+  100% { transform: translate(1.5%, -1.5%) scale(1.03); }
+}
+.nav {
+  position: relative; z-index: 2;
+  padding: 26px 48px;
+}
+.nav a {
+  color: var(--cream); text-decoration: none;
+  font-family: 'Inter', sans-serif; font-size: 9.5px;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  font-weight: 500; opacity: 0.86;
+  display: inline-flex; align-items: center; gap: 14px;
+  padding-left: var(--track-label);
+  transition: opacity 0.4s var(--ease);
+}
+.nav a:hover { opacity: 1; }
+.nav a .arrow {
+  width: 16px; height: 1px; background: currentColor;
+  position: relative;
+}
+.nav a .arrow::before {
+  content: ''; position: absolute; left: 0; top: -3px;
+  width: 7px; height: 7px;
+  border-left: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(-45deg);
+}
+.wrap {
+  position: relative; z-index: 2;
+  flex: 1; display: flex; align-items: center; justify-content: center;
+  padding: 8vh 8% 12vh;
+  text-align: center;
+}
+.eyebrow {
+  font-size: 10px; letter-spacing: 0.46em;
+  text-transform: uppercase; color: var(--gold-light);
+  font-weight: 500; margin-bottom: 32px;
+  padding-left: 0.46em;
+}
+.num {
+  font-family: 'Newsreader', serif;
+  font-weight: 300; font-style: italic;
+  font-size: clamp(120px, 26vw, 360px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--gold-light);
+  margin-bottom: 36px;
+  text-shadow: 0 8px 60px rgba(0,0,0,0.4);
+}
+h1 {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 1.04;
+  letter-spacing: -0.028em;
+  color: var(--cream);
+  margin-bottom: 28px;
+}
+h1 em { font-style: italic; color: var(--gold-light); }
+p.lede {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.6;
+  color: rgba(245, 239, 228, 0.75);
+  max-width: 580px;
+  margin: 0 auto 56px;
+}
+.links {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 20px 36px;
+  margin-bottom: 48px;
+}
+.cta-primary {
+  display: inline-flex; align-items: center; gap: 22px;
+  padding: 20px 40px;
+  padding-left: calc(40px + var(--track-button));
+  background: var(--gold-light); color: var(--olive-deep);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: var(--track-button);
+  text-transform: uppercase; font-weight: 500;
+  text-decoration: none;
+  transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+  box-shadow: 0 16px 32px rgba(0,0,0,0.25);
+}
+.cta-primary:hover { transform: translateY(-2px); }
+.cta-primary .arrow {
+  width: 20px; height: 1px; background: currentColor;
+  position: relative;
+}
+.cta-primary .arrow::after {
+  content: ''; position: absolute; right: 0; top: -3px;
+  width: 7px; height: 7px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.cta-ghost {
+  display: inline-flex; align-items: center; gap: 16px;
+  font-size: 10px; letter-spacing: var(--track-button);
+  text-transform: uppercase; font-weight: 500;
+  color: rgba(245, 239, 228, 0.72);
+  text-decoration: none;
+  padding-bottom: 6px;
+  padding-left: var(--track-button);
+  border-bottom: 1px solid rgba(245, 239, 228, 0.28);
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.cta-ghost:hover { color: var(--cream); border-color: var(--cream); }
+.quicklinks {
+  border-top: 1px solid rgba(245, 239, 228, 0.12);
+  padding-top: 36px;
+  max-width: 720px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px 24px;
+  text-align: left;
+}
+.quicklinks h3 {
+  font-size: 9px; letter-spacing: 0.42em;
+  text-transform: uppercase; color: var(--gold-light);
+  font-weight: 500; margin-bottom: 12px;
+  padding-left: 0.42em;
+}
+.quicklinks a {
+  display: block;
+  font-family: 'Newsreader', serif;
+  font-size: 17px;
+  color: var(--cream);
+  text-decoration: none;
+  padding: 4px 0;
+  transition: color 0.4s var(--ease);
+}
+.quicklinks a:hover { color: var(--gold-light); }
+@media (max-width: 700px) {
+  .nav { padding: 20px 22px; }
+  .wrap { padding: 4vh 7% 10vh; }
+  .quicklinks { grid-template-columns: 1fr 1fr; gap: 28px 18px; }
+  .links { flex-direction: column; align-items: center; }
+  .cta-primary, .cta-ghost { width: 280px; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg::before { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true"></div>
+<nav class="nav">
+  <a href="index.html"><span class="arrow" aria-hidden="true"></span> Back to the house</a>
+</nav>
+
+<main class="wrap">
+  <div>
+    <div class="eyebrow">Lost on the mountain &middot; Error 404</div>
+    <div class="num">404</div>
+    <h1>This path does not <em>lead</em> anywhere.</h1>
+    <p class="lede">The link you followed has gone quiet. Perhaps the season has changed, the edition is closed, or the trail simply ends here. Below are a few places that are still open.</p>
+
+    <div class="links">
+      <a href="index.html" class="cta-primary"><span>Return to the home</span><span class="arrow" aria-hidden="true"></span></a>
+      <a href="shop.html" class="cta-ghost">View the collection</a>
+    </div>
+
+    <div class="quicklinks">
+      <div>
+        <h3>Collection</h3>
+        <a href="shop.html">All editions</a>
+        <a href="product.html">Chestnut Honey</a>
+      </div>
+      <div>
+        <h3>House</h3>
+        <a href="about.html">The origin</a>
+        <a href="journal.html">The journal</a>
+      </div>
+      <div>
+        <h3>Trade</h3>
+        <a href="partners.html">Partnership</a>
+        <a href="legal-shipping.html">Shipping</a>
+      </div>
+      <div>
+        <h3>Help</h3>
+        <a href="contact.html">Contact</a>
+        <a href="legal-returns.html">Returns</a>
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>

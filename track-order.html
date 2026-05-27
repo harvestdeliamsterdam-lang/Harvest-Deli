@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track your order · Harvest Deli</title>
+<meta name="description" content="Track your Harvest Deli order. Enter your order number and email to follow your shipment from Pelion to your door.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://harvestdeli.gr/track-order.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="legal.css">
+<style>
+.track-hero { padding: 22vh 8% 6vh; max-width: 1100px; margin: 0 auto; text-align: center; }
+.track-eyebrow {
+  font-size: 9.5px; letter-spacing: 0.46em;
+  text-transform: uppercase; color: var(--gold-deep);
+  font-weight: 500; margin-bottom: 28px;
+  padding-left: 0.46em;
+}
+.track-title {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-size: clamp(44px, 7vw, 96px);
+  line-height: 1.0; letter-spacing: -0.028em;
+  color: var(--ink); margin-bottom: 24px;
+}
+.track-title em { font-style: italic; color: var(--gold-deep); }
+.track-sub {
+  font-family: 'Newsreader', serif;
+  font-style: italic;
+  font-size: clamp(18px, 1.8vw, 22px);
+  line-height: 1.5; color: var(--ink-soft);
+  max-width: 580px; margin: 0 auto 6vh;
+}
+.track-panel {
+  max-width: 560px; margin: 0 auto;
+  padding: 56px 48px;
+  background: var(--cream);
+  border: 1px solid rgba(184, 148, 90, 0.22);
+  border-radius: 3px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+  position: relative;
+}
+.track-panel::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.45;
+}
+.track-field { margin-bottom: 32px; }
+.track-field label {
+  display: block;
+  font-size: 9px; letter-spacing: 0.42em;
+  text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 500; margin-bottom: 10px;
+  padding-left: 0.42em;
+}
+.track-field input {
+  width: 100%; background: transparent; border: none;
+  border-bottom: 1px solid rgba(26, 22, 18, 0.22);
+  font-family: 'Newsreader', serif;
+  font-size: 19px; color: var(--ink);
+  padding: 8px 0 12px;
+  outline: none; border-radius: 0;
+  transition: border-color 0.4s var(--ease);
+  min-height: 44px;
+}
+.track-field input:focus { border-bottom-color: var(--gold-deep); }
+.track-field input::placeholder { color: rgba(26, 22, 18, 0.32); font-style: italic; }
+.track-cta {
+  display: inline-flex; align-items: center; gap: 22px;
+  width: 100%; justify-content: center;
+  padding: 20px 36px;
+  padding-left: calc(36px + var(--track-button));
+  background: var(--ink); color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: var(--track-button);
+  text-transform: uppercase; font-weight: 500;
+  border: none; cursor: pointer;
+  transition: background 0.5s var(--ease);
+}
+.track-cta:hover { background: var(--gold-deep); }
+.track-cta .arrow {
+  width: 20px; height: 1px; background: currentColor;
+  position: relative;
+}
+.track-cta .arrow::after {
+  content: ''; position: absolute; right: 0; top: -3px;
+  width: 7px; height: 7px;
+  border-right: 1px solid currentColor;
+  border-top: 1px solid currentColor;
+  transform: rotate(45deg);
+}
+.couriers {
+  margin-top: 64px; max-width: 720px;
+  margin-left: auto; margin-right: auto;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; text-align: center;
+}
+.couriers h3 {
+  font-size: 9px; letter-spacing: 0.42em;
+  text-transform: uppercase; color: var(--gold-deep);
+  font-weight: 500; grid-column: 1 / -1;
+  margin-bottom: 4px;
+  padding-left: 0.42em;
+}
+.couriers a {
+  display: block; padding: 22px 16px;
+  background: var(--cream);
+  border: 1px solid rgba(26, 22, 18, 0.08);
+  border-radius: 3px;
+  text-decoration: none; color: var(--ink);
+  font-family: 'Newsreader', serif;
+  font-size: 18px;
+  transition: border-color 0.4s var(--ease), transform 0.4s var(--ease);
+}
+.couriers a:hover { border-color: var(--gold); transform: translateY(-2px); }
+.couriers a span {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 9px; letter-spacing: 0.36em;
+  text-transform: uppercase; color: var(--ink-soft);
+  font-weight: 500; margin-top: 8px;
+  padding-left: 0.36em;
+}
+.track-note {
+  max-width: 560px; margin: 48px auto 0;
+  text-align: center;
+  font-family: 'Newsreader', serif;
+  font-style: italic; font-size: 15px;
+  color: var(--ink-soft); line-height: 1.6;
+}
+.track-note a {
+  color: var(--ink); text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+  transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.track-note a:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+@media (max-width: 700px) {
+  .track-hero { padding: 18vh 7% 4vh; }
+  .track-panel { padding: 36px 24px; }
+  .couriers { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/>
+    </linearGradient>
+    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/>
+    </linearGradient>
+    <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
+    <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+    <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
+  <div class="nav-right">
+    <button class="menu-btn" id="menuBtn"><span class="lines"></span><span>Menu</span></button>
+    <a href="shop.html" class="nav-acquire">Shop</a>
+  </div>
+</nav>
+
+<main id="content">
+
+<header class="track-hero">
+  <div class="track-eyebrow">Track &middot; Delivery</div>
+  <h1 class="track-title">Where is my <em>jar?</em></h1>
+  <p class="track-sub">Enter the order number and email used at checkout. We will redirect you to the live tracking page of our courier.</p>
+
+  <form class="track-panel" id="trackForm" novalidate>
+    <div class="track-field">
+      <label for="order-id">Order number</label>
+      <input id="order-id" name="order_id" type="text" required autocomplete="off" placeholder="HD-2026-0384" pattern="[A-Za-z0-9-]+" inputmode="latin">
+    </div>
+    <div class="track-field">
+      <label for="order-email">Email used at checkout</label>
+      <input id="order-email" name="email" type="email" required autocomplete="email" placeholder="you@yourhouse.com">
+    </div>
+    <button type="submit" class="track-cta"><span>Track shipment</span><span class="arrow" aria-hidden="true"></span></button>
+  </form>
+
+  <div class="couriers" aria-label="Track directly with the courier">
+    <h3>Or track directly with the courier</h3>
+    <a href="https://jouw.postnl.nl/track-and-trace" rel="external">PostNL <span>NL &middot; BE &middot; LU</span></a>
+    <a href="https://www.dhlecommerce.nl/en/private/receive/track-and-trace" rel="external">DHL Express <span>EU &middot; UK &middot; CH</span></a>
+    <a href="https://www.dpd.com/nl/en/receiving/track-your-parcel/" rel="external">DPD <span>EU &middot; Worldwide</span></a>
+  </div>
+
+  <p class="track-note">Cannot find your order number? Look in the confirmation email titled &ldquo;Your Pelion order&rdquo;, or write to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>. We answer within two business days.</p>
+</header>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
+      <p class="footer-tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Help</h4>
+      <a href="track-order.html">Track order</a>
+      <a href="legal-shipping.html">Shipping</a>
+      <a href="legal-returns.html">Returns</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>House</h4>
+      <a href="about.html">Origin</a>
+      <a href="find-us-amsterdam.html">Markets</a>
+      <a href="journal.html">Journal</a>
+      <a href="partners.html">Wholesale</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="legal-terms.html">Terms</a>
+      <a href="legal-privacy.html">Privacy</a>
+      <a href="legal-cookies.html">Cookies</a>
+      <a href="legal-imprint.html">Imprint</a>
+      <button class="linkish" type="button" data-open-cookie-prefs>Cookievoorkeuren</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Harvest Deli &middot; Pelion, Greece</span>
+    <span>KvK [00000000] &middot; BTW NL[000000000]B01</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+(function() {
+  const form = document.getElementById('trackForm');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const id = document.getElementById('order-id').value.trim();
+    const email = document.getElementById('order-email').value.trim();
+    if (!id || !email) return;
+    // Placeholder behaviour: in production, POST to /api/orders/lookup and redirect to courier
+    // For now, mailto fallback for the smallest possible footprint
+    window.location.href = 'mailto:orders@harvestdeli.gr?subject=Order%20status%20' +
+      encodeURIComponent(id) + '&body=' +
+      encodeURIComponent('Hello, please share the latest tracking status for order ' + id + ' (email: ' + email + ').');
+  });
+})();
+</script>
+</body>
+</html>

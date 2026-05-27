@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Origin — Harvest Deli</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1F1A14">
 <link rel="stylesheet" href="shared.css">
 <style>
 :root {
@@ -102,8 +106,8 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .menu-overlay.open .menu-items li:nth-child(3) { transition-delay: 0.38s; }
 .menu-overlay.open .menu-items li:nth-child(4) { transition-delay: 0.48s; }
 .menu-overlay.open .menu-items li:nth-child(5) { transition-delay: 0.58s; }
-.menu-items .roman { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 14px; color: var(--gold); letter-spacing: 0.1em; }
-.menu-items a { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1.04; letter-spacing: -0.024em; color: var(--cream); text-decoration: none; position: relative; display: inline-block; transition: color 0.5s var(--ease); }
+.menu-items .roman { font-family: 'Newsreader', serif; font-style: italic; font-weight: 400; font-size: 14px; color: var(--gold); letter-spacing: 0.1em; }
+.menu-items a { font-family: 'Newsreader', serif; font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1.04; letter-spacing: -0.024em; color: var(--cream); text-decoration: none; position: relative; display: inline-block; transition: color 0.5s var(--ease); }
 .menu-items a em { font-style: italic; font-weight: 400; color: rgba(245, 239, 228, 0.78); letter-spacing: -0.014em; }
 .menu-items a::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.7s var(--ease); }
 .menu-items a:hover { color: var(--gold-light); }
@@ -112,7 +116,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .menu-side { padding-left: 6%; border-left: 1px solid rgba(245,239,228,0.08); opacity: 0; transform: translateX(30px); transition: opacity 1s var(--ease) 0.6s, transform 1s var(--ease) 0.6s; }
 .menu-overlay.open .menu-side { opacity: 1; transform: translateX(0); }
 .menu-side h5 { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; font-weight: 500; }
-.menu-side p { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 20px; line-height: 1.55; color: rgba(245,239,228,0.85); max-width: 24ch; margin-bottom: 38px; letter-spacing: -0.005em; }
+.menu-side p { font-family: 'Newsreader', serif; font-weight: 400; font-size: 20px; line-height: 1.55; color: rgba(245,239,228,0.85); max-width: 24ch; margin-bottom: 38px; letter-spacing: -0.005em; }
 .menu-side .contact { font-size: 11px; line-height: 2; color: rgba(245,239,228,0.65); }
 .menu-side .contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(245,239,228,0.25); padding-bottom: 1px; }
 .menu-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,239,228,0.45); padding-top: 4vh; position: relative; z-index: 2; font-weight: 400; }
@@ -142,7 +146,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-label);
 }
 .about-headline {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(54px, 7.2vw, 124px);
   line-height: 1.02;
@@ -154,7 +158,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 }
 .about-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
 .about-intro {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(18px, 1.6vw, 24px);
   line-height: 1.5;
@@ -213,7 +217,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 
 .ch-text { max-width: 46ch; }
 .ch-num {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-style: italic; font-weight: 400;
   font-size: 18px;
   color: var(--gold);
@@ -231,7 +235,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-label);
 }
 .ch-heading {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(38px, 4.6vw, 68px);
   line-height: 1.08;
@@ -292,7 +296,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   background: var(--bg);
 }
 .pull-quote blockquote {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-style: italic;
   font-weight: 400;
   font-size: clamp(32px, 4.2vw, 62px);
@@ -329,7 +333,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 }
 .n-cell { text-align: left; }
 .n-cell .n-value {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(48px, 5.8vw, 88px);
   line-height: 1;
@@ -367,7 +371,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-label);
 }
 .about-cta h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(44px, 6vw, 96px);
   line-height: 1.04;
@@ -407,7 +411,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1px solid rgba(26, 22, 18, 0.06); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8%; margin-bottom: 12vh; }
 .footer-brand { margin-bottom: 28px; }
-.footer-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 18px; color: var(--ink-soft); max-width: 26ch; line-height: 1.5; letter-spacing: -0.006em; }
+.footer-tagline { font-family: 'Newsreader', serif; font-weight: 400; font-size: 18px; color: var(--ink-soft); max-width: 26ch; line-height: 1.5; letter-spacing: -0.006em; }
 .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase; margin-bottom: 28px; font-weight: 500; color: var(--ink); padding-left: var(--track-label); }
 .footer-col a { display: block; font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink-soft); text-decoration: none; margin-bottom: 16px; letter-spacing: 0.005em; transition: color 0.5s var(--ease); font-weight: 400; }
 .footer-col a:hover { color: var(--gold); }
@@ -469,16 +473,16 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     </linearGradient>
     <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
     <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
-      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
     </symbol>
     <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
-      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
     </symbol>
   </defs>
 </svg>
@@ -487,7 +491,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
   <div class="nav-right">
     <div class="lang-toggle" role="group" aria-label="Language">
-      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button>
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button>
     </div>
     <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
     <button class="nav-cart" id="navCart" aria-label="Open cart">
@@ -507,8 +511,8 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <ol class="menu-items">
       <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
       <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
-      <li><span class="roman">III</span><a href="index.html#process" data-i18n-html="menu.item.process_html">The <em>Process</em></a><span class="sub" data-i18n="menu.item.process_sub">Hand harvested</span></li>
-      <li><span class="roman">IV</span><a href="index.html#journal" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">III</span><a href="find-us-amsterdam.html" data-i18n-html="markets.menu_html">The <em>Markets</em></a><span class="sub" data-i18n="markets.menu_sub">Find us in Amsterdam</span></li>
+      <li><span class="roman">IV</span><a href="journal.html" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
       <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
     </ol>
     <aside class="menu-side">
@@ -525,6 +529,9 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <div class="social"><a href="#" data-i18n="menu.social.instagram">Instagram</a><a href="#" data-i18n="menu.social.journal">Journal</a><a href="#" data-i18n="menu.social.wholesale">Wholesale</a></div>
   </div>
 </div>
+
+<main id="content">
+
 
 <!-- Cart drawer -->
 <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
@@ -661,6 +668,8 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   <a href="shop.html" class="cta-link"><span data-i18n="about.cta.btn">View the collection</span> <span class="arrow"></span></a>
 </section>
 
+</main>
+
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
@@ -677,16 +686,22 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <div class="footer-col">
       <h4 data-i18n="footer.col.house">House</h4>
       <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
       <a href="index.html#process" data-i18n="footer.link.estate">Estate</a>
-      <a href="#" data-i18n="footer.link.journal">Journal</a>
+      <a href="journal.html" data-i18n="footer.link.journal">Journal</a>
+      <a href="partners.html">Wholesale</a>
+      <a href="legal-shipping.html">Shipping</a>
       <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4 data-i18n="footer.col.care">Care</h4>
-      <a href="#" data-i18n="footer.link.shipping">Shipping</a>
-      <a href="#" data-i18n="footer.link.sourcing">Sourcing</a>
-      <a href="contact.html" data-i18n="footer.link.trade">Trade</a>
-      <a href="contact.html" data-i18n="footer.link.press">Press</a>
+      <h4>Legal</h4>
+      <a href="legal-terms.html">Algemene voorwaarden</a>
+      <a href="legal-privacy.html">Privacyverklaring</a>
+      <a href="legal-cookies.html">Cookieverklaring</a>
+      <a href="legal-returns.html">Retour &amp; herroeping</a>
+      <a href="legal-shipping.html">Verzending</a>
+      <a href="legal-imprint.html">Bedrijfsgegevens</a>
+      <button class="linkish" type="button" data-open-cookie-prefs>Cookievoorkeuren</button>
     </div>
   </div>
   <div class="footer-bottom">

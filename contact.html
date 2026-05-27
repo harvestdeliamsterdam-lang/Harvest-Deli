@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Harvest Deli</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#1F1A14">
 <link rel="stylesheet" href="shared.css">
 <style>
 :root {
@@ -61,14 +65,14 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .menu-overlay.open .menu-items li:nth-child(3) { transition-delay: 0.38s; }
 .menu-overlay.open .menu-items li:nth-child(4) { transition-delay: 0.48s; }
 .menu-overlay.open .menu-items li:nth-child(5) { transition-delay: 0.58s; }
-.menu-items .roman { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 14px; color: var(--gold); letter-spacing: 0.1em; }
-.menu-items a { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1.04; letter-spacing: -0.024em; color: var(--cream); text-decoration: none; }
+.menu-items .roman { font-family: 'Newsreader', serif; font-style: italic; font-weight: 400; font-size: 14px; color: var(--gold); letter-spacing: 0.1em; }
+.menu-items a { font-family: 'Newsreader', serif; font-weight: 400; font-size: clamp(40px, 5vw, 72px); line-height: 1.04; letter-spacing: -0.024em; color: var(--cream); text-decoration: none; }
 .menu-items a em { font-style: italic; font-weight: 400; color: rgba(245, 239, 228, 0.78); letter-spacing: -0.014em; }
 .menu-items .sub { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase; color: rgba(245,239,228,0.55); font-weight: 500; text-align: right; padding-left: var(--track-label); }
 .menu-side { padding-left: 6%; border-left: 1px solid rgba(245,239,228,0.08); opacity: 0; transform: translateX(30px); transition: opacity 1s var(--ease) 0.6s, transform 1s var(--ease) 0.6s; }
 .menu-overlay.open .menu-side { opacity: 1; transform: translateX(0); }
 .menu-side h5 { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.45em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; font-weight: 500; }
-.menu-side p { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 20px; line-height: 1.55; color: rgba(245,239,228,0.85); max-width: 24ch; margin-bottom: 38px; }
+.menu-side p { font-family: 'Newsreader', serif; font-weight: 400; font-size: 20px; line-height: 1.55; color: rgba(245,239,228,0.85); max-width: 24ch; margin-bottom: 38px; }
 .menu-side .contact { font-size: 11px; line-height: 2; color: rgba(245,239,228,0.65); }
 .menu-side .contact a { color: inherit; text-decoration: none; border-bottom: 1px solid rgba(245,239,228,0.25); }
 .menu-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(245,239,228,0.45); padding-top: 4vh; position: relative; z-index: 2; }
@@ -98,7 +102,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-label);
 }
 .c-headline {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(54px, 7vw, 116px);
   line-height: 1.02;
@@ -110,7 +114,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 }
 .c-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
 .c-intro {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(17px, 1.4vw, 21px);
   line-height: 1.55;
@@ -145,7 +149,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.4), transparent);
 }
 .c-form h3 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 36px;
   line-height: 1.1;
@@ -154,7 +158,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   color: var(--ink);
 }
 .c-form .sub {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-style: italic;
   font-weight: 400;
   font-size: 16px;
@@ -184,7 +188,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   border: none;
   border-bottom: 1px solid rgba(26, 22, 18, 0.18);
   padding: 12px 0 14px;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 19px;
   color: var(--ink);
@@ -287,7 +291,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   transform: rotate(-45deg) translateY(-3px);
 }
 .form-success h4 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 32px;
   line-height: 1.15;
@@ -308,7 +312,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-top: 16px;
 }
 .c-info h4 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 28px;
   line-height: 1.12;
@@ -333,7 +337,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-label);
 }
 .info-block .title {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 20px;
   margin-bottom: 10px;
@@ -375,7 +379,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-label);
 }
 .location-strip h2 {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(40px, 5.6vw, 84px);
   line-height: 1.04;
@@ -387,7 +391,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 }
 .location-strip h2 em { font-style: italic; font-weight: 400; color: var(--ink-warm); }
 .location-strip address {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Newsreader', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 19px;
@@ -402,7 +406,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1px solid rgba(26, 22, 18, 0.06); }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 8%; margin-bottom: 12vh; }
 .footer-brand { margin-bottom: 28px; }
-.footer-tagline { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 18px; color: var(--ink-soft); max-width: 26ch; line-height: 1.5; letter-spacing: -0.006em; }
+.footer-tagline { font-family: 'Newsreader', serif; font-weight: 400; font-size: 18px; color: var(--ink-soft); max-width: 26ch; line-height: 1.5; letter-spacing: -0.006em; }
 .footer-col h4 { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase; margin-bottom: 28px; font-weight: 500; color: var(--ink); padding-left: var(--track-label); }
 .footer-col a { display: block; font-size: 13px; color: var(--ink-soft); text-decoration: none; margin-bottom: 16px; transition: color 0.5s var(--ease); }
 .footer-col a:hover { color: var(--gold); }
@@ -453,20 +457,24 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/></linearGradient>
-    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/></linearGradient>
+    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/>
+    </linearGradient>
+    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/>
+    </linearGradient>
     <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
     <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
-      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
     </symbol>
     <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
-      <text font-family="Cinzel, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Cinzel, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Cinzel, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
     </symbol>
   </defs>
 </svg>
@@ -475,7 +483,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
   <div class="nav-right">
     <div class="lang-toggle" role="group" aria-label="Language">
-      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button>
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button>
     </div>
     <button class="menu-btn" id="menuBtn"><span class="lines"></span><span data-i18n="nav.menu">Menu</span></button>
     <button class="nav-cart" id="navCart" aria-label="Open cart">
@@ -494,8 +502,8 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <ol class="menu-items">
       <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
       <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
-      <li><span class="roman">III</span><a href="index.html#process" data-i18n-html="menu.item.process_html">The <em>Process</em></a><span class="sub" data-i18n="menu.item.process_sub">Hand harvested</span></li>
-      <li><span class="roman">IV</span><a href="index.html#journal" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
+      <li><span class="roman">III</span><a href="find-us-amsterdam.html" data-i18n-html="markets.menu_html">The <em>Markets</em></a><span class="sub" data-i18n="markets.menu_sub">Find us in Amsterdam</span></li>
+      <li><span class="roman">IV</span><a href="journal.html" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
       <li><span class="roman">V</span><a href="contact.html" data-i18n="menu.item.contact">Contact</a><span class="sub" data-i18n="menu.item.contact_sub">Trade &amp; press</span></li>
     </ol>
     <aside class="menu-side">
@@ -512,6 +520,9 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <div class="social"><a href="#" data-i18n="menu.social.instagram">Instagram</a><a href="#" data-i18n="menu.social.journal">Journal</a><a href="#" data-i18n="menu.social.wholesale">Wholesale</a></div>
   </div>
 </div>
+
+<main id="content">
+
 
 <!-- Cart drawer -->
 <div class="cart-drawer" id="cartDrawer" aria-hidden="true">
@@ -638,6 +649,61 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   </div>
 </section>
 
+<!-- ============ FAQ ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How quickly do you reply?", "acceptedAnswer": { "@type": "Answer", "text": "Within two working days, often faster. On Monday mornings, Friday afternoons and during harvest weeks it can take a little longer. For urgent order matters, write directly to orders@harvestdeli.gr." } },
+    { "@type": "Question", "name": "Which channel should I use?", "acceptedAnswer": { "@type": "Answer", "text": "Use hello@harvestdeli.gr for general questions, orders@harvestdeli.gr for shipping and delivery, wholesale@harvestdeli.gr for retail and hospitality, and privacy@harvestdeli.gr for data and access requests under the GDPR." } },
+    { "@type": "Question", "name": "I have a wholesale or hospitality enquiry. What is the best route?", "acceptedAnswer": { "@type": "Answer", "text": "Send us a short note via the partnership form on the partners page. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Pelion the same week." } },
+    { "@type": "Question", "name": "My order has not arrived or arrived damaged. What now?", "acceptedAnswer": { "@type": "Answer", "text": "Email orders@harvestdeli.gr with your order number and, if possible, a photograph of the box. We arrange a free replacement shipment or full refund within two working days." } },
+    { "@type": "Question", "name": "Can I visit the estate or the depot?", "acceptedAnswer": { "@type": "Answer", "text": "By appointment, yes. Press, wholesale partners and existing clients are welcome. Send a request with date and reason to hello@harvestdeli.gr. The Andreou cellar in Pelion is open to small groups between April and October." } },
+    { "@type": "Question", "name": "Do you exist on social media?", "acceptedAnswer": { "@type": "Answer", "text": "Quietly, on Instagram. We do not run paid advertising and we do not chase the algorithm. Subscribe to the journal for slower correspondence, three or four times a year." } }
+  ]
+}
+</script>
+<section class="faq-block" id="faq" aria-labelledby="contactFaqHeading">
+  <div class="faq-block-inner">
+    <div class="faq-intro reveal">
+      <div class="faq-eyebrow"><span class="num">IV.</span><span data-i18n="cnt.faq.eyebrow">Before you write</span></div>
+      <h2 id="contactFaqHeading" data-i18n-html="cnt.faq.title_html">Frequently <em>asked.</em></h2>
+      <p class="faq-desc" data-i18n="cnt.faq.desc">Six small notes that may save you a message. If the answer is not here, write to us. We read every letter.</p>
+      <p class="faq-help" data-i18n-html="cnt.faq.help_html">For wholesale or hospitality, the <a href="partners.html">partnership programme</a> has a dedicated form. For privacy and data requests, <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a>.</p>
+    </div>
+
+    <ul class="faq-list reveal delay-1">
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="cnt.faq.q1">How quickly do you reply?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="cnt.faq.a1_html">Within two working days, often faster. On Monday mornings, Friday afternoons and during harvest weeks it can take a little longer. For urgent order matters, write directly to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="cnt.faq.q2">Which channel should I use?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="cnt.faq.a2_html">Use <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a> for general questions, <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> for shipping and delivery, <a href="mailto:wholesale@harvestdeli.gr">wholesale@harvestdeli.gr</a> for retail and hospitality, and <a href="mailto:privacy@harvestdeli.gr">privacy@harvestdeli.gr</a> for data and access requests under the GDPR.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="cnt.faq.q3">Wholesale or hospitality enquiry?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="cnt.faq.a3_html">Send a short note via the form on our <a href="partners.html">partnership programme</a>. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Pelion the same week.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="cnt.faq.q4">My order has not arrived or arrived damaged.</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="cnt.faq.a4_html">Email <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a> with your order number and, where possible, a photograph of the outer box. We arrange a free replacement shipment or full refund within two working days. Read more on the <a href="legal-shipping.html">shipping</a> and <a href="legal-returns.html">returns</a> pages.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="cnt.faq.q5">Can I visit the estate or the depot?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="cnt.faq.a5_html">By appointment, yes. Press, wholesale partners and existing clients are welcome. Send a request with date and reason to <a href="mailto:hello@harvestdeli.gr">hello@harvestdeli.gr</a>. The Andreou cellar in Pelion is open to small groups between April and October.</p></div>
+      </li>
+      <li class="faq-row">
+        <button class="faq-q" aria-expanded="false"><span data-i18n="cnt.faq.q6">Do you exist on social media?</span><span class="plus" aria-hidden="true"></span></button>
+        <div class="faq-a"><p data-i18n-html="cnt.faq.a6_html">Quietly, on Instagram. We do not run paid advertising and we do not chase the algorithm. Subscribe to the <a href="journal.html">journal</a> for slower correspondence, three or four times a year.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+</main>
+
 <footer class="site-footer">
   <div class="footer-grid">
     <div>
@@ -654,16 +720,22 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <div class="footer-col">
       <h4 data-i18n="footer.col.house">House</h4>
       <a href="about.html" data-i18n="footer.link.origin">Origin</a>
+      <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
       <a href="index.html#process" data-i18n="footer.link.estate">Estate</a>
-      <a href="#" data-i18n="footer.link.journal">Journal</a>
+      <a href="journal.html" data-i18n="footer.link.journal">Journal</a>
+      <a href="partners.html">Wholesale</a>
+      <a href="legal-shipping.html">Shipping</a>
       <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4 data-i18n="footer.col.care">Care</h4>
-      <a href="#" data-i18n="footer.link.shipping">Shipping</a>
-      <a href="#" data-i18n="footer.link.sourcing">Sourcing</a>
-      <a href="contact.html" data-i18n="footer.link.trade">Trade</a>
-      <a href="contact.html" data-i18n="footer.link.press">Press</a>
+      <h4>Legal</h4>
+      <a href="legal-terms.html">Algemene voorwaarden</a>
+      <a href="legal-privacy.html">Privacyverklaring</a>
+      <a href="legal-cookies.html">Cookieverklaring</a>
+      <a href="legal-returns.html">Retour &amp; herroeping</a>
+      <a href="legal-shipping.html">Verzending</a>
+      <a href="legal-imprint.html">Bedrijfsgegevens</a>
+      <button class="linkish" type="button" data-open-cookie-prefs>Cookievoorkeuren</button>
     </div>
   </div>
   <div class="footer-bottom">

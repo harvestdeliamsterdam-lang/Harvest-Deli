@@ -1,0 +1,19 @@
+{
+  "name": "Harvest Deli — Single estate Greek honey",
+  "short_name": "Harvest Deli",
+  "description": "Cold extracted, single estate honey from Pelion, Greece. Numbered editions, sealed in wax.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5EFE4",
+  "theme_color": "#1F1A14",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    { "src": "/favicon.svg",                     "type": "image/svg+xml", "sizes": "any",     "purpose": "any" },
+    { "src": "/favicon-32.png",                  "type": "image/png",     "sizes": "32x32",   "purpose": "any" },
+    { "src": "/favicon-16.png",                  "type": "image/png",     "sizes": "16x16",   "purpose": "any" },
+    { "src": "/apple-touch-icon.png",            "type": "image/png",     "sizes": "180x180", "purpose": "any" },
+    { "src": "/android-chrome-192.png",          "type": "image/png",     "sizes": "192x192", "purpose": "any maskable" },
+    { "src": "/android-chrome-512.png",          "type": "image/png",     "sizes": "512x512", "purpose": "any maskable" }
+  ]
+}

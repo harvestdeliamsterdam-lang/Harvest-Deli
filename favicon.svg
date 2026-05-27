@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Harvest Deli">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FAE3A3"/>
+      <stop offset="50%" stop-color="#C99948"/>
+      <stop offset="100%" stop-color="#6E4B1B"/>
+    </linearGradient>
+    <radialGradient id="r" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#F5DEA0"/>
+      <stop offset="100%" stop-color="#8A6228"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="10" fill="#0E0B08"/>
+  <circle cx="32" cy="34" r="22" fill="url(#r)" opacity="0.18"/>
+  <!-- Honey drop -->
+  <path d="M32 14 C 24 26 20 32 20 38 a 12 12 0 0 0 24 0 C 44 32 40 26 32 14 Z"
+        fill="url(#g)"/>
+  <!-- Inner highlight -->
+  <path d="M30 30 C 27 34 26 37 27 40 a 4 4 0 0 0 6 -1"
+        stroke="#FAE3A3" stroke-width="1.4" stroke-linecap="round" fill="none" opacity="0.7"/>
+</svg>
