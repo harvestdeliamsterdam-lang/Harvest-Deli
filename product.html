@@ -957,21 +957,29 @@ footer {
    ================================================================= */
 @media (max-width: 540px) {
   /* Tighter horizontal rhythm everywhere */
-  .crumbs           { padding: 0 5% 3vh; }
-  .hero-stage       { padding: 0 5%; gap: 6vh; min-height: auto; }
+  .crumbs           { padding: 0 5% 2vh; font-size: 8.5px; gap: 10px; flex-wrap: wrap; }
+  .crumbs .sep      { width: 3px; }
+  .hero-stage       { padding: 0 5%; gap: 4vh; min-height: auto; }
   .tasting,
   .product-origin,
   .details,
   .also,
   footer            { padding-left: 5%; padding-right: 5%; }
-  .product-hero     { padding: 14vh 0 10vh; }
+  /* Compact hero: less top air, less below the image */
+  .product-hero     { padding: 10vh 0 8vh; }
   .tasting,
   .product-origin,
   .details          { padding-top: 10vh; padding-bottom: 10vh; }
   .also             { padding-top: 12vh; padding-bottom: 12vh; }
 
-  /* Big jar reads better at portrait-phone size */
-  .big-jar-frame    { aspect-ratio: 4 / 5; }
+  /* Big jar capped so it doesn't push buy info off-screen.
+     Was aspect-ratio: 4 / 5 (taller than wide on full-width phones)
+     → ~425 px tall on 375 px viewport, hiding the price + CTA below the fold.
+     Now: capped to 60vh so headline/price/CTA come into view sooner. */
+  .big-jar-frame    { aspect-ratio: 1 / 1; max-height: 60vh; margin: 0 auto; width: 100%; }
+  .big-jar-frame img { object-position: center 35%; }
+  /* No floating animation on phone — saves vertical bobble that adds perceived height */
+  .big-jar-frame    { animation: none; }
 
   /* Title + price block */
   .pd-title         { font-size: clamp(34px, 9.4vw, 44px); max-width: none; }
