@@ -992,10 +992,35 @@ footer {
   .pd-meta          { gap: 8px 10px; margin-bottom: 28px; }
   .pd-meta .tag     { padding: 7px 12px; font-size: 8.5px; padding-left: calc(12px + var(--track-label)); }
 
-  /* Size selector: 3 columns is too tight on 375 px — stack to 1 column */
+  /* Size selector: 3 columns is too tight on 375 px — stack to 1 column.
+     Note: the actual selector class is .variant-options (from shared.css),
+     not .pd-size. Both targeted below for safety. */
   .pd-size          { flex-direction: column; gap: 8px; margin-bottom: 28px; }
   .pd-size-opt      { padding: 14px 16px; flex-direction: row; align-items: center; justify-content: space-between; gap: 14px; text-align: left; }
   .pd-size-opt strong { font-size: 18px; }
+
+  .variant-selector { margin: 22px 0 24px; }
+  .variant-options {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+  }
+  .variant-options label {
+    width: 100%;
+    padding: 14px 16px;
+    padding-left: calc(16px + 0.36em);
+    border-right: none;
+    border-bottom: 1px solid rgba(26, 22, 18, 0.1);
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 9px;
+    letter-spacing: 0.32em;
+  }
+  .variant-options label:last-of-type { border-bottom: none; }
+  .variant-options label .sub {
+    font-size: 12px;
+  }
 
   /* Primary CTA: full-width pill on phones */
   .pd-cta {

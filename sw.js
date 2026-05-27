@@ -2,7 +2,7 @@
    Harvest Deli — Service Worker
    Cache-first for static assets, network-first for HTML pages.
    ================================================================= */
-const VERSION = 'hd-v13';
+const VERSION = 'hd-v14';
 const STATIC_CACHE = 'hd-static-' + VERSION;
 const PAGE_CACHE = 'hd-pages-' + VERSION;
 
