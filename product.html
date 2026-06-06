@@ -1261,17 +1261,31 @@ footer {
         </span>
       </div>
 
-      <div class="variant-selector" role="radiogroup" aria-label="Choose size">
-        <div class="lbl">Size &middot; <span id="productSku">HD-CHE-250</span></div>
+      <div class="variant-selector" role="radiogroup" aria-label="Kies formaat">
+        <div class="lbl" data-i18n="product.size.label">Formaat</div>
         <div class="variant-options">
-          <input type="radio" name="hd-variant" id="v-tasting" data-price="38" data-sku="HD-CHE-120">
-          <label for="v-tasting"><span>120g</span><span class="sub" data-i18n="product.size.tasting">Tasting</span></label>
-          <input type="radio" name="hd-variant" id="v-estate" data-price="68" data-sku="HD-CHE-250" checked>
-          <label for="v-estate"><span>250g</span><span class="sub" data-i18n="product.size.estate">Estate</span></label>
-          <input type="radio" name="hd-variant" id="v-reserve" data-price="128" data-sku="HD-CHE-500">
-          <label for="v-reserve"><span>500g</span><span class="sub" data-i18n="product.size.reserve">Reserve</span></label>
+          <input type="radio" name="hd-variant" id="v-tasting" data-price="38" data-sku="HD-CHE-120" data-edition="Proeverij" data-desc="Kennismakingsformaat — één-landgoed kastanjehoning.">
+          <label for="v-tasting"><span>120g</span></label>
+          <input type="radio" name="hd-variant" id="v-estate" data-price="68" data-sku="HD-CHE-250" data-edition="Landgoed-editie" data-desc="Eén-landgoed kastanjehoning uit Pelion." checked>
+          <label for="v-estate"><span>250g</span></label>
+          <input type="radio" name="hd-variant" id="v-reserve" data-price="128" data-sku="HD-CHE-500" data-edition="Reserve" data-desc="Het grote formaat, voor de liefhebber.">
+          <label for="v-reserve"><span>500g</span></label>
+        </div>
+        <div class="variant-meta">
+          <span class="vm-edition" id="vmEdition">Landgoed-editie</span>
+          <span class="vm-desc" id="vmDesc">Eén-landgoed kastanjehoning uit Pelion.</span>
+          <span id="productSku" hidden>HD-CHE-250</span>
         </div>
       </div>
+      <script>
+      (function(){
+        var radios = document.querySelectorAll('input[name="hd-variant"]');
+        var ed = document.getElementById('vmEdition'), de = document.getElementById('vmDesc');
+        function sync(r){ if(!r) return; if(ed && r.dataset.edition) ed.textContent = r.dataset.edition; if(de && r.dataset.desc) de.textContent = r.dataset.desc; }
+        radios.forEach(function(r){ r.addEventListener('change', function(){ if(r.checked) sync(r); }); });
+        sync(document.querySelector('input[name="hd-variant"]:checked'));
+      })();
+      </script>
 
       <button class="pd-cta" data-add-to-cart="chestnut"><span data-i18n="product.cta">Add to the cellar</span><span class="arrow"></span></button>
 

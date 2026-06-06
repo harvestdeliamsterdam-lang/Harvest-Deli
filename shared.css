@@ -2197,61 +2197,57 @@ body nav.site-nav .logo-mark.nav-size {
 .search-empty a { color: #D4AC6A; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 
 /* ------------ Variant selector (on product page) ------------ */
-.variant-selector {
-  margin: 28px 0 32px;
-}
+/* ---- Variant selector — minimal soft rectangles (Apple/Acne restraint) ---- */
+.variant-selector { margin: 28px 0 30px; }
 .variant-selector .lbl {
-  font-size: 9px;
-  letter-spacing: 0.42em;
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
   font-weight: 500;
-  margin-bottom: 14px;
-  padding-left: 0.42em;
+  margin-bottom: 12px;
 }
 .variant-options {
-  display: inline-flex;
-  gap: 0;
-  border: 1px solid rgba(26, 22, 18, 0.18);
-  border-radius: 2px;
-  background: var(--cream);
-  overflow: hidden;
+  display: flex;
+  gap: 10px;
+  background: none;
+  border: none;
 }
 .variant-options input { position: absolute; opacity: 0; pointer-events: none; }
 .variant-options label {
-  padding: 14px 22px;
-  padding-left: calc(22px + 0.36em);
+  flex: 0 0 auto;
+  min-width: 72px;
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 18px;
   font-family: 'Inter', sans-serif;
-  font-size: 9.5px;
-  letter-spacing: 0.36em;
+  font-size: 12px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   font-weight: 500;
   color: var(--ink);
+  background: transparent;
+  border: 1px solid rgba(26, 22, 18, 0.20);
+  border-radius: var(--radius-xs, 6px);
   cursor: pointer;
-  border-right: 1px solid rgba(26, 22, 18, 0.1);
-  transition: background 0.4s var(--ease), color 0.4s var(--ease);
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
+  transition: border-color 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease);
 }
-.variant-options label:last-of-type { border-right: none; }
-.variant-options label .sub {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: 11px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink-soft);
-  font-weight: 400;
-}
+.variant-options label:hover { border-color: rgba(26, 22, 18, 0.46); }
 .variant-options input:checked + label {
-  background: var(--ink);
-  color: var(--cream);
+  background: #241C14;            /* matte deep olive-brown — restrained, no gloss/glow */
+  border-color: #241C14;
+  color: #F3EAD9;
 }
-.variant-options input:checked + label .sub { color: var(--gold-light); }
-.variant-options label:hover { background: rgba(184, 148, 90, 0.08); }
-.variant-options input:focus-visible + label { outline: 2px solid var(--gold-deep); outline-offset: 1px; }
+.variant-options input:focus-visible + label { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+.variant-options .price-diff { display: none; }   /* no pricing inside the buttons */
+
+/* secondary edition info, beneath the selector */
+.variant-meta { margin-top: 16px; display: flex; flex-direction: column; gap: 3px; }
+.variant-meta .vm-edition { font-size: 14px; font-weight: 540; letter-spacing: -0.01em; color: var(--ink); }
+.variant-meta .vm-desc { font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
 
 /* Honeypot input — invisible to humans, visible to bots */
 .hp-field {
@@ -2883,17 +2879,8 @@ body.hd-loaded { opacity: 1; }
   padding-left: 0.36em;
 }
 
-/* 15. Variant price diff */
-.variant-options label .price-diff {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: 11px;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--gold-deep, #8A6228);
-  margin-left: 4px;
-  opacity: 0.78;
-}
+/* 15. Variant price diff — retired: pricing no longer shown inside buttons */
+.variant-options label .price-diff { display: none !important; }
 .variant-options input:checked + label .price-diff { color: var(--gold-light, #D4AC6A); opacity: 0.75; }
 
 /* 16. Sparkle moment */
@@ -3661,9 +3648,9 @@ html.hd-intro-done body {
 .filter-trigger, .sort-trigger, .wz-discount-apply, .wz-up-add, .btn-ghost,
 .search-result, .nav-acquire { border-radius: var(--radius-pill) !important; }
 
-/* 3 — option selectors: small = pill, large rows = soft */
-.variant-options label, .fp-chip, .qty, .wz-qty, .lp-methods span,
-.size-opt, .pd-size-opt { border-radius: var(--radius-pill) !important; }
+/* 3 — option selectors: small = pill, large rows = soft.
+   (.variant-options label intentionally excluded — it uses a small radius.) */
+.fp-chip, .qty, .wz-qty, .lp-methods span { border-radius: var(--radius-pill) !important; }
 .ship-opt { border-radius: var(--radius-soft) !important; }
 
 /* 4 — inputs (radius is invisible on underline inputs, refined on boxed ones) */
