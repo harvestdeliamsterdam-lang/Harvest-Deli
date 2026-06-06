@@ -1061,7 +1061,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
 }
 .card-region {
   font-family: 'Inter', sans-serif;
-  font-size: 9.5px;
+  font-size: 11px;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-soft);
@@ -1202,7 +1202,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
     appearance: none;
     border: 0;
     background: transparent;
-    padding: 13px;         /* ~33px touch area around a 7px dot */
+    padding: 18px;         /* ~43px touch area around a 7px dot */
     line-height: 0;
     cursor: pointer;
   }
@@ -1220,6 +1220,12 @@ section.chapter { padding: 20vh 8%; position: relative; }
     background: var(--gold, #b8945a);
     opacity: 1;
     transform: scale(1.3);
+  }
+  .preview-dot:focus-visible { outline: none; }
+  .preview-dot:focus-visible::before {
+    outline: 2px solid var(--gold, #b8945a);
+    outline-offset: 4px;
+    opacity: 1;
   }
 }
 @media (max-width: 700px) and (prefers-reduced-motion: reduce) {
@@ -2310,10 +2316,15 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     }, { threshold: 0.1 });
     revealAll.observe(grid);
 
+    // Mark the scroll region as a carousel for assistive tech
+    grid.setAttribute('role', 'group');
+    grid.setAttribute('aria-roledescription', 'carousel');
+    grid.setAttribute('aria-label', 'Collection');
+
     const dots = document.createElement('div');
     dots.className = 'preview-dots';
-    dots.setAttribute('role', 'tablist');
-    dots.setAttribute('aria-label', 'Collection carousel');
+    dots.setAttribute('role', 'group');
+    dots.setAttribute('aria-label', 'Collection carousel navigation');
     cards.forEach((card, i) => {
       const dot = document.createElement('button');
       dot.type = 'button';
