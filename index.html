@@ -92,7 +92,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-31">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-32">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1630,6 +1630,36 @@ footer {
   .oil-title { max-width: 20ch; }
 }
 
+/* ============ Editorial journal preview (Monocle x luxury food journal) ============ */
+.journal-preview { max-width: 1280px; margin: 0 auto; padding: clamp(70px, 12vh, 170px) 8%; }
+.jp-head { margin-bottom: clamp(36px, 5vw, 64px); max-width: 30ch; }
+.jp-eyebrow { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500; margin-bottom: 16px; }
+.jp-title { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540; font-size: clamp(30px, 4.2vw, 54px); letter-spacing: -0.03em; line-height: 1.04; color: var(--ink, #1F1A14); }
+.jp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(22px, 2.6vw, 44px); }
+.jp-card { display: block; text-decoration: none; color: inherit; }
+.jp-media { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--radius-card, 16px); background: var(--bg-deep, #EDE3D2); box-shadow: 0 24px 52px -32px rgba(40, 28, 12, 0.4); }
+.jp-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease, cubic-bezier(0.22,1,0.36,1)); }
+.jp-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(20,14,8,0.28) 100%); pointer-events: none; }
+.jp-card:hover .jp-media img { transform: scale(1.05); }
+.jp-meta { display: flex; align-items: center; gap: 10px; margin: 20px 0 10px; font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft, #5C5247); font-weight: 500; }
+.jp-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold, #B8945A); }
+.jp-card-title { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540; font-size: clamp(19px, 1.6vw, 23px); letter-spacing: -0.018em; line-height: 1.16; color: var(--ink, #1F1A14); margin-bottom: 10px; transition: color 0.4s var(--ease); }
+.jp-card:hover .jp-card-title { color: var(--gold-deep, #8A6228); }
+.jp-excerpt { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; color: var(--ink-soft, #5C5247); margin-bottom: 16px; max-width: 38ch; }
+.jp-read { display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--ink, #1F1A14); }
+.jp-read .arrow { width: 20px; height: 1px; background: currentColor; transition: width 0.4s var(--ease); display: inline-block; }
+.jp-card:hover .jp-read .arrow { width: 30px; }
+.jp-cta-wrap { margin-top: clamp(40px, 6vw, 72px); text-align: center; }
+.jp-cta { display: inline-flex; align-items: center; gap: 12px; font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 500; color: var(--ink, #1F1A14); text-decoration: none; padding: 15px 30px; border: 1px solid rgba(26,22,18,0.28); border-radius: var(--radius-pill, 999px); transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease); }
+.jp-cta .arrow { width: 18px; height: 1px; background: currentColor; transition: width 0.4s var(--ease); display: inline-block; }
+.jp-cta:hover { background: var(--ink, #1F1A14); color: var(--cream, #FAF6EE); border-color: var(--ink, #1F1A14); }
+.jp-cta:hover .arrow { width: 28px; }
+@media (max-width: 860px) {
+  .jp-grid { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 78%; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -8%; padding: 4px 8% 12px; scrollbar-width: none; }
+  .jp-grid::-webkit-scrollbar { display: none; }
+  .jp-card { scroll-snap-align: start; }
+}
+
 /* ============ Homepage hero, calm luxury after intro ============ */
 /* Clean the hero: the floating brand/tagline overlay is gone (the intro
    already presents the logo). Lighter vignette keeps the footage crisp.
@@ -1778,9 +1808,9 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
        The cinematic scene language is preserved as-is below. -->
   <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli, Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-31">
-      <source src="video.mp4?v=hd-2026-06-06-31" type="video/mp4">
-      <source src="v.webm?v=hd-2026-06-06-31" type="video/webm">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-32">
+      <source src="video.mp4?v=hd-2026-06-06-32" type="video/mp4">
+      <source src="v.webm?v=hd-2026-06-06-32" type="video/webm">
     </video>
   </div>
 
@@ -1878,7 +1908,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <p class="chapter-body" data-i18n="idx.ch1.body">For five generations, a single family has tended a thousand hives across the limestone ridges of Mount Pelion. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.</p>
     </div>
     <div class="image-frame reveal delay-1" id="originFrame">
-      <div class="if-media"><img class="origin-parallax" src="hero-poster.jpg?v=hd-2026-06-06-31" alt="Aerial view of beehives along a Pelion ridge at golden sunrise, fog drifting through the valley" loading="lazy"></div>
+      <div class="if-media"><img class="origin-parallax" src="hero-poster.jpg?v=hd-2026-06-06-32" alt="Aerial view of beehives along a Pelion ridge at golden sunrise, fog drifting through the valley" loading="lazy"></div>
       <span class="if-glow" aria-hidden="true"></span>
       <span class="caption" data-i18n="idx.ch1.caption">Pelion &middot; Spring harvest</span>
     </div>
@@ -1912,10 +1942,36 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </section>
 
 
-  <section class="chapter taste">
-    <div class="reveal">
-      <blockquote data-i18n="idx.taste.quote">A taste that holds the memory of a mountain morning. Warm, golden, slow to leave.</blockquote>
-      <cite data-i18n="idx.taste.cite">Notes from the tasting room</cite>
+  <section class="journal-preview" id="journal-preview" aria-labelledby="jpHeading">
+    <div class="jp-head reveal">
+      <div class="jp-eyebrow" data-i18n="jp.eyebrow">The Journal · Field notes from Pelion</div>
+      <h2 class="jp-title" id="jpHeading" data-i18n="jp.title">Slow reading from the mountain.</h2>
+    </div>
+    <div class="jp-grid">
+      <a class="jp-card reveal" href="article-taste-the-greek-sun.html">
+        <div class="jp-media"><img src="assets/olive-sunrise-poster.jpg?v=hd-2026-06-06-32" alt="Golden light over a Greek grove at sunrise" loading="lazy"></div>
+        <div class="jp-meta"><span data-i18n="jp.cat.tasting">Tasting</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.read.8">8 min</span></div>
+        <h3 class="jp-card-title" data-i18n="jp.a1.title">Taste the Greek sun.</h3>
+        <p class="jp-excerpt" data-i18n="jp.a1.excerpt">What the Greek sun actually tastes like, and how to read a single jar slowly, in three movements.</p>
+        <span class="jp-read" data-i18n-html="jp.read_html">Read the essay <span class="arrow" aria-hidden="true"></span></span>
+      </a>
+      <a class="jp-card reveal delay-1" href="article-griekse-honing-nederland.html">
+        <div class="jp-media"><img src="assets/market.png?v=hd-2026-06-06-32" alt="Amsterdam market stall with Greek honey" loading="lazy"></div>
+        <div class="jp-meta"><span data-i18n="jp.cat.guide">Guide</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.read.7">7 min</span></div>
+        <h3 class="jp-card-title" data-i18n="jp.a2.title">Where to buy real Greek honey in the Netherlands.</h3>
+        <p class="jp-excerpt" data-i18n="jp.a2.excerpt">How to tell single-estate mountain honey from the supermarket shelf, and where to find it in Amsterdam.</p>
+        <span class="jp-read" data-i18n-html="jp.read_html">Read the essay <span class="arrow" aria-hidden="true"></span></span>
+      </a>
+      <a class="jp-card reveal delay-2" href="article-griekse-honing-smaak.html">
+        <div class="jp-media"><img src="honeycomb.jpg?v=hd-2026-06-06-32" alt="Raw honeycomb dripping with honey" loading="lazy"></div>
+        <div class="jp-meta"><span data-i18n="jp.cat.tasting">Tasting</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.read.6">6 min</span></div>
+        <h3 class="jp-card-title" data-i18n="jp.a3.title">Why Greek honey tastes unlike supermarket honey.</h3>
+        <p class="jp-excerpt" data-i18n="jp.a3.excerpt">Mountain flowers, raw extraction and small batches: the quiet reasons one spoon lingers and another does not.</p>
+        <span class="jp-read" data-i18n-html="jp.read_html">Read the essay <span class="arrow" aria-hidden="true"></span></span>
+      </a>
+    </div>
+    <div class="jp-cta-wrap reveal">
+      <a class="jp-cta" href="journal.html"><span data-i18n="jp.cta">Visit the Journal</span> <span class="arrow" aria-hidden="true"></span></a>
     </div>
   </section>
 
@@ -1929,7 +1985,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
         <a href="product-olive-oil.html" class="oil-cta"><span data-i18n="oil.cta">Discover the oil</span> <span class="arrow"></span></a>
       </div>
       <figure class="oil-figure reveal delay-1">
-        <div class="oil-img-frame"><img src="assets/greekoliveoil.PNG?v=hd-2026-06-06-31" alt="Single-estate Harvest extra virgin olive oil on marble with olives and bread" loading="lazy"></div>
+        <div class="oil-img-frame"><img src="assets/greekoliveoil.PNG?v=hd-2026-06-06-32" alt="Single-estate Harvest extra virgin olive oil on marble with olives and bread" loading="lazy"></div>
         <figcaption class="oil-cap" data-i18n="oil.cap">Pelion · First cold pressing</figcaption>
       </figure>
     </div>
@@ -2299,7 +2355,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-31"></script>
+<script src="shared.js?v=hd-2026-06-06-32"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');
