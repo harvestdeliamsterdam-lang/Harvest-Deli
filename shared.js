@@ -194,7 +194,18 @@
       'markets.menu_sub': 'Find us in Amsterdam',
       'markets.eyebrow': 'From Pelion to Amsterdam',
       'markets.hero.h_html': 'Find us<br><em>in Amsterdam.</em>',
-      'markets.hero.sub': 'Meet Harvest Deli in person at our weekly and monthly market locations — quietly brought from the hills of Greece to the markets of Amsterdam.',
+      'markets.hero.h': 'Find us in Amsterdam',
+      'markets.hero.sub': 'A small selection of Greek honey, olive oil and mountain tea — available at selected markets and by appointment.',
+      'markets.badge.weekly': 'Weekly',
+      'markets.badge.monthly': 'Monthly',
+      'markets.label.where': 'Location',
+      'markets.label.when': 'When',
+      'markets.label.expect': 'What to expect',
+      'markets.expect.val': 'Greek honey, olive oil & mountain tea',
+      'markets.maps': 'Open in Google Maps',
+      'markets.contact.eyebrow': 'Inquiries',
+      'markets.contact.h': 'For market, wholesale or hospitality inquiries, write to us.',
+      'markets.contact.cta': 'Write to us',
       'markets.cards.eyebrow': 'Two tables',
       'markets.cards.h_html': 'Where you can find <em>the harvest.</em>',
       'markets.tenkate.tag': 'Weekly · West',
@@ -708,7 +719,18 @@
       'markets.menu_sub': 'Vind ons in Amsterdam',
       'markets.eyebrow': 'Van Pelion naar Amsterdam',
       'markets.hero.h_html': 'Vind ons<br><em>in Amsterdam.</em>',
-      'markets.hero.sub': 'Ontmoet Harvest Deli in het echt op onze wekelijkse en maandelijkse markten — stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
+      'markets.hero.h': 'Vind ons in Amsterdam',
+      'markets.hero.sub': 'Een kleine selectie Griekse honing, olijfolie en bergthee — verkrijgbaar op geselecteerde markten en op afspraak.',
+      'markets.badge.weekly': 'Wekelijks',
+      'markets.badge.monthly': 'Maandelijks',
+      'markets.label.where': 'Locatie',
+      'markets.label.when': 'Wanneer',
+      'markets.label.expect': 'Wat u kunt verwachten',
+      'markets.expect.val': 'Griekse honing, olijfolie & bergthee',
+      'markets.maps': 'Open in Google Maps',
+      'markets.contact.eyebrow': 'Vragen',
+      'markets.contact.h': 'Voor markt-, groothandel- of horecavragen, schrijf ons.',
+      'markets.contact.cta': 'Schrijf ons',
       'markets.cards.eyebrow': 'Twee tafels',
       'markets.cards.h_html': 'Waar u <em>de oogst</em> kunt vinden.',
       'markets.tenkate.tag': 'Wekelijks · West',
@@ -4259,9 +4281,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-4'], ['hd-search-js', 'search.js?v=hd-2026-06-06-4'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-4'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-4'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-4'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-4'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-4'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-4'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-4'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-4']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-5'], ['hd-search-js', 'search.js?v=hd-2026-06-06-5'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-5'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-5'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-5'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-5'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-5'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-5'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-5'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-5']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

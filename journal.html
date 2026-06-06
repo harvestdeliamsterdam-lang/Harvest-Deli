@@ -18,7 +18,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-4">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-5">
 
 <script type="application/ld+json">
 {
@@ -664,6 +664,88 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   .menu-side { padding-left: 0; border-left: none; border-top: 1px solid rgba(245,239,228,0.08); padding-top: 5vh; }
   .menu-bottom { flex-direction: column; gap: 16px; text-align: center; }
 }
+
+/* =========================================================
+   JOURNAL — editorial redesign (2026)
+   Less boxy, image-led, warm Mediterranean, grotesk.
+   Supersedes the older carded grid above (now unused).
+   ========================================================= */
+.jr { max-width: 1180px; margin: 0 auto; padding: 0 6vw; }
+
+/* Hero — calm, asymmetric (left-aligned), airy */
+.jr-hero { padding: clamp(140px, 22vh, 244px) 0 clamp(38px, 6vh, 78px); max-width: 940px; }
+.jr-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; margin-bottom: 26px; }
+.jr-hero__h { font-size: clamp(40px, 6.4vw, 92px); line-height: 1.0; letter-spacing: -0.035em; color: var(--ink); margin: 0 0 26px; font-weight: 540; max-width: 15ch; }
+.jr-hero__intro { max-width: 56ch; font-size: clamp(16px, 1.5vw, 18px); line-height: 1.72; color: var(--ink-soft); }
+
+/* Featured — large, cinematic, calm */
+.jr-featured { padding: clamp(20px, 4vh, 56px) 0 clamp(56px, 9vh, 116px); }
+.jr-feat { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(34px, 5vw, 80px); align-items: center; text-decoration: none; color: inherit; }
+.jr-feat__media { position: relative; aspect-ratio: 5 / 4; border-radius: var(--radius-card, 16px); overflow: hidden; box-shadow: 0 34px 80px -46px rgba(31, 26, 20, 0.4); }
+.jr-feat__img { position: absolute; inset: 0; background: var(--tone, #E0D6C2); transition: transform 1.4s var(--ease); }
+.jr-feat:hover .jr-feat__img { transform: scale(1.04); }
+.jr-feat__cap { position: absolute; bottom: 18px; left: 20px; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(31, 26, 20, 0.6); font-weight: 600; }
+.jr-feat__badge { display: inline-block; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--gold-deep); margin-bottom: 20px; }
+.jr-feat__meta { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); opacity: 0.82; display: flex; gap: 13px; align-items: center; margin-bottom: 22px; }
+.jr-feat__meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold); }
+.jr-feat__title { font-size: clamp(30px, 3.6vw, 50px); line-height: 1.06; letter-spacing: -0.028em; color: var(--ink); margin: 0 0 20px; font-weight: 540; }
+.jr-feat__excerpt { font-size: 16px; line-height: 1.72; color: var(--ink-soft); margin: 0 0 30px; max-width: 46ch; }
+.jr-readlink { display: inline-flex; align-items: center; gap: 14px; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--ink); transition: color 0.5s var(--ease); }
+.jr-readlink .arrow { width: 20px; height: 1px; background: currentColor; position: relative; transition: width 0.4s var(--ease); }
+.jr-readlink .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
+.jr-feat:hover .jr-readlink { color: var(--gold-deep); }
+.jr-feat:hover .jr-readlink .arrow { width: 30px; }
+
+/* Archive — editorial list, no cards */
+.jr-archive { padding: clamp(40px, 7vh, 88px) 0 clamp(60px, 10vh, 130px); border-top: 1px solid rgba(31, 26, 20, 0.08); }
+.jr-archive__head { margin-bottom: clamp(42px, 6vh, 76px); }
+.jr-archive__h { font-size: clamp(26px, 3.4vw, 44px); line-height: 1.08; letter-spacing: -0.025em; color: var(--ink); margin: 14px 0 0; font-weight: 540; }
+.jr-list { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 4vw, 64px) clamp(36px, 4vw, 56px); }
+.jr-post { display: block; text-decoration: none; color: inherit; }
+.jr-post.is-upcoming { pointer-events: none; }
+.jr-post__media { position: relative; aspect-ratio: 3 / 2; border-radius: var(--radius-card, 16px); overflow: hidden; margin-bottom: 22px; }
+.jr-post__img { position: absolute; inset: 0; background: var(--tone, #E0D6C2); transition: transform 1s var(--ease); }
+.jr-post:hover .jr-post__img { transform: scale(1.03); }
+.jr-post.is-upcoming .jr-post__media { opacity: 0.92; }
+.jr-post__cat { font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
+.jr-post__title { font-size: clamp(20px, 2.2vw, 28px); line-height: 1.12; letter-spacing: -0.02em; color: var(--ink); margin: 12px 0 12px; font-weight: 540; }
+.jr-post__excerpt { font-size: 14.5px; line-height: 1.62; color: var(--ink-soft); opacity: 0.9; margin: 0 0 14px; max-width: 48ch; }
+.jr-post__meta { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); opacity: 0.7; }
+
+/* editorial rhythm: stagger every 2nd item on wide screens.
+   Uses margin (not transform) so it never fights the .reveal animation. */
+@media (min-width: 920px) {
+  .jr-list .jr-post:nth-child(even) { margin-top: 56px; }
+}
+
+/* Newsletter — quiet, no heavy box */
+.jr-news { border-top: 1px solid rgba(31, 26, 20, 0.08); padding: clamp(58px, 10vh, 116px) 0; text-align: center; }
+.jr-news__h { font-size: clamp(24px, 3vw, 40px); line-height: 1.1; letter-spacing: -0.025em; color: var(--ink); margin: 14px auto 16px; max-width: 18ch; font-weight: 540; }
+.jr-news__p { max-width: 50ch; margin: 0 auto 30px; font-size: 15px; line-height: 1.68; color: var(--ink-soft); }
+.jr-news__form { display: flex; gap: 10px; max-width: 460px; margin: 0 auto; }
+.jr-news__form input { flex: 1; background: rgba(255, 253, 248, 0.6); border: 1px solid rgba(31, 26, 20, 0.14); border-radius: var(--radius-soft, 10px); padding: 14px 16px; font-size: 15px; color: var(--ink); outline: none; transition: border-color .4s var(--ease), box-shadow .4s var(--ease); }
+.jr-news__form input:focus { border-color: rgba(184, 148, 90, 0.55); box-shadow: 0 0 0 4px rgba(184, 148, 90, 0.1); }
+.jr-news__form button { flex: none; background: var(--ink); color: var(--cream); border: none; border-radius: var(--radius-pill, 999px); padding: 14px 26px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: background .4s var(--ease); }
+.jr-news__form button:hover { background: var(--gold-deep); }
+
+/* Soft, warm Mediterranean tone fields (replace the near-black blocks) */
+.tone-honey  { --tone: radial-gradient(120% 120% at 28% 24%, rgba(255,243,214,0.85), transparent 62%), linear-gradient(150deg, #EAD7A6 0%, #CDA766 100%); }
+.tone-bee    { --tone: radial-gradient(120% 120% at 30% 26%, rgba(255,238,200,0.8), transparent 60%), linear-gradient(150deg, #F1DEAC 0%, #D6AC6A 100%); }
+.tone-thyme  { --tone: radial-gradient(120% 120% at 65% 35%, rgba(245,240,210,0.7), transparent 60%), linear-gradient(150deg, #D2CBA0 0%, #9BA06A 100%); }
+.tone-pine   { --tone: radial-gradient(120% 120% at 40% 40%, rgba(232,236,212,0.6), transparent 60%), linear-gradient(150deg, #BEC4A4 0%, #7C8A60 100%); }
+.tone-cellar { --tone: radial-gradient(120% 120% at 50% 40%, rgba(245,236,218,0.7), transparent 60%), linear-gradient(150deg, #D8C9AE 0%, #9A8A6E 100%); }
+.tone-jar    { --tone: radial-gradient(120% 120% at 45% 38%, rgba(248,242,230,0.7), transparent 60%), linear-gradient(150deg, #E0D6C2 0%, #B7A488 100%); }
+
+@media (max-width: 880px) {
+  .jr-feat { grid-template-columns: 1fr; gap: 28px; }
+  .jr-feat__media { aspect-ratio: 16 / 10; }
+  .jr-list { grid-template-columns: 1fr; gap: 44px; }
+  .jr-list .jr-post:nth-child(even) { margin-top: 0; }
+}
+@media (max-width: 560px) {
+  .jr-news__form { flex-direction: column; }
+  .jr-news__form button { width: 100%; }
+}
 </style>
 </head>
 <body>
@@ -736,132 +818,101 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </div>
 
-<main id="content">
+<main id="content" class="jr">
 
+  <!-- ============ Hero ============ -->
+  <section class="jr-hero reveal">
+    <div class="jr-eyebrow">The Journal · Field notes from Pelion</div>
+    <h1 class="jr-hero__h">Slow notes from a single mountain.</h1>
+    <p class="jr-hero__intro">Tasting essays, harvest journals and quiet reports from the cellar. We publish only when the season has something to say.</p>
+  </section>
 
-<!-- ============ Journal hero ============ -->
-<section class="journal-hero">
-  <div class="journal-eyebrow">The Journal &middot; Field notes from Pelion</div>
-  <h1 class="journal-headline">Slow notes from a <em>single mountain.</em></h1>
-  <p class="journal-intro">Tasting essays, harvest journals and quiet reports from the cellar. We publish only when the season has something to say.</p>
-</section>
+  <!-- ============ Featured ============ -->
+  <section class="jr-featured">
+    <a class="jr-feat reveal" href="article-taste-the-greek-sun.html" aria-label="Read: Taste the Greek Sun">
+      <div class="jr-feat__media">
+        <span class="jr-feat__img tone-honey" aria-hidden="true"></span>
+        <span class="jr-feat__cap">Pelion · Late summer 2026</span>
+      </div>
+      <div class="jr-feat__text">
+        <span class="jr-feat__badge">Edition I · Featured</span>
+        <div class="jr-feat__meta"><span>Tasting</span><span class="dot"></span><span>26 May 2026</span><span class="dot"></span><span>8 min read</span></div>
+        <h2 class="jr-feat__title">Taste the Greek Sun.</h2>
+        <p class="jr-feat__excerpt">What the Greek sun actually tastes like, why Pelion makes honey unlike anywhere else, and how to taste a single jar — slowly, in three movements.</p>
+        <span class="jr-readlink">Read the essay <span class="arrow" aria-hidden="true"></span></span>
+      </div>
+    </a>
+  </section>
 
-<!-- ============ Featured article ============ -->
-<section class="featured-section">
-  <a class="featured-card reveal" href="article-taste-the-greek-sun.html" aria-label="Read: Taste the Greek Sun">
-    <div class="featured-image">
-      <span class="featured-tag">Edition I &middot; Tasting</span>
-      <span class="featured-caption">Pelion &middot; Late summer 2026</span>
+  <!-- ============ Archive ============ -->
+  <section class="jr-archive">
+    <div class="jr-archive__head reveal">
+      <div class="jr-eyebrow">More from the cellar</div>
+      <h2 class="jr-archive__h">From the archive.</h2>
     </div>
-    <div class="featured-text">
-      <div class="featured-meta">
-        <span>Tasting</span>
-        <span class="dot"></span>
-        <span>26 May 2026</span>
-        <span class="dot"></span>
-        <span>8 min read</span>
-      </div>
-      <h2 class="featured-title">Taste the Greek <em>Sun.</em></h2>
-      <p class="featured-excerpt">What the Greek sun actually tastes like, why Pelion makes honey unlike anywhere else, and how to taste a single jar — slowly, in three movements.</p>
-      <span class="read-link">Read the essay <span class="arrow"></span></span>
+
+    <div class="jr-list">
+      <article class="jr-post is-upcoming reveal">
+        <div class="jr-post__media"><span class="jr-post__img tone-thyme" aria-hidden="true"></span></div>
+        <div class="jr-post__cat">Harvest</div>
+        <h3 class="jr-post__title">The thyme bloom: seven days a year.</h3>
+        <p class="jr-post__excerpt">A field journal from the wild-thyme harvest in Lakonia. The window is short, the bees are exact, and the honey is almost translucent.</p>
+        <div class="jr-post__meta">Coming June 2026 · 6 min read</div>
+      </article>
+
+      <article class="jr-post is-upcoming reveal">
+        <div class="jr-post__media"><span class="jr-post__img tone-cellar" aria-hidden="true"></span></div>
+        <div class="jr-post__cat">Process</div>
+        <h3 class="jr-post__title">Why we never heat the honey.</h3>
+        <p class="jr-post__excerpt">A quiet defence of cold extraction — what dies at 40 degrees, what survives at sixteen, and why temperature is the most important number in the cellar.</p>
+        <div class="jr-post__meta">Coming June 2026 · 5 min read</div>
+      </article>
+
+      <article class="jr-post is-upcoming reveal">
+        <div class="jr-post__media"><span class="jr-post__img tone-pine" aria-hidden="true"></span></div>
+        <div class="jr-post__cat">Estate</div>
+        <h3 class="jr-post__title">Hive №47, at twelve eighty.</h3>
+        <p class="jr-post__excerpt">The highest hive on the estate. A morning's walk from the road. What the altitude does to the honey, the bees, and the man who climbs to find them.</p>
+        <div class="jr-post__meta">Coming July 2026 · 7 min read</div>
+      </article>
+
+      <article class="jr-post is-upcoming reveal">
+        <div class="jr-post__media"><span class="jr-post__img tone-jar" aria-hidden="true"></span></div>
+        <div class="jr-post__cat">Pairing</div>
+        <h3 class="jr-post__title">Honey at the table.</h3>
+        <p class="jr-post__excerpt">Six pairings, written by a chef from Athens. Chestnut with aged manouri. Pine with smoked almond. Orange blossom with goat's milk and bay.</p>
+        <div class="jr-post__meta">Coming July 2026 · 9 min read</div>
+      </article>
+
+      <article class="jr-post is-upcoming reveal">
+        <div class="jr-post__media"><span class="jr-post__img tone-bee" aria-hidden="true"></span></div>
+        <div class="jr-post__cat">Estate</div>
+        <h3 class="jr-post__title">A year on the mountain.</h3>
+        <p class="jr-post__excerpt">Twelve photographs and twelve sentences. The estate in January, in March, in the heat of August. The cellar in the cold light of November.</p>
+        <div class="jr-post__meta">Coming August 2026 · 4 min read</div>
+      </article>
+
+      <article class="jr-post is-upcoming reveal">
+        <div class="jr-post__media"><span class="jr-post__img tone-honey" aria-hidden="true"></span></div>
+        <div class="jr-post__cat">Origin</div>
+        <h3 class="jr-post__title">The 1882 notebook.</h3>
+        <p class="jr-post__excerpt">A great-grandfather's harvest book, pulled from above the oak vats. Yields and temperatures and one sentence about a bear that came in October.</p>
+        <div class="jr-post__meta">Coming September 2026 · 11 min read</div>
+      </article>
     </div>
-  </a>
-</section>
+  </section>
 
-<!-- ============ Article grid ============ -->
-<section class="grid-section">
-  <div class="grid-head reveal">
-    <div>
-      <div class="eyebrow">— More from the cellar</div>
-      <h2>From the <em>archive.</em></h2>
-    </div>
-    <div class="grid-filter">
-      <span class="active">All</span>
-      <span class="sep"></span>
-      <span>Tasting</span>
-      <span class="sep"></span>
-      <span>Harvest</span>
-      <span class="sep"></span>
-      <span>Process</span>
-      <span class="sep"></span>
-      <span>Estate</span>
-    </div>
-  </div>
-
-  <div class="articles-grid">
-    <article class="article-card upcoming reveal">
-      <div class="card-image tone-thyme">
-        <span class="card-tag">Harvest</span>
-        <span class="card-status">Publishing &middot; June</span>
-      </div>
-      <div class="card-meta"><span>Harvest</span><span class="dot"></span><span>Coming June 2026</span><span class="dot"></span><span>6 min read</span></div>
-      <h3 class="card-title">The thyme bloom: <em>seven days</em> a year.</h3>
-      <p class="card-excerpt">A field journal from the wild-thyme harvest in Lakonia. The window is short, the bees are exact, and the honey is almost translucent.</p>
-    </article>
-
-    <article class="article-card upcoming reveal delay-1">
-      <div class="card-image tone-cellar">
-        <span class="card-tag">Process</span>
-        <span class="card-status">Publishing &middot; June</span>
-      </div>
-      <div class="card-meta"><span>Process</span><span class="dot"></span><span>Coming June 2026</span><span class="dot"></span><span>5 min read</span></div>
-      <h3 class="card-title">Why we never <em>heat</em> the honey.</h3>
-      <p class="card-excerpt">A quiet defence of cold extraction — what dies at 40 degrees, what survives at sixteen, and why temperature is the most important number in the cellar.</p>
-    </article>
-
-    <article class="article-card upcoming reveal delay-2">
-      <div class="card-image tone-pine">
-        <span class="card-tag">Estate</span>
-        <span class="card-status">Publishing &middot; July</span>
-      </div>
-      <div class="card-meta"><span>Estate</span><span class="dot"></span><span>Coming July 2026</span><span class="dot"></span><span>7 min read</span></div>
-      <h3 class="card-title">Hive №47, at <em>twelve eighty.</em></h3>
-      <p class="card-excerpt">The highest hive on the estate. A morning's walk from the road. What the altitude does to the honey, the bees, and the man who climbs to find them.</p>
-    </article>
-
-    <article class="article-card upcoming reveal">
-      <div class="card-image tone-jar">
-        <span class="card-tag">Pairing</span>
-        <span class="card-status">Publishing &middot; July</span>
-      </div>
-      <div class="card-meta"><span>Pairing</span><span class="dot"></span><span>Coming July 2026</span><span class="dot"></span><span>9 min read</span></div>
-      <h3 class="card-title">Honey at the <em>table.</em></h3>
-      <p class="card-excerpt">Six pairings, written by a chef from Athens. Chestnut with aged manouri. Pine with smoked almond. Orange blossom with goat's milk and bay.</p>
-    </article>
-
-    <article class="article-card upcoming reveal delay-1">
-      <div class="card-image tone-bee">
-        <span class="card-tag">Estate</span>
-        <span class="card-status">Publishing &middot; August</span>
-      </div>
-      <div class="card-meta"><span>Estate</span><span class="dot"></span><span>Coming August 2026</span><span class="dot"></span><span>4 min read</span></div>
-      <h3 class="card-title">A year on the <em>mountain.</em></h3>
-      <p class="card-excerpt">Twelve photographs and twelve sentences. The estate in January, in March, in the heat of August. The cellar in the cold light of November.</p>
-    </article>
-
-    <article class="article-card upcoming reveal delay-2">
-      <div class="card-image tone-honey">
-        <span class="card-tag">Origin</span>
-        <span class="card-status">Publishing &middot; September</span>
-      </div>
-      <div class="card-meta"><span>Origin</span><span class="dot"></span><span>Coming September 2026</span><span class="dot"></span><span>11 min read</span></div>
-      <h3 class="card-title">The <em>1882</em> notebook.</h3>
-      <p class="card-excerpt">A great-grandfather's harvest book, pulled from above the oak vats. Yields and temperatures and one sentence about a bear that came in October.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ============ Newsletter ============ -->
-<section class="newsletter-strip">
-  <div class="eyebrow">— Quiet correspondence</div>
-  <h2>Once a season, a <em>letter</em> from Pelion.</h2>
-  <p>Three or four times a year. Harvest notes, allocation updates and a single, slow essay. No noise, no marketing.</p>
-  <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed';">
-    <label for="journalNewsletterEmail" class="vh">Email address</label>
-    <input id="journalNewsletterEmail" type="email" placeholder="your@email.com" autocomplete="email" required>
-    <button type="submit">Subscribe <span aria-hidden="true">→</span></button>
-  </form>
-</section>
+  <!-- ============ Newsletter ============ -->
+  <section class="jr-news reveal">
+    <div class="jr-eyebrow">Quiet correspondence</div>
+    <h2 class="jr-news__h">Once a season, a letter from Pelion.</h2>
+    <p class="jr-news__p">Three or four times a year. Harvest notes, allocation updates and a single, slow essay. No noise, no marketing.</p>
+    <form class="jr-news__form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed';">
+      <label for="journalNewsletterEmail" class="vh">Email address</label>
+      <input id="journalNewsletterEmail" type="email" placeholder="your@email.com" autocomplete="email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
 
 </main>
 
@@ -905,7 +956,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-4"></script>
+<script src="shared.js?v=hd-2026-06-06-5"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
