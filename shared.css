@@ -3502,17 +3502,18 @@ html.hd-intro-done body {
     radial-gradient(120% 90% at 50% 45%, var(--hd-intro-green-soft) 0%, var(--hd-intro-green) 55%, var(--hd-intro-green-deep) 100%);
   overflow: hidden;
   isolation: isolate;
-  clip-path: inset(0% 0% 0% 0%);
-  -webkit-clip-path: inset(0% 0% 0% 0%);
-  transition: clip-path 1100ms cubic-bezier(0.76, 0, 0.24, 1);
-  -webkit-transition: -webkit-clip-path 1100ms cubic-bezier(0.76, 0, 0.24, 1);
-  will-change: clip-path;
+  opacity: 1;
+  /* Smooth cinematic cross-fade out (more robust across devices than a
+     clip-path curtain, and never leaves a hard edge / black jump). The
+     hero video is already playing underneath, so the reveal is seamless. */
+  transition: opacity 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity;
   pointer-events: auto;
   cursor: pointer;
 }
 .hd-intro.exiting {
-  clip-path: inset(100% 0% 0% 0%);
-  -webkit-clip-path: inset(100% 0% 0% 0%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ---- Layer 1: wave pattern (scallop arches, brand-derived) ---- */
@@ -3647,7 +3648,10 @@ html.hd-intro-done body {
   aspect-ratio: 260 / 100;
   opacity: 0;
   transform: translate3d(0, 8px, 0) scale(0.94);
-  filter: drop-shadow(0 0 22px rgba(201, 153, 72, 0.28));
+  /* Soft ivory wordmark with a quiet glow, high contrast on dark footage */
+  filter: brightness(0) invert(0.97)
+          drop-shadow(0 0 24px rgba(255, 248, 233, 0.45))
+          drop-shadow(0 0 72px rgba(232, 201, 130, 0.26));
   will-change: opacity, transform;
   animation:
     hdIntroMarkIn 1500ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards,
@@ -3668,7 +3672,7 @@ html.hd-intro-done body {
   letter-spacing: 0.5em;
   font-weight: 400;
   text-transform: uppercase;
-  color: rgba(232, 201, 130, 0.7);
+  color: rgba(247, 240, 228, 0.74);
   margin: 4px 0 0 0.5em;
   opacity: 0;
   transform: translate3d(0, 4px, 0);
@@ -4362,12 +4366,14 @@ body #cartDrawer.is-empty .cart-foot { display: none !important; }
 }
 
 /* =================================================================
-   INTRO LOGO, brighter, clearer treatment (was lost on dark green)
+   INTRO LOGO, soft ivory wordmark + quiet glow (high contrast on the
+   dark cinematic backdrop; was a weak gold-on-green before).
    ================================================================= */
 .hd-intro__mark {
-  filter: brightness(1.5) saturate(0.82)
-          drop-shadow(0 0 34px rgba(255, 230, 175, 0.5))
-          drop-shadow(0 16px 46px rgba(0, 0, 0, 0.55)) !important;
+  filter: brightness(0) invert(0.97)
+          drop-shadow(0 0 26px rgba(255, 248, 233, 0.5))
+          drop-shadow(0 0 74px rgba(232, 201, 130, 0.28))
+          drop-shadow(0 18px 46px rgba(0, 0, 0, 0.5)) !important;
 }
 .hd-intro__halo {
   background: radial-gradient(closest-side,
@@ -4384,7 +4390,7 @@ body #cartDrawer.is-empty .cart-foot { display: none !important; }
   filter: blur(22px); pointer-events: none;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hd-intro__mark { filter: brightness(1.45) saturate(0.85) drop-shadow(0 0 24px rgba(255,230,175,0.4)) !important; }
+  .hd-intro__mark { filter: brightness(0) invert(0.97) drop-shadow(0 0 24px rgba(255,248,233,0.45)) !important; }
 }
 
 /* =================================================================
