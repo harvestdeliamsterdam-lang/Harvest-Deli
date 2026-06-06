@@ -194,8 +194,9 @@
       'markets.menu_sub': 'Find us in Amsterdam',
       'markets.eyebrow': 'From Pelion to Amsterdam',
       'markets.hero.h_html': 'Find us<br><em>in Amsterdam.</em>',
-      'markets.hero.h': 'Find us in Amsterdam',
-      'markets.hero.sub': 'A small selection of Greek honey, olive oil and mountain tea — available at selected markets and by appointment.',
+      'markets.hero.kicker': 'The markets',
+      'markets.hero.h': 'From Pelion to Amsterdam.',
+      'markets.hero.sub': 'Quiet market mornings, mountain harvests and slow conversations.',
       'markets.badge.weekly': 'Weekly',
       'markets.badge.monthly': 'Monthly',
       'markets.label.where': 'Location',
@@ -743,8 +744,9 @@
       'markets.menu_sub': 'Vind ons in Amsterdam',
       'markets.eyebrow': 'Van Pelion naar Amsterdam',
       'markets.hero.h_html': 'Vind ons<br><em>in Amsterdam.</em>',
-      'markets.hero.h': 'Vind ons in Amsterdam',
-      'markets.hero.sub': 'Een kleine selectie Griekse honing, olijfolie en bergthee — verkrijgbaar op geselecteerde markten en op afspraak.',
+      'markets.hero.kicker': 'De markten',
+      'markets.hero.h': 'Van Pelion naar Amsterdam.',
+      'markets.hero.sub': 'Stille marktochtenden, bergoogsten en trage gesprekken.',
       'markets.badge.weekly': 'Wekelijks',
       'markets.badge.monthly': 'Maandelijks',
       'markets.label.where': 'Locatie',
@@ -4329,9 +4331,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-6'], ['hd-search-js', 'search.js?v=hd-2026-06-06-6'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-6'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-6'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-6'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-6'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-6'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-6'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-6'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-6']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-7'], ['hd-search-js', 'search.js?v=hd-2026-06-06-7'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-7'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-7'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-7'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-7'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-7'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-7'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-7'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-7']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

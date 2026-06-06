@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-6">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-7">
 
 <script type="application/ld+json">
 {
@@ -790,66 +790,69 @@ body.markets-page nav.site-nav {
 }
 
 /* =========================================================
-   FIND US — compact minimal redesign (2026)
-   Light, airy, scannable. Supersedes the older cinematic
-   layout; legacy .m-* rules above are no longer referenced.
+   FIND US — atmospheric editorial redesign (2026)
+   Calm Mediterranean storytelling: ambient light hero, alternating
+   image+text market rows (not UI cards), soft sunlight + drifting motes.
+   Legacy .m-* rules above are unused.
    ========================================================= */
-.fu { background: var(--m-beige, #F5EDDC); }
-.fu-wrap { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+.fu { position: relative; background: var(--m-beige, #F5EDDC); overflow: hidden; }
+/* page-wide soft Mediterranean light wash */
+.fu::before {
+  content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(78% 48% at 88% -4%, rgba(255, 247, 226, 0.92), transparent 62%),
+    radial-gradient(64% 42% at 4% 16%, rgba(212, 172, 106, 0.10), transparent 60%),
+    radial-gradient(90% 55% at 50% 110%, rgba(123, 116, 78, 0.08), transparent 60%);
+}
+.fu > * { position: relative; z-index: 1; }
+.fu-wrap { max-width: 980px; margin: 0 auto; padding: 0 24px; }
 
-.fu-hero { padding: clamp(118px, 16vh, 196px) 0 clamp(36px, 6vh, 72px); text-align: center; }
-.fu-hero .fu-wrap { max-width: 720px; }
-.fu-eyebrow {
-  display: inline-block; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-  font-weight: 600; color: var(--m-gold-deep, #8A6228); margin-bottom: 22px;
-}
-.fu-title {
-  font-size: clamp(34px, 5.4vw, 58px); line-height: 1.04; letter-spacing: -0.03em;
-  font-weight: 560; color: var(--m-ink, #1F1A14); margin: 0 0 20px;
-}
-.fu-sub {
-  font-size: clamp(15px, 1.6vw, 18px); line-height: 1.62; color: var(--m-ink-soft, #5C5247);
-  max-width: 52ch; margin: 0 auto; opacity: 0.95;
-}
+/* Hero — atmospheric */
+.fu-hero { position: relative; padding: clamp(138px, 20vh, 228px) 0 clamp(40px, 7vh, 84px); text-align: center; isolation: isolate; }
+.fu-hero__atmos { position: absolute; inset: -8% -8% 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.fu-haze { position: absolute; inset: 0; background: radial-gradient(48% 38% at 50% 30%, rgba(255, 250, 238, 0.85), transparent 70%); animation: fuHaze 17s ease-in-out infinite alternate; }
+.fu-mote { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: radial-gradient(circle, rgba(232, 201, 130, 0.9), rgba(232, 201, 130, 0)); opacity: 0; }
+.fu-mote.m1 { left: 18%; bottom: 6%; animation: fuMote 13s linear infinite; }
+.fu-mote.m2 { left: 42%; bottom: 1%; width: 4px; height: 4px; animation: fuMote 17s linear 3s infinite; }
+.fu-mote.m3 { left: 67%; bottom: 5%; animation: fuMote 15s linear 6s infinite; }
+.fu-mote.m4 { left: 84%; bottom: 0%; width: 3px; height: 3px; animation: fuMote 19s linear 1.5s infinite; }
+@keyframes fuHaze { 0% { transform: translate3d(-2%, 0, 0) scale(1); opacity: 0.8; } 100% { transform: translate3d(2%, -3%, 0) scale(1.06); opacity: 1; } }
+@keyframes fuMote { 0% { opacity: 0; transform: translateY(0); } 14% { opacity: 0.7; } 80% { opacity: 0.45; } 100% { opacity: 0; transform: translateY(-230px); } }
+.fu-hero__inner { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; }
+.fu-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; color: var(--m-gold-deep, #8A6228); margin-bottom: 24px; }
+.fu-eyebrow::before, .fu-eyebrow::after { content: ''; width: 28px; height: 1px; background: linear-gradient(90deg, transparent, rgba(138, 98, 40, 0.5)); }
+.fu-eyebrow::after { background: linear-gradient(90deg, rgba(138, 98, 40, 0.5), transparent); }
+.fu-title { font-size: clamp(38px, 6.4vw, 82px); line-height: 0.98; letter-spacing: -0.035em; font-weight: 560; color: var(--m-ink, #1F1A14); margin: 0 0 22px; }
+.fu-sub { font-size: clamp(16px, 1.7vw, 20px); line-height: 1.55; color: var(--m-ink-soft, #5C5247); max-width: 42ch; margin: 0 auto; }
 
-.fu-markets { padding: clamp(18px, 4vh, 36px) 0 clamp(48px, 8vh, 88px); }
-.fu-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
-@media (min-width: 760px) { .fu-list { grid-template-columns: 1fr 1fr; gap: 22px; } }
-
-.fu-card {
-  background: rgba(255, 253, 248, 0.6);
-  border: 1px solid rgba(31, 26, 20, 0.08);
-  border-radius: var(--radius-card, 16px);
-  padding: clamp(24px, 3vw, 34px);
-  display: flex; flex-direction: column;
-  transition: border-color 0.5s var(--ease-soft), box-shadow 0.5s var(--ease-soft), transform 0.5s var(--ease-soft);
-}
-.fu-card:hover { border-color: rgba(184,148,90,0.4); box-shadow: 0 24px 50px -34px rgba(31,26,20,0.3); transform: translateY(-2px); }
-.fu-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 20px; }
-.fu-card__name { font-size: clamp(20px, 2.4vw, 26px); letter-spacing: -0.02em; font-weight: 550; color: var(--m-ink, #1F1A14); margin: 0; }
-.fu-badge {
-  flex: none; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-  color: var(--m-olive, #2E3A23); background: rgba(74, 90, 55, 0.12);
-  padding: 6px 12px; border-radius: 999px; white-space: nowrap;
-}
-.fu-meta { margin: 0 0 18px; display: grid; gap: 11px; }
-.fu-meta__row { display: grid; grid-template-columns: 92px 1fr; gap: 14px; align-items: baseline; }
-.fu-meta dt { font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-ink-soft, #8A7F6F); font-weight: 600; opacity: 0.8; }
-.fu-meta dd { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--m-ink, #1F1A14); }
-.fu-card__note { font-size: 14px; line-height: 1.65; color: var(--m-ink-soft, #5C5247); opacity: 0.85; margin: 0 0 22px; }
-.fu-maplink {
-  margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 10px;
-  font-size: 11px; letter-spacing: 0.05em; font-weight: 600; text-transform: uppercase;
-  color: var(--m-ink, #1F1A14); text-decoration: none; padding: 11px 0; min-height: 44px;
-  transition: color 0.4s var(--ease-soft);
-}
+/* Markets — alternating image + text editorial rows (no cards) */
+.fu-markets { padding: clamp(24px, 5vh, 56px) 0 clamp(36px, 6vh, 72px); }
+.fu-market { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(28px, 5vh, 54px) 0; }
+.fu-market + .fu-market { border-top: 1px solid rgba(31, 26, 20, 0.08); }
+.fu-market__figure { position: relative; aspect-ratio: 5 / 4; border-radius: var(--radius-card, 16px); overflow: hidden; box-shadow: 0 38px 84px -54px rgba(31, 26, 20, 0.42); }
+.fu-market__img { position: absolute; inset: 0; transition: transform 1.6s var(--ease-soft); }
+.fu-market:hover .fu-market__img { transform: scale(1.04); }
+.fu-market__badge { position: absolute; top: 16px; left: 16px; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--m-ink, #1F1A14); background: rgba(255, 253, 247, 0.86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); padding: 7px 13px; border-radius: 999px; }
+.fu-market__cap { position: absolute; bottom: 16px; left: 18px; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(31, 26, 20, 0.62); font-weight: 600; }
+.fu-market:nth-of-type(even) .fu-market__figure { order: 2; }
+.fu-market__name { font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.028em; font-weight: 550; color: var(--m-ink, #1F1A14); margin: 0 0 18px; }
+.fu-meta { margin: 0 0 20px; display: grid; gap: 11px; }
+.fu-meta__row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; }
+.fu-meta dt { font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--m-ink-soft, #8A7F6F); font-weight: 600; opacity: 0.75; }
+.fu-meta dd { margin: 0; font-size: 15px; line-height: 1.5; color: var(--m-ink, #1F1A14); }
+.fu-market__note { font-size: 15px; line-height: 1.7; color: var(--m-ink-soft, #5C5247); opacity: 0.9; margin: 0 0 24px; max-width: 42ch; }
+.fu-maplink { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.05em; font-weight: 600; text-transform: uppercase; color: var(--m-ink, #1F1A14); text-decoration: none; padding: 11px 0; min-height: 44px; transition: color 0.4s var(--ease-soft); }
 .fu-maplink svg { width: 15px; height: 15px; stroke: var(--m-gold-deep, #8A6228); fill: none; stroke-width: 1.6; flex: none; }
 .fu-maplink:hover { color: var(--m-gold-deep, #8A6228); }
 .fu-maplink .fu-arrow { width: 16px; height: 1px; background: currentColor; position: relative; transition: width .4s var(--ease-soft); }
-.fu-maplink .fu-arrow::after { content:''; position:absolute; right:0; top:-3px; width:6px; height:6px; border-right:1px solid currentColor; border-top:1px solid currentColor; transform: rotate(45deg); }
+.fu-maplink .fu-arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
 .fu-maplink:hover .fu-arrow { width: 24px; }
 
-.fu-expect { text-align: center; margin: 30px 0 0; font-size: 13.5px; letter-spacing: 0.01em; color: var(--m-ink-soft, #5C5247); }
+/* warm Mediterranean tone panels (stand-in for editorial photography) */
+.fu-tone-tenkate { background: radial-gradient(120% 110% at 26% 22%, rgba(255, 245, 216, 0.92), transparent 60%), linear-gradient(150deg, #EAD7A6 0%, #CDA86A 58%, #B6975A 100%); }
+.fu-tone-west { background: radial-gradient(120% 110% at 70% 24%, rgba(245, 241, 214, 0.82), transparent 60%), linear-gradient(150deg, #D8CCA2 0%, #A8AF79 58%, #8C9463 100%); }
+
+.fu-expect { text-align: center; margin: clamp(20px, 4vh, 40px) 0 0; font-size: 13.5px; letter-spacing: 0.02em; color: var(--m-ink-soft, #5C5247); }
 .fu-expect strong { color: var(--m-ink, #1F1A14); font-weight: 600; }
 
 .fu-contact { border-top: 1px solid rgba(31, 26, 20, 0.08); padding: clamp(48px, 9vh, 96px) 0; }
@@ -857,24 +860,27 @@ body.markets-page nav.site-nav {
 .fu-contact__text { max-width: 30ch; }
 .fu-contact__h { font-size: clamp(22px, 2.6vw, 30px); line-height: 1.2; letter-spacing: -0.02em; font-weight: 550; color: var(--m-ink, #1F1A14); margin: 10px 0 0; }
 .fu-eyebrow--dark { color: var(--m-gold-deep, #8A6228); margin-bottom: 0; }
-.fu-btn {
-  flex: none; display: inline-flex; align-items: center; gap: 18px;
-  background: var(--m-ink, #1F1A14); color: var(--m-cream, #FAF6EE);
-  padding: 17px 34px; border-radius: 999px; text-decoration: none;
-  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600;
-  box-shadow: 0 14px 30px -16px rgba(31, 26, 20, 0.55);
-  transition: background .5s var(--ease-soft), transform .5s var(--ease-soft), box-shadow .5s var(--ease-soft);
-}
+.fu-eyebrow--dark::before, .fu-eyebrow--dark::after { display: none; }
+.fu-btn { flex: none; display: inline-flex; align-items: center; gap: 18px; background: var(--m-ink, #1F1A14); color: var(--m-cream, #FAF6EE); padding: 17px 34px; border-radius: 999px; text-decoration: none; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; box-shadow: 0 14px 30px -16px rgba(31, 26, 20, 0.55); transition: background .5s var(--ease-soft), transform .5s var(--ease-soft), box-shadow .5s var(--ease-soft); }
 .fu-btn:hover { background: var(--m-gold-deep, #8A6228); transform: translateY(-1px); box-shadow: 0 18px 36px -16px rgba(138, 98, 40, 0.5); }
 .fu-btn .fu-arrow { width: 18px; height: 1px; background: currentColor; position: relative; transition: width .4s var(--ease-soft); }
-.fu-btn .fu-arrow::after { content:''; position:absolute; right:0; top:-3px; width:6px; height:6px; border-right:1px solid currentColor; border-top:1px solid currentColor; transform: rotate(45deg); }
+.fu-btn .fu-arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
 .fu-btn:hover .fu-arrow { width: 26px; }
 
+@media (max-width: 760px) {
+  .fu-market { grid-template-columns: 1fr; gap: 22px; padding: 36px 0; }
+  .fu-market:nth-of-type(even) .fu-market__figure { order: 0; }
+  .fu-market__figure { aspect-ratio: 16 / 10; }
+}
 @media (max-width: 600px) {
   .fu-contact__inner { flex-direction: column; align-items: flex-start; }
   .fu-btn { width: 100%; justify-content: center; }
-  .fu-meta__row { grid-template-columns: 78px 1fr; }
+  .fu-meta__row { grid-template-columns: 84px 1fr; }
 }
+@media (prefers-reduced-motion: reduce) {
+  .fu-haze, .fu-mote, .fu-market__img { animation: none !important; transition: none !important; }
+}
+
 </style>
 </head>
 <body class="markets-page">
@@ -943,27 +949,36 @@ body.markets-page nav.site-nav {
 
 <main class="fu">
 
-  <!-- ============ HERO (minimal) ============ -->
+  <!-- ============ HERO (atmospheric) ============ -->
   <section class="fu-hero" aria-labelledby="markets-hero-h">
-    <div class="fu-wrap m-reveal">
-      <span class="fu-eyebrow" data-i18n="markets.eyebrow">From Pelion to Amsterdam</span>
-      <h1 class="fu-title" id="markets-hero-h" data-i18n="markets.hero.h">Find us in Amsterdam</h1>
-      <p class="fu-sub" data-i18n="markets.hero.sub">A small selection of Greek honey, olive oil and mountain tea — available at selected markets and by appointment.</p>
+    <div class="fu-hero__atmos" aria-hidden="true">
+      <span class="fu-haze"></span>
+      <span class="fu-mote m1"></span>
+      <span class="fu-mote m2"></span>
+      <span class="fu-mote m3"></span>
+      <span class="fu-mote m4"></span>
+    </div>
+    <div class="fu-hero__inner m-reveal">
+      <span class="fu-eyebrow" data-i18n="markets.hero.kicker">The markets</span>
+      <h1 class="fu-title" id="markets-hero-h" data-i18n="markets.hero.h">From Pelion to Amsterdam.</h1>
+      <p class="fu-sub" data-i18n="markets.hero.sub">Quiet market mornings, mountain harvests and slow conversations.</p>
     </div>
   </section>
 
-  <!-- ============ MARKET CARDS ============ -->
+  <!-- ============ MARKETS (editorial rows) ============ -->
   <section class="fu-markets" aria-labelledby="markets-cards-h">
     <div class="fu-wrap">
       <h2 class="vh" id="markets-cards-h">Markets</h2>
-      <ul class="fu-list">
 
-        <!-- Ten Kate -->
-        <li class="fu-card m-reveal">
-          <div class="fu-card__top">
-            <h3 class="fu-card__name" data-i18n="markets.tenkate.title">Ten Kate Market</h3>
-            <span class="fu-badge" data-i18n="markets.badge.weekly">Weekly</span>
-          </div>
+      <!-- Ten Kate -->
+      <article class="fu-market m-reveal">
+        <div class="fu-market__figure">
+          <span class="fu-market__img fu-tone-tenkate" aria-hidden="true"></span>
+          <span class="fu-market__badge" data-i18n="markets.badge.weekly">Weekly</span>
+          <span class="fu-market__cap">Amsterdam-West</span>
+        </div>
+        <div class="fu-market__body">
+          <h3 class="fu-market__name" data-i18n="markets.tenkate.title">Ten Kate Market</h3>
           <dl class="fu-meta">
             <div class="fu-meta__row">
               <dt data-i18n="markets.label.where">Location</dt>
@@ -974,20 +989,24 @@ body.markets-page nav.site-nav {
               <dd data-i18n="markets.tenkate.hours">Monday — Saturday · 09:00 — 17:00</dd>
             </div>
           </dl>
-          <p class="fu-card__note" data-i18n="markets.tenkate.desc">Our weekly table — a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we'll pour the morning coffee.</p>
+          <p class="fu-market__note" data-i18n="markets.tenkate.desc">Our weekly table — a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we'll pour the morning coffee.</p>
           <a class="fu-maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Ten+Kate+Markt%2C+Amsterdam" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
             <span data-i18n="markets.maps">Open in Google Maps</span>
             <span class="fu-arrow" aria-hidden="true"></span>
           </a>
-        </li>
+        </div>
+      </article>
 
-        <!-- Westerpark -->
-        <li class="fu-card m-reveal m-reveal--d1">
-          <div class="fu-card__top">
-            <h3 class="fu-card__name" data-i18n="markets.westerpark.title">Sunday Market · Westerpark</h3>
-            <span class="fu-badge" data-i18n="markets.badge.monthly">Monthly</span>
-          </div>
+      <!-- Westerpark -->
+      <article class="fu-market m-reveal">
+        <div class="fu-market__figure">
+          <span class="fu-market__img fu-tone-west" aria-hidden="true"></span>
+          <span class="fu-market__badge" data-i18n="markets.badge.monthly">Monthly</span>
+          <span class="fu-market__cap">Westergasterrein</span>
+        </div>
+        <div class="fu-market__body">
+          <h3 class="fu-market__name" data-i18n="markets.westerpark.title">Sunday Market · Westerpark</h3>
           <dl class="fu-meta">
             <div class="fu-meta__row">
               <dt data-i18n="markets.label.where">Location</dt>
@@ -998,15 +1017,14 @@ body.markets-page nav.site-nav {
               <dd data-i18n="markets.westerpark.hours">First Sunday of every month · 11:00 — 17:00</dd>
             </div>
           </dl>
-          <p class="fu-card__note" data-i18n="markets.westerpark.desc">A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.</p>
+          <p class="fu-market__note" data-i18n="markets.westerpark.desc">A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.</p>
           <a class="fu-maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Westergasterrein%2C+Amsterdam" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
             <span data-i18n="markets.maps">Open in Google Maps</span>
             <span class="fu-arrow" aria-hidden="true"></span>
           </a>
-        </li>
-
-      </ul>
+        </div>
+      </article>
 
       <p class="fu-expect m-reveal">
         <span data-i18n="markets.label.expect">What to expect</span> — <strong data-i18n="markets.expect.val">Greek honey, olive oil &amp; mountain tea</strong>
@@ -1067,7 +1085,7 @@ body.markets-page nav.site-nav {
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-6"></script>
+<script src="shared.js?v=hd-2026-06-06-7"></script>
 <script>
   // Intersection-observed reveals — calm, restrained, never restless
   (function () {
