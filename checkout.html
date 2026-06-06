@@ -796,6 +796,141 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   .wz-actions .confirm-btn, .wz-step .wz-place { /* keep inline buttons usable too */ }
 }
 .wz-mobile-btn .arrow, .wz-secure-inline svg { flex:none; }
+
+/* =================================================================
+   CHECKOUT — modern luxury cinematic refinement (2026)
+   Soft floating panels, translucent cream, gold progress, calm motion.
+   Overrides the squarer base above; functionality unchanged.
+   ================================================================= */
+:root { --ck-rad: 20px; --ck-rad-sm: 14px; --ck-ease: cubic-bezier(0.22,1,0.36,1); }
+
+/* Warm ambient background glow (no flat plain bg) */
+.checkout-wrap { position: relative; max-width: 1520px; margin: 0 auto; }
+.checkout-wrap::before {
+  content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(58% 48% at 28% 8%, rgba(255, 247, 230, 0.7), transparent 60%),
+    radial-gradient(46% 46% at 92% 102%, rgba(212, 172, 106, 0.07), transparent 60%);
+}
+.checkout-main { padding: 8vh 7% 16vh 9%; }
+/* Right column: lighter translucent cream, not a hard beige slab */
+.checkout-side {
+  background: linear-gradient(180deg, rgba(247, 240, 228, 0.6), rgba(238, 228, 208, 0.5));
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border-left: 1px solid rgba(184, 148, 90, 0.14);
+}
+
+/* Header steps — thin, animated gold progress, soft active glow */
+.wz-steps { margin: 0 0 44px; }
+.wz-dot .n { border-radius: 50%; transition: all .5s var(--ck-ease); }
+.wz-dot:not(:last-child)::after { width: 26px; background: rgba(26,22,18,0.16); transition: background .5s var(--ck-ease); }
+.wz-dot.done:not(:last-child)::after { background: var(--gold, #B8945A); }
+.wz-dot.active .n {
+  background: var(--ink); border-color: var(--ink); color: var(--cream);
+  box-shadow: 0 0 0 5px rgba(212, 172, 106, 0.18), 0 8px 18px -8px rgba(40,24,8,0.5);
+}
+.wz-dot.done .n { background: var(--gold-deep, #8A6228); border-color: var(--gold-deep, #8A6228); }
+
+/* Load motion — calm fade-up, staggered */
+@keyframes ckFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.checkout-main > *, .checkout-side > * { animation: ckFadeUp .7s var(--ck-ease) both; }
+.checkout-side > *:nth-child(2){animation-delay:.06s} .checkout-side > *:nth-child(3){animation-delay:.12s}
+.checkout-main .step-block { animation: ckFadeUp .7s var(--ck-ease) both; }
+
+/* Form inputs → soft contained (less hard underline rectangles) */
+.field input, .field select {
+  border: 1px solid rgba(26,22,18,0.12) !important;
+  border-radius: var(--ck-rad-sm) !important;
+  background: rgba(255,253,248,0.6) !important;
+  padding: 14px 16px !important;
+  transition: border-color .4s var(--ck-ease), box-shadow .4s var(--ck-ease), background .4s var(--ck-ease);
+}
+.field input:focus, .field select:focus {
+  border-color: rgba(184,148,90,0.55) !important; background: rgba(255,253,248,0.92) !important;
+  box-shadow: 0 0 0 4px rgba(184,148,90,0.1) !important;
+}
+.field input::placeholder { font-style: normal; }
+
+/* Ship options → floating rounded panels */
+.ship-opt { border: 1px solid rgba(26,22,18,0.1); border-radius: var(--ck-rad-sm); background: rgba(255,253,248,0.5); padding: 16px 18px; transition: border-color .4s var(--ck-ease), box-shadow .4s var(--ck-ease), transform .4s var(--ck-ease); }
+.ship-opt:hover { border-color: rgba(184,148,90,0.5); box-shadow: 0 16px 34px -24px rgba(40,24,8,0.4); transform: translateY(-1px); }
+.ship-opt.active { border-color: rgba(184,148,90,0.6); background: rgba(255,252,246,0.85); box-shadow: 0 0 0 3px rgba(212,172,106,0.14); }
+.ship-opt .title { font-style: normal; }
+
+/* Review section → soft floating glass panels (was hard 1px grey grid) */
+.wz-review-grid { background: none !important; border: none !important; gap: 14px; }
+.wz-review-cell {
+  background: rgba(255,253,248,0.62) !important;
+  border: 1px solid rgba(184,148,90,0.14);
+  border-radius: var(--ck-rad);
+  padding: 22px 22px !important;
+  box-shadow: 0 18px 44px -34px rgba(40,24,8,0.32);
+  transition: transform .5s var(--ck-ease), box-shadow .5s var(--ck-ease), border-color .5s var(--ck-ease);
+}
+.wz-review-cell:hover { transform: translateY(-2px); box-shadow: 0 26px 56px -34px rgba(40,24,8,0.4); border-color: rgba(184,148,90,0.34); }
+
+/* Upsell cards → soft rounded */
+.wz-up-card { border: 1px solid rgba(184,148,90,0.14); border-radius: var(--ck-rad-sm); background: rgba(255,253,248,0.6); transition: transform .4s var(--ck-ease), box-shadow .4s var(--ck-ease); }
+.wz-up-card:hover { transform: translateY(-2px); box-shadow: 0 18px 38px -26px rgba(40,24,8,0.36); }
+.wz-up-card img { border-radius: 10px; }
+
+/* Product lines → editorial hover + image zoom + soft separators */
+.wz-line { border-bottom: 1px solid rgba(26,22,18,0.06); border-radius: var(--ck-rad-sm); padding: 18px 12px; margin: 0 -12px; transition: background .4s var(--ck-ease), transform .4s var(--ck-ease); }
+.wz-line:hover { background: rgba(184,148,90,0.05); transform: translateY(-1px); }
+.wz-line-thumb { border-radius: var(--ck-rad-sm); box-shadow: 0 12px 24px -16px rgba(40,24,8,0.4); }
+.wz-line-thumb img { transition: transform .7s var(--ck-ease); }
+.wz-line:hover .wz-line-thumb img { transform: scale(1.07); }
+.wz-qty { background: rgba(255,253,248,0.7); border-color: rgba(26,22,18,0.1); box-shadow: inset 0 1px 0 rgba(255,255,255,0.6); }
+.wz-qty-btn { transition: color .3s var(--ck-ease), transform .2s var(--ck-ease); }
+.wz-qty-btn:active { transform: scale(0.86); }
+
+/* Discount → soft */
+.wz-discount input { border-radius: var(--ck-rad-sm); border-color: rgba(26,22,18,0.12); }
+.wz-discount-apply { border-radius: var(--radius-pill, 999px); }
+
+/* Summary totals — tabular + cinematic hierarchy */
+.sm-line-price, .sm-row span, .sm-row.sm-grand span, .wz-mobile-total { font-feature-settings: "tnum","lnum"; }
+.sm-row.sm-grand span:last-child { font-weight: 600; letter-spacing: -0.02em; }
+.wz-free-progress { border-radius: var(--radius-pill, 999px); background: rgba(212,172,106,0.14); }
+
+/* Trust strip — quiet, no boxy borders */
+.trust-strip { border: none; gap: 8px; }
+.trust-cell { background: rgba(255,253,248,0.4); border: 1px solid rgba(184,148,90,0.12); border-radius: var(--ck-rad-sm); }
+
+/* Buttons → soft pill + tactile sheen + animated arrow */
+.confirm-btn, .wz-mobile-btn {
+  border-radius: var(--radius-pill, 999px) !important;
+  box-shadow: 0 18px 38px -20px rgba(40,24,8,0.55);
+  transition: background .5s var(--ck-ease), box-shadow .5s var(--ck-ease), transform .5s var(--ck-ease);
+  position: relative; overflow: hidden;
+}
+.confirm-btn:hover, .wz-mobile-btn:hover { transform: translateY(-1px); box-shadow: 0 24px 48px -20px rgba(138,98,40,0.5); }
+.confirm-btn::after, .wz-mobile-btn::after {
+  content: ''; position: absolute; top: 0; left: -40%; width: 40%; height: 100%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255,245,220,0.22), transparent); transform: skewX(-18deg); opacity: 0;
+}
+.confirm-btn:hover::after, .wz-mobile-btn:hover::after { animation: ckSheen .9s var(--ck-ease); }
+@keyframes ckSheen { 0%{left:-40%;opacity:0} 20%{opacity:1} 100%{left:130%;opacity:0} }
+.confirm-btn .arrow, .wz-mobile-btn .arrow { transition: width .4s var(--ck-ease), transform .4s var(--ck-ease); }
+.confirm-btn:hover .arrow, .wz-mobile-btn:hover .arrow { transform: translateX(5px); }
+.wz-mobile-bar { border-radius: 20px 20px 0 0; }
+
+/* No-italics (brand rule) — class-level italics not caught by global em reset */
+.side-title em, .step-num h3 em, .wz-edit em { font-style: normal !important; }
+
+/* Soft gold divider accents */
+.wz-upsell, .wz-faq { border-top-color: rgba(184,148,90,0.18); }
+
+@media (max-width: 880px) {
+  .checkout-main { padding: 6vh 7% 12vh; }
+  .checkout-side { border-left: none; border-top: 1px solid rgba(184,148,90,0.14); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .checkout-main > *, .checkout-side > *, .checkout-main .step-block { animation: none !important; }
+  .confirm-btn:hover::after, .wz-mobile-btn:hover::after { animation: none; }
+  .wz-line:hover .wz-line-thumb img { transform: none; }
+}
+
 </style>
 </head>
 <body>
@@ -1055,15 +1190,6 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
     <div data-wz-summary class="wz-summary"></div>
     <p id="wzFreeProgress" class="wz-free-progress" role="status" aria-live="polite" hidden></p>
-
-    <div class="packaging-card">
-      <h5 data-i18n="checkout.package.lbl">Luxury packaging</h5>
-      <h4 data-i18n-html="checkout.package.h_html">Sealed in <em>wax.</em> Boxed in oak veneer.</h4>
-      <p data-i18n="checkout.package.p">Each jar is wrapped by hand, sealed with black wax, and laid in an oak-veneered presentation box. A handwritten card travels with the order.</p>
-      <div class="box-render">
-        <div class="box-tag" data-i18n="checkout.package.tag">Edition I &middot; 2025 Harvest</div>
-      </div>
-    </div>
 
     <div class="trust-strip">
       <div class="trust-cell">
