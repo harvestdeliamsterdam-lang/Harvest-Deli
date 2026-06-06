@@ -62,8 +62,8 @@
     root.classList.remove('hd-intro-pending');
     root.classList.add('hd-intro-active');
 
-    const HOLD = reduced ? 900 : 2600;   // ms before the curtain begins to rise
-    const EXIT = reduced ? 600 : 1100;   // ms for the curtain transition itself
+    const HOLD = reduced ? 2200 : 4600;  // ms before the curtain begins to rise (cinematic, unhurried)
+    const EXIT = reduced ? 800 : 1400;   // ms for the curtain transition itself
 
     let dismissed = false;
     let exitTimer = setTimeout(beginExit, HOLD);
@@ -4386,9 +4386,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-18'], ['hd-search-js', 'search.js?v=hd-2026-06-06-18'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-18'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-18'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-18'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-18'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-18'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-18'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-18'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-18']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-19'], ['hd-search-js', 'search.js?v=hd-2026-06-06-19'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-19'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-19'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-19'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-19'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-19'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-19'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-19'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-19']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

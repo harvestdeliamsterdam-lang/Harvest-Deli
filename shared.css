@@ -4385,3 +4385,35 @@ body nav.site-nav .nav-acquire:not(.honey-shop)::after {
 body nav.site-nav .nav-acquire:not(.honey-shop):hover::after { transform: scaleX(1); opacity: 1; box-shadow: 0 0 8px rgba(236, 206, 147, 0.5); }
 
 @media (prefers-reduced-motion: reduce) { body nav.site-nav::before { animation: none; } body nav.site-nav .menu-btn:hover, body nav.site-nav .nav-acquire:hover { transform: none; } }
+
+/* =================================================================
+   MENU OVERLAY — global structural base (some pages, e.g. legal +
+   wishlist, ship the markup without the inline layout CSS, so the
+   overlay opened invisible). This guarantees it works everywhere;
+   colours/composition come from the redesign block above.
+   ================================================================= */
+body .menu-overlay {
+  position: fixed; inset: 0; z-index: 150;
+  display: flex; flex-direction: column;
+  padding: 32px 48px; overflow: hidden;
+  opacity: 0; pointer-events: none;
+}
+body .menu-overlay.open { opacity: 1; pointer-events: auto; }
+body .menu-overlay .menu-top { display: flex; justify-content: space-between; align-items: center; padding-bottom: clamp(5vh, 7vh, 9vh); position: relative; z-index: 2; }
+body .menu-overlay .menu-close { display: inline-flex; align-items: center; gap: 14px; cursor: pointer; background: none; border: none; }
+body .menu-overlay .menu-content { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8%; flex: 1; align-items: center; position: relative; z-index: 2; }
+body .menu-overlay .menu-items { list-style: none; margin: 0; padding: 0; }
+body .menu-overlay .menu-items li { display: grid; grid-template-columns: 60px 1fr auto; align-items: baseline; gap: 32px; opacity: 0; transform: translateY(28px); }
+body .menu-overlay.open .menu-items li { opacity: 1; transform: none; }
+body .menu-overlay .menu-items a { display: inline-block; text-decoration: none; }
+body .menu-overlay .menu-side { opacity: 0; transform: translateX(28px); }
+body .menu-overlay.open .menu-side { opacity: 1; transform: none; }
+body .menu-overlay .menu-bottom { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+@media (max-width: 900px) {
+  body .menu-overlay { padding: 22px 24px; }
+  body .menu-overlay .menu-content { grid-template-columns: 1fr; gap: 6vh; align-items: start; }
+  body .menu-overlay .menu-items li { grid-template-columns: 36px 1fr; gap: 14px; padding: 18px 0; }
+  body .menu-overlay .menu-items .sub { grid-column: 1 / -1; text-align: left; padding-left: 50px; margin-top: -6px; }
+  body .menu-overlay .menu-side { padding-left: 0; border-left: none; border-top: 1px solid rgba(42, 35, 27, 0.1); padding-top: 5vh; }
+  body .menu-overlay .menu-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
