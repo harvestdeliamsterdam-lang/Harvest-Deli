@@ -4211,3 +4211,48 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 /* Remove the duplicate/outdated native free-ship bar (€90); the commerce.js
    .hd-free-bar (€120, matches the brand + cart note) is the single source. */
 #cartProgress { display: none !important; }
+
+/* =================================================================
+   QUICK VIEW actions — locked-height pill buttons, never wrap/shift
+   ================================================================= */
+.qv-content .qv-actions { gap: 10px; align-items: stretch; }
+.qv-content .qv-actions .cta,
+.qv-content .qv-actions .cta-ghost,
+.qv-content .qv-add,
+.qv-content .qv-view {
+  height: 60px !important;
+  min-height: 60px !important;
+  border-radius: var(--radius-pill, 999px) !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+  padding: 0 26px !important;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-align: center;
+  transition: box-shadow .25s var(--ease, ease), transform .25s var(--ease, ease), background .25s var(--ease, ease), border-color .25s var(--ease, ease), filter .25s var(--ease, ease);
+}
+.qv-content .qv-add { flex: 1 1 auto; min-width: 0; gap: 14px; }
+.qv-content .qv-view { flex: 0 0 auto; }
+.qv-content .qv-add:hover, .qv-content .qv-actions .cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px -16px rgba(40, 24, 8, 0.5);
+}
+/* Active: NO scaling / NO resizing — subtle lift + brightness + gold edge */
+.qv-content .qv-add:active, .qv-content .qv-actions .cta:active {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 2px rgba(212, 172, 106, 0.4), 0 16px 32px -16px rgba(40, 24, 8, 0.5);
+}
+.qv-content .qv-add .arrow { transition: transform .3s var(--ease, ease); }
+.qv-content .qv-add:hover .arrow { transform: translateX(4px); }
+@media (max-width: 480px) {
+  .qv-content .qv-actions .cta, .qv-content .qv-actions .cta-ghost,
+  .qv-content .qv-add, .qv-content .qv-view { padding: 0 18px !important; letter-spacing: 0.06em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qv-content .qv-add:hover, .qv-content .qv-actions .cta:hover,
+  .qv-content .qv-add:active, .qv-content .qv-actions .cta:active { transform: none; }
+}

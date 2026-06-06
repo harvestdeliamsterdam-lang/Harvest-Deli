@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-13">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-14">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -931,6 +931,48 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   .wz-line:hover .wz-line-thumb img { transform: none; }
 }
 
+
+/* =================================================================
+   DELIVERY SELECTOR — calm luxury cards (warm cream, gold radio)
+   ================================================================= */
+.ship-options { gap: 14px; }
+.ship-opt {
+  -webkit-tap-highlight-color: transparent;
+  border: 1px solid rgba(184, 148, 90, 0.18) !important;
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  padding: 20px 22px !important;
+  box-shadow: 0 10px 26px -22px rgba(40, 24, 8, 0.3);
+  transition: border-color .25s var(--ck-ease, ease), background .25s var(--ck-ease, ease), box-shadow .25s var(--ck-ease, ease), transform .25s var(--ck-ease, ease);
+}
+.ship-opt:hover { border-color: rgba(184, 148, 90, 0.45) !important; box-shadow: 0 20px 40px -26px rgba(40, 24, 8, 0.4); transform: translateY(-2px); }
+.ship-opt.active {
+  border-color: rgba(184, 148, 90, 0.55) !important;
+  background: rgba(252, 246, 235, 0.92) !important;
+  box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.16), 0 20px 44px -28px rgba(40, 24, 8, 0.42);
+}
+/* Gold luxury radio with animated fill */
+.ship-opt .radio {
+  width: 20px; height: 20px;
+  border: 1.5px solid rgba(184, 148, 90, 0.45);
+  transition: border-color .25s var(--ck-ease, ease), box-shadow .25s var(--ck-ease, ease);
+}
+.ship-opt.active .radio { border-color: var(--gold-deep, #8A6228); box-shadow: 0 0 0 4px rgba(212, 172, 106, 0.14); }
+.ship-opt .radio::after {
+  content: ''; position: absolute; inset: 4px; border-radius: 50%;
+  background: var(--gold-deep, #8A6228); transform: scale(0); opacity: 0;
+  transition: transform .3s var(--ck-ease, cubic-bezier(0.22,1,0.36,1)), opacity .3s var(--ck-ease, ease);
+}
+.ship-opt.active .radio::after { background: var(--gold-deep, #8A6228) !important; transform: scale(1); opacity: 1; }
+/* Typography hierarchy + breathing room */
+.ship-opt .title { font-weight: 560; font-size: 17px; letter-spacing: -0.01em; font-style: normal; line-height: 1.2; }
+.ship-opt .sub { font-size: 12px; color: var(--ink-soft); opacity: 0.78; margin-top: 7px !important; line-height: 1.4; letter-spacing: 0.01em; }
+.ship-opt .price { font-weight: 560; font-size: 17px; letter-spacing: -0.01em; font-feature-settings: "tnum","lnum"; align-self: center; }
+@media (prefers-reduced-motion: reduce) {
+  .ship-opt:hover { transform: none; }
+  .ship-opt .radio::after { transition: none; }
+}
+
 </style>
 </head>
 <body>
@@ -1218,7 +1260,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   <button type="button" class="wz-mobile-btn" id="wzMobileBtn"><span id="wzMobileAction" data-i18n="ck.continue">Continue</span> <span class="arrow"></span></button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-13"></script>
-<script src="checkout.js?v=hd-2026-06-06-13"></script>
+<script src="shared.js?v=hd-2026-06-06-14"></script>
+<script src="checkout.js?v=hd-2026-06-06-14"></script>
 </body>
 </html>
