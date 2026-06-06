@@ -81,26 +81,33 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .menu-bottom .social { display: flex; gap: 28px; }
 .menu-bottom .social a { color: inherit; text-decoration: none; }
 
-/* ---- Contact hero ---- */
+/* ---- Contact hero (cinematic video) ---- */
 .contact-hero {
-  padding: 22vh 8% 14vh;
-  text-align: center;
-  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   position: relative;
+  min-height: 86vh;
+  display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+  text-align: center;
+  padding: 18vh 8% 9vh;
   overflow: hidden;
+  background: #0B0907;
+  isolation: isolate;
 }
-.contact-hero::before {
-  content: '';
-  position: absolute; top: -30%; left: 50%;
-  width: 720px; height: 480px; transform: translateX(-50%);
-  background: radial-gradient(ellipse at center, rgba(220, 175, 110, 0.22), transparent 60%);
-  filter: blur(40px); pointer-events: none;
+.contact-hero__media { position: absolute; inset: 0; z-index: 0; }
+.contact-hero__media video { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+.contact-hero__media::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(11,9,7,0.50) 0%, rgba(11,9,7,0.32) 42%, rgba(11,9,7,0.74) 100%);
+}
+.contact-hero__inner { position: relative; z-index: 1; max-width: 900px; }
+@media (prefers-reduced-motion: reduce) {
+  .contact-hero__media video { display: none; }
+  .contact-hero__media { background: #0B0907 url('contacthero-poster.jpg?v=hd-2026-06-06-1') center/cover no-repeat; }
 }
 .c-eyebrow {
   font-family: 'Inter', sans-serif;
   font-size: 9.5px; letter-spacing: var(--track-label);
-  text-transform: uppercase; color: var(--gold);
-  margin-bottom: 40px; font-weight: 500;
+  text-transform: uppercase; color: var(--gold-light);
+  margin-bottom: 30px; font-weight: 500;
   padding-left: var(--track-label);
 }
 .c-headline {
@@ -109,18 +116,19 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   font-size: clamp(54px, 7vw, 116px);
   line-height: 1.02;
   letter-spacing: -0.028em;
-  color: var(--ink);
-  margin-bottom: 38px;
+  color: var(--cream);
+  margin-bottom: 30px;
   max-width: 16ch;
   margin-left: auto; margin-right: auto;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.35);
 }
-.c-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
+.c-headline em { font-style: italic; font-weight: 400; color: rgba(245,239,228,0.80); letter-spacing: -0.018em; }
 .c-intro {
   font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: clamp(17px, 1.4vw, 21px);
   line-height: 1.55;
-  color: var(--ink-soft);
+  color: rgba(245,239,228,0.86);
   max-width: 50ch;
   margin: 0 auto;
 }
@@ -548,9 +556,17 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 
 <!-- ============ Hero ============ -->
 <section class="contact-hero">
-  <div class="c-eyebrow" data-i18n="contact.eyebrow">Contact &middot; Pelion, Greece</div>
-  <h1 class="c-headline" data-i18n-html="contact.headline_html">Write to <em>the house.</em></h1>
-  <p class="c-intro" data-i18n="contact.intro">For wholesale, hospitality, press, or simply a quiet question about a jar. Stavros and the family read every message, and reply within two business days.</p>
+  <div class="contact-hero__media" aria-hidden="true">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="contacthero-poster.jpg?v=hd-2026-06-06-1">
+      <source src="contacthero.webm?v=hd-2026-06-06-1" type="video/webm">
+      <source src="contacthero.mp4?v=hd-2026-06-06-1" type="video/mp4">
+    </video>
+  </div>
+  <div class="contact-hero__inner">
+    <div class="c-eyebrow" data-i18n="contact.eyebrow">Contact &middot; Pelion, Greece</div>
+    <h1 class="c-headline" data-i18n-html="contact.headline_html">Write to <em>the house.</em></h1>
+    <p class="c-intro" data-i18n="contact.intro">For wholesale, hospitality, press, or simply a quiet question about a jar. Stavros and the family read every message, and reply within two business days.</p>
+  </div>
 </section>
 
 <!-- ============ Form + Info ============ -->
