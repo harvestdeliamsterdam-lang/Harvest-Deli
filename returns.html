@@ -10,8 +10,8 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
-<link rel="stylesheet" href="account.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
+<link rel="stylesheet" href="account.css?v=hd-2026-06-06-23">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -35,7 +35,7 @@
       <div class="field"><label for="rEmail" data-i18n="ret.email">Email used at checkout</label><input id="rEmail" type="email" autocomplete="email" required></div>
       <div class="field"><label for="rReason" data-i18n="ret.reason">Reason</label>
         <select id="rReason"><option data-i18n="ret.r1">Changed my mind</option><option data-i18n="ret.r2">Arrived damaged</option><option data-i18n="ret.r3">Wrong item</option><option data-i18n="ret.r4">Other</option></select></div>
-      <div class="field"><label for="rNote" data-i18n="ret.note">Anything else? — optional</label><input id="rNote" type="text"></div>
+      <div class="field"><label for="rNote" data-i18n="ret.note">Anything else?, optional</label><input id="rNote" type="text"></div>
       <button type="submit" class="btn-primary"><span data-i18n="ret.submit">Request return</span></button>
     </form>
     <div id="retDone" class="demo-note" hidden><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg><span data-i18n="ret.done">Return requested. We have emailed your prepaid label and reference. (Demo: stored locally so you can track it below.)</span></div>
@@ -50,8 +50,8 @@
 <div class="footer-col"><h4>Account</h4><a href="account.html">Dashboard</a><a href="account-orders.html">Orders</a><a href="returns.html">Returns</a></div>
 <div class="footer-col"><h4>Legal</h4><a href="legal-terms.html">Terms</a><a href="legal-privacy.html">Privacy</a><a href="legal-payment.html">Payment</a><a href="legal-returns.html">Returns policy</a></div>
 </div><div class="footer-bottom"><span>© Harvest Deli · Pelion, Greece</span><span>KvK [00000000] · BTW NL[000000000]B01</span></div></footer>
-<script src="shared.js?v=hd-2026-06-06-22"></script>
-<script src="account.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
+<script src="account.js?v=hd-2026-06-06-23"></script>
 <script>
 (function(){
   var KEY='hd-returns-v1';
@@ -61,7 +61,7 @@
   function render(){var list=read();var el=document.getElementById('retList');if(!list.length){el.innerHTML='';return;}
     el.innerHTML='<h3 style="font-family:Newsreader,serif;font-weight:400;font-size:20px;color:var(--ink);margin-bottom:14px">Your returns</h3>'+list.map(function(r){var d=new Date(r.createdAt);
       return '<div class="order-card"><div class="oc-head"><span class="oc-id">'+r.ref+' · '+r.orderId+'</span>'+badge(r.status)+'</div>'+
-      '<div class="oc-items">'+r.reason+(r.note?' — '+r.note:'')+'</div>'+
+      '<div class="oc-items">'+r.reason+(r.note?', '+r.note:'')+'</div>'+
       '<div class="oc-foot"><span class="oc-date">'+d.toLocaleDateString()+'</span><span class="oc-total" style="font-size:13px;font-family:Inter,sans-serif;color:var(--ink-soft)">'+r.email+'</span></div></div>';
     }).join('');
   }

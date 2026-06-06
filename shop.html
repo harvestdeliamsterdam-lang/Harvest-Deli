@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Collection — All editions · Harvest Deli</title>
+<title>The Collection, All editions · Harvest Deli</title>
 <meta name="description" content="Nine single-origin Greek honeys, a cold-pressed olive oil and a wild mountain tea. Raw, hand-sealed, free EU shipping above €120.">
 <link rel="canonical" href="https://harvestdeli.gr/shop.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta property="og:type" content="website">
-<meta property="og:title" content="The Collection — All editions · Harvest Deli">
+<meta property="og:title" content="The Collection, All editions · Harvest Deli">
 <meta property="og:description" content="Nine single-origin Greek honeys, a cold-pressed olive oil and a wild mountain tea. Raw, hand-sealed.">
 <meta property="og:image" content="https://harvestdeli.gr/harvestdeli.png">
 <meta property="og:url" content="https://harvestdeli.gr/shop.html">
@@ -45,7 +45,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -74,7 +74,7 @@ body {
   line-height: 1.65;
   letter-spacing: 0.005em;
   /* clip (not hidden) so horizontal overflow is contained WITHOUT making body a
-     scroll container — overflow:hidden here breaks position:sticky descendants
+     scroll container, overflow:hidden here breaks position:sticky descendants
      (the shop toolbar would float mid-page instead of pinning under the nav). */
   overflow-x: clip;
 }
@@ -1505,7 +1505,7 @@ footer.site-footer {
 }
 
 /* ================================================================
-   MODERN SHOP CARD (applied from the redesign) — editorial, calm
+   MODERN SHOP CARD (applied from the redesign), editorial, calm
    ================================================================ */
 .p-card .jar-wrap { border-radius: var(--radius-card, 16px); margin-bottom: 16px; }
 .p-card:hover .card-photo { transform: scale(1.06); }
@@ -1520,7 +1520,7 @@ footer.site-footer {
 .p-card:hover .jar-wrap::after { opacity: 1; }
 .p-card .wishlist-btn, .p-card .qv-trigger, .p-card .badges, .p-card .card-edition, .p-card .stock-flag { z-index: 3; }
 
-/* edition number — top-left */
+/* edition number, top-left */
 .p-card .card-edition {
   position: absolute; top: 14px; left: 16px; z-index: 3;
   font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
@@ -1866,7 +1866,7 @@ footer.site-footer {
         </button>
         <div class="fp-group-body">
           <div class="fp-price">
-            <div class="fp-price-vals"><strong id="fpPriceVals">€15 — €80</strong></div>
+            <div class="fp-price-vals"><strong id="fpPriceVals">€15, €80</strong></div>
             <div class="dual-range">
               <div class="dual-range__track"></div>
               <div class="dual-range__fill" id="fpPriceFill"></div>
@@ -1933,7 +1933,7 @@ footer.site-footer {
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
 <script>
 (function () {
   /* Menu */
@@ -2036,7 +2036,7 @@ footer.site-footer {
   }
   renderGrid();
 
-  // Migration #6 — load Commerce products (Shopify-shaped) and re-render the
+  // Migration #6, load Commerce products (Shopify-shaped) and re-render the
   // grid from them. Until they arrive (or if Commerce is unavailable) the grid
   // renders from HD_product, so the page is never blank (graceful fallback).
   (function loadCommerceProducts(tries) {
@@ -2050,7 +2050,7 @@ footer.site-footer {
     }
   })(0);
 
-  // Migration #6 — add-to-cart from the grid (quick-view) routes through Commerce,
+  // Migration #6, add-to-cart from the grid (quick-view) routes through Commerce,
   // capture-phase, with fallback to the shared.js handler. Prevents double-adds.
   document.addEventListener('click', function (e) {
     var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
@@ -2063,12 +2063,12 @@ footer.site-footer {
     window.Commerce.cart.add(slug, qty).then(function () {
       if (window.HD_renderCart) window.HD_renderCart();
       var p = window.HD_product && window.HD_product(slug);
-      if (window.HD_toast) window.HD_toast((window.HD_lang && window.HD_lang() === 'nl' ? 'Toegevoegd' : 'Added') + (p ? ' — ' + p.name : ''));
+      if (window.HD_toast) window.HD_toast((window.HD_lang && window.HD_lang() === 'nl' ? 'Toegevoegd' : 'Added') + (p ? ', ' + p.name : ''));
       if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
     });
   }, true);
 
-  // Re-render when language changes — sort label + active chips + per-group counts
+  // Re-render when language changes, sort label + active chips + per-group counts
   document.querySelectorAll('.lang-toggle button[data-lang]').forEach(btn => {
     btn.addEventListener('click', () => {
       setTimeout(() => {
@@ -2222,7 +2222,7 @@ footer.site-footer {
   const total = order.length;
   if (totalEl) totalEl.textContent = total;
 
-  // State — one Set per facet group + a price range
+  // State, one Set per facet group + a price range
   const state = { cat:new Set(), htype:new Set(), region:new Set(), process:new Set(), avail:new Set(), price:null, sort:'recommended' };
   const PRICE_MIN = 15, PRICE_MAX = 80;
   const priceActive = () => state.price && (state.price[0] > PRICE_MIN || state.price[1] < PRICE_MAX);
@@ -2288,7 +2288,7 @@ footer.site-footer {
       case 'limited':  arr.sort((a, b) => (META[b].limited?1:0) - (META[a].limited?1:0) || META[b].popularity - META[a].popularity); break;
       case 'recommended':
       default:
-        // Editorial order — chestnut first, then balance
+        // Editorial order, chestnut first, then balance
         const w = { chestnut: 100, 'mountain-reserve': 90, 'wild-thyme': 80, 'pine-heather': 70, 'spring-wildflower': 60, 'orange-blossom': 50 };
         arr.sort((a, b) => (w[b]||0) - (w[a]||0));
     }
@@ -2506,7 +2506,7 @@ footer.site-footer {
     const span = PRICE_MAX - PRICE_MIN;
     priceFill.style.left = ((lo - PRICE_MIN) / span * 100) + '%';
     priceFill.style.right = ((PRICE_MAX - hi) / span * 100) + '%';
-    priceVals.textContent = '€' + lo + ' — €' + hi;
+    priceVals.textContent = '€' + lo + ', €' + hi;
   }
   function onPriceInput(e) {
     let lo = +priceLo.value, hi = +priceHi.value;

@@ -1,5 +1,5 @@
 /* ============================================================
-   Harvest Deli — shared layer
+   Harvest Deli, shared layer
    Cart drawer, nav-cart, shop card, grain, page transitions
    ============================================================ */
 
@@ -413,7 +413,7 @@
   .nav-cart .cart-count { font-size: 9px; letter-spacing: 0.02em; }
   .nav-cart .cart-glyph svg { width: 16px; height: 16px; }
   .nav-cart .cart-count { min-width: 16px; height: 16px; padding: 0 5px; }
-  /* Shop link stays visible on small viewports — just tighter spacing */
+  /* Shop link stays visible on small viewports, just tighter spacing */
   nav.site-nav .nav-acquire { padding-left: 0; gap: 0; font-size: 9px; }
   .cart-panel { width: 100vw; }
   .cart-head, .cart-foot, .cart-items { padding-left: 22px; padding-right: 22px; }
@@ -449,7 +449,7 @@
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
-  /* WCAG 2.5.5 — minimum 44×44 touch target. Visual label stays small;
+  /* WCAG 2.5.5, minimum 44×44 touch target. Visual label stays small;
      hit area expands. inline-flex centers the glyph inside the box. */
   min-width: 44px;
   min-height: 44px;
@@ -482,7 +482,7 @@
 }
 
 /* ============================================================
-   Skip to content link — appears for keyboard users only.
+   Skip to content link, appears for keyboard users only.
    Injected on every page by shared.js.
    ============================================================ */
 .skip-link {
@@ -510,7 +510,7 @@
   outline-offset: 2px;
 }
 
-/* Visually-hidden utility — for screen-reader-only labels */
+/* Visually-hidden utility, for screen-reader-only labels */
 .vh {
   position: absolute !important;
   width: 1px !important;
@@ -579,7 +579,7 @@
   /* stretch with viscosity */
   70%            { transform: scaleY(1.0); }
   74%            { transform: scaleY(1.45); }
-  /* drop separates — hang snaps back slightly (surface tension) */
+  /* drop separates, hang snaps back slightly (surface tension) */
   76%            { transform: scaleY(0.45) translateY(-0.5px); }
   /* settle */
   84%, 100%      { transform: scaleY(0); }
@@ -673,7 +673,7 @@ body nav.site-nav::after {
   pointer-events: none;
 }
 
-/* Brand wordmark — keep its gold gradient untouched */
+/* Brand wordmark, keep its gold gradient untouched */
 body nav.site-nav .nav-brand { color: inherit; }
 
 /* Menu button + Cart button */
@@ -686,7 +686,7 @@ body nav.site-nav .nav-cart:hover { color: var(--hd-nav-gold-bright); }
 body nav.site-nav .menu-btn .lines::before,
 body nav.site-nav .menu-btn .lines::after { background: var(--hd-nav-gold); }
 
-/* Shop link — promoted to the primary nav CTA: brighter champagne,
+/* Shop link, promoted to the primary nav CTA: brighter champagne,
    slightly bigger, bolder, and a confidently visible underline. */
 body nav.site-nav .nav-acquire {
   color: var(--hd-nav-gold-bright);
@@ -711,7 +711,7 @@ body nav.site-nav .nav-acquire:not(.honey-shop) {
   padding-bottom: 4px;
 }
 
-/* Cart count chip — gold pill on the matte black bar */
+/* Cart count chip, gold pill on the matte black bar */
 body nav.site-nav .nav-cart .cart-count {
   background: var(--hd-nav-gold);
   color: #100D08;
@@ -1139,17 +1139,17 @@ body nav.site-nav .logo-mark.nav-size {
 }
 
 /* =================================================================
-   E-COMMERCE UPGRADES — added in post-launch polish round
+   E-COMMERCE UPGRADES, added in post-launch polish round
    ================================================================= */
 
 /* ============================================================
-   HARVEST CONCIERGE — luxury floating support
+   HARVEST CONCIERGE, luxury floating support
    Warm gold FAB → cinematic dark glass concierge panel
    Replaces the generic green WhatsApp bubble.
    ============================================================ */
 
-/* ------------ Correspondence button (matte pill — "Write to us") ------------ */
-/* Calm Mediterranean-hospitality entry point. No glossy coin, no glow, no pulse —
+/* ------------ Correspondence button (matte pill, "Write to us") ------------ */
+/* Calm Mediterranean-hospitality entry point. No glossy coin, no glow, no pulse,
    a quiet matte pill that reads as an invitation to write, not a chat widget. */
 .hd-concierge-fab {
   position: fixed;
@@ -1190,7 +1190,7 @@ body nav.site-nav .logo-mark.nav-size {
 .hd-concierge-fab:active { transform: translateY(0); }
 .hd-concierge-fab:focus-visible { outline: 2px solid #B8945A; outline-offset: 3px; }
 
-/* Option 1 — no icon: hide the old gold coin glyph, show the label inline */
+/* Option 1, no icon: hide the old gold coin glyph, show the label inline */
 .hd-concierge-fab .hd-fab-glyph { display: none; }
 .hd-concierge-fab .hd-fab-label {
   position: static;
@@ -2197,7 +2197,7 @@ body nav.site-nav .logo-mark.nav-size {
 .search-empty a { color: #D4AC6A; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
 
 /* ------------ Variant selector (on product page) ------------ */
-/* ---- Variant selector — minimal soft rectangles (Apple/Acne restraint) ---- */
+/* ---- Variant selector, minimal soft rectangles (Apple/Acne restraint) ---- */
 .variant-selector { margin: 28px 0 30px; }
 .variant-selector .lbl {
   font-family: 'Inter', sans-serif;
@@ -2237,7 +2237,7 @@ body nav.site-nav .logo-mark.nav-size {
 }
 .variant-options label:hover { border-color: rgba(26, 22, 18, 0.46); }
 .variant-options input:checked + label {
-  background: #241C14;            /* matte deep olive-brown — restrained, no gloss/glow */
+  background: #241C14;            /* matte deep olive-brown, restrained, no gloss/glow */
   border-color: #241C14;
   color: #F3EAD9;
 }
@@ -2249,7 +2249,7 @@ body nav.site-nav .logo-mark.nav-size {
 .variant-meta .vm-edition { font-size: 14px; font-weight: 540; letter-spacing: -0.01em; color: var(--ink); }
 .variant-meta .vm-desc { font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
 
-/* Honeypot input — invisible to humans, visible to bots */
+/* Honeypot input, invisible to humans, visible to bots */
 .hp-field {
   position: absolute !important;
   left: -10000px !important;
@@ -2296,7 +2296,7 @@ nav.site-nav .nav-wishlist svg {
 nav.site-nav .nav-wishlist:hover svg { transform: scale(1.08); }
 nav.site-nav .nav-wishlist.has-items svg { fill: #B83A3A; stroke: #B83A3A; }
 /* Badge: ALWAYS rendered, absolutely positioned over the heart's top-right notch.
-   Show/hide is opacity+transform only — zero impact on surrounding layout. */
+   Show/hide is opacity+transform only, zero impact on surrounding layout. */
 nav.site-nav .nav-wishlist .nav-wl-badge {
   position: absolute;
   top: 8px; right: 6px;
@@ -2338,20 +2338,20 @@ nav.site-nav .nav-wishlist.has-items .nav-wl-badge {
   nav.site-nav .nav-wishlist { width: 40px; height: 40px; }
 }
 
-/* Lock the entire nav-right shelf — children never shrink, internal changes never propagate. */
+/* Lock the entire nav-right shelf, children never shrink, internal changes never propagate. */
 nav.site-nav .nav-right { contain: layout; }
 nav.site-nav .nav-right > * { flex-shrink: 0; }
 
 /* =================================================================
-   GLOBAL TYPOGRAPHY — Newsreader + Inter
+   GLOBAL TYPOGRAPHY, Newsreader + Inter
    Calm, humanist, architectural. No high-contrast fashion drama.
    Inspired by Loro Piana / Aman / Kinfolk / wine-estate editorial.
    ================================================================= */
 :root {
   /* ---------- Brand palette (canonical) ---------- */
   /* Page-level <style> blocks may redeclare these; that's intentional for
-     paint-budget. Promoted here so every page — including any new page that
-     forgets to redeclare — has the palette available. */
+     paint-budget. Promoted here so every page, including any new page that
+     forgets to redeclare, has the palette available. */
   --bg:         #FAF6EE;
   --ink:        #1F1A14;
   --ink-soft:   #5C5247;
@@ -2390,7 +2390,7 @@ body {
 
 /* All display serif gets Newsreader at a calm, near-text optical size.
    No SOFT axis (Newsreader doesn't carry one); only opsz + wght.
-   Low opsz keeps contrast soft and humanist — opposite of fashion display. */
+   Low opsz keeps contrast soft and humanist, opposite of fashion display. */
 h1, h2, h3, h4,
 .display, .huge, .large,
 .pd-title, .ck-headline, .featured-title, .article-title, .legal-title,
@@ -2410,7 +2410,7 @@ h1, h2, h3, h4,
   font-feature-settings: "kern", "liga", "calt";
 }
 
-/* Largest display — quieter still: low opsz, lighter weight, more breathing room */
+/* Largest display, quieter still: low opsz, lighter weight, more breathing room */
 .hero-headline, .display.huge, .legal-title, .ck-headline,
 .featured-title, .article-title, .partners-hero .hero-headline,
 .fp-title, .wl-title, .final-title,
@@ -2442,7 +2442,7 @@ h1[class*="title"], .hero-title {
   line-height: 1.24;
 }
 
-/* Italics — straightforward italic, no calligraphic exaggeration.
+/* Italics, straightforward italic, no calligraphic exaggeration.
    No weight reduction. Same opsz as parent (text-like, not display). */
 em, i, blockquote em, cite {
   font-variation-settings: "opsz" 18, "wght" inherit;
@@ -2450,7 +2450,7 @@ em, i, blockquote em, cite {
   letter-spacing: 0;
 }
 
-/* Body — plain Inter, restrained tracking, calm rhythm */
+/* Body, plain Inter, restrained tracking, calm rhythm */
 p, li, .body, .ch-body, .desc, .article-body p, .legal-content p,
 .faq-block .faq-a p, .review-body, .form-intro, .product-desc, .pd-desc,
 .legal-meta, .article-meta {
@@ -2459,12 +2459,12 @@ p, li, .body, .ch-body, .desc, .article-body p, .legal-content p,
   line-height: 1.7;
 }
 
-/* Long-form editorial paragraph (lede on article + legal lead) — slightly more rhythmic */
+/* Long-form editorial paragraph (lede on article + legal lead), slightly more rhythmic */
 .article-body p.lede, .legal-content p.lede {
   line-height: 1.55;
 }
 
-/* Uppercase labels — even tracking, no theatrics */
+/* Uppercase labels, even tracking, no theatrics */
 .eyebrow, [class*="eyebrow"], .nav-acquire, .menu-btn,
 nav.site-nav .nav-cart, .nav-wishlist, .cta-ghost, .cta-primary,
 .footer-col h4, .menu-items .sub, .menu-bottom, .footer-bottom,
@@ -2489,7 +2489,7 @@ nav.site-nav .nav-cart, .nav-wishlist, .cta-ghost, .cta-primary,
 ::selection { background: rgba(184, 148, 90, 0.32); color: var(--ink, #1F1A14); }
 
 @media (max-width: 600px) {
-  /* Even calmer on small screens — give the type air */
+  /* Even calmer on small screens, give the type air */
   .hero-headline, .display.huge, .legal-title, .featured-title,
   .article-title, .ck-headline, .fp-title, .wl-title, .final-title,
   .section-title, .about-headline, .partners-hero .hero-headline {
@@ -2499,9 +2499,9 @@ nav.site-nav .nav-cart, .nav-wishlist, .cta-ghost, .cta-primary,
 }
 
 /* =================================================================
-   MENU OVERLAY — Modern Mediterranean redesign (light · editorial)
+   MENU OVERLAY, Modern Mediterranean redesign (light · editorial)
    Was a dark, heavy "cinematic" overlay (whisky/nightclub feel).
-   Now: a calm, airy, hospitality-grade fullscreen menu — warm cream
+   Now: a calm, airy, hospitality-grade fullscreen menu, warm cream
    atmosphere, soft natural light, stone neutrals, restrained gold.
    Recolors all content from cream→ink and softens the composition.
    `body .menu-overlay …` (≥0,1,1) beats the per-page inline 0,1,0 rules.
@@ -2584,7 +2584,7 @@ body .menu-overlay .menu-close:hover { opacity: 1; }
 /* Layout: a touch more air, calmer column balance */
 body .menu-overlay .menu-content { gap: clamp(6%, 7%, 9%); align-items: center; }
 
-/* Index rows — softer hairline separators, more vertical rhythm */
+/* Index rows, softer hairline separators, more vertical rhythm */
 body .menu-overlay .menu-items li {
   border-bottom: 1px solid rgba(42, 35, 27, 0.10);
   padding: clamp(18px, 2.4vh, 30px) 0;
@@ -2592,7 +2592,7 @@ body .menu-overlay .menu-items li {
 }
 body .menu-overlay .menu-items li:last-child { border-bottom: none; }
 
-/* Numerals: quiet, modern, gold — not the old italic serif */
+/* Numerals: quiet, modern, gold, not the old italic serif */
 body .menu-overlay .menu-items .roman {
   color: var(--gold-deep, #8A6228);
   font-size: 11px;
@@ -2655,7 +2655,7 @@ body .menu-overlay .menu-bottom {
 body .menu-overlay .menu-bottom .social a { color: var(--ink-soft, #5C5247); }
 body .menu-overlay .menu-bottom .social a:hover { color: var(--gold-deep, #8A6228); }
 
-/* Mobile: side panel stacks below — drop the left rule, use a top hairline */
+/* Mobile: side panel stacks below, drop the left rule, use a top hairline */
 @media (max-width: 900px) {
   body .menu-overlay .menu-side {
     padding-left: 0;
@@ -2665,10 +2665,10 @@ body .menu-overlay .menu-bottom .social a:hover { color: var(--gold-deep, #8A622
 }
 
 /* =================================================================
-   POLISH PASS — 17 no-account improvements
+   POLISH PASS, 17 no-account improvements
    ================================================================= */
 
-/* 1. Smart sticky nav — hide on scroll down, show on scroll up */
+/* 1. Smart sticky nav, hide on scroll down, show on scroll up */
 nav.site-nav {
   transform: translateY(0);
   transition: transform 0.5s cubic-bezier(0.32, 0.72, 0.24, 1), background 0.6s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)), color 0.6s var(--ease), border-color 0.6s var(--ease);
@@ -2690,7 +2690,7 @@ nav.site-nav.nav-hidden { transform: translateY(-110%); }
   opacity: 0.9;
 }
 
-/* 3. Scroll progress bar — thin gold line at top */
+/* 3. Scroll progress bar, thin gold line at top */
 .hd-progress {
   position: fixed;
   top: 0; left: 0;
@@ -2990,7 +2990,7 @@ body.hd-loaded { opacity: 1; }
   padding-left: 0.36em;
 }
 
-/* 15. Variant price diff — retired: pricing no longer shown inside buttons */
+/* 15. Variant price diff, retired: pricing no longer shown inside buttons */
 .variant-options label .price-diff { display: none !important; }
 .variant-options input:checked + label .price-diff { color: var(--gold-light, #D4AC6A); opacity: 0.75; }
 
@@ -3050,7 +3050,7 @@ body.hd-loaded { opacity: 1; }
 }
 
 /* =================================================================
-   6. QUICK-VIEW MODAL — peek-at-product without leaving shop
+   6. QUICK-VIEW MODAL, peek-at-product without leaving shop
    ================================================================= */
 .qv-trigger {
   position: absolute;
@@ -3325,7 +3325,7 @@ body.hd-loaded { opacity: 1; }
 }
 
 /* =================================================================
-   MENU OVERLAY — snappier open/close timing
+   MENU OVERLAY, snappier open/close timing
    `body` prefix gives 0,1,1 specificity to beat per-page inline 0,1,0 rules.
    ================================================================= */
 body .menu-overlay {
@@ -3370,10 +3370,10 @@ body .menu-overlay .menu-bg-img { transition: opacity 0.5s ease; }
 .p-card:not([data-alt-src]):hover .card-photo { opacity: 1; }
 
 /* =================================================================
-   THE CREATIVITY LAB — luxury footer signature
+   THE CREATIVITY LAB, luxury footer signature
    Newsreader medium, hand-set tracking, polished gold gradient
    that catches the eye without screaming. Underline lights up
-   centre-out on hover. No italic — the brand mark stands upright.
+   centre-out on hover. No italic, the brand mark stands upright.
    ================================================================= */
 .footer-credit {
   margin-top: 18px;
@@ -3421,7 +3421,7 @@ body .menu-overlay .menu-bg-img { transition: opacity 0.5s ease; }
   line-height: 1.2;
   letter-spacing: 0.04em;
   text-decoration: none !important;
-  /* Solid brand gold — no gradient-clip on text. Importance is carried by
+  /* Solid brand gold, no gradient-clip on text. Importance is carried by
      weight, tracking, and the centre-out underline beneath. */
   color: #D4AC6A;
   transition: color 320ms cubic-bezier(0.22, 1, 0.36, 1);
@@ -3463,7 +3463,7 @@ body .menu-overlay .menu-bg-img { transition: opacity 0.5s ease; }
 }
 
 /* =================================================================
-   CINEMATIC INTRO — first-visit overture
+   CINEMATIC INTRO, first-visit overture
    Dark olive-green field with wave-pattern, breathing gold wordmark,
    slow light sweep, soft vignette, film grain. Plays once per session.
    ================================================================= */
@@ -3475,7 +3475,7 @@ body .menu-overlay .menu-bg-img { transition: opacity 0.5s ease; }
   --hd-intro-gold-soft:  #E8C982;
 }
 
-/* Pre-paint shield — runs from <head> inline script, before shared.js
+/* Pre-paint shield, runs from <head> inline script, before shared.js
    parses. Eliminates any flash of homepage before the intro covers it. */
 html.hd-intro-pending { background: var(--hd-intro-green); }
 html.hd-intro-pending body { opacity: 0; }
@@ -3679,7 +3679,7 @@ html.hd-intro-done body {
   to { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
-/* Logo exit — scales down + fades before the curtain closes */
+/* Logo exit, scales down + fades before the curtain closes */
 .hd-intro.exiting .hd-intro__stage {
   transition: opacity 480ms cubic-bezier(0.4, 0, 0.2, 1), transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
@@ -3713,7 +3713,7 @@ html.hd-intro-done body {
 }
 
 /* ============================================================
-   Commerce layer (Phase 1) — WhatsApp button + free-ship bar
+   Commerce layer (Phase 1), WhatsApp button + free-ship bar
    ============================================================ */
 /* WhatsApp floating button removed by request (concierge pill replaces it) */
 .hd-whats { display: none !important; }
@@ -3741,7 +3741,7 @@ html.hd-intro-done body {
 @media (prefers-reduced-motion: reduce) { .hd-free-fill { transition: none; } }
 
 /* ================================================================
-   UNIFIED RADIUS SYSTEM — refined Mediterranean luxury (one source)
+   UNIFIED RADIUS SYSTEM, refined Mediterranean luxury (one source)
    Applied globally with !important so it beats per-page declarations
    without editing every page's inline <style>. Calm, not bubbly.
    ================================================================ */
@@ -3752,7 +3752,7 @@ html.hd-intro-done body {
   --radius-xs:   6px;     /* tiny chips, thumbnails */
 }
 
-/* 1 + 2 — buttons: primary = pill, secondary = soft */
+/* 1 + 2, buttons: primary = pill, secondary = soft */
 .confirm-btn, .pd-cta, .btn-primary, .track-cta, .cart-checkout,
 .wz-mobile-btn, .qv-add, .pd-cta .arrow, .cart-empty-cta, .checkout-empty-cta,
 .cb-btn, .cta, .add-to-cart, .card-add {
@@ -3761,17 +3761,17 @@ html.hd-intro-done body {
 .filter-trigger, .sort-trigger, .wz-discount-apply, .wz-up-add, .btn-ghost,
 .search-result, .nav-acquire { border-radius: var(--radius-pill) !important; }
 
-/* 3 — option selectors: small = pill, large rows = soft.
-   (.variant-options label intentionally excluded — it uses a small radius.) */
+/* 3, option selectors: small = pill, large rows = soft.
+   (.variant-options label intentionally excluded, it uses a small radius.) */
 .fp-chip, .qty, .wz-qty, .lp-methods span { border-radius: var(--radius-pill) !important; }
 .ship-opt { border-radius: var(--radius-soft) !important; }
 
-/* 4 — inputs (radius is invisible on underline inputs, refined on boxed ones) */
+/* 4, inputs (radius is invisible on underline inputs, refined on boxed ones) */
 input[type="text"], input[type="email"], input[type="tel"], input[type="search"],
 input[type="password"], input[type="number"], select, textarea, .wz-discount input,
 .track-field input { border-radius: var(--radius-soft) !important; }
 
-/* 5 — cards & panels */
+/* 5, cards & panels */
 .p-card, .auth-card, .acct-card, .order-card, .address-card, .acct-tile,
 .wz-up-card, .packaging-card, .track-panel, .qv-panel, .cart-panel,
 .menu-side, .also-card .mini-photo-frame, .recent-card .frame, .also-card,
@@ -3780,11 +3780,11 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
   border-radius: var(--radius-card) !important;
 }
 
-/* 6 — tags / badges / stock capsules */
+/* 6, tags / badges / stock capsules */
 .badge, .status-pill, .pm, .tag, .qv-badge, .badges .badge, .gold.badge,
 .stock-badge, .pill { border-radius: var(--radius-pill) !important; }
 
-/* 7 — thumbnails stay gently soft, not circular */
+/* 7, thumbnails stay gently soft, not circular */
 .wz-line-thumb, .wz-line-thumb img, .sb-thumb, .sb-thumb img,
 .ces-card, .search-result .thumb, .search-result .thumb img {
   border-radius: var(--radius-xs) !important;
@@ -3796,7 +3796,7 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 .wz-dot .n { border-radius: 999px !important; }
 
 /* ================================================================
-   SEARCH — editorial overlay (cinematic, calm)
+   SEARCH, editorial overlay (cinematic, calm)
    ================================================================ */
 .nav-search {
   display: inline-grid; place-items: center; width: 40px; height: 40px;
@@ -3880,7 +3880,7 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 }
 
 /* ================================================================
-   PRODUCT STORYTELLING (Phase 2) — composition, pairs, bundle, FAQ
+   PRODUCT STORYTELLING (Phase 2), composition, pairs, bundle, FAQ
    ================================================================ */
 #pxExtras .px-section { max-width: 1120px; margin: 0 auto; padding: 6vh 8% 0; }
 #pxExtras .px-head { margin-bottom: 26px; }
@@ -3938,7 +3938,7 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 @media (prefers-reduced-motion: reduce){ .px-faq-a, .px-pair { transition:none; } }
 
 /* ================================================================
-   INVENTORY (Phase 3) — subtle stock indicators
+   INVENTORY (Phase 3), subtle stock indicators
    ================================================================ */
 .stock-flag {
   position: absolute; left: 14px; bottom: 14px; z-index: 3;
@@ -3960,14 +3960,14 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 .pd-stock.is-backorder .pd-stock-dot { background: var(--ink-soft, #5C5247); }
 
 /* ================================================================
-   MODERN GROTESK TYPE SYSTEM (site-wide) — no serif, no italic
+   MODERN GROTESK TYPE SYSTEM (site-wide), no serif, no italic
    Inter Tight (display) + Inter (body). The SVG logo wordmark and
    icons are excluded so the brand mark + glyphs are untouched.
    Applied globally with !important to override per-page inline serif.
    ================================================================ */
 :root { --track-label: 0.12em; --track-button: 0.14em; }
 
-/* base — everything to the grotesk body face, never SVG (logo/icons) */
+/* base, everything to the grotesk body face, never SVG (logo/icons) */
 body :not(svg):not(svg *) {
   font-family: 'Inter', 'Inter Tight', system-ui, -apple-system, sans-serif !important;
 }
@@ -4002,7 +4002,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 *::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
 /* =================================================================
-   QUICK VIEW — cinematic upgrade (floating, atmospheric, glass)
+   QUICK VIEW, cinematic upgrade (floating, atmospheric, glass)
    ================================================================= */
 .qv-overlay {
   background:
@@ -4028,7 +4028,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 }
 .qv-overlay.open .qv-panel { transform: scale(1) translateY(0); }
 
-/* image side — warm cinematic atmosphere */
+/* image side, warm cinematic atmosphere */
 .qv-image {
   background:
     radial-gradient(80% 70% at 50% 38%, rgba(255, 240, 208, 0.6), transparent 62%),
@@ -4067,7 +4067,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 }
 
 /* =================================================================
-   SEARCH — atmospheric refinement (softer, glass, editorial)
+   SEARCH, atmospheric refinement (softer, glass, editorial)
    ================================================================= */
 .hd-search-backdrop {
   background:
@@ -4105,7 +4105,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .qv-content .qv-region, .qv-content .qv-notes { font-style: normal !important; }
 
 /* =================================================================
-   CART "CELLAR" — cinematic premium refinement
+   CART "CELLAR", cinematic premium refinement
    Warm translucent depth, editorial rows, floating qty, sheen CTA.
    ================================================================= */
 /* Softer warm backdrop (less dark dim) */
@@ -4133,7 +4133,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 }
 .cart-head .cart-title em { font-style: normal; }
 
-/* Product rows — editorial, soft separators, image presence */
+/* Product rows, editorial, soft separators, image presence */
 .cart-drawer .cart-line {
   border-bottom: 1px solid rgba(26, 22, 18, 0.06);
   border-radius: var(--radius-soft, 10px);
@@ -4149,7 +4149,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .cart-drawer .cart-line .thumb .mini-photo, .cart-drawer .cart-line .thumb img { transition: transform .7s var(--ease, ease); }
 .cart-drawer .cart-line:hover .thumb .mini-photo, .cart-drawer .cart-line:hover .thumb img { transform: scale(1.06); }
 
-/* Quantity — floating premium control */
+/* Quantity, floating premium control */
 .cart-drawer .qty {
   background: rgba(255, 253, 248, 0.7);
   border: 1px solid rgba(26, 22, 18, 0.1);
@@ -4163,12 +4163,12 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .cart-drawer .qty button:active { transform: scale(0.86); }
 .cart-drawer .qty .val { font-feature-settings: "tnum","lnum"; }
 
-/* Subtotal — tabular + buttery settle on change */
+/* Subtotal, tabular + buttery settle on change */
 .cart-totals .total { font-feature-settings: "tnum","lnum"; transition: transform .4s var(--ease, ease); display: inline-block; }
 .cart-totals .total.is-bumped { animation: cartBump .5s var(--ease, ease); }
 @keyframes cartBump { 0%{transform:translateY(0)} 30%{transform:translateY(-3px)} 100%{transform:translateY(0)} }
 
-/* Checkout CTA — cinematic sheen + warm depth */
+/* Checkout CTA, cinematic sheen + warm depth */
 .cart-checkout {
   position: relative; overflow: hidden;
   box-shadow: 0 16px 34px -18px rgba(40, 24, 8, 0.55);
@@ -4183,7 +4183,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .cart-checkout:hover::after { animation: cartSheen 0.9s var(--ease, ease); }
 @keyframes cartSheen { 0%{left:-40%;opacity:0} 20%{opacity:1} 100%{left:130%;opacity:0} }
 
-/* Free-shipping — softer, atmospheric, less "progress UI" */
+/* Free-shipping, softer, atmospheric, less "progress UI" */
 .hd-free-bar { padding: 0 0 14px; }
 .hd-free-msg { font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 0.06em; color: var(--ink-soft, #5C5247); margin-bottom: 9px; }
 .hd-free-msg.done { color: var(--gold-deep, #8A6228); }
@@ -4192,7 +4192,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
   background: linear-gradient(90deg, var(--gold, #B8945A), var(--gold-light, #D4AC6A));
   transition: width 0.9s var(--ease, cubic-bezier(0.22,1,0.36,1)); }
 
-/* Empty state — atmospheric Mediterranean */
+/* Empty state, atmospheric Mediterranean */
 .cart-empty { position: relative; }
 .cart-empty::before {
   content: ''; position: absolute; left: 50%; top: 4vh; transform: translateX(-50%);
@@ -4213,7 +4213,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 #cartProgress { display: none !important; }
 
 /* =================================================================
-   QUICK VIEW actions — locked-height pill buttons, never wrap/shift
+   QUICK VIEW actions, locked-height pill buttons, never wrap/shift
    ================================================================= */
 .qv-content .qv-actions { gap: 10px; align-items: stretch; }
 .qv-content .qv-actions .cta,
@@ -4240,7 +4240,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
   transform: translateY(-1px);
   box-shadow: 0 16px 32px -16px rgba(40, 24, 8, 0.5);
 }
-/* Active: NO scaling / NO resizing — subtle lift + brightness + gold edge */
+/* Active: NO scaling / NO resizing, subtle lift + brightness + gold edge */
 .qv-content .qv-add:active, .qv-content .qv-actions .cta:active {
   transform: translateY(-1px);
   filter: brightness(1.05);
@@ -4258,7 +4258,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 }
 
 /* =================================================================
-   EMPTY CART — cinematic "private cellar" (aspirational, not generic)
+   EMPTY CART, cinematic "private cellar" (aspirational, not generic)
    ================================================================= */
 .cart-empty { position: relative; padding: clamp(40px, 7vh, 78px) 4px 20px; text-align: center; overflow: hidden; }
 .cart-empty .ce-glow { position: absolute; top: 1vh; left: 50%; transform: translateX(-50%); width: 320px; height: 320px; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(212,172,106,0.22), transparent 68%); filter: blur(8px); }
@@ -4293,7 +4293,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 }
 
 /* =================================================================
-   INTRO LOGO — brighter, clearer treatment (was lost on dark green)
+   INTRO LOGO, brighter, clearer treatment (was lost on dark green)
    ================================================================= */
 .hd-intro__mark {
   filter: brightness(1.5) saturate(0.82)
@@ -4319,7 +4319,7 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 }
 
 /* =================================================================
-   NAVIGATION — luxury editorial elevation (fashion-house, espresso)
+   NAVIGATION, luxury editorial elevation (fashion-house, espresso)
    Builds on the --hd-nav-* system above; wins via body-prefix + later.
    ================================================================= */
 body nav.site-nav, body nav.site-nav.scrolled {
@@ -4347,7 +4347,7 @@ body nav.site-nav::before {
 }
 @keyframes navShimmer { 0%,100% { background-position: 0 0, 120% 0, 0 0; } 50% { background-position: 0 0, -20% 0, 0 0; } }
 
-/* Logo — larger, warmer, subtle glow (stronger presence) */
+/* Logo, larger, warmer, subtle glow (stronger presence) */
 body nav.site-nav .nav-brand, body nav.site-nav .logo-mark.nav-size { height: 56px; }
 body nav.site-nav .logo-mark.nav-size { filter: brightness(0.96) saturate(1.18) contrast(1.04) drop-shadow(0 0 14px rgba(212, 172, 106, 0.28)); }
 @media (max-width: 900px) { body nav.site-nav .nav-brand, body nav.site-nav .logo-mark.nav-size { height: 46px; } }
@@ -4355,7 +4355,7 @@ body nav.site-nav .logo-mark.nav-size { filter: brightness(0.96) saturate(1.18) 
 /* Luxury spacing in the right cluster */
 body nav.site-nav .nav-right { gap: clamp(20px, 2.6vw, 42px); }
 
-/* Typography — larger, medium weight, refined kerning */
+/* Typography, larger, medium weight, refined kerning */
 body nav.site-nav .menu-btn, body nav.site-nav .nav-acquire {
   font-size: 11px !important; font-weight: 500 !important; letter-spacing: 0.2em !important;
   transition: color .4s var(--ease, ease), transform .4s var(--ease, ease), text-shadow .4s var(--ease, ease);
@@ -4367,7 +4367,7 @@ body nav.site-nav .nav-search svg, body nav.site-nav .nav-cart svg, body nav.sit
 body nav.site-nav .nav-search, body nav.site-nav .nav-wishlist, body nav.site-nav .nav-cart { transition: transform .4s var(--ease, ease), color .4s var(--ease, ease); }
 body nav.site-nav .nav-search:hover, body nav.site-nav .nav-wishlist:hover, body nav.site-nav .nav-cart:hover { transform: translateY(-1px); color: var(--hd-nav-gold-bright, #ECCE93); }
 
-/* Language switcher — dot separators + breathing space */
+/* Language switcher, dot separators + breathing space */
 body nav.site-nav .lang-toggle { gap: 12px; }
 body nav.site-nav .lang-toggle button { font-size: 10px !important; letter-spacing: 0.16em; opacity: 0.7; transition: color .35s var(--ease, ease), opacity .35s var(--ease, ease); }
 body nav.site-nav .lang-toggle button:hover { opacity: 1; }
@@ -4387,7 +4387,7 @@ body nav.site-nav .nav-acquire:not(.honey-shop):hover::after { transform: scaleX
 @media (prefers-reduced-motion: reduce) { body nav.site-nav::before { animation: none; } body nav.site-nav .menu-btn:hover, body nav.site-nav .nav-acquire:hover { transform: none; } }
 
 /* =================================================================
-   MENU OVERLAY — global structural base (some pages, e.g. legal +
+   MENU OVERLAY, global structural base (some pages, e.g. legal +
    wishlist, ship the markup without the inline layout CSS, so the
    overlay opened invisible). This guarantees it works everywhere;
    colours/composition come from the redesign block above.
@@ -4419,7 +4419,7 @@ body .menu-overlay .menu-bottom { display: flex; justify-content: space-between;
 }
 
 /* =================================================================
-   NAV — mobile: the right cluster overflowed (lang toggle alone is
+   NAV, mobile: the right cluster overflowed (lang toggle alone is
    ~190px), pushing the Menu button off-screen. Collapse to the
    essentials: logo + search + Menu + cart. Language/Shop/Wishlist
    live inside the Menu overlay on small screens.

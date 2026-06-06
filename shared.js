@@ -1,10 +1,10 @@
 /* ============================================================
-   Harvest Deli — shared logic
+   Harvest Deli, shared logic
    Product catalog + cart state + drawer + menu wiring
    ============================================================ */
 
 /* =================================================================
-   CINEMATIC INTRO — runs once per session, before anything else.
+   CINEMATIC INTRO, runs once per session, before anything else.
    Pre-paint shield is set by inline head script; this builds the
    real cinematic overlay (wordmark + halo + sweep + grain) and
    choreographs the entrance / exit, then unveils the homepage.
@@ -14,7 +14,7 @@
   const SESSION_KEY = 'hd-intro-played-v1';
   const root = document.documentElement;
   const isPending = root.classList.contains('hd-intro-pending');
-  // Intro is the brand's "front door" — only plays on entries through index.html.
+  // Intro is the brand's "front door", only plays on entries through index.html.
   // The head shield script only ships on the homepage, so any page without
   // .hd-intro-pending wasn't meant to show the intro and we exit early.
   if (!isPending) return;
@@ -58,7 +58,7 @@
     if (document.querySelector('.hd-intro')) return;
     const overlay = build();
     document.body.appendChild(overlay);
-    // Drop the pre-paint shield class — the real overlay is now in place
+    // Drop the pre-paint shield class, the real overlay is now in place
     root.classList.remove('hd-intro-pending');
     root.classList.add('hd-intro-active');
 
@@ -79,12 +79,12 @@
       root.classList.add('hd-intro-done');
       setTimeout(() => {
         if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
-        // Body opacity transition is short — clear the helper class after
+        // Body opacity transition is short, clear the helper class after
         setTimeout(() => root.classList.remove('hd-intro-done'), 800);
       }, EXIT);
     }
 
-    // Skip on tap / click / keypress — anywhere
+    // Skip on tap / click / keypress, anywhere
     function skip(e) {
       if (e && e.type === 'keydown') {
         const k = e.key;
@@ -170,14 +170,14 @@
       'footer.bottom2': 'Crafted slowly · MMXXV',
       'footer.builtBy': 'Designed & built by',
       'a11y.skipLink': 'Skip to content',
-      'idx.h1': 'Harvest Deli — single-estate Greek honey from the hills of Pelion',
+      'idx.h1': 'Harvest Deli, single-estate Greek honey from the hills of Pelion',
       // ---------- Harvest Concierge (floating chat) ----------
       'concierge.fab': 'Write to us',
       'concierge.title': 'Chat with Harvest Deli',
       'concierge.subtitle': 'Pelion, Greece',
       'concierge.online': 'Real human · Replies within hours',
       'concierge.greeting': 'Welcome to Harvest Deli.\nHow may we help you today?',
-      'concierge.intro': 'Choose a topic below — we’ll continue the conversation on WhatsApp.',
+      'concierge.intro': 'Choose a topic below, we’ll continue the conversation on WhatsApp.',
       'concierge.action.product': 'Ask about a product',
       'concierge.action.retail': 'Retail & hospitality',
       'concierge.action.shipping': 'Shipping & delivery',
@@ -215,17 +215,17 @@
       'markets.cards.h_html': 'Where you can find <em>the harvest.</em>',
       'markets.tenkate.tag': 'Weekly · West',
       'markets.tenkate.title': 'Tenkate Market',
-      'markets.tenkate.hours': 'Monday — Saturday · 09:00 — 17:00',
+      'markets.tenkate.hours': 'Monday, Saturday · 09:00, 17:00',
       'markets.tenkate.addr': 'Ten Katestraat · Amsterdam-West',
-      'markets.tenkate.desc': 'Our weekly table — a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we’ll pour the morning coffee.',
+      'markets.tenkate.desc': 'Our weekly table, a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we’ll pour the morning coffee.',
       'markets.westerpark.tag': 'Monthly · Sunday',
       'markets.westerpark.title': 'Sunday Market · Westerpark',
-      'markets.westerpark.hours': 'First Sunday of every month · 11:00 — 17:00',
+      'markets.westerpark.hours': 'First Sunday of every month · 11:00, 17:00',
       'markets.westerpark.addr': 'Westergasterrein · Amsterdam-West',
       'markets.westerpark.desc': 'A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.',
       'markets.story.eyebrow': 'The table',
       'markets.story.lead_html': '“For us, markets are not only about selling honey. They are about <em>conversation, tasting</em> and sharing the harvest.”',
-      'markets.story.body': 'Each morning we set out the same way our family has for four generations on the slopes of Pelion — linen folded, jars uncapped, a spoon laid across the rim. Amsterdam, with its bicycles and its grey-morning light, has welcomed our small ritual. Come early. Stay slow. Taste before you speak.',
+      'markets.story.body': 'Each morning we set out the same way our family has for four generations on the slopes of Pelion, linen folded, jars uncapped, a spoon laid across the rim. Amsterdam, with its bicycles and its grey-morning light, has welcomed our small ritual. Come early. Stay slow. Taste before you speak.',
       'markets.story.sig': 'Stelios &amp; Eleni Andreou',
       'markets.story.sigsub': 'Pelion · Amsterdam',
       'markets.gallery.eyebrow': 'A photo journal',
@@ -246,9 +246,9 @@
       'markets.cta.lead': 'Bring an empty afternoon and an honest appetite. There is always coffee, always a spoon, always a story.',
       'markets.cta.schedule': 'View Market Schedule',
       'markets.cta.trade': 'Retail & Hospitality',
-      'idx.markets.eyebrow': 'VI — In Amsterdam',
+      'idx.markets.eyebrow': 'VI, In Amsterdam',
       'idx.markets.h_html': 'Find us at the <em>market table.</em>',
-      'idx.markets.body': 'From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee — quietly brought from the hills of Greece to the markets of Amsterdam.',
+      'idx.markets.body': 'From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee, quietly brought from the hills of Greece to the markets of Amsterdam.',
       'idx.markets.cta': 'Find us in Amsterdam',
       // ---------- index hero ----------
       'idx.scene0.est': 'Established · Pelion, Greece · Estate №01',
@@ -272,11 +272,11 @@
       'idx.sel.title': 'Selected harvests.',
       'idx.sel.cta': 'Explore the collection',
       // ---------- index editorial ----------
-      'idx.ch1.eyebrow': 'I — The Origin',
+      'idx.ch1.eyebrow': 'I, The Origin',
       'idx.ch1.h': 'Born in the quiet hills of Northern Greece.',
       'idx.ch1.body': 'For five generations, a single family has tended a thousand hives across the limestone ridges of Mount Pelion. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.',
       'idx.ch1.caption': 'Pelion · Spring harvest',
-      'idx.ch2.eyebrow': 'II — The Process',
+      'idx.ch2.eyebrow': 'II, The Process',
       'idx.ch2.h': 'A practice refined by time, not technology.',
       'idx.step1.h': 'Gathered at altitude',
       'idx.step1.p': 'Hives are placed where wildflowers grow untended. Never near agriculture, never near a road. The bees decide where to forage; we simply listen.',
@@ -285,8 +285,8 @@
       'idx.step3.h': 'Settled, never strained',
       'idx.step3.p': 'The honey rests for fourteen days in oak vats. Air rises, sediment falls. Nothing is forced, nothing is filtered, and the texture remains alive.',
       'idx.taste.quote': 'A taste that holds the memory of a mountain morning. Warm, golden, slow to leave.',
-      'idx.taste.cite': '— Notes from the tasting room',
-      'idx.preview.eyebrow': '— The Collection',
+      'idx.taste.cite': 'Notes from the tasting room',
+      'idx.preview.eyebrow': 'The Collection',
       'idx.preview.h_html': 'Three from the cellar, <em>numbered.</em>',
       'idx.preview.addToCellar': 'Add to Cellar',
       'idx.preview.exploreAll': 'View all six editions',
@@ -294,11 +294,11 @@
       'idx.product.title_html': 'Chestnut Honey, <em>2025 harvest.</em>',
       'idx.product.originLine_html': 'Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 jars',
       'idx.product.desc': 'A single-meadow honey of remarkable clarity. Notes of warm resin, sun-baked herb, and a long mineral finish. Bottled in heavy hand-pressed glass, numbered by hand, kept untreated.',
-      'idx.product.cta_html': 'View the jar &mdash; €68',
+      'idx.product.cta_html': 'View the jar, €68',
       // ---------- shop ----------
       'shop.eyebrow': 'The Collection · 2025',
       'shop.headline_html': 'A small, <em>numbered</em> library of the Greek harvest.',
-      'shop.intro': 'Nine single-origin honeys, a cold-pressed olive oil and a wild mountain tea — each kept untreated, sealed by hand, and shipped quietly from Greece within the week.',
+      'shop.intro': 'Nine single-origin honeys, a cold-pressed olive oil and a wild mountain tea, each kept untreated, sealed by hand, and shipped quietly from Greece within the week.',
       'shop.filterLabel': 'Filter by',
       'shop.filter.all': 'All',
       'shop.filter.floral': 'Floral',
@@ -334,7 +334,7 @@
       'ck.free': 'Free',
       'ck.pickup': 'Pickup',
       'ck.empty.h': 'Your cellar is empty',
-      'ck.empty.p': 'Begin the collection — each jar is numbered, sealed in wax and shipped within the week.',
+      'ck.empty.p': 'Begin the collection, each jar is numbered, sealed in wax and shipped within the week.',
       'ck.empty.cta': 'Browse the collection',
       'ck.discount.label': 'Discount code',
       'ck.discount.ph': 'Discount code',
@@ -343,8 +343,8 @@
       'ck.upsell.h': 'Complete your order',
       'ck.details.h_html': 'Details &middot; <em>where to write back.</em>',
       'ck.billing': 'Billing address',
-      'ck.company': 'Company — optional',
-      'ck.vat': 'VAT number — optional',
+      'ck.company': 'Company, optional',
+      'ck.vat': 'VAT number, optional',
       'ck.sameAddr': 'Shipping address is the same as billing',
       'ck.save': 'Save these details for next time',
       'ck.delivery.h_html': 'Delivery &middot; <em>how it travels.</em>',
@@ -352,7 +352,7 @@
       'ck.freeProgress': 'Add {x} more for free shipping',
       'ck.payment.h_html': 'Payment &middot; <em>quietly secure.</em>',
       'ck.demoPill': 'Demo',
-      'ck.payNote': 'Provider-agnostic UI. No card is charged here — Stripe or Mollie connects at this step in production.',
+      'ck.payNote': 'Provider-agnostic UI. No card is charged here, Stripe or Mollie connects at this step in production.',
       'ck.badge.secure': 'Secure SSL checkout',
       'ck.badge.returns': '14-day returns',
       'ck.badge.tracked': 'Tracked & insured',
@@ -371,7 +371,7 @@
       'ck.faq.q1': 'When will my order ship?',
       'ck.faq.a1': 'Orders placed before 14:00 CET ship the same business day from the Netherlands, carefully packed and sealed.',
       'ck.faq.q2': 'Do you ship internationally?',
-      'ck.faq.a2': 'Yes — across the EU and beyond, tracked & insured. Delivery estimates are shown per carrier at the delivery step.',
+      'ck.faq.a2': 'Yes, across the EU and beyond, tracked & insured. Delivery estimates are shown per carrier at the delivery step.',
       'ck.faq.q3': 'Can I return an order?',
       'ck.faq.a3': 'Unopened jars can be returned within 14 days. See our <a href="legal-returns.html">returns policy</a> or write to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
       'ck.err.required': 'Required',
@@ -400,7 +400,7 @@
       'auth.forgot.title_html': 'Reset your <em>password.</em>',
       'auth.forgot.sub': 'Enter your email and we will send a link to set a new password.',
       'auth.sendLink': 'Send reset link',
-      'auth.forgot.done': 'If an account exists for that email, a reset link is on its way. (Demo: no email is actually sent — Supabase resetPasswordForEmail connects here.)',
+      'auth.forgot.done': 'If an account exists for that email, a reset link is on its way. (Demo: no email is actually sent, Supabase resetPasswordForEmail connects here.)',
       'auth.backToLogin': 'Back to sign in',
       'acct.eyebrow': 'Your account',
       'acct.nav.dashboard': 'Dashboard',
@@ -409,7 +409,7 @@
       'acct.nav.details': 'Details',
       'acct.logout': 'Sign out',
       'acct.dash.h_html': 'Your <em>account.</em>',
-      'acct.dash.lead': 'Everything in one calm place — orders, addresses and your details.',
+      'acct.dash.lead': 'Everything in one calm place, orders, addresses and your details.',
       'acct.dash.ordersD': 'Track & re-order',
       'acct.dash.addrD': 'Saved delivery addresses',
       'acct.dash.detailsD': 'Name & contact',
@@ -426,13 +426,13 @@
       'acct.details.lead': 'Name and contact information for your orders.',
       'acct.details.save': 'Save changes',
       'acct.details.saved': 'Saved.',
-      'acct.demoNote': 'Demo session — this stores your details locally in your browser and does not perform real authentication. Supabase Auth connects here in production.',
+      'acct.demoNote': 'Demo session, this stores your details locally in your browser and does not perform real authentication. Supabase Auth connects here in production.',
       'ok.eyebrow': 'Order confirmed',
       'ok.title_html': 'Thank <em>you.</em>',
       'ok.title': 'Your harvest is reserved.',
       'ok.sub': 'Packed quietly in Pelion and prepared for its journey. A confirmation is on its way.',
       'ok.orderNo': 'Order number',
-      'ok.email': 'A confirmation email is on its way. (Demo: no email is actually sent — your order is stored locally so you can see it in your account.)',
+      'ok.email': 'A confirmation email is on its way. (Demo: no email is actually sent, your order is stored locally so you can see it in your account.)',
       'ok.track': 'Track order',
       'ok.continue': 'Continue shopping',
       'ok.createH': 'Save your details for next time',
@@ -460,8 +460,8 @@
       'about.visual.cap': 'Mount Pelion · Northern Greece',
       'about.story.eyebrow': 'Our story',
       'about.story.h': 'A house on a single mountain.',
-      'about.story.p1': 'Harvest Deli began on the southern face of Pelion, where one family has kept bees for five generations. What leaves the mountain is small by nature — a few hundred jars a season, gathered slowly and sealed by hand.',
-      'about.story.p2': 'We work with olive groves and wild tea hillsides in the same spirit: little, seasonal and honest. (Placeholder copy — the full story will follow.)',
+      'about.story.p1': 'Harvest Deli began on the southern face of Pelion, where one family has kept bees for five generations. What leaves the mountain is small by nature, a few hundred jars a season, gathered slowly and sealed by hand.',
+      'about.story.p2': 'We work with olive groves and wild tea hillsides in the same spirit: little, seasonal and honest. (Placeholder copy, the full story will follow.)',
       'about.craft.eyebrow': 'How we work',
       'about.craft.h': 'Small by intention.',
       'about.craft.1.l': 'Small harvests',
@@ -509,7 +509,7 @@
       'about.ch5.h': 'A practice passed quietly between hands.',
       'about.ch5.p1': 'Some of what we do has been done in the same way for five generations. Some of it changes every year. The bees keep us honest. The mountain keeps us small.',
       'about.ch5.p2': 'We do not scale. We do not blend. We do not strip the wax from the lids of the jars. Three hundred and eighty four jars in the Chestnut edition, and when they are gone, the season has ended.',
-      'about.ch5.caption': 'Cellar archive · 1882 — 2025',
+      'about.ch5.caption': 'Cellar archive · 1882, 2025',
       'about.cta.label': 'The Collection · 2025',
       'about.cta.h_html': 'Taste the <em>mountain.</em>',
       'about.cta.btn': 'View the collection',
@@ -571,17 +571,17 @@
       'checkout.label.last': 'Last name',
       'checkout.label.addr1': 'Address line 1',
       'checkout.label.addr1Ph': 'House number, street',
-      'checkout.label.addr2': 'Address line 2 — optional',
+      'checkout.label.addr2': 'Address line 2, optional',
       'checkout.label.addr2Ph': 'Apartment, building, floor',
       'checkout.label.city': 'City',
       'checkout.label.postcode': 'Postcode',
       'checkout.label.country': 'Country',
       'checkout.ship.standard.title': 'Standard · tracked',
-      'checkout.ship.standard.sub': '5 — 8 business days, signed delivery',
+      'checkout.ship.standard.sub': '5, 8 business days, signed delivery',
       'checkout.ship.express.title': 'Express · courier',
-      'checkout.ship.express.sub': '2 — 3 business days, hand delivered',
+      'checkout.ship.express.sub': '2, 3 business days, hand delivered',
       'checkout.ship.intl.title': 'International · outside EU',
-      'checkout.ship.intl.sub': '7 — 12 business days, taxes prepaid',
+      'checkout.ship.intl.sub': '7, 12 business days, taxes prepaid',
       'checkout.step3.h_html': 'Payment &middot; <em>quietly secure.</em>',
       'checkout.tab.card': 'Card',
       'checkout.tab.bank': 'Bank transfer',
@@ -614,7 +614,7 @@
       'checkout.row.shippingFree': 'Complimentary',
       // ---------- product detail (chestnut) ----------
       'product.crumb.collection': 'Collection',
-      'product.crumb.current': 'Edition I — Chestnut Honey',
+      'product.crumb.current': 'Edition I, Chestnut Honey',
       'product.eyebrow_html': 'Edition I <span class="dot"></span> 2025 Harvest',
       'product.title_html': 'Chestnut Honey, <em>Pelion estate.</em>',
       'product.tag.singleMeadow': 'Single Meadow',
@@ -629,13 +629,13 @@
       'product.notes_html': 'Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars',
       'product.tasting.eyebrow': 'The Tasting',
       'product.tasting.h_html': 'What you taste, slowly.',
-      'product.tasting.first.h': 'I — First',
+      'product.tasting.first.h': 'I, First',
       'product.tasting.first.quote': '"Warm resin, sun on stone."',
       'product.tasting.first.p': 'An immediate breath of pine and dry herb. The smell of the mountain itself in late June, when the air over the thyme begins to shimmer.',
-      'product.tasting.body.h': 'II — Body',
+      'product.tasting.body.h': 'II, Body',
       'product.tasting.body.quote': '"Soft amber, slow honey."',
       'product.tasting.body.p': 'The texture takes hold next, a viscosity that pours like a held breath. Wildflower and a clean, gentle sweetness held in the centre of the tongue.',
-      'product.tasting.finish.h': 'III — Finish',
+      'product.tasting.finish.h': 'III, Finish',
       'product.tasting.finish.quote': '"Mineral, long, golden."',
       'product.tasting.finish.p': 'A slow descent into stone and salt. Subtle, almost dry. The kind of finish that lingers in the room long after the spoon has been set down.',
       'product.origin.eyebrow': 'The Origin',
@@ -727,13 +727,13 @@
       'footer.bottom2': 'Met aandacht gemaakt · MMXXV',
       'footer.builtBy': 'Ontworpen & gebouwd door',
       'a11y.skipLink': 'Ga naar inhoud',
-      'idx.h1': 'Harvest Deli — Griekse honing van één landgoed in Pelion',
+      'idx.h1': 'Harvest Deli, Griekse honing van één landgoed in Pelion',
       'concierge.fab': 'Schrijf ons',
       'concierge.title': 'Chat met Harvest Deli',
       'concierge.subtitle': 'Pelion, Griekenland',
       'concierge.online': 'Echte mens · Reactie binnen enkele uren',
       'concierge.greeting': 'Welkom bij Harvest Deli.\nWaar kunnen we u mee helpen?',
-      'concierge.intro': 'Kies een onderwerp hieronder — we zetten het gesprek voort op WhatsApp.',
+      'concierge.intro': 'Kies een onderwerp hieronder, we zetten het gesprek voort op WhatsApp.',
       'concierge.action.product': 'Vraag over een product',
       'concierge.action.retail': 'Retail & horeca',
       'concierge.action.shipping': 'Verzending & levering',
@@ -770,17 +770,17 @@
       'markets.cards.h_html': 'Waar u <em>de oogst</em> kunt vinden.',
       'markets.tenkate.tag': 'Wekelijks · West',
       'markets.tenkate.title': 'Ten Kate Markt',
-      'markets.tenkate.hours': 'Maandag — zaterdag · 09:00 — 17:00',
+      'markets.tenkate.hours': 'Maandag, zaterdag · 09:00, 17:00',
       'markets.tenkate.addr': 'Ten Katestraat · Amsterdam-West',
-      'markets.tenkate.desc': 'Onze wekelijkse tafel — een paar kratten honing, een proeflepel, een geopende pot. Loop binnen tussen uw boodschappen door; we schenken de ochtendkoffie.',
+      'markets.tenkate.desc': 'Onze wekelijkse tafel, een paar kratten honing, een proeflepel, een geopende pot. Loop binnen tussen uw boodschappen door; we schenken de ochtendkoffie.',
       'markets.westerpark.tag': 'Maandelijks · Zondag',
       'markets.westerpark.title': 'Zondagsmarkt · Westerpark',
-      'markets.westerpark.hours': 'Eerste zondag van elke maand · 11:00 — 17:00',
+      'markets.westerpark.hours': 'Eerste zondag van elke maand · 11:00, 17:00',
       'markets.westerpark.addr': 'Westergasterrein · Amsterdam-West',
-      'markets.westerpark.desc': 'Een rustigere zondagse samenkomst in de oude gasfabriek. Linnen, kaarslicht bij schemering, en de oogst — één lepel tegelijk geschonken.',
+      'markets.westerpark.desc': 'Een rustigere zondagse samenkomst in de oude gasfabriek. Linnen, kaarslicht bij schemering, en de oogst, één lepel tegelijk geschonken.',
       'markets.story.eyebrow': 'De tafel',
       'markets.story.lead_html': '"Voor ons gaan markten niet alleen over het verkopen van honing. Ze gaan over <em>gesprek, proeven</em> en het delen van de oogst."',
-      'markets.story.body': 'Elke ochtend dekken we de tafel op dezelfde manier als onze familie dat al vier generaties doet op de hellingen van Pelion — linnen gevouwen, potten geopend, een lepel over de rand. Amsterdam, met zijn fietsen en zijn grijze ochtendlicht, heeft ons kleine ritueel verwelkomd. Kom vroeg. Blijf rustig. Proef voordat u spreekt.',
+      'markets.story.body': 'Elke ochtend dekken we de tafel op dezelfde manier als onze familie dat al vier generaties doet op de hellingen van Pelion, linnen gevouwen, potten geopend, een lepel over de rand. Amsterdam, met zijn fietsen en zijn grijze ochtendlicht, heeft ons kleine ritueel verwelkomd. Kom vroeg. Blijf rustig. Proef voordat u spreekt.',
       'markets.story.sig': 'Stelios &amp; Eleni Andreou',
       'markets.story.sigsub': 'Pelion · Amsterdam',
       'markets.gallery.eyebrow': 'Een fotojournaal',
@@ -801,9 +801,9 @@
       'markets.cta.lead': 'Breng een lege middag mee en een eerlijke honger. Er is altijd koffie, altijd een lepel, altijd een verhaal.',
       'markets.cta.schedule': 'Bekijk marktagenda',
       'markets.cta.trade': 'Retail & horeca',
-      'idx.markets.eyebrow': 'VI — In Amsterdam',
+      'idx.markets.eyebrow': 'VI, In Amsterdam',
       'idx.markets.h_html': 'Vind ons aan de <em>markttafel.</em>',
-      'idx.markets.body': 'Van Pelion naar Amsterdam. Twee tafels, gedekt met linnen, een proeflepel en de ochtendkoffie — stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
+      'idx.markets.body': 'Van Pelion naar Amsterdam. Twee tafels, gedekt met linnen, een proeflepel en de ochtendkoffie, stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
       'idx.markets.cta': 'Vind ons in Amsterdam',
       // ---------- index hero ----------
       'idx.scene0.est': 'Opgericht · Pelion, Griekenland · Landgoed №01',
@@ -827,11 +827,11 @@
       'idx.sel.title': 'Geselecteerde oogsten.',
       'idx.sel.cta': 'Bekijk de collectie',
       // ---------- index editorial ----------
-      'idx.ch1.eyebrow': 'I — De Oorsprong',
+      'idx.ch1.eyebrow': 'I, De Oorsprong',
       'idx.ch1.h': 'Geboren in de stille heuvels van Noord-Griekenland.',
       'idx.ch1.body': 'Vijf generaties lang verzorgt één familie duizend bijenkasten over de kalksteenrichels van de berg Pelion. Wilde tijm, heide en aardbeiboom bloeien in een enkel, onvertaalbaar seizoen. De honing wordt gevormd door dit land, en door niets anders.',
       'idx.ch1.caption': 'Pelion · Voorjaarsoogst',
-      'idx.ch2.eyebrow': 'II — Het Proces',
+      'idx.ch2.eyebrow': 'II, Het Proces',
       'idx.ch2.h': 'Een ambacht verfijnd door tijd, niet door technologie.',
       'idx.step1.h': 'Op hoogte verzameld',
       'idx.step1.p': 'De kasten staan waar wilde bloemen ongestoord groeien. Nooit bij landbouw, nooit bij een weg. De bijen bepalen waar ze foerageren; wij luisteren slechts.',
@@ -840,8 +840,8 @@
       'idx.step3.h': 'Bezonken, nooit gezeefd',
       'idx.step3.p': 'De honing rust veertien dagen in eikenhouten vaten. Lucht stijgt, bezinksel zakt. Niets wordt geforceerd, niets wordt gefilterd, en de structuur blijft levend.',
       'idx.taste.quote': 'Een smaak die de herinnering aan een bergochtend vasthoudt. Warm, goudkleurig, traag om te vertrekken.',
-      'idx.taste.cite': '— Notities uit de proefruimte',
-      'idx.preview.eyebrow': '— De Collectie',
+      'idx.taste.cite': 'Notities uit de proefruimte',
+      'idx.preview.eyebrow': 'De Collectie',
       'idx.preview.h_html': 'Drie uit de kelder, <em>genummerd.</em>',
       'idx.preview.addToCellar': 'Aan de kelder toevoegen',
       'idx.preview.exploreAll': 'Bekijk alle zes edities',
@@ -849,11 +849,11 @@
       'idx.product.title_html': 'Tamme Kastanje, <em>oogst 2025.</em>',
       'idx.product.originLine_html': 'Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 potten',
       'idx.product.desc': 'Een honing uit één weide met opmerkelijke helderheid. Tonen van warme hars, in de zon gerijpte kruiden en een lange minerale afdronk. Gebotteld in zwaar handgeperst glas, met de hand genummerd, ongepasteuriseerd.',
-      'idx.product.cta_html': 'Bekijk de pot &mdash; €68',
+      'idx.product.cta_html': 'Bekijk de pot, €68',
       // ---------- shop ----------
       'shop.eyebrow': 'De Collectie · 2025',
       'shop.headline_html': 'Een kleine, <em>genummerde</em> bibliotheek van de Griekse oogst.',
-      'shop.intro': 'Negen honingen van enkele oorsprong, een koudgeperste olijfolie en een wilde bergthee — elk ongepasteuriseerd, met de hand verzegeld en stil verzonden vanuit Griekenland binnen de week.',
+      'shop.intro': 'Negen honingen van enkele oorsprong, een koudgeperste olijfolie en een wilde bergthee, elk ongepasteuriseerd, met de hand verzegeld en stil verzonden vanuit Griekenland binnen de week.',
       'shop.filterLabel': 'Filter op',
       'shop.filter.all': 'Alles',
       'shop.filter.floral': 'Bloemig',
@@ -889,7 +889,7 @@
       'ck.free': 'Gratis',
       'ck.pickup': 'Afhalen',
       'ck.empty.h': 'Je kelder is leeg',
-      'ck.empty.p': 'Begin de collectie — elke pot is genummerd, verzegeld in was en verzonden binnen de week.',
+      'ck.empty.p': 'Begin de collectie, elke pot is genummerd, verzegeld in was en verzonden binnen de week.',
       'ck.empty.cta': 'Bekijk de collectie',
       'ck.discount.label': 'Kortingscode',
       'ck.discount.ph': 'Kortingscode',
@@ -898,8 +898,8 @@
       'ck.upsell.h': 'Maak je bestelling compleet',
       'ck.details.h_html': 'Gegevens &middot; <em>waar we je bereiken.</em>',
       'ck.billing': 'Factuuradres',
-      'ck.company': 'Bedrijf — optioneel',
-      'ck.vat': 'Btw-nummer — optioneel',
+      'ck.company': 'Bedrijf, optioneel',
+      'ck.vat': 'Btw-nummer, optioneel',
       'ck.sameAddr': 'Verzendadres is gelijk aan factuuradres',
       'ck.save': 'Bewaar deze gegevens voor de volgende keer',
       'ck.delivery.h_html': 'Bezorging &middot; <em>hoe het reist.</em>',
@@ -907,7 +907,7 @@
       'ck.freeProgress': 'Nog {x} voor gratis verzending',
       'ck.payment.h_html': 'Betaling &middot; <em>rustig & veilig.</em>',
       'ck.demoPill': 'Demo',
-      'ck.payNote': 'Aanbieder-onafhankelijke UI. Hier wordt niets afgeschreven — Stripe of Mollie koppelt hier in productie.',
+      'ck.payNote': 'Aanbieder-onafhankelijke UI. Hier wordt niets afgeschreven, Stripe of Mollie koppelt hier in productie.',
       'ck.badge.secure': 'Veilige SSL-checkout',
       'ck.badge.returns': '14 dagen retour',
       'ck.badge.tracked': 'Verzekerd & traceerbaar',
@@ -926,7 +926,7 @@
       'ck.faq.q1': 'Wanneer wordt mijn bestelling verzonden?',
       'ck.faq.a1': 'Bestellingen voor 14:00 uur gaan dezelfde werkdag de deur uit vanuit Nederland, zorgvuldig verpakt en verzegeld.',
       'ck.faq.q2': 'Verzenden jullie internationaal?',
-      'ck.faq.a2': 'Ja — door de hele EU en daarbuiten, verzekerd en traceerbaar. Levertijden per vervoerder zie je bij de bezorgstap.',
+      'ck.faq.a2': 'Ja, door de hele EU en daarbuiten, verzekerd en traceerbaar. Levertijden per vervoerder zie je bij de bezorgstap.',
       'ck.faq.q3': 'Kan ik een bestelling retourneren?',
       'ck.faq.a3': 'Ongeopende potten kun je binnen 14 dagen retourneren. Zie ons <a href="legal-returns.html">retourbeleid</a> of mail naar <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
       'ck.err.required': 'Verplicht',
@@ -955,7 +955,7 @@
       'auth.forgot.title_html': 'Herstel je <em>wachtwoord.</em>',
       'auth.forgot.sub': 'Voer je e-mail in en we sturen een link om een nieuw wachtwoord in te stellen.',
       'auth.sendLink': 'Stuur herstellink',
-      'auth.forgot.done': 'Als er een account bestaat voor dit e-mailadres, is er een herstellink onderweg. (Demo: er wordt geen e-mail verstuurd — Supabase resetPasswordForEmail koppelt hier.)',
+      'auth.forgot.done': 'Als er een account bestaat voor dit e-mailadres, is er een herstellink onderweg. (Demo: er wordt geen e-mail verstuurd, Supabase resetPasswordForEmail koppelt hier.)',
       'auth.backToLogin': 'Terug naar inloggen',
       'acct.eyebrow': 'Jouw account',
       'acct.nav.dashboard': 'Overzicht',
@@ -964,7 +964,7 @@
       'acct.nav.details': 'Gegevens',
       'acct.logout': 'Uitloggen',
       'acct.dash.h_html': 'Jouw <em>account.</em>',
-      'acct.dash.lead': 'Alles op één rustige plek — bestellingen, adressen en je gegevens.',
+      'acct.dash.lead': 'Alles op één rustige plek, bestellingen, adressen en je gegevens.',
       'acct.dash.ordersD': 'Volgen & opnieuw bestellen',
       'acct.dash.addrD': 'Opgeslagen bezorgadressen',
       'acct.dash.detailsD': 'Naam & contact',
@@ -981,13 +981,13 @@
       'acct.details.lead': 'Naam en contactgegevens voor je bestellingen.',
       'acct.details.save': 'Wijzigingen opslaan',
       'acct.details.saved': 'Opgeslagen.',
-      'acct.demoNote': 'Demo-sessie — dit bewaart je gegevens lokaal in je browser en logt niet echt in. Supabase Auth koppelt hier in productie.',
+      'acct.demoNote': 'Demo-sessie, dit bewaart je gegevens lokaal in je browser en logt niet echt in. Supabase Auth koppelt hier in productie.',
       'ok.eyebrow': 'Bestelling bevestigd',
       'ok.title_html': 'Dank <em>je wel.</em>',
       'ok.title': 'Je oogst is gereserveerd.',
       'ok.sub': 'Rustig ingepakt in Pelion en klaargemaakt voor de reis. Een bevestiging is onderweg.',
       'ok.orderNo': 'Bestelnummer',
-      'ok.email': 'Een bevestigingsmail is onderweg. (Demo: er wordt geen e-mail verstuurd — je bestelling is lokaal opgeslagen zodat je hem in je account ziet.)',
+      'ok.email': 'Een bevestigingsmail is onderweg. (Demo: er wordt geen e-mail verstuurd, je bestelling is lokaal opgeslagen zodat je hem in je account ziet.)',
       'ok.track': 'Bestelling volgen',
       'ok.continue': 'Verder winkelen',
       'ok.createH': 'Bewaar je gegevens voor de volgende keer',
@@ -1015,8 +1015,8 @@
       'about.visual.cap': 'Pelion · Noord-Griekenland',
       'about.story.eyebrow': 'Ons verhaal',
       'about.story.h': 'Een huis op één berg.',
-      'about.story.p1': 'Harvest Deli begon op de zuidflank van Pelion, waar één familie al vijf generaties bijen houdt. Wat de berg verlaat is van nature klein — een paar honderd potten per seizoen, traag verzameld en met de hand verzegeld.',
-      'about.story.p2': 'We werken met olijfgaarden en wilde theehellingen in dezelfde geest: klein, seizoensgebonden en eerlijk. (Tijdelijke tekst — het volledige verhaal volgt.)',
+      'about.story.p1': 'Harvest Deli begon op de zuidflank van Pelion, waar één familie al vijf generaties bijen houdt. Wat de berg verlaat is van nature klein, een paar honderd potten per seizoen, traag verzameld en met de hand verzegeld.',
+      'about.story.p2': 'We werken met olijfgaarden en wilde theehellingen in dezelfde geest: klein, seizoensgebonden en eerlijk. (Tijdelijke tekst, het volledige verhaal volgt.)',
       'about.craft.eyebrow': 'Hoe we werken',
       'about.craft.h': 'Klein met opzet.',
       'about.craft.1.l': 'Kleine oogsten',
@@ -1064,7 +1064,7 @@
       'about.ch5.h': 'Een ambacht stil doorgegeven van hand tot hand.',
       'about.ch5.p1': 'Een deel van wat wij doen wordt al vijf generaties op dezelfde manier gedaan. Een deel verandert elk jaar. De bijen houden ons eerlijk. De berg houdt ons klein.',
       'about.ch5.p2': 'Wij schalen niet op. Wij mengen niet. Wij verwijderen de was niet van de deksels van de potten. Driehonderdvierentachtig potten in de Tamme Kastanje editie, en als ze op zijn, is het seizoen voorbij.',
-      'about.ch5.caption': 'Kelderarchief · 1882 — 2025',
+      'about.ch5.caption': 'Kelderarchief · 1882, 2025',
       'about.cta.label': 'De Collectie · 2025',
       'about.cta.h_html': 'Proef de <em>berg.</em>',
       'about.cta.btn': 'Bekijk de collectie',
@@ -1126,17 +1126,17 @@
       'checkout.label.last': 'Achternaam',
       'checkout.label.addr1': 'Adresregel 1',
       'checkout.label.addr1Ph': 'Huisnummer, straat',
-      'checkout.label.addr2': 'Adresregel 2 — optioneel',
+      'checkout.label.addr2': 'Adresregel 2, optioneel',
       'checkout.label.addr2Ph': 'Appartement, gebouw, verdieping',
       'checkout.label.city': 'Stad',
       'checkout.label.postcode': 'Postcode',
       'checkout.label.country': 'Land',
       'checkout.ship.standard.title': 'Standaard · met track & trace',
-      'checkout.ship.standard.sub': '5 — 8 werkdagen, met handtekening',
+      'checkout.ship.standard.sub': '5, 8 werkdagen, met handtekening',
       'checkout.ship.express.title': 'Express · koerier',
-      'checkout.ship.express.sub': '2 — 3 werkdagen, persoonlijk bezorgd',
+      'checkout.ship.express.sub': '2, 3 werkdagen, persoonlijk bezorgd',
       'checkout.ship.intl.title': 'Internationaal · buiten EU',
-      'checkout.ship.intl.sub': '7 — 12 werkdagen, belasting vooraf betaald',
+      'checkout.ship.intl.sub': '7, 12 werkdagen, belasting vooraf betaald',
       'checkout.step3.h_html': 'Betaling &middot; <em>stil en veilig.</em>',
       'checkout.tab.card': 'Kaart',
       'checkout.tab.bank': 'Overschrijving',
@@ -1169,7 +1169,7 @@
       'checkout.row.shippingFree': 'Gratis',
       // ---------- product detail ----------
       'product.crumb.collection': 'Collectie',
-      'product.crumb.current': 'Editie I — Tamme Kastanje',
+      'product.crumb.current': 'Editie I, Tamme Kastanje',
       'product.eyebrow_html': 'Editie I <span class="dot"></span> Oogst 2025',
       'product.title_html': 'Tamme Kastanje, <em>landgoed Pelion.</em>',
       'product.tag.singleMeadow': 'Eén Weide',
@@ -1184,13 +1184,13 @@
       'product.notes_html': 'Gratis verzending in de EU boven €120 <span class="dot"></span> Beperkte uitgave · 384 genummerde potten',
       'product.tasting.eyebrow': 'De Proef',
       'product.tasting.h_html': 'Wat je proeft, langzaam.',
-      'product.tasting.first.h': 'I — Eerst',
+      'product.tasting.first.h': 'I, Eerst',
       'product.tasting.first.quote': '"Warme hars, zon op steen."',
       'product.tasting.first.p': 'Een onmiddellijke ademtocht van den en droge kruiden. De geur van de berg zelf in late juni, wanneer de lucht boven de tijm begint te trillen.',
-      'product.tasting.body.h': 'II — Midden',
+      'product.tasting.body.h': 'II, Midden',
       'product.tasting.body.quote': '"Zachte amber, trage honing."',
       'product.tasting.body.p': 'Vervolgens neemt de structuur het over, een viscositeit die schenkt als een ingehouden adem. Wilde bloem en een schone, zachte zoetheid in het midden van de tong.',
-      'product.tasting.finish.h': 'III — Afdronk',
+      'product.tasting.finish.h': 'III, Afdronk',
       'product.tasting.finish.quote': '"Mineraal, lang, goudkleurig."',
       'product.tasting.finish.p': 'Een trage afdaling in steen en zout. Subtiel, bijna droog. Het soort afdronk dat in de kamer blijft hangen lang nadat de lepel is neergelegd.',
       'product.origin.eyebrow': 'De Oorsprong',
@@ -1282,13 +1282,13 @@
       'footer.bottom2': 'Φτιαγμένο αργά · MMXXV',
       'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
       'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
-      'idx.h1': 'Harvest Deli — μονοκτηματικό ελληνικό μέλι από το Πήλιο',
+      'idx.h1': 'Harvest Deli, μονοκτηματικό ελληνικό μέλι από το Πήλιο',
       'concierge.fab': 'Επικοινωνία',
       'concierge.title': 'Συνομιλία με Harvest Deli',
       'concierge.subtitle': 'Πήλιο, Ελλάδα',
       'concierge.online': 'Πραγματικός άνθρωπος · Απάντηση σε λίγες ώρες',
       'concierge.greeting': 'Καλώς ήρθατε στη Harvest Deli.\nΠώς μπορούμε να σας βοηθήσουμε;',
-      'concierge.intro': 'Επιλέξτε ένα θέμα παρακάτω — η συνομιλία θα συνεχιστεί στο WhatsApp.',
+      'concierge.intro': 'Επιλέξτε ένα θέμα παρακάτω, η συνομιλία θα συνεχιστεί στο WhatsApp.',
       'concierge.action.product': 'Ερώτηση για κάποιο προϊόν',
       'concierge.action.retail': 'Λιανική & φιλοξενία',
       'concierge.action.shipping': 'Αποστολή & παράδοση',
@@ -1306,22 +1306,22 @@
       'markets.menu_sub': 'Βρείτε μας στο Άμστερνταμ',
       'markets.eyebrow': 'Από το Πήλιο στο Άμστερνταμ',
       'markets.hero.h_html': 'Βρείτε μας<br><em>στο Άμστερνταμ.</em>',
-      'markets.hero.sub': 'Συναντήστε τη Harvest Deli από κοντά στις εβδομαδιαίες και μηνιαίες αγορές μας — ήσυχα φερμένες από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
+      'markets.hero.sub': 'Συναντήστε τη Harvest Deli από κοντά στις εβδομαδιαίες και μηνιαίες αγορές μας, ήσυχα φερμένες από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
       'markets.cards.eyebrow': 'Δύο τραπέζια',
       'markets.cards.h_html': 'Εκεί όπου θα βρείτε <em>τη σοδειά.</em>',
       'markets.tenkate.tag': 'Εβδομαδιαία · Δυτικά',
       'markets.tenkate.title': 'Αγορά Tenkate',
-      'markets.tenkate.hours': 'Δευτέρα — Σάββατο · 09:00 — 17:00',
+      'markets.tenkate.hours': 'Δευτέρα, Σάββατο · 09:00, 17:00',
       'markets.tenkate.addr': 'Ten Katestraat · Άμστερνταμ-Δυτικά',
-      'markets.tenkate.desc': 'Το εβδομαδιαίο τραπέζι μας — λίγα τελάρα μέλι, ένα κουταλάκι για δοκιμή, ένα ανοιχτό βάζο. Περάστε ανάμεσα στα θελήματά σας· σερβίρουμε τον πρωινό καφέ.',
+      'markets.tenkate.desc': 'Το εβδομαδιαίο τραπέζι μας, λίγα τελάρα μέλι, ένα κουταλάκι για δοκιμή, ένα ανοιχτό βάζο. Περάστε ανάμεσα στα θελήματά σας· σερβίρουμε τον πρωινό καφέ.',
       'markets.westerpark.tag': 'Μηνιαία · Κυριακή',
       'markets.westerpark.title': 'Κυριακάτικη Αγορά · Westerpark',
-      'markets.westerpark.hours': 'Πρώτη Κυριακή κάθε μήνα · 11:00 — 17:00',
+      'markets.westerpark.hours': 'Πρώτη Κυριακή κάθε μήνα · 11:00, 17:00',
       'markets.westerpark.addr': 'Westergasterrein · Άμστερνταμ-Δυτικά',
-      'markets.westerpark.desc': 'Μια πιο αργή Κυριακάτικη συνάντηση μέσα στο παλιό εργοστάσιο φωταερίου. Λινό, φως κεριών το σούρουπο, και η σοδειά — μια κουταλιά τη φορά.',
+      'markets.westerpark.desc': 'Μια πιο αργή Κυριακάτικη συνάντηση μέσα στο παλιό εργοστάσιο φωταερίου. Λινό, φως κεριών το σούρουπο, και η σοδειά, μια κουταλιά τη φορά.',
       'markets.story.eyebrow': 'Το τραπέζι',
       'markets.story.lead_html': '"Για εμάς, οι αγορές δεν είναι μόνο πώληση μελιού. Είναι <em>συνομιλία, δοκιμή</em> και μοίρασμα της σοδειάς."',
-      'markets.story.body': 'Κάθε πρωί στρώνουμε το τραπέζι όπως η οικογένειά μας τέσσερις γενιές τώρα στις πλαγιές του Πηλίου — λινό διπλωμένο, βάζα ανοιχτά, ένα κουτάλι πάνω στο χείλος. Το Άμστερνταμ, με τα ποδήλατά του και το γκρίζο πρωινό του φως, υποδέχτηκε το μικρό μας τελετουργικό. Ελάτε νωρίς. Μείνετε αργά. Δοκιμάστε πριν μιλήσετε.',
+      'markets.story.body': 'Κάθε πρωί στρώνουμε το τραπέζι όπως η οικογένειά μας τέσσερις γενιές τώρα στις πλαγιές του Πηλίου, λινό διπλωμένο, βάζα ανοιχτά, ένα κουτάλι πάνω στο χείλος. Το Άμστερνταμ, με τα ποδήλατά του και το γκρίζο πρωινό του φως, υποδέχτηκε το μικρό μας τελετουργικό. Ελάτε νωρίς. Μείνετε αργά. Δοκιμάστε πριν μιλήσετε.',
       'markets.story.sig': 'Στέλιος &amp; Ελένη Ανδρέου',
       'markets.story.sigsub': 'Πήλιο · Άμστερνταμ',
       'markets.gallery.eyebrow': 'Ένα φωτογραφικό ημερολόγιο',
@@ -1342,9 +1342,9 @@
       'markets.cta.lead': 'Φέρτε ένα άδειο απόγευμα και μια ειλικρινή όρεξη. Υπάρχει πάντα καφές, πάντα ένα κουτάλι, πάντα μια ιστορία.',
       'markets.cta.schedule': 'Πρόγραμμα αγορών',
       'markets.cta.trade': 'Λιανική & φιλοξενία',
-      'idx.markets.eyebrow': 'VI — Στο Άμστερνταμ',
+      'idx.markets.eyebrow': 'VI, Στο Άμστερνταμ',
       'idx.markets.h_html': 'Βρείτε μας στο <em>τραπέζι της αγοράς.</em>',
-      'idx.markets.body': 'Από το Πήλιο στο Άμστερνταμ. Δύο τραπέζια, στρωμένα με λινό, ένα κουτάλι για δοκιμή και ο πρωινός καφές — ήσυχα φερμένα από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
+      'idx.markets.body': 'Από το Πήλιο στο Άμστερνταμ. Δύο τραπέζια, στρωμένα με λινό, ένα κουτάλι για δοκιμή και ο πρωινός καφές, ήσυχα φερμένα από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
       'idx.markets.cta': 'Βρείτε μας στο Άμστερνταμ',
       'idx.scene0.est': 'Ιδρύθηκε · Πήλιο, Ελλάδα · Κτήμα №01',
       'idx.scene1.eyebrow_html': 'Έκδοση I <span class="dot"></span> Καστανόμελο',
@@ -1366,11 +1366,11 @@
       'idx.sel.eyebrow': 'Η συλλογή',
       'idx.sel.title': 'Επιλεγμένες συγκομιδές.',
       'idx.sel.cta': 'Δείτε τη συλλογή',
-      'idx.ch1.eyebrow': 'I — Η Προέλευση',
+      'idx.ch1.eyebrow': 'I, Η Προέλευση',
       'idx.ch1.h': 'Γεννημένο στους ήσυχους λόφους της Βόρειας Ελλάδας.',
       'idx.ch1.body': 'Επί πέντε γενιές, μία οικογένεια φροντίζει χίλιες κυψέλες πάνω στις ασβεστολιθικές κορυφογραμμές του Πηλίου. Άγριο θυμάρι, ρείκι και κουμαριά ανθίζουν σε μία και μόνη, αμετάφραστη εποχή. Το μέλι παίρνει σχήμα από αυτή τη γη, και από τίποτα άλλο.',
       'idx.ch1.caption': 'Πήλιο · Ανοιξιάτικη συγκομιδή',
-      'idx.ch2.eyebrow': 'II — Η Διαδικασία',
+      'idx.ch2.eyebrow': 'II, Η Διαδικασία',
       'idx.ch2.h': 'Μια πρακτική εξευγενισμένη από τον χρόνο, όχι από την τεχνολογία.',
       'idx.step1.h': 'Συλλεγμένο σε υψόμετρο',
       'idx.step1.p': 'Οι κυψέλες τοποθετούνται εκεί όπου τα αγριολούλουδα μεγαλώνουν αφρόντιστα. Ποτέ κοντά σε καλλιέργειες, ποτέ κοντά σε δρόμο. Οι μέλισσες αποφασίζουν πού θα τραφούν· εμείς απλά ακούμε.',
@@ -1379,8 +1379,8 @@
       'idx.step3.h': 'Καθίζηση, χωρίς διήθηση',
       'idx.step3.p': 'Το μέλι ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός. Ο αέρας ανεβαίνει, το ίζημα κατακάθεται. Τίποτα δεν εξαναγκάζεται, τίποτα δεν φιλτράρεται, και η υφή παραμένει ζωντανή.',
       'idx.taste.quote': 'Μια γεύση που κρατά τη μνήμη ενός ορεινού πρωινού. Ζεστή, χρυσαφένια, αργή να φύγει.',
-      'idx.taste.cite': '— Σημειώσεις από το δωμάτιο γευσιγνωσίας',
-      'idx.preview.eyebrow': '— Η Συλλογή',
+      'idx.taste.cite': 'Σημειώσεις από το δωμάτιο γευσιγνωσίας',
+      'idx.preview.eyebrow': 'Η Συλλογή',
       'idx.preview.h_html': 'Τρία από το κελάρι, <em>αριθμημένα.</em>',
       'idx.preview.addToCellar': 'Προσθήκη στο Κελάρι',
       'idx.preview.exploreAll': 'Δείτε και τις έξι εκδόσεις',
@@ -1388,10 +1388,10 @@
       'idx.product.title_html': 'Καστανόμελο, <em>συγκομιδή 2025.</em>',
       'idx.product.originLine_html': 'Πήλιο <span class="dot"></span> 950μ <span class="dot"></span> 384 βάζα',
       'idx.product.desc': 'Μέλι μιας μοναδικής λιβαδιάς αξιοσημείωτης διαύγειας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, αριθμημένο με το χέρι, διατηρημένο ανεπεξέργαστο.',
-      'idx.product.cta_html': 'Δείτε το βάζο &mdash; €68',
+      'idx.product.cta_html': 'Δείτε το βάζο, €68',
       'shop.eyebrow': 'Η Συλλογή · 2025',
       'shop.headline_html': 'Μια μικρή, <em>αριθμημένη</em> βιβλιοθήκη της ελληνικής σοδειάς.',
-      'shop.intro': 'Εννέα μέλια μονής προέλευσης, ένα ελαιόλαδο ψυχρής έκθλιψης και ένα άγριο τσάι του βουνού — το καθένα ανεπεξέργαστο, σφραγισμένο στο χέρι και αποστελλόμενο ήσυχα από την Ελλάδα εντός της εβδομάδας.',
+      'shop.intro': 'Εννέα μέλια μονής προέλευσης, ένα ελαιόλαδο ψυχρής έκθλιψης και ένα άγριο τσάι του βουνού, το καθένα ανεπεξέργαστο, σφραγισμένο στο χέρι και αποστελλόμενο ήσυχα από την Ελλάδα εντός της εβδομάδας.',
       'shop.filterLabel': 'Φίλτρο κατά',
       'shop.filter.all': 'Όλα',
       'shop.filter.floral': 'Ανθόσπαρτα',
@@ -1442,7 +1442,7 @@
       'about.ch5.h': 'Μια πρακτική που περνά ήσυχα από χέρι σε χέρι.',
       'about.ch5.p1': 'Μερικά απ’αυτά που κάνουμε γίνονται με τον ίδιο τρόπο για πέντε γενιές. Άλλα αλλάζουν κάθε χρόνο. Οι μέλισσες μας κρατούν ειλικρινείς. Το βουνό μας κρατά μικρούς.',
       'about.ch5.p2': 'Δεν κλιμακώνουμε. Δεν αναμειγνύουμε. Δεν αφαιρούμε το κερί από τα καπάκια των βάζων. Τριακόσια ογδόντα τέσσερα βάζα στην έκδοση Καστανιάς, και όταν τελειώσουν, η εποχή έχει τελειώσει.',
-      'about.ch5.caption': 'Αρχείο κελαριού · 1882 — 2025',
+      'about.ch5.caption': 'Αρχείο κελαριού · 1882, 2025',
       'about.cta.label': 'Η Συλλογή · 2025',
       'about.cta.h_html': 'Γευτείτε το <em>βουνό.</em>',
       'about.cta.btn': 'Δείτε τη συλλογή',
@@ -1502,17 +1502,17 @@
       'checkout.label.last': 'Επώνυμο',
       'checkout.label.addr1': 'Διεύθυνση γραμμή 1',
       'checkout.label.addr1Ph': 'Αριθμός, οδός',
-      'checkout.label.addr2': 'Διεύθυνση γραμμή 2 — προαιρετικό',
+      'checkout.label.addr2': 'Διεύθυνση γραμμή 2, προαιρετικό',
       'checkout.label.addr2Ph': 'Διαμέρισμα, κτίριο, όροφος',
       'checkout.label.city': 'Πόλη',
       'checkout.label.postcode': 'Ταχ. κώδικας',
       'checkout.label.country': 'Χώρα',
       'checkout.ship.standard.title': 'Κανονική · με ιχνηλάτηση',
-      'checkout.ship.standard.sub': '5 — 8 εργάσιμες ημέρες, παράδοση με υπογραφή',
+      'checkout.ship.standard.sub': '5, 8 εργάσιμες ημέρες, παράδοση με υπογραφή',
       'checkout.ship.express.title': 'Express · κούριερ',
-      'checkout.ship.express.sub': '2 — 3 εργάσιμες ημέρες, παράδοση στο χέρι',
+      'checkout.ship.express.sub': '2, 3 εργάσιμες ημέρες, παράδοση στο χέρι',
       'checkout.ship.intl.title': 'Διεθνής · εκτός ΕΕ',
-      'checkout.ship.intl.sub': '7 — 12 εργάσιμες ημέρες, φόροι προπληρωμένοι',
+      'checkout.ship.intl.sub': '7, 12 εργάσιμες ημέρες, φόροι προπληρωμένοι',
       'checkout.step3.h_html': 'Πληρωμή &middot; <em>ήσυχα ασφαλής.</em>',
       'checkout.tab.card': 'Κάρτα',
       'checkout.tab.bank': 'Τραπεζική μεταφορά',
@@ -1544,7 +1544,7 @@
       'checkout.row.total': 'Σύνολο',
       'checkout.row.shippingFree': 'Δωρεάν',
       'product.crumb.collection': 'Συλλογή',
-      'product.crumb.current': 'Έκδοση I — Καστανόμελο',
+      'product.crumb.current': 'Έκδοση I, Καστανόμελο',
       'product.eyebrow_html': 'Έκδοση I <span class="dot"></span> Συγκομιδή 2025',
       'product.title_html': 'Καστανόμελο, <em>κτήμα Πηλίου.</em>',
       'product.tag.singleMeadow': 'Μία Λιβαδιά',
@@ -1559,13 +1559,13 @@
       'product.notes_html': 'Δωρεάν αποστολή στην ΕΕ άνω των €120 <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
       'product.tasting.eyebrow': 'Η Γευσιγνωσία',
       'product.tasting.h_html': 'Τι γεύεστε, αργά.',
-      'product.tasting.first.h': 'I — Πρώτη',
+      'product.tasting.first.h': 'I, Πρώτη',
       'product.tasting.first.quote': '"Ζεστή ρετσίνα, ήλιος σε πέτρα."',
       'product.tasting.first.p': 'Μια άμεση ανάσα πεύκου και ξερού βοτάνου. Η μυρωδιά του ίδιου του βουνού στα τέλη Ιουνίου, όταν ο αέρας πάνω από το θυμάρι αρχίζει να τρεμοπαίζει.',
-      'product.tasting.body.h': 'II — Σώμα',
+      'product.tasting.body.h': 'II, Σώμα',
       'product.tasting.body.quote': '"Απαλό κεχριμπάρι, αργό μέλι."',
       'product.tasting.body.p': 'Η υφή παίρνει σειρά μετά, ένα ιξώδες που ρέει σαν κρατημένη ανάσα. Αγριολούλουδο και μια καθαρή, απαλή γλυκύτητα κρατημένη στο κέντρο της γλώσσας.',
-      'product.tasting.finish.h': 'III — Επίγευση',
+      'product.tasting.finish.h': 'III, Επίγευση',
       'product.tasting.finish.quote': '"Μεταλλική, μακρά, χρυσαφένια."',
       'product.tasting.finish.p': 'Μια αργή κάθοδος προς την πέτρα και το αλάτι. Διακριτική, σχεδόν ξηρή. Το είδος της επίγευσης που παραμένει στο δωμάτιο πολύ μετά την απόθεση του κουταλιού.',
       'product.origin.eyebrow': 'Η Προέλευση',
@@ -1601,7 +1601,7 @@
   window.HD_T = T;
 
   // =====================================================
-  //  FAQ i18n bundle (homepage + contact) — extends T
+  //  FAQ i18n bundle (homepage + contact), extends T
   // =====================================================
   Object.assign(T.en, {
     'idx.faq.eyebrow': 'Frequently asked',
@@ -1724,7 +1724,7 @@
   });
 
   // =====================================================
-  //  SHOP FILTER i18n bundle — extends T
+  //  SHOP FILTER i18n bundle, extends T
   // =====================================================
   Object.assign(T.en, {
     'shop.tb.editions': 'editions', 'shop.tb.of': 'of',
@@ -1852,7 +1852,7 @@
   });
 
   // =====================================================
-  //  WISHLIST i18n bundle — extends T
+  //  WISHLIST i18n bundle, extends T
   // =====================================================
   Object.assign(T.en, {
     'nav.wishlist': 'Wishlist',
@@ -1915,7 +1915,7 @@
       const stored = localStorage.getItem('hd-lang');
       if (stored === 'en' || stored === 'nl' || stored === 'el') return stored;
     } catch (e) {}
-    // Otherwise: NL-based business — default to Dutch.
+    // Otherwise: NL-based business, default to Dutch.
     // Greek visitors still get EL automatically (brand origin language).
     const nav = (navigator.language || '').toLowerCase();
     if (nav.startsWith('el')) return 'el';
@@ -2211,7 +2211,7 @@
       btn.classList.toggle('has-items', count > 0);
     });
 
-    // Drawer items — READ cart state from Commerce when available (mock source),
+    // Drawer items, READ cart state from Commerce when available (mock source),
     // else fall back to the HD_CART runtime. Markup + delegated handlers unchanged.
     const _snap = (window.Commerce && window.Commerce.cart && window.Commerce.cart.getSync) ? window.Commerce.cart.getSync() : null;
     const _lines = _snap
@@ -2266,7 +2266,7 @@
       }
     }
 
-    // Totals — from Commerce subtotal when available
+    // Totals, from Commerce subtotal when available
     const total = document.getElementById('cartTotal');
     if (total) total.textContent = _snap ? formatPrice(+_snap.cost.subtotalAmount.amount) : formatPrice(cart.total());
 
@@ -2398,7 +2398,7 @@
       if (!PRODUCTS[slug]) return;
       cart.add(slug, qty);
       const p = localizedProduct(slug);
-      toast(lookup('cart.added') + ' — ' + p.name);
+      toast(lookup('cart.added') + ', ' + p.name);
       if (addBtn.dataset.openCart !== 'false') {
         setTimeout(openCart, 240);
       }
@@ -2640,7 +2640,7 @@
 })();
 
 /* =================================================================
-   FAQ accordion (global) — attaches to any .faq-block .faq-row
+   FAQ accordion (global), attaches to any .faq-block .faq-row
    Reused on index.html, contact.html, and any future page.
    ================================================================= */
 (function () {
@@ -2662,10 +2662,10 @@
 })();
 
 /* =================================================================
-   E-COMMERCE UPGRADES — shared behaviours
+   E-COMMERCE UPGRADES, shared behaviours
    ================================================================= */
 
-/* ---------- HARVEST CONCIERGE — luxury floating support (auto-inject) ---------- */
+/* ---------- HARVEST CONCIERGE, luxury floating support (auto-inject) ---------- */
 /* Replaces the generic WhatsApp bubble with a custom Mediterranean-concierge
    experience: gold glass FAB → cinematic dark chat panel → only THEN open WA. */
 (function () {
@@ -2680,14 +2680,14 @@
   ];
 
   // Inline SVGs
-  // Olive sprig — used as the brand avatar inside the chat panel header
+  // Olive sprig, used as the brand avatar inside the chat panel header
   const SPRIG_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
     '<path d="M12 21V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
     '<path d="M12 14C12 11 9 9 6 9.5C6.5 12.5 8.5 14.5 12 14Z" fill="currentColor" opacity="0.85"/>' +
     '<path d="M12 11C12 8.5 14.5 7 17 7.5C16.5 10 14.5 11.5 12 11Z" fill="currentColor" opacity="0.85"/>' +
     '<path d="M12 8C12 5.5 14 4 16 4.5C15.5 6.5 14 8 12 8Z" fill="currentColor" opacity="0.85"/></svg>';
 
-  // Gold-coin medallion with embossed chat bubble — used as the floating button.
+  // Gold-coin medallion with embossed chat bubble, used as the floating button.
   // Built as a single inline SVG: radial gold gradient base, top-left gloss,
   // engraved rim, cream chat bubble with three dots. Crisp at any size, ~1.4 KB.
   const COIN_CHAT_SVG = (
@@ -2715,7 +2715,7 @@
           '<stop offset="100%" stop-color="#3F2A0C" stop-opacity="0.32"/>' +
         '</radialGradient>' +
       '</defs>' +
-      // outer rim (slightly larger than the face — gives a beveled edge)
+      // outer rim (slightly larger than the face, gives a beveled edge)
       '<circle cx="40" cy="40" r="39" fill="url(#hdCoinRim)"/>' +
       // coin face
       '<circle cx="40" cy="40" r="37" fill="url(#hdCoinFace)"/>' +
@@ -2771,7 +2771,7 @@
     btn.setAttribute('aria-label', t('concierge.title', 'Harvest Concierge'));
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.setAttribute('aria-expanded', 'false');
-    // Inline gold-coin medallion SVG — sharp at any size, ~1.4 KB.
+    // Inline gold-coin medallion SVG, sharp at any size, ~1.4 KB.
     btn.innerHTML =
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>' +
       '<span class="hd-fab-glyph" aria-hidden="true">' + COIN_CHAT_SVG + '</span>';
@@ -2815,7 +2815,7 @@
             'Welcome to Harvest Deli.\nHow may we help you today?' +
           '</div>' +
           '<p class="hd-concierge__intro" data-i18n="concierge.intro">' +
-            'Choose a topic below — we will continue the conversation on WhatsApp.' +
+            'Choose a topic below, we will continue the conversation on WhatsApp.' +
           '</p>' +
           '<div class="hd-concierge__actions" role="group" aria-label="' +
             t('concierge.title', 'Harvest Concierge') + '">' +
@@ -2913,7 +2913,7 @@
   'use strict';
   function init() {
     if (document.querySelector('.skip-link')) return;
-    // Find a usable jump target — prefer <main>, fall back to first <section>
+    // Find a usable jump target, prefer <main>, fall back to first <section>
     let target = document.querySelector('main');
     if (!target) target = document.querySelector('main, [role="main"], article, section');
     if (!target) return;
@@ -2966,7 +2966,7 @@
     form.addEventListener('submit', e => {
       const hp = form.querySelector('input[name="website_url"]');
       if (hp && hp.value) {
-        // Bot detected — silently swallow
+        // Bot detected, silently swallow
         e.preventDefault();
         e.stopImmediatePropagation();
         console.warn('[hd] form submission blocked by honeypot');
@@ -3312,7 +3312,7 @@
 })();
 
 /* =================================================================
-   NAV STABILITY — Cart + Wishlist auto-injectors
+   NAV STABILITY, Cart + Wishlist auto-injectors
    Every page gets the SAME nav layout: [...] [Heart] [Cart]
    Pages that ship without a .nav-cart get one injected so the
    wishlist heart anchors to a consistent position on every page.
@@ -3365,7 +3365,7 @@
   function ensureCart(navRight) {
     let cart = navRight.querySelector('.nav-cart');
     if (cart) return cart;
-    // Page didn't ship with a cart button — inject one so the heart
+    // Page didn't ship with a cart button, inject one so the heart
     // can always anchor to it. Identical markup to the hand-authored ones.
     cart = document.createElement('button');
     cart.className = 'nav-cart';
@@ -3399,7 +3399,7 @@
     //    opens something on legal / wishlist / track-order pages.
     ensureDrawer();
     document.querySelectorAll('nav.site-nav .nav-right').forEach(navRight => {
-      // 1. Make sure the cart button exists — every page should have it.
+      // 1. Make sure the cart button exists, every page should have it.
       const cart = ensureCart(navRight);
 
       // 2. Inject the wishlist heart immediately BEFORE the cart.
@@ -3468,7 +3468,7 @@
 })();
 
 /* =================================================================
-   GLOBAL BUTTON SYSTEM — soft, rounded, premium
+   GLOBAL BUTTON SYSTEM, soft, rounded, premium
    Injected as <style> after existing inline styles so it wins
    the cascade on equal specificity (no !important needed).
    Replaces "black slide-up" hover with calm lift + amber shimmer.
@@ -3519,7 +3519,7 @@
   content: none;
 }
 
-/* --- PRIMARY filled button — espresso ink + warm ivory text --- */
+/* --- PRIMARY filled button, espresso ink + warm ivory text --- */
 .cta, .pd-cta, .cta-primary, .cta-link, .about-cta .cta-link,
 .form-submit, .cart-checkout, .fp-apply,
 .confirm-btn, .track-cta, .wl-add, .es-reset, .empty-state .es-reset,
@@ -3582,7 +3582,7 @@
   transition: transform 0.75s var(--btn-ease-out);
 }
 
-/* Hover — calm lift + amber border glow + shimmer swipe */
+/* Hover, calm lift + amber border glow + shimmer swipe */
 .cta:hover, .pd-cta:hover, .cta-primary:hover, .cta-link:hover,
 .about-cta .cta-link:hover, .form-submit:hover, .cart-checkout:hover,
 .fp-apply:hover, .confirm-btn:hover, .track-cta:hover, .wl-add:hover,
@@ -3608,7 +3608,7 @@
   transform: translateX(110%);
 }
 
-/* Active — pressed */
+/* Active, pressed */
 .cta:active, .pd-cta:active, .cta-primary:active, .form-submit:active,
 .cart-checkout:active, .fp-apply:active, .confirm-btn:active,
 .track-cta:active, .wl-add:active, .es-reset:active,
@@ -3619,7 +3619,7 @@
   box-shadow: var(--btn-shadow);
 }
 
-/* Focus visible — accessible warm gold ring */
+/* Focus visible, accessible warm gold ring */
 .cta:focus-visible, .pd-cta:focus-visible, .cta-primary:focus-visible,
 .cta-link:focus-visible, .form-submit:focus-visible,
 .cart-checkout:focus-visible, .fp-apply:focus-visible,
@@ -3644,7 +3644,7 @@
   box-shadow: var(--btn-shadow-soft);
 }
 
-/* --- SECONDARY ghost/outline button — warm transparent + dark text --- */
+/* --- SECONDARY ghost/outline button, warm transparent + dark text --- */
 .cta-ghost, .fp-reset, .wl-view, .cb-btn.cb-reject, .cb-btn.cb-customize,
 .empty-state .es-reset.secondary {
   display: inline-flex;
@@ -3728,7 +3728,7 @@
 .fp-chip:hover span { transform: translateY(-1px) scale(1.008); }
 .fp-chip input:checked + span { box-shadow: var(--btn-shadow-soft); }
 
-/* Active filter chips (above grid) — soft press */
+/* Active filter chips (above grid), soft press */
 .ac-chip { transition: background 0.4s var(--btn-ease), transform 0.4s var(--btn-ease), opacity 0.4s var(--btn-ease), box-shadow 0.4s var(--btn-ease); }
 .ac-chip:hover { transform: translateY(-1px); box-shadow: var(--btn-shadow-soft-hover); }
 
@@ -3755,7 +3755,7 @@
   width: 26px;
 }
 
-/* --- Cookie bar buttons — keep them consistent with the new shape --- */
+/* --- Cookie bar buttons, keep them consistent with the new shape --- */
 .cookie-bar .cb-btn {
   border-radius: var(--btn-radius);
   padding: 12px 22px;
@@ -3810,12 +3810,12 @@
 })();
 
 /* =================================================================
-   POLISH PASS — 17 no-account improvements (global JS)
+   POLISH PASS, 17 no-account improvements (global JS)
    ================================================================= */
 (function () {
   'use strict';
 
-  /* 10. Page transition — gentle fade-out on internal navigation clicks (no flash on initial load) */
+  /* 10. Page transition, gentle fade-out on internal navigation clicks (no flash on initial load) */
   document.addEventListener('click', e => {
     const a = e.target.closest('a[href]');
     if (!a) return;
@@ -3872,7 +3872,7 @@
   (function scrollProgress() {
     function init() {
       const docH = document.documentElement.scrollHeight - window.innerHeight;
-      if (docH < 800) return; // short page — skip
+      if (docH < 800) return; // short page, skip
       const bar = document.createElement('div');
       bar.className = 'hd-progress';
       bar.setAttribute('aria-hidden', 'true');
@@ -3982,7 +3982,7 @@
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => toast.classList.remove('show'), 3600);
 
-      // Sparkle on first-ever add — triggered from click location
+      // Sparkle on first-ever add, triggered from click location
       if (!firstAddDone && ev) {
         const x = ev.clientX || ev.touches?.[0]?.clientX || window.innerWidth / 2;
         const y = ev.clientY || ev.touches?.[0]?.clientY || window.innerHeight / 2;
@@ -4001,7 +4001,7 @@
     }, true);
   })();
 
-  /* 7. Free-shipping celebration — observe progress bar text */
+  /* 7. Free-shipping celebration, observe progress bar text */
   (function fsCelebrate() {
     let lastUnlocked = false;
     function check() {
@@ -4179,7 +4179,7 @@
     else init();
   })();
 
-  /* 20. Service worker — registration disabled during development.
+  /* 20. Service worker, registration disabled during development.
      The cache-first worker kept serving stale assets; sw.js is now a
      self-destruct kill-switch. We do NOT re-register here so the site
      always loads fresh from the network. Re-enable before deploying a
@@ -4235,7 +4235,7 @@
           '<p class="qv-notes">&ldquo;' + (p.notes || '') + '&rdquo;</p>' +
           (badges ? '<div class="qv-badges">' + badges + '</div>' : '') +
           '<div class="qv-meta">' +
-            '<div><div class="lbl">Texture</div><div class="val">' + (p.texture || '—') + '</div></div>' +
+            '<div><div class="lbl">Texture</div><div class="val">' + (p.texture || '-') + '</div></div>' +
             '<div><div class="lbl">Weight</div><div class="val">' + (p.weight || '250g') + '</div></div>' +
           '</div>' +
           '<div class="qv-price-row">' +
@@ -4392,7 +4392,7 @@
 })();
 
 /* =================================================================
-   Commerce layer bootstrap (Phase 1) — loads commerce.js site-wide
+   Commerce layer bootstrap (Phase 1), loads commerce.js site-wide
    and pins the free-shipping threshold before checkout.js reads it.
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
@@ -4408,7 +4408,7 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 })();
 
 /* =================================================================
-   Cart subtotal — buttery "settle" pulse when the total changes.
+   Cart subtotal, buttery "settle" pulse when the total changes.
    ================================================================= */
 (function () {
   'use strict';
@@ -4432,7 +4432,7 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 })();
 
 /* =================================================================
-   Nav — subtle mouse-reactive warm light (sets --nav-mx on hover).
+   Nav, subtle mouse-reactive warm light (sets --nav-mx on hover).
    Pointer-fine + motion-allowed only; pure cosmetic, no layout.
    ================================================================= */
 (function () {

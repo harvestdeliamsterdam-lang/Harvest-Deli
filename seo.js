@@ -1,8 +1,8 @@
 /* =================================================================
-   Harvest Deli — SEO foundation (additive, non-breaking)
+   Harvest Deli, SEO foundation (additive, non-breaking)
    -----------------------------------------------------------------
    Runs site-wide (loaded by shared.js). It only ADDS tags that are
-   missing — never duplicates ones a page already hand-authored:
+   missing, never duplicates ones a page already hand-authored:
      • <link rel="canonical">         (if absent)
      • Open Graph + Twitter card      (if the page has none)
      • Organization + WebSite JSON-LD (if no Organization schema yet)
@@ -52,7 +52,7 @@
     var hasOG = !!head.querySelector('meta[property^="og:"]');
     var hasTw = !!head.querySelector('meta[name^="twitter:"]');
     var title = (document.title || 'Harvest Deli');
-    var desc = metaDesc() || 'Premium Greek honey, olive oil and mountain tea — unpasteurised, sealed by hand, shipped from Greece.';
+    var desc = metaDesc() || 'Premium Greek honey, olive oil and mountain tea, unpasteurised, sealed by hand, shipped from Greece.';
     var canon = (head.querySelector('link[rel="canonical"]') || {}).href || canonicalPath();
     var isProduct = !!document.querySelector('meta[name="hd-product-slug"]');
     if (!hasOG) {

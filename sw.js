@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Service Worker (SELF-DESTRUCT / KILL-SWITCH)
+   Harvest Deli, Service Worker (SELF-DESTRUCT / KILL-SWITCH)
    -----------------------------------------------------------------
    The previous cache-first service worker kept serving stale
    shared.js / shop.html during development, which made edits appear

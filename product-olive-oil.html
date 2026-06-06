@@ -12,7 +12,7 @@
 <meta name="hd-product-slug" content="olive-oil">
 
 <meta property="og:type" content="product">
-<meta property="og:title" content="Extra Virgin Olive Oil — Harvest Deli">
+<meta property="og:title" content="Extra Virgin Olive Oil, Harvest Deli">
 <meta property="og:description" content="Cold-pressed extra virgin olive oil from a single estate on Mount Pelion. Green almond, grass, peppery finish.">
 <meta property="og:image" content="https://harvestdeli.gr/assets/greekoliveoil.PNG">
 <meta property="og:url" content="https://harvestdeli.gr/product-olive-oil.html">
@@ -100,7 +100,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -950,7 +950,7 @@ footer {
 }
 
 /* =================================================================
-   PHONE PASS (≤540 px) — keeps everything inside the viewport
+   PHONE PASS (≤540 px), keeps everything inside the viewport
    The 900 px breakpoint above is a tablet pass; below that the page
    was still using desktop-scale padding + button widths, which
    pushed content past the screen edge on real phones.
@@ -978,7 +978,7 @@ footer {
      Now: capped to 60vh so headline/price/CTA come into view sooner. */
   .big-jar-frame    { aspect-ratio: 1 / 1; max-height: 60vh; margin: 0 auto; width: 100%; }
   .big-jar-frame img { object-position: center 35%; }
-  /* No floating animation on phone — saves vertical bobble that adds perceived height */
+  /* No floating animation on phone, saves vertical bobble that adds perceived height */
   .big-jar-frame    { animation: none; }
 
   /* Title + price block */
@@ -992,7 +992,7 @@ footer {
   .pd-meta          { gap: 8px 10px; margin-bottom: 28px; }
   .pd-meta .tag     { padding: 7px 12px; font-size: 8.5px; padding-left: calc(12px + var(--track-label)); }
 
-  /* Size selector: 3 columns is too tight on 375 px — stack to 1 column.
+  /* Size selector: 3 columns is too tight on 375 px, stack to 1 column.
      Note: the actual selector class is .variant-options (from shared.css),
      not .pd-size. Both targeted below for safety. */
   .pd-size          { flex-direction: column; gap: 8px; margin-bottom: 28px; }
@@ -1053,7 +1053,7 @@ footer {
   .footer-grid      { grid-template-columns: 1fr; gap: 4vh; }
 }
 
-/* Stock-availability indicator — promoted from inline style */
+/* Stock-availability indicator, promoted from inline style */
 .pd-stock {
   display: inline-flex;
   align-items: center;
@@ -1237,19 +1237,19 @@ footer {
   </div>
   <div class="tasting-grid">
     <div class="taste-col reveal">
-      <h4>I — Nose</h4>
+      <h4>I, Nose</h4>
       <h5>"Green almond, cut grass."</h5>
-      <p>A bright, grassy lift the moment it leaves the bottle — green almond, tomato leaf and the smell of the grove at harvest, when the olives are still half-green on the branch.</p>
+      <p>A bright, grassy lift the moment it leaves the bottle, green almond, tomato leaf and the smell of the grove at harvest, when the olives are still half-green on the branch.</p>
     </div>
     <div class="taste-col reveal delay-1">
-      <h4>II — Palate</h4>
+      <h4>II, Palate</h4>
       <h5>"Round, herbal, alive."</h5>
-      <p>Smooth across the tongue with a herbal centre — artichoke, fresh herbs and a faint sweetness of ripe fruit. Full-bodied without ever turning heavy.</p>
+      <p>Smooth across the tongue with a herbal centre, artichoke, fresh herbs and a faint sweetness of ripe fruit. Full-bodied without ever turning heavy.</p>
     </div>
     <div class="taste-col reveal delay-2">
-      <h4>III — Finish</h4>
+      <h4>III, Finish</h4>
       <h5>"A clean, peppery bite."</h5>
-      <p>It finishes with the pepper of fresh polyphenols — the catch at the back of the throat that tells you the oil is young, raw and full of life.</p>
+      <p>It finishes with the pepper of fresh polyphenols, the catch at the back of the throat that tells you the oil is young, raw and full of life.</p>
     </div>
   </div>
 </section>
@@ -1353,7 +1353,7 @@ footer {
           </span>
         </div>
         <div class="review-title">Peppery and alive</div>
-        <p class="review-body">Grassy and green with a proper peppery kick at the back of the throat — you can taste it was pressed fresh. The dark bottle is quietly perfect. Already ordered a second as a gift.</p>
+        <p class="review-body">Grassy and green with a proper peppery kick at the back of the throat, you can taste it was pressed fresh. The dark bottle is quietly perfect. Already ordered a second as a gift.</p>
       </li>
       <li class="review-item">
         <div class="review-head">
@@ -1498,7 +1498,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="olive-oil">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
 <script>
 (function() {
   /* Menu */
@@ -1539,7 +1539,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', kick, { once: true });
   }
 
-  /* Sticky mobile buy bar — show once user scrolls past hero CTA */
+  /* Sticky mobile buy bar, show once user scrolls past hero CTA */
   const stickyBuy = document.getElementById('stickyBuy');
   const heroCta = document.querySelector('.pd-cta');
   if (stickyBuy && heroCta) {

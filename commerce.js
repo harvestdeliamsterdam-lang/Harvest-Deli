@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Commerce layer (Phase 1: conversion & trust)
+   Harvest Deli, Commerce layer (Phase 1: conversion & trust)
    -----------------------------------------------------------------
    Site-wide, non-invasive add-ons loaded on every page (injected by
    shared.js). Pure front-end; backend integrations are marked `// SEAM`.
@@ -21,7 +21,7 @@
 
   /* ============================ Analytics ============================ */
   window.dataLayer = window.dataLayer || [];
-  /** Vendor-neutral event bus — always records to dataLayer; forwards to
+  /** Vendor-neutral event bus, always records to dataLayer; forwards to
    *  GA4/Meta only once the matching consent category is granted. */
   window.HD_track = function (event, params) {
     var payload = Object.assign({ event: event }, params || {});
@@ -66,7 +66,7 @@
     window.HD_track('page_view', { page_path: location.pathname, page_title: document.title });
   }
 
-  /* add_to_cart — delegated, no edits to the cart internals */
+  /* add_to_cart, delegated, no edits to the cart internals */
   document.addEventListener('click', function (e) {
     var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
     if (!btn) return;
@@ -132,7 +132,7 @@
   function init() {
     firePageView();
     applyConsent();
-    /* WhatsApp floating button removed by request — the concierge "Schrijf ons"
+    /* WhatsApp floating button removed by request, the concierge "Schrijf ons"
        pill (bottom-right) is the contact affordance. injectWhatsApp() kept for
        reference / future re-enable. */
     /* injectWhatsApp(); */

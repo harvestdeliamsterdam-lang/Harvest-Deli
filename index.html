@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Cinematic intro pre-paint shield — runs before first paint to prevent any homepage flash.
+<!-- Cinematic intro pre-paint shield, runs before first paint to prevent any homepage flash.
      Safety net: if shared.js fails to load within 8 s (network drop, blocked script), the shield
      drops itself so the body is never permanently hidden. -->
 <script>(function(){try{if(!sessionStorage.getItem('hd-intro-played-v1')){document.documentElement.classList.add('hd-intro-pending');setTimeout(function(){var r=document.documentElement;if(r.classList.contains('hd-intro-pending')){r.classList.remove('hd-intro-pending');r.classList.add('hd-intro-done');setTimeout(function(){r.classList.remove('hd-intro-done');},800);}},8000);}}catch(e){}})();</script>
-<title>Harvest Deli — Liquid Sunlight, Slow &amp; Small</title>
+<title>Harvest Deli, Liquid Sunlight, Slow &amp; Small</title>
 <meta name="description" content="Single estate, cold extracted honey from Pelion, Greece. Numbered editions, sealed in wax, shipped from the cellar.">
 <link rel="canonical" href="https://harvestdeli.gr/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Harvest Deli — Liquid sunlight from Pelion">
+<meta property="og:title" content="Harvest Deli, Liquid sunlight from Pelion">
 <meta property="og:description" content="Single estate, cold extracted Greek honey. Numbered editions, sealed in wax.">
 <meta property="og:image" content="https://harvestdeli.gr/harvestdeli.png">
 <meta property="og:url" content="https://harvestdeli.gr/">
@@ -90,7 +90,7 @@
      leaving the body at opacity 0. The <video preload="auto"> below is enough. -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1520,7 +1520,7 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) { .idx-sel-img img, .idx-sel-cta, .idx-sel-cta::after { transition: none; } }
 
-/* ============ Homepage hero — calm luxury after intro ============ */
+/* ============ Homepage hero, calm luxury after intro ============ */
 /* Clean the hero: the floating brand/tagline overlay is gone (the intro
    already presents the logo). Lighter vignette keeps the footage crisp.
    The navigation is the global luxury espresso bar (shared.css). */
@@ -1666,11 +1666,11 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 <section class="hero" aria-labelledby="homepageH1">
   <!-- Visually-hidden top-level heading anchors the document for screen readers and SEO.
        The cinematic scene language is preserved as-is below. -->
-  <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli — Single-estate Greek honey from Pelion</h1>
+  <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli, Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-22">
-      <source src="video.mp4?v=hd-2026-06-06-22" type="video/mp4">
-      <source src="v.webm?v=hd-2026-06-06-22" type="video/webm">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-23">
+      <source src="video.mp4?v=hd-2026-06-06-23" type="video/mp4">
+      <source src="v.webm?v=hd-2026-06-06-23" type="video/webm">
     </video>
   </div>
 
@@ -1724,7 +1724,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 <!-- ============ Press strip ============ -->
 <section class="press-strip" aria-label="Featured in">
   <div class="press-inner">
-    <div class="label">— Featured &amp; stocked at</div>
+    <div class="label">Featured &amp; stocked at</div>
     <div class="press-row">
       <span class="press-name bold">Monocle</span>
       <span class="press-name">Vogue Living</span>
@@ -1740,7 +1740,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 
   <section class="chapter origin" id="origin">
     <div class="reveal">
-      <div class="chapter-eyebrow" data-i18n="idx.ch1.eyebrow">I — The Origin</div>
+      <div class="chapter-eyebrow" data-i18n="idx.ch1.eyebrow">I, The Origin</div>
       <h2 class="chapter-headline" data-i18n="idx.ch1.h">Born in the quiet hills of Northern Greece.</h2>
       <p class="chapter-body" data-i18n="idx.ch1.body">For five generations, a single family has tended a thousand hives across the limestone ridges of Mount Pelion. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.</p>
     </div>
@@ -1756,7 +1756,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   <section class="chapter process" id="process">
     <div class="process-top">
       <div class="reveal">
-        <div class="chapter-eyebrow" data-i18n="idx.ch2.eyebrow">II — The Process</div>
+        <div class="chapter-eyebrow" data-i18n="idx.ch2.eyebrow">II, The Process</div>
         <h2 class="chapter-headline" data-i18n="idx.ch2.h">A practice refined by time, not technology.</h2>
       </div>
       <div class="process-honeycomb reveal delay-1" aria-hidden="true"></div>
@@ -1782,7 +1782,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 
   <section class="preview-section">
     <div class="preview-head">
-      <div class="chapter-eyebrow" data-i18n="idx.preview.eyebrow">— The Collection</div>
+      <div class="chapter-eyebrow" data-i18n="idx.preview.eyebrow">The Collection</div>
       <h2 class="chapter-headline" data-i18n-html="idx.preview.h_html">Three from the cellar, <em>numbered.</em></h2>
     </div>
     <div class="preview-grid" id="previewGrid"></div>
@@ -1797,7 +1797,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   <section class="chapter taste">
     <div class="reveal">
       <blockquote data-i18n="idx.taste.quote">A taste that holds the memory of a mountain morning. Warm, golden, slow to leave.</blockquote>
-      <cite data-i18n="idx.taste.cite">— Notes from the tasting room</cite>
+      <cite data-i18n="idx.taste.cite">Notes from the tasting room</cite>
     </div>
   </section>
 
@@ -1813,7 +1813,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
         <h2 data-i18n-html="idx.product.title_html">Chestnut Honey, <em>2025 harvest.</em></h2>
         <div class="origin-line" data-i18n-html="idx.product.originLine_html">Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 jars</div>
         <p class="desc" data-i18n="idx.product.desc">A single-meadow honey of remarkable clarity. Notes of warm resin, sun-baked herb, and a long mineral finish. Bottled in heavy hand-pressed glass, numbered by hand, kept untreated.</p>
-        <a href="product.html" class="product-cta"><span data-i18n-html="idx.product.cta_html">View the jar &mdash; €68</span> <span class="arrow"></span></a>
+        <a href="product.html" class="product-cta"><span data-i18n-html="idx.product.cta_html">View the jar, €68</span> <span class="arrow"></span></a>
       </div>
     </div>
   </section>
@@ -1825,7 +1825,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   <div class="ig-inner">
     <div class="ig-head">
       <div>
-        <div class="eyebrow">— @harvestdeli &middot; Pelion</div>
+        <div class="eyebrow">@harvestdeli &middot; Pelion</div>
         <h2>A quiet feed, in <em>slow rotation.</em></h2>
       </div>
       <a href="https://www.instagram.com/harvestdeli" rel="external noopener" class="follow">Follow on Instagram <span aria-hidden="true">→</span></a>
@@ -1859,7 +1859,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </section>
 
-<!-- ============ Find Us in Amsterdam — editorial teaser ============ -->
+<!-- ============ Find Us in Amsterdam, editorial teaser ============ -->
 <style>
   .idx-markets {
     position: relative;
@@ -2054,17 +2054,17 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       </div>
     </div>
     <div class="idx-markets__body reveal delay-1">
-      <span class="idx-markets__eyebrow" data-i18n="idx.markets.eyebrow">VI — In Amsterdam</span>
+      <span class="idx-markets__eyebrow" data-i18n="idx.markets.eyebrow">VI, In Amsterdam</span>
       <h2 class="idx-markets__h" id="idxMarketsH" data-i18n-html="idx.markets.h_html">Find us at the <em>market table.</em></h2>
-      <p class="idx-markets__lead" data-i18n="idx.markets.body">From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee — quietly brought from the hills of Greece to the markets of Amsterdam.</p>
+      <p class="idx-markets__lead" data-i18n="idx.markets.body">From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee, quietly brought from the hills of Greece to the markets of Amsterdam.</p>
       <div class="idx-markets__rows">
         <div class="idx-markets__row">
           <strong data-i18n="markets.tenkate.title">Tenkate Market</strong>
-          <span data-i18n="markets.tenkate.hours">Monday — Saturday · 09:00 — 17:00</span>
+          <span data-i18n="markets.tenkate.hours">Monday, Saturday · 09:00, 17:00</span>
         </div>
         <div class="idx-markets__row">
           <strong data-i18n="markets.westerpark.title">Sunday Market · Westerpark</strong>
-          <span data-i18n="markets.westerpark.hours">First Sunday of every month · 11:00 — 17:00</span>
+          <span data-i18n="markets.westerpark.hours">First Sunday of every month · 11:00, 17:00</span>
         </div>
       </div>
       <a href="find-us-amsterdam.html" class="idx-markets__cta">
@@ -2182,7 +2182,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');
@@ -2224,7 +2224,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  /* Hero video — simple autoplay loop */
+  /* Hero video, simple autoplay loop */
   function hideLoader() {
     if (loader.classList.contains('hidden')) return;
     loader.classList.add('hidden');
@@ -2357,7 +2357,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       const idx = Math.max(0, Math.min(dotEls.length - 1, Math.round(grid.scrollLeft / step)));
       dotEls.forEach((d, i) => d.classList.toggle('is-active', i === idx));
     };
-    // setTimeout throttle (not rAF — rAF is paused in background tabs)
+    // setTimeout throttle (not rAF, rAF is paused in background tabs)
     grid.addEventListener('scroll', () => {
       if (ticking) return;
       ticking = true;

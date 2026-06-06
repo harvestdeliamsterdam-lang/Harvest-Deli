@@ -1,9 +1,9 @@
 /* =================================================================
-   Harvest Deli — Cart drawer × Commerce (2nd reference migration)
+   Harvest Deli, Cart drawer × Commerce (2nd reference migration)
    -----------------------------------------------------------------
    The drawer now RENDERS from Commerce.cart.getSync() (see shared.js
    render()). This file routes the drawer's +/-/remove controls through
-   Commerce.cart.update()/remove() — a single update path, capture-phase,
+   Commerce.cart.update()/remove(), a single update path, capture-phase,
    so the existing shared.js handler does not also fire (no double update).
    If Commerce is unavailable it returns early and the shared.js handler
    handles it (graceful fallback). HD_CART stays the runtime source.

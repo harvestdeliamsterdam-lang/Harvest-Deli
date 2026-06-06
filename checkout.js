@@ -1,12 +1,12 @@
 /* =================================================================
-   Harvest Deli — Checkout engine (vanilla, no build step)
+   Harvest Deli, Checkout engine (vanilla, no build step)
    -----------------------------------------------------------------
    Drives the 5-step checkout wizard on checkout.html and feeds the
    order success page. Reuses the cart from shared.js (window.HD_CART)
    and the product catalog (window.HD_product).
 
    This file owns ONLY checkout logic. Real payment / carrier APIs are
-   marked with `// SEAM:` — that is where Stripe/Mollie/PostNL/DHL plug
+   marked with `// SEAM:`, that is where Stripe/Mollie/PostNL/DHL plug
    in later. Nothing here pretends to charge a card or authenticate.
    ================================================================= */
 
@@ -31,18 +31,18 @@
   'use strict';
 
   /* ----------------------------- Config ---------------------------- */
-  /** Free shipping threshold — single source of truth lives in shared.js. */
+  /** Free shipping threshold, single source of truth lives in shared.js. */
   var FREE_SHIPPING_AT = (typeof window !== 'undefined' && window.HD_FREE_SHIP) || 120;
 
-  /** @type {ShippingMethod[]} — order = display order. SEAM: replace
+  /** @type {ShippingMethod[]}, order = display order. SEAM: replace
    *  static price/estimate with live PostNL/DHL rate API responses. */
   var SHIPPING = [
-    { id: 'postnl-standard', carrier: 'PostNL', label: 'PostNL — standard', estimate: '1–2 business days · track & trace', price: 6.95, free: true },
-    { id: 'dhl-standard',    carrier: 'DHL',    label: 'DHL — standard',    estimate: '1–2 business days · track & trace', price: 7.50, free: true },
-    { id: 'pickup',          carrier: 'Pickup', label: 'Pickup — Amsterdam', estimate: 'Ready in 1–2 days · Ten Kate market', price: 0, free: true }
+    { id: 'postnl-standard', carrier: 'PostNL', label: 'PostNL, standard', estimate: '1–2 business days · track & trace', price: 6.95, free: true },
+    { id: 'dhl-standard',    carrier: 'DHL',    label: 'DHL, standard',    estimate: '1–2 business days · track & trace', price: 7.50, free: true },
+    { id: 'pickup',          carrier: 'Pickup', label: 'Pickup, Amsterdam', estimate: 'Ready in 1–2 days · Ten Kate market', price: 0, free: true }
   ];
 
-  /** @type {PaymentMethod[]} — UI only. SEAM: Stripe/Mollie at placeOrder(). */
+  /** @type {PaymentMethod[]}, UI only. SEAM: Stripe/Mollie at placeOrder(). */
   var PAYMENTS = [
     { id: 'ideal',      label: 'iDEAL' },
     { id: 'card',       label: 'Card' },
@@ -65,7 +65,7 @@
     n = Math.round((Number(n) || 0) * 100) / 100;
     return Number.isInteger(n) ? '€' + n : '€' + n.toFixed(2);
   }
-  /** Analytics helper — uses HD_track when commerce.js is ready, else records
+  /** Analytics helper, uses HD_track when commerce.js is ready, else records
    *  straight to the dataLayer (load order can race on first paint). */
   function track(ev, params) {
     if (window.HD_track) { window.HD_track(ev, params); return; }
@@ -122,7 +122,7 @@
   }
 
   /* --------------------------- Money ------------------------------- */
-  /* Migration #3 — the order summary reads its cart STATE from Commerce
+  /* Migration #3, the order summary reads its cart STATE from Commerce
      (Shopify-shaped) when available, falling back to the HD_CART runtime.
      HD_CART remains the source of truth; Commerce bridges to it. */
   function cartSnapshot() {
@@ -224,7 +224,7 @@
   function renderCartLines() {
     var wrap = $('#wzCartLines'), empty = $('#wzCartEmpty');
     if (!wrap) return;
-    // Migration #4 — read the cart STATE from Commerce (Shopify-shaped) when
+    // Migration #4, read the cart STATE from Commerce (Shopify-shaped) when
     // available, falling back to HD_CART. Presentation reuses HD_product.
     var lines = cartLines();
     if (!lines.length) {
@@ -325,7 +325,7 @@
   }
 
   function addrHTML(a) {
-    if (!a || !a.line1) return '<span class="muted">' + lookup('ck.review.none', '—') + '</span>';
+    if (!a || !a.line1) return '<span class="muted">' + lookup('ck.review.none', '-') + '</span>';
     return [a.line1, a.line2, (a.postcode + ' ' + a.city).trim(), a.country].filter(Boolean).join('<br>');
   }
   function renderReview() {
@@ -435,7 +435,7 @@
     if (btn) { btn.classList.add('loading'); btn.disabled = true; }
 
     // SEAM (Shopify): when source==='shopify', the cart carries a real, off-site
-    // checkoutUrl. Redirect there instead of creating a local order — and do NOT
+    // checkoutUrl. Redirect there instead of creating a local order, and do NOT
     // build/persist a local fake order. Inactive while source==='mock'.
     //   if (snap && /^https?:/.test(snap.checkoutUrl)) { location.href = snap.checkoutUrl; return; }
 
@@ -465,7 +465,7 @@
       id: 'HD-' + new Date().getFullYear() + '-' + String(Math.floor(performance.now())).slice(-6),
       createdAt: new Date().toISOString(),
       items: items,
-      // flat totals — back-compat with success page / invoice / admin:
+      // flat totals, back-compat with success page / invoice / admin:
       subtotal: sub, discount: disc, shipping: ship, total: tot,
       // Shopify-shaped cost (placeholders ready for tax/discount/shipping from Shopify):
       cost: {

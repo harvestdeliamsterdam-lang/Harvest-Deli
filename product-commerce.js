@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Product page × Commerce (reference migration)
+   Harvest Deli, Product page × Commerce (reference migration)
    -----------------------------------------------------------------
    Makes the PRODUCT DETAIL PAGE consume window.Commerce as its data
    source, while leaving all markup, CSS, animations and the existing
@@ -21,7 +21,7 @@
   function L(en, nl) { return (window.HD_lang && window.HD_lang() === 'nl') ? nl : en; }
   function fmtPrice(m) { var n = m ? +m.amount : 0; return Number.isInteger(n) ? '€' + n : '€' + n.toFixed(2); }
 
-  /* 3 — inventory display from Commerce (in stock / only X left / sold out / pre-order) */
+  /* 3, inventory display from Commerce (in stock / only X left / sold out / pre-order) */
   function setStock() {
     var el = document.querySelector('.pd-stock'); if (!el || !product) return;
     var dot = el.querySelector('.pd-stock-dot');
@@ -35,7 +35,7 @@
     el.innerHTML = ''; if (dot) el.appendChild(dot); el.appendChild(document.createTextNode(' ' + txt));
   }
 
-  /* 4 — add-to-cart via Commerce (capture phase; only this product's own CTAs).
+  /* 4, add-to-cart via Commerce (capture phase; only this product's own CTAs).
      Falls through to the global shared.js handler if Commerce is missing. */
   function wireAddToCart() {
     document.addEventListener('click', function (e) {
@@ -48,14 +48,14 @@
       window.Commerce.cart.add(handle, qty).then(function () {
         if (window.HD_renderCart) window.HD_renderCart();
         var p = window.HD_product && window.HD_product(handle);
-        if (window.HD_toast) window.HD_toast(L('Added to the cellar', 'Toegevoegd aan de kelder') + (p ? ' — ' + p.name : ''));
+        if (window.HD_toast) window.HD_toast(L('Added to the cellar', 'Toegevoegd aan de kelder') + (p ? ', ' + p.name : ''));
         if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
         if (window.HD_track) window.HD_track('add_to_cart', { currency: 'EUR', value: product ? +product.priceRange.minVariantPrice.amount : undefined, items: [{ item_id: handle, quantity: qty }] });
       });
     }, true);
   }
 
-  /* 5 — recommendations list sourced from Commerce, rendered into the
+  /* 5, recommendations list sourced from Commerce, rendered into the
      existing "Pairs well with" cards (same markup; data now from Commerce) */
   async function wireRecommendations() {
     if (!(window.Commerce && window.Commerce.products)) return;
@@ -79,7 +79,7 @@
     }).join('');
   }
 
-  /* 6 — SEO: fill og: tags from product.seo only if absent (never duplicate) */
+  /* 6, SEO: fill og: tags from product.seo only if absent (never duplicate) */
   function setSEO() {
     if (!product || !product.seo) return;
     function ensureMeta(prop, content) {

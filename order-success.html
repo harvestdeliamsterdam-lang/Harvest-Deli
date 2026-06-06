@@ -4,15 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Order confirmed · Harvest Deli</title>
-<meta name="description" content="Your Harvest Deli order is reserved — packed quietly in Pelion.">
+<meta name="description" content="Your Harvest Deli order is reserved, packed quietly in Pelion.">
 <meta name="robots" content="noindex,follow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
-<link rel="stylesheet" href="account.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
+<link rel="stylesheet" href="account.css?v=hd-2026-06-06-23">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -75,12 +75,12 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 28px; }
 /* cinematic image block */
 .ok-visual { position: relative; margin: clamp(44px, 7vh, 76px) 0; aspect-ratio: 16 / 7; border-radius: var(--radius-card); overflow: hidden; box-shadow: 0 40px 90px -54px rgba(40,24,8,0.45); }
 .ok-visual__img { position: absolute; inset: 0; background-size: cover; background-position: center 60%;
-  background-image: linear-gradient(160deg, rgba(36,28,16,0.04), rgba(36,28,16,0.18)), url('assets/olive-sunrise-poster.jpg?v=hd-2026-06-06-22');
+  background-image: linear-gradient(160deg, rgba(36,28,16,0.04), rgba(36,28,16,0.18)), url('assets/olive-sunrise-poster.jpg?v=hd-2026-06-06-23');
   transition: transform 9s var(--ease); }
 .ok-visual:hover .ok-visual__img { transform: scale(1.05); }
 .ok-visual__cap { position: absolute; bottom: 16px; left: 20px; font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(255,250,240,0.85); font-weight: 600; }
 
-/* order — editorial line items, soft dividers (no boxes) */
+/* order, editorial line items, soft dividers (no boxes) */
 .ok-order { margin-top: clamp(36px, 6vh, 64px); }
 .ok-rule { height: 1px; border: none; margin: 0 0 28px; background: linear-gradient(90deg, transparent, rgba(184,148,90,0.4), transparent); }
 .ok-order__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 26px; }
@@ -199,13 +199,13 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 28px; }
       <hr class="ok-rule">
       <div class="ok-order__head">
         <span class="ok-order__lbl" data-i18n="ok.orderNo">Order number</span>
-        <span class="ok-order__id" id="okOrderId">—</span>
+        <span class="ok-order__id" id="okOrderId">-</span>
       </div>
       <div id="okSummary"></div>
 
       <p class="ok-note">
         <svg viewBox="0 0 22 22" aria-hidden="true"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg>
-        <span data-i18n="ok.email">A confirmation email is on its way. (Demo: no email is actually sent — your order is stored locally so you can see it in your account.)</span>
+        <span data-i18n="ok.email">A confirmation email is on its way. (Demo: no email is actually sent, your order is stored locally so you can see it in your account.)</span>
       </p>
 
       <div class="ok-actions">
@@ -261,15 +261,15 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 28px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-22"></script>
-<script src="account.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
+<script src="account.js?v=hd-2026-06-06-23"></script>
 <script>
 (function(){
   function fmt(n){n=Math.round((n||0)*100)/100;return Number.isInteger(n)?'€'+n:'€'+n.toFixed(2);}
   var id=new URLSearchParams(location.search).get('order');
   var orders=[]; try{orders=JSON.parse(localStorage.getItem('hd-orders-v1')||'[]');}catch(e){}
   var o=null; for(var i=0;i<orders.length;i++){if(orders[i].id===id){o=orders[i];break;}} if(!o)o=orders[0];
-  if(!o){ document.getElementById('okOrderId').textContent='—'; document.getElementById('okSummary').innerHTML='<p style="font-size:13px;color:var(--ink-soft)">No order found. <a href="shop.html" style="color:var(--gold-deep)">Return to the shop →</a></p>'; return; }
+  if(!o){ document.getElementById('okOrderId').textContent='-'; document.getElementById('okSummary').innerHTML='<p style="font-size:13px;color:var(--ink-soft)">No order found. <a href="shop.html" style="color:var(--gold-deep)">Return to the shop →</a></p>'; return; }
   document.getElementById('okOrderId').textContent=o.id;
   var lines=o.items.map(function(it){return '<div class="sm-line"><span class="sm-line-name">'+it.name+' <em>×'+it.qty+'</em></span><span class="sm-line-price">'+fmt(it.price*it.qty)+'</span></div>';}).join('');
   var rows='<div class="sm-row"><span>Subtotal</span><span>'+fmt(o.subtotal)+'</span></div>'+

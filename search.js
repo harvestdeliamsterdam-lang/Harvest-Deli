@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Search experience (editorial, cinematic)
+   Harvest Deli, Search experience (editorial, cinematic)
    -----------------------------------------------------------------
    Injects a search icon into the nav and a full-screen blurred
    overlay with live results over the product catalog, recent &

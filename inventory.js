@@ -1,11 +1,11 @@
 /* =================================================================
-   Harvest Deli — Inventory / stock (Phase 3)
+   Harvest Deli, Inventory / stock (Phase 3)
    -----------------------------------------------------------------
    A client-side stock model with elegant, restrained indicators:
      • subtle badges on shop cards (low / sold out / pre-order)
      • real stock status + add-to-cart gating on product pages
      • oversell guard (can't add beyond available stock)
-     • reservation API (reserve/release) — SEAM for warehouse/Supabase
+     • reservation API (reserve/release), SEAM for warehouse/Supabase
    Loaded site-wide by shared.js. Bilingual (EN/NL).
 
    SEAM: replace HD_STOCK with live levels from a warehouse / Supabase

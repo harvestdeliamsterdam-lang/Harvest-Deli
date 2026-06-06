@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout — Harvest Deli</title>
+<title>Checkout, Harvest Deli</title>
 <meta name="description" content="Secure checkout for Harvest Deli. Pay with iDEAL, card, Klarna or Apple Pay. Free EU shipping above €120.">
 <meta name="robots" content="noindex,follow">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -798,7 +798,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 .wz-mobile-btn .arrow, .wz-secure-inline svg { flex:none; }
 
 /* =================================================================
-   CHECKOUT — modern luxury cinematic refinement (2026)
+   CHECKOUT, modern luxury cinematic refinement (2026)
    Soft floating panels, translucent cream, gold progress, calm motion.
    Overrides the squarer base above; functionality unchanged.
    ================================================================= */
@@ -820,7 +820,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   border-left: 1px solid rgba(184, 148, 90, 0.14);
 }
 
-/* Header steps — thin, animated gold progress, soft active glow */
+/* Header steps, thin, animated gold progress, soft active glow */
 .wz-steps { margin: 0 0 44px; }
 .wz-dot .n { border-radius: 50%; transition: all .5s var(--ck-ease); }
 .wz-dot:not(:last-child)::after { width: 26px; background: rgba(26,22,18,0.16); transition: background .5s var(--ck-ease); }
@@ -831,7 +831,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 }
 .wz-dot.done .n { background: var(--gold-deep, #8A6228); border-color: var(--gold-deep, #8A6228); }
 
-/* Load motion — calm fade-up, staggered */
+/* Load motion, calm fade-up, staggered */
 @keyframes ckFadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 .checkout-main > *, .checkout-side > * { animation: ckFadeUp .7s var(--ck-ease) both; }
 .checkout-side > *:nth-child(2){animation-delay:.06s} .checkout-side > *:nth-child(3){animation-delay:.12s}
@@ -888,12 +888,12 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 .wz-discount input { border-radius: var(--ck-rad-sm); border-color: rgba(26,22,18,0.12); }
 .wz-discount-apply { border-radius: var(--radius-pill, 999px); }
 
-/* Summary totals — tabular + cinematic hierarchy */
+/* Summary totals, tabular + cinematic hierarchy */
 .sm-line-price, .sm-row span, .sm-row.sm-grand span, .wz-mobile-total { font-feature-settings: "tnum","lnum"; }
 .sm-row.sm-grand span:last-child { font-weight: 600; letter-spacing: -0.02em; }
 .wz-free-progress { border-radius: var(--radius-pill, 999px); background: rgba(212,172,106,0.14); }
 
-/* Trust strip — quiet, no boxy borders */
+/* Trust strip, quiet, no boxy borders */
 .trust-strip { border: none; gap: 8px; }
 .trust-cell { background: rgba(255,253,248,0.4); border: 1px solid rgba(184,148,90,0.12); border-radius: var(--ck-rad-sm); }
 
@@ -915,7 +915,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 .confirm-btn:hover .arrow, .wz-mobile-btn:hover .arrow { transform: translateX(5px); }
 .wz-mobile-bar { border-radius: 20px 20px 0 0; }
 
-/* No-italics (brand rule) — class-level italics not caught by global em reset */
+/* No-italics (brand rule), class-level italics not caught by global em reset */
 .side-title em, .step-num h3 em, .wz-edit em { font-style: normal !important; }
 
 /* Soft gold divider accents */
@@ -933,7 +933,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
 
 /* =================================================================
-   DELIVERY SELECTOR — calm luxury cards (warm cream, gold radio)
+   DELIVERY SELECTOR, calm luxury cards (warm cream, gold radio)
    ================================================================= */
 .ship-options { gap: 14px; }
 .ship-opt {
@@ -1053,7 +1053,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
         <div class="wz-empty" id="wzCartEmpty" hidden>
           <div class="wz-empty-ico" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 12h26l-2.4 16.5a3 3 0 0 1-3 2.5H12.4a3 3 0 0 1-3-2.5L7 12Z"/><path d="M14 12V9a6 6 0 0 1 12 0v3"/></svg></div>
           <h3 data-i18n="ck.empty.h">Your cellar is empty</h3>
-          <p data-i18n="ck.empty.p">Begin the collection — each jar is numbered, sealed in wax and shipped within the week.</p>
+          <p data-i18n="ck.empty.p">Begin the collection, each jar is numbered, sealed in wax and shipped within the week.</p>
           <a class="confirm-btn" href="shop.html" style="width:auto;display:inline-flex;"><span data-i18n="ck.empty.cta">Browse the collection</span> <span class="arrow"></span></a>
         </div>
 
@@ -1093,19 +1093,19 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
         <h4 class="wz-subhead" data-i18n="ck.billing">Billing address</h4>
         <div class="field"><label for="ckAddr1" data-i18n="checkout.label.addr1">Address line 1</label><input id="ckAddr1" type="text" autocomplete="address-line1" required></div>
-        <div class="field"><label for="ckAddr2" data-i18n="checkout.label.addr2">Address line 2 — optional</label><input id="ckAddr2" type="text" autocomplete="address-line2"></div>
+        <div class="field"><label for="ckAddr2" data-i18n="checkout.label.addr2">Address line 2, optional</label><input id="ckAddr2" type="text" autocomplete="address-line2"></div>
         <div class="field-row three">
           <div class="field"><label for="ckCity" data-i18n="checkout.label.city">City</label><input id="ckCity" type="text" autocomplete="address-level2" required></div>
           <div class="field"><label for="ckPostcode" data-i18n="checkout.label.postcode">Postcode</label><input id="ckPostcode" type="text" autocomplete="postal-code" required></div>
           <div class="field"><label for="ckCountry" data-i18n="checkout.label.country">Country</label>
             <select id="ckCountry" autocomplete="country-name">
-              <option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other &mdash; international</option>
+              <option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other, international</option>
             </select>
           </div>
         </div>
         <div class="field-row">
-          <div class="field"><label for="ckCompany" data-i18n="ck.company">Company — optional</label><input id="ckCompany" type="text" autocomplete="organization"></div>
-          <div class="field"><label for="ckVat" data-i18n="ck.vat">VAT number — optional</label><input id="ckVat" type="text"></div>
+          <div class="field"><label for="ckCompany" data-i18n="ck.company">Company, optional</label><input id="ckCompany" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="ckVat" data-i18n="ck.vat">VAT number, optional</label><input id="ckVat" type="text"></div>
         </div>
 
         <label class="checkbox-row" style="margin:6px 0 6px;"><input type="checkbox" id="ckSameAddr" checked> <span data-i18n="ck.sameAddr">Shipping address is the same as billing</span></label>
@@ -1113,12 +1113,12 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
         <div id="shipAddrGroup" hidden>
           <h4 class="wz-subhead" data-i18n="ck.shipping">Shipping address</h4>
           <div class="field"><label for="shAddr1" data-i18n="checkout.label.addr1">Address line 1</label><input id="shAddr1" type="text" autocomplete="shipping address-line1"></div>
-          <div class="field"><label for="shAddr2" data-i18n="checkout.label.addr2">Address line 2 — optional</label><input id="shAddr2" type="text"></div>
+          <div class="field"><label for="shAddr2" data-i18n="checkout.label.addr2">Address line 2, optional</label><input id="shAddr2" type="text"></div>
           <div class="field-row three">
             <div class="field"><label for="shCity" data-i18n="checkout.label.city">City</label><input id="shCity" type="text"></div>
             <div class="field"><label for="shPostcode" data-i18n="checkout.label.postcode">Postcode</label><input id="shPostcode" type="text"></div>
             <div class="field"><label for="shCountry" data-i18n="checkout.label.country">Country</label>
-              <select id="shCountry"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other &mdash; international</option></select>
+              <select id="shCountry"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other, international</option></select>
             </div>
           </div>
         </div>
@@ -1163,7 +1163,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
         <div class="stripe-note">
           <span class="pill" data-i18n="ck.demoPill">Demo</span>
-          <span data-i18n="ck.payNote">Provider-agnostic UI. No card is charged here — Stripe or Mollie connects at this step in production.</span>
+          <span data-i18n="ck.payNote">Provider-agnostic UI. No card is charged here, Stripe or Mollie connects at this step in production.</span>
         </div>
 
         <div class="payment-methods" aria-label="Accepted payment methods">
@@ -1216,7 +1216,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
       </div>
       <div class="wz-faq-item">
         <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q2">Do you ship internationally?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
-        <div class="wz-faq-a" data-i18n="ck.faq.a2">Yes — across the EU and beyond, tracked &amp; insured. Delivery estimates are shown per carrier at the delivery step.</div>
+        <div class="wz-faq-a" data-i18n="ck.faq.a2">Yes, across the EU and beyond, tracked &amp; insured. Delivery estimates are shown per carrier at the delivery step.</div>
       </div>
       <div class="wz-faq-item">
         <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q3">Can I return an order?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
@@ -1260,7 +1260,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   <button type="button" class="wz-mobile-btn" id="wzMobileBtn"><span id="wzMobileAction" data-i18n="ck.continue">Continue</span> <span class="arrow"></span></button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-22"></script>
-<script src="checkout.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
+<script src="checkout.js?v=hd-2026-06-06-23"></script>
 </body>
 </html>

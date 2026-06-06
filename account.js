@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Account module (vanilla, no build step)
+   Harvest Deli, Account module (vanilla, no build step)
    -----------------------------------------------------------------
    Provides a clearly-labelled LOCAL DEMO SESSION so the account UI is
    fully navigable without a backend. It does NOT perform real
@@ -38,7 +38,7 @@
     return acc;
   }
 
-  /** Start a demo session from an email (no password check — demo only).
+  /** Start a demo session from an email (no password check, demo only).
    *  SEAM: Supabase signInWithPassword(email, password). */
   function signIn(email) {
     var existing = current();

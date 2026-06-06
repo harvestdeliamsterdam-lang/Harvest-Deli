@@ -1,8 +1,8 @@
 /* =================================================================
-   Harvest Deli — Transactional email architecture
+   Harvest Deli, Transactional email architecture
    -----------------------------------------------------------------
    Reusable, table-based, responsive branded email templates with a
-   tiny component system and dynamic variables. Pure rendering — it
+   tiny component system and dynamic variables. Pure rendering, it
    returns HTML strings. Sending is a backend concern:
 
    SEAM (Resend / Postmark / SendGrid):
@@ -10,7 +10,7 @@
      await resend.emails.send({ from, to, subject: HD_emails.subject(type,data), html });
    Queue-ready: render is synchronous & side-effect free, so it can run
    in a worker/queue job. Errors surface as thrown TypeErrors on bad data
-   — callers should try/catch and dead-letter.
+  , callers should try/catch and dead-letter.
    ================================================================= */
 (function () {
   'use strict';
@@ -94,7 +94,7 @@
     },
     trackTrace: function (d) {
       return { subject: 'Track your Harvest Deli order', preheader: 'Follow your parcel.',
-        body: h('Follow your parcel.') + p('Tracking is now live for order ' + esc(d.orderId) + ' (' + esc(d.carrier || 'PostNL') + ', ' + esc(d.tracking || '—') + ').') + button('Open tracking', d.trackUrl || (BRAND.site + '/track-order.html')) };
+        body: h('Follow your parcel.') + p('Tracking is now live for order ' + esc(d.orderId) + ' (' + esc(d.carrier || 'PostNL') + ', ' + esc(d.tracking || '-') + ').') + button('Open tracking', d.trackUrl || (BRAND.site + '/track-order.html')) };
     },
     delivered: function (d) {
       return { subject: 'Delivered · ' + (d.orderId || ''), preheader: 'Your jars have arrived.',

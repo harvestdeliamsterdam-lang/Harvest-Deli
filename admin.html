@@ -10,8 +10,8 @@
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-22">
-<link rel="stylesheet" href="account.css?v=hd-2026-06-06-22">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
+<link rel="stylesheet" href="account.css?v=hd-2026-06-06-23">
 <style>
 .adm-wrap{max-width:1180px;margin:0 auto;padding:120px 5% 10vh}
 .adm-demo{display:flex;gap:10px;align-items:center;background:var(--gold-soft);border-left:2px solid var(--gold);padding:11px 14px;border-radius:8px;font-family:Inter,sans-serif;font-size:12px;color:var(--ink-warm);margin-bottom:24px}
@@ -46,7 +46,7 @@
   <div class="acct-greeting-eyebrow">Operations</div>
   <h1 class="acct-h1" style="margin-bottom:6px">Order <em>dashboard.</em></h1>
   <p class="acct-lead">Search, filter and update orders. Fast keyboard-free workflow.</p>
-  <div class="adm-demo"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg><span>Local demo dashboard — reads the orders stored in this browser. SEAM: connect to Supabase + admin auth for the real back office.</span></div>
+  <div class="adm-demo"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg><span>Local demo dashboard, reads the orders stored in this browser. SEAM: connect to Supabase + admin auth for the real back office.</span></div>
   <div class="adm-bar">
     <input id="admSearch" type="search" placeholder="Search order #, name or email…" aria-label="Search orders">
     <select id="admFilter" aria-label="Filter by status"><option value="">All statuses</option><option>pending</option><option>paid</option><option>processing</option><option>shipped</option><option>completed</option><option>refunded</option><option>cancelled</option></select>
@@ -62,8 +62,8 @@
 <div class="footer-col"><h4>Account</h4><a href="account.html">Dashboard</a><a href="account-orders.html">Orders</a><a href="returns.html">Returns</a></div>
 <div class="footer-col"><h4>Legal</h4><a href="legal-terms.html">Terms</a><a href="legal-privacy.html">Privacy</a><a href="legal-payment.html">Payment</a><a href="legal-returns.html">Returns policy</a></div>
 </div><div class="footer-bottom"><span>© Harvest Deli · Pelion, Greece</span><span>KvK [00000000] · BTW NL[000000000]B01</span></div></footer>
-<script src="shared.js?v=hd-2026-06-06-22"></script>
-<script src="account.js?v=hd-2026-06-06-22"></script>
+<script src="shared.js?v=hd-2026-06-06-23"></script>
+<script src="account.js?v=hd-2026-06-06-23"></script>
 <script>
 (function(){
   var KEY='hd-orders-v1';var STATUSES=['pending','paid','processing','shipped','completed','refunded','cancelled'];
@@ -79,7 +79,7 @@
     var list=orders.filter(function(o){
       var c=o.customer||{};var hay=(o.id+' '+(c.firstName||'')+' '+(c.lastName||'')+' '+(c.email||'')).toLowerCase();
       if(q&&hay.indexOf(q)<0)return false; if(f&&(o.status||'paid')!==f)return false; return true;});
-    if(!list.length)return '<div class="empty-state"><h3>No orders</h3><p>No orders match — place a test order or clear the filters.</p></div>';
+    if(!list.length)return '<div class="empty-state"><h3>No orders</h3><p>No orders match, place a test order or clear the filters.</p></div>';
     return '<table class="adm-table"><thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Total</th><th>Status</th><th>Track &amp; notes</th></tr></thead><tbody>'+
       list.map(function(o){var c=o.customer||{};var d=new Date(o.createdAt);
         return '<tr>'+
