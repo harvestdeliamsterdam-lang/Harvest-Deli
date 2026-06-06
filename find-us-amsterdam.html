@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-7">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-8">
 
 <script type="application/ld+json">
 {
@@ -830,7 +830,7 @@ body.markets-page nav.site-nav {
 .fu-market { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 72px); align-items: center; padding: clamp(28px, 5vh, 54px) 0; }
 .fu-market + .fu-market { border-top: 1px solid rgba(31, 26, 20, 0.08); }
 .fu-market__figure { position: relative; aspect-ratio: 5 / 4; border-radius: var(--radius-card, 16px); overflow: hidden; box-shadow: 0 38px 84px -54px rgba(31, 26, 20, 0.42); }
-.fu-market__img { position: absolute; inset: 0; transition: transform 1.6s var(--ease-soft); }
+.fu-market__img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform 1.6s var(--ease-soft); }
 .fu-market:hover .fu-market__img { transform: scale(1.04); }
 .fu-market__badge { position: absolute; top: 16px; left: 16px; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: var(--m-ink, #1F1A14); background: rgba(255, 253, 247, 0.86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); padding: 7px 13px; border-radius: 999px; }
 .fu-market__cap { position: absolute; bottom: 16px; left: 18px; font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(31, 26, 20, 0.62); font-weight: 600; }
@@ -849,8 +849,8 @@ body.markets-page nav.site-nav {
 .fu-maplink:hover .fu-arrow { width: 24px; }
 
 /* warm Mediterranean tone panels (stand-in for editorial photography) */
-.fu-tone-tenkate { background: radial-gradient(120% 110% at 26% 22%, rgba(255, 245, 216, 0.92), transparent 60%), linear-gradient(150deg, #EAD7A6 0%, #CDA86A 58%, #B6975A 100%); }
-.fu-tone-west { background: radial-gradient(120% 110% at 70% 24%, rgba(245, 241, 214, 0.82), transparent 60%), linear-gradient(150deg, #D8CCA2 0%, #A8AF79 58%, #8C9463 100%); }
+.fu-tone-tenkate { background-image: linear-gradient(150deg, rgba(234, 215, 166, 0.18), rgba(182, 151, 90, 0.12)), url('assets/market.png?v=hd-2026-06-06-8'); }
+.fu-tone-west { background-image: linear-gradient(150deg, rgba(168, 175, 121, 0.20), rgba(140, 148, 99, 0.14)), url('assets/market.png?v=hd-2026-06-06-8'); }
 
 .fu-expect { text-align: center; margin: clamp(20px, 4vh, 40px) 0 0; font-size: 13.5px; letter-spacing: 0.02em; color: var(--m-ink-soft, #5C5247); }
 .fu-expect strong { color: var(--m-ink, #1F1A14); font-weight: 600; }
@@ -1163,7 +1163,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-7"></script>
+<script src="shared.js?v=hd-2026-06-06-8"></script>
 <script>
   // Intersection-observed reveals — calm, restrained, never restless
   (function () {

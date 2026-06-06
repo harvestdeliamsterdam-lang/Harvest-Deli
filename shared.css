@@ -3991,3 +3991,12 @@ body [class*="headline"], body .pd-title, body .c-headline, body .ck-headline {
   line-height: 1.05 !important;
   letter-spacing: -0.028em !important;
 }
+
+/* =================================================================
+   Hide scrollbars site-wide (scrolling stays fully functional).
+   Requested: no visible scroll bars anywhere.
+   ================================================================= */
+html { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar { width: 0; height: 0; display: none; }
+*, *::before, *::after { scrollbar-width: none; -ms-overflow-style: none; }
+*::-webkit-scrollbar { width: 0; height: 0; display: none; }
