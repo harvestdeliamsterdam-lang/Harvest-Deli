@@ -2499,58 +2499,169 @@ nav.site-nav .nav-cart, .nav-wishlist, .cta-ghost, .cta-primary,
 }
 
 /* =================================================================
-   MENU OVERLAY — cinematic background image layer
-   Image lives at /assets/menu-background.png.
-   Treated subtly: 14% opacity, soft-light blend, blur+scale, slow drift.
-   Existing inline overlay pseudo-elements layer cleanly on top.
+   MENU OVERLAY — Modern Mediterranean redesign (light · editorial)
+   Was a dark, heavy "cinematic" overlay (whisky/nightclub feel).
+   Now: a calm, airy, hospitality-grade fullscreen menu — warm cream
+   atmosphere, soft natural light, stone neutrals, restrained gold.
+   Recolors all content from cream→ink and softens the composition.
+   `body .menu-overlay …` (≥0,1,1) beats the per-page inline 0,1,0 rules.
+   Typography (grotesk, no-italic) is handled by the global type system.
    ================================================================= */
-.menu-overlay {
-  background: #0B0907;
+
+/* --- Surface: warm, airy cream gradient (no more deep charcoal) --- */
+body .menu-overlay {
+  background:
+    linear-gradient(168deg, #FBF7EF 0%, #F4ECDD 54%, #ECE2CF 100%);
+  color: var(--ink, #1F1A14);
   isolation: isolate;
 }
-.menu-bg-img {
+
+/* Atmospheric natural light: soft Mediterranean sun from the upper-right,
+   a faint warm-gold bloom, and a quiet olive shade pooling lower-left.
+   Replaces the dark gold-on-black radials of the old design. */
+body .menu-overlay::before {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(120% 95% at 84% 6%,  rgba(255, 249, 235, 0.95) 0%, rgba(255,249,235,0) 46%),
+    radial-gradient(85%  78% at 90% 16%, rgba(212, 172, 106, 0.15) 0%, rgba(212,172,106,0) 52%),
+    radial-gradient(125% 115% at 6% 102%, rgba(124, 118, 80, 0.11) 0%, rgba(124,118,80,0) 56%);
+}
+
+/* Injected layers (.menu-bg-img / .menu-bg-scrim) repurposed as a soft,
+   slow-drifting light haze instead of the old dark honey macro photo. */
+body .menu-bg-img {
   position: absolute;
-  inset: -4%;
+  inset: -6%;
   z-index: 0;
-  background-image: url('assets/menu-background.png');
-  background-size: cover;
-  background-position: center 38%;
-  opacity: 0.55;
-  filter: blur(1.5px) saturate(1.15) contrast(1.05);
-  transform: scale(1.05);
-  /* screen lifts warm tones against the deep charcoal background */
-  mix-blend-mode: screen;
+  background-image: none;
+  background:
+    radial-gradient(58% 54% at 26% 28%, rgba(255, 253, 247, 0.72), transparent 62%),
+    radial-gradient(52% 50% at 74% 72%, rgba(234, 223, 202, 0.55), transparent 64%);
+  opacity: 0.9;
+  filter: none;
+  mix-blend-mode: normal;
+  transform: scale(1.04);
   pointer-events: none;
   will-change: transform, opacity;
-  animation: menuBgDrift 28s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
+  animation: menuBgDrift 38s cubic-bezier(0.42, 0, 0.58, 1) infinite alternate;
 }
-.menu-bg-scrim {
+body .menu-bg-scrim {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 28% 24%, rgba(212, 172, 106, 0.12), transparent 55%),
-    radial-gradient(ellipse at 78% 78%, rgba(140, 90, 30, 0.08), transparent 60%),
-    linear-gradient(180deg, rgba(8, 5, 3, 0.52) 0%, rgba(8, 5, 3, 0.62) 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10) 0%, rgba(236, 226, 207, 0.20) 100%);
 }
 /* Pull all content above the layered atmosphere */
-.menu-overlay > *:not(.menu-bg-img):not(.menu-bg-scrim) {
+body .menu-overlay > *:not(.menu-bg-img):not(.menu-bg-scrim) {
   position: relative;
   z-index: 2;
 }
-.menu-overlay.open .menu-bg-img {
-  animation-duration: 32s;
-}
+body .menu-overlay.open .menu-bg-img { animation-duration: 42s; }
 
 @keyframes menuBgDrift {
-  0%   { transform: translate3d(-1%, -1.2%, 0) scale(1.05); }
-  35%  { transform: translate3d(1.4%, 0.6%, 0) scale(1.08); }
-  70%  { transform: translate3d(-0.6%, 1.4%, 0) scale(1.06); }
-  100% { transform: translate3d(0.8%, -0.4%, 0) scale(1.07); }
+  0%   { transform: translate3d(-1%, -1.2%, 0) scale(1.04); }
+  35%  { transform: translate3d(1.2%, 0.6%, 0) scale(1.07); }
+  70%  { transform: translate3d(-0.5%, 1.2%, 0) scale(1.05); }
+  100% { transform: translate3d(0.7%, -0.4%, 0) scale(1.06); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .menu-bg-img { animation: none; transform: scale(1.04); }
+  body .menu-bg-img { animation: none; transform: scale(1.03); }
+}
+
+/* ---------- Content recolour + composition (light, editorial) ---------- */
+
+/* Top bar: brand mark + close on warm ink, generous breathing room */
+body .menu-overlay .menu-top { padding-bottom: clamp(5vh, 7vh, 9vh); }
+body .menu-overlay .nav-brand,
+body .menu-overlay .logo-svg { color: var(--ink, #1F1A14); }
+body .menu-overlay .menu-close { color: var(--ink, #1F1A14); opacity: 0.62; }
+body .menu-overlay .menu-close:hover { opacity: 1; }
+
+/* Layout: a touch more air, calmer column balance */
+body .menu-overlay .menu-content { gap: clamp(6%, 7%, 9%); align-items: center; }
+
+/* Index rows — softer hairline separators, more vertical rhythm */
+body .menu-overlay .menu-items li {
+  border-bottom: 1px solid rgba(42, 35, 27, 0.10);
+  padding: clamp(18px, 2.4vh, 30px) 0;
+  gap: clamp(20px, 2.4vw, 34px);
+}
+body .menu-overlay .menu-items li:last-child { border-bottom: none; }
+
+/* Numerals: quiet, modern, gold — not the old italic serif */
+body .menu-overlay .menu-items .roman {
+  color: var(--gold-deep, #8A6228);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  opacity: 0.8;
+}
+
+/* Links: less oversized, confident, ink with a calm gold hover */
+body .menu-overlay .menu-items a {
+  color: var(--ink, #1F1A14);
+  font-size: clamp(30px, 3.4vw, 54px);
+  line-height: 1.06;
+  letter-spacing: -0.022em;
+}
+body .menu-overlay .menu-items a em { color: var(--ink-warm, #756859); }
+body .menu-overlay .menu-items a::after { background: var(--gold-deep, #8A6228); bottom: -6px; }
+body .menu-overlay .menu-items a:hover { color: var(--gold-deep, #8A6228); }
+
+/* Sub-labels: soft stone, restrained */
+body .menu-overlay .menu-items .sub { color: var(--ink-soft, #5C5247); opacity: 0.78; }
+
+/* Active page: warm gold-deep (readable on light) instead of pale gold-light */
+body .menu-overlay .menu-items a.current { color: var(--gold-deep, #8A6228); }
+body .menu-overlay .menu-items a.current::after { background: var(--gold-deep, #8A6228); }
+body .menu-overlay .menu-items li.current-item .roman,
+body .menu-overlay .menu-items li.current-item .sub { color: var(--gold-deep, #8A6228); }
+
+/* Right column: a quiet, curated editorial note */
+body .menu-overlay .menu-side {
+  padding-left: clamp(5%, 6%, 7%);
+  border-left: 1px solid rgba(42, 35, 27, 0.10);
+}
+body .menu-overlay .menu-side h5 {
+  color: var(--gold-deep, #8A6228);
+  letter-spacing: 0.34em;
+  opacity: 0.9;
+}
+body .menu-overlay .menu-side p {
+  color: var(--ink, #1F1A14);
+  opacity: 0.82;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.006em;
+}
+body .menu-overlay .menu-side .contact { color: var(--ink-soft, #5C5247); }
+body .menu-overlay .menu-side .contact a {
+  color: var(--ink, #1F1A14);
+  border-bottom-color: rgba(42, 35, 27, 0.22);
+}
+body .menu-overlay .menu-side .contact a:hover { color: var(--gold-deep, #8A6228); }
+
+/* Footer row: quiet ink, softer separators */
+body .menu-overlay .menu-bottom {
+  color: var(--ink-soft, #5C5247);
+  opacity: 0.85;
+  border-top: 1px solid rgba(42, 35, 27, 0.08);
+  padding-top: clamp(2.4vh, 3vh, 4vh);
+  margin-top: clamp(1vh, 2vh, 3vh);
+}
+body .menu-overlay .menu-bottom .social a { color: var(--ink-soft, #5C5247); }
+body .menu-overlay .menu-bottom .social a:hover { color: var(--gold-deep, #8A6228); }
+
+/* Mobile: side panel stacks below — drop the left rule, use a top hairline */
+@media (max-width: 900px) {
+  body .menu-overlay .menu-side {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(42, 35, 27, 0.10);
+  }
 }
 
 /* =================================================================
