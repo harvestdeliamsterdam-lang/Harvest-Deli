@@ -84,13 +84,15 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <!-- Font stylesheet hint only. We deliberately do NOT preload the hero video:
      it's 41 MB and a `rel="preload" as="video"` with fetchpriority:high will
      saturate the connection ahead of shared.js, stalling the intro IIFE and
      leaving the body at opacity 0. The <video preload="auto"> below is enough. -->
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap">
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-23">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-24">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -120,7 +122,7 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-body, 'Inter Tight'), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 400;
   font-size: 15px;
   line-height: 1.65;
@@ -1668,9 +1670,9 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
        The cinematic scene language is preserved as-is below. -->
   <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli, Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-23">
-      <source src="video.mp4?v=hd-2026-06-06-23" type="video/mp4">
-      <source src="v.webm?v=hd-2026-06-06-23" type="video/webm">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-24">
+      <source src="video.mp4?v=hd-2026-06-06-24" type="video/mp4">
+      <source src="v.webm?v=hd-2026-06-06-24" type="video/webm">
     </video>
   </div>
 
@@ -1721,20 +1723,6 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 })();
 </script>
 
-<!-- ============ Press strip ============ -->
-<section class="press-strip" aria-label="Featured in">
-  <div class="press-inner">
-    <div class="label">Featured &amp; stocked at</div>
-    <div class="press-row">
-      <span class="press-name bold">Monocle</span>
-      <span class="press-name">Vogue Living</span>
-      <span class="press-name bold">Cereal</span>
-      <span class="press-name">The World of Interiors</span>
-      <span class="press-name bold">Kinfolk</span>
-      <span class="press-name">Slow Food</span>
-    </div>
-  </div>
-</section>
 
 <main class="editorial">
 
@@ -1780,19 +1768,6 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     </div>
   </section>
 
-  <section class="preview-section">
-    <div class="preview-head">
-      <div class="chapter-eyebrow" data-i18n="idx.preview.eyebrow">The Collection</div>
-      <h2 class="chapter-headline" data-i18n-html="idx.preview.h_html">Three from the cellar, <em>numbered.</em></h2>
-    </div>
-    <div class="preview-grid" id="previewGrid"></div>
-    <div class="preview-cta">
-      <a href="shop.html" class="explore-link">
-        <span data-i18n="idx.preview.exploreAll">View all six editions</span>
-        <span class="arrow"></span>
-      </a>
-    </div>
-  </section>
 
   <section class="chapter taste">
     <div class="reveal">
@@ -2182,7 +2157,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-23"></script>
+<script src="shared.js?v=hd-2026-06-06-24"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');

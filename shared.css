@@ -3960,36 +3960,46 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 .pd-stock.is-backorder .pd-stock-dot { background: var(--ink-soft, #5C5247); }
 
 /* ================================================================
-   MODERN GROTESK TYPE SYSTEM (site-wide), no serif, no italic
-   Inter Tight (display) + Inter (body). The SVG logo wordmark and
-   icons are excluded so the brand mark + glyphs are untouched.
+   MODERN GROTESK TYPE SYSTEM (site-wide), no serif, no italic.
+   General Sans (display) + Inter Tight (body). The SVG logo wordmark
+   and icons are excluded so the brand mark + glyphs are untouched.
    Applied globally with !important to override per-page inline serif.
    ================================================================ */
-:root { --track-label: 0.12em; --track-button: 0.14em; }
+:root {
+  --track-label: 0.12em; --track-button: 0.14em;
+  --font-display: 'General Sans', 'Inter Tight', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter Tight', system-ui, -apple-system, sans-serif;
+}
 
 /* base, everything to the grotesk body face, never SVG (logo/icons) */
 body :not(svg):not(svg *) {
-  font-family: 'Inter', 'Inter Tight', system-ui, -apple-system, sans-serif !important;
+  font-family: var(--font-body) !important;
 }
 
 /* no italics anywhere (former italic accents become a quiet tonal shift) */
 body em, body i { font-style: normal !important; }
 
-/* display / headings → Inter Tight, tighter and more architectural.
+/* display / headings → General Sans, the editorial display voice.
    Attribute selectors catch the site's *-headline / *-title classes. */
 body h1, body h2, body h3,
 body [class*="headline"], body [class*="title"],
-body .menu-items a, body .acct-h1, body .pd-price,
-body .also-card .name, body .px-title, body .side-title {
-  font-family: 'Inter Tight', 'Inter', system-ui, sans-serif !important;
+body [class*="eyebrow"], body .menu-items a, body .acct-h1, body .pd-price,
+body .also-card .name, body .px-title, body .side-title,
+body .card-name, body .pm-eyebrow {
+  font-family: var(--font-display) !important;
   font-weight: 540 !important;
   letter-spacing: -0.02em !important;
   font-style: normal !important;
 }
 /* very large display gets a touch tighter leading */
 body [class*="headline"], body .pd-title, body .c-headline, body .ck-headline {
-  line-height: 1.05 !important;
-  letter-spacing: -0.028em !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.03em !important;
+}
+/* eyebrows are uppercase tracked labels, not tight display, so reset tracking */
+body [class*="eyebrow"] {
+  letter-spacing: var(--track-label) !important;
+  font-weight: 500 !important;
 }
 
 /* =================================================================
