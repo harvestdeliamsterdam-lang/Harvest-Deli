@@ -1162,6 +1162,70 @@ section.chapter { padding: 20vh 8%; position: relative; }
   .card-add { width: 100%; padding: 16px 22px; padding-left: calc(22px + var(--track-button)); }
 }
 
+/* ---- Mobile: the 3 jars become a snap carousel ---- */
+/* Each card snaps into place (pauses), you swipe right through the trio, */
+/* then the page continues downward. Native scroll-snap, no scroll-jacking. */
+.preview-dots { display: none; }
+@media (max-width: 700px) {
+  .preview-grid {
+    display: flex;
+    grid-template-columns: none;
+    gap: 16px;
+    max-width: none;
+    /* break out of the section's 7% padding for an edge-to-edge track... */
+    margin: 0 -7%;
+    /* ...then re-inset so the first card aligns to the 7% content margin */
+    padding: 6px 7% 4px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 7%;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .preview-grid::-webkit-scrollbar { display: none; }
+  .preview-card {
+    flex: 0 0 84%;        /* peek of the next card signals there's more */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+  .preview-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    margin-top: 30px;
+  }
+  .preview-dot {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 13px;         /* ~33px touch area around a 7px dot */
+    line-height: 0;
+    cursor: pointer;
+  }
+  .preview-dot::before {
+    content: "";
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--gold, #b8945a);
+    opacity: 0.45;
+    transition: opacity 0.35s var(--ease), background 0.35s var(--ease), transform 0.35s var(--ease);
+  }
+  .preview-dot.is-active::before {
+    background: var(--gold, #b8945a);
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+@media (max-width: 700px) and (prefers-reduced-motion: reduce) {
+  .preview-grid { scroll-behavior: auto; }
+}
+
 /* ============ Product preview ============ */
 .product {
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 60%, #E5D9C3 100%);
@@ -2189,11 +2253,14 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   function renderPreview() {
     const grid = document.getElementById('previewGrid');
     if (!grid || !window.HD_product) return;
-    const slugs = ['chestnut', 'wild-thyme', 'pine-heather'];
+    const slugs = ['chestnut', 'thyme', 'pine'];
     const T = window.HD_T && window.HD_T[window.HD_lang()] || {};
     const addLabel = T['idx.preview.addToCellar'] || 'Add to Cellar';
+    // null-safe: skip any slug missing from the catalog so a future
+    // catalog change can never throw and blank the whole homepage script
     grid.innerHTML = slugs.map((slug, i) => {
       const p = window.HD_product(slug);
+      if (!p) return '';
       const delay = i === 1 ? ' delay-1' : (i === 2 ? ' delay-2' : '');
       return `
         <article class="preview-card${delay}">
@@ -2221,6 +2288,60 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   }
   renderPreview();
   io.observe(document.querySelector('.preview-cta'));
+
+  // ---- Mobile carousel progress dots for the 3-jar preview ----
+  (function previewDots() {
+    const grid = document.getElementById('previewGrid');
+    if (!grid) return;
+    const cards = grid.querySelectorAll('.preview-card');
+    if (cards.length < 2) return;
+
+    // The per-card reveal observer uses the viewport as root, so carousel
+    // cards parked off-screen to the right never get `.in` and would swipe
+    // in invisible. Reveal all three (with their CSS stagger) once the
+    // section scrolls into view.
+    const revealAll = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          cards.forEach((c) => c.classList.add('in'));
+          revealAll.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    revealAll.observe(grid);
+
+    const dots = document.createElement('div');
+    dots.className = 'preview-dots';
+    dots.setAttribute('role', 'tablist');
+    dots.setAttribute('aria-label', 'Collection carousel');
+    cards.forEach((card, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'preview-dot' + (i === 0 ? ' is-active' : '');
+      dot.setAttribute('aria-label', 'Go to product ' + (i + 1));
+      dot.addEventListener('click', () => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const step = cards[0].getBoundingClientRect().width + 16;
+        grid.scrollTo({ left: i * step, behavior: reduce ? 'auto' : 'smooth' });
+      });
+      dots.appendChild(dot);
+    });
+    grid.insertAdjacentElement('afterend', dots);
+
+    const dotEls = dots.querySelectorAll('.preview-dot');
+    let ticking = false;
+    const syncDots = () => {
+      const step = cards[0].getBoundingClientRect().width + 16; // card width + gap
+      const idx = Math.max(0, Math.min(dotEls.length - 1, Math.round(grid.scrollLeft / step)));
+      dotEls.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+    };
+    // setTimeout throttle (not rAF — rAF is paused in background tabs)
+    grid.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      setTimeout(() => { ticking = false; syncDots(); }, 80);
+    }, { passive: true });
+  })();
 
   // Re-render preview cards on language switch (product names/regions translate)
   document.querySelectorAll('.lang-toggle button[data-lang]').forEach(btn => {
