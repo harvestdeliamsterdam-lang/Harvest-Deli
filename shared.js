@@ -192,6 +192,8 @@
       'jp.a3.excerpt': 'Mountain flowers, raw extraction and small batches: the quiet reasons one spoon lingers and another does not.',
       'jp.read_html': 'Read the essay <span class="arrow" aria-hidden="true"></span>',
       'jp.cta': 'Visit the Journal',
+      'ig.h_html': 'From the grove, <em>in slow rotation.</em>',
+      'ig.follow': 'Follow on Instagram',
       'a11y.skipLink': 'Skip to content',
       'idx.h1': 'Harvest Deli, single-estate Greek honey from the hills of Pelion',
       // ---------- Harvest Concierge (floating chat) ----------
@@ -771,6 +773,8 @@
       'jp.a3.excerpt': 'Bergbloemen, rauwe extractie en kleine oogsten: de stille redenen dat de ene lepel blijft hangen en de andere niet.',
       'jp.read_html': 'Lees het essay <span class="arrow" aria-hidden="true"></span>',
       'jp.cta': 'Bezoek het Journal',
+      'ig.h_html': 'Uit de gaard, <em>in trage rotatie.</em>',
+      'ig.follow': 'Volg op Instagram',
       'footer.builtBy': 'Ontworpen & gebouwd door',
       'a11y.skipLink': 'Ga naar inhoud',
       'idx.h1': 'Harvest Deli, Griekse honing van één landgoed in Pelion',

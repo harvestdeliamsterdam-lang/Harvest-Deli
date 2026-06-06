@@ -2016,57 +2016,76 @@ body nav.site-nav .logo-mark.nav-size {
   transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
 }
 .ig-head .follow:hover { color: var(--gold-deep); border-color: var(--gold-deep); }
+/* Editorial gallery (not a social embed): portrait plates, woven column
+   cascade, cinematic hover zoom, ambient gold light behind the grid. */
+.ig-strip { position: relative; overflow: hidden; }
+.ig-ambient {
+  position: absolute; left: 50%; top: 56%; transform: translate(-50%, -50%);
+  width: 90vmin; height: 90vmin; pointer-events: none; z-index: 0;
+  background: radial-gradient(closest-side, rgba(212, 172, 106, 0.16), transparent 70%);
+  filter: blur(10px);
+  animation: igAmbient 16s ease-in-out infinite alternate;
+}
+@keyframes igAmbient {
+  0%   { transform: translate(-54%, -52%) scale(1); opacity: 0.8; }
+  100% { transform: translate(-46%, -48%) scale(1.12); opacity: 1; }
+}
+.ig-inner { position: relative; z-index: 1; }
 .ig-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(14px, 1.6vw, 26px);
 }
 .ig-tile {
   position: relative;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 4;
   overflow: hidden;
   text-decoration: none;
-  border-radius: 2px;
+  border-radius: var(--radius-card, 16px);
   cursor: pointer;
-  transition: transform 0.6s var(--ease);
+  background: var(--bg-deep, #EDE3D2);
+  box-shadow: 0 26px 54px -34px rgba(40, 28, 12, 0.42);
 }
-.ig-tile:hover { transform: scale(0.985); }
-.ig-tile .bg {
+/* woven editorial rhythm: nudge the 2nd and 4th columns downward */
+.ig-tile:nth-child(4n+2), .ig-tile:nth-child(4n) { transform: translateY(clamp(18px, 3vw, 44px)); }
+.ig-tile img {
   position: absolute; inset: 0;
-  transition: transform 1.4s var(--ease);
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1.3s var(--ease, cubic-bezier(0.22,1,0.36,1)), filter 0.7s var(--ease);
+  filter: saturate(1.02);
 }
-.ig-tile:hover .bg { transform: scale(1.08); }
+.ig-tile:hover img { transform: scale(1.07); filter: saturate(1.08) brightness(1.02); }
 .ig-tile::after {
   content: '';
-  position: absolute; inset: 0;
-  background: rgba(14, 11, 8, 0);
-  transition: background 0.5s var(--ease);
+  position: absolute; inset: 0; z-index: 1;
+  background: radial-gradient(130% 90% at 50% 0%, transparent 48%, rgba(14, 11, 8, 0.32) 100%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  pointer-events: none;
 }
-.ig-tile:hover::after { background: rgba(14, 11, 8, 0.25); }
+.ig-tile:hover::after { opacity: 1; }
 .ig-tile .ig-icon {
   position: absolute;
   top: 50%; left: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
+  transform: translate(-50%, -50%) scale(0.62);
   z-index: 2;
-  width: 30px; height: 30px;
-  color: #fff;
+  width: 32px; height: 32px;
+  color: rgba(255, 250, 240, 0.96);
   opacity: 0;
-  transition: opacity 0.4s var(--ease), transform 0.5s var(--ease);
+  transition: opacity 0.4s var(--ease), transform 0.55s var(--ease);
+  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.5));
 }
 .ig-tile:hover .ig-icon { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 .ig-tile .ig-icon svg { width: 100%; height: 100%; stroke: currentColor; fill: none; stroke-width: 1.4; }
-.ig-tone-1 { background: linear-gradient(160deg, #3D2A14 0%, #0F0A05 100%), radial-gradient(ellipse at 35% 35%, rgba(248,215,140,0.38), transparent 55%); }
-.ig-tone-2 { background: linear-gradient(160deg, #2D2515 0%, #120D05 100%), radial-gradient(ellipse at 60% 40%, rgba(196,170,100,0.32), transparent 55%); }
-.ig-tone-3 { background: linear-gradient(160deg, #1B1F18 0%, #0A0C08 100%), radial-gradient(ellipse at 40% 50%, rgba(120, 100, 60, 0.32), transparent 55%); }
-.ig-tone-4 { background: linear-gradient(160deg, #2B1B0E 0%, #0F0A05 100%), radial-gradient(ellipse at 50% 50%, rgba(212, 172, 106, 0.32), transparent 60%); }
-.ig-tone-5 { background: linear-gradient(160deg, #3E2D15 0%, #150F08 100%), radial-gradient(ellipse at 30% 30%, rgba(255, 200, 110, 0.34), transparent 55%); }
-.ig-tone-6 { background: linear-gradient(160deg, #1F1610 0%, #0B0805 100%), radial-gradient(ellipse at 50% 50%, rgba(184, 148, 90, 0.42), transparent 55%); }
 @media (max-width: 900px) {
-  .ig-grid { grid-template-columns: repeat(3, 1fr); }
+  .ig-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .ig-tile:nth-child(4n+2), .ig-tile:nth-child(4n) { transform: none; }
+  .ig-tile:nth-child(2n) { transform: translateY(26px); }
   .ig-head { flex-direction: column; align-items: flex-start; }
 }
-@media (max-width: 540px) {
-  .ig-grid { grid-template-columns: repeat(2, 1fr); }
+@media (prefers-reduced-motion: reduce) {
+  .ig-ambient { animation: none; }
+  .ig-tile img { transition: none; }
 }
 
 /* ------------ Search modal ------------ */
