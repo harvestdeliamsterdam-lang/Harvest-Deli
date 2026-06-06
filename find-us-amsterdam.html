@@ -881,6 +881,84 @@ body.markets-page nav.site-nav {
   .fu-haze, .fu-mote, .fu-market__img { animation: none !important; transition: none !important; }
 }
 
+
+/* =========================================================
+   STANDARD CHROME (nav + footer) — this page was missing the
+   base layout, so nav rendered as a plain block and the footer
+   was unstyled. Copied to match every other page.
+   ========================================================= */
+nav.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 60;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 48px;
+  color: var(--m-ink, #1F1A14);
+  background: rgba(245, 237, 220, 0.78);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  backdrop-filter: blur(20px) saturate(140%);
+  border-bottom: 1px solid rgba(31, 26, 20, 0.06);
+}
+nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; color: inherit; }
+nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
+.menu-btn, .nav-acquire {
+  background: none; border: none; color: inherit; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 9.5px; letter-spacing: var(--track-label, 0.36em); text-transform: uppercase;
+  font-weight: 500; padding: 6px 0;
+  display: inline-flex; align-items: center; gap: 16px;
+  text-decoration: none; transition: opacity 0.5s var(--ease, cubic-bezier(0.22,1,0.36,1));
+  opacity: 0.92; padding-left: var(--track-label, 0.36em);
+}
+.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
+.menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
+.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before { width: 100%; }
+.menu-btn .lines::after { width: 70%; }
+.nav-acquire { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+
+/* Footer — dark estate section (uses the light "Dark" logo variant) */
+.site-footer {
+  background: #0E0B08; color: var(--cream, #FAF6EE);
+  padding: 18vh 8% 6vh;
+  position: relative; overflow: hidden;
+}
+.site-footer::before {
+  content: ''; position: absolute; left: 50%; top: -100px;
+  width: 800px; height: 400px; transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(212, 172, 106, 0.16), transparent 60%);
+  filter: blur(40px); pointer-events: none;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 8vh 6%; margin-bottom: 14vh;
+  position: relative; z-index: 2;
+}
+.footer-brand { height: 80px; margin-bottom: 22px; }
+.footer-tagline { font-size: 18px; line-height: 1.5; color: rgba(245, 239, 228, 0.65); max-width: 280px; }
+.footer-col h4 {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 9.5px; letter-spacing: var(--track-label, 0.36em);
+  text-transform: uppercase; color: var(--gold-light, #D4AC6A);
+  margin-bottom: 28px; padding-left: var(--track-label, 0.36em);
+}
+.footer-col a {
+  display: block; font-size: 13.5px; line-height: 2.1;
+  color: rgba(245, 239, 228, 0.62); text-decoration: none;
+  transition: color 0.5s var(--ease, cubic-bezier(0.22,1,0.36,1)); font-weight: 400;
+}
+.footer-col a:hover { color: var(--cream, #FAF6EE); }
+.footer-bottom {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 9px; letter-spacing: 0.42em; text-transform: uppercase;
+  color: rgba(245, 239, 228, 0.36); font-weight: 500;
+  padding-top: 3vh; border-top: 1px solid rgba(245, 239, 228, 0.08);
+  padding-left: 0.42em; position: relative; z-index: 2;
+}
+@media (max-width: 760px) {
+  nav.site-nav { padding: 14px 22px; }
+  nav.site-nav .nav-right { gap: 18px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 6vh 8%; margin-bottom: 8vh; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
 </style>
 </head>
 <body class="markets-page">
