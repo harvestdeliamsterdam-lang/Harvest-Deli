@@ -135,9 +135,11 @@
       'menu.copyright': '© Harvest Deli MMXXV',
       'cart.title_html': 'Your <em>Cellar</em>',
       'cart.close': 'Close',
-      'cart.empty.h': 'Your cellar is quiet.',
-      'cart.empty.p': 'Begin the collection. Each jar is numbered, sealed in wax, and shipped from Pelion within the week.',
+      'cart.empty.eyebrow': 'Your cellar',
+      'cart.empty.h': 'The cellar awaits.',
+      'cart.empty.p': 'Small-batch harvests from Pelion, prepared quietly and shipped across Europe.',
       'cart.empty.cta': 'View the collection',
+      'cart.empty.suggest': 'Begin with',
       'cart.subtotal': 'Subtotal',
       'cart.note': 'Shipping calculated at checkout. Complimentary across the EU above €120.',
       'cart.checkout': 'Continue to checkout',
@@ -688,9 +690,11 @@
       'menu.copyright': '© Harvest Deli MMXXV',
       'cart.title_html': 'Jouw <em>Kelder</em>',
       'cart.close': 'Sluiten',
-      'cart.empty.h': 'Jouw kelder is stil.',
-      'cart.empty.p': 'Begin met de collectie. Elke pot is genummerd, verzegeld in was en binnen een week verzonden vanuit Pelion.',
+      'cart.empty.eyebrow': 'Jouw kelder',
+      'cart.empty.h': 'De kelder wacht.',
+      'cart.empty.p': 'Kleinschalige oogsten uit Pelion, rustig klaargemaakt en verzonden door heel Europa.',
       'cart.empty.cta': 'Bekijk de collectie',
+      'cart.empty.suggest': 'Begin met',
       'cart.subtotal': 'Subtotaal',
       'cart.note': 'Verzending wordt bij de afrekening berekend. Gratis binnen de EU boven €120.',
       'cart.checkout': 'Naar de afrekening',
@@ -1239,9 +1243,11 @@
       'menu.copyright': '© Harvest Deli MMXXV',
       'cart.title_html': 'Το <em>Κελάρι</em> σας',
       'cart.close': 'Κλείσιμο',
-      'cart.empty.h': 'Το κελάρι σας είναι ήσυχο.',
-      'cart.empty.p': 'Ξεκινήστε τη συλλογή. Κάθε βάζο είναι αριθμημένο, σφραγισμένο με κερί, και αποστέλλεται από το Πήλιο εντός της εβδομάδας.',
+      'cart.empty.eyebrow': 'Το κελάρι σας',
+      'cart.empty.h': 'Το κελάρι περιμένει.',
+      'cart.empty.p': 'Μικρές σοδειές από το Πήλιο, ετοιμασμένες ήσυχα και αποστέλλονται σε όλη την Ευρώπη.',
       'cart.empty.cta': 'Δείτε τη συλλογή',
+      'cart.empty.suggest': 'Ξεκινήστε με',
       'cart.subtotal': 'Μερικό σύνολο',
       'cart.note': 'Τα μεταφορικά υπολογίζονται κατά την πληρωμή. Δωρεάν εντός ΕΕ άνω των €120.',
       'cart.checkout': 'Συνέχεια στην πληρωμή',
@@ -2211,11 +2217,23 @@
     const itemsWrap = document.getElementById('cartItems');
     if (itemsWrap) {
       if (_lines.length === 0) {
+        var _sugg = ['chestnut', 'mountain-tea', 'olive-oil'].map(function (sl) {
+          var p; try { p = localizedProduct(sl); } catch (e) { p = null; }
+          if (!p) return '';
+          return '<a class="ce-card" href="' + p.url + '">' +
+            '<span class="ce-card-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></span>' +
+            '<span class="ce-card-meta"><span class="ce-card-name">' + p.name + '</span>' +
+            '<span class="ce-card-price">' + formatPrice(p.price) + '</span></span>' +
+          '</a>';
+        }).join('');
         itemsWrap.innerHTML = `
           <div class="cart-empty">
-            <h4>${lookup('cart.empty.h')}</h4>
-            <p>${lookup('cart.empty.p')}</p>
-            <a href="shop.html" class="cart-empty-cta">${lookup('cart.empty.cta')}</a>
+            <span class="ce-glow" aria-hidden="true"></span>
+            <div class="ce-eyebrow">${lookup('cart.empty.eyebrow')}</div>
+            <h4 class="ce-title">${lookup('cart.empty.h')}</h4>
+            <p class="ce-sub">${lookup('cart.empty.p')}</p>
+            <a href="shop.html" class="cart-empty-cta"><span>${lookup('cart.empty.cta')}</span><span class="ce-arrow" aria-hidden="true"></span></a>
+            ${_sugg ? `<div class="ce-suggest"><div class="ce-suggest-h">${lookup('cart.empty.suggest')}</div><div class="ce-grid">${_sugg}</div></div>` : ''}
           </div>
         `;
       } else {
@@ -4368,9 +4386,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-15'], ['hd-search-js', 'search.js?v=hd-2026-06-06-15'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-15'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-15'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-15'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-15'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-15'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-15'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-15'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-15']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-16'], ['hd-search-js', 'search.js?v=hd-2026-06-06-16'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-16'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-16'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-16'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-16'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-16'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-16'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-16'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-16']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

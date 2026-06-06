@@ -90,7 +90,7 @@
      leaving the body at opacity 0. The <video preload="auto"> below is enough. -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-15">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-16">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1442,7 +1442,7 @@ footer {
 /* ============ Cinematic intro (one-time per session) ============ */
 .hd-intro { position: fixed; inset: 0; z-index: 9999; overflow: hidden; background: #0c1410; cursor: pointer; }
 .hd-intro.is-leaving { opacity: 0; transform: scale(1.015); transition: opacity 0.95s cubic-bezier(0.22,1,0.36,1), transform 1.1s cubic-bezier(0.22,1,0.36,1); pointer-events: none; }
-.hd-intro__bg { position: absolute; inset: -6%; background: url('assets/background.png?v=hd-2026-06-06-15') center/cover no-repeat; transform: scale(1.06); animation: hdiBg 26s ease-in-out infinite alternate; }
+.hd-intro__bg { position: absolute; inset: -6%; background: url('assets/background.png?v=hd-2026-06-06-16') center/cover no-repeat; transform: scale(1.06); animation: hdiBg 26s ease-in-out infinite alternate; }
 .hd-intro__light { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: screen; background: linear-gradient(115deg, transparent 30%, rgba(212,180,110,0.16) 48%, transparent 64%); background-size: 250% 100%; animation: hdiLight 6.5s ease-in-out infinite; }
 .hd-intro__scrim { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: radial-gradient(60% 60% at 50% 46%, transparent 38%, rgba(6,12,8,0.55) 100%); animation: hdiScrim 6.5s ease forwards; }
 .hd-intro__dust { position: absolute; inset: 0; pointer-events: none; }
@@ -1464,6 +1464,31 @@ footer {
 @keyframes hdiSheen { 0%{opacity:0;background-position:160% 0} 25%{opacity:1} 100%{opacity:0;background-position:-60% 0} }
 html.hd-intro-lock { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { .hd-intro { display: none; } }
+
+/* ============ Homepage hero — calm luxury after intro ============ */
+/* Clean the hero: remove the floating brand/tagline overlay; the intro
+   already presents the logo and the nav now carries it. */
+.hero .scene { display: none !important; }
+/* deeper, calmer cinematic vignette */
+.video-stage::before { background: radial-gradient(ellipse at 50% 46%, transparent 32%, rgba(8,6,4,0.5) 100%); }
+.video-stage::after { background: linear-gradient(180deg, rgba(8,6,4,0.55) 0%, transparent 26%, transparent 60%, rgba(8,6,4,0.5) 100%); }
+
+/* Premium solid espresso navigation (top + scrolled), white type, gold hover */
+body nav.site-nav, body nav.site-nav.scrolled {
+  background: linear-gradient(180deg, rgba(20,15,11,0.96), rgba(20,15,11,0.86)) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(130%); backdrop-filter: blur(14px) saturate(130%);
+  border-bottom: 1px solid rgba(212,172,106,0.18) !important;
+  color: #F7F1E6 !important;
+  padding: 18px 48px;
+  box-shadow: 0 16px 44px -28px rgba(0,0,0,0.75);
+}
+body nav.site-nav.scrolled { background: linear-gradient(180deg, rgba(15,11,8,0.97), rgba(15,11,8,0.9)) !important; padding: 16px 48px; }
+body nav.site-nav .menu-btn, body nav.site-nav .nav-acquire { color: #F7F1E6; opacity: 0.9; transition: color 0.4s var(--ease), opacity 0.4s var(--ease); }
+body nav.site-nav .menu-btn:hover, body nav.site-nav .nav-acquire:hover { color: var(--gold-light, #D4AC6A); opacity: 1; }
+body nav.site-nav .lang-toggle button { color: rgba(247,241,230,0.66); }
+body nav.site-nav .lang-toggle button:hover, body nav.site-nav .lang-toggle button.active { color: #F7F1E6; }
+body nav.site-nav .lang-toggle .sep { background: rgba(247,241,230,0.28) !important; }
+@media (max-width: 880px) { body nav.site-nav, body nav.site-nav.scrolled { padding: 14px 22px; } }
 </style>
 </head>
 <body>
@@ -1473,7 +1498,7 @@ html.hd-intro-lock { overflow: hidden; }
   <div class="hd-intro__light"></div>
   <div class="hd-intro__dust"><span></span><span></span><span></span><span></span><span></span></div>
   <div class="hd-intro__scrim"></div>
-  <img class="hd-intro__logo" src="assets/logopng.png?v=hd-2026-06-06-15" alt="Harvest Deli" fetchpriority="high">
+  <img class="hd-intro__logo" src="assets/logopng.png?v=hd-2026-06-06-16" alt="Harvest Deli" fetchpriority="high">
   <div class="hd-intro__sheen"></div>
   <button class="hd-intro__skip" type="button">Skip</button>
 </div>
@@ -1630,9 +1655,9 @@ html.hd-intro-lock { overflow: hidden; }
        The cinematic scene language is preserved as-is below. -->
   <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli — Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-15">
-      <source src="v.webm?v=hd-2026-06-06-15" type="video/webm">
-        <source src="video.mp4?v=hd-2026-06-06-15" type="video/mp4">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-16">
+      <source src="v.webm?v=hd-2026-06-06-16" type="video/webm">
+        <source src="video.mp4?v=hd-2026-06-06-16" type="video/mp4">
     </video>
   </div>
 
@@ -2144,7 +2169,7 @@ html.hd-intro-lock { overflow: hidden; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-15"></script>
+<script src="shared.js?v=hd-2026-06-06-16"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');
