@@ -4496,3 +4496,23 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
   }
   if (!bind()) { var t = 0, iv = setInterval(function () { if (bind() || ++t > 40) clearInterval(iv); }, 120); }
 })();
+
+/* ---------- Reviews: reveal testimonial cards on scroll ---------- */
+(function () {
+  'use strict';
+  function init() {
+    var items = document.querySelectorAll('.review-item');
+    if (!items.length) return;
+    var show = function () { items.forEach(function (el) { el.classList.add('rv-in'); }); };
+    if (!('IntersectionObserver' in window)) { show(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('rv-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -60px 0px' });
+    items.forEach(function (el) { io.observe(el); });
+    setTimeout(show, 3000); // safety net so cards can never stay hidden
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();

@@ -4567,3 +4567,49 @@ body .track-cta:focus-visible, body .final-cta:focus-visible {
   outline: 2px solid var(--gold-light, #D4AC6A) !important;
   outline-offset: 3px !important;
 }
+
+/* ================================================================
+   REVIEWS, luxury testimonial redesign (product pages)
+   Layered cards, reveal-on-scroll, animated star shimmer, big score.
+   ================================================================ */
+.reviews-section { background: linear-gradient(180deg, var(--bg-deep, #EDE3D2) 0%, var(--bg, #F5EFE4) 100%); }
+.reviews-summary .desc { font-style: normal; }
+.rating-display .score { font-size: clamp(54px, 6vw, 74px) !important; }
+/* animated rating: a quiet gold shimmer sweeps the summary stars */
+.rating-display .stars { position: relative; overflow: hidden; }
+.rating-display .stars::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 34%, rgba(255, 245, 214, 0.9) 50%, transparent 66%);
+  transform: translateX(-130%); mix-blend-mode: screen;
+  animation: starSheen 5s var(--ease, ease) 1.2s infinite;
+}
+@keyframes starSheen { 0%, 62% { transform: translateX(-130%); } 82%, 100% { transform: translateX(130%); } }
+
+/* review items become layered cards with a staggered reveal */
+.review-list { display: grid; gap: 16px; }
+.review-item {
+  padding: 26px 30px !important;
+  border: 1px solid rgba(26, 22, 18, 0.08) !important;
+  border-radius: var(--radius-card, 16px);
+  background: #FFFDF9;
+  box-shadow: 0 18px 42px -30px rgba(40, 28, 12, 0.42);
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease),
+              box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.review-item:first-child { padding-top: 26px !important; }
+.review-item:last-child { border-bottom: 1px solid rgba(26, 22, 18, 0.08) !important; }
+.review-item.rv-in { opacity: 1; transform: translateY(0); }
+.review-item:nth-child(2).rv-in { transition-delay: .07s; }
+.review-item:nth-child(3).rv-in { transition-delay: .14s; }
+.review-item:nth-child(4).rv-in { transition-delay: .21s; }
+.review-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 54px -28px rgba(40, 28, 12, 0.5);
+  border-color: rgba(184, 148, 90, 0.34) !important;
+}
+@media (max-width: 860px) { .reviews-summary { position: static; } }
+@media (prefers-reduced-motion: reduce) {
+  .review-item { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .rating-display .stars::after { display: none; }
+}
