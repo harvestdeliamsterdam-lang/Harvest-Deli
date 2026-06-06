@@ -4632,3 +4632,67 @@ body .track-cta:focus-visible, body .final-cta:focus-visible {
   .review-item { opacity: 1 !important; transform: none !important; transition: none !important; }
   .rating-display .stars::after { display: none; }
 }
+
+/* ================================================================
+   TASTING JOURNEY, cinematic redesign (product pages)
+   Ambient glow, floating motes, ghost numerals, a journey hairline
+   that draws on scroll, drifting quotes. More motion, more air.
+   ================================================================ */
+.tasting {
+  position: relative; overflow: hidden;
+  background: radial-gradient(120% 80% at 50% 12%, #FBF6EC 0%, var(--bg, #F5EFE4) 55%, var(--bg-deep, #EDE3D2) 100%);
+}
+.tasting > * { position: relative; z-index: 1; }
+.tasting .section-headline em { font-style: normal !important; }
+.tasting::before {
+  content: ''; position: absolute; left: 50%; top: 40%; width: 80vmin; height: 80vmin;
+  transform: translate(-50%, -50%); pointer-events: none; z-index: 0;
+  background: radial-gradient(closest-side, rgba(212,172,106,0.15), transparent 70%); filter: blur(8px);
+  animation: tasteGlow 15s ease-in-out infinite alternate;
+}
+@keyframes tasteGlow { 0% { transform: translate(-54%, -46%) scale(1); } 100% { transform: translate(-46%, -52%) scale(1.14); } }
+/* floating gold motes (injected by shared.js) */
+.taste-motes { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.taste-motes .tm {
+  position: absolute; width: 5px; height: 5px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(232,201,130,0.95), rgba(212,172,106,0));
+  opacity: 0.4; animation: moteFloat 15s ease-in-out infinite;
+}
+.taste-motes .tm:nth-child(1) { left: 11%; top: 30%; animation-delay: 0s; animation-duration: 16s; }
+.taste-motes .tm:nth-child(2) { left: 26%; top: 64%; animation-delay: -3s; animation-duration: 13s; }
+.taste-motes .tm:nth-child(3) { left: 49%; top: 22%; animation-delay: -6s; animation-duration: 18s; }
+.taste-motes .tm:nth-child(4) { left: 68%; top: 58%; animation-delay: -2s; animation-duration: 14s; }
+.taste-motes .tm:nth-child(5) { left: 83%; top: 34%; animation-delay: -8s; animation-duration: 17s; }
+.taste-motes .tm:nth-child(6) { left: 92%; top: 70%; animation-delay: -5s; animation-duration: 12s; }
+@keyframes moteFloat { 0%, 100% { transform: translate(0, 0); opacity: 0.18; } 50% { transform: translate(16px, -30px); opacity: 0.6; } }
+
+/* connecting journey hairline behind the three notes */
+.tasting-grid { position: relative; }
+.tasting-grid::before {
+  content: ''; position: absolute; top: 19px; left: 4%; right: 4%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,148,90,0.5) 12%, rgba(184,148,90,0.5) 88%, transparent);
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 1.6s var(--ease, ease) 0.2s; z-index: 0;
+}
+.tasting-grid.jr-drawn::before { transform: scaleX(1); }
+
+/* big ghost numeral per note + drifting quote */
+.taste-col { padding-top: 56px !important; }
+.taste-col::before { top: 18px !important; width: 40px !important; z-index: 1; }
+.taste-col::after {
+  position: absolute; top: -8px; right: 0; z-index: 0;
+  font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: clamp(64px, 7vw, 104px);
+  line-height: 1; letter-spacing: -0.04em; color: rgba(184,148,90,0.10); pointer-events: none;
+}
+.taste-col:nth-child(1)::after { content: '01'; }
+.taste-col:nth-child(2)::after { content: '02'; }
+.taste-col:nth-child(3)::after { content: '03'; }
+.taste-col h4, .taste-col h5, .taste-col p { position: relative; z-index: 1; }
+.taste-col h5 { font-style: normal !important; animation: quoteDrift 7s ease-in-out infinite alternate; }
+.taste-col:nth-child(2) h5 { animation-delay: -2.3s; }
+.taste-col:nth-child(3) h5 { animation-delay: -4.6s; }
+@keyframes quoteDrift { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(0, -5px, 0); } }
+@media (prefers-reduced-motion: reduce) {
+  .tasting::before, .taste-col h5, .taste-motes .tm { animation: none; }
+  .tasting-grid::before { transition: none; transform: scaleX(1); }
+}

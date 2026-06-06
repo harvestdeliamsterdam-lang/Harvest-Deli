@@ -4544,3 +4544,32 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* ---------- Tasting journey: draw the line + float ambient motes ---------- */
+(function () {
+  'use strict';
+  function init() {
+    var grid = document.querySelector('.tasting-grid');
+    if (grid) {
+      var draw = function () { grid.classList.add('jr-drawn'); };
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (es) {
+          es.forEach(function (e) { if (e.isIntersecting) { draw(); io.disconnect(); } });
+        }, { threshold: 0.2 });
+        io.observe(grid);
+        setTimeout(draw, 3000); // safety net
+      } else { draw(); }
+    }
+    var sec = document.querySelector('.tasting');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (sec && !sec.querySelector('.taste-motes') && !reduce) {
+      var m = document.createElement('div');
+      m.className = 'taste-motes';
+      m.setAttribute('aria-hidden', 'true');
+      m.innerHTML = '<span class="tm"></span><span class="tm"></span><span class="tm"></span><span class="tm"></span><span class="tm"></span><span class="tm"></span>';
+      sec.insertBefore(m, sec.firstChild);
+    }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
