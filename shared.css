@@ -4417,3 +4417,17 @@ body .menu-overlay .menu-bottom { display: flex; justify-content: space-between;
   body .menu-overlay .menu-side { padding-left: 0; border-left: none; border-top: 1px solid rgba(42, 35, 27, 0.1); padding-top: 5vh; }
   body .menu-overlay .menu-bottom { flex-direction: column; gap: 16px; text-align: center; }
 }
+
+/* =================================================================
+   NAV — mobile: the right cluster overflowed (lang toggle alone is
+   ~190px), pushing the Menu button off-screen. Collapse to the
+   essentials: logo + search + Menu + cart. Language/Shop/Wishlist
+   live inside the Menu overlay on small screens.
+   ================================================================= */
+@media (max-width: 700px) {
+  body nav.site-nav .nav-right { gap: 16px; }
+  body nav.site-nav .lang-toggle,
+  body nav.site-nav .nav-acquire,
+  body nav.site-nav .nav-wishlist { display: none !important; }
+  body nav.site-nav .nav-search svg, body nav.site-nav .nav-cart svg { width: 19px; height: 19px; }
+}
