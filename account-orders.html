@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders · Harvest Deli</title>
+<meta name="description" content="Your Harvest Deli order history.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-1">
+<link rel="stylesheet" href="account.css?v=hd-2026-06-06-1">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/></linearGradient>
+    <linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/></linearGradient>
+    <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
+    <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+    <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
+  <div class="nav-right">
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button>
+    </div>
+    <a href="account.html" class="nav-acquire" data-i18n="nav.account" style="margin-right:4px">Account</a>
+    <a href="shop.html" class="nav-acquire" data-i18n="nav.shop">Shop</a>
+  </div>
+</nav>
+
+<main id="content" class="acct-page">
+<div class="acct-shell">
+<aside class="acct-aside">
+  <div class="acct-greeting-eyebrow" data-i18n="acct.eyebrow">Your account</div>
+  <div class="acct-greeting"><span data-acct-name>Guest</span></div>
+  <div class="acct-greeting-sub" data-acct-email></div>
+  <nav class="acct-nav" aria-label="Account">
+    <a href="account.html"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="7" height="7"/><rect x="12" y="3" width="7" height="7"/><rect x="3" y="12" width="7" height="7"/><rect x="12" y="12" width="7" height="7"/></svg> <span data-i18n="acct.nav.dashboard">Dashboard</span></a>
+    <a href="account-orders.html"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h14l-1.4 11.5a1.5 1.5 0 0 1-1.5 1.3H6.9a1.5 1.5 0 0 1-1.5-1.3L4 6Z"/><path d="M8 6V4.5a3 3 0 0 1 6 0V6"/></svg> <span data-i18n="acct.nav.orders">Orders</span></a>
+    <a href="account-addresses.html"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M11 20s7-5.6 7-11a7 7 0 0 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="11" cy="9" r="2.5"/></svg> <span data-i18n="acct.nav.addresses">Addresses</span></a>
+    <a href="account-details.html"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="11" cy="7.5" r="3.5"/><path d="M4.5 19a6.5 6.5 0 0 1 13 0"/></svg> <span data-i18n="acct.nav.details">Details</span></a>
+    <button type="button" class="logout" data-logout><span data-i18n="acct.logout">Sign out</span></button>
+  </nav>
+</aside>
+<div class="acct-main">
+<h1 class="acct-h1" data-i18n-html="acct.orders.h_html">Your <em>orders.</em></h1>
+<p class="acct-lead" data-i18n="acct.orders.lead">Every numbered jar you have ordered, newest first.</p>
+<div id="ordersList"></div>
+</div>
+</div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.help">Help</h4>
+      <a href="track-order.html" data-i18n="footer.link.track">Track order</a>
+      <a href="legal-shipping.html">Shipping</a>
+      <a href="legal-returns.html">Returns</a>
+      <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col.account">Account</h4>
+      <a href="account.html" data-i18n="footer.link.account">Dashboard</a>
+      <a href="account-orders.html" data-i18n="footer.link.orders">Orders</a>
+      <a href="login.html" data-i18n="footer.link.login">Sign in</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="legal-terms.html">Terms</a>
+      <a href="legal-privacy.html">Privacy</a>
+      <a href="legal-cookies.html">Cookies</a>
+      <a href="legal-imprint.html">Imprint</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Harvest Deli &middot; Pelion, Greece</span>
+    <span>KvK [00000000] &middot; BTW NL[000000000]B01</span>
+  </div>
+</footer>
+
+<script src="shared.js?v=hd-2026-06-06-1"></script>
+<script src="account.js?v=hd-2026-06-06-1"></script>
+<script>
+(function(){ if(!window.HD_account.requireAuth())return;
+  var list=document.getElementById('ordersList'); var orders=window.HD_account.orders();
+  function fmt(n){n=Math.round((n||0)*100)/100;return Number.isInteger(n)?'€'+n:'€'+n.toFixed(2);}
+  if(!orders.length){ list.innerHTML='<div class="empty-state"><div class="es-ico"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M4 6h14l-1.4 11.5a1.5 1.5 0 0 1-1.5 1.3H6.9a1.5 1.5 0 0 1-1.5-1.3L4 6Z"/><path d="M8 6V4.5a3 3 0 0 1 6 0V6"/></svg></div><h3>No orders yet</h3><p>When you place an order it will appear here with its tracking details.</p><a class="btn-primary" href="shop.html">Browse the collection</a></div>'; return; }
+  list.innerHTML=orders.map(function(o){var d=new Date(o.createdAt);
+    return '<div class="order-card"><div class="oc-head"><span class="oc-id">'+o.id+'</span><span class="status-pill">Confirmed</span></div>'+
+    '<div class="oc-items">'+o.items.map(function(i){return i.name+' ×'+i.qty;}).join(' · ')+'</div>'+
+    '<div class="oc-foot"><span class="oc-date">'+d.toLocaleDateString()+' · '+(o.shippingMethod?o.shippingMethod.label:'')+'</span><span class="oc-total">'+fmt(o.total)+'</span></div>'+
+    '<div style="margin-top:12px;display:flex;gap:18px;flex-wrap:wrap"><a class="btn-ghost" href="track-order.html">Track &amp; trace →</a>'+
+    '<a class="btn-ghost" href="invoice.html?order='+encodeURIComponent(o.id)+'">Invoice →</a>'+
+    '<a class="btn-ghost" href="returns.html">Return →</a></div></div>';
+  }).join('');
+})();
+</script>
+</body>
+</html>

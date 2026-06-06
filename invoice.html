@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invoice · Harvest Deli</title>
+<meta name="description" content="Your Harvest Deli invoice.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-1">
+<link rel="stylesheet" href="account.css?v=hd-2026-06-06-1">
+<style>
+.inv-wrap{max-width:780px;margin:0 auto;padding:120px 6% 8vh}
+@media print{ .site-nav,.site-footer,.inv-actions,.hd-whats,.nav-search,#cookieBar,.hd-fab,.hd-concierge,.cart-drawer{display:none!important} .inv-wrap{padding:0;max-width:none} body{background:#fff} .inv-sheet{box-shadow:none;border:none} }
+.inv-actions{display:flex;gap:12px;justify-content:flex-end;margin-bottom:18px;flex-wrap:wrap}
+.inv-sheet{background:#fff;border:1px solid rgba(26,22,18,0.1);border-radius:var(--radius-card,16px);padding:48px;box-shadow:0 30px 70px -50px rgba(26,22,18,0.5)}
+@media(max-width:600px){.inv-sheet{padding:28px}}
+.inv-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+.inv-brand{font-family:Newsreader,serif;font-size:22px;letter-spacing:2px;color:var(--gold-deep)}
+.inv-brand small{display:block;font-family:Inter,sans-serif;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--ink-soft);margin-top:3px}
+.inv-meta{text-align:right;font-family:Inter,sans-serif;font-size:12px;color:var(--ink-soft);line-height:1.7}
+.inv-meta strong{color:var(--ink)}
+.inv-parties{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:30px}
+@media(max-width:600px){.inv-parties{grid-template-columns:1fr}}
+.inv-parties h5{font-family:Inter,sans-serif;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:8px}
+.inv-parties div{font-family:Inter,sans-serif;font-size:13px;line-height:1.7;color:var(--ink)}
+.inv-table{width:100%;border-collapse:collapse;margin-bottom:20px}
+.inv-table th{font-family:Inter,sans-serif;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);text-align:left;padding:0 0 10px;border-bottom:1px solid rgba(26,22,18,0.16)}
+.inv-table td{font-family:Inter,sans-serif;font-size:14px;color:var(--ink);padding:11px 0;border-bottom:1px solid rgba(26,22,18,0.06)}
+.inv-table td.num,.inv-table th.num{text-align:right;font-variant-numeric:tabular-nums}
+.inv-tot{width:100%;max-width:280px;margin-left:auto}
+.inv-tot tr td{font-family:Inter,sans-serif;font-size:13px;color:var(--ink-soft);padding:5px 0}
+.inv-tot tr td.num{text-align:right;color:var(--ink);font-variant-numeric:tabular-nums}
+.inv-tot tr.grand td{font-family:Newsreader,serif;font-size:18px;color:var(--ink);border-top:1px solid rgba(26,22,18,0.16);padding-top:12px}
+.inv-foot{margin-top:30px;font-family:Inter,sans-serif;font-size:11px;color:var(--ink-soft);line-height:1.7;text-align:center}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="goldFoil" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FAE3A3"/><stop offset="22%" stop-color="#C99948"/><stop offset="48%" stop-color="#F1CC79"/><stop offset="72%" stop-color="#9D6F29"/><stop offset="100%" stop-color="#6E4B1B"/></linearGradient>
+<linearGradient id="goldFoilDark" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#E8C982"/><stop offset="35%" stop-color="#A87A36"/><stop offset="60%" stop-color="#D4A85F"/><stop offset="100%" stop-color="#5C3F18"/></linearGradient>
+<path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
+<symbol id="harvestDeliLogo" viewBox="0 0 260 100"><text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text><text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text><line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/><text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text></symbol>
+<symbol id="harvestDeliLogoDark" viewBox="0 0 260 100"><text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text><text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text><line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/><text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text></symbol>
+</defs></svg>
+<nav class="site-nav"><a href="index.html" class="nav-brand"><svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg></a>
+<div class="nav-right"><div class="lang-toggle" role="group" aria-label="Language"><button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button></div>
+<a href="account.html" class="nav-acquire" style="margin-right:4px">Account</a><a href="shop.html" class="nav-acquire">Shop</a></div></nav>
+<main id="content" class="acct-page">
+<div class="inv-wrap">
+  <div class="inv-actions">
+    <button type="button" class="btn-primary" style="width:auto" onclick="window.print()"><span>Download / print PDF</span></button>
+    <a class="btn-ghost" href="account-orders.html" style="border:1px solid rgba(26,22,18,0.2);border-radius:var(--radius-pill);padding:0 18px;align-items:center;display:inline-flex">Back to orders</a>
+  </div>
+  <div class="inv-sheet" id="invSheet"><p style="font-family:Inter,sans-serif;color:var(--ink-soft)">Loading invoice…</p></div>
+</div>
+</main>
+
+<footer class="site-footer"><div class="footer-grid">
+<div><div class="footer-brand"><svg class="logo-svg logo-mark footer-size"><use href="#harvestDeliLogoDark"/></svg></div><p class="footer-tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p></div>
+<div class="footer-col"><h4>Help</h4><a href="track-order.html">Track order</a><a href="returns.html">Returns</a><a href="legal-shipping.html">Shipping</a><a href="contact.html">Contact</a></div>
+<div class="footer-col"><h4>Account</h4><a href="account.html">Dashboard</a><a href="account-orders.html">Orders</a><a href="returns.html">Returns</a></div>
+<div class="footer-col"><h4>Legal</h4><a href="legal-terms.html">Terms</a><a href="legal-privacy.html">Privacy</a><a href="legal-payment.html">Payment</a><a href="legal-returns.html">Returns policy</a></div>
+</div><div class="footer-bottom"><span>© Harvest Deli · Pelion, Greece</span><span>KvK [00000000] · BTW NL[000000000]B01</span></div></footer>
+<script src="shared.js?v=hd-2026-06-06-1"></script>
+<script src="account.js?v=hd-2026-06-06-1"></script>
+<script>
+(function(){
+  function money(n){n=Math.round((n||0)*100)/100;return '€'+n.toFixed(2);}
+  var id=new URLSearchParams(location.search).get('order');
+  var orders=[];try{orders=JSON.parse(localStorage.getItem('hd-orders-v1')||'[]');}catch(e){}
+  var o=null;for(var i=0;i<orders.length;i++){if(orders[i].id===id){o=orders[i];break;}}if(!o)o=orders[0];
+  var sheet=document.getElementById('invSheet');
+  if(!o){sheet.innerHTML='<p style="font-family:Inter,sans-serif;color:var(--ink-soft)">No invoice found. <a href="account-orders.html" style="color:var(--gold-deep)">Back to orders →</a></p>';return;}
+  var c=o.customer||{};var addr=(c.billing||{});
+  var VAT=0.09; // NL reduced rate on foods
+  var gross=o.total||0; var net=gross/(1+VAT); var vat=gross-net;
+  var rows=(o.items||[]).map(function(it){var line=it.price*it.qty;return '<tr><td>'+it.name+(it.weight?' · '+it.weight:'')+'</td><td class="num">'+it.qty+'</td><td class="num">'+money(it.price)+'</td><td class="num">'+money(line)+'</td></tr>';}).join('');
+  var d=new Date(o.createdAt);
+  sheet.innerHTML=''+
+  '<div class="inv-top"><div class="inv-brand">HARVEST DELI<small>Premium Greek products</small></div>'+
+    '<div class="inv-meta"><strong>Invoice</strong><br>'+o.id+'<br>'+d.toLocaleDateString()+'</div></div>'+
+  '<div class="inv-parties">'+
+    '<div><h5>From</h5><div>Harvest Deli B.V.<br>Ten Katestraat, Amsterdam<br>Netherlands<br>KvK [00000000] · BTW NL[000000000]B01</div></div>'+
+    '<div><h5>Billed to</h5><div>'+((c.firstName||'')+' '+(c.lastName||'')).trim()+(c.company?'<br>'+c.company:'')+'<br>'+[addr.line1,addr.line2].filter(Boolean).join('<br>')+'<br>'+((addr.postcode||'')+' '+(addr.city||'')).trim()+'<br>'+(addr.country||'')+(c.vat?'<br>VAT: '+c.vat:'')+'</div></div>'+
+  '</div>'+
+  '<table class="inv-table"><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Amount</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+  '<table class="inv-tot"><tr><td>Subtotal (excl. VAT)</td><td class="num">'+money(net)+'</td></tr>'+
+    (o.discount>0?'<tr><td>Discount</td><td class="num">−'+money(o.discount)+'</td></tr>':'')+
+    '<tr><td>Shipping</td><td class="num">'+(o.shipping?money(o.shipping):'Free')+'</td></tr>'+
+    '<tr><td>VAT 9%</td><td class="num">'+money(vat)+'</td></tr>'+
+    '<tr class="grand"><td>Total</td><td class="num">'+money(gross)+'</td></tr></table>'+
+  '<div class="inv-foot">Paid via '+(o.paymentLabel||'—')+' · Thank you for supporting a small Greek estate.<br>This is a VAT invoice. SEAM: in production a signed PDF is generated server-side and archived for accounting.</div>';
+  document.title='Invoice '+o.id+' · Harvest Deli';
+})();
+</script>
+</body>
+</html>

@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-1">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -23,7 +23,7 @@
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; overflow-x: hidden; }
+body { background: var(--bg); color: var(--ink); font-family: 'Inter', sans-serif; font-weight: 400; font-size: 15px; line-height: 1.65; overflow-x: clip; }
 ::selection { background: var(--gold-soft); color: var(--ink); }
 
 .logo-svg { display: block; height: 100%; width: auto; }
@@ -655,6 +655,147 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   .checkout-side { padding: 4vh 6% 8vh; }
   .step-block { margin-bottom: 5vh; }
 }
+
+/* ===================== Checkout wizard ===================== */
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+#wzTop { position:absolute; }
+
+/* step indicator */
+.wz-steps { list-style:none; display:flex; gap:8px; margin:0 0 38px; padding:0; counter-reset:wz; flex-wrap:wrap; }
+.wz-dot { display:flex; align-items:center; gap:9px; cursor:default; font-family:'Inter',sans-serif; color:var(--ink-soft); opacity:0.6; }
+.wz-dot[data-wz-goto] { cursor:pointer; }
+.wz-dot .n { width:26px; height:26px; flex:none; display:grid; place-items:center; border:1px solid rgba(26,22,18,0.28); border-radius:50%; font-size:11px; transition:all .4s var(--ease); }
+.wz-dot .l { font-size:9.5px; letter-spacing:0.2em; text-transform:uppercase; }
+.wz-dot:not(:last-child)::after { content:''; width:18px; height:1px; background:rgba(26,22,18,0.2); margin-left:4px; }
+.wz-dot.active { opacity:1; color:var(--ink); }
+.wz-dot.active .n { background:var(--ink); color:var(--cream); border-color:var(--ink); }
+.wz-dot.done { opacity:1; }
+.wz-dot.done .n { background:var(--gold); border-color:var(--gold); color:#fff; }
+@media (max-width:560px){ .wz-dot .l { display:none; } .wz-dot:not(:last-child)::after { width:12px; } }
+
+.wz-step { animation:wzFade .4s var(--ease) both; }
+@keyframes wzFade { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce){ .wz-step { animation:none; } }
+.wz-subhead { font-family:'Newsreader',serif; font-size:18px; font-weight:400; color:var(--ink); margin:26px 0 14px; }
+
+/* cart lines */
+.wz-lines { display:flex; flex-direction:column; }
+.wz-line { display:grid; grid-template-columns:72px 1fr auto; gap:18px; align-items:center; padding:18px 0; border-bottom:1px solid rgba(26,22,18,0.08); }
+.wz-line-thumb { display:block; width:72px; height:72px; border-radius:3px; overflow:hidden; background:var(--bg-deep); }
+.wz-line-thumb img { width:100%; height:100%; object-fit:cover; }
+.wz-line-name { font-family:'Newsreader',serif; font-size:18px; color:var(--ink); text-decoration:none; display:block; }
+.wz-line-meta { font-family:'Inter',sans-serif; font-size:11px; letter-spacing:0.04em; color:var(--ink-soft); margin:2px 0 10px; }
+.wz-qty { display:inline-flex; align-items:center; border:1px solid rgba(26,22,18,0.18); border-radius:999px; }
+.wz-qty-btn { width:34px; height:34px; min-width:34px; background:none; border:none; cursor:pointer; font-size:16px; color:var(--ink); line-height:1; }
+.wz-qty-btn:hover { color:var(--gold-deep); }
+.wz-qty-val { min-width:30px; text-align:center; font-family:'Inter',sans-serif; font-size:13px; }
+.wz-line-right { text-align:right; }
+.wz-line-price { font-family:'Newsreader',serif; font-size:18px; color:var(--ink); }
+.wz-line-remove { background:none; border:none; cursor:pointer; font-family:'Inter',sans-serif; font-size:9.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-soft); margin-top:8px; padding:6px 0; }
+.wz-line-remove:hover { color:#9a3412; }
+
+/* discount */
+.wz-discount { display:flex; gap:10px; margin:22px 0 4px; }
+.wz-discount input { flex:1; background:transparent; border:1px solid rgba(26,22,18,0.18); border-radius:3px; padding:13px 14px; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink); min-height:46px; }
+.wz-discount input:focus { outline:none; border-color:var(--gold); }
+.wz-discount-apply { padding:0 22px; min-height:46px; background:none; border:1px solid var(--ink); border-radius:3px; cursor:pointer; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink); transition:all .4s var(--ease); }
+.wz-discount-apply:hover { background:var(--ink); color:var(--cream); }
+.wz-discount-msg { font-family:'Inter',sans-serif; font-size:12px; margin:8px 0 0; min-height:16px; }
+.wz-discount-msg.ok { color:#3f6212; }
+.wz-discount-msg.bad { color:#9a3412; }
+
+/* upsell */
+.wz-upsell { margin-top:30px; padding-top:26px; border-top:1px solid rgba(26,22,18,0.08); }
+.wz-upsell-h { font-family:'Inter',sans-serif; font-size:9.5px; letter-spacing:var(--track-label); text-transform:uppercase; color:var(--gold-deep); margin-bottom:16px; }
+.wz-up-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+@media (max-width:560px){ .wz-up-row { grid-template-columns:1fr; } }
+.wz-up-card { display:flex; align-items:center; gap:12px; padding:12px; border:1px solid rgba(26,22,18,0.08); border-radius:3px; background:var(--cream); }
+.wz-up-card img { width:48px; height:48px; flex:none; object-fit:cover; border-radius:3px; }
+.wz-up-info { flex:1; min-width:0; }
+.wz-up-name { font-family:'Newsreader',serif; font-size:15px; color:var(--ink); line-height:1.2; }
+.wz-up-price { font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); }
+.wz-up-add { background:none; border:1px solid rgba(26,22,18,0.2); border-radius:999px; min-height:34px; padding:0 14px; cursor:pointer; font-family:'Inter',sans-serif; font-size:9.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink); }
+.wz-up-add:hover { border-color:var(--gold); color:var(--gold-deep); }
+
+/* actions */
+.wz-actions { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:34px; flex-wrap:wrap; }
+.wz-actions .confirm-btn { width:auto; flex:1; min-width:200px; justify-content:center; }
+.wz-back-link { background:none; border:none; cursor:pointer; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft); padding:12px 4px; min-height:44px; text-decoration:none; }
+.wz-back-link:hover { color:var(--gold-deep); }
+.confirm-btn:disabled { opacity:0.4; cursor:not-allowed; }
+.confirm-btn.loading { opacity:0.6; pointer-events:none; }
+.wz-secure-inline { display:inline-flex; align-items:center; gap:7px; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-soft); }
+
+/* checkboxes */
+.checkbox-row { display:flex; align-items:flex-start; gap:11px; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); line-height:1.55; margin:16px 0; cursor:pointer; }
+.checkbox-row input { width:18px; height:18px; flex:none; margin-top:1px; accent-color:var(--gold-deep); }
+.checkbox-row a { color:var(--gold-deep); }
+.hd-field-error { margin:7px 0 0; font-family:'Inter',sans-serif; font-size:11.5px; color:#9a3412; }
+.field input[aria-invalid="true"], .field select[aria-invalid="true"] { border-bottom-color:#9a3412; }
+
+/* card fields reveal */
+#wzCardFields[hidden] { display:none; }
+.pay-tab { cursor:pointer; }
+
+/* review */
+.wz-review-grid { display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(26,22,18,0.08); border:1px solid rgba(26,22,18,0.08); margin-bottom:20px; }
+@media (max-width:560px){ .wz-review-grid { grid-template-columns:1fr; } }
+.wz-review-cell { background:var(--cream); padding:18px 18px; position:relative; }
+.wz-review-cell h5 { font-family:'Inter',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-deep); margin-bottom:8px; }
+.wz-review-cell > div { font-family:'Inter',sans-serif; font-size:13px; line-height:1.6; color:var(--ink); }
+.wz-edit { position:absolute; top:14px; right:14px; background:none; border:none; cursor:pointer; font-family:'Inter',sans-serif; font-size:9px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-soft); padding:4px; }
+.wz-edit:hover { color:var(--gold-deep); }
+.wz-review-items { margin-bottom:22px; }
+.muted { color:var(--ink-soft); }
+
+/* empty state */
+.wz-empty { text-align:center; padding:50px 20px; }
+.wz-empty-ico { color:var(--stone); margin-bottom:14px; }
+.wz-empty-ico svg { width:40px; height:40px; }
+.wz-empty h3 { font-family:'Newsreader',serif; font-weight:400; font-size:24px; color:var(--ink); margin-bottom:8px; }
+.wz-empty p { font-family:'Inter',sans-serif; font-size:13.5px; color:var(--ink-soft); max-width:380px; margin:0 auto 24px; line-height:1.6; }
+
+/* summary blocks (rendered into aside + review) */
+.wz-summary .sm-lines, .wz-review-items .sm-lines { margin-bottom:14px; }
+.sm-line { display:flex; justify-content:space-between; gap:12px; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); padding:5px 0; }
+.sm-line-name em { font-style:normal; color:var(--ink); }
+.sm-line-price { color:var(--ink); white-space:nowrap; }
+.sm-rows { border-top:1px solid rgba(26,22,18,0.1); padding-top:14px; }
+.sm-row { display:flex; justify-content:space-between; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); padding:6px 0; }
+.sm-row.sm-discount span:last-child { color:#3f6212; }
+.sm-row.sm-grand { margin-top:8px; padding-top:14px; border-top:1px solid rgba(26,22,18,0.1); }
+.sm-row.sm-grand span { font-family:'Newsreader',serif; font-size:22px; color:var(--ink); }
+.wz-free-progress { margin-top:14px; font-family:'Inter',sans-serif; font-size:11.5px; letter-spacing:0.04em; color:var(--gold-deep); background:var(--gold-soft); padding:10px 12px; border-radius:3px; text-align:center; }
+
+/* FAQ */
+.wz-faq { margin-top:48px; padding-top:32px; border-top:1px solid rgba(26,22,18,0.1); }
+.wz-faq-h { font-family:'Inter',sans-serif; font-size:9.5px; letter-spacing:var(--track-label); text-transform:uppercase; color:var(--gold-deep); margin-bottom:14px; }
+.wz-faq-item { border-bottom:1px solid rgba(26,22,18,0.08); }
+.wz-faq-q { width:100%; display:flex; justify-content:space-between; align-items:center; gap:12px; background:none; border:none; cursor:pointer; text-align:left; padding:16px 0; min-height:44px; font-family:'Newsreader',serif; font-size:16px; color:var(--ink); }
+.wz-faq-mark { position:relative; width:12px; height:12px; flex:none; }
+.wz-faq-mark::before, .wz-faq-mark::after { content:''; position:absolute; background:var(--gold-deep); transition:transform .3s var(--ease); }
+.wz-faq-mark::before { top:5px; left:0; width:12px; height:1.5px; }
+.wz-faq-mark::after { top:0; left:5px; width:1.5px; height:12px; }
+.wz-faq-item.open .wz-faq-mark::after { transform:scaleY(0); }
+.wz-faq-a { max-height:0; overflow:hidden; transition:max-height .35s var(--ease); font-family:'Inter',sans-serif; font-size:13.5px; line-height:1.7; color:var(--ink-soft); }
+.wz-faq-item.open .wz-faq-a { max-height:240px; padding-bottom:16px; }
+.wz-faq-a a { color:var(--gold-deep); }
+
+/* mobile sticky action bar */
+.wz-mobile-bar { display:none; }
+@media (max-width:880px){
+  .wz-mobile-bar { display:flex; position:fixed; left:0; right:0; bottom:0; z-index:80; align-items:center; gap:14px;
+    padding:12px 18px calc(12px + env(safe-area-inset-bottom)); background:rgba(245,239,228,0.96);
+    backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); border-top:1px solid rgba(26,22,18,0.1); }
+  .wz-mobile-meta { display:flex; flex-direction:column; line-height:1.1; }
+  .wz-mobile-label { font-family:'Inter',sans-serif; font-size:9px; letter-spacing:0.18em; text-transform:uppercase; color:var(--ink-soft); }
+  .wz-mobile-total { font-family:'Newsreader',serif; font-size:21px; color:var(--ink); }
+  .wz-mobile-btn { flex:1; display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:50px; background:var(--ink); color:var(--cream); border:none; cursor:pointer; font-family:'Inter',sans-serif; font-size:10px; letter-spacing:var(--track-button); text-transform:uppercase; }
+  .wz-mobile-btn:hover { background:var(--gold-deep); }
+  .checkout-wrap { padding-bottom:90px; }
+  .wz-actions .confirm-btn, .wz-step .wz-place { /* keep inline buttons usable too */ }
+}
+.wz-mobile-btn .arrow, .wz-secure-inline svg { flex:none; }
 </style>
 </head>
 <body>
@@ -715,152 +856,195 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
   <!-- ============ Main / Form ============ -->
   <main class="checkout-main">
-    <div class="ck-eyebrow" data-i18n="checkout.eyebrow">Checkout &middot; Edition I</div>
+    <div id="wzTop" tabindex="-1"></div>
+    <div class="ck-eyebrow" data-i18n="checkout.eyebrow">Checkout</div>
     <h1 class="ck-headline" data-i18n-html="checkout.headline_html">A quiet, <em>careful</em> handover.</h1>
-    <p class="ck-sub" data-i18n="checkout.sub">Three steps. Numbered, sealed, shipped from Pelion within the week.</p>
 
-    <!-- Express -->
-    <section class="express-pay">
-      <div class="express-row">
-        <button class="express-btn" type="button">
-          <span class="apple"><svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor"><path d="M9.5 4.6c-.55 0-1.3.6-2 .6s-1.5-.6-2-.6c-1.2 0-2.4 1-2.4 2.7 0 1.9 1.6 4.2 2.5 4.2.5 0 1.1-.5 1.9-.5s1.3.5 1.9.5c1 0 2.4-2.4 2.4-4.2 0-1.7-1.2-2.7-2.3-2.7zM8.4 3.7c.5-.55.8-1.3.7-2-.7.05-1.5.5-1.95 1.05-.4.5-.75 1.25-.65 2 .75.05 1.45-.45 1.9-1.05z"/></svg></span>
-          Pay
-        </button>
-        <button class="express-btn alt" type="button" style="background: linear-gradient(135deg, #5F368D 0%, #4C2A75 100%); color: white;">
-          <span style="font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.02em;">G&nbsp;Pay</span>
-        </button>
-      </div>
-      <div class="express-divider" data-i18n="checkout.express.divider">Or pay with card</div>
-    </section>
+    <!-- Step indicator -->
+    <ol class="wz-steps" id="wzSteps" aria-label="Checkout steps">
+      <li class="wz-dot active" data-step="1" data-wz-goto="1"><span class="n">1</span><span class="l" data-i18n="ck.step.cart">Cart</span></li>
+      <li class="wz-dot" data-step="2" data-wz-goto="2"><span class="n">2</span><span class="l" data-i18n="ck.step.details">Details</span></li>
+      <li class="wz-dot" data-step="3" data-wz-goto="3"><span class="n">3</span><span class="l" data-i18n="ck.step.delivery">Delivery</span></li>
+      <li class="wz-dot" data-step="4" data-wz-goto="4"><span class="n">4</span><span class="l" data-i18n="ck.step.payment">Payment</span></li>
+      <li class="wz-dot" data-step="5" data-wz-goto="5"><span class="n">5</span><span class="l" data-i18n="ck.step.review">Review</span></li>
+    </ol>
 
-    <!-- Step 1: Contact -->
-    <section class="step-block">
-      <div class="step-num"><span class="roman">I</span><h3 data-i18n-html="checkout.step1.h_html">Contact &middot; <em>where to write back.</em></h3></div>
-      <div class="field-row">
-        <div class="field">
-          <label data-i18n="checkout.label.email">Email</label>
-          <input type="email" placeholder="maria@example.com" required>
+    <div id="checkoutWizard">
+
+      <!-- ===== STEP 1 · Cart review ===== -->
+      <section class="wz-step" data-step="1" aria-label="Cart review">
+        <div class="wz-empty" id="wzCartEmpty" hidden>
+          <div class="wz-empty-ico" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M7 12h26l-2.4 16.5a3 3 0 0 1-3 2.5H12.4a3 3 0 0 1-3-2.5L7 12Z"/><path d="M14 12V9a6 6 0 0 1 12 0v3"/></svg></div>
+          <h3 data-i18n="ck.empty.h">Your cellar is empty</h3>
+          <p data-i18n="ck.empty.p">Begin the collection — each jar is numbered, sealed in wax and shipped within the week.</p>
+          <a class="confirm-btn" href="shop.html" style="width:auto;display:inline-flex;"><span data-i18n="ck.empty.cta">Browse the collection</span> <span class="arrow"></span></a>
         </div>
-        <div class="field">
-          <label data-i18n="checkout.label.phone">Telephone</label>
-          <input type="tel" placeholder="+30 24210 882 14">
-        </div>
-      </div>
-    </section>
 
-    <!-- Step 2: Shipping -->
-    <section class="step-block">
-      <div class="step-num"><span class="roman">II</span><h3 data-i18n-html="checkout.step2.h_html">Shipping &middot; <em>the address.</em></h3></div>
-      <div class="field-row">
-        <div class="field"><label data-i18n="checkout.label.first">First name</label><input type="text" placeholder="Maria"></div>
-        <div class="field"><label data-i18n="checkout.label.last">Last name</label><input type="text" placeholder="Andreou"></div>
-      </div>
-      <div class="field">
-        <label data-i18n="checkout.label.addr1">Address line 1</label>
-        <input type="text" data-i18n-attr="placeholder:checkout.label.addr1Ph" placeholder="House number, street">
-      </div>
-      <div class="field">
-        <label data-i18n="checkout.label.addr2">Address line 2 — optional</label>
-        <input type="text" data-i18n-attr="placeholder:checkout.label.addr2Ph" placeholder="Apartment, building, floor">
-      </div>
-      <div class="field-row three">
-        <div class="field"><label data-i18n="checkout.label.city">City</label><input type="text" placeholder="Volos"></div>
-        <div class="field"><label data-i18n="checkout.label.postcode">Postcode</label><input type="text" placeholder="37006"></div>
-        <div class="field"><label data-i18n="checkout.label.country">Country</label>
-          <select>
-            <option>Greece</option>
-            <option>Italy</option>
-            <option>France</option>
-            <option>Germany</option>
-            <option>Netherlands</option>
-            <option>United Kingdom</option>
-            <option>United States</option>
-            <option>Switzerland</option>
-            <option>Japan</option>
-            <option>Other &mdash; international</option>
-          </select>
-        </div>
-      </div>
+        <div id="wzCartLines" class="wz-lines"></div>
 
-      <div class="ship-options" id="shipOptions" style="margin-top: 12px;">
-        <div class="ship-opt active" data-ship="standard" data-price="9">
-          <div class="radio"></div>
-          <div>
-            <div class="title" data-i18n="checkout.ship.standard.title">Standard &middot; tracked</div>
-            <div class="sub" data-i18n="checkout.ship.standard.sub">5 — 8 business days, signed delivery</div>
+        <div data-wz-when-filled hidden>
+          <div class="wz-discount">
+            <label class="sr-only" for="wzDiscountInput" data-i18n="ck.discount.label">Discount code</label>
+            <input id="wzDiscountInput" type="text" autocomplete="off" data-i18n-attr="placeholder:ck.discount.ph" placeholder="Discount code">
+            <button type="button" class="wz-discount-apply" data-wz-apply-discount data-i18n="ck.apply">Apply</button>
           </div>
-          <div class="price">€9</div>
-        </div>
-        <div class="ship-opt" data-ship="express" data-price="22">
-          <div class="radio"></div>
-          <div>
-            <div class="title" data-i18n="checkout.ship.express.title">Express &middot; courier</div>
-            <div class="sub" data-i18n="checkout.ship.express.sub">2 — 3 business days, hand delivered</div>
+          <p id="wzDiscountMsg" class="wz-discount-msg" role="status" aria-live="polite"></p>
+
+          <div class="wz-upsell" id="wzUpsell" hidden>
+            <h4 class="wz-upsell-h" data-i18n="ck.upsell.h">Complete your order</h4>
+            <div class="wz-up-row" data-upsell-row></div>
           </div>
-          <div class="price">€22</div>
         </div>
-        <div class="ship-opt" data-ship="international" data-price="38">
-          <div class="radio"></div>
-          <div>
-            <div class="title" data-i18n="checkout.ship.intl.title">International &middot; outside EU</div>
-            <div class="sub" data-i18n="checkout.ship.intl.sub">7 — 12 business days, taxes prepaid</div>
+
+        <div class="wz-actions">
+          <a class="wz-back-link" href="shop.html" data-i18n="ck.keepShopping">Continue shopping</a>
+          <button type="button" class="confirm-btn wz-next" data-wz-next data-step1><span data-i18n="ck.continue">Continue</span> <span class="arrow"></span></button>
+        </div>
+      </section>
+
+      <!-- ===== STEP 2 · Customer details ===== -->
+      <section class="wz-step" data-step="2" hidden aria-label="Customer details">
+        <div class="step-num"><span class="roman">II</span><h3 data-i18n-html="ck.details.h_html">Details &middot; <em>where to write back.</em></h3></div>
+        <div class="field-row">
+          <div class="field"><label for="ckFirst" data-i18n="checkout.label.first">First name</label><input id="ckFirst" type="text" autocomplete="given-name" required></div>
+          <div class="field"><label for="ckLast" data-i18n="checkout.label.last">Last name</label><input id="ckLast" type="text" autocomplete="family-name" required></div>
+        </div>
+        <div class="field-row">
+          <div class="field"><label for="ckEmail" data-i18n="checkout.label.email">Email</label><input id="ckEmail" type="email" autocomplete="email" inputmode="email" required></div>
+          <div class="field"><label for="ckPhone" data-i18n="checkout.label.phone">Telephone</label><input id="ckPhone" type="tel" autocomplete="tel" inputmode="tel"></div>
+        </div>
+
+        <h4 class="wz-subhead" data-i18n="ck.billing">Billing address</h4>
+        <div class="field"><label for="ckAddr1" data-i18n="checkout.label.addr1">Address line 1</label><input id="ckAddr1" type="text" autocomplete="address-line1" required></div>
+        <div class="field"><label for="ckAddr2" data-i18n="checkout.label.addr2">Address line 2 — optional</label><input id="ckAddr2" type="text" autocomplete="address-line2"></div>
+        <div class="field-row three">
+          <div class="field"><label for="ckCity" data-i18n="checkout.label.city">City</label><input id="ckCity" type="text" autocomplete="address-level2" required></div>
+          <div class="field"><label for="ckPostcode" data-i18n="checkout.label.postcode">Postcode</label><input id="ckPostcode" type="text" autocomplete="postal-code" required></div>
+          <div class="field"><label for="ckCountry" data-i18n="checkout.label.country">Country</label>
+            <select id="ckCountry" autocomplete="country-name">
+              <option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other &mdash; international</option>
+            </select>
           </div>
-          <div class="price">€38</div>
         </div>
-      </div>
-    </section>
+        <div class="field-row">
+          <div class="field"><label for="ckCompany" data-i18n="ck.company">Company — optional</label><input id="ckCompany" type="text" autocomplete="organization"></div>
+          <div class="field"><label for="ckVat" data-i18n="ck.vat">VAT number — optional</label><input id="ckVat" type="text"></div>
+        </div>
 
-    <!-- Step 3: Payment -->
-    <section class="step-block">
-      <div class="step-num"><span class="roman">III</span><h3 data-i18n-html="checkout.step3.h_html">Payment &middot; <em>quietly secure.</em></h3></div>
+        <label class="checkbox-row" style="margin:6px 0 6px;"><input type="checkbox" id="ckSameAddr" checked> <span data-i18n="ck.sameAddr">Shipping address is the same as billing</span></label>
 
-      <div class="pay-tabs">
-        <button class="pay-tab active" data-i18n="checkout.tab.card">Card</button>
-        <button class="pay-tab" data-i18n="checkout.tab.bank">Bank transfer</button>
-        <button class="pay-tab" data-i18n="checkout.tab.klarna">Klarna</button>
-      </div>
+        <div id="shipAddrGroup" hidden>
+          <h4 class="wz-subhead" data-i18n="ck.shipping">Shipping address</h4>
+          <div class="field"><label for="shAddr1" data-i18n="checkout.label.addr1">Address line 1</label><input id="shAddr1" type="text" autocomplete="shipping address-line1"></div>
+          <div class="field"><label for="shAddr2" data-i18n="checkout.label.addr2">Address line 2 — optional</label><input id="shAddr2" type="text"></div>
+          <div class="field-row three">
+            <div class="field"><label for="shCity" data-i18n="checkout.label.city">City</label><input id="shCity" type="text"></div>
+            <div class="field"><label for="shPostcode" data-i18n="checkout.label.postcode">Postcode</label><input id="shPostcode" type="text"></div>
+            <div class="field"><label for="shCountry" data-i18n="checkout.label.country">Country</label>
+              <select id="shCountry"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other &mdash; international</option></select>
+            </div>
+          </div>
+        </div>
 
-      <div class="field"><label data-i18n="checkout.label.cardNumber">Card number</label><input type="text" placeholder="•••• •••• •••• 8214"></div>
-      <div class="field-row three">
-        <div class="field"><label data-i18n="checkout.label.cardName">Name on card</label><input type="text" placeholder="Maria Andreou"></div>
-        <div class="field"><label data-i18n="checkout.label.expiry">Expiry</label><input type="text" placeholder="04 / 28"></div>
-        <div class="field"><label data-i18n="checkout.label.cvc">CVC</label><input type="text" placeholder="•••"></div>
-      </div>
+        <label class="checkbox-row"><input type="checkbox" id="ckSave"> <span data-i18n="ck.save">Save these details for next time</span></label>
 
-      <div class="stripe-note">
-        <span class="pill">Stripe ready</span>
-        <span data-i18n="checkout.stripeNote">Encrypted and processed end-to-end. We never see or store your card.</span>
-      </div>
-    </section>
+        <div class="wz-actions">
+          <button type="button" class="wz-back-link" data-wz-prev data-i18n="ck.back">Back</button>
+          <button type="button" class="confirm-btn wz-next" data-wz-next><span data-i18n="ck.toDelivery">Continue to delivery</span> <span class="arrow"></span></button>
+        </div>
+      </section>
 
-    <!-- Confirm -->
-    <div class="confirm-block">
-      <div class="payment-methods" aria-label="Accepted payment methods">
-        <span class="pm ideal">iDEAL</span>
-        <span class="pm visa">VISA</span>
-        <span class="pm mc">Mastercard</span>
-        <span class="pm amex">AMEX</span>
-        <span class="pm klarna">Klarna</span>
-        <span class="pm applepay">&nbsp;Pay</span>
+      <!-- ===== STEP 3 · Delivery ===== -->
+      <section class="wz-step" data-step="3" hidden aria-label="Delivery method">
+        <div class="step-num"><span class="roman">III</span><h3 data-i18n-html="ck.delivery.h_html">Delivery &middot; <em>how it travels.</em></h3></div>
+        <div class="ship-options" id="wzShipOptions"></div>
+        <p class="wz-free-note" data-i18n="ck.deliveryNote">Free standard shipping on orders over €75. Every parcel ships tracked &amp; insured.</p>
+        <div class="wz-actions">
+          <button type="button" class="wz-back-link" data-wz-prev data-i18n="ck.back">Back</button>
+          <button type="button" class="confirm-btn wz-next" data-wz-next><span data-i18n="ck.toPayment">Continue to payment</span> <span class="arrow"></span></button>
+        </div>
+      </section>
+
+      <!-- ===== STEP 4 · Payment ===== -->
+      <section class="wz-step" data-step="4" hidden aria-label="Payment">
+        <div class="step-num"><span class="roman">IV</span><h3 data-i18n-html="ck.payment.h_html">Payment &middot; <em>quietly secure.</em></h3></div>
+        <div class="pay-tabs" role="tablist">
+          <button type="button" class="pay-tab active" data-pay="ideal">iDEAL</button>
+          <button type="button" class="pay-tab" data-pay="card" data-i18n="checkout.tab.card">Card</button>
+          <button type="button" class="pay-tab" data-pay="bancontact">Bancontact</button>
+          <button type="button" class="pay-tab" data-pay="paypal">PayPal</button>
+        </div>
+
+        <div id="wzCardFields" hidden>
+          <div class="field"><label for="ckCardNo" data-i18n="checkout.label.cardNumber">Card number</label><input id="ckCardNo" type="text" inputmode="numeric" autocomplete="cc-number" placeholder="•••• •••• •••• ••••"></div>
+          <div class="field-row three">
+            <div class="field"><label for="ckCardName" data-i18n="checkout.label.cardName">Name on card</label><input id="ckCardName" type="text" autocomplete="cc-name"></div>
+            <div class="field"><label for="ckExpiry" data-i18n="checkout.label.expiry">Expiry</label><input id="ckExpiry" type="text" autocomplete="cc-exp" placeholder="MM / YY"></div>
+            <div class="field"><label for="ckCvc" data-i18n="checkout.label.cvc">CVC</label><input id="ckCvc" type="text" inputmode="numeric" autocomplete="cc-csc" placeholder="•••"></div>
+          </div>
+        </div>
+
+        <div class="stripe-note">
+          <span class="pill" data-i18n="ck.demoPill">Demo</span>
+          <span data-i18n="ck.payNote">Provider-agnostic UI. No card is charged here — Stripe or Mollie connects at this step in production.</span>
+        </div>
+
+        <div class="payment-methods" aria-label="Accepted payment methods">
+          <span class="pm ideal">iDEAL</span><span class="pm visa">VISA</span><span class="pm mc">Mastercard</span><span class="pm amex">AMEX</span><span class="pm applepay">&nbsp;Pay</span>
+        </div>
+        <div class="trust-badges" role="list">
+          <span class="badge" role="listitem"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg> <span data-i18n="ck.badge.secure">Secure SSL checkout</span></span>
+          <span class="badge" role="listitem"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M11 2 L19 6 V12 C19 16 15 19 11 20 C7 19 3 16 3 12 V6 Z"/><path d="M8 11 L10 13 L14 9"/></svg> <span data-i18n="ck.badge.returns">14-day returns</span></span>
+          <span class="badge" role="listitem"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 13 L9 13 L11 7 L13 15 L15 13 L20 13"/><path d="M2 18 L20 18"/></svg> <span data-i18n="ck.badge.tracked">Tracked &amp; insured</span></span>
+        </div>
+        <div class="wz-actions">
+          <button type="button" class="wz-back-link" data-wz-prev data-i18n="ck.back">Back</button>
+          <button type="button" class="confirm-btn wz-next" data-wz-next><span data-i18n="ck.toReview">Review order</span> <span class="arrow"></span></button>
+        </div>
+      </section>
+
+      <!-- ===== STEP 5 · Review & confirm ===== -->
+      <section class="wz-step" data-step="5" hidden aria-label="Review and confirm">
+        <div class="step-num"><span class="roman">V</span><h3 data-i18n-html="ck.review.h_html">Review &middot; <em>before we seal it.</em></h3></div>
+
+        <div class="wz-review-grid">
+          <div class="wz-review-cell"><h5 data-i18n="ck.review.contact">Contact</h5><div id="wzReviewContact"></div><button type="button" class="wz-edit" data-wz-goto="2" data-i18n="ck.edit">Edit</button></div>
+          <div class="wz-review-cell"><h5 data-i18n="ck.review.ship">Ship to</h5><div id="wzReviewShipAddr"></div><button type="button" class="wz-edit" data-wz-goto="2" data-i18n="ck.edit">Edit</button></div>
+          <div class="wz-review-cell"><h5 data-i18n="ck.review.bill">Billing</h5><div id="wzReviewBillAddr"></div><button type="button" class="wz-edit" data-wz-goto="2" data-i18n="ck.edit">Edit</button></div>
+          <div class="wz-review-cell"><h5 data-i18n="ck.review.delivery">Delivery</h5><div id="wzReviewDelivery"></div><button type="button" class="wz-edit" data-wz-goto="3" data-i18n="ck.edit">Edit</button></div>
+          <div class="wz-review-cell"><h5 data-i18n="ck.review.payment">Payment</h5><div id="wzReviewPayment"></div><button type="button" class="wz-edit" data-wz-goto="4" data-i18n="ck.edit">Edit</button></div>
+        </div>
+
+        <div class="wz-review-items" id="wzReviewItems"></div>
+
+        <label class="checkbox-row"><input type="checkbox" id="ckTerms"> <span data-i18n-html="ck.terms_html">I agree to the <a href="legal-terms.html">terms &amp; conditions</a>.</span></label>
+        <label class="checkbox-row"><input type="checkbox" id="ckPrivacy"> <span data-i18n-html="ck.privacy_html">I have read the <a href="legal-privacy.html">privacy statement</a>.</span></label>
+        <p id="wzConsentError" class="hd-field-error" role="alert" hidden data-i18n="ck.consentError">Please accept the terms and privacy statement to continue.</p>
+
+        <button type="button" class="confirm-btn wz-place" data-wz-place><span data-i18n="ck.place">Place order</span> <span class="arrow"></span></button>
+        <div class="wz-actions" style="margin-top:14px;">
+          <button type="button" class="wz-back-link" data-wz-prev data-i18n="ck.back">Back</button>
+          <span class="wz-secure-inline"><svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true" width="14" height="14"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg> <span data-i18n="ck.secureInline">Encrypted &amp; secure</span></span>
+        </div>
+      </section>
+
+    </div><!-- /#checkoutWizard -->
+
+    <!-- FAQ accordion -->
+    <div class="wz-faq" aria-label="Checkout help">
+      <h4 class="wz-faq-h" data-i18n="ck.faq.h">Questions before you order</h4>
+      <div class="wz-faq-item">
+        <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q1">When will my order ship?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
+        <div class="wz-faq-a" data-i18n="ck.faq.a1">Orders placed before 14:00 CET ship the same business day from the Netherlands, carefully packed and sealed.</div>
       </div>
-      <div class="trust-badges" role="list">
-        <span class="badge" role="listitem">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="3" y="9" width="16" height="11" rx="1.5"/><path d="M6 9V6a5 5 0 0 1 10 0v3"/></svg>
-          PCI-DSS via Stripe
-        </span>
-        <span class="badge" role="listitem">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M11 2 L19 6 V12 C19 16 15 19 11 20 C7 19 3 16 3 12 V6 Z"/><path d="M8 11 L10 13 L14 9"/></svg>
-          14 days returns &middot; raw seal intact
-        </span>
-        <span class="badge" role="listitem">
-          <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 13 L9 13 L11 7 L13 15 L15 13 L20 13"/><path d="M2 18 L20 18"/></svg>
-          Tracked &amp; insured shipping
-        </span>
+      <div class="wz-faq-item">
+        <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q2">Do you ship internationally?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
+        <div class="wz-faq-a" data-i18n="ck.faq.a2">Yes — across the EU and beyond, tracked &amp; insured. Delivery estimates are shown per carrier at the delivery step.</div>
       </div>
-      <button class="confirm-btn" type="button" onclick="alert('Demo checkout. In production this hands over to Stripe.');">
-        <span data-i18n="checkout.confirm">Confirm order</span> <span class="arrow"></span>
-      </button>
-      <p class="terms" data-i18n-html="checkout.terms_html">By placing this order you agree to our <a href="legal-terms.html">terms</a> and <a href="legal-privacy.html">privacy</a>. International orders may carry local duties.</p>
+      <div class="wz-faq-item">
+        <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q3">Can I return an order?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
+        <div class="wz-faq-a" data-i18n-html="ck.faq.a3">Unopened jars can be returned within 14 days. See our <a href="legal-returns.html">returns policy</a> or write to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.</div>
+      </div>
     </div>
   </main>
 
@@ -869,7 +1053,8 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
     <div class="side-eyebrow" data-i18n="checkout.side.eyebrow">Your cellar</div>
     <h2 class="side-title" data-i18n-html="checkout.side.title_html">Order <em>summary</em></h2>
 
-    <div id="checkoutSummary"></div>
+    <div data-wz-summary class="wz-summary"></div>
+    <p id="wzFreeProgress" class="wz-free-progress" role="status" aria-live="polite" hidden></p>
 
     <div class="packaging-card">
       <h5 data-i18n="checkout.package.lbl">Luxury packaging</h5>
@@ -898,26 +1083,16 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
 </div>
 
-<script src="shared.js"></script>
-<script>
-(function () {
-  // Shipping option toggle
-  let shipping = 9;
-  document.querySelectorAll('.ship-opt').forEach(opt => {
-    opt.addEventListener('click', () => {
-      document.querySelectorAll('.ship-opt').forEach(o => o.classList.remove('active'));
-      opt.classList.add('active');
-      shipping = parseFloat(opt.dataset.price);
-    });
-  });
-  // Payment tabs
-  document.querySelectorAll('.pay-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-    });
-  });
-})();
-</script>
+<!-- Mobile sticky bar: live total + the current step's primary action -->
+<div class="wz-mobile-bar" id="wzMobileBar" aria-hidden="false">
+  <div class="wz-mobile-meta">
+    <span class="wz-mobile-label" data-i18n="ck.total">Total</span>
+    <span class="wz-mobile-total" id="wzMobileTotal">€0</span>
+  </div>
+  <button type="button" class="wz-mobile-btn" id="wzMobileBtn"><span id="wzMobileAction" data-i18n="ck.continue">Continue</span> <span class="arrow"></span></button>
+</div>
+
+<script src="shared.js?v=hd-2026-06-06-1"></script>
+<script src="checkout.js?v=hd-2026-06-06-1"></script>
 </body>
 </html>

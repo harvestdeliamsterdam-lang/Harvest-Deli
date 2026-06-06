@@ -278,8 +278,8 @@
       'idx.product.cta_html': 'View the jar &mdash; €68',
       // ---------- shop ----------
       'shop.eyebrow': 'The Collection · 2025',
-      'shop.headline_html': 'A small, <em>numbered</em> library of Greek honey.',
-      'shop.intro': 'Five editions, drawn from five terroirs. Each season we release no more than four hundred numbered jars per estate, kept untreated and shipped quietly from Pelion within the week.',
+      'shop.headline_html': 'A small, <em>numbered</em> library of the Greek harvest.',
+      'shop.intro': 'Nine single-origin honeys, a cold-pressed olive oil and a wild mountain tea — each kept untreated, sealed by hand, and shipped quietly from Greece within the week.',
       'shop.filterLabel': 'Filter by',
       'shop.filter.all': 'All',
       'shop.filter.floral': 'Floral',
@@ -291,6 +291,140 @@
       'shop.filter.cold': 'Cold Extracted',
       'shop.filter.dark': 'Dark Honey',
       'shop.filter.light': 'Light Honey',
+      'menu.item.account_html': 'The <em>Account</em>',
+      'menu.item.account_sub': 'Orders & addresses',
+      'ck.step.cart': 'Cart',
+      'ck.step.details': 'Details',
+      'ck.step.delivery': 'Delivery',
+      'ck.step.payment': 'Payment',
+      'ck.step.review': 'Review',
+      'ck.continue': 'Continue',
+      'ck.back': 'Back',
+      'ck.place': 'Place order',
+      'ck.total': 'Total',
+      'ck.apply': 'Apply',
+      'ck.add': 'Add',
+      'ck.remove': 'Remove',
+      'ck.keepShopping': 'Continue shopping',
+      'ck.toDelivery': 'Continue to delivery',
+      'ck.toPayment': 'Continue to payment',
+      'ck.toReview': 'Review order',
+      'ck.subtotal': 'Subtotal',
+      'ck.discount': 'Discount',
+      'ck.shipping': 'Shipping',
+      'ck.free': 'Free',
+      'ck.pickup': 'Pickup',
+      'ck.empty.h': 'Your cellar is empty',
+      'ck.empty.p': 'Begin the collection — each jar is numbered, sealed in wax and shipped within the week.',
+      'ck.empty.cta': 'Browse the collection',
+      'ck.discount.label': 'Discount code',
+      'ck.discount.ph': 'Discount code',
+      'ck.discount.ok': 'Code applied',
+      'ck.discount.bad': 'That code is not valid',
+      'ck.upsell.h': 'Complete your order',
+      'ck.details.h_html': 'Details &middot; <em>where to write back.</em>',
+      'ck.billing': 'Billing address',
+      'ck.company': 'Company — optional',
+      'ck.vat': 'VAT number — optional',
+      'ck.sameAddr': 'Shipping address is the same as billing',
+      'ck.save': 'Save these details for next time',
+      'ck.delivery.h_html': 'Delivery &middot; <em>how it travels.</em>',
+      'ck.deliveryNote': 'Free standard shipping on orders over €75. Every parcel ships tracked & insured.',
+      'ck.freeProgress': 'Add {x} more for free shipping',
+      'ck.payment.h_html': 'Payment &middot; <em>quietly secure.</em>',
+      'ck.demoPill': 'Demo',
+      'ck.payNote': 'Provider-agnostic UI. No card is charged here — Stripe or Mollie connects at this step in production.',
+      'ck.badge.secure': 'Secure SSL checkout',
+      'ck.badge.returns': '14-day returns',
+      'ck.badge.tracked': 'Tracked & insured',
+      'ck.review.h_html': 'Review &middot; <em>before we seal it.</em>',
+      'ck.review.contact': 'Contact',
+      'ck.review.ship': 'Ship to',
+      'ck.review.bill': 'Billing',
+      'ck.review.delivery': 'Delivery',
+      'ck.review.payment': 'Payment',
+      'ck.edit': 'Edit',
+      'ck.terms_html': 'I agree to the <a href="legal-terms.html">terms &amp; conditions</a>.',
+      'ck.privacy_html': 'I have read the <a href="legal-privacy.html">privacy statement</a>.',
+      'ck.consentError': 'Please accept the terms and privacy statement to continue.',
+      'ck.secureInline': 'Encrypted & secure',
+      'ck.faq.h': 'Questions before you order',
+      'ck.faq.q1': 'When will my order ship?',
+      'ck.faq.a1': 'Orders placed before 14:00 CET ship the same business day from the Netherlands, carefully packed and sealed.',
+      'ck.faq.q2': 'Do you ship internationally?',
+      'ck.faq.a2': 'Yes — across the EU and beyond, tracked & insured. Delivery estimates are shown per carrier at the delivery step.',
+      'ck.faq.q3': 'Can I return an order?',
+      'ck.faq.a3': 'Unopened jars can be returned within 14 days. See our <a href="legal-returns.html">returns policy</a> or write to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+      'ck.err.required': 'Required',
+      'ck.err.email': 'Enter a valid email',
+      'ck.err.postcode': 'Enter a valid postcode',
+      'ck.qty.dec': 'Decrease quantity',
+      'ck.qty.inc': 'Increase quantity',
+      'auth.eyebrow': 'Account',
+      'auth.login.title_html': 'Welcome <em>back.</em>',
+      'auth.login.sub': 'Sign in to view your orders, saved addresses and details.',
+      'auth.email': 'Email',
+      'auth.password': 'Password',
+      'auth.show': 'Show',
+      'auth.remember': 'Keep me signed in',
+      'auth.forgot': 'Forgot password?',
+      'auth.signIn': 'Sign in',
+      'auth.noAccount': 'New here?',
+      'auth.create': 'Create an account',
+      'auth.guest': 'Continue as guest',
+      'auth.register.title_html': 'Join the <em>cellar.</em>',
+      'auth.register.sub': 'Create an account to track orders and check out faster next time.',
+      'auth.confirm': 'Confirm password',
+      'auth.agree_html': 'I agree to the <a href="legal-terms.html">terms</a> and <a href="legal-privacy.html">privacy statement</a>.',
+      'auth.createAccount': 'Create account',
+      'auth.haveAccount': 'Already have an account?',
+      'auth.forgot.title_html': 'Reset your <em>password.</em>',
+      'auth.forgot.sub': 'Enter your email and we will send a link to set a new password.',
+      'auth.sendLink': 'Send reset link',
+      'auth.forgot.done': 'If an account exists for that email, a reset link is on its way. (Demo: no email is actually sent — Supabase resetPasswordForEmail connects here.)',
+      'auth.backToLogin': 'Back to sign in',
+      'acct.eyebrow': 'Your account',
+      'acct.nav.dashboard': 'Dashboard',
+      'acct.nav.orders': 'Orders',
+      'acct.nav.addresses': 'Addresses',
+      'acct.nav.details': 'Details',
+      'acct.logout': 'Sign out',
+      'acct.dash.h_html': 'Your <em>account.</em>',
+      'acct.dash.lead': 'Everything in one calm place — orders, addresses and your details.',
+      'acct.dash.ordersD': 'Track & re-order',
+      'acct.dash.addrD': 'Saved delivery addresses',
+      'acct.dash.detailsD': 'Name & contact',
+      'acct.dash.shop': 'Shop',
+      'acct.dash.shopD': 'Browse the collection',
+      'acct.dash.recent': 'Latest order',
+      'acct.orders.h_html': 'Your <em>orders.</em>',
+      'acct.orders.lead': 'Every numbered jar you have ordered, newest first.',
+      'acct.addr.h_html': 'Saved <em>addresses.</em>',
+      'acct.addr.lead': 'Delivery addresses for a faster checkout next time.',
+      'acct.addr.add': 'Add an address',
+      'acct.addr.save': 'Save address',
+      'acct.details.h_html': 'Your <em>details.</em>',
+      'acct.details.lead': 'Name and contact information for your orders.',
+      'acct.details.save': 'Save changes',
+      'acct.details.saved': 'Saved.',
+      'acct.demoNote': 'Demo session — this stores your details locally in your browser and does not perform real authentication. Supabase Auth connects here in production.',
+      'ok.eyebrow': 'Order confirmed',
+      'ok.title_html': 'Thank <em>you.</em>',
+      'ok.sub': 'Your order is in. We are already wrapping it by hand and sealing it with wax.',
+      'ok.orderNo': 'Order number',
+      'ok.email': 'A confirmation email is on its way. (Demo: no email is actually sent — your order is stored locally so you can see it in your account.)',
+      'ok.track': 'Track order',
+      'ok.continue': 'Continue shopping',
+      'ok.createH': 'Save your details for next time',
+      'ok.createP': 'Create an account to track this order and check out faster.',
+      'ok.createCta': 'Create account',
+      'footer.col.help': 'Help',
+      'footer.col.account': 'Account',
+      'footer.link.track': 'Track order',
+      'footer.link.contact': 'Contact',
+      'footer.link.account': 'Dashboard',
+      'footer.link.orders': 'Orders',
+      'footer.link.login': 'Sign in',
       'shop.editionsInCollection': 'editions in the collection',
       'shop.sortedBy': 'Sorted by harvest',
       'shop.empty.h': 'No edition matches that filter.',
@@ -655,8 +789,8 @@
       'idx.product.cta_html': 'Bekijk de pot &mdash; €68',
       // ---------- shop ----------
       'shop.eyebrow': 'De Collectie · 2025',
-      'shop.headline_html': 'Een kleine, <em>genummerde</em> bibliotheek Griekse honing.',
-      'shop.intro': 'Vijf edities, getrokken uit vijf terroirs. Elk seizoen brengen wij niet meer dan vierhonderd genummerde potten per landgoed uit, ongepasteuriseerd, stil verzonden vanuit Pelion binnen de week.',
+      'shop.headline_html': 'Een kleine, <em>genummerde</em> bibliotheek van de Griekse oogst.',
+      'shop.intro': 'Negen honingen van enkele oorsprong, een koudgeperste olijfolie en een wilde bergthee — elk ongepasteuriseerd, met de hand verzegeld en stil verzonden vanuit Griekenland binnen de week.',
       'shop.filterLabel': 'Filter op',
       'shop.filter.all': 'Alles',
       'shop.filter.floral': 'Bloemig',
@@ -668,6 +802,140 @@
       'shop.filter.cold': 'Koud Gewonnen',
       'shop.filter.dark': 'Donkere Honing',
       'shop.filter.light': 'Lichte Honing',
+      'menu.item.account_html': 'Het <em>Account</em>',
+      'menu.item.account_sub': 'Bestellingen & adressen',
+      'ck.step.cart': 'Mandje',
+      'ck.step.details': 'Gegevens',
+      'ck.step.delivery': 'Bezorging',
+      'ck.step.payment': 'Betaling',
+      'ck.step.review': 'Controle',
+      'ck.continue': 'Verder',
+      'ck.back': 'Terug',
+      'ck.place': 'Bestelling plaatsen',
+      'ck.total': 'Totaal',
+      'ck.apply': 'Toepassen',
+      'ck.add': 'Toevoegen',
+      'ck.remove': 'Verwijderen',
+      'ck.keepShopping': 'Verder winkelen',
+      'ck.toDelivery': 'Verder naar bezorging',
+      'ck.toPayment': 'Verder naar betaling',
+      'ck.toReview': 'Bestelling controleren',
+      'ck.subtotal': 'Subtotaal',
+      'ck.discount': 'Korting',
+      'ck.shipping': 'Verzending',
+      'ck.free': 'Gratis',
+      'ck.pickup': 'Afhalen',
+      'ck.empty.h': 'Je kelder is leeg',
+      'ck.empty.p': 'Begin de collectie — elke pot is genummerd, verzegeld in was en verzonden binnen de week.',
+      'ck.empty.cta': 'Bekijk de collectie',
+      'ck.discount.label': 'Kortingscode',
+      'ck.discount.ph': 'Kortingscode',
+      'ck.discount.ok': 'Code toegepast',
+      'ck.discount.bad': 'Die code is niet geldig',
+      'ck.upsell.h': 'Maak je bestelling compleet',
+      'ck.details.h_html': 'Gegevens &middot; <em>waar we je bereiken.</em>',
+      'ck.billing': 'Factuuradres',
+      'ck.company': 'Bedrijf — optioneel',
+      'ck.vat': 'Btw-nummer — optioneel',
+      'ck.sameAddr': 'Verzendadres is gelijk aan factuuradres',
+      'ck.save': 'Bewaar deze gegevens voor de volgende keer',
+      'ck.delivery.h_html': 'Bezorging &middot; <em>hoe het reist.</em>',
+      'ck.deliveryNote': 'Gratis standaardverzending boven €75. Elk pakket gaat verzekerd en met track & trace.',
+      'ck.freeProgress': 'Nog {x} voor gratis verzending',
+      'ck.payment.h_html': 'Betaling &middot; <em>rustig & veilig.</em>',
+      'ck.demoPill': 'Demo',
+      'ck.payNote': 'Aanbieder-onafhankelijke UI. Hier wordt niets afgeschreven — Stripe of Mollie koppelt hier in productie.',
+      'ck.badge.secure': 'Veilige SSL-checkout',
+      'ck.badge.returns': '14 dagen retour',
+      'ck.badge.tracked': 'Verzekerd & traceerbaar',
+      'ck.review.h_html': 'Controle &middot; <em>voor we verzegelen.</em>',
+      'ck.review.contact': 'Contact',
+      'ck.review.ship': 'Verzenden naar',
+      'ck.review.bill': 'Facturatie',
+      'ck.review.delivery': 'Bezorging',
+      'ck.review.payment': 'Betaling',
+      'ck.edit': 'Wijzig',
+      'ck.terms_html': 'Ik ga akkoord met de <a href="legal-terms.html">algemene voorwaarden</a>.',
+      'ck.privacy_html': 'Ik heb de <a href="legal-privacy.html">privacyverklaring</a> gelezen.',
+      'ck.consentError': 'Accepteer de voorwaarden en privacyverklaring om verder te gaan.',
+      'ck.secureInline': 'Versleuteld & veilig',
+      'ck.faq.h': 'Vragen voor je bestelt',
+      'ck.faq.q1': 'Wanneer wordt mijn bestelling verzonden?',
+      'ck.faq.a1': 'Bestellingen voor 14:00 uur gaan dezelfde werkdag de deur uit vanuit Nederland, zorgvuldig verpakt en verzegeld.',
+      'ck.faq.q2': 'Verzenden jullie internationaal?',
+      'ck.faq.a2': 'Ja — door de hele EU en daarbuiten, verzekerd en traceerbaar. Levertijden per vervoerder zie je bij de bezorgstap.',
+      'ck.faq.q3': 'Kan ik een bestelling retourneren?',
+      'ck.faq.a3': 'Ongeopende potten kun je binnen 14 dagen retourneren. Zie ons <a href="legal-returns.html">retourbeleid</a> of mail naar <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>.',
+      'ck.err.required': 'Verplicht',
+      'ck.err.email': 'Voer een geldig e-mailadres in',
+      'ck.err.postcode': 'Voer een geldige postcode in',
+      'ck.qty.dec': 'Aantal verlagen',
+      'ck.qty.inc': 'Aantal verhogen',
+      'auth.eyebrow': 'Account',
+      'auth.login.title_html': 'Welkom <em>terug.</em>',
+      'auth.login.sub': 'Log in om je bestellingen, adressen en gegevens te zien.',
+      'auth.email': 'E-mail',
+      'auth.password': 'Wachtwoord',
+      'auth.show': 'Toon',
+      'auth.remember': 'Ingelogd blijven',
+      'auth.forgot': 'Wachtwoord vergeten?',
+      'auth.signIn': 'Inloggen',
+      'auth.noAccount': 'Nieuw hier?',
+      'auth.create': 'Account aanmaken',
+      'auth.guest': 'Doorgaan als gast',
+      'auth.register.title_html': 'Word lid van de <em>kelder.</em>',
+      'auth.register.sub': 'Maak een account om bestellingen te volgen en sneller af te rekenen.',
+      'auth.confirm': 'Bevestig wachtwoord',
+      'auth.agree_html': 'Ik ga akkoord met de <a href="legal-terms.html">voorwaarden</a> en <a href="legal-privacy.html">privacyverklaring</a>.',
+      'auth.createAccount': 'Account aanmaken',
+      'auth.haveAccount': 'Heb je al een account?',
+      'auth.forgot.title_html': 'Herstel je <em>wachtwoord.</em>',
+      'auth.forgot.sub': 'Voer je e-mail in en we sturen een link om een nieuw wachtwoord in te stellen.',
+      'auth.sendLink': 'Stuur herstellink',
+      'auth.forgot.done': 'Als er een account bestaat voor dit e-mailadres, is er een herstellink onderweg. (Demo: er wordt geen e-mail verstuurd — Supabase resetPasswordForEmail koppelt hier.)',
+      'auth.backToLogin': 'Terug naar inloggen',
+      'acct.eyebrow': 'Jouw account',
+      'acct.nav.dashboard': 'Overzicht',
+      'acct.nav.orders': 'Bestellingen',
+      'acct.nav.addresses': 'Adressen',
+      'acct.nav.details': 'Gegevens',
+      'acct.logout': 'Uitloggen',
+      'acct.dash.h_html': 'Jouw <em>account.</em>',
+      'acct.dash.lead': 'Alles op één rustige plek — bestellingen, adressen en je gegevens.',
+      'acct.dash.ordersD': 'Volgen & opnieuw bestellen',
+      'acct.dash.addrD': 'Opgeslagen bezorgadressen',
+      'acct.dash.detailsD': 'Naam & contact',
+      'acct.dash.shop': 'Shop',
+      'acct.dash.shopD': 'Bekijk de collectie',
+      'acct.dash.recent': 'Laatste bestelling',
+      'acct.orders.h_html': 'Jouw <em>bestellingen.</em>',
+      'acct.orders.lead': 'Elke genummerde pot die je hebt besteld, nieuwste eerst.',
+      'acct.addr.h_html': 'Opgeslagen <em>adressen.</em>',
+      'acct.addr.lead': 'Bezorgadressen voor een snellere checkout.',
+      'acct.addr.add': 'Adres toevoegen',
+      'acct.addr.save': 'Adres opslaan',
+      'acct.details.h_html': 'Jouw <em>gegevens.</em>',
+      'acct.details.lead': 'Naam en contactgegevens voor je bestellingen.',
+      'acct.details.save': 'Wijzigingen opslaan',
+      'acct.details.saved': 'Opgeslagen.',
+      'acct.demoNote': 'Demo-sessie — dit bewaart je gegevens lokaal in je browser en logt niet echt in. Supabase Auth koppelt hier in productie.',
+      'ok.eyebrow': 'Bestelling bevestigd',
+      'ok.title_html': 'Dank <em>je wel.</em>',
+      'ok.sub': 'Je bestelling is binnen. We pakken hem met de hand in en verzegelen hem met was.',
+      'ok.orderNo': 'Bestelnummer',
+      'ok.email': 'Een bevestigingsmail is onderweg. (Demo: er wordt geen e-mail verstuurd — je bestelling is lokaal opgeslagen zodat je hem in je account ziet.)',
+      'ok.track': 'Bestelling volgen',
+      'ok.continue': 'Verder winkelen',
+      'ok.createH': 'Bewaar je gegevens voor de volgende keer',
+      'ok.createP': 'Maak een account om deze bestelling te volgen en sneller af te rekenen.',
+      'ok.createCta': 'Account aanmaken',
+      'footer.col.help': 'Help',
+      'footer.col.account': 'Account',
+      'footer.link.track': 'Bestelling volgen',
+      'footer.link.contact': 'Contact',
+      'footer.link.account': 'Overzicht',
+      'footer.link.orders': 'Bestellingen',
+      'footer.link.login': 'Inloggen',
       'shop.editionsInCollection': 'edities in de collectie',
       'shop.sortedBy': 'Op oogst gesorteerd',
       'shop.empty.h': 'Geen editie past bij dit filter.',
@@ -1029,8 +1297,8 @@
       'idx.product.desc': 'Μέλι μιας μοναδικής λιβαδιάς αξιοσημείωτης διαύγειας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, αριθμημένο με το χέρι, διατηρημένο ανεπεξέργαστο.',
       'idx.product.cta_html': 'Δείτε το βάζο &mdash; €68',
       'shop.eyebrow': 'Η Συλλογή · 2025',
-      'shop.headline_html': 'Μια μικρή, <em>αριθμημένη</em> βιβλιοθήκη ελληνικού μελιού.',
-      'shop.intro': 'Πέντε εκδόσεις, αντλημένες από πέντε τόπους. Κάθε εποχή κυκλοφορούμε όχι περισσότερα από τετρακόσια αριθμημένα βάζα ανά κτήμα, διατηρημένα ανεπεξέργαστα και αποστελλόμενα ήσυχα από το Πήλιο εντός της εβδομάδας.',
+      'shop.headline_html': 'Μια μικρή, <em>αριθμημένη</em> βιβλιοθήκη της ελληνικής σοδειάς.',
+      'shop.intro': 'Εννέα μέλια μονής προέλευσης, ένα ελαιόλαδο ψυχρής έκθλιψης και ένα άγριο τσάι του βουνού — το καθένα ανεπεξέργαστο, σφραγισμένο στο χέρι και αποστελλόμενο ήσυχα από την Ελλάδα εντός της εβδομάδας.',
       'shop.filterLabel': 'Φίλτρο κατά',
       'shop.filter.all': 'Όλα',
       'shop.filter.floral': 'Ανθόσπαρτα',
@@ -1374,15 +1642,17 @@
     'shop.sort.harvest': 'Latest harvest', 'shop.sort.lightest': 'Lightest flavour',
     'shop.sort.richest': 'Richest flavour', 'shop.sort.limited': 'Limited editions',
     'shop.fp.eyebrow': 'Refine the collection',
-    'shop.fp.title_html': 'Six estates, <em>one mountain at a time.</em>',
+    'shop.fp.title_html': 'Nine honeys, <em>one mountain at a time.</em>',
     'shop.fp.close': 'Close',
     'shop.fp.g.type': 'Honey type', 'shop.fp.g.region': 'Origin region',
     'shop.fp.g.flavor': 'Flavour profile', 'shop.fp.g.color': 'Colour',
     'shop.fp.g.texture': 'Texture', 'shop.fp.g.season': 'Harvest season',
     'shop.fp.g.house': 'House attributes', 'shop.fp.g.pairings': 'Pairings',
-    'shop.fp.type.chestnut': 'Chestnut', 'shop.fp.type.thyme': 'Wild thyme',
-    'shop.fp.type.pine_html': 'Pine &amp; heather', 'shop.fp.type.wildflower': 'Wildflower',
-    'shop.fp.type.mountain': 'Mountain reserve', 'shop.fp.type.orange': 'Orange blossom',
+    'shop.fp.type.arbutus': 'Arbutus', 'shop.fp.type.oak': 'Oak',
+    'shop.fp.type.fir': 'Fir &amp; vanilla', 'shop.fp.type.orange': 'Orange blossom',
+    'shop.fp.type.acacia': 'Acacia', 'shop.fp.type.thyme': 'Thyme',
+    'shop.fp.type.chestnut': 'Chestnut', 'shop.fp.type.pine': 'Pine',
+    'shop.fp.type.heather': 'Heather',
     'shop.fp.flavor.warm': 'Warm & resinous', 'shop.fp.flavor.floral': 'Floral',
     'shop.fp.flavor.citrus': 'Citrus', 'shop.fp.flavor.herbal': 'Herbal',
     'shop.fp.flavor.smoky': 'Smoky', 'shop.fp.flavor.mineral': 'Mineral',
@@ -1605,95 +1875,172 @@
   // ---------- Product catalog (with per-language strings) ----------
   function loc(en, nl, el) { return { en: en, nl: nl, el: el }; }
   const PRODUCTS = {
+    'arbutus': {
+      name: loc('Arbutus Honey', 'Aardbeiboom Honing', 'Κουμαρόμελο'),
+      edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
+      region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
+      altitude: '600m',
+      price: 78,
+      hue: 'deep',
+      notes: loc('Bittersweet, herbal, earthy depth.', 'Bitterzoet, kruidig, aardse diepte.', 'Γλυκόπικρο, βοτανικό, γήινο βάθος.'),
+      texture: loc('Dense and rich, naturally creamy', 'Dik en rijk, natuurlijk romig', 'Πυκνό και πλούσιο, φυσικά κρεμώδες'),
+      weight: '250g',
+      tags: ['rare', 'raw', 'dark', 'herbal'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
+      slug: 'arbutus',
+      url: 'product.html?p=arbutus'
+    },
+    'oak': {
+      name: loc('Oak Honey', 'Eikenhoning', 'Βελανιδόμελο'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Epirus · Greece', 'Epirus · Griekenland', 'Ήπειρος · Ελλάδα'),
+      altitude: '900m',
+      price: 72,
+      hue: 'bronze',
+      notes: loc('Deep forest, woody, mineral-rich.', 'Diep bos, houtig, mineraalrijk.', 'Βαθύ δάσος, ξυλώδες, πλούσιο σε μέταλλα.'),
+      texture: loc('Dense and smooth', 'Dik en glad', 'Πυκνό και απαλό'),
+      weight: '250g',
+      tags: ['forest', 'raw', 'dark', 'honeydew'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
+      slug: 'oak',
+      url: 'product.html?p=oak'
+    },
+    'fir-vanilla': {
+      name: loc('Fir Vanilla Honey', 'Dennen-Vanille Honing', 'Έλατο Βανίλια'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Mt Olympus · Greece', 'Berg Olympus · Griekenland', 'Όλυμπος · Ελλάδα'),
+      altitude: '1300m',
+      price: 84,
+      hue: 'amber',
+      notes: loc('Silky and glossy, gentle vanilla.', 'Zijdezacht en glanzend, zachte vanille.', 'Μεταξένιο και γυαλιστερό, απαλή βανίλια.'),
+      texture: loc('Thick, silky, glossy', 'Dik, zijdezacht, glanzend', 'Πυκνό, μεταξένιο, γυαλιστερό'),
+      weight: '250g',
+      tags: ['mountain', 'raw', 'rare', 'light'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
+      slug: 'fir-vanilla',
+      url: 'product.html?p=fir-vanilla'
+    },
+    'orange-blossom': {
+      name: loc('Orange Blossom Honey', 'Sinaasappelbloesem Honing', 'Πορτοκαλόμελο'),
+      edition: loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'),
+      region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
+      altitude: '200m',
+      price: 58,
+      hue: 'pale',
+      notes: loc('Bright citrus blossom, fresh floral.', 'Heldere citrusbloesem, fris bloemig.', 'Φωτεινό άνθος εσπεριδοειδών, φρέσκο άρωμα.'),
+      texture: loc('Smooth and flowing', 'Glad en vloeibaar', 'Απαλό και ρευστό'),
+      weight: '250g',
+      tags: ['floral', 'citrus', 'light', 'spring'],
+      badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
+      slug: 'orange-blossom',
+      url: 'product.html?p=orange-blossom'
+    },
+    'acacia': {
+      name: loc('Acacia Honey', 'Acaciahoning', 'Ακακία Μέλι'),
+      edition: loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'),
+      region: loc('Macedonia · Greece', 'Macedonië · Griekenland', 'Μακεδονία · Ελλάδα'),
+      altitude: '500m',
+      price: 62,
+      hue: 'pale',
+      notes: loc('Crystal-clear, soft floral, clean.', 'Kristalhelder, zacht bloemig, puur.', 'Κρυστάλλινο, απαλό άνθινο, καθαρό.'),
+      texture: loc('Silky and smooth', 'Zijdezacht en glad', 'Μεταξένιο και απαλό'),
+      weight: '250g',
+      tags: ['floral', 'light', 'spring'],
+      badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
+      slug: 'acacia',
+      url: 'product.html?p=acacia'
+    },
+    'thyme': {
+      name: loc('Thyme Honey', 'Tijmhoning', 'Θυμαρίσιο Μέλι'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
+      altitude: '400m',
+      price: 64,
+      hue: 'straw',
+      notes: loc('Aromatic wild thyme, warm and floral.', 'Aromatische wilde tijm, warm en bloemig.', 'Αρωματικό άγριο θυμάρι, ζεστό και άνθινο.'),
+      texture: loc('Smooth and rich', 'Glad en rijk', 'Απαλό και πλούσιο'),
+      weight: '250g',
+      tags: ['floral', 'herbal', 'light', 'summer'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
+      slug: 'thyme',
+      url: 'product.html?p=thyme'
+    },
     'chestnut': {
-      name: loc('Chestnut Honey', 'Tamme Kastanje', 'Καστανόμελο'),
-      edition: loc('Edition I', 'Editie I', 'Έκδοση I'),
+      name: loc('Chestnut Honey', 'Kastanjehoning', 'Καστανόμελο'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
       region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
       altitude: '950m',
       price: 68,
       hue: 'amber',
-      notes: loc('Warm resin, sun-baked herb, mineral finish.', 'Warme hars, in de zon gerijpte kruiden, minerale afdronk.', 'Ζεστή ρετσίνα, λιοφρυμένο βότανο, μεταλλική επίγευση.'),
-      texture: loc('Liquid, slow-pouring', 'Vloeibaar, traag schenkend', 'Υγρό, αργής ροής'),
+      notes: loc('Warm wood, layered, long depth.', 'Warm hout, gelaagd, lange diepte.', 'Ζεστό ξύλο, πολυεπίπεδο, μακρύ βάθος.'),
+      texture: loc('Thick and rich', 'Dik en rijk', 'Πυκνό και πλούσιο'),
       weight: '250g',
-      tags: ['mountain', 'forest', 'raw', 'cold-extracted', 'dark'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berg Honing', 'Ορεινό Μέλι')],
+      tags: ['mountain', 'forest', 'raw', 'dark'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
       slug: 'chestnut',
       url: 'product.html'
     },
-    'wild-thyme': {
-      name: loc('Wild Thyme', 'Wilde Tijm', 'Άγριο Θυμάρι'),
-      edition: loc('Edition II', 'Editie II', 'Έκδοση II'),
-      region: loc('Lakonia · Greece', 'Lakonia · Griekenland', 'Λακωνία · Ελλάδα'),
-      altitude: '750m',
-      price: 58,
-      hue: 'straw',
-      notes: loc('Bright herb, citrus blossom, honeycomb wax.', 'Frisse kruiden, citrusbloesem, honingraat-was.', 'Φωτεινό βότανο, ανθός εσπεριδοειδών, κερί κηρήθρας.'),
-      texture: loc('Light, fluid', 'Licht, vloeibaar', 'Ελαφρύ, ρευστό'),
-      weight: '250g',
-      tags: ['floral', 'mountain', 'cold-extracted', 'light'],
-      badges: [loc('Estate Batch', 'Landgoed Batch', 'Παρτίδα Κτήματος'), loc('Spring Harvest', 'Voorjaars Oogst', 'Ανοιξιάτικη Συγκομιδή')],
-      slug: 'wild-thyme',
-      url: 'product.html?p=wild-thyme'
-    },
-    'pine-heather': {
-      name: loc('Pine & Heather', 'Den & Heide', 'Πεύκο & Ρείκι'),
-      edition: loc('Edition III', 'Editie III', 'Έκδοση III'),
+    'pine': {
+      name: loc('Pine Honey', 'Dennenhoning', 'Πευκόμελο'),
+      edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
       region: loc('Halkidiki · Greece', 'Halkidiki · Griekenland', 'Χαλκιδική · Ελλάδα'),
-      altitude: '1200m',
-      price: 72,
-      hue: 'bronze',
-      notes: loc('Smoked pine, dried fig, dark woodland.', 'Gerookte den, gedroogde vijg, donker bos.', 'Καπνιστό πεύκο, ξερό σύκο, σκούρο δάσος.'),
-      texture: loc('Set, almost waxy', 'Vast, bijna wasachtig', 'Συμπαγές, σχεδόν κέρινο'),
-      weight: '250g',
-      tags: ['forest', 'raw', 'dark', 'mountain'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Bos Honing', 'Δασικό Μέλι')],
-      slug: 'pine-heather',
-      url: 'product.html?p=pine-heather'
-    },
-    'spring-wildflower': {
-      name: loc('Spring Wildflower', 'Lente Wilde Bloem', 'Ανοιξιάτικα Αγριολούλουδα'),
-      edition: loc('Edition IV', 'Editie IV', 'Έκδοση IV'),
-      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
-      altitude: '600m',
+      altitude: '400m',
       price: 54,
-      hue: 'pale',
-      notes: loc('Apple blossom, soft pollen, fresh meadow.', 'Appelbloesem, zacht stuifmeel, frisse weide.', 'Άνθος μηλιάς, απαλή γύρη, φρέσκο λιβάδι.'),
-      texture: loc('Smooth, creamy', 'Glad, romig', 'Απαλό, κρεμώδες'),
+      hue: 'bronze',
+      notes: loc('Resinous and smooth, sea-air warmth.', 'Harsachtig en glad, warmte van zeelucht.', 'Ρητινώδες και απαλό, ζεστασιά θαλασσινού αέρα.'),
+      texture: loc('Thick and smooth', 'Dik en glad', 'Πυκνό και απαλό'),
       weight: '250g',
-      tags: ['wildflower', 'floral', 'light', 'cold-extracted'],
-      badges: [loc('Spring Harvest', 'Voorjaars Oogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Creamy', 'Romig', 'Κρεμώδες')],
-      slug: 'spring-wildflower',
-      url: 'product.html?p=spring-wildflower'
+      tags: ['forest', 'raw', 'honeydew', 'dark'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
+      slug: 'pine',
+      url: 'product.html?p=pine'
     },
-    'mountain-reserve': {
-      name: loc('Mountain Reserve', 'Berg Reserve', 'Ορεινή Ρεζέρβα'),
-      edition: loc('Reserve · 2025', 'Reserve · 2025', 'Ρεζέρβα · 2025'),
-      region: loc('Mt Olympus · Greece', 'Berg Olympus · Griekenland', 'Όλυμπος · Ελλάδα'),
-      altitude: '1400m',
-      price: 148,
+    'heather': {
+      name: loc('Heather Honey', 'Heidehoning', 'Σουσουρόμελο'),
+      edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
+      region: loc('Evia · Greece', 'Evia · Griekenland', 'Εύβοια · Ελλάδα'),
+      altitude: '700m',
+      price: 66,
       hue: 'deep',
-      notes: loc('Black walnut, slate, long mineral echo.', 'Zwarte walnoot, leisteen, lange minerale echo.', 'Μαύρο καρύδι, σχιστόλιθος, μακρά μεταλλική ηχώ.'),
-      texture: loc('Dense, dark, viscous', 'Dik, donker, stroperig', 'Πυκνό, σκούρο, παχύρρευστο'),
+      notes: loc('Creamy, floral, reddish depth.', 'Romig, bloemig, roodachtige diepte.', 'Κρεμώδες, άνθινο, κοκκινωπό βάθος.'),
+      texture: loc('Thick and creamy', 'Dik en romig', 'Πυκνό και κρεμώδες'),
       weight: '250g',
-      tags: ['mountain', 'forest', 'limited', 'raw', 'dark'],
-      badges: [loc('Limited 48', 'Beperkt 48', 'Περιορισμένα 48'), loc('Estate Batch', 'Landgoed Batch', 'Παρτίδα Κτήματος')],
-      slug: 'mountain-reserve',
-      url: 'product.html?p=mountain-reserve'
+      tags: ['floral', 'raw', 'dark'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Creamy', 'Romig', 'Κρεμώδες')],
+      slug: 'heather',
+      url: 'product.html?p=heather'
     },
-    'orange-blossom': {
-      name: loc('Orange Blossom', 'Sinaasappelbloesem', 'Άνθος Πορτοκαλιάς'),
-      edition: loc('Edition V', 'Editie V', 'Έκδοση V'),
-      region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
-      altitude: '200m',
-      price: 52,
+    'olive-oil': {
+      name: loc('Extra Virgin Olive Oil', 'Extra Vergine Olijfolie', 'Εξαιρετικό Παρθένο Ελαιόλαδο'),
+      edition: loc('Estate Pressing · 2025', 'Landgoed Persing · 2025', 'Κτήμα · 2025'),
+      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
+      altitude: '400m',
+      price: 24,
       hue: 'pale',
-      notes: loc('Neroli, orange peel, warm vanilla.', 'Neroli, sinaasappelschil, warme vanille.', 'Νερολί, φλούδα πορτοκαλιού, ζεστή βανίλια.'),
-      texture: loc('Liquid, perfumed', 'Vloeibaar, geparfumeerd', 'Υγρό, αρωματικό'),
-      weight: '250g',
-      tags: ['floral', 'wildflower', 'light', 'cold-extracted'],
-      badges: [loc('Spring Harvest', 'Voorjaars Oogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Floral', 'Bloemig', 'Ανθόσπαρτο')],
-      slug: 'orange-blossom',
-      url: 'product.html?p=orange-blossom'
+      image: 'assets/greekoliveoil.PNG',
+      notes: loc('Green almond, fresh-cut grass, peppery finish.', 'Groene amandel, versgemaaid gras, peperige afdronk.', 'Πράσινο αμύγδαλο, φρεσκοκομμένο χορτάρι, πιπεράτη επίγευση.'),
+      texture: loc('Bright, grassy, robust', 'Fris, grasachtig, robuust', 'Ζωηρό, χορταρένιο, εύρωστο'),
+      weight: '500ml',
+      tags: ['olive-oil', 'cold-extracted', 'light'],
+      badges: [loc('Cold Pressed', 'Koud Geperst', 'Ψυχρής Έκθλιψης'), loc('Extra Virgin', 'Extra Vergine', 'Εξαιρετικό Παρθένο')],
+      slug: 'olive-oil',
+      url: 'product-olive-oil.html'
+    },
+    'mountain-tea': {
+      name: loc('Greek Mountain Tea', 'Griekse Bergthee', 'Τσάι του Βουνού'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Wild mountains · Greece', 'Wilde bergen · Griekenland', 'Άγρια βουνά · Ελλάδα'),
+      altitude: '1100m',
+      price: 16,
+      hue: 'straw',
+      image: 'assets/mountaintea.png',
+      notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
+      texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
+      weight: '28g',
+      tags: ['tea', 'herbal', 'caffeine-free'],
+      badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
+      slug: 'mountain-tea',
+      url: 'product-mountain-tea.html'
     }
   };
   // Localize on access: returns plain-string clone for current lang.
@@ -1706,6 +2053,7 @@
       url: p.url,
       price: p.price,
       hue: p.hue,
+      image: p.image || 'harvestdeli.png',
       altitude: p.altitude,
       weight: p.weight,
       tags: p.tags,
@@ -1770,10 +2118,16 @@
       btn.classList.toggle('has-items', count > 0);
     });
 
-    // Drawer items
+    // Drawer items — READ cart state from Commerce when available (mock source),
+    // else fall back to the HD_CART runtime. Markup + delegated handlers unchanged.
+    const _snap = (window.Commerce && window.Commerce.cart && window.Commerce.cart.getSync) ? window.Commerce.cart.getSync() : null;
+    const _lines = _snap
+      ? _snap.lines.map(l => ({ slug: l.handle, qty: l.quantity, total: +l.lineTotal.amount }))
+      : cart.items.map(i => ({ slug: i.slug, qty: i.qty, total: null }));
+
     const itemsWrap = document.getElementById('cartItems');
     if (itemsWrap) {
-      if (cart.items.length === 0) {
+      if (_lines.length === 0) {
         itemsWrap.innerHTML = `
           <div class="cart-empty">
             <h4>${lookup('cart.empty.h')}</h4>
@@ -1782,22 +2136,23 @@
           </div>
         `;
       } else {
-        itemsWrap.innerHTML = cart.items.map(i => {
-          const p = localizedProduct(i.slug);
+        itemsWrap.innerHTML = _lines.map(l => {
+          const p = localizedProduct(l.slug);
+          const linePrice = (l.total != null) ? formatPrice(l.total) : formatPrice(p.price * l.qty);
           return `
-            <div class="cart-line" data-slug="${i.slug}">
-              <a class="thumb" href="${p.url}"><img class="mini-photo ${p.hue}" src="harvestdeli.png" alt="${p.name}"></a>
+            <div class="cart-line" data-slug="${l.slug}">
+              <a class="thumb" href="${p.url}"><img class="mini-photo ${p.hue}" src="${p.image}" alt="${p.name}"></a>
               <div class="meta">
                 <a class="name" href="${p.url}" style="text-decoration:none;color:inherit;">${p.name}</a>
                 <div class="edition">${p.edition}</div>
                 <div class="qty">
                   <button data-act="dec" aria-label="−">&minus;</button>
-                  <span class="val">${i.qty}</span>
+                  <span class="val">${l.qty}</span>
                   <button data-act="inc" aria-label="+">+</button>
                 </div>
               </div>
               <div class="price-col">
-                <div class="price">${formatPrice(p.price * i.qty)}</div>
+                <div class="price">${linePrice}</div>
                 <button class="remove" data-act="remove">${lookup('cart.remove')}</button>
               </div>
             </div>
@@ -1806,9 +2161,12 @@
       }
     }
 
-    // Totals
+    // Totals — from Commerce subtotal when available
     const total = document.getElementById('cartTotal');
-    if (total) total.textContent = formatPrice(cart.total());
+    if (total) total.textContent = _snap ? formatPrice(+_snap.cost.subtotalAmount.amount) : formatPrice(cart.total());
+
+    // Checkout button → Commerce checkoutUrl (SEAM: becomes Shopify checkout when live)
+    if (_snap && _snap.checkoutUrl) { const _co = document.querySelector('.cart-checkout'); if (_co) _co.setAttribute('href', _snap.checkoutUrl); }
 
     // Checkout-page reflection
     const summary = document.getElementById('checkoutSummary');
@@ -1872,7 +2230,7 @@
       const p = localizedProduct(i.slug);
       return `
         <div class="ck-line">
-          <span class="thumb-mini"><img class="mini-photo ${p.hue}" src="harvestdeli.png" alt="${p.name}"></span>
+          <span class="thumb-mini"><img class="mini-photo ${p.hue}" src="${p.image}" alt="${p.name}"></span>
           <div class="ck-meta">
             <div class="ck-name">${p.name}</div>
             <div class="ck-edition">${p.edition} &middot; ${p.weight} &middot; ×${i.qty}</div>
@@ -2684,7 +3042,7 @@
       const p = window.HD_product(s);
       if (!p) return '';
       return '<a href="' + p.url + '" class="recent-card">' +
-        '<div class="frame"><img src="harvestdeli.png" alt="' + p.name + '"></div>' +
+        '<div class="frame"><img src="' + p.image + '" alt="' + p.name + '"></div>' +
         '<div class="name">' + p.name + '</div>' +
         '<div class="region">' + p.region + '</div>' +
         '</a>';
@@ -2702,13 +3060,13 @@
     if (!wrap || !window.HD_product) return;
     const meta = document.querySelector('meta[name="hd-product-slug"]');
     const current = meta ? meta.content : '';
-    const all = ['chestnut','wild-thyme','pine-heather','spring-wildflower','mountain-reserve','orange-blossom'];
+    const all = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea'];
     const others = all.filter(s => s !== current).slice(0, 3);
     wrap.innerHTML = others.map(s => {
       const p = window.HD_product(s);
       if (!p) return '';
       return '<a href="' + p.url + '" class="also-card">' +
-        '<div class="frame"><img src="harvestdeli.png" alt="' + p.name + '" loading="lazy"></div>' +
+        '<div class="frame"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
         '<div><span class="name">' + p.name + '</span><span class="price">€' + p.price + '</span></div>' +
         '<div class="region">' + p.region + '</div>' +
         '</a>';
@@ -2795,7 +3153,7 @@
   function render() {
     if (!window.HD_product) return;
     const q = (input.value || '').toLowerCase().trim();
-    const slugs = ['chestnut','wild-thyme','pine-heather','spring-wildflower','mountain-reserve','orange-blossom'];
+    const slugs = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea'];
     const matches = slugs.map(s => window.HD_product(s)).filter(p => {
       if (!p) return false;
       if (!q) return true;
@@ -2808,7 +3166,7 @@
     }
     list.innerHTML = matches.map((p, i) =>
       '<a class="search-result" data-idx="' + i + '" href="' + p.url + '" role="option">' +
-        '<div class="thumb"><img src="harvestdeli.png" alt=""></div>' +
+        '<div class="thumb"><img src="' + p.image + '" alt=""></div>' +
         '<div><div class="name">' + escapeHtml(p.name) + '</div><div class="region">' + escapeHtml(p.region) + ' &middot; ' + escapeHtml(p.altitude || '') + '</div></div>' +
         '<div class="price">€' + p.price + '</div>' +
       '</a>'
@@ -3629,7 +3987,7 @@
       if (empty && !empty.querySelector('.cart-empty-suggestions') && window.HD_product) {
         const sug = document.createElement('div');
         sug.className = 'cart-empty-suggestions visible';
-        const slugs = ['chestnut', 'wild-thyme'];
+        const slugs = ['thyme', 'chestnut'];
         const items = slugs.map(s => window.HD_product(s)).filter(Boolean);
         sug.innerHTML =
           '<div class="ces-label">Begin with</div>' +
@@ -3709,14 +4067,17 @@
     else init();
   })();
 
-  /* 20. Service worker registration (cache-first PWA) */
+  /* 20. Service worker — registration disabled during development.
+     The cache-first worker kept serving stale assets; sw.js is now a
+     self-destruct kill-switch. We do NOT re-register here so the site
+     always loads fresh from the network. Re-enable before deploying a
+     real PWA/offline build. */
   (function swRegister() {
     if (!('serviceWorker' in navigator)) return;
-    // Only on https or localhost
-    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js').catch(() => {});
-    });
+    // Defensive: if an old worker is still registered, remove it.
+    navigator.serviceWorker.getRegistrations()
+      .then(regs => regs.forEach(r => r.unregister()))
+      .catch(() => {});
   })();
 })();
 
@@ -3753,7 +4114,7 @@
         '<button type="button" class="qv-close" data-qv-close aria-label="Close"></button>' +
         '<div class="qv-image">' +
           '<span class="qv-edition">' + (p.edition || '') + '</span>' +
-          '<img src="harvestdeli.png" alt="' + p.name + '" loading="lazy">' +
+          '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy">' +
         '</div>' +
         '<div class="qv-content">' +
           '<div class="qv-eyebrow">' + (p.region || '') + ' &middot; ' + (p.altitude || '') + '</div>' +
@@ -3881,4 +4242,20 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+})();
+
+/* =================================================================
+   Commerce layer bootstrap (Phase 1) — loads commerce.js site-wide
+   and pins the free-shipping threshold before checkout.js reads it.
+   ================================================================= */
+window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
+(function loadAddons() {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-1'], ['hd-search-js', 'search.js?v=hd-2026-06-06-1'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-1'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-1'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-1'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-1'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-1'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-1'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-1'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-1']].forEach(function (a) {
+    if (document.getElementById(a[0])) return;
+    var s = document.createElement('script');
+    s.id = a[0]; s.src = a[1]; s.defer = true;
+    document.head.appendChild(s);
+  });
 })();
