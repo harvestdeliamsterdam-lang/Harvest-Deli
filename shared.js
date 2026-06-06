@@ -206,6 +206,8 @@
       'markets.label.expect': 'What to expect',
       'markets.expect.val': 'Greek honey, olive oil & mountain tea',
       'markets.maps': 'Open in Google Maps',
+      'markets.maps.google': 'Google Maps',
+      'markets.maps.apple': 'Apple Maps',
       'markets.contact.eyebrow': 'Inquiries',
       'markets.contact.h': 'For market, wholesale or hospitality inquiries, write to us.',
       'markets.contact.cta': 'Write to us',
@@ -759,6 +761,8 @@
       'markets.label.expect': 'Wat u kunt verwachten',
       'markets.expect.val': 'Griekse honing, olijfolie & bergthee',
       'markets.maps': 'Open in Google Maps',
+      'markets.maps.google': 'Google Maps',
+      'markets.maps.apple': 'Apple Maps',
       'markets.contact.eyebrow': 'Vragen',
       'markets.contact.h': 'Voor markt-, groothandel- of horecavragen, schrijf ons.',
       'markets.contact.cta': 'Schrijf ons',
@@ -4386,9 +4390,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-20'], ['hd-search-js', 'search.js?v=hd-2026-06-06-20'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-20'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-20'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-20'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-20'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-20'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-20'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-20'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-20']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-21'], ['hd-search-js', 'search.js?v=hd-2026-06-06-21'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-21'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-21'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-21'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-21'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-21'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-21'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-21'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-21']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

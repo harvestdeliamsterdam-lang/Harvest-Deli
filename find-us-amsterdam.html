@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-20">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-21">
 
 <script type="application/ld+json">
 {
@@ -847,10 +847,24 @@ body.markets-page nav.site-nav {
 .fu-maplink .fu-arrow { width: 16px; height: 1px; background: currentColor; position: relative; transition: width .4s var(--ease-soft); }
 .fu-maplink .fu-arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
 .fu-maplink:hover .fu-arrow { width: 24px; }
+.fu-maps { margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.fu-maplink--apple { display: none; }  /* directions to Apple Maps — phones only */
+@media (max-width: 700px) {
+  .fu-maps { gap: 10px; }
+  .fu-maplink--apple { display: inline-flex; }
+  .fu-maps .fu-maplink {
+    margin-top: 0; flex: 1 1 0; justify-content: center; min-width: 140px;
+    border: 1px solid rgba(184, 148, 90, 0.45); border-radius: var(--radius-pill, 999px);
+    background: rgba(255, 253, 248, 0.6); padding: 13px 16px; min-height: 48px;
+    box-shadow: 0 8px 20px -16px rgba(40, 24, 8, 0.4);
+  }
+  .fu-maps .fu-maplink .fu-arrow { display: none; }  /* clean two-button row */
+  .fu-maps .fu-maplink:active { background: rgba(252, 246, 235, 0.95); }
+}
 
 /* warm Mediterranean tone panels (stand-in for editorial photography) */
-.fu-tone-tenkate { background-image: linear-gradient(150deg, rgba(234, 215, 166, 0.18), rgba(182, 151, 90, 0.12)), url('assets/market.png?v=hd-2026-06-06-20'); }
-.fu-tone-west { background-image: linear-gradient(150deg, rgba(168, 175, 121, 0.20), rgba(140, 148, 99, 0.14)), url('assets/market.png?v=hd-2026-06-06-20'); }
+.fu-tone-tenkate { background-image: linear-gradient(150deg, rgba(234, 215, 166, 0.18), rgba(182, 151, 90, 0.12)), url('assets/market.png?v=hd-2026-06-06-21'); }
+.fu-tone-west { background-image: linear-gradient(150deg, rgba(168, 175, 121, 0.20), rgba(140, 148, 99, 0.14)), url('assets/market.png?v=hd-2026-06-06-21'); }
 
 .fu-expect { text-align: center; margin: clamp(20px, 4vh, 40px) 0 0; font-size: 13.5px; letter-spacing: 0.02em; color: var(--m-ink-soft, #5C5247); }
 .fu-expect strong { color: var(--m-ink, #1F1A14); font-weight: 600; }
@@ -1068,11 +1082,18 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
             </div>
           </dl>
           <p class="fu-market__note" data-i18n="markets.tenkate.desc">Our weekly table — a few crates of honey, a tasting spoon, an open jar. Stop by between errands; we'll pour the morning coffee.</p>
-          <a class="fu-maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Ten+Kate+Markt%2C+Amsterdam" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
-            <span data-i18n="markets.maps">Open in Google Maps</span>
-            <span class="fu-arrow" aria-hidden="true"></span>
-          </a>
+          <div class="fu-maps">
+            <a class="fu-maplink" href="https://www.google.com/maps/dir/?api=1&amp;destination=Ten+Kate+Markt%2C+Amsterdam" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+              <span data-i18n="markets.maps.google">Google Maps</span>
+              <span class="fu-arrow" aria-hidden="true"></span>
+            </a>
+            <a class="fu-maplink fu-maplink--apple" href="https://maps.apple.com/?daddr=Ten+Kate+Markt%2C+Amsterdam" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+              <span data-i18n="markets.maps.apple">Apple Maps</span>
+              <span class="fu-arrow" aria-hidden="true"></span>
+            </a>
+          </div>
         </div>
       </article>
 
@@ -1096,11 +1117,18 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
             </div>
           </dl>
           <p class="fu-market__note" data-i18n="markets.westerpark.desc">A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.</p>
-          <a class="fu-maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Westergasterrein%2C+Amsterdam" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
-            <span data-i18n="markets.maps">Open in Google Maps</span>
-            <span class="fu-arrow" aria-hidden="true"></span>
-          </a>
+          <div class="fu-maps">
+            <a class="fu-maplink" href="https://www.google.com/maps/dir/?api=1&amp;destination=Westergasterrein%2C+Amsterdam" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+              <span data-i18n="markets.maps.google">Google Maps</span>
+              <span class="fu-arrow" aria-hidden="true"></span>
+            </a>
+            <a class="fu-maplink fu-maplink--apple" href="https://maps.apple.com/?daddr=Westergasterrein%2C+Amsterdam" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s-7-8-7-13a7 7 0 1 1 14 0c0 5-7 13-7 13Z"/><circle cx="12" cy="9" r="2.4"/></svg>
+              <span data-i18n="markets.maps.apple">Apple Maps</span>
+              <span class="fu-arrow" aria-hidden="true"></span>
+            </a>
+          </div>
         </div>
       </article>
 
@@ -1163,7 +1191,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-20"></script>
+<script src="shared.js?v=hd-2026-06-06-21"></script>
 <script>
   // Intersection-observed reveals — calm, restrained, never restless
   (function () {
