@@ -1576,6 +1576,31 @@ footer {
   .idx-sel-card { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
+/* Pinned scroll-driven horizontal gallery (desktop only). The wrappers are
+   transparent everywhere else, so mobile + reduced-motion keep the native
+   swipe carousel untouched. */
+.sel-pin, .sel-sticky { display: contents; }
+@media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
+  .sel-pin {
+    display: block; position: relative;
+    width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;
+    /* height is set by JS to 100vh + horizontal scroll distance */
+  }
+  .sel-sticky {
+    display: flex; align-items: center;
+    position: sticky; top: 0; height: 100vh; overflow: hidden;
+  }
+  #idxSelGrid {
+    width: max-content;
+    margin: 0 !important;
+    padding: 0 clamp(40px, 8vw, 160px) !important;
+    overflow: visible !important;
+    scroll-snap-type: none !important;
+    cursor: default !important;
+    will-change: transform;
+  }
+}
+
 /* ============ Olive oil feature (replaces the large honey-jar block) ============ */
 .oil-feature { padding: clamp(80px, 15vh, 200px) 8%; }
 .oil-wrap {
@@ -1832,15 +1857,20 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     <span class="idx-sel-eyebrow" data-i18n="idx.sel.eyebrow">De collectie</span>
     <h2 class="idx-sel-title" id="idxSelTitle" data-i18n="idx.sel.title">Geselecteerde oogsten.</h2>
   </div>
-  <div class="idx-sel-grid" id="idxSelGrid"></div>
+  <div class="sel-pin" id="selPin">
+    <div class="sel-sticky">
+      <div class="idx-sel-grid" id="idxSelGrid"></div>
+    </div>
+  </div>
   <div class="idx-sel-cta-wrap">
     <a class="idx-sel-cta" href="shop.html" data-i18n="idx.sel.cta">Bekijk de collectie</a>
   </div>
 </section>
 <script>
 (function () {
-  var SLUGS = ['chestnut', 'olive-oil', 'thyme', 'mountain-tea', 'pine', 'heather'];
+  var SLUGS = ['chestnut', 'olive-oil', 'thyme', 'mountain-tea', 'pine', 'acacia', 'heather', 'oak', 'arbutus'];
   var grid = document.getElementById('idxSelGrid');
+  var pin = document.getElementById('selPin');
   function render() {
     if (!window.HD_product) { return setTimeout(render, 60); }
     if (!grid) return;
@@ -1855,6 +1885,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
         '</div></a>';
     }).join('');
     revealCards();
+    measurePin();
   }
   // Reveal the rail's cards (staggered via CSS) once it scrolls into view
   function revealCards() {
@@ -1863,17 +1894,43 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     if (!('IntersectionObserver' in window)) { show(); return; }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) { if (e.isIntersecting) { show(); io.disconnect(); } });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.08 });
     io.observe(grid);
-    // Safety net: never let cards stay invisible if the observer is delayed
-    setTimeout(show, 2600);
+    setTimeout(show, 2600); // safety net
   }
-  // Desktop drag-to-scroll (touch devices use native momentum scrolling)
+
+  // ---- Desktop: pinned scroll-driven horizontal gallery ----
+  // Scroll vertically, the rail moves sideways, then the page continues down.
+  var pinActive = false, maxX = 0, ticking = false;
+  function isPinMode() {
+    return !!pin && window.innerWidth > 900 &&
+      !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+  function measurePin() {
+    if (!pin) return;
+    if (!isPinMode()) { pinActive = false; pin.style.height = ''; grid.style.transform = ''; return; }
+    pinActive = true;
+    maxX = Math.max(0, grid.scrollWidth - window.innerWidth);
+    pin.style.height = (window.innerHeight + maxX) + 'px';
+    applyPin();
+  }
+  function applyPin() {
+    ticking = false;
+    if (!pinActive) return;
+    var top = pin.getBoundingClientRect().top;            // 0 at pin start, negative as we scroll through
+    var p = Math.min(Math.max(-top / (maxX || 1), 0), 1);
+    grid.style.transform = 'translate3d(' + (-p * maxX).toFixed(1) + 'px,0,0)';
+  }
+  window.addEventListener('scroll', function () { if (pinActive && !ticking) { ticking = true; requestAnimationFrame(applyPin); } }, { passive: true });
+  window.addEventListener('resize', function () { setTimeout(measurePin, 120); });
+  window.addEventListener('load', function () { setTimeout(measurePin, 60); });
+
+  // ---- Mobile only: native drag-to-scroll (desktop uses the pin) ----
   (function dragScroll() {
     if (!grid) return;
     var down = false, startX = 0, startScroll = 0, moved = false;
     grid.addEventListener('pointerdown', function (e) {
-      if (e.pointerType !== 'mouse') return;
+      if (e.pointerType !== 'mouse' || isPinMode()) return;
       down = true; moved = false; startX = e.clientX; startScroll = grid.scrollLeft;
       grid.classList.add('dragging');
     });
@@ -1886,7 +1943,6 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     window.addEventListener('pointerup', function () {
       if (!down) return; down = false; grid.classList.remove('dragging');
     });
-    // Swallow the click that follows a real drag so a card doesn't navigate
     grid.addEventListener('click', function (e) {
       if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; }
     }, true);
