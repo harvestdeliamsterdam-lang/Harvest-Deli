@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Origin — Harvest Deli</title>
+<title>About — Harvest Deli</title>
 <meta name="description" content="The story behind Harvest Deli — single-origin Greek honey, cold-pressed olive oil and wild mountain tea, gathered slowly on the slopes of Mount Pelion and across Greece.">
 <link rel="canonical" href="https://harvestdeli.gr/about.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-5">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-6">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -461,6 +461,69 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   .about-cta .cta-link { padding: 18px 30px; padding-left: calc(30px + var(--track-button)); }
   footer.site-footer { padding: 10vh 7% 5vh; }
 }
+
+/* =========================================================
+   ABOUT — minimal editorial redesign (2026)
+   Compact, airy, warm Mediterranean, grotesk. Supersedes the
+   long chapter layout above (those .chapter-/.numbers- rules
+   are no longer referenced).
+   ========================================================= */
+.ab-wrap { max-width: 1080px; margin: 0 auto; padding: 0 6vw; }
+.ab-eyebrow { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; }
+
+/* Hero */
+.ab-hero { padding: clamp(150px, 24vh, 256px) 0 clamp(28px, 5vh, 56px); }
+.ab-hero__title { font-size: clamp(56px, 12vw, 168px); line-height: 0.92; letter-spacing: -0.04em; color: var(--ink); margin: 22px 0 26px; font-weight: 560; }
+.ab-hero__sub { font-size: clamp(17px, 1.8vw, 22px); line-height: 1.5; color: var(--ink-soft); max-width: 44ch; }
+
+/* Visual band */
+.ab-visual { padding: clamp(18px, 4vh, 48px) 0; }
+.ab-visual__media { position: relative; aspect-ratio: 16 / 9; border-radius: var(--radius-card, 16px); overflow: hidden; box-shadow: 0 44px 96px -58px rgba(31, 26, 20, 0.42); }
+.ab-visual__img { position: absolute; inset: 0; transition: transform 1.6s var(--ease);
+  background:
+    radial-gradient(120% 110% at 28% 20%, rgba(255, 244, 216, 0.92), transparent 60%),
+    linear-gradient(150deg, #E8D8B2 0%, #C9A96C 58%, #A7AE7A 100%); }
+.ab-visual:hover .ab-visual__img { transform: scale(1.03); }
+.ab-visual__cap { position: absolute; bottom: 18px; left: 22px; font-size: 9.5px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(31, 26, 20, 0.62); font-weight: 600; }
+
+/* Story */
+.ab-story { padding: clamp(58px, 11vh, 136px) 0; }
+.ab-story__grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(34px, 6vw, 92px); align-items: start; }
+.ab-story__h { font-size: clamp(28px, 3.4vw, 46px); line-height: 1.08; letter-spacing: -0.028em; color: var(--ink); margin: 14px 0 0; font-weight: 540; max-width: 15ch; }
+.ab-story__body p { font-size: clamp(16px, 1.5vw, 18px); line-height: 1.78; color: var(--ink-soft); margin: 0 0 22px; max-width: 62ch; }
+.ab-story__body p:last-child { margin-bottom: 0; }
+
+/* Craft / philosophy */
+.ab-craft { padding: clamp(50px, 9vh, 108px) 0; border-top: 1px solid rgba(31, 26, 20, 0.08); }
+.ab-craft__h { font-size: clamp(26px, 3.2vw, 42px); line-height: 1.08; letter-spacing: -0.026em; color: var(--ink); margin: 14px 0 clamp(34px, 5vh, 58px); font-weight: 540; max-width: 18ch; }
+.ab-craft__list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 clamp(40px, 6vw, 90px); }
+.ab-craft__item { padding: 26px 0; border-top: 1px solid rgba(31, 26, 20, 0.08); display: grid; grid-template-columns: 26px 1fr; gap: 18px; align-items: baseline; }
+.ab-craft__num { font-size: 11px; color: var(--gold-deep); font-weight: 600; letter-spacing: 0.06em; }
+.ab-craft__label { font-size: clamp(17px, 1.6vw, 20px); color: var(--ink); font-weight: 540; letter-spacing: -0.012em; }
+.ab-craft__desc { display: block; font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); opacity: 0.85; margin-top: 8px; max-width: 40ch; }
+
+/* Closing CTA */
+.ab-close { padding: clamp(68px, 12vh, 146px) 0; border-top: 1px solid rgba(31, 26, 20, 0.08); text-align: center; }
+.ab-close__h { font-size: clamp(34px, 5vw, 72px); line-height: 1.0; letter-spacing: -0.035em; color: var(--ink); margin: 16px auto 36px; max-width: 14ch; font-weight: 560; }
+.ab-actions { display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.ab-btn { display: inline-flex; align-items: center; gap: 16px; padding: 16px 32px; border-radius: var(--radius-pill, 999px); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; text-decoration: none; cursor: pointer; transition: background .5s var(--ease), color .5s var(--ease), border-color .5s var(--ease), transform .5s var(--ease), box-shadow .5s var(--ease); }
+.ab-btn--primary { background: var(--ink); color: var(--cream); box-shadow: 0 14px 30px -16px rgba(31, 26, 20, 0.55); }
+.ab-btn--primary:hover { background: var(--gold-deep); transform: translateY(-1px); box-shadow: 0 18px 36px -16px rgba(138, 98, 40, 0.5); }
+.ab-btn--ghost { background: transparent; color: var(--ink); border: 1px solid rgba(31, 26, 20, 0.22); }
+.ab-btn--ghost:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+.ab-btn .arrow { width: 18px; height: 1px; background: currentColor; position: relative; transition: width .4s var(--ease); }
+.ab-btn .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 6px; height: 6px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
+.ab-btn:hover .arrow { width: 26px; }
+
+@media (max-width: 860px) {
+  .ab-story__grid { grid-template-columns: 1fr; gap: 22px; }
+  .ab-craft__list { grid-template-columns: 1fr; }
+  .ab-visual__media { aspect-ratio: 4 / 3; }
+}
+@media (max-width: 480px) {
+  .ab-actions { flex-direction: column; width: 100%; }
+  .ab-btn { width: 100%; justify-content: center; }
+}
 </style>
 </head>
 <body>
@@ -556,118 +619,95 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 </div>
 
 <!-- ============ Hero ============ -->
-<section class="about-hero">
-  <div class="about-eyebrow" data-i18n="about.eyebrow">The Origin &middot; A house in Pelion</div>
-  <h1 class="about-headline" data-i18n-html="about.headline_html">A journey into the <em>origin.</em></h1>
-  <p class="about-intro" data-i18n="about.intro">Five generations of one family, working a thousand hives across a single mountain. The honey is the result. This is the story behind the jar.</p>
-  <div class="about-frame">
-    <span class="caption" data-i18n="about.frameCaption">Mount Pelion &middot; Northern Greece</span>
+<section class="ab-hero">
+  <div class="ab-wrap reveal">
+    <p class="ab-eyebrow" data-i18n="about.page.kicker">Pelion · Greece</p>
+    <h1 class="ab-hero__title" data-i18n="about.page.title">About</h1>
+    <p class="ab-hero__sub" data-i18n="about.page.sub">A small collection of Greek harvests shaped by mountain air, slow seasons and quiet craftsmanship.</p>
   </div>
 </section>
 
-<!-- ============ Chapter 1 ============ -->
-<section class="chapter-section left">
-  <div class="ch-text reveal">
-    <div class="ch-num">I.</div>
-    <div class="ch-eyebrow" data-i18n="about.ch1.eyebrow">Greece &middot; The land</div>
-    <h2 class="ch-heading" data-i18n="about.ch1.h">A mountain that the sea cannot reach.</h2>
-    <p class="ch-body" data-i18n="about.ch1.p1">Pelion rises six hundred metres from the Aegean coast in a single, slow gesture. Its limestone ridges hold wild thyme, heather, oregano, arbutus and chestnut in a single, untranslatable season. We work the southern face, where the sun arrives early and the air keeps its dryness through the afternoon.</p>
-    <p class="ch-body" data-i18n="about.ch1.p2">Nothing here is cultivated. The bees decide where to forage, and the season decides what they bring back.</p>
-  </div>
-  <div class="ch-image tone-1 reveal delay-1">
-    <span class="caption" data-i18n="about.ch1.caption">Pelion ridges &middot; 1100m</span>
+<!-- ============ Visual ============ -->
+<section class="ab-visual" aria-hidden="true">
+  <div class="ab-wrap reveal">
+    <div class="ab-visual__media">
+      <span class="ab-visual__img"></span>
+      <span class="ab-visual__cap" data-i18n="about.visual.cap">Mount Pelion · Northern Greece</span>
+    </div>
   </div>
 </section>
 
-<!-- ============ Pull quote ============ -->
-<section class="pull-quote">
-  <div class="reveal">
-    <blockquote data-i18n="about.quote.text">"My grandfather kept thirty hives. My father, three hundred. I keep a thousand, and yet, less."</blockquote>
-    <cite data-i18n="about.quote.cite">Stavros Andreou &middot; Beekeeper, fifth generation</cite>
+<!-- ============ Story ============ -->
+<section class="ab-story" aria-labelledby="about-story-h">
+  <div class="ab-wrap">
+    <div class="ab-story__grid">
+      <div class="reveal">
+        <p class="ab-eyebrow" data-i18n="about.story.eyebrow">Our story</p>
+        <h2 class="ab-story__h" id="about-story-h" data-i18n="about.story.h">A house on a single mountain.</h2>
+      </div>
+      <div class="ab-story__body reveal delay-1">
+        <p data-i18n="about.story.p1">Harvest Deli began on the southern face of Pelion, where one family has kept bees for five generations. What leaves the mountain is small by nature — a few hundred jars a season, gathered slowly and sealed by hand.</p>
+        <p data-i18n="about.story.p2">We work with olive groves and wild tea hillsides in the same spirit: little, seasonal and honest. (Placeholder copy — the full story will follow.)</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ Chapter 2 ============ -->
-<section class="chapter-section right">
-  <div class="ch-image tone-2 reveal">
-    <span class="caption" data-i18n="about.ch2.caption">The cellar &middot; oak vats</span>
-  </div>
-  <div class="ch-text reveal delay-1">
-    <div class="ch-num">II.</div>
-    <div class="ch-eyebrow" data-i18n="about.ch2.eyebrow">The beekeeper</div>
-    <h2 class="ch-heading" data-i18n="about.ch2.h">Stavros, who learned to listen.</h2>
-    <p class="ch-body" data-i18n="about.ch2.p1">Stavros Andreou is the fifth generation of his family to keep bees on this mountain. He inherited the cellar from his father in 2009, and the manuscripts of his great-grandfather sit on a shelf above the vats, recording temperatures and yields back to 1882.</p>
-    <p class="ch-body" data-i18n="about.ch2.p2">He works alone for ten months of the year. Two younger nephews join him for the harvest. The bees, he says, taught the family more than the family ever taught the bees.</p>
-  </div>
-</section>
-
-<!-- ============ Chapter 3 ============ -->
-<section class="chapter-section left">
-  <div class="ch-text reveal">
-    <div class="ch-num">III.</div>
-    <div class="ch-eyebrow" data-i18n="about.ch3.eyebrow">The mountains</div>
-    <h2 class="ch-heading" data-i18n="about.ch3.h">The hives are placed where the road ends.</h2>
-    <p class="ch-body" data-i18n="about.ch3.p1">Each apiary sits between 600 and 1400 metres on the southern slopes. Never near a road. Never near a cultivated field. The walk to the highest hives takes a full morning, and we take care not to disturb the bees more than a season requires.</p>
-    <p class="ch-body" data-i18n="about.ch3.p2">Altitude shapes the honey more than any single flower. The colder nights slow the bees. The honey thickens. The character deepens.</p>
-  </div>
-  <div class="ch-image tone-3 reveal delay-1">
-    <span class="caption" data-i18n="about.ch3.caption">Hive №47 &middot; 1280m</span>
-  </div>
-</section>
-
-<!-- ============ Numbers ============ -->
-<section class="numbers-strip">
-  <div class="n-cell reveal">
-    <div class="n-value">1 <em>000</em></div>
-    <div class="n-label" data-i18n="about.n1.lbl">Hives across the southern face of Pelion</div>
-  </div>
-  <div class="n-cell reveal delay-1">
-    <div class="n-value">5</div>
-    <div class="n-label" data-i18n="about.n2.lbl">Generations of one family on the mountain</div>
-  </div>
-  <div class="n-cell reveal delay-2">
-    <div class="n-value">384</div>
-    <div class="n-label" data-i18n="about.n3.lbl">Numbered jars in the Chestnut edition</div>
-  </div>
-  <div class="n-cell reveal">
-    <div class="n-value">0</div>
-    <div class="n-label" data-i18n="about.n4.lbl">Additives, ever. Raw honey, sealed in wax.</div>
+<!-- ============ Craft / philosophy ============ -->
+<section class="ab-craft" aria-labelledby="about-craft-h">
+  <div class="ab-wrap">
+    <p class="ab-eyebrow reveal" data-i18n="about.craft.eyebrow">How we work</p>
+    <h2 class="ab-craft__h reveal" id="about-craft-h" data-i18n="about.craft.h">Small by intention.</h2>
+    <div class="ab-craft__list">
+      <div class="ab-craft__item reveal">
+        <span class="ab-craft__num">01</span>
+        <div>
+          <span class="ab-craft__label" data-i18n="about.craft.1.l">Small harvests</span>
+          <span class="ab-craft__desc" data-i18n="about.craft.1.d">Only what one mountain gives in a season.</span>
+        </div>
+      </div>
+      <div class="ab-craft__item reveal delay-1">
+        <span class="ab-craft__num">02</span>
+        <div>
+          <span class="ab-craft__label" data-i18n="about.craft.2.l">Slow production</span>
+          <span class="ab-craft__desc" data-i18n="about.craft.2.d">Cold-spun, unhurried, never forced.</span>
+        </div>
+      </div>
+      <div class="ab-craft__item reveal">
+        <span class="ab-craft__num">03</span>
+        <div>
+          <span class="ab-craft__label" data-i18n="about.craft.3.l">Wild-grown ingredients</span>
+          <span class="ab-craft__desc" data-i18n="about.craft.3.d">Foraged from the hillside, never cultivated.</span>
+        </div>
+      </div>
+      <div class="ab-craft__item reveal delay-1">
+        <span class="ab-craft__num">04</span>
+        <div>
+          <span class="ab-craft__label" data-i18n="about.craft.4.l">Seasonal selection</span>
+          <span class="ab-craft__desc" data-i18n="about.craft.4.d">Bottled only when the season is right.</span>
+        </div>
+      </div>
+      <div class="ab-craft__item reveal">
+        <span class="ab-craft__num">05</span>
+        <div>
+          <span class="ab-craft__label" data-i18n="about.craft.5.l">Quiet hospitality</span>
+          <span class="ab-craft__desc" data-i18n="about.craft.5.d">A spoon, a conversation, no hurry.</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ============ Chapter 4 ============ -->
-<section class="chapter-section right">
-  <div class="ch-image tone-4 reveal">
-    <span class="caption" data-i18n="about.ch4.caption">Harvest morning &middot; April</span>
+<!-- ============ Closing ============ -->
+<section class="ab-close" aria-labelledby="about-close-h">
+  <div class="ab-wrap reveal">
+    <p class="ab-eyebrow" data-i18n="about.close.eyebrow">Continue</p>
+    <h2 class="ab-close__h" id="about-close-h" data-i18n="about.close.h">Taste the mountain.</h2>
+    <div class="ab-actions">
+      <a href="shop.html" class="ab-btn ab-btn--primary"><span data-i18n="about.close.shop">Explore the collection</span> <span class="arrow" aria-hidden="true"></span></a>
+      <a href="contact.html" class="ab-btn ab-btn--ghost"><span data-i18n="about.close.contact">Write to us</span> <span class="arrow" aria-hidden="true"></span></a>
+    </div>
   </div>
-  <div class="ch-text reveal delay-1">
-    <div class="ch-num">IV.</div>
-    <div class="ch-eyebrow" data-i18n="about.ch4.eyebrow">The harvest</div>
-    <h2 class="ch-heading" data-i18n="about.ch4.h">Combs are spun cold, at cellar temperature.</h2>
-    <p class="ch-body" data-i18n="about.ch4.p1">We never heat the honey. The combs travel down the mountain in shallow trays, are uncapped by hand, and are spun at the temperature of the cellar. Sixteen degrees in spring, eighteen in summer. Every enzyme, every grain of pollen, every aromatic note of the season remains intact.</p>
-    <p class="ch-body" data-i18n="about.ch4.p2">The honey then rests in oak vats for fourteen days. Air rises. Sediment falls. Nothing is forced.</p>
-  </div>
-</section>
-
-<!-- ============ Chapter 5 ============ -->
-<section class="chapter-section left">
-  <div class="ch-text reveal">
-    <div class="ch-num">V.</div>
-    <div class="ch-eyebrow" data-i18n="about.ch5.eyebrow">Family tradition</div>
-    <h2 class="ch-heading" data-i18n="about.ch5.h">A practice passed quietly between hands.</h2>
-    <p class="ch-body" data-i18n="about.ch5.p1">Some of what we do has been done in the same way for five generations. Some of it changes every year. The bees keep us honest. The mountain keeps us small.</p>
-    <p class="ch-body" data-i18n="about.ch5.p2">We do not scale. We do not blend. We do not strip the wax from the lids of the jars. Three hundred and eighty four jars in the Chestnut edition, and when they are gone, the season has ended.</p>
-  </div>
-  <div class="ch-image tone-1 reveal delay-1">
-    <span class="caption" data-i18n="about.ch5.caption">Cellar archive &middot; 1882 — 2025</span>
-  </div>
-</section>
-
-<!-- ============ CTA ============ -->
-<section class="about-cta">
-  <div class="label" data-i18n="about.cta.label">The Collection &middot; 2025</div>
-  <h2 data-i18n-html="about.cta.h_html">Taste the <em>mountain.</em></h2>
-  <a href="shop.html" class="cta-link"><span data-i18n="about.cta.btn">View the collection</span> <span class="arrow"></span></a>
 </section>
 
 </main>
@@ -712,7 +752,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-5"></script>
+<script src="shared.js?v=hd-2026-06-06-6"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
