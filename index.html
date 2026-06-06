@@ -90,7 +90,7 @@
      leaving the body at opacity 0. The <video preload="auto"> below is enough. -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-17">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-18">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1441,30 +1441,13 @@ footer {
 
 /* ============ Homepage hero — calm luxury after intro ============ */
 /* Clean the hero: the floating brand/tagline overlay is gone (the intro
-   already presents the logo). Lighter vignette keeps the footage crisp. */
+   already presents the logo). Lighter vignette keeps the footage crisp.
+   The navigation is the global luxury espresso bar (shared.css). */
 .hero .scene { display: none !important; }
 .video-stage video { filter: contrast(1.08) saturate(1.08) !important; }
 .video-stage::before { background: radial-gradient(ellipse at 50% 48%, transparent 52%, rgba(10,7,4,0.3) 100%); }
 .video-stage::after { background: linear-gradient(180deg, rgba(10,7,4,0.34) 0%, transparent 26%, transparent 74%, rgba(10,7,4,0.28) 100%); }
-
-/* Warm ivory luxury navigation (top + scrolled): cream glass, espresso
-   type, soft muted-gold hover, thin separator. Fades up after the intro. */
-body nav.site-nav, body nav.site-nav.scrolled {
-  background: rgba(245, 241, 232, 0.82) !important;
-  -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
-  border-bottom: 1px solid rgba(26, 22, 18, 0.08) !important;
-  color: var(--ink, #1F1A14) !important;
-  padding: 18px 48px;
-  box-shadow: 0 14px 40px -30px rgba(40, 24, 8, 0.3);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), background 0.6s var(--ease), color 0.6s var(--ease), padding 0.6s var(--ease);
-}
-body nav.site-nav.scrolled { background: rgba(247, 243, 235, 0.9) !important; padding: 16px 48px; }
-body nav.site-nav .menu-btn, body nav.site-nav .nav-acquire { color: var(--ink, #1F1A14) !important; opacity: 0.86; transition: color 0.4s var(--ease), opacity 0.4s var(--ease); }
-body nav.site-nav .menu-btn:hover, body nav.site-nav .nav-acquire:hover { color: var(--gold-deep, #8A6228) !important; opacity: 1; }
-body nav.site-nav .lang-toggle button { color: var(--ink-soft, #5C5247) !important; }
-body nav.site-nav .lang-toggle button:hover, body nav.site-nav .lang-toggle button.active { color: var(--ink, #1F1A14) !important; }
-body nav.site-nav .lang-toggle .sep { background: rgba(26, 22, 18, 0.2) !important; }
-/* nav fades up gently once the intro curtain lifts */
+/* nav fades down gently once the intro curtain lifts */
 html.hd-intro-active nav.site-nav, html.hd-intro-pending nav.site-nav { opacity: 0; transform: translateY(-14px); }
 html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 @media (max-width: 880px) { body nav.site-nav, body nav.site-nav.scrolled { padding: 14px 22px; } }
@@ -1604,9 +1587,9 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
        The cinematic scene language is preserved as-is below. -->
   <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli — Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-17">
-      <source src="v.webm?v=hd-2026-06-06-17" type="video/webm">
-        <source src="video.mp4?v=hd-2026-06-06-17" type="video/mp4">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-18">
+      <source src="v.webm?v=hd-2026-06-06-18" type="video/webm">
+        <source src="video.mp4?v=hd-2026-06-06-18" type="video/mp4">
     </video>
   </div>
 
@@ -2118,7 +2101,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-17"></script>
+<script src="shared.js?v=hd-2026-06-06-18"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');

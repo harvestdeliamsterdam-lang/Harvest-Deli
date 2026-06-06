@@ -4386,9 +4386,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-17'], ['hd-search-js', 'search.js?v=hd-2026-06-06-17'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-17'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-17'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-17'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-17'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-17'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-17'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-17'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-17']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-18'], ['hd-search-js', 'search.js?v=hd-2026-06-06-18'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-18'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-18'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-18'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-18'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-18'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-18'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-18'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-18']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
@@ -4418,4 +4418,25 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
     var tries = 0;
     var iv = setInterval(function () { if (bind() || ++tries > 40) clearInterval(iv); }, 120);
   }
+})();
+
+/* =================================================================
+   Nav — subtle mouse-reactive warm light (sets --nav-mx on hover).
+   Pointer-fine + motion-allowed only; pure cosmetic, no layout.
+   ================================================================= */
+(function () {
+  'use strict';
+  if (window.matchMedia && (!window.matchMedia('(pointer:fine)').matches || window.matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  function bind() {
+    var nav = document.querySelector('nav.site-nav');
+    if (!nav || nav._hdNavLight) return !!nav;
+    nav._hdNavLight = true;
+    nav.addEventListener('pointermove', function (e) {
+      var r = nav.getBoundingClientRect();
+      nav.style.setProperty('--nav-mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+    });
+    nav.addEventListener('pointerleave', function () { nav.style.setProperty('--nav-mx', '28%'); });
+    return true;
+  }
+  if (!bind()) { var t = 0, iv = setInterval(function () { if (bind() || ++t > 40) clearInterval(iv); }, 120); }
 })();
