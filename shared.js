@@ -3069,7 +3069,17 @@
   const HEART_SVG =
     '<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.2C11 20.2 1.8 14 1.8 8C1.8 4.7 4.4 2.2 7.5 2.2C9.1 2.2 10.5 3 11 4.3C11.5 3 12.9 2.2 14.5 2.2C17.6 2.2 20.2 4.7 20.2 8C20.2 14 11 20.2 11 20.2Z"/></svg>';
 
+  // Inject the heart into any .wishlist-btn that is still empty. Safe to
+  // call repeatedly; shop/filters re-render their grids and fire
+  // 'hd:wishlist-change', so this runs again and fills the fresh buttons.
+  function ensureIcons() {
+    document.querySelectorAll('.wishlist-btn, .product-wishlist-line').forEach(btn => {
+      if (!btn.querySelector('svg')) btn.insertAdjacentHTML('afterbegin', HEART_SVG);
+    });
+  }
+
   function render() {
+    ensureIcons();
     const cur = load();
     document.querySelectorAll('[data-wishlist-toggle]').forEach(btn => {
       const slug = btn.dataset.wishlistToggle;
@@ -3086,10 +3096,7 @@
   }
 
   function init() {
-    // Inject icons inside .wishlist-btn that have empty content
-    document.querySelectorAll('.wishlist-btn, .product-wishlist-line').forEach(btn => {
-      if (!btn.querySelector('svg')) btn.insertAdjacentHTML('afterbegin', HEART_SVG);
-    });
+    ensureIcons(); // render() also injects, but cover the static-page case up front
     document.addEventListener('click', e => {
       const btn = e.target.closest('[data-wishlist-toggle]');
       if (!btn) return;
