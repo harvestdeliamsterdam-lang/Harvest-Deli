@@ -1045,7 +1045,7 @@ section.chapter { padding: 20vh 8%; position: relative; }
   gap: 18px;
 }
 .card-name {
-  font-family: 'Newsreader', serif;
+  /* type is set globally to the grotesk system; no serif override here */
   font-weight: 400;
   font-size: 26px;
   letter-spacing: -0.02em;
@@ -1053,7 +1053,6 @@ section.chapter { padding: 20vh 8%; position: relative; }
   color: var(--ink);
 }
 .card-price {
-  font-family: 'Newsreader', serif;
   font-weight: 400;
   font-size: 22px;
   letter-spacing: -0.014em;
@@ -1433,6 +1432,18 @@ footer {
 .reveal.in { opacity: 1; transform: translateY(0); }
 .reveal.delay-1 { transition-delay: 0.18s; }
 .reveal.delay-2 { transition-delay: 0.36s; }
+
+/* Reduced motion: skip entrance animation entirely and show content up
+   front (also guards against content staying hidden if the reveal
+   observer is delayed). */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .preview-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 
 /* Responsive */
 @media (max-width: 900px) {
