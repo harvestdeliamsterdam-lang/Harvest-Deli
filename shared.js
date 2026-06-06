@@ -167,8 +167,13 @@
       'footer.link.springWildflower': 'Spring Wildflower',
       'footer.link.chestnut': 'Chestnut Honey',
       'footer.bottom1': '© Harvest Deli · Pelion, Greece',
-      'footer.bottom2': 'Crafted slowly · MMXXV',
+      'footer.bottom2': 'MMXXV',
       'footer.builtBy': 'Designed & built by',
+      'footer.news.eyebrow': 'The Harvest Letter',
+      'footer.news.lead': 'Occasional notes from the mountain: new harvests, quiet stories, nothing more.',
+      'footer.news.placeholder': 'Your email',
+      'footer.news.cta': 'Subscribe',
+      'footer.news.ok': 'Thank you. A quiet welcome to the table.',
       'a11y.skipLink': 'Skip to content',
       'idx.h1': 'Harvest Deli, single-estate Greek honey from the hills of Pelion',
       // ---------- Harvest Concierge (floating chat) ----------
@@ -724,7 +729,12 @@
       'footer.link.springWildflower': 'Lente Wilde Bloem',
       'footer.link.chestnut': 'Tamme Kastanje',
       'footer.bottom1': '© Harvest Deli · Pelion, Griekenland',
-      'footer.bottom2': 'Met aandacht gemaakt · MMXXV',
+      'footer.bottom2': 'MMXXV',
+      'footer.news.eyebrow': 'De Oogstbrief',
+      'footer.news.lead': 'Af en toe een brief uit de bergen: nieuwe oogsten, stille verhalen, niets meer.',
+      'footer.news.placeholder': 'Je e-mailadres',
+      'footer.news.cta': 'Inschrijven',
+      'footer.news.ok': 'Dank je. Een rustig welkom aan tafel.',
       'footer.builtBy': 'Ontworpen & gebouwd door',
       'a11y.skipLink': 'Ga naar inhoud',
       'idx.h1': 'Harvest Deli, Griekse honing van één landgoed in Pelion',
@@ -1279,7 +1289,7 @@
       'footer.link.springWildflower': 'Ανοιξιάτικα Αγριολούλουδα',
       'footer.link.chestnut': 'Καστανόμελο',
       'footer.bottom1': '© Harvest Deli · Πήλιο, Ελλάδα',
-      'footer.bottom2': 'Φτιαγμένο αργά · MMXXV',
+      'footer.bottom2': 'MMXXV',
       'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
       'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
       'idx.h1': 'Harvest Deli, μονοκτηματικό ελληνικό μέλι από το Πήλιο',
@@ -2935,20 +2945,39 @@
   else init();
 })();
 
-/* ---------- The Creativity Lab signature (auto-inject in footer) ---------- */
+/* ---------- Footer newsletter (auto-inject above footer-bottom, all pages) ---------- */
 (function () {
   'use strict';
   function init() {
-    const bottom = document.querySelector('.site-footer .footer-bottom');
-    if (!bottom) return;
-    if (bottom.querySelector('.tcl-signature')) return;
-    const credit = document.createElement('div');
-    credit.className = 'footer-credit';
-    credit.innerHTML =
-      '<p class="footer-credit__by"><span data-i18n="footer.builtBy">Designed &amp; built by</span></p>' +
-      '<a href="https://thecreativitylab.nl" target="_blank" rel="noopener noreferrer" class="tcl-signature">The Creativity Lab</a>';
-    bottom.appendChild(credit);
-    // Re-apply translations on the freshly injected node
+    document.querySelectorAll('footer').forEach(function (ftr) {
+      var bottom = ftr.querySelector('.footer-bottom');
+      if (!bottom || ftr.querySelector('.footer-news')) return;
+      var news = document.createElement('div');
+      news.className = 'footer-news';
+      news.innerHTML =
+        '<div class="footer-news__copy">' +
+          '<div class="footer-news__eyebrow" data-i18n="footer.news.eyebrow">The Harvest Letter</div>' +
+          '<p class="footer-news__lead" data-i18n="footer.news.lead">Occasional notes from the mountain: new harvests, quiet stories, nothing more.</p>' +
+        '</div>' +
+        '<form class="footer-news__form" novalidate>' +
+          '<div class="footer-news__field">' +
+            '<input type="email" required autocomplete="email" class="footer-news__input" aria-label="Email" ' +
+              'placeholder="Your email" data-i18n-attr="placeholder:footer.news.placeholder">' +
+            '<button type="submit" class="footer-news__btn"><span data-i18n="footer.news.cta">Subscribe</span></button>' +
+          '</div>' +
+          '<p class="footer-news__ok" role="status" data-i18n="footer.news.ok" hidden>Thank you. A quiet welcome to the table.</p>' +
+        '</form>';
+      ftr.insertBefore(news, bottom);
+      var form = news.querySelector('form');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var input = form.querySelector('.footer-news__input');
+        if (!input.value || !input.checkValidity()) { input.focus(); return; }
+        // SEAM: POST email to ESP (Mailchimp/Klaviyo/Resend). Demo: local confirm only.
+        news.querySelector('.footer-news__field').style.display = 'none';
+        var ok = news.querySelector('.footer-news__ok'); ok.hidden = false;
+      });
+    });
     try { if (typeof window.HD_applyTranslations === 'function') window.HD_applyTranslations(); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

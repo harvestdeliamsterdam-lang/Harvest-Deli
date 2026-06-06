@@ -4292,6 +4292,62 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
 /* Empty Cellar: hide the subtotal/checkout footer (no €0 checkout) */
 body #cartDrawer.is-empty .cart-foot { display: none !important; }
+
+/* ================================================================
+   FOOTER NEWSLETTER (injected above .footer-bottom, all pages)
+   Asymmetric copy/form split, ambient gold divider, espresso CTA.
+   ================================================================ */
+.footer-news {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(28px, 5vw, 84px);
+  align-items: center;
+  padding: clamp(40px, 7vh, 72px) 0 clamp(34px, 6vh, 58px);
+  margin-bottom: clamp(26px, 5vh, 52px);
+  border-top: 1px solid rgba(26,22,18,0.10);
+  position: relative;
+}
+.footer-news::before {
+  content: ""; position: absolute; top: -1px; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,148,90,0.6), transparent);
+  background-size: 42% 100%; background-repeat: no-repeat;
+  animation: footerGlow 11s var(--ease, ease) infinite; opacity: 0.85; pointer-events: none;
+}
+@keyframes footerGlow { 0% { background-position: -40% 0; } 100% { background-position: 140% 0; } }
+.footer-news__eyebrow {
+  font-size: 9.5px; letter-spacing: var(--track-label, 0.36em); text-transform: uppercase;
+  color: var(--gold-deep, #8A6228); font-weight: 500; margin-bottom: 16px; padding-left: 2px;
+}
+.footer-news__lead {
+  font-size: clamp(17px, 1.9vw, 23px); line-height: 1.42; color: var(--ink, #1F1A14);
+  max-width: 32ch; letter-spacing: -0.012em; font-weight: 400;
+}
+.footer-news__field { display: flex; gap: 10px; align-items: stretch; max-width: 440px; }
+.footer-news__input {
+  flex: 1 1 auto; min-width: 0; background: #FFFDF9;
+  border: 1px solid rgba(26,22,18,0.18); border-radius: var(--radius-pill, 999px);
+  padding: 0 22px; height: 54px; font-size: 14px; color: var(--ink, #1F1A14); outline: none;
+  transition: border-color .4s var(--ease), box-shadow .4s var(--ease);
+}
+.footer-news__input::placeholder { color: var(--ink-soft, #5C5247); opacity: .72; }
+.footer-news__input:focus { border-color: rgba(184,148,90,0.62); box-shadow: 0 0 0 3px rgba(184,148,90,0.14); }
+.footer-news__btn {
+  flex: none; height: 54px; padding: 0 28px; border: none; cursor: pointer;
+  border-radius: var(--radius-pill, 999px); background: var(--btn-bg); color: var(--btn-fg);
+  box-shadow: var(--btn-edge), var(--btn-shadow);
+  font-size: 10px; letter-spacing: var(--track-button, 0.42em); text-transform: uppercase; font-weight: 500;
+  transition: transform .5s var(--ease), box-shadow .5s var(--ease), background .5s var(--ease);
+}
+.footer-news__btn span { padding-left: var(--track-button, 0.42em); }
+.footer-news__btn:hover { background: var(--btn-bg-hover); box-shadow: var(--btn-edge-hover), var(--btn-shadow-hover); transform: translateY(-2px); }
+.footer-news__btn:active { transform: translateY(0); }
+.footer-news__btn:focus-visible { outline: 2px solid var(--gold-light, #D4AC6A); outline-offset: 3px; }
+.footer-news__ok { font-size: 14.5px; color: var(--gold-deep, #8A6228); letter-spacing: .005em; }
+@media (max-width: 760px) {
+  .footer-news { grid-template-columns: 1fr; gap: 22px; padding-top: 38px; }
+  .footer-news__field { max-width: none; }
+}
+@media (prefers-reduced-motion: reduce) { .footer-news::before { animation: none; } }
 .cart-empty .ce-card-img { width: 50px; height: 58px; flex: none; border-radius: 8px; overflow: hidden; background: var(--bg-deep, #EDE3D2); }
 .cart-empty .ce-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease, ease); }
 .cart-empty .ce-card:hover .ce-card-img img { transform: scale(1.08); }
