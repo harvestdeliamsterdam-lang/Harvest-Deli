@@ -425,7 +425,8 @@
       'acct.demoNote': 'Demo session — this stores your details locally in your browser and does not perform real authentication. Supabase Auth connects here in production.',
       'ok.eyebrow': 'Order confirmed',
       'ok.title_html': 'Thank <em>you.</em>',
-      'ok.sub': 'Your order is in. We are already wrapping it by hand and sealing it with wax.',
+      'ok.title': 'Your harvest is reserved.',
+      'ok.sub': 'Packed quietly in Pelion and prepared for its journey. A confirmation is on its way.',
       'ok.orderNo': 'Order number',
       'ok.email': 'A confirmation email is on its way. (Demo: no email is actually sent — your order is stored locally so you can see it in your account.)',
       'ok.track': 'Track order',
@@ -975,7 +976,8 @@
       'acct.demoNote': 'Demo-sessie — dit bewaart je gegevens lokaal in je browser en logt niet echt in. Supabase Auth koppelt hier in productie.',
       'ok.eyebrow': 'Bestelling bevestigd',
       'ok.title_html': 'Dank <em>je wel.</em>',
-      'ok.sub': 'Je bestelling is binnen. We pakken hem met de hand in en verzegelen hem met was.',
+      'ok.title': 'Je oogst is gereserveerd.',
+      'ok.sub': 'Rustig ingepakt in Pelion en klaargemaakt voor de reis. Een bevestiging is onderweg.',
       'ok.orderNo': 'Bestelnummer',
       'ok.email': 'Een bevestigingsmail is onderweg. (Demo: er wordt geen e-mail verstuurd — je bestelling is lokaal opgeslagen zodat je hem in je account ziet.)',
       'ok.track': 'Bestelling volgen',
@@ -4366,9 +4368,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-14'], ['hd-search-js', 'search.js?v=hd-2026-06-06-14'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-14'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-14'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-14'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-14'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-14'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-14'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-14'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-14']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-15'], ['hd-search-js', 'search.js?v=hd-2026-06-06-15'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-15'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-15'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-15'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-15'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-15'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-15'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-15'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-15']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
