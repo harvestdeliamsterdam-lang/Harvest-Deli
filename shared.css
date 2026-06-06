@@ -4000,3 +4000,106 @@ html { scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 *, *::before, *::after { scrollbar-width: none; -ms-overflow-style: none; }
 *::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
+/* =================================================================
+   QUICK VIEW — cinematic upgrade (floating, atmospheric, glass)
+   ================================================================= */
+.qv-overlay {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(245, 236, 222, 0.50), transparent 55%),
+    rgba(24, 19, 13, 0.46);
+  -webkit-backdrop-filter: blur(16px) saturate(135%);
+  backdrop-filter: blur(16px) saturate(135%);
+  transition: opacity 0.6s var(--ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+.qv-panel {
+  width: min(960px, 95vw);
+  background: rgba(250, 246, 238, 0.82);
+  -webkit-backdrop-filter: blur(30px) saturate(140%);
+  backdrop-filter: blur(30px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-card, 16px);
+  box-shadow:
+    0 60px 140px -50px rgba(24, 19, 13, 0.55),
+    0 18px 50px -30px rgba(24, 19, 13, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transform: scale(0.94) translateY(18px);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+}
+.qv-overlay.open .qv-panel { transform: scale(1) translateY(0); }
+
+/* image side — warm cinematic atmosphere */
+.qv-image {
+  background:
+    radial-gradient(80% 70% at 50% 38%, rgba(255, 240, 208, 0.6), transparent 62%),
+    linear-gradient(160deg, #F3E7CC 0%, #E5D2A8 55%, #CBB682 100%);
+  overflow: hidden;
+}
+.qv-image img { position: relative; z-index: 3; transition: transform 0.9s var(--ease, cubic-bezier(0.22,1,0.36,1)); will-change: transform; }
+.qv-atmos { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.qv-haze { position: absolute; inset: -12%; background: radial-gradient(45% 40% at 50% 35%, rgba(255, 250, 235, 0.7), transparent 70%); animation: qvHaze 14s ease-in-out infinite alternate; }
+.qv-mote { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 238, 200, 0.95), transparent 70%); opacity: 0; }
+.qv-mote:nth-child(2) { left: 24%; bottom: 8%; animation: qvMote 12s linear infinite; }
+.qv-mote:nth-child(3) { left: 56%; bottom: 2%; width: 4px; height: 4px; animation: qvMote 16s linear 3s infinite; }
+.qv-mote:nth-child(4) { left: 78%; bottom: 5%; width: 3px; height: 3px; animation: qvMote 14s linear 6s infinite; }
+@keyframes qvHaze { 0% { transform: translate3d(-3%, 0, 0) scale(1); opacity: 0.6; } 100% { transform: translate3d(3%, -3%, 0) scale(1.08); opacity: 1; } }
+@keyframes qvMote { 0% { opacity: 0; transform: translateY(0); } 15% { opacity: 0.8; } 80% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-180px); } }
+.qv-image .qv-edition { z-index: 4; color: rgba(31, 26, 20, 0.7); }
+
+/* progressive content reveal (staggered, calm) */
+.qv-content > * { opacity: 0; transform: translateY(12px); transition: opacity 0.6s var(--ease, ease), transform 0.6s var(--ease, ease); }
+.qv-overlay.is-revealed .qv-content > * { opacity: 1; transform: none; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(1) { transition-delay: 0.05s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(2) { transition-delay: 0.11s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(3) { transition-delay: 0.17s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(4) { transition-delay: 0.23s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(5) { transition-delay: 0.29s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(6) { transition-delay: 0.35s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(7) { transition-delay: 0.41s; }
+.qv-overlay.is-revealed .qv-content > *:nth-child(8) { transition-delay: 0.47s; }
+.qv-content { background: linear-gradient(180deg, rgba(255,253,248,0.4), rgba(250,246,238,0.2)); }
+.qv-close { opacity: 1; transform: none; background: rgba(255, 255, 255, 0.55); border-color: rgba(26, 22, 18, 0.12); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); z-index: 5; }
+
+@media (prefers-reduced-motion: reduce) {
+  .qv-haze, .qv-mote { animation: none !important; }
+  .qv-content > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .qv-image img { transition: none !important; }
+}
+
+/* =================================================================
+   SEARCH — atmospheric refinement (softer, glass, editorial)
+   ================================================================= */
+.hd-search-backdrop {
+  background:
+    radial-gradient(100% 70% at 50% 0%, rgba(245, 236, 222, 0.5), transparent 55%),
+    rgba(26, 22, 18, 0.32);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
+  backdrop-filter: blur(16px) saturate(130%);
+}
+.hd-search-panel {
+  background: rgba(250, 246, 238, 0.82);
+  -webkit-backdrop-filter: blur(30px) saturate(140%);
+  backdrop-filter: blur(30px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 50px 130px -45px rgba(26, 22, 18, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  margin-top: 11vh;
+}
+.hd-search-bar { padding: 24px 26px; border-bottom: 1px solid rgba(26, 22, 18, 0.06); }
+#hdSearchInput { font-size: 28px; letter-spacing: -0.02em; }
+#hdSearchInput::placeholder { font-style: normal; color: rgba(26, 22, 18, 0.3); }
+.hd-s-grouptitle { letter-spacing: 0.22em; opacity: 0.85; }
+.hd-s-chip { background: rgba(255, 253, 248, 0.5); border-color: rgba(26, 22, 18, 0.1); }
+.hd-s-chip:hover, .hd-s-chip.is-active { background: rgba(184, 148, 90, 0.12); border-color: rgba(184, 148, 90, 0.45); }
+.hd-s-row { transition: background .3s var(--ease, ease), transform .3s var(--ease, ease); }
+.hd-s-row:hover, .hd-s-row.is-active { background: rgba(184, 148, 90, 0.1); transform: translateX(3px); }
+.hd-s-thumb { width: 52px; height: 52px; }
+.hd-s-thumb img { transition: transform .6s var(--ease, ease); }
+.hd-s-row:hover .hd-s-thumb img { transform: scale(1.08); }
+.hd-s-empty p { font-style: normal; }
+.hd-s-group { animation: hdsFade 0.5s var(--ease, ease) both; }
+@keyframes hdsFade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .hd-s-group { animation: none; } .hd-s-row:hover { transform: none; } }
+
+/* No-italics rule: Quick View region + notes were class-italic (not caught
+   by the global em/i reset). */
+.qv-content .qv-region, .qv-content .qv-notes { font-style: normal !important; }

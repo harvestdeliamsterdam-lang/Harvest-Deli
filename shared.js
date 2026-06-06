@@ -4218,27 +4218,62 @@
         '</div>' +
       '</div>';
 
-    requestAnimationFrame(() => requestAnimationFrame(() => overlay.classList.add('open')));
+    // Inject cinematic atmosphere into the image side (haze + drifting motes)
+    const imgWrap = overlay.querySelector('.qv-image');
+    if (imgWrap) {
+      const atmos = document.createElement('div');
+      atmos.className = 'qv-atmos';
+      atmos.setAttribute('aria-hidden', 'true');
+      atmos.innerHTML = '<span class="qv-haze"></span><span class="qv-mote"></span><span class="qv-mote"></span><span class="qv-mote"></span>';
+      imgWrap.insertBefore(atmos, imgWrap.firstChild);
+    }
+
+    // Cinematic open: scale/fade the panel, then progressively reveal content.
+    // setTimeout (not rAF) so it still fires when the tab is backgrounded.
+    void overlay.offsetWidth;
+    setTimeout(() => overlay.classList.add('open'), 10);
+    setTimeout(() => overlay.classList.add('is-revealed'), 150);
     document.body.style.overflow = 'hidden';
-    setTimeout(() => overlay.querySelector('.qv-close')?.focus(), 200);
+    setTimeout(() => overlay.querySelector('.qv-close')?.focus(), 220);
+
+    // Subtle pointer parallax on the jar (desktop, motion-allowed only)
+    const fine = window.matchMedia && window.matchMedia('(pointer:fine)').matches;
+    const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const jar = overlay.querySelector('.qv-image img');
+    if (jar && imgWrap && fine && !calm) {
+      imgWrap.addEventListener('pointermove', e => {
+        const r = imgWrap.getBoundingClientRect();
+        const dx = ((e.clientX - r.left) / r.width - 0.5);
+        const dy = ((e.clientY - r.top) / r.height - 0.5);
+        jar.style.transform = 'scale(1.03) translate(' + (dx * -14).toFixed(1) + 'px,' + (dy * -12).toFixed(1) + 'px)';
+      });
+      imgWrap.addEventListener('pointerleave', () => { jar.style.transform = ''; });
+    }
   }
 
   function close() {
     if (!overlay) return;
     overlay.classList.remove('open');
+    overlay.classList.remove('is-revealed');
     document.body.style.overflow = '';
     setTimeout(() => { overlay.innerHTML = ''; }, 500);
   }
 
+  /* Capture phase: the card's quick-view button calls stopPropagation()
+     (to avoid following the card link), which previously also killed this
+     handler. Capturing fires before that, so Quick View opens reliably. */
   document.addEventListener('click', e => {
     const t = e.target.closest('[data-quick-view]');
     if (!t) return;
     e.preventDefault();
+    e.stopPropagation();
     open(t.dataset.quickView);
-  });
+  }, true);
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && overlay && overlay.classList.contains('open')) close();
   });
+
+  window.HD_quickview = { open, close };
 })();
 
 /* =================================================================
@@ -4331,9 +4366,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-8'], ['hd-search-js', 'search.js?v=hd-2026-06-06-8'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-8'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-8'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-8'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-8'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-8'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-8'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-8'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-8']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-11'], ['hd-search-js', 'search.js?v=hd-2026-06-06-11'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-11'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-11'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-11'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-11'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-11'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-11'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-11'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-11']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
