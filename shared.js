@@ -2218,6 +2218,10 @@
       ? _snap.lines.map(l => ({ slug: l.handle, qty: l.quantity, total: +l.lineTotal.amount }))
       : cart.items.map(i => ({ slug: i.slug, qty: i.qty, total: null }));
 
+    // Hide the subtotal/checkout footer when the Cellar is empty (no €0 checkout)
+    const _drawer = document.getElementById('cartDrawer');
+    if (_drawer) _drawer.classList.toggle('is-empty', _lines.length === 0);
+
     const itemsWrap = document.getElementById('cartItems');
     if (itemsWrap) {
       if (_lines.length === 0) {

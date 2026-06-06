@@ -4287,8 +4287,11 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 .cart-empty .ce-suggest { margin-top: clamp(34px, 6vh, 54px); text-align: left; opacity: 0; animation: ceUp .7s var(--ease, ease) .36s forwards; }
 .cart-empty .ce-suggest-h { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft, #5C5247); margin-bottom: 14px; padding-left: 2px; }
 .cart-empty .ce-grid { display: grid; gap: 10px; }
-.cart-empty .ce-card { display: flex; align-items: center; gap: 14px; padding: 10px; border-radius: var(--radius-soft, 12px); text-decoration: none; background: rgba(255,253,248,0.72); border: 1px solid rgba(184,148,90,0.16); box-shadow: 0 10px 24px -18px rgba(40,24,8,0.4); transition: transform .4s var(--ease, ease), box-shadow .4s var(--ease, ease), border-color .4s var(--ease, ease); }
-.cart-empty .ce-card:hover { transform: translateY(-2px); border-color: rgba(184,148,90,0.4); box-shadow: 0 18px 34px -18px rgba(40,24,8,0.45); }
+.cart-empty .ce-card { display: flex; align-items: center; gap: 14px; padding: 11px; border-radius: var(--radius-soft, 12px); text-decoration: none; background: #FFFDF9; border: 1px solid rgba(184,148,90,0.30); box-shadow: 0 14px 30px -20px rgba(40,24,8,0.5); transition: transform .4s var(--ease, ease), box-shadow .4s var(--ease, ease), border-color .4s var(--ease, ease); }
+.cart-empty .ce-card:hover { transform: translateY(-2px); border-color: rgba(184,148,90,0.55); box-shadow: 0 22px 40px -20px rgba(40,24,8,0.55); }
+
+/* Empty Cellar: hide the subtotal/checkout footer (no €0 checkout) */
+body #cartDrawer.is-empty .cart-foot { display: none !important; }
 .cart-empty .ce-card-img { width: 50px; height: 58px; flex: none; border-radius: 8px; overflow: hidden; background: var(--bg-deep, #EDE3D2); }
 .cart-empty .ce-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease, ease); }
 .cart-empty .ce-card:hover .ce-card-img img { transform: scale(1.08); }
@@ -4440,4 +4443,65 @@ body .menu-overlay .menu-bottom { display: flex; justify-content: space-between;
   body nav.site-nav .nav-acquire,
   body nav.site-nav .nav-wishlist { display: none !important; }
   body nav.site-nav .nav-search svg, body nav.site-nav .nav-cart svg { width: 19px; height: 19px; }
+}
+
+/* ================================================================
+   PRIMARY BUTTON SYSTEM (site-wide, single language)
+   Deep espresso black + subtle warm gradient + gold edge highlight
+   + soft cinematic shadow + premium hover lift. Removes all the old
+   brown / gold-deep button fills. One look, everywhere.
+   Secondary tier = the outline text+arrow links (.cta/.product-cta),
+   which fill espresso on hover, so the language stays consistent.
+   ================================================================ */
+:root {
+  --btn-bg:        linear-gradient(162deg, #2B2118 0%, #15100A 100%);
+  --btn-bg-hover:  linear-gradient(162deg, #362817 0%, #1B140C 100%);
+  --btn-fg:        #FAF6EE;
+  --btn-edge:      inset 0 0 0 1px rgba(212,172,106,0.30), inset 0 1px 0 rgba(212,172,106,0.22);
+  --btn-edge-hover:inset 0 0 0 1px rgba(212,172,106,0.58), inset 0 1px 0 rgba(212,172,106,0.34);
+  --btn-shadow:    0 16px 34px -20px rgba(18,12,6,0.62), 0 2px 6px -3px rgba(18,12,6,0.40);
+  --btn-shadow-hover: 0 24px 50px -20px rgba(18,12,6,0.72), 0 4px 12px -4px rgba(18,12,6,0.50);
+}
+
+body .confirm-btn, body .cart-checkout, body .qv-add, body .card-add,
+body .pd-cta, body .add-to-cart, body .btn-primary, body .track-cta,
+body .wz-up-add, body .cart-empty-cta, body .checkout-empty-cta,
+body .final-cta, body .cookie-bar .cb-btn.cb-accept, body .ig-follow {
+  background: var(--btn-bg) !important;
+  color: var(--btn-fg) !important;
+  border: none !important;
+  box-shadow: var(--btn-edge), var(--btn-shadow) !important;
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease),
+              background 0.5s var(--ease), color 0.5s var(--ease) !important;
+}
+body .confirm-btn:hover, body .cart-checkout:hover, body .qv-add:hover,
+body .card-add:hover, body .pd-cta:hover, body .add-to-cart:hover,
+body .btn-primary:hover, body .track-cta:hover, body .wz-up-add:hover,
+body .cart-empty-cta:hover, body .checkout-empty-cta:hover,
+body .final-cta:hover, body .cookie-bar .cb-btn.cb-accept:hover,
+body .ig-follow:hover {
+  background: var(--btn-bg-hover) !important;
+  color: var(--btn-fg) !important;
+  box-shadow: var(--btn-edge-hover), var(--btn-shadow-hover) !important;
+  transform: translateY(-2px) !important;
+}
+body .confirm-btn:active, body .cart-checkout:active, body .qv-add:active,
+body .card-add:active, body .pd-cta:active, body .add-to-cart:active,
+body .btn-primary:active, body .track-cta:active, body .wz-up-add:active,
+body .cart-empty-cta:active, body .checkout-empty-cta:active,
+body .final-cta:active, body .ig-follow:active {
+  transform: translateY(0) !important;
+  box-shadow: var(--btn-edge), var(--btn-shadow) !important;
+}
+/* card-add was an outline-fill button; it's now solid espresso, so kill
+   its sliding ink ::before and keep icon/label above any pseudo layers */
+body .card-add::before { display: none !important; }
+body .card-add > *, body .qv-add > *, body .confirm-btn > * { position: relative; z-index: 2; }
+/* keep focus rings visible on the dark fill */
+body .confirm-btn:focus-visible, body .cart-checkout:focus-visible,
+body .qv-add:focus-visible, body .card-add:focus-visible,
+body .pd-cta:focus-visible, body .add-to-cart:focus-visible,
+body .track-cta:focus-visible, body .final-cta:focus-visible {
+  outline: 2px solid var(--gold-light, #D4AC6A) !important;
+  outline-offset: 3px !important;
 }
