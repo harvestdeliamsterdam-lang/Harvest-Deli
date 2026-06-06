@@ -4103,3 +4103,111 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
 /* No-italics rule: Quick View region + notes were class-italic (not caught
    by the global em/i reset). */
 .qv-content .qv-region, .qv-content .qv-notes { font-style: normal !important; }
+
+/* =================================================================
+   CART "CELLAR" — cinematic premium refinement
+   Warm translucent depth, editorial rows, floating qty, sheen CTA.
+   ================================================================= */
+/* Softer warm backdrop (less dark dim) */
+.cart-drawer .cart-backdrop {
+  background:
+    radial-gradient(90% 60% at 80% 0%, rgba(245, 236, 222, 0.34), transparent 55%),
+    rgba(20, 15, 9, 0.34);
+  -webkit-backdrop-filter: blur(10px) saturate(125%);
+  backdrop-filter: blur(10px) saturate(125%);
+}
+/* Panel: warm glass with ambient layered light */
+.cart-drawer .cart-panel {
+  background: rgba(250, 247, 240, 0.86);
+  -webkit-backdrop-filter: blur(34px) saturate(150%);
+  backdrop-filter: blur(34px) saturate(150%);
+  border-left: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: -50px 0 120px -30px rgba(40, 24, 8, 0.28), inset 1px 0 0 rgba(255,255,255,0.4);
+  isolation: isolate;
+}
+.cart-drawer .cart-panel::before {
+  content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(70% 30% at 78% -2%, rgba(255, 244, 220, 0.6), transparent 60%),
+    radial-gradient(60% 26% at 12% 104%, rgba(123, 116, 78, 0.06), transparent 60%);
+}
+.cart-head .cart-title em { font-style: normal; }
+
+/* Product rows — editorial, soft separators, image presence */
+.cart-drawer .cart-line {
+  border-bottom: 1px solid rgba(26, 22, 18, 0.06);
+  border-radius: var(--radius-soft, 10px);
+  padding: 18px 10px;
+  margin: 0 -10px;
+  transition: background .4s var(--ease, ease), transform .4s var(--ease, ease);
+}
+.cart-drawer .cart-line:hover { background: rgba(184, 148, 90, 0.06); transform: translateY(-1px); }
+.cart-drawer .cart-line .thumb {
+  border-radius: var(--radius-soft, 10px); overflow: hidden;
+  box-shadow: 0 14px 26px -16px rgba(40, 24, 8, 0.4);
+}
+.cart-drawer .cart-line .thumb .mini-photo, .cart-drawer .cart-line .thumb img { transition: transform .7s var(--ease, ease); }
+.cart-drawer .cart-line:hover .thumb .mini-photo, .cart-drawer .cart-line:hover .thumb img { transform: scale(1.06); }
+
+/* Quantity — floating premium control */
+.cart-drawer .qty {
+  background: rgba(255, 253, 248, 0.7);
+  border: 1px solid rgba(26, 22, 18, 0.1);
+  border-radius: var(--radius-pill, 999px);
+  box-shadow: 0 6px 16px -10px rgba(40, 24, 8, 0.3), inset 0 1px 0 rgba(255,255,255,0.6);
+  padding: 0 4px;
+  transition: border-color .4s var(--ease, ease), box-shadow .4s var(--ease, ease);
+}
+.cart-drawer .qty:hover { border-color: rgba(184, 148, 90, 0.4); box-shadow: 0 10px 22px -10px rgba(40, 24, 8, 0.34); }
+.cart-drawer .qty button { transition: color .3s var(--ease, ease), transform .2s var(--ease, ease); }
+.cart-drawer .qty button:active { transform: scale(0.86); }
+.cart-drawer .qty .val { font-feature-settings: "tnum","lnum"; }
+
+/* Subtotal — tabular + buttery settle on change */
+.cart-totals .total { font-feature-settings: "tnum","lnum"; transition: transform .4s var(--ease, ease); display: inline-block; }
+.cart-totals .total.is-bumped { animation: cartBump .5s var(--ease, ease); }
+@keyframes cartBump { 0%{transform:translateY(0)} 30%{transform:translateY(-3px)} 100%{transform:translateY(0)} }
+
+/* Checkout CTA — cinematic sheen + warm depth */
+.cart-checkout {
+  position: relative; overflow: hidden;
+  box-shadow: 0 16px 34px -18px rgba(40, 24, 8, 0.55);
+  transition: background .5s var(--ease, ease), box-shadow .5s var(--ease, ease), transform .5s var(--ease, ease);
+}
+.cart-checkout::after {
+  content: ''; position: absolute; top: 0; left: -40%; width: 40%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,245,220,0.22), transparent);
+  transform: skewX(-18deg); opacity: 0; pointer-events: none;
+}
+.cart-checkout:hover { transform: translateY(-1px); box-shadow: 0 22px 44px -18px rgba(138, 98, 40, 0.5); }
+.cart-checkout:hover::after { animation: cartSheen 0.9s var(--ease, ease); }
+@keyframes cartSheen { 0%{left:-40%;opacity:0} 20%{opacity:1} 100%{left:130%;opacity:0} }
+
+/* Free-shipping — softer, atmospheric, less "progress UI" */
+.hd-free-bar { padding: 0 0 14px; }
+.hd-free-msg { font-family: 'Inter', sans-serif; font-size: 10.5px; letter-spacing: 0.06em; color: var(--ink-soft, #5C5247); margin-bottom: 9px; }
+.hd-free-msg.done { color: var(--gold-deep, #8A6228); }
+.hd-free-track { height: 2px; background: rgba(26, 22, 18, 0.1); border-radius: 999px; overflow: hidden; }
+.hd-free-fill { display: block; height: 100%; border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold, #B8945A), var(--gold-light, #D4AC6A));
+  transition: width 0.9s var(--ease, cubic-bezier(0.22,1,0.36,1)); }
+
+/* Empty state — atmospheric Mediterranean */
+.cart-empty { position: relative; }
+.cart-empty::before {
+  content: ''; position: absolute; left: 50%; top: 4vh; transform: translateX(-50%);
+  width: 220px; height: 220px; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, rgba(212, 172, 106, 0.18), transparent 70%);
+  filter: blur(8px);
+}
+.cart-empty h4, .cart-empty p, .cart-empty .cart-empty-cta { position: relative; }
+.cart-empty h4 { font-style: normal; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-checkout:hover::after { animation: none; }
+  .cart-totals .total.is-bumped { animation: none; }
+}
+
+/* Remove the duplicate/outdated native free-ship bar (€90); the commerce.js
+   .hd-free-bar (€120, matches the brand + cart note) is the single source. */
+#cartProgress { display: none !important; }

@@ -4366,12 +4366,36 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-11'], ['hd-search-js', 'search.js?v=hd-2026-06-06-11'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-11'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-11'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-11'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-11'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-11'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-11'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-11'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-11']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-13'], ['hd-search-js', 'search.js?v=hd-2026-06-06-13'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-13'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-13'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-13'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-13'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-13'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-13'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-13'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-13']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
     document.head.appendChild(s);
   });
+})();
+
+/* =================================================================
+   Cart subtotal — buttery "settle" pulse when the total changes.
+   ================================================================= */
+(function () {
+  'use strict';
+  function bind() {
+    var el = document.getElementById('cartTotal');
+    if (!el || el._hdBump || !window.MutationObserver) { return !!el; }
+    el._hdBump = true;
+    var prev = el.textContent;
+    new MutationObserver(function () {
+      if (el.textContent === prev) return;
+      prev = el.textContent;
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      el.classList.remove('is-bumped'); void el.offsetWidth; el.classList.add('is-bumped');
+    }).observe(el, { childList: true, characterData: true, subtree: true });
+    return true;
+  }
+  if (!bind()) {
+    var tries = 0;
+    var iv = setInterval(function () { if (bind() || ++tries > 40) clearInterval(iv); }, 120);
+  }
 })();
