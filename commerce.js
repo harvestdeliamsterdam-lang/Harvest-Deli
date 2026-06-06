@@ -132,7 +132,10 @@
   function init() {
     firePageView();
     applyConsent();
-    injectWhatsApp();
+    /* WhatsApp floating button removed by request — the concierge "Schrijf ons"
+       pill (bottom-right) is the contact affordance. injectWhatsApp() kept for
+       reference / future re-enable. */
+    /* injectWhatsApp(); */
     // drawer is injected by shared.js; wait a tick so .cart-foot exists
     setTimeout(watchCart, 60);
     document.addEventListener('hd:cart-changed', updateFreeBar);

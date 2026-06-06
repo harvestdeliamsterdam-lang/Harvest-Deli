@@ -3715,6 +3715,8 @@ html.hd-intro-done body {
 /* ============================================================
    Commerce layer (Phase 1) — WhatsApp button + free-ship bar
    ============================================================ */
+/* WhatsApp floating button removed by request (concierge pill replaces it) */
+.hd-whats { display: none !important; }
 .hd-whats {
   position: fixed; left: 22px; bottom: 22px; z-index: 1000;
   width: 52px; height: 52px; border-radius: 50%;

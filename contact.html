@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-3">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-4">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -101,7 +101,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .contact-hero__inner { position: relative; z-index: 1; max-width: 900px; }
 @media (prefers-reduced-motion: reduce) {
   .contact-hero__media video { display: none; }
-  .contact-hero__media { background: #0B0907 url('contacthero-poster.jpg?v=hd-2026-06-06-3') center/cover no-repeat; }
+  .contact-hero__media { background: #0B0907 url('contacthero-poster.jpg?v=hd-2026-06-06-4') center/cover no-repeat; }
 }
 .c-eyebrow {
   font-family: 'Inter', sans-serif;
@@ -142,141 +142,192 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   align-items: start;
 }
 
-/* Form */
+/* ============================================================
+   Form — refined editorial / boutique-hospitality system
+   Soft contained fields (was bare underlines), calm focus glow,
+   full browser-autofill override. Grotesk type via global system.
+   ============================================================ */
 .c-form {
-  background: rgba(255, 252, 246, 0.5);
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.66), rgba(250, 246, 238, 0.46));
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(26, 22, 18, 0.05);
-  padding: 56px 52px;
+  border: 1px solid rgba(42, 35, 27, 0.07);
+  border-radius: var(--radius-card, 16px);
+  padding: clamp(36px, 4vw, 60px) clamp(28px, 3.4vw, 56px);
   position: relative;
+  box-shadow: 0 36px 80px -50px rgba(42, 35, 27, 0.28);
 }
 .c-form::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0; left: 24px; right: 24px;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(184, 148, 90, 0.34), transparent);
 }
 .c-form h3 {
-  font-family: 'Newsreader', serif;
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 1.1;
-  letter-spacing: -0.022em;
+  font-weight: 560;
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.08;
+  letter-spacing: -0.028em;
   margin-bottom: 12px;
   color: var(--ink);
 }
 .c-form .sub {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   color: var(--ink-warm);
-  margin-bottom: 44px;
-  line-height: 1.5;
+  margin-bottom: clamp(34px, 4vw, 46px);
+  line-height: 1.55;
+  letter-spacing: -0.004em;
 }
 
 .field {
-  margin-bottom: 28px;
+  margin-bottom: 22px;
   position: relative;
 }
 .field label {
   display: block;
-  font-family: 'Inter', sans-serif;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   font-weight: 500;
-  padding-left: var(--track-label);
+  padding-left: 2px;
 }
+
+/* Soft, contained inputs — tactile, understated, integrated */
 .field input, .field select, .field textarea {
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid rgba(26, 22, 18, 0.18);
-  padding: 12px 0 14px;
-  font-family: 'Newsreader', serif;
+  background: rgba(255, 253, 248, 0.55);
+  border: 1px solid rgba(42, 35, 27, 0.13);
+  border-radius: var(--radius-soft, 10px);
+  padding: 15px 18px;
   font-weight: 400;
-  font-size: 19px;
+  font-size: 17px;
   color: var(--ink);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.006em;
   outline: none;
-  transition: border-color 0.5s var(--ease);
-  border-radius: 0;
+  transition: border-color 0.45s var(--ease), box-shadow 0.45s var(--ease), background-color 0.45s var(--ease);
   -webkit-appearance: none;
   appearance: none;
 }
-.field input:focus, .field select:focus, .field textarea:focus { border-bottom-color: var(--gold); }
-.field input::placeholder, .field textarea::placeholder { color: rgba(26, 22, 18, 0.32); font-style: italic; }
-.field textarea { min-height: 120px; resize: vertical; line-height: 1.5; font-size: 17px; }
+.field input:hover, .field select:hover, .field textarea:hover {
+  border-color: rgba(42, 35, 27, 0.22);
+}
+/* Focus — calm border shift + soft warm glow (no browser outline) */
+.field input:focus, .field select:focus, .field textarea:focus {
+  border-color: rgba(184, 148, 90, 0.55);
+  background: rgba(255, 253, 248, 0.92);
+  box-shadow: 0 0 0 4px rgba(184, 148, 90, 0.10);
+}
+.field input::placeholder, .field textarea::placeholder {
+  color: rgba(42, 35, 27, 0.34);
+  font-style: normal;
+}
+.field textarea { min-height: 140px; resize: vertical; line-height: 1.6; }
+
+/* Autofill — fully override the browser blue/yellow with warm cream.
+   The 6e5s transition trick freezes Chrome's autofill background flash. */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field textarea:-webkit-autofill,
+.field select:-webkit-autofill {
+  -webkit-text-fill-color: var(--ink, #1F1A14);
+  -webkit-box-shadow: 0 0 0 1000px #F6F0E4 inset;
+  box-shadow: 0 0 0 1000px #F6F0E4 inset;
+  caret-color: var(--ink, #1F1A14);
+  border: 1px solid rgba(42, 35, 27, 0.13);
+  border-radius: var(--radius-soft, 10px);
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+.field input:-webkit-autofill:focus,
+.field textarea:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #F6F0E4 inset, 0 0 0 4px rgba(184, 148, 90, 0.10);
+  box-shadow: 0 0 0 1000px #F6F0E4 inset, 0 0 0 4px rgba(184, 148, 90, 0.10);
+  border-color: rgba(184, 148, 90, 0.55);
+}
+.field input:autofill, .field textarea:autofill {
+  box-shadow: 0 0 0 1000px #F6F0E4 inset;
+  -webkit-text-fill-color: var(--ink, #1F1A14);
+}
+
 .field-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 28px;
+  gap: 18px 22px;
 }
 
 .inquiry-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 36px;
+  margin-bottom: clamp(28px, 3.4vw, 38px);
 }
 .inquiry-pill {
   display: inline-flex;
   align-items: center;
-  padding: 9px 18px;
-  border: 1px solid rgba(26, 22, 18, 0.16);
-  background: transparent;
-  font-family: 'Inter', sans-serif;
+  padding: 10px 18px;
+  border: 1px solid rgba(42, 35, 27, 0.14);
+  background: rgba(255, 253, 248, 0.4);
   font-size: 9px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--ink-soft);
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.55s var(--ease);
-  border-radius: 100px;
-  padding-left: calc(18px + 0.18em);
+  transition: color 0.4s var(--ease), background-color 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
+  border-radius: var(--radius-pill, 999px);
 }
-.inquiry-pill:hover { border-color: var(--gold); color: var(--ink); }
+.inquiry-pill:hover {
+  border-color: rgba(184, 148, 90, 0.5);
+  color: var(--ink);
+  background: rgba(255, 253, 248, 0.85);
+}
 .inquiry-pill.active {
   background: var(--ink);
   color: var(--cream);
   border-color: var(--ink);
+  box-shadow: 0 8px 20px -10px rgba(42, 35, 27, 0.5);
 }
 
 .submit-btn {
   display: inline-flex;
   align-items: center;
-  gap: 24px;
-  padding: 22px 44px;
+  gap: 22px;
+  padding: 19px 40px;
   background: var(--ink);
   color: var(--cream);
   border: 1px solid var(--ink);
-  font-family: 'Inter', sans-serif;
   font-size: 10px;
   letter-spacing: var(--track-button);
   text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.7s var(--ease);
-  margin-top: 16px;
-  padding-left: calc(44px + var(--track-button));
+  transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease), transform 0.5s var(--ease);
+  margin-top: 18px;
+  border-radius: var(--radius-pill, 999px);
+  box-shadow: 0 14px 30px -16px rgba(42, 35, 27, 0.5);
 }
-.submit-btn:hover { background: var(--gold-deep); }
-.submit-btn .arrow { width: 22px; height: 1px; background: currentColor; position: relative; }
+.submit-btn:hover {
+  background: var(--gold-deep);
+  box-shadow: 0 18px 36px -16px rgba(138, 98, 40, 0.5);
+  transform: translateY(-1px);
+}
+.submit-btn:active { transform: translateY(0); }
+.submit-btn .arrow { width: 22px; height: 1px; background: currentColor; position: relative; transition: width 0.4s var(--ease); }
+.submit-btn:hover .arrow { width: 30px; }
 .submit-btn .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
 
 .form-note {
-  font-family: 'Inter', sans-serif;
   font-size: 11px;
   color: var(--ink-soft);
-  margin-top: 24px;
-  opacity: 0.7;
+  margin-top: 22px;
+  opacity: 0.68;
   line-height: 1.6;
+  max-width: 54ch;
 }
 
 /* Form success */
@@ -438,7 +489,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   .c-form h3 { font-size: 28px; }
   .c-form .sub { font-size: 15px; margin-bottom: 36px; }
   .field-row { grid-template-columns: 1fr; gap: 0; }
-  .field input, .field select, .field textarea { font-size: 17px; padding: 14px 0 16px; }
+  .field input, .field select, .field textarea { font-size: 16px; padding: 14px 16px; }
   .inquiry-pills { gap: 6px; }
   .inquiry-pill { padding: 10px 16px; font-size: 8.5px; letter-spacing: 0.2em; }
   .submit-btn { padding: 18px 30px; padding-left: calc(30px + var(--track-button)); width: 100%; justify-content: center; gap: 16px; }
@@ -557,9 +608,9 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <!-- ============ Hero ============ -->
 <section class="contact-hero">
   <div class="contact-hero__media" aria-hidden="true">
-    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="contacthero-poster.jpg?v=hd-2026-06-06-3">
-      <source src="contacthero.webm?v=hd-2026-06-06-3" type="video/webm">
-      <source src="contacthero.mp4?v=hd-2026-06-06-3" type="video/mp4">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="contacthero-poster.jpg?v=hd-2026-06-06-4">
+      <source src="contacthero.webm?v=hd-2026-06-06-4" type="video/webm">
+      <source src="contacthero.mp4?v=hd-2026-06-06-4" type="video/mp4">
     </video>
   </div>
   <div class="contact-hero__inner">
@@ -762,7 +813,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-3"></script>
+<script src="shared.js?v=hd-2026-06-06-4"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
