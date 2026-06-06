@@ -4386,9 +4386,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-16'], ['hd-search-js', 'search.js?v=hd-2026-06-06-16'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-16'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-16'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-16'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-16'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-16'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-16'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-16'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-16']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-17'], ['hd-search-js', 'search.js?v=hd-2026-06-06-17'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-17'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-17'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-17'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-17'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-17'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-17'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-17'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-17']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

@@ -4291,3 +4291,29 @@ html::-webkit-scrollbar { width: 0; height: 0; display: none; }
   .cart-empty .cart-empty-cta:hover::after { animation: none; }
   .cart-empty .ce-card:hover .ce-card-img img { transform: none; }
 }
+
+/* =================================================================
+   INTRO LOGO — brighter, clearer treatment (was lost on dark green)
+   ================================================================= */
+.hd-intro__mark {
+  filter: brightness(1.5) saturate(0.82)
+          drop-shadow(0 0 34px rgba(255, 230, 175, 0.5))
+          drop-shadow(0 16px 46px rgba(0, 0, 0, 0.55)) !important;
+}
+.hd-intro__halo {
+  background: radial-gradient(closest-side,
+    rgba(255, 238, 200, 0.5) 0%,
+    rgba(232, 201, 130, 0.26) 34%,
+    rgba(201, 153, 72, 0.08) 62%,
+    transparent 82%) !important;
+}
+/* soft dark pool directly behind the wordmark for stronger contrast */
+.hd-intro__stage::before {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  width: 150%; height: 170%; transform: translate(-50%, -50%); z-index: -1;
+  background: radial-gradient(58% 52% at 50% 50%, rgba(6, 14, 10, 0.55), transparent 72%);
+  filter: blur(22px); pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hd-intro__mark { filter: brightness(1.45) saturate(0.85) drop-shadow(0 0 24px rgba(255,230,175,0.4)) !important; }
+}
