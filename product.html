@@ -99,8 +99,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-1">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Inter:wght@300..600&family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-2">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -332,22 +332,28 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 .hero-stage {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6%;
+  grid-template-columns: 0.82fr 1fr;   /* image curated smaller, content gets more room */
+  gap: clamp(56px, 8%, 132px);
   padding: 0 8%;
   align-items: center;
-  min-height: 78vh;
+  min-height: 76vh;
+  max-width: 1440px;                    /* gallery-like container; never edge-to-edge on large screens */
+  margin: 0 auto;
 }
 
-/* Big jar */
+/* Big jar — a photographed object in a gallery space */
 .big-jar-frame {
   position: relative;
   aspect-ratio: 4 / 5;
+  width: 100%;
+  max-width: 400px;                     /* refined footprint */
+  margin-inline: auto;                  /* centered, breathing room around it */
   overflow: hidden;
+  border-radius: var(--radius-card, 16px);
   background: #0E0B08;
   box-shadow:
-    0 80px 110px -30px rgba(40, 24, 8, 0.55),
-    0 24px 50px -20px rgba(40, 24, 8, 0.35);
+    0 60px 90px -38px rgba(40, 24, 8, 0.42),
+    0 18px 40px -24px rgba(40, 24, 8, 0.28);
   animation: jarFloat 7s ease-in-out infinite;
 }
 .big-jar-frame img {
@@ -1074,6 +1080,53 @@ footer {
   box-shadow: 0 0 0 3px rgba(92, 158, 81, 0.18);
 }
 </style>
+
+<!-- ============================================================
+     TYPOGRAPHY PREVIEW — modern grotesk system (no serif, no italic)
+     Scoped to this page. Inter Tight (display) + Inter (body).
+     The SVG logo wordmark + icons are explicitly excluded.
+     ============================================================ -->
+<style id="type-grotesk-preview">
+  /* modern, restrained label/button tracking (was 0.36–0.42em cliché) */
+  :root { --track-label: 0.12em; --track-button: 0.14em; }
+
+  /* base: everything to the grotesk body face — but never SVG (logo/icons) */
+  body :not(svg):not(svg *) {
+    font-family: 'Inter', 'Inter Tight', system-ui, -apple-system, sans-serif !important;
+  }
+
+  /* display / headings → Inter Tight, tighter and more architectural */
+  body h1, body h2, body h3, body h4, body h5,
+  body .pd-title, body .section-headline, body .product-origin-meta h2,
+  body .also-card .name, body .px-title, body .pd-price,
+  body .taste-col h4, body .taste-col h5, body .detail-cell,
+  body .menu-items a, body .side-title, body .review-author {
+    font-family: 'Inter Tight', 'Inter', system-ui, sans-serif !important;
+    font-weight: 540 !important;
+    letter-spacing: -0.018em !important;
+    font-style: normal !important;
+  }
+  /* large display gets a touch tighter leading for the modern grotesk look */
+  body .pd-title, body .section-headline { line-height: 1.04 !important; letter-spacing: -0.028em !important; }
+
+  /* kill all italic — former italic accents become a quiet tonal/weight shift */
+  body em, body i { font-style: normal !important; }
+  body .pd-title em, body .section-headline em, body .product-origin-meta h2 em,
+  body .also-card .name em, body .menu-items a em {
+    color: var(--ink-warm) !important; font-weight: 420 !important;
+  }
+
+  /* labels/eyebrows/metadata: cleaner, slightly larger, medium weight */
+  body .pd-eyebrow, body .crumbs, body .tag, body .section-eyebrow,
+  body .detail-cell .lbl, body .px-eyebrow {
+    font-size: 10.5px !important; font-weight: 500 !important;
+  }
+
+  /* body copy: calmer rhythm */
+  body .pd-desc, body .product-origin-meta p, body .taste-col p, body .px-card p {
+    line-height: 1.7 !important;
+  }
+</style>
 </head>
 <body>
 
@@ -1498,7 +1551,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="chestnut" data-i18n="product.sticky.add">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-1"></script>
+<script src="shared.js?v=hd-2026-06-06-2"></script>
 <script>
 (function() {
   /* Menu */

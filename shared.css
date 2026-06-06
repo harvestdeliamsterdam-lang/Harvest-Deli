@@ -1148,118 +1148,70 @@ body nav.site-nav .logo-mark.nav-size {
    Replaces the generic green WhatsApp bubble.
    ============================================================ */
 
-/* ------------ Chat FAB (gold-coin medallion with embossed chat bubble) ------------ */
-/* Inline SVG (built in shared.js) carries the metal sheen, gloss highlight,
-   engraved rim and chat bubble. The button itself stays transparent; we add
-   only the ambient breathing glow + hover lift. Sharp at any size. */
+/* ------------ Correspondence button (matte pill — "Write to us") ------------ */
+/* Calm Mediterranean-hospitality entry point. No glossy coin, no glow, no pulse —
+   a quiet matte pill that reads as an invitation to write, not a chat widget. */
 .hd-concierge-fab {
   position: fixed;
   bottom: 26px;
   right: 26px;
   z-index: 130;
-  width: 68px;
-  height: 68px;
-  padding: 0;
-  border: none;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  color: transparent;
+  gap: 9px;
+  padding: 13px 22px;
+  border-radius: var(--radius-pill, 999px);
+  background: #241C14;                         /* matte deep brown */
+  color: #F3EAD9;                              /* soft cream */
+  border: 1px solid rgba(212, 172, 106, 0.26); /* subtle gold hairline */
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 14px 34px -18px rgba(20, 14, 6, 0.55);
   opacity: 0;
-  transform: translateY(20px) scale(0.92);
+  transform: translateY(14px);
   pointer-events: none;
   transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity  0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    filter    0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity, filter;
+    background 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   -webkit-tap-highlight-color: transparent;
 }
 .hd-concierge-fab.ready { opacity: 1; transform: none; pointer-events: auto; }
-.hd-concierge-fab::before {
-  /* ambient breathing glow behind the coin */
-  content: '';
-  position: absolute;
-  inset: -14px;
-  border-radius: 50%;
-  background: radial-gradient(55% 55% at 50% 50%, rgba(212, 172, 106, 0.38) 0%, rgba(212, 172, 106, 0) 72%);
-  z-index: -1;
-  animation: hdConciergeBreath 5.6s ease-in-out infinite;
-  pointer-events: none;
-}
-@keyframes hdConciergeBreath {
-  0%, 100% { transform: scale(1);    opacity: 0.55; }
-  50%      { transform: scale(1.14); opacity: 0.88; }
-}
-.hd-concierge-fab .hd-fab-glyph {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  /* Floating shadow under the coin medallion (the inline SVG carries its own sheen) */
-  filter:
-    drop-shadow(0 12px 26px rgba(20, 14, 6, 0.34))
-    drop-shadow(0 4px 10px rgba(184, 148, 90, 0.30));
-  transition: filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hd-concierge-fab .hd-fab-glyph svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
 .hd-concierge-fab:hover {
-  transform: translateY(-3px);
+  background: #30251A;
+  border-color: rgba(212, 172, 106, 0.5);
+  transform: translateY(-2px);
 }
-.hd-concierge-fab:hover .hd-fab-glyph {
-  filter:
-    drop-shadow(0 18px 34px rgba(20, 14, 6, 0.40))
-    drop-shadow(0 6px 14px rgba(184, 148, 90, 0.38))
-    brightness(1.04);
-}
-.hd-concierge-fab:active .hd-fab-glyph { filter: brightness(0.96); }
-.hd-concierge-fab:focus-visible {
-  outline: 2px solid #E8C982;
-  outline-offset: 6px;
-  border-radius: 50%;
-}
+.hd-concierge-fab:active { transform: translateY(0); }
+.hd-concierge-fab:focus-visible { outline: 2px solid #B8945A; outline-offset: 3px; }
+
+/* Option 1 — no icon: hide the old gold coin glyph, show the label inline */
+.hd-concierge-fab .hd-fab-glyph { display: none; }
 .hd-concierge-fab .hd-fab-label {
-  position: absolute;
-  right: calc(100% + 14px);
-  top: 50%;
-  transform: translate(8px, -50%);
-  white-space: nowrap;
-  font-family: 'Inter', sans-serif;
-  font-size: 9.5px;
-  letter-spacing: 0.36em;
-  text-transform: uppercase;
-  font-weight: 500;
-  color: #FAF6EE;
-  background: rgba(14, 11, 8, 0.92);
-  padding: 10px 16px;
-  padding-left: calc(16px + 0.36em);
-  border: 1px solid rgba(232, 200, 152, 0.18);
-  border-radius: 2px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1), transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.hd-concierge-fab:hover .hd-fab-label,
-.hd-concierge-fab:focus-visible .hd-fab-label {
+  position: static;
   opacity: 1;
-  transform: translate(0, -50%);
+  transform: none;
+  pointer-events: auto;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  font-weight: inherit;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hd-concierge-fab::before { animation: none; }
   .hd-concierge-fab { transition: opacity 0.3s linear; }
 }
 @media (max-width: 600px) {
-  .hd-concierge-fab { bottom: 20px; right: 20px; width: 62px; height: 62px; }
-  .hd-concierge-fab .hd-fab-label { display: none; }
+  .hd-concierge-fab { bottom: 18px; right: 18px; padding: 12px 18px; font-size: 10.5px; letter-spacing: 0.12em; }
 }
 
 /* ------------ Concierge panel ------------ */
@@ -3906,3 +3858,36 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 .pd-stock.is-out { color: #7a2812; }
 .pd-stock.is-out .pd-stock-dot { background: #7a2812; }
 .pd-stock.is-backorder .pd-stock-dot { background: var(--ink-soft, #5C5247); }
+
+/* ================================================================
+   MODERN GROTESK TYPE SYSTEM (site-wide) — no serif, no italic
+   Inter Tight (display) + Inter (body). The SVG logo wordmark and
+   icons are excluded so the brand mark + glyphs are untouched.
+   Applied globally with !important to override per-page inline serif.
+   ================================================================ */
+:root { --track-label: 0.12em; --track-button: 0.14em; }
+
+/* base — everything to the grotesk body face, never SVG (logo/icons) */
+body :not(svg):not(svg *) {
+  font-family: 'Inter', 'Inter Tight', system-ui, -apple-system, sans-serif !important;
+}
+
+/* no italics anywhere (former italic accents become a quiet tonal shift) */
+body em, body i { font-style: normal !important; }
+
+/* display / headings → Inter Tight, tighter and more architectural.
+   Attribute selectors catch the site's *-headline / *-title classes. */
+body h1, body h2, body h3,
+body [class*="headline"], body [class*="title"],
+body .menu-items a, body .acct-h1, body .pd-price,
+body .also-card .name, body .px-title, body .side-title {
+  font-family: 'Inter Tight', 'Inter', system-ui, sans-serif !important;
+  font-weight: 540 !important;
+  letter-spacing: -0.02em !important;
+  font-style: normal !important;
+}
+/* very large display gets a touch tighter leading */
+body [class*="headline"], body .pd-title, body .c-headline, body .ck-headline {
+  line-height: 1.05 !important;
+  letter-spacing: -0.028em !important;
+}

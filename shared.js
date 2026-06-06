@@ -170,7 +170,7 @@
       'a11y.skipLink': 'Skip to content',
       'idx.h1': 'Harvest Deli — single-estate Greek honey from the hills of Pelion',
       // ---------- Harvest Concierge (floating chat) ----------
-      'concierge.fab': 'Chat',
+      'concierge.fab': 'Write to us',
       'concierge.title': 'Chat with Harvest Deli',
       'concierge.subtitle': 'Pelion, Greece',
       'concierge.online': 'Real human · Replies within hours',
@@ -682,7 +682,7 @@
       'footer.builtBy': 'Ontworpen & gebouwd door',
       'a11y.skipLink': 'Ga naar inhoud',
       'idx.h1': 'Harvest Deli — Griekse honing van één landgoed in Pelion',
-      'concierge.fab': 'Chat',
+      'concierge.fab': 'Schrijf ons',
       'concierge.title': 'Chat met Harvest Deli',
       'concierge.subtitle': 'Pelion, Griekenland',
       'concierge.online': 'Echte mens · Reactie binnen enkele uren',
@@ -1193,7 +1193,7 @@
       'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
       'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
       'idx.h1': 'Harvest Deli — μονοκτηματικό ελληνικό μέλι από το Πήλιο',
-      'concierge.fab': 'Συνομιλία',
+      'concierge.fab': 'Επικοινωνία',
       'concierge.title': 'Συνομιλία με Harvest Deli',
       'concierge.subtitle': 'Πήλιο, Ελλάδα',
       'concierge.online': 'Πραγματικός άνθρωπος · Απάντηση σε λίγες ώρες',
@@ -4250,9 +4250,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-1'], ['hd-search-js', 'search.js?v=hd-2026-06-06-1'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-1'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-1'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-1'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-1'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-1'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-1'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-1'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-1']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-2'], ['hd-search-js', 'search.js?v=hd-2026-06-06-2'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-2'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-2'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-2'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-2'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-2'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-2'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-2'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-2']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
