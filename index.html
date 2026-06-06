@@ -92,7 +92,7 @@
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap">
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-29">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-30">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1576,6 +1576,60 @@ footer {
   .idx-sel-card { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
+/* ============ Olive oil feature (replaces the large honey-jar block) ============ */
+.oil-feature { padding: clamp(80px, 15vh, 200px) 8%; }
+.oil-wrap {
+  max-width: 1180px; margin: 0 auto;
+  display: grid; grid-template-columns: 1.05fr 0.95fr;
+  gap: clamp(40px, 8vw, 130px); align-items: center;
+}
+.oil-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500;
+  margin-bottom: 24px; padding-left: 2px;
+}
+.oil-title {
+  font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540;
+  font-size: clamp(32px, 4.4vw, 58px); letter-spacing: -0.03em; line-height: 1.05;
+  color: var(--ink, #1F1A14); max-width: 17ch; margin-bottom: 30px;
+}
+.oil-lead {
+  font-family: 'Inter', sans-serif; font-size: clamp(15px, 1.2vw, 18px); line-height: 1.72;
+  color: var(--ink-soft, #5C5247); max-width: 46ch; margin-bottom: 18px;
+}
+.oil-note {
+  font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6;
+  color: var(--ink-warm, #756859); max-width: 44ch; margin-bottom: 38px;
+}
+.oil-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; font-weight: 500; color: var(--ink, #1F1A14); text-decoration: none;
+}
+.oil-cta .arrow { width: 22px; height: 1px; background: currentColor; transition: width 0.45s var(--ease); display: inline-block; }
+.oil-cta:hover .arrow { width: 36px; }
+.oil-figure { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.oil-img-frame {
+  width: clamp(190px, 22vw, 300px);   /* deliberately small + elegant */
+  border-radius: var(--radius-card, 16px); overflow: hidden;
+  box-shadow: 0 42px 70px -28px rgba(40, 28, 12, 0.42), 0 14px 26px -16px rgba(40, 28, 12, 0.28);
+}
+.oil-img-frame img {
+  width: 100%; height: auto; display: block;
+  transition: transform 1.1s var(--ease, cubic-bezier(0.22,1,0.36,1));
+}
+.oil-figure:hover .oil-img-frame img { transform: scale(1.035); }
+.oil-cap {
+  margin-top: 26px; font-family: 'Inter', sans-serif; font-size: 9.5px;
+  letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-soft, #5C5247); text-align: center;
+}
+@media (max-width: 860px) {
+  .oil-wrap { grid-template-columns: 1fr; gap: clamp(36px, 8vh, 64px); }
+  .oil-figure { order: -1; }
+  .oil-img-frame { width: clamp(180px, 54vw, 240px); }
+  .oil-title { max-width: 20ch; }
+}
+
 /* ============ Homepage hero, calm luxury after intro ============ */
 /* Clean the hero: the floating brand/tagline overlay is gone (the intro
    already presents the logo). Lighter vignette keeps the footage crisp.
@@ -1724,9 +1778,9 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
        The cinematic scene language is preserved as-is below. -->
   <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli, Single-estate Greek honey from Pelion</h1>
   <div class="video-stage">
-    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-29">
-      <source src="video.mp4?v=hd-2026-06-06-29" type="video/mp4">
-      <source src="v.webm?v=hd-2026-06-06-29" type="video/webm">
+    <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="hero-poster.jpg?v=hd-2026-06-06-30">
+      <source src="video.mp4?v=hd-2026-06-06-30" type="video/mp4">
+      <source src="v.webm?v=hd-2026-06-06-30" type="video/webm">
     </video>
   </div>
 
@@ -1824,7 +1878,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <p class="chapter-body" data-i18n="idx.ch1.body">For five generations, a single family has tended a thousand hives across the limestone ridges of Mount Pelion. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.</p>
     </div>
     <div class="image-frame reveal delay-1" id="originFrame">
-      <div class="if-media"><img class="origin-parallax" src="hero-poster.jpg?v=hd-2026-06-06-29" alt="Aerial view of beehives along a Pelion ridge at golden sunrise, fog drifting through the valley" loading="lazy"></div>
+      <div class="if-media"><img class="origin-parallax" src="hero-poster.jpg?v=hd-2026-06-06-30" alt="Aerial view of beehives along a Pelion ridge at golden sunrise, fog drifting through the valley" loading="lazy"></div>
       <span class="if-glow" aria-hidden="true"></span>
       <span class="caption" data-i18n="idx.ch1.caption">Pelion &middot; Spring harvest</span>
     </div>
@@ -1865,20 +1919,19 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     </div>
   </section>
 
-  <section class="chapter product" id="collection">
-    <div class="product-stage">
-      <a href="product.html" class="jar-link reveal">
-        <div class="jar-photo-frame">
-          <img src="harvestdeli.png" alt="Harvest Deli Chestnut Honey jar on stone with honeycomb" / loading="lazy">
-        </div>
-      </a>
-      <div class="product-meta reveal delay-1">
-        <div class="pm-eyebrow" data-i18n="idx.product.eyebrow">The Collection · Edition I</div>
-        <h2 data-i18n-html="idx.product.title_html">Chestnut Honey, <em>2025 harvest.</em></h2>
-        <div class="origin-line" data-i18n-html="idx.product.originLine_html">Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 jars</div>
-        <p class="desc" data-i18n="idx.product.desc">A single-meadow honey of remarkable clarity. Notes of warm resin, sun-baked herb, and a long mineral finish. Bottled in heavy hand-pressed glass, numbered by hand, kept untreated.</p>
-        <a href="product.html" class="product-cta"><span data-i18n-html="idx.product.cta_html">View the jar, €68</span> <span class="arrow"></span></a>
+  <section class="chapter oil-feature" id="olive-oil-feature">
+    <div class="oil-wrap">
+      <div class="oil-copy reveal">
+        <div class="oil-eyebrow" data-i18n="oil.eyebrow">The Other Harvest · Olive Oil</div>
+        <h2 class="oil-title" data-i18n="oil.title">Pressed from sun-warmed olives, slowly.</h2>
+        <p class="oil-lead" data-i18n="oil.lead">From a handful of old groves on the Pelion slope, hand-picked in the first cold weeks of winter and pressed within hours over stone. Unhurried, unfiltered, green and alive.</p>
+        <p class="oil-note" data-i18n="oil.note">A single estate. A single pressing. Bottled the day it runs.</p>
+        <a href="product-olive-oil.html" class="oil-cta"><span data-i18n="oil.cta">Discover the oil</span> <span class="arrow"></span></a>
       </div>
+      <figure class="oil-figure reveal delay-1">
+        <div class="oil-img-frame"><img src="assets/greekoliveoil.PNG?v=hd-2026-06-06-30" alt="Single-estate Harvest extra virgin olive oil on marble with olives and bread" loading="lazy"></div>
+        <figcaption class="oil-cap" data-i18n="oil.cap">Pelion · First cold pressing</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -2246,7 +2299,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-29"></script>
+<script src="shared.js?v=hd-2026-06-06-30"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');
