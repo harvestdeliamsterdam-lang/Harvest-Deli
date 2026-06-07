@@ -959,6 +959,14 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 </footer>
 
 <script src="shared.js?v=hd-2026-06-06-36"></script>
+<!-- CMS / editorial layer (Sanity-ready). Dormant by default: the static
+     journal above is untouched unless you opt in with ?cms=1 (mock) or
+     ?cms=sanity. See cms/README.md. -->
+<script src="cms/config.js?v=hd-2026-06-06-36"></script>
+<script src="cms/mock-content.js?v=hd-2026-06-06-36"></script>
+<script src="cms/sanity.js?v=hd-2026-06-06-36"></script>
+<script src="cms/index.js?v=hd-2026-06-06-36"></script>
+<script src="cms/journal-render.js?v=hd-2026-06-06-36"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');

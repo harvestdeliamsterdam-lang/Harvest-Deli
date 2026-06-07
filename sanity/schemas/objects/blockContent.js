@@ -1,0 +1,52 @@
+/**
+ * Portable Text body — the rich-text field for journal articles.
+ * Mirrors the editorial structure already used in article-*.html:
+ * numbered H2 sections, lede paragraphs, pull quotes and figures.
+ */
+export default {
+  name: 'blockContent',
+  title: 'Body',
+  type: 'array',
+  of: [
+    {
+      type: 'block',
+      styles: [
+        { title: 'Normal', value: 'normal' },
+        { title: 'Section heading (H2)', value: 'h2' },
+        { title: 'Sub heading (H3)', value: 'h3' },
+        { title: 'Lede', value: 'lede' },
+        { title: 'Quote', value: 'blockquote' },
+      ],
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Numbered', value: 'number' },
+      ],
+      marks: {
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+        ],
+        annotations: [
+          {
+            name: 'link',
+            type: 'object',
+            title: 'Link',
+            fields: [
+              { name: 'href', type: 'url', title: 'URL' },
+              { name: 'blank', type: 'boolean', title: 'Open in new tab' },
+            ],
+          },
+        ],
+      },
+    },
+    {
+      type: 'image',
+      title: 'Figure',
+      options: { hotspot: true },
+      fields: [
+        { name: 'alt', type: 'string', title: 'Alt text' },
+        { name: 'caption', type: 'string', title: 'Caption' },
+      ],
+    },
+  ],
+}
