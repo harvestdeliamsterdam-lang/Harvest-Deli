@@ -69,14 +69,14 @@
   /* ---- shared GROQ projection → the runtime post shape ---- */
   var POST_PROJECTION =
     '{' +
-    '"id": _id, "type": _type, title, "slug": slug.current, excerpt,' +
+    '"id": _id, "type": _type, title, "slug": slug.current, excerpt, language,' +
     'body,' +
-    '"image": { "url": featuredImage.asset->url, "alt": featuredImage.alt, "caption": featuredImage.caption },' +
+    '"image": { "url": mainImage.asset->url, "alt": mainImage.alt, "caption": mainImage.caption },' +
     '"category": category->{ title, "slug": slug.current, tone },' +
     '"author": author->{ name, "slug": slug.current, role, "image": { "url": image.asset->url } },' +
     '"publishedAt": publishedAt,' +
     'readingTime, status, featured,' +
-    '"seo": { "title": seo.title, "description": coalesce(seo.description, excerpt), "ogImage": coalesce(seo.ogImage.asset->url, featuredImage.asset->url) }' +
+    '"seo": { "title": seoTitle, "description": coalesce(seoDescription, excerpt), "ogImage": coalesce(ogImage.asset->url, mainImage.asset->url) }' +
     '}';
 
   function decorate(p) {
@@ -95,6 +95,7 @@
       var filters = ['_type == "post"'];
       if (opts.status) filters.push('status == $status');
       if (opts.category) filters.push('category->slug.current == $category');
+      if (opts.language) filters.push('language == $language');
       var groq =
         '*[' + filters.join(' && ') + '] | order(publishedAt desc)' +
         (typeof opts.limit === 'number' ? '[0...' + opts.limit + ']' : '') +
@@ -102,6 +103,7 @@
       var params = {};
       if (opts.status) params.status = opts.status;
       if (opts.category) params.category = opts.category;
+      if (opts.language) params.language = opts.language;
       return query(groq, params).then(function (rows) {
         return (rows || []).map(decorate);
       });

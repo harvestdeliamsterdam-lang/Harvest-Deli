@@ -36,12 +36,30 @@ sanity/              Standalone Sanity Studio for editors (deploy later)
     documents/aboutStory.js  About page story (singleton)
 ```
 
-## Blog/article schema (as requested)
+## Blog post schema (`sanity/schemas/documents/post.js`)
 
-`post` includes: **title, slug, excerpt, body, featured image, category, author,
-published date, SEO title, SEO description, OG image** (SEO fields grouped in the
-reusable `seo` object), plus `readingTime`, `status` (published/upcoming/draft) and
-`featured`.
+| Field | Type | Notes |
+|-------|------|-------|
+| `title` | string | required |
+| `slug` | slug | from title; used for `article-<slug>.html` |
+| `excerpt` | text | card summary + SEO fallback |
+| `mainImage` | image | hotspot + `alt`/`caption` |
+| `body` | Portable Text (`blockContent`) | rich text |
+| `category` | reference → `category` | dereferenced at fetch |
+| `author` | reference → `author` | dereferenced at fetch |
+| `publishedAt` | datetime | sort key (newest first) |
+| `language` | string | `nl` / `en` / `el` |
+| `seoTitle` | string | meta title (falls back to `title`) |
+| `seoDescription` | text | meta description (falls back to `excerpt`) |
+
+Useful extras also present: `readingTime`, `status` (published / upcoming / draft),
+`featured`, `ogImage`. Supporting documents: `category` (+ visual `tone`), `author`,
+plus `homeSection` / `aboutStory` for site editorial.
+
+> Runtime shape (what the frontend receives, identical from mock or Sanity):
+> `image` (from `mainImage`), `seo:{title,description,ogImage}` (from `seoTitle`/
+> `seoDescription`/`ogImage`), `category`/`author` dereferenced, `publishedLabel`
+> + `href` derived. Posts can be filtered by `status`, `category`, `language`, `limit`.
 
 ---
 

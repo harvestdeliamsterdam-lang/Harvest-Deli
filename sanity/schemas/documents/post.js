@@ -33,8 +33,8 @@ export default {
       validation: (Rule) => Rule.max(280),
     },
     {
-      name: 'featuredImage',
-      title: 'Featured image',
+      name: 'mainImage',
+      title: 'Main image',
       type: 'image',
       group: 'content',
       options: { hotspot: true },
@@ -45,6 +45,22 @@ export default {
     },
     { name: 'body', title: 'Body', type: 'blockContent', group: 'content' },
 
+    {
+      name: 'language',
+      title: 'Language',
+      type: 'string',
+      group: 'meta',
+      description: 'Which site language this post belongs to.',
+      options: {
+        list: [
+          { title: 'Nederlands', value: 'nl' },
+          { title: 'English', value: 'en' },
+          { title: 'Ελληνικά', value: 'el' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'nl',
+    },
     {
       name: 'category',
       title: 'Category',
@@ -95,7 +111,31 @@ export default {
       group: 'meta',
       initialValue: false,
     },
-    { name: 'seo', title: 'SEO & social', type: 'seo', group: 'seo' },
+    {
+      name: 'seoTitle',
+      title: 'SEO title',
+      type: 'string',
+      group: 'seo',
+      description: 'Overrides the <title>. ~50–60 chars. Falls back to the post title.',
+      validation: (Rule) => Rule.max(70).warning('Keep under ~60 characters.'),
+    },
+    {
+      name: 'seoDescription',
+      title: 'SEO description',
+      type: 'text',
+      rows: 3,
+      group: 'seo',
+      description: 'Meta description. ~150–160 chars. Falls back to the excerpt.',
+      validation: (Rule) => Rule.max(180).warning('Keep under ~160 characters.'),
+    },
+    {
+      name: 'ogImage',
+      title: 'OG / social image',
+      type: 'image',
+      group: 'seo',
+      description: '1200×630 recommended. Falls back to the main image.',
+      options: { hotspot: true },
+    },
   ],
   orderings: [
     {
@@ -105,7 +145,7 @@ export default {
     },
   ],
   preview: {
-    select: { title: 'title', subtitle: 'category.title', media: 'featuredImage', status: 'status' },
+    select: { title: 'title', subtitle: 'category.title', media: 'mainImage', status: 'status' },
     prepare({ title, subtitle, media, status }) {
       const tag = status && status !== 'published' ? ` · ${status}` : ''
       return { title, subtitle: (subtitle || 'Uncategorised') + tag, media }

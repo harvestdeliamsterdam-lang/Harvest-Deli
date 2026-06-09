@@ -14,6 +14,7 @@
      publishedAt, publishedLabel, readingTime,
      status: 'published'|'upcoming'|'draft',
      featured: bool,
+     language: 'nl'|'en'|'el',
      href,                                        // article page url
      seo: { title, description, ogImage|null }
    }
@@ -58,6 +59,7 @@
       readingTime: '8 min read',
       status: 'published',
       featured: true,
+      language: 'en',
       href: 'article-taste-the-greek-sun.html',
       body: [
         block('lede', 'Honey is a place before it is a flavour. Pelion is the place this one comes from.'),
@@ -85,6 +87,7 @@
       readingTime: '7 min read',
       status: 'published',
       featured: false,
+      language: 'nl',
       href: 'article-griekse-honing-nederland.html',
       body: [block('lede', 'Echte Griekse honing herken je aan de oogst, niet aan het etiket.')],
       seo: {
@@ -109,6 +112,7 @@
       readingTime: '6 min read',
       status: 'published',
       featured: false,
+      language: 'nl',
       href: 'article-griekse-honing-smaak.html',
       body: [block('lede', 'Het verschil zit in de bloem, de berg en de temperatuur.')],
       seo: {
@@ -155,6 +159,7 @@
       readingTime: '',
       status: 'upcoming',
       featured: false,
+      language: 'en',
       href: 'journal.html',
       body: [],
       seo: { title: null, description: excerpt, ogImage: null },
@@ -187,6 +192,7 @@
       var list = POSTS.slice();
       if (opts.status) list = list.filter(function (p) { return p.status === opts.status; });
       if (opts.category) list = list.filter(function (p) { return p.category && p.category.slug === opts.category; });
+      if (opts.language) list = list.filter(function (p) { return p.language === opts.language; });
       if (typeof opts.limit === 'number') list = list.slice(0, opts.limit);
       return resolve(list);
     },
