@@ -2,46 +2,99 @@
 
 This folder is the **commerce abstraction layer**. The storefront UI (shop,
 product, cart drawer, checkout, account) keeps working exactly as today; this
-layer makes a later **headless Shopify** integration plug-and-play.
+layer makes the **headless Shopify Storefront API** integration plug-and-play.
 
-> Stack note: the site is static HTML + vanilla JS (no build/TS/framework).
-> Types are expressed as **JSDoc `@typedef`** (`types.js`) — real editor/IntelliSense
-> value, zero build. When/if the site moves to Next.js, these map 1:1 to TS interfaces.
+> Stack note: the site is **static HTML + vanilla JS** (no build / TS / framework,
+> Vercel static hosting). Types are JSDoc `@typedef` (`types.js`). Nothing here
+> converts the site to Next.js.
 
 ## Files
 | File | Role |
 |------|------|
-| `config.js` | One switch: `source: 'mock' | 'shopify'` + Shopify creds + currency/locale. |
-| `types.js` | Storefront-shaped types: `Product, ProductVariant, Collection, Cart, CartLine, Customer, Order, Address, Inventory, ProductImage, Money`. |
-| `storefront.js` | **The seam.** The only file that calls Shopify. Holds the real GraphQL queries/mutations. Inert until configured. |
-| `commerce.js` | `window.Commerce` — the API the frontend should use: `products / collections / cart / customer / search / filters`. Async, Shopify-shaped. Today reads the local catalog; flips to Shopify via config. |
+| `config.js` | One switch: `source: 'mock' \| 'shopify'` + Shopify creds + currency/locale. **The token goes here.** |
+| `types.js` | Storefront-shaped types (`Product, ProductVariant, Collection, Cart, …`). |
+| `storefront.js` | **The seam.** The only file that calls Shopify. GraphQL queries/mutations + a safe (timeout + fallback) fetch. Inert until configured. |
+| `commerce.js` | `window.Commerce` — the API the frontend uses: `products / collections / cart / checkout / search / filters / customer / sync`. Async, Shopify-shaped. Reads the local catalog today; flips to Shopify via config. |
 
-## Separation of concerns
-- **UI** — the existing `.html` pages + `shared.css` (presentation only).
-- **Data layer** — `commerce/` (this folder): shapes + fetching.
-- **Commerce logic** — `HD_CART`, `HD_stock`, `HD_account` (runtime state) — bridged by `commerce.js`.
-- **CMS / editorial** — `cms/` (journal, recipes, homepage copy) — kept out of commerce.
+---
 
-## How to connect Shopify later (no UI rewrite)
-1. Create a Storefront API access token in Shopify.
-2. In `config.js`: set `shopify.domain`, `shopify.storefrontToken`, then `source: 'shopify'`.
-3. `commerce.js` read paths (`products.get`, `collections.get`, `search.predictive`) already
-   route through `storefront.js` when configured — the GraphQL is written.
-4. For cart/checkout: implement `cartCreate`/`cartLinesAdd` in `storefront.js` and return
-   Shopify's `checkoutUrl` from `Commerce.cart` (marked `// SEAM`). The checkout page then
-   redirects to Shopify Checkout.
-5. For customers: swap `Commerce.customer` to the Shopify Customer Account API (marked `// SEAM`).
+## ⬛ Where the Shopify token must be added (the only edit to go live)
 
-## Intended folder map for a future framework migration
-`/products /collections /cart /checkout /customer /search /filters /utils` — today these are
-**namespaces** inside `commerce.js` (`Commerce.products`, `Commerce.collections`, …) to avoid
-a module bundler in a static site; they split cleanly into folders when the project gains a build.
+Open **`commerce/config.js`** and set two values:
 
-## Smoke test (browser console on any page)
 ```js
-await Commerce.products.all();            // 11 Storefront-shaped products
-await Commerce.products.get('chestnut');  // single product + variant + images
-await Commerce.collections.list();        // raw-honey / olive-oil / mountain-tea / limited / gift
-await Commerce.search.predictive('thyme');
-await Commerce.cart.get();                // Shopify-shaped cart bridged to HD_CART
+window.HD_COMMERCE_CONFIG = {
+  source: 'shopify',                        // 1) was 'mock'
+  shopify: {
+    domain: 'su08c4-v4.myshopify.com',      // already set (the connected store)
+    storefrontToken: 'PASTE_TOKEN_HERE',    // 2) Storefront API access token
+    apiVersion: '2024-10'
+  }
+};
 ```
+
+Get the token in Shopify admin → **Settings → Apps and sales channels → Develop apps
+→ (your app) → API credentials → Storefront API access token**. It is a **public,
+read-only** token, safe in client code. **Never** put the Admin API token here.
+
+That's it — no other file changes. Because there's no build step, the value is read
+directly from `config.js` at runtime.
+
+---
+
+## How the Shopify checkout flow works
+
+The on-site cart UX stays local (`HD_CART` — size/bundle/offer aware). Shopify's
+**hosted checkout** is used at the final step:
+
+1. User adds items → they live in `HD_CART` (drawer, totals, the €5 offer).
+2. On **Checkout**, `Commerce.checkout()` runs:
+   - **Live + synced:** builds Shopify cart lines from `HD_CART` (mapping each
+     `slug | sizeLabel` → Shopify `variantId` via the synced `VARIANT_MAP`),
+     calls `cartCreate`, and returns Shopify's `checkoutUrl` → the browser
+     redirects to **Shopify Checkout** (payments, taxes, shipping handled by Shopify).
+   - **Mock / not synced / API error:** returns `checkout.html` → the existing
+     local wizard (unchanged). This is the automatic, safe fallback.
+3. A click interceptor on `a.cart-checkout` (and any `[data-shopify-checkout]`)
+   performs the redirect — **inert while `source: 'mock'`** (the link behaves normally),
+   so today's UI/flow is byte-identical.
+
+## How storefront syncing works (real products replace mock)
+
+`Commerce.sync.run()` (call once after going live, e.g. on shop load):
+
+- Fetches every product via the Storefront API (`products` query).
+- Caches them at `window.HD_SHOPIFY` (by handle).
+- Builds `VARIANT_MAP` (`slug|sizeLabel → variantId`) in `localStorage` — this is
+  what lets `Commerce.checkout()` create real Shopify carts.
+- `Commerce.sync.localShape(handle)` returns a product in the **`HD_product` shape**
+  (name, sizes, price, image, tags…). This is the seam to let real Shopify data
+  **replace the mock catalog** in `shared.js` rendering: point `HD_product` at
+  `Commerce.sync.localShape` once your Shopify products carry the needed fields
+  (region/altitude/hue can be modelled as Shopify **metafields** and mapped in
+  `localShape`). Until then the mock catalog renders, so nothing breaks.
+
+Read paths that already route to Shopify when live (else mock):
+`Commerce.products.get/all`, `Commerce.collections.get`, `Commerce.search.predictive`.
+
+## Error handling (the site never breaks)
+
+- `storefront.safeFetch()` wraps every call with a **9s timeout** + try/catch and
+  returns `null` on any failure (network, 4xx/5xx, GraphQL error, abort).
+- Every `Commerce` read falls back to the local mock catalog when `safeFetch`
+  returns `null`.
+- `Commerce.checkout()` falls back to the local `checkout.html` wizard if the
+  Shopify cart can't be created.
+- `useShopify()` gates everything: unless `source: 'shopify'` **and** a token is
+  present, not a single Shopify call is made.
+
+---
+
+## Smoke test (browser console, once `source:'shopify'` + token set)
+```js
+await Commerce.sync.run();                 // { ok:true, count, variants }
+await Commerce.products.all();             // products from Shopify (or mock fallback)
+await Commerce.products.get('chestnut');
+await Commerce.checkout();                 // → Shopify checkoutUrl (or 'checkout.html')
+```
+With the default `source:'mock'` these all resolve from the local catalog.
