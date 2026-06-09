@@ -689,7 +689,7 @@
       'product.also.eyebrow': 'Also From The Collection',
       'product.also.h_html': 'The rest of the house.',
       'product.sticky.name': 'Chestnut Honey, Pelion estate',
-      'product.sticky.price': '€68 · Edition I',
+      'product.sticky.price': '€18 · Edition I',
       'product.sticky.add': 'Add'
     },
     nl: {
@@ -1269,7 +1269,7 @@
       'product.also.eyebrow': 'Ook Uit De Collectie',
       'product.also.h_html': 'De rest van het huis.',
       'product.sticky.name': 'Tamme Kastanje, landgoed Pelion',
-      'product.sticky.price': '€68 · Editie I',
+      'product.sticky.price': '€18 · Editie I',
       'product.sticky.add': 'Voeg toe'
     },
     el: {
@@ -1644,7 +1644,7 @@
       'product.also.eyebrow': 'Επίσης Από Τη Συλλογή',
       'product.also.h_html': 'Τα υπόλοιπα του οίκου.',
       'product.sticky.name': 'Καστανόμελο, κτήμα Πηλίου',
-      'product.sticky.price': '€68 · Έκδοση I',
+      'product.sticky.price': '€18 · Έκδοση I',
       'product.sticky.add': 'Προσθήκη'
     }
   };
@@ -3418,6 +3418,11 @@
     if (!radios.length) return;
     const priceEl = document.getElementById('productPrice');
     const skuEl = document.getElementById('productSku');
+    function syncSize(r) {
+      // Keep the add-to-cart buttons pointed at the selected size (480g/950g)
+      if (!r.dataset.size) return;
+      document.querySelectorAll('[data-add-to-cart]').forEach(b => { b.dataset.size = r.dataset.size; });
+    }
     radios.forEach(r => {
       r.addEventListener('change', () => {
         if (!r.checked) return;
@@ -3425,8 +3430,11 @@
         const newSku = r.dataset.sku;
         if (priceEl && newPrice) priceEl.textContent = '€' + newPrice;
         if (skuEl && newSku) skuEl.textContent = newSku;
+        syncSize(r);
       });
     });
+    const checked = document.querySelector('input[name="hd-variant"]:checked');
+    if (checked) syncSize(checked);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
