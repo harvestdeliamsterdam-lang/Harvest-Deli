@@ -91,7 +91,7 @@
         title: 'Waar koop je echte Griekse honing in Nederland? · Harvest Deli',
         description:
           'Echte rauwe Griekse berghoning kopen in Nederland: single-origin herkennen, supermarkthoning vs. rauw, en waar je premium Griekse honing vindt.',
-        ogImage: 'https://harvestdeli.gr/assets/market.png',
+        ogImage: 'https://harvestdeli.nl/assets/market.png',
       },
     },
     {

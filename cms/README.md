@@ -118,7 +118,7 @@ mock** so the page is never empty.
 
 3. **Allow the website to read content (CORS)**
    In sanity.io/manage → API → CORS origins, add your site origin(s)
-   (e.g. `https://harvestdeli.gr`, `http://localhost:3007`). No token needed —
+   (e.g. `https://harvestdeli.nl`, `http://localhost:3007`). No token needed —
    published content is public via `apicdn.sanity.io`.
 
 4. **Seed content** — create a few `category` + `author` docs, then `post` docs.

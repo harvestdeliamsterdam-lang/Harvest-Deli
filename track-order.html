@@ -6,7 +6,7 @@
 <title>Track your order · Harvest Deli</title>
 <meta name="description" content="Track your Harvest Deli order. Enter your order number and email to follow your shipment from Pelion to your door.">
 <meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://harvestdeli.gr/track-order.html">
+<link rel="canonical" href="https://harvestdeli.nl/track-order.html">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -211,7 +211,7 @@
     <a href="https://www.dpd.com/nl/en/receiving/track-your-parcel/" rel="external">DPD <span>EU &middot; Worldwide</span></a>
   </div>
 
-  <p class="track-note">Cannot find your order number? Look in the confirmation email titled &ldquo;Your Pelion order&rdquo;, or write to <a href="mailto:orders@harvestdeli.gr">orders@harvestdeli.gr</a>. We answer within two business days.</p>
+  <p class="track-note">Cannot find your order number? Look in the confirmation email titled &ldquo;Your Pelion order&rdquo;, or write to <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>. We answer within two business days.</p>
 </header>
 
 </main>
@@ -262,7 +262,7 @@
     if (!id || !email) return;
     // Placeholder behaviour: in production, POST to /api/orders/lookup and redirect to courier
     // For now, mailto fallback for the smallest possible footprint
-    window.location.href = 'mailto:orders@harvestdeli.gr?subject=Order%20status%20' +
+    window.location.href = 'mailto:orders@harvestdeli.nl?subject=Order%20status%20' +
       encodeURIComponent(id) + '&body=' +
       encodeURIComponent('Hello, please share the latest tracking status for order ' + id + ' (email: ' + email + ').');
   });

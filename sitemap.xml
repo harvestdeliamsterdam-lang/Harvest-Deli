@@ -2,27 +2,27 @@
 <!-- Harvest Deli sitemap. Indexable pages only; account/checkout/admin/order
      pages are intentionally excluded (they carry <meta robots="noindex">). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://harvestdeli.gr/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://harvestdeli.gr/shop.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://harvestdeli.nl/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://harvestdeli.nl/shop.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
 
-  <url><loc>https://harvestdeli.gr/product.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.gr/product-olive-oil.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.gr/product-mountain-tea.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/product.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/product-olive-oil.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/product-mountain-tea.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <url><loc>https://harvestdeli.gr/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://harvestdeli.gr/partners.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://harvestdeli.gr/journal.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://harvestdeli.gr/find-us-amsterdam.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://harvestdeli.gr/article-taste-the-greek-sun.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
-  <url><loc>https://harvestdeli.gr/article-griekse-honing-nederland.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://harvestdeli.gr/article-griekse-honing-smaak.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://harvestdeli.gr/contact.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://harvestdeli.nl/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://harvestdeli.nl/partners.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://harvestdeli.nl/journal.html</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://harvestdeli.nl/find-us-amsterdam.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://harvestdeli.nl/article-taste-the-greek-sun.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://harvestdeli.nl/article-griekse-honing-nederland.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://harvestdeli.nl/article-griekse-honing-smaak.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://harvestdeli.nl/contact.html</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
 
-  <url><loc>https://harvestdeli.gr/legal-terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://harvestdeli.gr/legal-privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://harvestdeli.gr/legal-cookies.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://harvestdeli.gr/legal-returns.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://harvestdeli.gr/legal-shipping.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://harvestdeli.gr/legal-payment.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
-  <url><loc>https://harvestdeli.gr/legal-imprint.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-cookies.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-returns.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-shipping.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-payment.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://harvestdeli.nl/legal-imprint.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

@@ -19,7 +19,7 @@
     name: 'Harvest Deli',
     tagline: 'Premium Greek products',
     ink: '#1F1A14', cream: '#FAF6EE', bg: '#F5EFE4', gold: '#B8945A', goldDeep: '#8A6228', soft: '#5C5247',
-    site: 'https://harvestdeli.gr', supportEmail: 'orders@harvestdeli.gr'
+    site: 'https://harvestdeli.nl', supportEmail: 'orders@harvestdeli.nl'
   };
   function money(n) { n = Math.round((Number(n) || 0) * 100) / 100; return Number.isInteger(n) ? '€' + n : '€' + n.toFixed(2); }
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]; }); }

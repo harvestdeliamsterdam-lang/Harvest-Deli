@@ -13,7 +13,7 @@
    ================================================================= */
 (function () {
   'use strict';
-  var BASE = 'https://harvestdeli.gr';                 // SEAM: production origin
+  var BASE = 'https://harvestdeli.nl';                 // SEAM: production origin
   var DEFAULT_OG_IMAGE = BASE + '/harvestdeli.png';    // existing premium brand image
   var head = document.head;
 

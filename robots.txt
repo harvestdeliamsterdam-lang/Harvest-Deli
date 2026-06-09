@@ -21,4 +21,4 @@ Allow: /
 User-agent: Googlebot-Image
 Allow: /
 
-Sitemap: https://harvestdeli.gr/sitemap.xml
+Sitemap: https://harvestdeli.nl/sitemap.xml
