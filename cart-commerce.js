@@ -11,6 +11,8 @@
 (function () {
   'use strict';
   document.addEventListener('click', function (e) {
+    return;  // disabled: HD_CART's size-aware drawer handler (shared.js) now owns +/-/remove
+    /* eslint-disable no-unreachable */
     if (!e.target.closest || !e.target.closest('#cartDrawer')) return;
     var btn = e.target.closest('button[data-act]'); if (!btn) return;          // links still navigate normally
     var line = e.target.closest('.cart-line'); if (!line) return;

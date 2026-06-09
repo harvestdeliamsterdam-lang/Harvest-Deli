@@ -126,9 +126,8 @@
      (Shopify-shaped) when available, falling back to the HD_CART runtime.
      HD_CART remains the source of truth; Commerce bridges to it. */
   function cartSnapshot() {
-    if (window.Commerce && window.Commerce.cart && window.Commerce.cart.getSync) {
-      try { return window.Commerce.cart.getSync(); } catch (e) {}
-    }
+    // HD_CART is the source of truth (size + bundle + basket offer). The
+    // Commerce mirror is slug-only, so the checkout reads HD_CART directly.
     return null;
   }
   function cartLines() {
@@ -142,8 +141,14 @@
     });
     return (window.HD_CART ? window.HD_CART.items : []).map(function (it) {
       var p = window.HD_product && window.HD_product(it.slug);
-      return { slug: it.slug, qty: it.qty, name: p ? p.name : it.slug, lineTotal: p ? p.price * it.qty : 0 };
+      var sizeLbl = (window.HD_CART && window.HD_CART.sizeLabel) ? window.HD_CART.sizeLabel(it) : '';
+      var lt = (window.HD_CART && window.HD_CART.lineTotal) ? window.HD_CART.lineTotal(it) : (p ? p.price * it.qty : 0);
+      return { slug: it.slug, qty: it.qty, size: it.size, sizeLabel: sizeLbl,
+               name: (p ? p.name : it.slug) + (sizeLbl ? ' · ' + sizeLbl : ''), lineTotal: lt };
     });
+  }
+  function offerAmount() {
+    return (window.HD_CART && window.HD_CART.offerDiscount) ? window.HD_CART.offerDiscount() : 0;
   }
   function subtotal() {
     var snap = cartSnapshot();
@@ -152,9 +157,11 @@
   }
   /* Cart mutations route through Commerce (bridges HD_CART synchronously) with
      HD_CART fallback. Single path → no double updates. */
-  function cmUpdate(slug, qty) { if (window.Commerce && window.Commerce.cart) window.Commerce.cart.update(slug, qty); else if (window.HD_CART) window.HD_CART.setQty(slug, qty); }
-  function cmRemove(slug) { if (window.Commerce && window.Commerce.cart) window.Commerce.cart.remove(slug); else if (window.HD_CART) window.HD_CART.remove(slug); }
-  function cmAdd(slug, qty) { if (window.Commerce && window.Commerce.cart) window.Commerce.cart.add(slug, qty); else if (window.HD_CART) window.HD_CART.add(slug, qty); }
+  /* HD_CART is the source of truth and is size-aware (the Commerce mirror is
+     slug-only, which would mutate the wrong size line), so route directly. */
+  function cmUpdate(slug, qty, size) { if (window.HD_CART) window.HD_CART.setQty(slug, qty, size); }
+  function cmRemove(slug, size) { if (window.HD_CART) window.HD_CART.remove(slug, size); }
+  function cmAdd(slug, qty, size) { if (window.HD_CART) window.HD_CART.add(slug, qty, size); }
   function discountAmount() {
     if (!state.discountCode) return 0;
     var d = DISCOUNTS[state.discountCode];
@@ -171,10 +178,10 @@
   function calcShipping() {
     var m = shippingMethod();
     if (m.price === 0) return 0;
-    if (m.free && (subtotal() - discountAmount()) >= FREE_SHIPPING_AT) return 0;
+    if (m.free && (subtotal() - discountAmount() - offerAmount()) >= FREE_SHIPPING_AT) return 0;
     return m.price;
   }
-  function grandTotal() { return Math.max(0, subtotal() - discountAmount() + calcShipping()); }
+  function grandTotal() { return Math.max(0, subtotal() - discountAmount() - offerAmount() + calcShipping()); }
 
   /* ------------------------- Validation ---------------------------- */
   function setFieldError(input, msg) {
@@ -239,11 +246,11 @@
       var p = window.HD_product(l.slug);
       if (!p) return '';
       return '' +
-        '<div class="wz-line" data-slug="' + l.slug + '">' +
+        '<div class="wz-line" data-slug="' + l.slug + '" data-size="' + (l.size || '') + '">' +
           '<a class="wz-line-thumb" href="' + p.url + '"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></a>' +
           '<div class="wz-line-info">' +
             '<a class="wz-line-name" href="' + p.url + '">' + l.name + '</a>' +
-            '<div class="wz-line-meta">' + (p.edition || '') + ' · ' + (p.weight || '') + '</div>' +
+            '<div class="wz-line-meta">' + (l.sizeLabel || p.edition || '') + '</div>' +
             '<div class="wz-qty" role="group" aria-label="Quantity">' +
               '<button type="button" class="wz-qty-btn" data-qty-dec aria-label="' + lookup('ck.qty.dec', 'Decrease quantity') + '">&minus;</button>' +
               '<span class="wz-qty-val" aria-live="polite">' + l.qty + '</span>' +
@@ -284,10 +291,13 @@
              '<span class="sm-line-price">' + fmt(l.lineTotal) + '</span></div>';
     }).join('');
     var disc = discountAmount();
+    var offer = offerAmount();
+    var offerLabel = (window.HD_lang && window.HD_lang() === 'nl') ? 'Aanbieding' : (window.HD_lang && window.HD_lang() === 'el') ? 'Προσφορά' : 'Offer';
     var ship = calcShipping();
     var freeShip = ship === 0 && shippingMethod().price > 0;
     var rows = '' +
       '<div class="sm-row"><span>' + lookup('ck.subtotal', 'Subtotal') + '</span><span>' + fmt(subtotal()) + '</span></div>' +
+      (offer > 0 ? '<div class="sm-row sm-discount"><span>' + offerLabel + '</span><span>−' + fmt(offer) + '</span></div>' : '') +
       (disc > 0 ? '<div class="sm-row sm-discount"><span>' + lookup('ck.discount', 'Discount') + ' · ' + state.discountCode + '</span><span>−' + fmt(disc) + '</span></div>' : '') +
       '<div class="sm-row"><span>' + lookup('ck.shipping', 'Shipping') + '</span><span>' + (ship === 0 ? (freeShip ? lookup('ck.free', 'Free') : lookup('ck.pickup', 'Pickup')) : fmt(ship)) + '</span></div>' +
       '<div class="sm-row sm-grand"><span>' + lookup('ck.total', 'Total') + '</span><span>' + fmt(grandTotal()) + '</span></div>';
@@ -549,9 +559,10 @@
       var line = t.closest && t.closest('.wz-line');
       if (line) {
         var slug = line.getAttribute('data-slug');
-        if (t.closest('[data-qty-inc]')) { var it = cartItem(slug); cmUpdate(slug, (it ? it.qty : 1) + 1); rerenderAll(); return; }
-        if (t.closest('[data-qty-dec]')) { var it2 = cartItem(slug); cmUpdate(slug, (it2 ? it2.qty : 1) - 1); rerenderAll(); return; }
-        if (t.closest('[data-remove]')) { cmRemove(slug); rerenderAll(); return; }
+        var size = line.getAttribute('data-size') || null;
+        if (t.closest('[data-qty-inc]')) { var it = cartItem(slug, size); cmUpdate(slug, (it ? it.qty : 1) + 1, size); rerenderAll(); return; }
+        if (t.closest('[data-qty-dec]')) { var it2 = cartItem(slug, size); cmUpdate(slug, (it2 ? it2.qty : 1) - 1, size); rerenderAll(); return; }
+        if (t.closest('[data-remove]')) { cmRemove(slug, size); rerenderAll(); return; }
       }
       if (t.closest('[data-up-add]')) { cmAdd(t.closest('[data-up-add]').getAttribute('data-up-add'), 1); rerenderAll(); return; }
       var ship = t.closest && t.closest('.ship-opt');
@@ -588,9 +599,11 @@
     document.addEventListener('hd:cart-changed', rerenderAll);
   }
 
-  function cartItem(slug) {
+  function cartItem(slug, size) {
     var items = window.HD_CART ? window.HD_CART.items : [];
-    for (var i = 0; i < items.length; i++) if (items[i].slug === slug) return items[i];
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].slug === slug && (size == null || (items[i].size || null) === size)) return items[i];
+    }
     return null;
   }
   function applyDiscount() {

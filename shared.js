@@ -2017,148 +2017,182 @@
 
   // ---------- Product catalog (with per-language strings) ----------
   function loc(en, nl, el) { return { en: en, nl: nl, el: el }; }
+  // Real catalog. Honeys carry two sizes (480g / 950g); oregano + tea carry a
+  // 2-for bundle price. `type` drives the basket offer (3 honeys, or 2 honeys
+  // + 1 olive oil = €5 off). `price` is the "from" (smallest size) price.
   const PRODUCTS = {
-    'arbutus': {
-      name: loc('Arbutus Honey', 'Aardbeiboom Honing', 'Κουμαρόμελο'),
-      edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
-      region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
-      altitude: '600m',
-      price: 78,
-      hue: 'deep',
-      notes: loc('Bittersweet, herbal, earthy depth.', 'Bitterzoet, kruidig, aardse diepte.', 'Γλυκόπικρο, βοτανικό, γήινο βάθος.'),
-      texture: loc('Dense and rich, naturally creamy', 'Dik en rijk, natuurlijk romig', 'Πυκνό και πλούσιο, φυσικά κρεμώδες'),
-      weight: '250g',
-      tags: ['rare', 'raw', 'dark', 'herbal'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      slug: 'arbutus',
-      url: 'product.html?p=arbutus'
-    },
-    'oak': {
-      name: loc('Oak Honey', 'Eikenhoning', 'Βελανιδόμελο'),
-      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
-      region: loc('Epirus · Greece', 'Epirus · Griekenland', 'Ήπειρος · Ελλάδα'),
-      altitude: '900m',
-      price: 72,
-      hue: 'bronze',
-      notes: loc('Deep forest, woody, mineral-rich.', 'Diep bos, houtig, mineraalrijk.', 'Βαθύ δάσος, ξυλώδες, πλούσιο σε μέταλλα.'),
-      texture: loc('Dense and smooth', 'Dik en glad', 'Πυκνό και απαλό'),
-      weight: '250g',
-      tags: ['forest', 'raw', 'dark', 'honeydew'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      slug: 'oak',
-      url: 'product.html?p=oak'
-    },
     'fir-vanilla': {
-      name: loc('Fir Vanilla Honey', 'Dennen-Vanille Honing', 'Έλατο Βανίλια'),
+      name: loc('Fir Forest Honey', 'Dennenboshoning', 'Ελατόμελο'),
       edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
       region: loc('Mt Olympus · Greece', 'Berg Olympus · Griekenland', 'Όλυμπος · Ελλάδα'),
       altitude: '1300m',
-      price: 84,
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 22 }, { id: '950g', label: '950g', price: 40 }],
+      defaultSize: '480g',
+      price: 22,
       hue: 'amber',
-      notes: loc('Silky and glossy, gentle vanilla.', 'Zijdezacht en glanzend, zachte vanille.', 'Μεταξένιο και γυαλιστερό, απαλή βανίλια.'),
+      notes: loc('Resinous fir forest, dark and silky.', 'Harsachtig dennenbos, donker en zijdezacht.', 'Ρητινώδες δάσος ελάτου, σκούρο και μεταξένιο.'),
       texture: loc('Thick, silky, glossy', 'Dik, zijdezacht, glanzend', 'Πυκνό, μεταξένιο, γυαλιστερό'),
-      weight: '250g',
-      tags: ['mountain', 'raw', 'rare', 'light'],
+      weight: '480g · 950g',
+      tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
-    },
-    'orange-blossom': {
-      name: loc('Orange Blossom Honey', 'Sinaasappelbloesem Honing', 'Πορτοκαλόμελο'),
-      edition: loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'),
-      region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
-      altitude: '200m',
-      price: 58,
-      hue: 'pale',
-      notes: loc('Bright citrus blossom, fresh floral.', 'Heldere citrusbloesem, fris bloemig.', 'Φωτεινό άνθος εσπεριδοειδών, φρέσκο άρωμα.'),
-      texture: loc('Smooth and flowing', 'Glad en vloeibaar', 'Απαλό και ρευστό'),
-      weight: '250g',
-      tags: ['floral', 'citrus', 'light', 'spring'],
-      badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      slug: 'orange-blossom',
-      url: 'product.html?p=orange-blossom'
     },
     'acacia': {
       name: loc('Acacia Honey', 'Acaciahoning', 'Ακακία Μέλι'),
       edition: loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'),
       region: loc('Macedonia · Greece', 'Macedonië · Griekenland', 'Μακεδονία · Ελλάδα'),
       altitude: '500m',
-      price: 62,
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 17 }, { id: '950g', label: '950g', price: 30 }],
+      defaultSize: '480g',
+      price: 17,
       hue: 'pale',
       notes: loc('Crystal-clear, soft floral, clean.', 'Kristalhelder, zacht bloemig, puur.', 'Κρυστάλλινο, απαλό άνθινο, καθαρό.'),
       texture: loc('Silky and smooth', 'Zijdezacht en glad', 'Μεταξένιο και απαλό'),
-      weight: '250g',
+      weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
       slug: 'acacia',
       url: 'product.html?p=acacia'
-    },
-    'thyme': {
-      name: loc('Thyme Honey', 'Tijmhoning', 'Θυμαρίσιο Μέλι'),
-      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
-      region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
-      altitude: '400m',
-      price: 64,
-      hue: 'straw',
-      notes: loc('Aromatic wild thyme, warm and floral.', 'Aromatische wilde tijm, warm en bloemig.', 'Αρωματικό άγριο θυμάρι, ζεστό και άνθινο.'),
-      texture: loc('Smooth and rich', 'Glad en rijk', 'Απαλό και πλούσιο'),
-      weight: '250g',
-      tags: ['floral', 'herbal', 'light', 'summer'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      slug: 'thyme',
-      url: 'product.html?p=thyme'
-    },
-    'chestnut': {
-      name: loc('Chestnut Honey', 'Kastanjehoning', 'Καστανόμελο'),
-      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
-      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
-      altitude: '950m',
-      price: 68,
-      hue: 'amber',
-      notes: loc('Warm wood, layered, long depth.', 'Warm hout, gelaagd, lange diepte.', 'Ζεστό ξύλο, πολυεπίπεδο, μακρύ βάθος.'),
-      texture: loc('Thick and rich', 'Dik en rijk', 'Πυκνό και πλούσιο'),
-      weight: '250g',
-      tags: ['mountain', 'forest', 'raw', 'dark'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      slug: 'chestnut',
-      url: 'product.html'
     },
     'pine': {
       name: loc('Pine Honey', 'Dennenhoning', 'Πευκόμελο'),
       edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
       region: loc('Halkidiki · Greece', 'Halkidiki · Griekenland', 'Χαλκιδική · Ελλάδα'),
       altitude: '400m',
-      price: 54,
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 16 }, { id: '950g', label: '950g', price: 28 }],
+      defaultSize: '480g',
+      price: 16,
       hue: 'bronze',
       notes: loc('Resinous and smooth, sea-air warmth.', 'Harsachtig en glad, warmte van zeelucht.', 'Ρητινώδες και απαλό, ζεστασιά θαλασσινού αέρα.'),
       texture: loc('Thick and smooth', 'Dik en glad', 'Πυκνό και απαλό'),
-      weight: '250g',
+      weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
       slug: 'pine',
       url: 'product.html?p=pine'
     },
-    'heather': {
-      name: loc('Heather Honey', 'Heidehoning', 'Σουσουρόμελο'),
+    'orange-blossom': {
+      name: loc('Orange Blossom Honey', 'Sinaasappelhoning', 'Πορτοκαλόμελο'),
+      edition: loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'),
+      region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
+      altitude: '200m',
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 15 }, { id: '950g', label: '950g', price: 26 }],
+      defaultSize: '480g',
+      price: 15,
+      hue: 'pale',
+      notes: loc('Bright citrus blossom, fresh floral.', 'Heldere citrusbloesem, fris bloemig.', 'Φωτεινό άνθος εσπεριδοειδών, φρέσκο άρωμα.'),
+      texture: loc('Smooth and flowing', 'Glad en vloeibaar', 'Απαλό και ρευστό'),
+      weight: '480g · 950g',
+      tags: ['floral', 'citrus', 'light', 'spring'],
+      badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
+      slug: 'orange-blossom',
+      url: 'product.html?p=orange-blossom'
+    },
+    'chestnut': {
+      name: loc('Chestnut Honey', 'Kastanjehoning', 'Καστανόμελο'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
+      altitude: '950m',
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 18 }, { id: '950g', label: '950g', price: 32 }],
+      defaultSize: '480g',
+      price: 18,
+      hue: 'amber',
+      notes: loc('Warm wood, layered, long depth.', 'Warm hout, gelaagd, lange diepte.', 'Ζεστό ξύλο, πολυεπίπεδο, μακρύ βάθος.'),
+      texture: loc('Thick and rich', 'Dik en rijk', 'Πυκνό και πλούσιο'),
+      weight: '480g · 950g',
+      tags: ['mountain', 'forest', 'raw', 'dark'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
+      slug: 'chestnut',
+      url: 'product.html'
+    },
+    'oak': {
+      name: loc('Oak Honey', 'Eikenhoning', 'Βελανιδόμελο'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Epirus · Greece', 'Epirus · Griekenland', 'Ήπειρος · Ελλάδα'),
+      altitude: '900m',
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 17 }, { id: '950g', label: '950g', price: 30 }],
+      defaultSize: '480g',
+      price: 17,
+      hue: 'bronze',
+      notes: loc('Deep forest, woody, mineral-rich.', 'Diep bos, houtig, mineraalrijk.', 'Βαθύ δάσος, ξυλώδες, πλούσιο σε μέταλλα.'),
+      texture: loc('Dense and smooth', 'Dik en glad', 'Πυκνό και απαλό'),
+      weight: '480g · 950g',
+      tags: ['forest', 'raw', 'dark', 'honeydew'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
+      slug: 'oak',
+      url: 'product.html?p=oak'
+    },
+    'arbutus': {
+      name: loc('Arbutus Honey', 'Aardbeiboom Honing', 'Κουμαρόμελο'),
       edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
-      region: loc('Evia · Greece', 'Evia · Griekenland', 'Εύβοια · Ελλάδα'),
-      altitude: '700m',
-      price: 66,
+      region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
+      altitude: '600m',
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 19 }, { id: '950g', label: '950g', price: 34 }],
+      defaultSize: '480g',
+      price: 19,
       hue: 'deep',
-      notes: loc('Creamy, floral, reddish depth.', 'Romig, bloemig, roodachtige diepte.', 'Κρεμώδες, άνθινο, κοκκινωπό βάθος.'),
-      texture: loc('Thick and creamy', 'Dik en romig', 'Πυκνό και κρεμώδες'),
-      weight: '250g',
-      tags: ['floral', 'raw', 'dark'],
-      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Creamy', 'Romig', 'Κρεμώδες')],
-      slug: 'heather',
-      url: 'product.html?p=heather'
+      notes: loc('Bittersweet, herbal, earthy depth.', 'Bitterzoet, kruidig, aardse diepte.', 'Γλυκόπικρο, βοτανικό, γήινο βάθος.'),
+      texture: loc('Dense and rich, naturally creamy', 'Dik en rijk, natuurlijk romig', 'Πυκνό και πλούσιο, φυσικά κρεμώδες'),
+      weight: '480g · 950g',
+      tags: ['rare', 'raw', 'dark', 'herbal'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
+      slug: 'arbutus',
+      url: 'product.html?p=arbutus'
+    },
+    'thyme': {
+      name: loc('Thyme Honey', 'Tijmhoning', 'Θυμαρίσιο Μέλι'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
+      altitude: '400m',
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 19 }, { id: '950g', label: '950g', price: 34 }],
+      defaultSize: '480g',
+      price: 19,
+      hue: 'straw',
+      notes: loc('Aromatic wild thyme, warm and floral.', 'Aromatische wilde tijm, warm en bloemig.', 'Αρωματικό άγριο θυμάρι, ζεστό και άνθινο.'),
+      texture: loc('Smooth and rich', 'Glad en rijk', 'Απαλό και πλούσιο'),
+      weight: '480g · 950g',
+      tags: ['floral', 'herbal', 'light', 'summer'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
+      slug: 'thyme',
+      url: 'product.html?p=thyme'
+    },
+    'oregano': {
+      name: loc('Wild Oregano', 'Wilde Oregano', 'Άγρια Ρίγανη'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Wild hills · Greece', 'Wilde heuvels · Griekenland', 'Άγριοι λόφοι · Ελλάδα'),
+      altitude: '700m',
+      type: 'herb',
+      sizes: [{ id: '15g', label: '15g', price: 2.5 }],
+      defaultSize: '15g',
+      bundle: { qty: 2, price: 4 },
+      price: 2.5,
+      hue: 'straw',
+      notes: loc('Sun-dried wild oregano, warm and intense.', 'Zongedroogde wilde oregano, warm en intens.', 'Λιαστή άγρια ρίγανη, ζεστή και έντονη.'),
+      texture: loc('Dried flowering tops', 'Gedroogde bloeitoppen', 'Αποξηραμένες ανθισμένες κορυφές'),
+      weight: '15g',
+      tags: ['herb', 'dried', 'wild'],
+      badges: [loc('Hand-Picked', 'Handgeplukt', 'Χειροσυλλεγμένο'), loc('Sun-Dried', 'Zongedroogd', 'Λιαστό')],
+      slug: 'oregano',
+      url: 'shop.html'
     },
     'olive-oil': {
       name: loc('Extra Virgin Olive Oil', 'Extra Vergine Olijfolie', 'Εξαιρετικό Παρθένο Ελαιόλαδο'),
       edition: loc('Estate Pressing · 2025', 'Landgoed Persing · 2025', 'Κτήμα · 2025'),
       region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
       altitude: '400m',
-      price: 24,
+      type: 'oil',
+      sizes: [{ id: '500ml', label: '500ml', price: 15 }],
+      defaultSize: '500ml',
+      price: 15,
       hue: 'pale',
       image: 'assets/greekoliveoil.PNG',
       notes: loc('Green almond, fresh-cut grass, peppery finish.', 'Groene amandel, versgemaaid gras, peperige afdronk.', 'Πράσινο αμύγδαλο, φρεσκοκομμένο χορτάρι, πιπεράτη επίγευση.'),
@@ -2174,12 +2208,16 @@
       edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
       region: loc('Wild mountains · Greece', 'Wilde bergen · Griekenland', 'Άγρια βουνά · Ελλάδα'),
       altitude: '1100m',
-      price: 16,
+      type: 'tea',
+      sizes: [{ id: 'bag', label: '1 bag', price: 5 }],
+      defaultSize: 'bag',
+      bundle: { qty: 2, price: 8 },
+      price: 5,
       hue: 'straw',
       image: 'assets/mountaintea.png',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
-      weight: '28g',
+      weight: '20g',
       tags: ['tea', 'herbal', 'caffeine-free'],
       badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
       slug: 'mountain-tea',
@@ -2191,10 +2229,18 @@
     const p = PRODUCTS[slug];
     if (!p) return null;
     function pick(v) { return (v && typeof v === 'object' && 'en' in v) ? (v[currentLang] || v.en) : v; }
+    const sizes = p.sizes || [{ id: p.defaultSize || 'one', label: p.weight || '', price: p.price }];
+    const priceFrom = sizes.reduce(function (m, s) { return Math.min(m, s.price); }, Infinity);
     return {
       slug: p.slug,
       url: p.url,
-      price: p.price,
+      type: p.type || 'honey',
+      price: isFinite(priceFrom) ? priceFrom : p.price,
+      priceFrom: isFinite(priceFrom) ? priceFrom : p.price,
+      sizes: sizes,
+      defaultSize: p.defaultSize || sizes[0].id,
+      multiSize: sizes.length > 1,
+      bundle: p.bundle || null,
       hue: p.hue,
       image: p.image || 'harvestdeli.png',
       altitude: p.altitude,
@@ -2211,6 +2257,52 @@
   window.HD_PRODUCTS = PRODUCTS;
   window.HD_product = localizedProduct;
 
+  // ---------- Cart pricing helpers (size + bundle + basket offer) ----------
+  function sizeOf(item) {
+    const p = PRODUCTS[item.slug];
+    return item.size || (p && p.defaultSize) || (p && p.sizes && p.sizes[0] && p.sizes[0].id);
+  }
+  function unitPrice(slug, size) {
+    const p = PRODUCTS[slug];
+    if (!p) return 0;
+    if (p.sizes && p.sizes.length) {
+      const s = p.sizes.filter(x => x.id === size)[0] ||
+                p.sizes.filter(x => x.id === p.defaultSize)[0] || p.sizes[0];
+      return s ? s.price : p.price;
+    }
+    return p.price;
+  }
+  function sizeLabel(slug, size) {
+    const p = PRODUCTS[slug];
+    if (!p || !p.sizes) return '';
+    const s = p.sizes.filter(x => x.id === size)[0];
+    return s ? s.label : '';
+  }
+  // Line total, applying the 2-for bundle price where a product carries one.
+  function lineTotalFor(slug, qty, size) {
+    const p = PRODUCTS[slug];
+    if (!p) return 0;
+    const unit = unitPrice(slug, size);
+    if (p.bundle && p.bundle.qty > 0 && p.bundle.price != null) {
+      const sets = Math.floor(qty / p.bundle.qty);
+      const rem = qty - sets * p.bundle.qty;
+      return sets * p.bundle.price + rem * unit;
+    }
+    return qty * unit;
+  }
+  function sameLine(i, slug, size) { return i.slug === slug && sizeOf(i) === size; }
+  // Basket offer: 3 honey jars, OR 2 honey jars + 1 olive oil → €5 off (once).
+  function offerDiscount() {
+    let honey = 0, oil = 0;
+    cart.items.forEach(i => {
+      const p = PRODUCTS[i.slug];
+      if (!p) return;
+      if (p.type === 'honey') honey += i.qty;
+      else if (p.type === 'oil') oil += i.qty;
+    });
+    return (honey >= 3 || (honey >= 2 && oil >= 1)) ? 5 : 0;
+  }
+
   // ---------- Cart state ----------
   const STORAGE = 'hd-cart-v1';
   const cart = {
@@ -2219,38 +2311,53 @@
       try {
         this.items = JSON.parse(localStorage.getItem(STORAGE) || '[]');
         if (!Array.isArray(this.items)) this.items = [];
-        // sanitize unknown slugs
-        this.items = this.items.filter(i => PRODUCTS[i.slug]);
+        // sanitize unknown slugs + normalise size
+        this.items = this.items.filter(i => PRODUCTS[i.slug]).map(i => {
+          if (!i.size) i.size = PRODUCTS[i.slug].defaultSize;
+          return i;
+        });
       } catch (e) { this.items = []; }
     },
     save() { try { localStorage.setItem(STORAGE, JSON.stringify(this.items)); } catch (e) {} },
-    add(slug, qty) {
-      if (!PRODUCTS[slug]) return;
+    add(slug, qty, size) {
+      const p = PRODUCTS[slug];
+      if (!p) return;
       qty = qty || 1;
-      const existing = this.items.find(i => i.slug === slug);
+      size = size || p.defaultSize || (p.sizes && p.sizes[0] && p.sizes[0].id);
+      const existing = this.items.find(i => sameLine(i, slug, size));
       if (existing) existing.qty += qty;
-      else this.items.push({ slug: slug, qty: qty });
+      else this.items.push({ slug: slug, qty: qty, size: size });
       this.save(); render();
     },
-    remove(slug) {
-      this.items = this.items.filter(i => i.slug !== slug);
+    remove(slug, size) {
+      this.items = (size == null)
+        ? this.items.filter(i => i.slug !== slug)
+        : this.items.filter(i => !sameLine(i, slug, size));
       this.save(); render();
     },
-    setQty(slug, qty) {
-      const item = this.items.find(i => i.slug === slug);
+    setQty(slug, qty, size) {
+      const item = (size == null) ? this.items.find(i => i.slug === slug)
+                                  : this.items.find(i => sameLine(i, slug, size));
       if (!item) return;
-      if (qty < 1) return this.remove(slug);
+      if (qty < 1) return this.remove(slug, item.size);
       item.qty = qty;
       this.save(); render();
     },
     count() { return this.items.reduce((s, i) => s + i.qty, 0); },
-    total() { return this.items.reduce((s, i) => s + i.qty * PRODUCTS[i.slug].price, 0); }
+    lineTotal(item) { return lineTotalFor(item.slug, item.qty, sizeOf(item)); },
+    unitPrice: unitPrice,
+    sizeLabel: function (item) { return sizeLabel(item.slug, sizeOf(item)); },
+    offerDiscount: offerDiscount,
+    // Raw line sum (pre-offer). Keep this as total() for back-compat (checkout
+    // subtotal reads it); the offer is surfaced as its own discount line.
+    total() { return this.items.reduce((s, i) => s + lineTotalFor(i.slug, i.qty, sizeOf(i)), 0); },
+    net() { return Math.max(0, this.total() - offerDiscount()); }
   };
   cart.load();
   window.HD_CART = cart;
 
   // ---------- Render helpers ----------
-  function formatPrice(n) { return '€' + n.toFixed(0); }
+  function formatPrice(n) { return '€' + (Number.isInteger(n) ? n.toFixed(0) : n.toFixed(2).replace('.', ',')); }
 
   function render() {
     // Cart counts in nav buttons
@@ -2263,10 +2370,12 @@
 
     // Drawer items, READ cart state from Commerce when available (mock source),
     // else fall back to the HD_CART runtime. Markup + delegated handlers unchanged.
-    const _snap = (window.Commerce && window.Commerce.cart && window.Commerce.cart.getSync) ? window.Commerce.cart.getSync() : null;
+    // HD_CART is the source of truth (it carries size + bundle + the basket
+    // offer); the Commerce mock mirror is slug-only, so we render from HD_CART.
+    const _snap = null;
     const _lines = _snap
-      ? _snap.lines.map(l => ({ slug: l.handle, qty: l.quantity, total: +l.lineTotal.amount }))
-      : cart.items.map(i => ({ slug: i.slug, qty: i.qty, total: null }));
+      ? _snap.lines.map(l => ({ slug: l.handle, qty: l.quantity, size: null, total: +l.lineTotal.amount }))
+      : cart.items.map(i => ({ slug: i.slug, qty: i.qty, size: i.size, total: cart.lineTotal(i) }));
 
     // Hide the subtotal/checkout footer when the Cellar is empty (no €0 checkout)
     const _drawer = document.getElementById('cartDrawer');
@@ -2298,12 +2407,14 @@
         itemsWrap.innerHTML = _lines.map(l => {
           const p = localizedProduct(l.slug);
           const linePrice = (l.total != null) ? formatPrice(l.total) : formatPrice(p.price * l.qty);
+          const sizeLbl = (PRODUCTS[l.slug] && l.size) ? sizeLabel(l.slug, l.size) : '';
+          const subline = sizeLbl || p.edition;
           return `
-            <div class="cart-line" data-slug="${l.slug}">
+            <div class="cart-line" data-slug="${l.slug}" data-size="${l.size || ''}">
               <a class="thumb" href="${p.url}"><img class="mini-photo ${p.hue}" src="${p.image}" alt="${p.name}"></a>
               <div class="meta">
                 <a class="name" href="${p.url}" style="text-decoration:none;color:inherit;">${p.name}</a>
-                <div class="edition">${p.edition}</div>
+                <div class="edition">${subline}</div>
                 <div class="qty">
                   <button data-act="dec" aria-label="−">&minus;</button>
                   <span class="val">${l.qty}</span>
@@ -2322,7 +2433,42 @@
 
     // Totals, from Commerce subtotal when available
     const total = document.getElementById('cartTotal');
-    if (total) total.textContent = _snap ? formatPrice(+_snap.cost.subtotalAmount.amount) : formatPrice(cart.total());
+    const offer = _snap ? 0 : cart.offerDiscount();
+    const sub = _snap ? (+_snap.cost.subtotalAmount.amount) : cart.total();
+    const L = { offer: { nl: 'Aanbieding', el: 'Προσφορά', en: 'Offer' }, totalW: { nl: 'Totaal', el: 'Σύνολο', en: 'Total' } };
+    const lw = function (o) { return o[currentLang] || o.en; };
+    // Basket offer line (3 honeys, or 2 honeys + 1 olive oil → −€5).
+    // The drawer is inline static HTML on most pages, so create the row if absent.
+    let offerRow = document.getElementById('cartOffer');
+    if (!offerRow) {
+      const totalsEl = document.querySelector('.cart-foot .cart-totals');
+      if (totalsEl && totalsEl.parentNode) {
+        offerRow = document.createElement('div');
+        offerRow.className = 'cart-offer';
+        offerRow.id = 'cartOffer';
+        offerRow.hidden = true;
+        offerRow.innerHTML = '<span class="cart-offer-label"></span><span class="cart-offer-val"></span>';
+        totalsEl.parentNode.insertBefore(offerRow, totalsEl);
+      }
+    }
+    if (offerRow) {
+      if (offer > 0) {
+        offerRow.hidden = false;
+        const lbl = offerRow.querySelector('.cart-offer-label');
+        const val = offerRow.querySelector('.cart-offer-val');
+        if (lbl) lbl.textContent = lw(L.offer);
+        if (val) val.textContent = '−' + formatPrice(offer);
+      } else {
+        offerRow.hidden = true;
+      }
+    }
+    // When the offer applies, the headline becomes the (discounted) Total.
+    const subLabel = document.querySelector('.cart-foot .cart-totals .label');
+    if (subLabel) {
+      if (offer > 0) { subLabel.textContent = lw(L.totalW); subLabel.removeAttribute('data-i18n'); }
+      else if (!subLabel.getAttribute('data-i18n')) { subLabel.setAttribute('data-i18n', 'cart.subtotal'); subLabel.textContent = lookup('cart.subtotal'); }
+    }
+    if (total) total.textContent = formatPrice(Math.max(0, sub - offer));
 
     // Checkout button → Commerce checkoutUrl (SEAM: becomes Shopify checkout when live)
     if (_snap && _snap.checkoutUrl) { const _co = document.querySelector('.cart-checkout'); if (_co) _co.setAttribute('href', _snap.checkoutUrl); }
@@ -2426,15 +2572,17 @@
         const line = e.target.closest('.cart-line');
         if (!line) return;
         const slug = line.dataset.slug;
+        const size = line.dataset.size || null;
         const act = btn.dataset.act;
+        const find = () => cart.items.find(i => i.slug === slug && (size == null || sizeOf(i) === size));
         if (act === 'inc') {
-          const it = cart.items.find(i => i.slug === slug);
-          if (it) cart.setQty(slug, it.qty + 1);
+          const it = find();
+          if (it) cart.setQty(slug, it.qty + 1, it.size);
         } else if (act === 'dec') {
-          const it = cart.items.find(i => i.slug === slug);
-          if (it) cart.setQty(slug, it.qty - 1);
+          const it = find();
+          if (it) cart.setQty(slug, it.qty - 1, it.size);
         } else if (act === 'remove') {
-          cart.remove(slug);
+          cart.remove(slug, size);
         }
       });
     }
@@ -2449,8 +2597,9 @@
       e.preventDefault();
       const slug = addBtn.dataset.addToCart;
       const qty = parseInt(addBtn.dataset.qty || '1', 10) || 1;
+      const size = addBtn.dataset.size || undefined;
       if (!PRODUCTS[slug]) return;
-      cart.add(slug, qty);
+      cart.add(slug, qty, size);
       const p = localizedProduct(slug);
       toast(lookup('cart.added') + ', ' + p.name);
       if (addBtn.dataset.openCart !== 'false') {
@@ -3412,6 +3561,10 @@
         '</header>' +
         '<div class="cart-items" id="cartItems"></div>' +
         '<footer class="cart-foot">' +
+          '<div class="cart-offer" id="cartOffer" hidden>' +
+            '<span class="cart-offer-label"></span>' +
+            '<span class="cart-offer-val"></span>' +
+          '</div>' +
           '<div class="cart-totals">' +
             '<span class="label" data-i18n="cart.subtotal">Subtotal</span>' +
             '<span class="total" id="cartTotal">€0</span>' +
@@ -4274,6 +4427,9 @@
   'use strict';
   let overlay = null;
 
+  function qvLang() { try { return (window.HD_lang && window.HD_lang()) || document.documentElement.lang || 'en'; } catch (e) { return 'en'; } }
+  function qvFmt(n) { return '€' + (Number.isInteger(n) ? n : Number(n).toFixed(2).replace('.', ',')); }
+
   function buildOverlay() {
     overlay = document.createElement('div');
     overlay.className = 'qv-overlay';
@@ -4309,18 +4465,40 @@
           (badges ? '<div class="qv-badges">' + badges + '</div>' : '') +
           '<div class="qv-meta">' +
             '<div><div class="lbl">Texture</div><div class="val">' + (p.texture || '-') + '</div></div>' +
-            '<div><div class="lbl">Weight</div><div class="val">' + (p.weight || '250g') + '</div></div>' +
+            '<div><div class="lbl">Weight</div><div class="val">' + (p.weight || '') + '</div></div>' +
           '</div>' +
+          (p.multiSize
+            ? '<div class="qv-sizes" role="group" aria-label="Size">' +
+                p.sizes.map(function (s) {
+                  return '<button type="button" class="qv-size' + (s.id === p.defaultSize ? ' active' : '') +
+                    '" data-size="' + s.id + '" data-price="' + s.price + '">' +
+                    s.label + ' &middot; ' + qvFmt(s.price) + '</button>';
+                }).join('') +
+              '</div>'
+            : '') +
+          (p.bundle ? '<div class="qv-bundle">' + p.bundle.qty + (qvLang() === 'nl' ? ' voor ' : qvLang() === 'el' ? ' για ' : ' for ') + qvFmt(p.bundle.price) + '</div>' : '') +
           '<div class="qv-price-row">' +
-            '<span class="qv-price">€' + p.price + '</span>' +
+            '<span class="qv-price">' + qvFmt(p.price) + '</span>' +
             '<span class="qv-price-sub">incl. VAT &middot; ships worldwide</span>' +
           '</div>' +
           '<div class="qv-actions">' +
-            '<button class="cta qv-add" type="button" data-add-to-cart="' + p.slug + '">Add to cellar <span class="arrow" aria-hidden="true"></span></button>' +
+            '<button class="cta qv-add" type="button" data-add-to-cart="' + p.slug + '" data-size="' + p.defaultSize + '">Add to cellar <span class="arrow" aria-hidden="true"></span></button>' +
             '<a class="cta-ghost qv-view" href="' + p.url + '">Full details</a>' +
           '</div>' +
         '</div>' +
       '</div>';
+
+    // Size selector → updates the headline price + the add button's size
+    overlay.querySelectorAll('.qv-size').forEach(function (b) {
+      b.addEventListener('click', function () {
+        overlay.querySelectorAll('.qv-size').forEach(function (x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        const priceEl = overlay.querySelector('.qv-price');
+        if (priceEl) priceEl.textContent = qvFmt(Number(b.dataset.price));
+        const add = overlay.querySelector('.qv-add');
+        if (add) add.dataset.size = b.dataset.size;
+      });
+    });
 
     // Inject cinematic atmosphere into the image side (haze + drifting motes)
     const imgWrap = overlay.querySelector('.qv-image');
@@ -4470,9 +4648,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-21'], ['hd-search-js', 'search.js?v=hd-2026-06-06-21'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-21'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-21'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-21'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-21'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-21'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-21'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-21'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-21']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-40'], ['hd-search-js', 'search.js?v=hd-2026-06-06-40'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-40'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-40'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-40'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-40'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-40'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-40'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-40'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-40']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

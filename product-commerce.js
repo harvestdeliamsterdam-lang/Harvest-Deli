@@ -41,17 +41,17 @@
     document.addEventListener('click', function (e) {
       var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
       if (!btn || btn.getAttribute('data-add-to-cart') !== handle) return;  // scope: page product only
-      if (!(window.Commerce && window.Commerce.cart)) return;               // fallback: let shared.js handle it
+      if (!window.HD_CART) return;                                          // fallback: let shared.js handle it
       if (window.HD_stock) { var s = window.HD_stock.get(handle); if (s && s.status === 'out') return; } // let inventory guard win
       e.preventDefault(); e.stopImmediatePropagation();                     // prevent the shared.js double-add
       var qty = parseInt(btn.dataset.qty || '1', 10) || 1;
-      window.Commerce.cart.add(handle, qty).then(function () {
-        if (window.HD_renderCart) window.HD_renderCart();
-        var p = window.HD_product && window.HD_product(handle);
-        if (window.HD_toast) window.HD_toast(L('Added to the cellar', 'Toegevoegd aan de kelder') + (p ? ', ' + p.name : ''));
-        if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
-        if (window.HD_track) window.HD_track('add_to_cart', { currency: 'EUR', value: product ? +product.priceRange.minVariantPrice.amount : undefined, items: [{ item_id: handle, quantity: qty }] });
-      });
+      var size = btn.getAttribute('data-size') || undefined;               // honour selected 480g/950g
+      window.HD_CART.add(handle, qty, size);
+      if (window.HD_renderCart) window.HD_renderCart();
+      var p = window.HD_product && window.HD_product(handle);
+      if (window.HD_toast) window.HD_toast(L('Added to the cellar', 'Toegevoegd aan de kelder') + (p ? ', ' + p.name : ''));
+      if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
+      if (window.HD_track) window.HD_track('add_to_cart', { currency: 'EUR', value: p ? p.price : undefined, items: [{ item_id: handle, quantity: qty }] });
     }, true);
   }
 

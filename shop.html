@@ -35,7 +35,6 @@
       { "@type": "ListItem", "position": 6, "item": { "@type": "Product", "name": "Thyme Honey", "url": "https://harvestdeli.gr/product.html?p=thyme", "image": "https://harvestdeli.gr/harvestdeli.png", "brand": "Harvest Deli", "category": "Honey", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "64", "availability": "https://schema.org/InStock" } } },
       { "@type": "ListItem", "position": 7, "item": { "@type": "Product", "name": "Chestnut Honey", "url": "https://harvestdeli.gr/product.html?p=chestnut", "image": "https://harvestdeli.gr/harvestdeli.png", "brand": "Harvest Deli", "category": "Honey", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "68", "availability": "https://schema.org/InStock" } } },
       { "@type": "ListItem", "position": 8, "item": { "@type": "Product", "name": "Pine Honey", "url": "https://harvestdeli.gr/product.html?p=pine", "image": "https://harvestdeli.gr/harvestdeli.png", "brand": "Harvest Deli", "category": "Honey", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "54", "availability": "https://schema.org/InStock" } } },
-      { "@type": "ListItem", "position": 9, "item": { "@type": "Product", "name": "Heather Honey", "url": "https://harvestdeli.gr/product.html?p=heather", "image": "https://harvestdeli.gr/harvestdeli.png", "brand": "Harvest Deli", "category": "Honey", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "66", "availability": "https://schema.org/InStock" } } },
       { "@type": "ListItem", "position": 10, "item": { "@type": "Product", "name": "Extra Virgin Olive Oil", "url": "https://harvestdeli.gr/product-olive-oil.html", "image": "https://harvestdeli.gr/assets/greekoliveoil.PNG", "brand": "Harvest Deli", "category": "Olive Oil", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "24", "availability": "https://schema.org/InStock" } } },
       { "@type": "ListItem", "position": 11, "item": { "@type": "Product", "name": "Greek Mountain Tea", "url": "https://harvestdeli.gr/product-mountain-tea.html", "image": "https://harvestdeli.gr/assets/mountaintea.png", "brand": "Harvest Deli", "category": "Herbal Tea", "offers": { "@type": "Offer", "priceCurrency": "EUR", "price": "16", "availability": "https://schema.org/InStock" } } }
     ]
@@ -47,7 +46,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-36">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-41">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1935,7 +1934,7 @@ footer.site-footer {
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-36"></script>
+<script src="shared.js?v=hd-2026-06-06-41"></script>
 <script>
 (function () {
   /* Menu */
@@ -1951,7 +1950,9 @@ footer.site-footer {
 
   /* Render grid using localized product accessor */
   const grid = document.getElementById('shopGrid');
-  const order = ['arbutus', 'oak', 'fir-vanilla', 'orange-blossom', 'acacia', 'thyme', 'chestnut', 'pine', 'heather', 'olive-oil', 'mountain-tea'];
+  const order = ['fir-vanilla', 'acacia', 'pine', 'orange-blossom', 'chestnut', 'oak', 'arbutus', 'thyme', 'oregano', 'olive-oil', 'mountain-tea'];
+  const FROM_WORD = { nl: 'vanaf', el: 'από', en: 'from' };
+  function fromWord() { return FROM_WORD[(window.HD_lang && window.HD_lang()) || 'en'] || 'from'; }
 
   /* ---- Facet model (Categorie / Soort honing / Oorsprong / Oogst & methode / Beschikbaarheid) ---- */
   const FACETS = {
@@ -2022,7 +2023,7 @@ footer.site-footer {
           <div class="name">${name}</div>
           <div class="notes">"${notes}"</div>
           <div class="foot">
-            <span class="price">€${price}</span>
+            <span class="price">${(p && p.multiSize) ? `<span class="from">${fromWord()}</span> ` : ''}€${price}</span>
             <span class="weight">${weight}</span>
           </div>
         </div>
@@ -2052,22 +2053,22 @@ footer.site-footer {
     }
   })(0);
 
-  // Migration #6, add-to-cart from the grid (quick-view) routes through Commerce,
-  // capture-phase, with fallback to the shared.js handler. Prevents double-adds.
+  // Add-to-cart from the grid (quick-view) routes through HD_CART so the
+  // selected SIZE (480g/950g) + bundle + basket offer are honoured. Capture
+  // + stopImmediatePropagation = single path, no double-add.
   document.addEventListener('click', function (e) {
     var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
     if (!btn) return;
-    if (!(window.Commerce && window.Commerce.cart)) return;            // fallback → shared.js
+    if (!window.HD_CART) return;                                       // fallback → shared.js
     if (window.HD_stock) { var st = window.HD_stock.get(btn.getAttribute('data-add-to-cart')); if (st && st.status === 'out') return; } // let inventory guard win
     var slug = btn.getAttribute('data-add-to-cart');
+    var size = btn.getAttribute('data-size') || undefined;
     e.preventDefault(); e.stopImmediatePropagation();                  // single path; no double-add
     var qty = parseInt(btn.dataset.qty || '1', 10) || 1;
-    window.Commerce.cart.add(slug, qty).then(function () {
-      if (window.HD_renderCart) window.HD_renderCart();
-      var p = window.HD_product && window.HD_product(slug);
-      if (window.HD_toast) window.HD_toast((window.HD_lang && window.HD_lang() === 'nl' ? 'Toegevoegd' : 'Added') + (p ? ', ' + p.name : ''));
-      if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
-    });
+    window.HD_CART.add(slug, qty, size);
+    var p = window.HD_product && window.HD_product(slug);
+    if (window.HD_toast) window.HD_toast((window.HD_lang && window.HD_lang() === 'nl' ? 'Toegevoegd' : 'Added') + (p ? ', ' + p.name : ''));
+    if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
   }, true);
 
   // Re-render when language changes, sort label + active chips + per-group counts

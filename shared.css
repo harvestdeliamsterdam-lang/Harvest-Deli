@@ -4723,3 +4723,45 @@ body .product-origin .image-frame {
   body .product-origin { grid-template-columns: 1fr !important; gap: clamp(34px, 7vh, 60px) !important; }
   body .product-origin .image-frame { width: min(300px, 80%); }
 }
+
+/* ================================================================
+   Size variants (quick view), bundle hint, basket-offer cart row
+   ================================================================ */
+.qv-sizes { display: flex; gap: 10px; margin: 4px 0 10px; flex-wrap: wrap; }
+.qv-size {
+  -webkit-appearance: none; appearance: none; cursor: pointer;
+  border: 1px solid rgba(26,22,18,0.22); background: transparent;
+  border-radius: var(--radius-pill, 999px);
+  padding: 9px 16px; min-height: 40px;
+  font-family: 'Inter Tight','Inter',sans-serif; font-size: 12px; font-weight: 500;
+  letter-spacing: 0.02em; color: var(--ink, #1a1612);
+  transition: border-color .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+}
+.qv-size:hover { border-color: rgba(26,22,18,0.5); }
+.qv-size.active { background: var(--ink, #1a1612); color: var(--cream, #faf6ee); border-color: var(--ink, #1a1612); }
+.qv-size:focus-visible { outline: 2px solid var(--gold-light, #D4AC6A); outline-offset: 2px; }
+.qv-bundle {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Inter Tight','Inter',sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold-deep, #8A6228); margin: 0 0 8px;
+}
+.qv-bundle::before { content: ''; width: 14px; height: 1px; background: currentColor; opacity: 0.6; }
+
+/* Basket-offer discount row in the cart drawer footer */
+.cart-foot .cart-offer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 0 10px; margin: 0 0 2px;
+  font-family: 'Inter Tight','Inter',sans-serif; font-size: 12.5px;
+  letter-spacing: 0.04em; color: var(--gold-deep, #8A6228);
+}
+.cart-foot .cart-offer[hidden] { display: none; }
+.cart-foot .cart-offer .cart-offer-label { text-transform: uppercase; font-weight: 600; letter-spacing: 0.12em; font-size: 10.5px; }
+.cart-foot .cart-offer .cart-offer-val { font-weight: 600; }
+
+/* "from €X" price prefix on multi-size product cards */
+.from {
+  font-family: 'Inter Tight','Inter',sans-serif;
+  font-size: 0.62em; font-weight: 500; letter-spacing: 0.06em;
+  text-transform: lowercase; opacity: 0.6; margin-right: 1px;
+}
