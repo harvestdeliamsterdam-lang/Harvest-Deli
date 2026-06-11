@@ -4656,9 +4656,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-46'], ['hd-search-js', 'search.js?v=hd-2026-06-06-46'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-46'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-46'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-46'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-46'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-46'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-46'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-46'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-46']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-48'], ['hd-search-js', 'search.js?v=hd-2026-06-06-48'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-48'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-48'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-48'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-48'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-48'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-48'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-48'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-48']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
@@ -4755,6 +4755,108 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
       m.innerHTML = '<span class="tm"></span><span class="tm"></span><span class="tm"></span><span class="tm"></span><span class="tm"></span><span class="tm"></span>';
       sec.insertBefore(m, sec.firstChild);
     }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* =================================================================
+   CURSOR BEE — brand companion. A small bee lazily follows the
+   pointer (never glued to it): spring-lag flight, banks into turns,
+   flips when flying left, and hovers in a gentle figure-eight when
+   the mouse rests. Guards: fine pointers only, skipped entirely on
+   touch and under prefers-reduced-motion; pointer-events none, so
+   it can never block a click.
+   ================================================================= */
+(function () {
+  'use strict';
+  if (!window.matchMedia) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!window.matchMedia('(pointer: fine)').matches) return; // mouse/trackpad only
+
+  var bee, x = -100, y = -100, tx = -100, ty = -100, shown = false;
+  var t = 0, timer = null, lastMove = 0;
+
+  function build() {
+    bee = document.createElement('div');
+    bee.className = 'hd-bee';
+    bee.setAttribute('aria-hidden', 'true');
+    // Brand bee: espresso body, gold stripes, ivory wings
+    bee.innerHTML =
+      '<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+        '<g class="bee-wing bee-wing--far"><ellipse cx="38" cy="16" rx="7.5" ry="13" transform="rotate(24 38 16)" fill="#F7F0E4" fill-opacity="0.88"/></g>' +
+        '<g class="bee-wing"><ellipse cx="27" cy="14" rx="8.5" ry="14" transform="rotate(-14 27 14)" fill="#FCF7EC" fill-opacity="0.95"/></g>' +
+        '<g class="bee-body">' +
+          '<ellipse cx="32" cy="36" rx="15.5" ry="11.5" fill="#2B2118"/>' +
+          '<path d="M24.5 26.5 C28 24.8 36 24.8 39.5 26.5 L39.5 30 L24.5 30 Z" fill="#2B2118"/>' +
+          '<rect x="25.8" y="27" width="4.6" height="20" rx="2.3" fill="#D4AC6A"/>' +
+          '<rect x="33.6" y="27" width="4.6" height="20" rx="2.3" fill="#D4AC6A"/>' +
+          '<ellipse cx="32" cy="36" rx="15.5" ry="11.5" stroke="#1B140C" stroke-opacity="0.35" stroke-width="1"/>' +
+          '<circle cx="17.5" cy="33.5" r="6.2" fill="#1B140C"/>' +
+          '<circle cx="15.6" cy="31.8" r="1.1" fill="#F7F0E4" fill-opacity="0.85"/>' +
+          '<path d="M14.5 28.5 C12.5 26 11.5 24.5 11.8 22.2" stroke="#1B140C" stroke-width="1.4" stroke-linecap="round"/>' +
+          '<path d="M18.5 27.5 C17.5 24.8 17.4 23 18.4 21" stroke="#1B140C" stroke-width="1.4" stroke-linecap="round"/>' +
+          '<circle cx="11.8" cy="21.8" r="1.5" fill="#1B140C"/>' +
+          '<circle cx="18.6" cy="20.6" r="1.5" fill="#1B140C"/>' +
+          '<path d="M46 34.5 C49.5 35 51 36.5 51.5 38.8 C49 39.4 46.8 38.6 45.4 36.8 Z" fill="#1B140C"/>' +
+        '</g>' +
+      '</svg>';
+    document.body.appendChild(bee);
+  }
+
+  function onMove(e) {
+    tx = e.clientX; ty = e.clientY;
+    lastMove = performance.now();
+    if (!shown) {
+      shown = true;
+      x = tx + 80; y = ty + 60; // flies in from just behind the cursor
+      bee.classList.add('is-active');
+    }
+    if (!timer) timer = setTimeout(tick, 16);
+  }
+
+  /* setTimeout chain (not rAF): rAF is throttled to zero in background /
+     embedded tabs, which freezes the bee mid-air; nested timeouts keep
+     ticking (~60fps focused, browser-clamped when hidden, and the
+     visibilitychange handler below pauses it outright). */
+  function tick() {
+    var now = performance.now();
+    t += 0.016;
+    var idle = (now - lastMove) > 900;
+
+    // target: hover above-right of the cursor so it never covers what you point at
+    var gx = tx + 22, gy = ty - 30;
+    if (idle) { // gentle figure-eight while resting
+      gx += Math.sin(t * 1.1) * 10;
+      gy += Math.sin(t * 2.2) * 6;
+    } else {    // small organic wander while flying
+      gx += Math.sin(t * 3.1) * 3;
+      gy += Math.cos(t * 2.6) * 2.5;
+    }
+
+    var dx = gx - x, dy = gy - y;
+    x += dx * 0.075;  // lazy spring follow
+    y += dy * 0.075;
+
+    // bank into the turn + face flight direction
+    var bank = Math.max(-26, Math.min(26, dx * 0.22));
+    var facing = (dx < -1.5) ? -1 : 1;
+
+    bee.style.transform =
+      'translate3d(' + (x - 15) + 'px,' + (y - 15) + 'px,0)' +
+      ' rotate(' + bank * facing + 'deg)' +
+      ' scaleX(' + facing + ')';
+
+    timer = setTimeout(tick, 16);
+  }
+
+  function init() {
+    build();
+    document.addEventListener('mousemove', onMove, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden && timer) { clearTimeout(timer); timer = null; }
+      else if (!document.hidden && shown && !timer) timer = setTimeout(tick, 16);
+    });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
