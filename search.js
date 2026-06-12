@@ -67,9 +67,12 @@
     overlay.innerHTML =
       '<div class="hd-search-backdrop" data-search-close></div>' +
       '<div class="hd-search-panel" role="document">' +
+        '<span class="hd-search-frame" aria-hidden="true"></span>' +
+        '<span class="hd-search-sweep" aria-hidden="true"></span>' +
         '<div class="hd-search-bar">' +
           '<svg class="hd-search-ico" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="9.5" cy="9.5" r="6.5"/><path d="M19 19l-4.5-4.5"/></svg>' +
           '<input type="search" id="hdSearchInput" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search the collection" placeholder="Search the collection">' +
+          '<button type="button" class="hd-search-clear" id="hdSearchClear" aria-label="Clear search" hidden><span class="x" aria-hidden="true"></span></button>' +
           '<button type="button" class="hd-search-close" data-search-close aria-label="Close search"><span>Close</span><span class="x" aria-hidden="true"></span></button>' +
         '</div>' +
         '<div class="hd-search-results" id="hdSearchResults" role="listbox" aria-label="Search results"></div>' +
@@ -77,13 +80,30 @@
     document.body.appendChild(overlay);
     input = overlay.querySelector('#hdSearchInput');
     resultsEl = overlay.querySelector('#hdSearchResults');
+    var clearBtn = overlay.querySelector('#hdSearchClear');
+
+    function syncClear() { clearBtn.hidden = !input.value; }
 
     overlay.addEventListener('click', function (e) {
       if (e.target.closest('[data-search-close]')) close();
     });
+    input.addEventListener('input', function () { syncClear(); });
     input.addEventListener('input', debounce(function () { render(input.value); }, 160));
     input.addEventListener('keydown', onKey);
+    clearBtn.addEventListener('click', function () {
+      input.value = ''; syncClear(); render(''); input.focus();
+    });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) close(); });
+    // Focus trap while the dialog is open
+    overlay.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab' || !isOpen()) return;
+      var f = overlay.querySelectorAll('input, button:not([hidden]), a[href], [tabindex]:not([tabindex="-1"])');
+      f = Array.prototype.filter.call(f, function (el) { return el.offsetParent !== null; });
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
   }
 
   function debounce(fn, ms) { var t; return function () { clearTimeout(t); var a = arguments, c = this; t = setTimeout(function () { fn.apply(c, a); }, ms); }; }
