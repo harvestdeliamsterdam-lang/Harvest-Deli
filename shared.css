@@ -4885,3 +4885,33 @@ img[src*="assets/products-images"] {
   .pdg-main img { transition: opacity 0.3s ease; }
   .pdg-main:hover img.active { transform: none; }
 }
+
+/* ================================================================
+   CONCIERGE FAB → honeycomb (honingraat) chat icon
+   Overrides the matte pill: a transparent icon button showing the
+   hexagon chat glyph, with a quiet hover lift + drop-shadow.
+   ================================================================ */
+body .hd-concierge-fab {
+  padding: 0 !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  gap: 0 !important;
+  border-radius: 0 !important;
+}
+body .hd-concierge-fab:hover { background: none !important; border: none !important; transform: translateY(-4px) scale(1.03); }
+body .hd-concierge-fab:active { transform: translateY(-1px) scale(0.97); }
+body .hd-concierge-fab .hd-fab-label { display: none !important; }   /* icon speaks for itself; button keeps its aria-label */
+body .hd-concierge-fab .hd-fab-hex {
+  display: block;
+  width: 64px; height: 65px;
+  filter: drop-shadow(0 18px 32px rgba(0,0,0,0.5)) drop-shadow(0 6px 22px rgba(216,184,108,0.18));
+  transition: filter 0.5s var(--ease, cubic-bezier(0.16,1,0.3,1));
+}
+body .hd-concierge-fab:hover .hd-fab-hex {
+  filter: drop-shadow(0 24px 40px rgba(0,0,0,0.55)) drop-shadow(0 8px 30px rgba(216,184,108,0.3));
+}
+@media (max-width: 600px) {
+  body .hd-concierge-fab { bottom: 18px; right: 18px; }
+  body .hd-concierge-fab .hd-fab-hex { width: 56px; height: 57px; }
+}

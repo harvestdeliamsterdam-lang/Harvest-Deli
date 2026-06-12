@@ -3006,10 +3006,11 @@
     btn.setAttribute('aria-label', t('concierge.title', 'Harvest Concierge'));
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.setAttribute('aria-expanded', 'false');
-    // Inline gold-coin medallion SVG, sharp at any size, ~1.4 KB.
+    // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
+    // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>' +
-      '<span class="hd-fab-glyph" aria-hidden="true">' + COIN_CHAT_SVG + '</span>';
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-57" alt="" aria-hidden="true" width="64" height="65">' +
+      '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
 
@@ -4688,9 +4689,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-56'], ['hd-search-js', 'search.js?v=hd-2026-06-06-56'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-56'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-56'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-56'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-56'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-56'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-56'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-56'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-56']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-57'], ['hd-search-js', 'search.js?v=hd-2026-06-06-57'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-57'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-57'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-57'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-57'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-57'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-57'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-57'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-57']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
