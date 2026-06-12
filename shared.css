@@ -4799,3 +4799,15 @@ body .product-origin .image-frame {
 @media (prefers-reduced-motion: reduce) {
   .hd-bee { display: none !important; }
 }
+
+/* ================================================================
+   REAL PRODUCT PHOTOGRAPHY — true colours.
+   The per-hue filters (.card-photo.amber/.pale/.bronze/.deep/.straw)
+   were designed to tint ONE identical placeholder jar. Products that
+   now have their own photo (assets/products-images/*) must not be
+   colour-shifted; apply only a light uniform grade. Placeholder-jar
+   products (chestnut/thyme/oregano) keep their tint until they get a photo.
+   ================================================================ */
+img[src*="assets/products-images"] {
+  filter: saturate(1.04) contrast(1.02) !important;
+}

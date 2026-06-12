@@ -2036,6 +2036,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
+      image: 'assets/products-images/fir-vanilla.jpg',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2054,6 +2055,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
+      image: 'assets/products-images/acacia.jpg',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2072,6 +2074,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
+      image: 'assets/products-images/pine.jpg',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2090,6 +2093,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
+      image: 'assets/products-images/orange-blossom.jpg',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2126,6 +2130,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
+      image: 'assets/products-images/oak.jpg',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2144,6 +2149,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
+      image: 'assets/products-images/arbutus.jpg',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2214,7 +2220,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/mountaintea.png',
+      image: 'assets/products-images/mountain-tea.jpg',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -4656,9 +4662,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-48'], ['hd-search-js', 'search.js?v=hd-2026-06-06-48'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-48'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-48'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-48'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-48'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-48'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-48'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-48'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-48']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-50'], ['hd-search-js', 'search.js?v=hd-2026-06-06-50'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-50'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-50'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-50'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-50'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-50'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-50'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-50'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-50']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
