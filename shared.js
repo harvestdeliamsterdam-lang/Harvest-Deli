@@ -3033,7 +3033,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-66" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-73" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -3758,6 +3758,110 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
   else inject();
+})();
+
+/* =================================================================
+   CINEMATIC MENU — gold border, ghost type, cursor light, fixed
+   footer, VisionOS open transition. All injected, no per-page edits.
+   ================================================================= */
+(function () {
+  'use strict';
+  var SVGNS = 'http://www.w3.org/2000/svg';
+
+  function buildFrame() {
+    if (document.querySelector('.hd-menu-frame')) return;
+    var svg = document.createElementNS(SVGNS, 'svg');
+    svg.setAttribute('class', 'hd-menu-frame');
+    svg.setAttribute('preserveAspectRatio', 'none');
+    svg.setAttribute('aria-hidden', 'true');
+    var base = document.createElementNS(SVGNS, 'rect'); base.setAttribute('class', 'base');
+    var travel = document.createElementNS(SVGNS, 'rect'); travel.setAttribute('class', 'travel');
+    svg.appendChild(base); svg.appendChild(travel);
+    document.body.appendChild(svg);
+    function size() {
+      var w = window.innerWidth, h = window.innerHeight, i = 1;
+      svg.setAttribute('width', w); svg.setAttribute('height', h);
+      svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+      [base, travel].forEach(function (r) {
+        r.setAttribute('x', i); r.setAttribute('y', i);
+        r.setAttribute('width', w - i * 2); r.setAttribute('height', h - i * 2);
+      });
+      var peri = 2 * ((w - i * 2) + (h - i * 2));
+      var dash = Math.max(90, peri * 0.07);
+      travel.setAttribute('stroke-dasharray', dash + ' ' + (peri - dash));
+      travel.style.setProperty('--peri', peri + 'px');
+    }
+    size();
+    window.addEventListener('resize', size, { passive: true });
+  }
+
+  function enhance(overlay) {
+    if (overlay.dataset.hdCinematic) return;
+    overlay.dataset.hdCinematic = '1';
+
+    // Cursor-reactive light (behind content)
+    var light = document.createElement('div');
+    light.className = 'hd-menu-light';
+    light.setAttribute('aria-hidden', 'true');
+    overlay.appendChild(light);
+
+    // Ghost typography on the right
+    var ghost = document.createElement('div');
+    ghost.className = 'hd-menu-ghost';
+    ghost.setAttribute('aria-hidden', 'true');
+    ghost.innerHTML = '<span>Harvest</span><span>Pelion</span><span>Greece</span>';
+    overlay.appendChild(ghost);
+
+    // Fixed, centered footer navigation
+    var foot = document.createElement('nav');
+    foot.className = 'hd-menu-foot';
+    foot.setAttribute('aria-label', 'Social and quick links');
+    foot.innerHTML =
+      '<a href="https://www.instagram.com/harvestdeli" target="_blank" rel="noopener">Instagram</a>' +
+      '<a href="journal.html" data-i18n="footer.link.journal">Journal</a>' +
+      '<a href="about.html" data-i18n="footer.link.origin">Origin</a>' +
+      '<a href="contact.html" data-i18n="footer.link.contact">Contact</a>';
+    overlay.appendChild(foot);
+
+    // Cursor tracking — only while the menu is open
+    var move = function (e) {
+      light.style.setProperty('--mx', e.clientX + 'px');
+      light.style.setProperty('--my', e.clientY + 'px');
+    };
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function setBehind(on) {
+      var frame = document.querySelector('.hd-menu-frame');
+      if (frame) frame.style.opacity = on ? '1' : '';
+      if (reduce) return;
+      ['#content', 'nav.site-nav', 'footer.site-footer', 'body > footer'].forEach(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return;
+        el.style.transition = 'transform 0.7s cubic-bezier(0.22,1,0.36,1), filter 0.7s cubic-bezier(0.22,1,0.36,1)';
+        el.style.transform = on ? 'scale(0.96)' : '';
+        el.style.transformOrigin = on ? 'center 42%' : '';
+        el.style.filter = on ? 'blur(3px) brightness(0.86)' : '';
+      });
+    }
+    var open = false;
+    var obs = new MutationObserver(function () {
+      var isOpen = overlay.classList.contains('open');
+      if (isOpen === open) return;
+      open = isOpen;
+      document.body.classList.toggle('hd-menu-open', isOpen);
+      setBehind(isOpen);
+      if (isOpen) window.addEventListener('mousemove', move, { passive: true });
+      else window.removeEventListener('mousemove', move);
+    });
+    obs.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  function init() {
+    buildFrame();
+    document.querySelectorAll('.menu-overlay').forEach(enhance);
+    if (window.HD_applyTranslations) { try { window.HD_applyTranslations(); } catch (e) {} }
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();
 
 /* =================================================================
@@ -4766,9 +4870,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-66'], ['hd-search-js', 'search.js?v=hd-2026-06-06-66'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-66'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-66'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-66'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-66'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-66'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-66'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-66'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-66']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-73'], ['hd-search-js', 'search.js?v=hd-2026-06-06-73'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-73'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-73'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-73'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-73'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-73'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-73'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-73'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-73']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

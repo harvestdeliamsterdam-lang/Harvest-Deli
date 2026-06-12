@@ -2699,6 +2699,183 @@ body .menu-overlay .menu-bottom .social a:hover { color: var(--gold-deep, #8A622
 }
 
 /* =================================================================
+   CINEMATIC MENU REDESIGN — luxury digital showroom
+   Animated gold border · ghost typography · cursor light · brutal
+   nav type · premium hover · fixed footer · VisionOS open transition
+   ================================================================= */
+
+/* Remove the old right-side "visit estate" info block entirely */
+body .menu-overlay .menu-side { display: none !important; }
+/* Reserve space at the bottom for the fixed footer nav so the index never collides with it */
+body .menu-overlay { padding-bottom: clamp(84px, 12vh, 124px) !important; }
+/* Nav becomes a single editorial column on the left; ghost type fills the right */
+body .menu-overlay .menu-content {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: min(58%, 760px);
+  margin: 0;
+}
+body .menu-overlay .menu-items { width: 100%; }
+
+/* --- Navigation typography: +20%, stronger, more editorial --- */
+/* Compact vertical rhythm so all 7 editions fit above the fixed footer */
+body .menu-overlay .menu-top { padding-bottom: clamp(2.6vh, 3.5vh, 5vh) !important; }
+/* Link left, sub-label inline-right on the same baseline — saves vertical
+   space so all editions fit, and reads more editorial */
+body .menu-overlay .menu-items li {
+  grid-template-columns: 1fr auto !important;
+  align-items: baseline !important;
+  gap: 0 24px !important;
+  padding: clamp(7px, 1.3vh, 17px) 0 !important;
+}
+body .menu-overlay .menu-items a {
+  font-size: clamp(30px, min(4.1vw, 6vh), 64px) !important;
+  font-weight: 600 !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.032em !important;
+  position: relative;
+  display: inline-block;
+  transition: opacity 0.5s var(--ease), color 0.5s var(--ease);
+}
+body .menu-overlay .menu-items .sub { font-size: 9.5px !important; margin-top: 0 !important; align-self: baseline; }
+/* Premium hover: inactive items fade to 20%, hovered item glows gold */
+body .menu-overlay .menu-items:hover a { opacity: 0.2; }
+body .menu-overlay .menu-items a:hover {
+  opacity: 1;
+  background: linear-gradient(92deg, #CFA959 0%, #8A6228 70%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+}
+/* Thin gold underline animating left → right (override width-based version) */
+body .menu-overlay .menu-items a::after {
+  left: 0; right: auto; bottom: -8px;
+  width: 100% !important; height: 1.5px;
+  background: linear-gradient(90deg, #CFA959, #8A6228) !important;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s var(--ease);
+}
+body .menu-overlay .menu-items a:hover::after,
+body .menu-overlay .menu-items a.current::after { transform: scaleX(1); }
+
+/* --- Ghost typography on the right (HARVEST / PELION / GREECE) --- */
+.menu-overlay .hd-menu-ghost {
+  position: absolute !important;
+  right: clamp(2%, 4vw, 7%);
+  top: 50%; transform: translateY(-50%);
+  z-index: 0 !important; pointer-events: none;
+  text-align: right; user-select: none;
+}
+.menu-overlay .hd-menu-ghost span {
+  display: block;
+  font-family: var(--font-display, 'General Sans', sans-serif);
+  font-weight: 700;
+  font-size: clamp(74px, 12.5vw, 210px);
+  line-height: 0.9; letter-spacing: -0.05em;
+  text-transform: uppercase;
+  color: var(--ink, #1F1A14);
+  opacity: 0.04;
+}
+@media (max-width: 900px) { .menu-overlay .hd-menu-ghost { display: none; } }
+
+/* --- Cursor-reactive radial light (very subtle, < 10%) --- */
+.menu-overlay .hd-menu-light {
+  position: absolute !important; inset: 0; z-index: 0 !important; pointer-events: none;
+  background: radial-gradient(380px circle at var(--mx, 70%) var(--my, 40%), rgba(212, 184, 120, 0.09), transparent 62%);
+  opacity: 0; transition: opacity 0.7s var(--ease);
+}
+.menu-overlay.open .hd-menu-light { opacity: 1; }
+
+/* --- Close button → [ × ] Close, elegant gold hover --- */
+body .menu-overlay .menu-close {
+  flex-direction: row-reverse;
+  gap: 13px;
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  color: var(--ink, #1F1A14);
+  opacity: 0.7;
+  transition: opacity 0.4s var(--ease), color 0.4s var(--ease);
+}
+body .menu-overlay .menu-close .x {
+  width: 36px; height: 36px;
+  background: transparent !important;
+  border: 1px solid rgba(184, 146, 79, 0.5);
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  position: relative;
+  transition: border-color 0.4s var(--ease), background 0.4s var(--ease);
+}
+body .menu-overlay .menu-close .x::before,
+body .menu-overlay .menu-close .x::after {
+  width: 13px; left: 50%; top: 50%; margin: -0.5px 0 0 -6.5px;
+}
+body .menu-overlay .menu-close:hover { opacity: 1; color: var(--gold-deep, #8A6228); }
+body .menu-overlay .menu-close:hover .x { border-color: var(--gold-deep, #8A6228); background: rgba(184, 146, 79, 0.08); }
+
+/* --- Fixed footer navigation, centered (replaces broken footer row) --- */
+body .menu-overlay .menu-bottom { display: none !important; }
+.menu-overlay .hd-menu-foot {
+  position: absolute !important;
+  left: 50%; bottom: clamp(22px, 4.2vh, 44px);
+  transform: translateX(-50%);
+  z-index: 4 !important;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: clamp(22px, 4vw, 54px);
+}
+.menu-overlay .hd-menu-foot a {
+  position: relative;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600;
+  color: var(--ink-soft, #5C5247); text-decoration: none;
+  padding: 6px 0;
+  transition: color 0.4s var(--ease);
+}
+.menu-overlay .hd-menu-foot a::after {
+  content: ''; position: absolute; left: 0; bottom: 0; height: 1px; width: 100%;
+  background: var(--gold-deep, #8A6228);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.45s var(--ease);
+}
+.menu-overlay .hd-menu-foot a:hover { color: var(--gold-deep, #8A6228); }
+.menu-overlay .hd-menu-foot a:hover::after { transform: scaleX(1); }
+
+/* --- Animated gold viewport border (travels clockwise, 12s) --- */
+.hd-menu-frame {
+  position: fixed; inset: 0; z-index: 9990;
+  pointer-events: none; opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+.hd-menu-frame rect { fill: none; }
+.hd-menu-frame .base { stroke: rgba(184, 146, 79, 0.35); stroke-width: 1; }
+.hd-menu-frame .travel {
+  stroke: rgba(214, 186, 122, 0.95); stroke-width: 1.4; stroke-linecap: round;
+}
+body.hd-menu-open .hd-menu-frame { opacity: 1; }
+body.hd-menu-open .hd-menu-frame .travel { animation: hdFrameTravel 12s linear infinite; }
+@keyframes hdFrameTravel { to { stroke-dashoffset: calc(-1 * var(--peri, 2400px)); } }
+
+/* --- VisionOS open transition: page behind scales / blurs / darkens --- */
+body.hd-menu-open #content,
+body.hd-menu-open > nav.site-nav,
+body.hd-menu-open > footer {
+  transform: scale(0.96);
+  transform-origin: center 42%;
+  filter: blur(3px) brightness(0.86);
+  transition: transform 0.7s var(--ease), filter 0.7s var(--ease);
+}
+#content, body > nav.site-nav, body > footer {
+  transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.hd-menu-open .hd-menu-frame .travel { animation: none; }
+  body.hd-menu-open #content,
+  body.hd-menu-open > nav.site-nav,
+  body.hd-menu-open > footer { transform: none; filter: none; }
+}
+
+/* =================================================================
    POLISH PASS, 17 no-account improvements
    ================================================================= */
 
