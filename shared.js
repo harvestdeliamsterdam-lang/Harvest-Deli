@@ -132,7 +132,7 @@
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Journal',
       'menu.social.wholesale': 'Wholesale',
-      'menu.copyright': '© Harvest Deli MMXXV',
+      'menu.copyright': '© Harvest Deli',
       'cart.title_html': 'Your <em>Cellar</em>',
       'cart.close': 'Close',
       'cart.empty.eyebrow': 'Your cellar',
@@ -167,7 +167,7 @@
       'footer.link.springWildflower': 'Spring Wildflower',
       'footer.link.chestnut': 'Chestnut Honey',
       'footer.bottom1': '© Harvest Deli · Pelion, Greece',
-      'footer.bottom2': 'MMXXV',
+      'footer.bottom2': 'Crafted slowly',
       'footer.builtBy': 'Designed & built by',
       'footer.news.eyebrow': 'The Harvest Letter',
       'footer.news.lead': 'Occasional notes from the mountain: new harvests, quiet stories, nothing more.',
@@ -271,13 +271,13 @@
       'markets.cta.lead': 'Bring an empty afternoon and an honest appetite. There is always coffee, always a spoon, always a story.',
       'markets.cta.schedule': 'View Market Schedule',
       'markets.cta.trade': 'Retail & Hospitality',
-      'idx.markets.eyebrow': 'VI, In Amsterdam',
+      'idx.markets.eyebrow': 'In Amsterdam',
       'idx.markets.h_html': 'Find us at the <em>market table.</em>',
       'idx.markets.body': 'From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee, quietly brought from the hills of Greece to the markets of Amsterdam.',
       'idx.markets.cta': 'Find us in Amsterdam',
       // ---------- index hero ----------
       'idx.scene0.est': 'Established · Pelion, Greece · Estate №01',
-      'idx.scene1.eyebrow_html': 'Edition I <span class="dot"></span> Chestnut Honey',
+      'idx.scene1.eyebrow_html': 'Edition 1 <span class="dot"></span> Chestnut Honey',
       'idx.scene1.line_html': 'Captured from<br><em>the Greek sun.</em>',
       'idx.scene2.eyebrow': 'A field of stillness',
       'idx.scene2.line1': 'Wild mountain flowers.',
@@ -297,11 +297,11 @@
       'idx.sel.title': 'Selected harvests.',
       'idx.sel.cta': 'Explore the collection',
       // ---------- index editorial ----------
-      'idx.ch1.eyebrow': 'I, The Origin',
+      'idx.ch1.eyebrow': 'The Origin',
       'idx.ch1.h': 'Born in the quiet hills of Northern Greece.',
       'idx.ch1.body': 'For five generations, a single family has tended a thousand hives across the limestone ridges of Mount Pelion. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.',
       'idx.ch1.caption': 'Pelion · Spring harvest',
-      'idx.ch2.eyebrow': 'II, The Process',
+      'idx.ch2.eyebrow': 'The Process',
       'idx.ch2.h': 'A practice refined by time, not technology.',
       'idx.step1.h': 'Gathered at altitude',
       'idx.step1.p': 'Hives are placed where wildflowers grow untended. Never near agriculture, never near a road. The bees decide where to forage; we simply listen.',
@@ -315,7 +315,7 @@
       'idx.preview.h_html': 'Three from the cellar, <em>numbered.</em>',
       'idx.preview.addToCellar': 'Add to Cellar',
       'idx.preview.exploreAll': 'View all six editions',
-      'idx.product.eyebrow': 'The Collection · Edition I',
+      'idx.product.eyebrow': 'The Collection · Edition 1',
       'idx.product.title_html': 'Chestnut Honey, <em>2025 harvest.</em>',
       'idx.product.originLine_html': 'Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 jars',
       'idx.product.desc': 'A single-meadow honey of remarkable clarity. Notes of warm resin, sun-baked herb, and a long mineral finish. Bottled in heavy hand-pressed glass, numbered by hand, kept untreated.',
@@ -584,7 +584,7 @@
       'checkout.step.cellar': 'Cellar',
       'checkout.step.checkout': 'Checkout',
       'checkout.step.confirmation': 'Confirmation',
-      'checkout.eyebrow': 'Checkout · Edition I',
+      'checkout.eyebrow': 'Checkout · Edition 1',
       'checkout.headline_html': 'A quiet, <em>careful</em> handover.',
       'checkout.sub': 'Three steps. Numbered, sealed, shipped from Pelion within the week.',
       'checkout.express.divider': 'Or pay with card',
@@ -626,7 +626,7 @@
       'checkout.package.lbl': 'Luxury packaging',
       'checkout.package.h_html': 'Sealed in <em>wax.</em> Boxed in oak veneer.',
       'checkout.package.p': 'Each jar is wrapped by hand, sealed with black wax, and laid in an oak-veneered presentation box. A handwritten card travels with the order.',
-      'checkout.package.tag': 'Edition I · 2025 Harvest',
+      'checkout.package.tag': 'Edition 1 · 2025 Harvest',
       'checkout.trust.stripe1': 'Stripe',
       'checkout.trust.stripe2': 'encrypted',
       'checkout.trust.intl1': 'International',
@@ -639,8 +639,8 @@
       'checkout.row.shippingFree': 'Complimentary',
       // ---------- product detail (chestnut) ----------
       'product.crumb.collection': 'Collection',
-      'product.crumb.current': 'Edition I, Chestnut Honey',
-      'product.eyebrow_html': 'Edition I <span class="dot"></span> 2025 Harvest',
+      'product.crumb.current': 'Edition 1, Chestnut Honey',
+      'product.eyebrow_html': 'Edition 1 <span class="dot"></span> 2025 Harvest',
       'product.title_html': 'Chestnut Honey, <em>Pelion estate.</em>',
       'product.tag.singleMeadow': 'Single Meadow',
       'product.tag.coldExtracted': 'Cold Extracted',
@@ -667,13 +667,13 @@
       'product.notes_html': 'Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars',
       'product.tasting.eyebrow': 'The Tasting',
       'product.tasting.h_html': 'What you taste, slowly.',
-      'product.tasting.first.h': 'I, First',
+      'product.tasting.first.h': 'First',
       'product.tasting.first.quote': '"Warm resin, sun on stone."',
       'product.tasting.first.p': 'An immediate breath of pine and dry herb. The smell of the mountain itself in late June, when the air over the thyme begins to shimmer.',
-      'product.tasting.body.h': 'II, Body',
+      'product.tasting.body.h': 'Body',
       'product.tasting.body.quote': '"Soft amber, slow honey."',
       'product.tasting.body.p': 'The texture takes hold next, a viscosity that pours like a held breath. Wildflower and a clean, gentle sweetness held in the centre of the tongue.',
-      'product.tasting.finish.h': 'III, Finish',
+      'product.tasting.finish.h': 'Finish',
       'product.tasting.finish.quote': '"Mineral, long, golden."',
       'product.tasting.finish.p': 'A slow descent into stone and salt. Subtle, almost dry. The kind of finish that lingers in the room long after the spoon has been set down.',
       'product.origin.eyebrow': 'The Origin',
@@ -702,7 +702,7 @@
       'product.also.eyebrow': 'Also From The Collection',
       'product.also.h_html': 'The rest of the house.',
       'product.sticky.name': 'Chestnut Honey, Pelion estate',
-      'product.sticky.price': '€18 · Edition I',
+      'product.sticky.price': '€18 · Edition 1',
       'product.sticky.add': 'Add'
     },
     nl: {
@@ -727,7 +727,7 @@
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Dagboek',
       'menu.social.wholesale': 'Groothandel',
-      'menu.copyright': '© Harvest Deli MMXXV',
+      'menu.copyright': '© Harvest Deli',
       'cart.title_html': 'Jouw <em>Kelder</em>',
       'cart.close': 'Sluiten',
       'cart.empty.eyebrow': 'Jouw kelder',
@@ -762,7 +762,7 @@
       'footer.link.springWildflower': 'Lente Wilde Bloem',
       'footer.link.chestnut': 'Tamme Kastanje',
       'footer.bottom1': '© Harvest Deli · Pelion, Griekenland',
-      'footer.bottom2': 'MMXXV',
+      'footer.bottom2': 'Met zorg gemaakt',
       'footer.news.eyebrow': 'De Oogstbrief',
       'footer.news.lead': 'Af en toe een brief uit de bergen: nieuwe oogsten, stille verhalen, niets meer.',
       'footer.news.placeholder': 'Je e-mailadres',
@@ -864,13 +864,13 @@
       'markets.cta.lead': 'Breng een lege middag mee en een eerlijke honger. Er is altijd koffie, altijd een lepel, altijd een verhaal.',
       'markets.cta.schedule': 'Bekijk marktagenda',
       'markets.cta.trade': 'Retail & horeca',
-      'idx.markets.eyebrow': 'VI, In Amsterdam',
+      'idx.markets.eyebrow': 'In Amsterdam',
       'idx.markets.h_html': 'Vind ons aan de <em>markttafel.</em>',
       'idx.markets.body': 'Van Pelion naar Amsterdam. Twee tafels, gedekt met linnen, een proeflepel en de ochtendkoffie, stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
       'idx.markets.cta': 'Vind ons in Amsterdam',
       // ---------- index hero ----------
       'idx.scene0.est': 'Opgericht · Pelion, Griekenland · Landgoed №01',
-      'idx.scene1.eyebrow_html': 'Editie I <span class="dot"></span> Tamme Kastanje',
+      'idx.scene1.eyebrow_html': 'Editie 1 <span class="dot"></span> Tamme Kastanje',
       'idx.scene1.line_html': 'Gevangen uit<br><em>de Griekse zon.</em>',
       'idx.scene2.eyebrow': 'Een veld vol stilte',
       'idx.scene2.line1': 'Wilde bergbloemen.',
@@ -890,11 +890,11 @@
       'idx.sel.title': 'Geselecteerde oogsten.',
       'idx.sel.cta': 'Bekijk de collectie',
       // ---------- index editorial ----------
-      'idx.ch1.eyebrow': 'I, De Oorsprong',
+      'idx.ch1.eyebrow': 'De Oorsprong',
       'idx.ch1.h': 'Geboren in de stille heuvels van Noord-Griekenland.',
       'idx.ch1.body': 'Vijf generaties lang verzorgt één familie duizend bijenkasten over de kalksteenrichels van de berg Pelion. Wilde tijm, heide en aardbeiboom bloeien in een enkel, onvertaalbaar seizoen. De honing wordt gevormd door dit land, en door niets anders.',
       'idx.ch1.caption': 'Pelion · Voorjaarsoogst',
-      'idx.ch2.eyebrow': 'II, Het Proces',
+      'idx.ch2.eyebrow': 'Het Proces',
       'idx.ch2.h': 'Een ambacht verfijnd door tijd, niet door technologie.',
       'idx.step1.h': 'Op hoogte verzameld',
       'idx.step1.p': 'De kasten staan waar wilde bloemen ongestoord groeien. Nooit bij landbouw, nooit bij een weg. De bijen bepalen waar ze foerageren; wij luisteren slechts.',
@@ -908,7 +908,7 @@
       'idx.preview.h_html': 'Drie uit de kelder, <em>genummerd.</em>',
       'idx.preview.addToCellar': 'Aan de kelder toevoegen',
       'idx.preview.exploreAll': 'Bekijk alle zes edities',
-      'idx.product.eyebrow': 'De Collectie · Editie I',
+      'idx.product.eyebrow': 'De Collectie · Editie 1',
       'idx.product.title_html': 'Tamme Kastanje, <em>oogst 2025.</em>',
       'idx.product.originLine_html': 'Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 potten',
       'idx.product.desc': 'Een honing uit één weide met opmerkelijke helderheid. Tonen van warme hars, in de zon gerijpte kruiden en een lange minerale afdronk. Gebotteld in zwaar handgeperst glas, met de hand genummerd, ongepasteuriseerd.',
@@ -1177,7 +1177,7 @@
       'checkout.step.cellar': 'Kelder',
       'checkout.step.checkout': 'Afrekenen',
       'checkout.step.confirmation': 'Bevestiging',
-      'checkout.eyebrow': 'Afrekenen · Editie I',
+      'checkout.eyebrow': 'Afrekenen · Editie 1',
       'checkout.headline_html': 'Een rustige, <em>zorgvuldige</em> overdracht.',
       'checkout.sub': 'Drie stappen. Genummerd, verzegeld, binnen de week verzonden vanuit Pelion.',
       'checkout.express.divider': 'Of betaal met kaart',
@@ -1219,7 +1219,7 @@
       'checkout.package.lbl': 'Luxe verpakking',
       'checkout.package.h_html': 'Verzegeld in <em>was.</em> In eikenfineer doos.',
       'checkout.package.p': 'Elke pot wordt met de hand gewikkeld, met zwarte was verzegeld en in een doos met eikenfineer gelegd. Een handgeschreven kaart reist met de bestelling mee.',
-      'checkout.package.tag': 'Editie I · Oogst 2025',
+      'checkout.package.tag': 'Editie 1 · Oogst 2025',
       'checkout.trust.stripe1': 'Stripe',
       'checkout.trust.stripe2': 'versleuteld',
       'checkout.trust.intl1': 'Wereldwijde',
@@ -1232,8 +1232,8 @@
       'checkout.row.shippingFree': 'Gratis',
       // ---------- product detail ----------
       'product.crumb.collection': 'Collectie',
-      'product.crumb.current': 'Editie I, Tamme Kastanje',
-      'product.eyebrow_html': 'Editie I <span class="dot"></span> Oogst 2025',
+      'product.crumb.current': 'Editie 1, Tamme Kastanje',
+      'product.eyebrow_html': 'Editie 1 <span class="dot"></span> Oogst 2025',
       'product.title_html': 'Tamme Kastanje, <em>landgoed Pelion.</em>',
       'product.tag.singleMeadow': 'Eén Weide',
       'product.tag.coldExtracted': 'Koud Gewonnen',
@@ -1260,13 +1260,13 @@
       'product.notes_html': 'Gratis verzending in de EU boven €120 <span class="dot"></span> Beperkte uitgave · 384 genummerde potten',
       'product.tasting.eyebrow': 'De Proef',
       'product.tasting.h_html': 'Wat je proeft, langzaam.',
-      'product.tasting.first.h': 'I, Eerst',
+      'product.tasting.first.h': 'Eerst',
       'product.tasting.first.quote': '"Warme hars, zon op steen."',
       'product.tasting.first.p': 'Een onmiddellijke ademtocht van den en droge kruiden. De geur van de berg zelf in late juni, wanneer de lucht boven de tijm begint te trillen.',
-      'product.tasting.body.h': 'II, Midden',
+      'product.tasting.body.h': 'Midden',
       'product.tasting.body.quote': '"Zachte amber, trage honing."',
       'product.tasting.body.p': 'Vervolgens neemt de structuur het over, een viscositeit die schenkt als een ingehouden adem. Wilde bloem en een schone, zachte zoetheid in het midden van de tong.',
-      'product.tasting.finish.h': 'III, Afdronk',
+      'product.tasting.finish.h': 'Afdronk',
       'product.tasting.finish.quote': '"Mineraal, lang, goudkleurig."',
       'product.tasting.finish.p': 'Een trage afdaling in steen en zout. Subtiel, bijna droog. Het soort afdronk dat in de kamer blijft hangen lang nadat de lepel is neergelegd.',
       'product.origin.eyebrow': 'De Oorsprong',
@@ -1295,7 +1295,7 @@
       'product.also.eyebrow': 'Ook Uit De Collectie',
       'product.also.h_html': 'De rest van het huis.',
       'product.sticky.name': 'Tamme Kastanje, landgoed Pelion',
-      'product.sticky.price': '€18 · Editie I',
+      'product.sticky.price': '€18 · Editie 1',
       'product.sticky.add': 'Voeg toe'
     },
     el: {
@@ -1320,7 +1320,7 @@
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Ημερολόγιο',
       'menu.social.wholesale': 'Χονδρική',
-      'menu.copyright': '© Harvest Deli MMXXV',
+      'menu.copyright': '© Harvest Deli',
       'cart.title_html': 'Το <em>Κελάρι</em> σας',
       'cart.close': 'Κλείσιμο',
       'cart.empty.eyebrow': 'Το κελάρι σας',
@@ -1355,7 +1355,7 @@
       'footer.link.springWildflower': 'Ανοιξιάτικα Αγριολούλουδα',
       'footer.link.chestnut': 'Καστανόμελο',
       'footer.bottom1': '© Harvest Deli · Πήλιο, Ελλάδα',
-      'footer.bottom2': 'MMXXV',
+      'footer.bottom2': 'Φτιαγμένο με φροντίδα',
       'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
       'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
       'idx.h1': 'Harvest Deli, μονοκτηματικό ελληνικό μέλι από το Πήλιο',
@@ -1418,7 +1418,7 @@
       'markets.cta.lead': 'Φέρτε ένα άδειο απόγευμα και μια ειλικρινή όρεξη. Υπάρχει πάντα καφές, πάντα ένα κουτάλι, πάντα μια ιστορία.',
       'markets.cta.schedule': 'Πρόγραμμα αγορών',
       'markets.cta.trade': 'Λιανική & φιλοξενία',
-      'idx.markets.eyebrow': 'VI, Στο Άμστερνταμ',
+      'idx.markets.eyebrow': 'Στο Άμστερνταμ',
       'idx.markets.h_html': 'Βρείτε μας στο <em>τραπέζι της αγοράς.</em>',
       'idx.markets.body': 'Από το Πήλιο στο Άμστερνταμ. Δύο τραπέζια, στρωμένα με λινό, ένα κουτάλι για δοκιμή και ο πρωινός καφές, ήσυχα φερμένα από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
       'idx.markets.cta': 'Βρείτε μας στο Άμστερνταμ',
@@ -1442,11 +1442,11 @@
       'idx.sel.eyebrow': 'Η συλλογή',
       'idx.sel.title': 'Επιλεγμένες συγκομιδές.',
       'idx.sel.cta': 'Δείτε τη συλλογή',
-      'idx.ch1.eyebrow': 'I, Η Προέλευση',
+      'idx.ch1.eyebrow': 'Η Προέλευση',
       'idx.ch1.h': 'Γεννημένο στους ήσυχους λόφους της Βόρειας Ελλάδας.',
       'idx.ch1.body': 'Επί πέντε γενιές, μία οικογένεια φροντίζει χίλιες κυψέλες πάνω στις ασβεστολιθικές κορυφογραμμές του Πηλίου. Άγριο θυμάρι, ρείκι και κουμαριά ανθίζουν σε μία και μόνη, αμετάφραστη εποχή. Το μέλι παίρνει σχήμα από αυτή τη γη, και από τίποτα άλλο.',
       'idx.ch1.caption': 'Πήλιο · Ανοιξιάτικη συγκομιδή',
-      'idx.ch2.eyebrow': 'II, Η Διαδικασία',
+      'idx.ch2.eyebrow': 'Η Διαδικασία',
       'idx.ch2.h': 'Μια πρακτική εξευγενισμένη από τον χρόνο, όχι από την τεχνολογία.',
       'idx.step1.h': 'Συλλεγμένο σε υψόμετρο',
       'idx.step1.p': 'Οι κυψέλες τοποθετούνται εκεί όπου τα αγριολούλουδα μεγαλώνουν αφρόντιστα. Ποτέ κοντά σε καλλιέργειες, ποτέ κοντά σε δρόμο. Οι μέλισσες αποφασίζουν πού θα τραφούν· εμείς απλά ακούμε.',
@@ -1635,13 +1635,13 @@
       'product.notes_html': 'Δωρεάν αποστολή στην ΕΕ άνω των €120 <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
       'product.tasting.eyebrow': 'Η Γευσιγνωσία',
       'product.tasting.h_html': 'Τι γεύεστε, αργά.',
-      'product.tasting.first.h': 'I, Πρώτη',
+      'product.tasting.first.h': 'Πρώτη',
       'product.tasting.first.quote': '"Ζεστή ρετσίνα, ήλιος σε πέτρα."',
       'product.tasting.first.p': 'Μια άμεση ανάσα πεύκου και ξερού βοτάνου. Η μυρωδιά του ίδιου του βουνού στα τέλη Ιουνίου, όταν ο αέρας πάνω από το θυμάρι αρχίζει να τρεμοπαίζει.',
-      'product.tasting.body.h': 'II, Σώμα',
+      'product.tasting.body.h': 'Σώμα',
       'product.tasting.body.quote': '"Απαλό κεχριμπάρι, αργό μέλι."',
       'product.tasting.body.p': 'Η υφή παίρνει σειρά μετά, ένα ιξώδες που ρέει σαν κρατημένη ανάσα. Αγριολούλουδο και μια καθαρή, απαλή γλυκύτητα κρατημένη στο κέντρο της γλώσσας.',
-      'product.tasting.finish.h': 'III, Επίγευση',
+      'product.tasting.finish.h': 'Επίγευση',
       'product.tasting.finish.quote': '"Μεταλλική, μακρά, χρυσαφένια."',
       'product.tasting.finish.p': 'Μια αργή κάθοδος προς την πέτρα και το αλάτι. Διακριτική, σχεδόν ξηρή. Το είδος της επίγευσης που παραμένει στο δωμάτιο πολύ μετά την απόθεση του κουταλιού.',
       'product.origin.eyebrow': 'Η Προέλευση',
@@ -3009,7 +3009,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-61" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-62" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -4173,20 +4173,71 @@
       btn.className = 'hd-stt';
       btn.type = 'button';
       btn.setAttribute('aria-label', 'Back to top');
-      btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M3 8L8 3L13 8" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      btn.innerHTML = ''
+        + '<svg class="hd-stt__ring" viewBox="0 0 44 44" aria-hidden="true">'
+        +   '<circle class="hd-stt__track" cx="22" cy="22" r="20"/>'
+        +   '<circle class="hd-stt__prog" cx="22" cy="22" r="20"/>'
+        + '</svg>'
+        + '<svg class="hd-stt__arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13V3M3 8L8 3L13 8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>';
       document.body.appendChild(btn);
+      const prog = btn.querySelector('.hd-stt__prog');
+      const CIRC = 2 * Math.PI * 20; // r=20 in viewBox units
+      if (prog) { prog.style.strokeDasharray = CIRC; prog.style.strokeDashoffset = CIRC; }
       let ticking = false;
       function update() {
         const y = window.scrollY || window.pageYOffset;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+        if (prog) prog.style.strokeDashoffset = CIRC * (1 - ratio);
         btn.classList.toggle('ready', y > 600);
         ticking = false;
       }
       window.addEventListener('scroll', () => {
         if (!ticking) { requestAnimationFrame(update); ticking = true; }
       }, { passive: true });
+      window.addEventListener('resize', () => requestAnimationFrame(update), { passive: true });
+      update();
       btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+    else init();
+  })();
+
+  /* 4b. Payment-methods strip in the footer (injected on every page) */
+  (function paymentStrip() {
+    var ICONS = {
+      ideal: '<span class="hd-pay hd-pay--ideal"><b>i</b>DEAL</span>',
+      bancontact: '<span class="hd-pay hd-pay--bc"><svg viewBox="0 0 44 24" aria-hidden="true">'
+        + '<path d="M7 16.5c2.6 0 4.4-1.1 5.8-2.7l4.7-5.6c1.4-1.6 3.2-2.7 5.8-2.7h-12L7 16.5z" fill="#1E3791"/>'
+        + '<path d="M31 7.5c-2.6 0-4.4 1.1-5.8 2.7l-4.7 5.6c-1.4 1.6-3.2 2.7-5.8 2.7h12L31 7.5z" fill="#FFCC00"/></svg></span>',
+      visa: '<span class="hd-pay hd-pay--visa"><b>VISA</b></span>',
+      mastercard: '<span class="hd-pay hd-pay--mc"><svg viewBox="0 0 36 22" aria-hidden="true">'
+        + '<circle cx="14" cy="11" r="8.2" fill="#EB001B"/><circle cx="22" cy="11" r="8.2" fill="#F79E1B"/>'
+        + '<path d="M18 4.6a8.2 8.2 0 0 0 0 12.8 8.2 8.2 0 0 0 0-12.8z" fill="#FF5F00"/></svg></span>',
+      maestro: '<span class="hd-pay hd-pay--mo"><svg viewBox="0 0 36 22" aria-hidden="true">'
+        + '<circle cx="14" cy="11" r="8.2" fill="#0099DF"/><circle cx="22" cy="11" r="8.2" fill="#ED0006"/>'
+        + '<path d="M18 4.6a8.2 8.2 0 0 0 0 12.8 8.2 8.2 0 0 0 0-12.8z" fill="#6C6BBD"/></svg></span>',
+      paypal: '<span class="hd-pay hd-pay--pp"><b>Pay</b><i>Pal</i></span>',
+      applepay: '<span class="hd-pay hd-pay--ap"><svg viewBox="0 0 14 16" aria-hidden="true"><path d="M9.6 2.3c.5-.6.8-1.4.7-2.3-.7 0-1.6.5-2.1 1.1-.5.5-.9 1.4-.7 2.2.8.1 1.6-.4 2.1-1zM10.3 4.4c-1.2-.1-2.1.7-2.7.7-.6 0-1.4-.6-2.3-.6-1.2 0-2.3.7-2.9 1.8-1.2 2.2-.3 5.4.9 7.2.6.9 1.3 1.8 2.2 1.8.9 0 1.2-.6 2.3-.6 1 0 1.4.6 2.3.5.9 0 1.5-.9 2.1-1.7.7-1 .9-1.9.9-2-.1 0-1.8-.7-1.8-2.7 0-1.6 1.3-2.4 1.4-2.5-.8-1.1-2-1.2-2.6-1.3z" fill="#000"/></svg><span>Pay</span></span>'
+    };
+    var ORDER = ['ideal', 'bancontact', 'visa', 'mastercard', 'maestro', 'paypal', 'applepay'];
+    function init() {
+      var footers = document.querySelectorAll('.site-footer');
+      for (var i = 0; i < footers.length; i++) {
+        var footer = footers[i];
+        if (footer.querySelector('.footer-pay')) continue;
+        var html = '';
+        for (var k = 0; k < ORDER.length; k++) html += ICONS[ORDER[k]];
+        var wrap = document.createElement('div');
+        wrap.className = 'footer-pay';
+        wrap.setAttribute('aria-label', 'Accepted payment methods');
+        wrap.innerHTML = html;
+        var bottom = footer.querySelector('.footer-bottom');
+        if (bottom) footer.insertBefore(wrap, bottom);
+        else footer.appendChild(wrap);
+      }
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
@@ -4691,9 +4742,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-61'], ['hd-search-js', 'search.js?v=hd-2026-06-06-61'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-61'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-61'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-61'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-61'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-61'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-61'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-61'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-61']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-62'], ['hd-search-js', 'search.js?v=hd-2026-06-06-62'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-62'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-62'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-62'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-62'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-62'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-62'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-62'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-62']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

@@ -2611,7 +2611,8 @@ body .menu-overlay .menu-items li {
 }
 body .menu-overlay .menu-items li:last-child { border-bottom: none; }
 
-/* Numerals: quiet, modern, gold, not the old italic serif */
+/* Roman numerals removed site-wide (menu numerals + any decorative .roman) */
+.roman { display: none !important; }
 body .menu-overlay .menu-items .roman {
   color: var(--gold-deep, #8A6228);
   font-size: 11px;
@@ -2724,18 +2725,17 @@ nav.site-nav.nav-hidden { transform: translateY(-110%); }
   box-shadow: 0 0 8px rgba(212, 172, 106, 0.4);
 }
 
-/* 4. Scroll-to-top button (bottom-left, mirrors WhatsApp on right) */
+/* 4. Scroll-to-top button (bottom-left) — light interior, gold ring that fills with scroll progress */
 .hd-stt {
   position: fixed;
   bottom: 22px; left: 22px;
   z-index: 130;
-  width: 44px; height: 44px;
+  width: 46px; height: 46px;
   border-radius: 50%;
-  background: rgba(14, 11, 8, 0.85);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  color: var(--gold-light, #D4AC6A);
-  border: 1px solid rgba(212, 172, 106, 0.32);
+  background: var(--cream, #F6F1E6);
+  color: var(--gold-deep, #8A6228);
+  border: none;
+  box-shadow: 0 6px 22px rgba(31, 26, 20, 0.16), 0 1px 3px rgba(31, 26, 20, 0.10);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2745,14 +2745,77 @@ nav.site-nav.nav-hidden { transform: translateY(-110%); }
   pointer-events: none;
   transition: opacity 0.45s cubic-bezier(0.32, 0.72, 0.24, 1),
               transform 0.45s cubic-bezier(0.32, 0.72, 0.24, 1),
-              background 0.4s ease, border-color 0.4s ease;
+              box-shadow 0.4s ease;
 }
 .hd-stt.ready { opacity: 1; transform: translateY(0); pointer-events: auto; }
-.hd-stt:hover { background: rgba(14, 11, 8, 0.96); border-color: rgba(212, 172, 106, 0.62); transform: translateY(-2px); }
-.hd-stt:focus-visible { outline: 2px solid var(--gold-light, #D4AC6A); outline-offset: 3px; }
-.hd-stt svg { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 1.5; }
+.hd-stt:hover { box-shadow: 0 10px 28px rgba(31, 26, 20, 0.22), 0 1px 3px rgba(31, 26, 20, 0.12); transform: translateY(-2px); }
+.hd-stt:focus-visible { outline: 2px solid var(--gold, #C49A4A); outline-offset: 3px; }
+.hd-stt .hd-stt__ring {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+.hd-stt .hd-stt__track { fill: none; stroke: rgba(196, 154, 74, 0.20); stroke-width: 2; }
+.hd-stt .hd-stt__prog {
+  fill: none;
+  stroke: var(--gold, #C49A4A);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.12s linear;
+}
+.hd-stt .hd-stt__arrow { position: relative; width: 15px; height: 15px; stroke: currentColor; }
 @media (max-width: 600px) {
-  .hd-stt { bottom: 18px; left: 18px; width: 40px; height: 40px; }
+  .hd-stt { bottom: 18px; left: 18px; width: 42px; height: 42px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hd-stt .hd-stt__prog { transition: none; }
+}
+
+/* 4b. Footer payment-methods strip (injected on every page) */
+.footer-pay {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 26px 40px 0;
+}
+.footer-pay .hd-pay {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  width: 44px;
+  height: 28px;
+  background: #fff;
+  border: 1px solid rgba(31, 26, 20, 0.10);
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(31, 26, 20, 0.05);
+  overflow: hidden;
+  font-family: Arial, 'Helvetica Neue', sans-serif;
+  font-weight: 800;
+  font-size: 10.5px;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  -webkit-font-smoothing: antialiased;
+}
+.footer-pay .hd-pay svg { display: block; height: 16px; width: auto; }
+.footer-pay .hd-pay--ideal { color: #0A0A0A; }
+.footer-pay .hd-pay--ideal b { color: #CD0067; font-weight: 800; }
+.footer-pay .hd-pay--visa b { color: #1A1F71; font-size: 11px; letter-spacing: 0.4px; }
+.footer-pay .hd-pay--bc svg { height: 18px; }
+.footer-pay .hd-pay--pp b { color: #003087; }
+.footer-pay .hd-pay--pp i { color: #009CDE; font-style: normal; font-weight: 800; }
+.footer-pay .hd-pay--ap { gap: 1px; }
+.footer-pay .hd-pay--ap svg { height: 14px; }
+.footer-pay .hd-pay--ap span { color: #000; font-weight: 600; font-size: 10px; }
+@media (max-width: 600px) {
+  .footer-pay { padding: 22px 20px 0; gap: 6px; }
+  .footer-pay .hd-pay { width: 40px; height: 25px; }
 }
 
 /* 5. Rich add-to-cart toast (own element, sits alongside existing .cart-toast) */
@@ -4006,8 +4069,8 @@ body :not(svg):not(svg *) {
   font-family: var(--font-body) !important;
 }
 
-/* no italics anywhere (former italic accents become a quiet tonal shift) */
-body em, body i { font-style: normal !important; }
+/* no italics anywhere — kills every italic accent site-wide (brand = upright grotesk only) */
+body, body *, body em, body i { font-style: normal !important; }
 
 /* display / headings → General Sans, the editorial display voice.
    Attribute selectors catch the site's *-headline / *-title classes. */
