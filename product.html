@@ -78,7 +78,7 @@
     "priceCurrency": "EUR",
     "lowPrice": "18",
     "highPrice": "32",
-    "offerCount": 3,
+    "offerCount": 2,
     "availability": "https://schema.org/InStock",
     "seller": { "@type": "Organization", "name": "Harvest Deli" },
     "areaServed": ["NL", "BE", "DE", "FR", "AT", "DK", "IE", "IT", "ES", "FI", "SE", "PT", "GR", "EE", "LT", "LV", "PL", "CZ", "SK", "SI", "HR", "HU", "RO", "BG", "MT", "CY", "GB", "CH", "NO"]
@@ -102,7 +102,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-50">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-51">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -296,7 +296,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 /* ============ Product hero ============ */
 .product-hero {
-  padding: 18vh 0 14vh;
+  padding: 13vh 0 9vh;
   background: linear-gradient(180deg, #F5EFE4 0%, #EDE3D2 60%, #E5D9C3 100%);
   position: relative;
   overflow: hidden;
@@ -311,7 +311,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   pointer-events: none;
 }
 .crumbs {
-  padding: 0 8% 6vh;
+  padding: 0 8% 3.5vh;
   font-family: 'Inter', sans-serif;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
@@ -334,40 +334,65 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 .hero-stage {
   display: grid;
-  grid-template-columns: 0.82fr 1fr;   /* image curated smaller, content gets more room */
-  gap: clamp(56px, 8%, 132px);
+  grid-template-columns: 1.04fr 1fr;    /* gallery large left, dense buy column right */
+  gap: clamp(40px, 5.5%, 88px);
   padding: 0 8%;
-  align-items: center;
-  min-height: 76vh;
-  max-width: 1440px;                    /* gallery-like container; never edge-to-edge on large screens */
+  align-items: start;                   /* compact fold: column starts at the top */
+  max-width: 1380px;
   margin: 0 auto;
 }
 
-/* Big jar, a photographed object in a gallery space */
-.big-jar-frame {
+/* ----- Gallery: vertical thumbs (desktop) + large frame, swipe on mobile ----- */
+.pd-gallery {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 14px;
+  position: sticky;
+  top: 96px;                            /* stays in view while the accordion scrolls */
+  align-self: start;
+}
+.pdg-thumbs { display: flex; flex-direction: column; gap: 10px; }
+.pdg-thumb {
+  width: 60px; aspect-ratio: 4 / 5;
+  padding: 0; border: 1px solid rgba(26,22,18,0.12); border-radius: 8px;
+  overflow: hidden; cursor: pointer; background: #0E0B08;
+  opacity: 0.55;
+  transition: opacity 0.45s var(--ease), border-color 0.45s var(--ease);
+}
+.pdg-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pdg-thumb:hover { opacity: 0.85; }
+.pdg-thumb.active { opacity: 1; border-color: var(--gold); }
+.pdg-thumb:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+.pdg-main {
   position: relative;
   aspect-ratio: 4 / 5;
-  width: 100%;
-  max-width: 400px;                     /* refined footprint */
-  margin-inline: auto;                  /* centered, breathing room around it */
   overflow: hidden;
   border-radius: var(--radius-card, 16px);
   background: #0E0B08;
   box-shadow:
     0 60px 90px -38px rgba(40, 24, 8, 0.42),
     0 18px 40px -24px rgba(40, 24, 8, 0.28);
-  animation: jarFloat 7s ease-in-out infinite;
 }
-.big-jar-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
+.pdg-main img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease), transform 1.4s var(--ease);
+  will-change: transform;
 }
-@keyframes jarFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.pdg-main img.active { opacity: 1; }
+.pdg-main:hover img.active { transform: scale(1.045); }  /* subtle premium zoom */
+.pdg-dots { display: none; justify-content: center; gap: 8px; padding-top: 12px; }
+.pdg-dots span {
+  width: 6px; height: 6px; border-radius: 50%;
+  border: 1px solid var(--gold); opacity: 0.4;
+  transition: opacity 0.35s var(--ease), background 0.35s var(--ease);
+}
+.pdg-dots span.active { background: var(--gold); opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .pdg-main img { transition: opacity 0.3s ease; }
+  .pdg-main:hover img.active { transform: none; }
 }
 
 /* Product details */
@@ -380,7 +405,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   letter-spacing: var(--track-label);
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 36px;
+  margin-bottom: 16px;
   font-weight: 500;
   padding-left: var(--track-label);
 }
@@ -390,15 +415,27 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   margin: 0 14px; vertical-align: middle; transform: translateY(-2px);
 }
 .pd-title {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
-  font-weight: 400;
-  font-size: clamp(46px, 5.4vw, 84px);
-  line-height: 1.04;
-  letter-spacing: -0.026em;
-  margin-bottom: 32px;
+  font-weight: 480;
+  font-size: clamp(36px, 3.9vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  margin-bottom: 14px;
   color: var(--ink);
-  max-width: 12ch;
+  max-width: 14ch;
   font-feature-settings: "kern" 1, "liga" 1;
+}
+.pd-lede {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 46ch;
+  margin-bottom: 22px;
+  letter-spacing: 0.004em;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;            /* premium brevity: two lines, never more */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .pd-title em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
 .pd-meta {
@@ -430,18 +467,18 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   letter-spacing: 0.005em;
 }
 .pd-price-block {
-  display: flex; align-items: baseline; gap: 22px;
-  margin-bottom: 40px;
-  padding-bottom: 36px;
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(26,22,18,0.08);
 }
 .pd-price {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
-  font-weight: 400;
-  font-size: 36px;
+  font-weight: 480;
+  font-size: 28px;
   line-height: 1;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.02em;
   color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
 .pd-price-sub {
   font-family: 'Inter', sans-serif;
@@ -525,6 +562,89 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   transform: rotate(45deg);
 }
 .pd-cta:hover .arrow { width: 30px; }
+
+/* ----- Compact buy row: quantity + ATC side by side ----- */
+.variant-selector { margin-bottom: 18px; }
+.pd-buyrow { display: flex; gap: 10px; margin-bottom: 10px; align-items: stretch; }
+.pd-buyrow .pd-cta { flex: 1; justify-content: center; padding-top: 0; padding-bottom: 0; min-height: 54px; }
+.pd-qty {
+  display: inline-flex; align-items: center;
+  border: 1px solid rgba(26,22,18,0.18);
+  border-radius: var(--radius-pill, 999px);
+  background: transparent;
+  flex: none;
+}
+.pd-qty-btn {
+  width: 44px; min-height: 52px;
+  background: none; border: none; cursor: pointer;
+  font-size: 17px; color: var(--ink); line-height: 1;
+  transition: opacity 0.3s var(--ease);
+}
+.pd-qty-btn:hover { opacity: 0.6; }
+.pd-qty-btn:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: -4px; border-radius: 999px; }
+.pd-qty-val {
+  min-width: 22px; text-align: center;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+  color: var(--ink); font-variant-numeric: tabular-nums;
+}
+
+/* ----- Express checkout: quiet secondary, full width ----- */
+.pd-express {
+  display: flex; width: 100%; align-items: center; justify-content: center;
+  min-height: 50px; margin-bottom: 18px;
+  border: 1px solid rgba(26,22,18,0.22);
+  border-radius: var(--radius-pill, 999px);
+  background: transparent; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: 9.5px;
+  letter-spacing: var(--track-button); text-transform: uppercase; font-weight: 500;
+  color: var(--ink);
+  transition: background 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.pd-express span { padding-left: var(--track-button); }
+.pd-express:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.pd-express:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+
+/* ----- Trust strip: four quiet assurances ----- */
+.pd-trust {
+  list-style: none; margin: 0 0 20px; padding: 14px 0;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px;
+  border-top: 1px solid rgba(26,22,18,0.08);
+  border-bottom: 1px solid rgba(26,22,18,0.08);
+}
+.pd-trust li {
+  display: flex; align-items: center; gap: 10px;
+  font-family: 'Inter', sans-serif; font-size: 11.5px;
+  color: var(--ink-soft); letter-spacing: 0.01em; line-height: 1.4;
+}
+.pd-trust svg { width: 15px; height: 15px; color: var(--gold-deep); flex: none; }
+
+/* ----- Accordion: long content folded next to the product ----- */
+.pd-acc { margin-bottom: 6px; }
+.pd-acc details { border-bottom: 1px solid rgba(26,22,18,0.10); }
+.pd-acc summary {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 15px 2px; cursor: pointer; list-style: none;
+  font-family: 'Inter', sans-serif; font-size: 9.5px;
+  letter-spacing: var(--track-label); text-transform: uppercase;
+  font-weight: 500; color: var(--ink);
+  transition: color 0.3s var(--ease);
+}
+.pd-acc summary::-webkit-details-marker { display: none; }
+.pd-acc summary:hover { color: var(--gold-deep); }
+.pd-acc summary:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+.pd-acc .acc-icon { position: relative; width: 11px; height: 11px; flex: none; }
+.pd-acc .acc-icon::before, .pd-acc .acc-icon::after {
+  content: ''; position: absolute; background: currentColor;
+  top: 50%; left: 0; width: 11px; height: 1px; margin-top: -0.5px;
+  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
+}
+.pd-acc .acc-icon::after { transform: rotate(90deg); }
+.pd-acc details[open] .acc-icon::after { transform: rotate(0deg); opacity: 0; }
+.pd-acc .acc-body {
+  padding: 0 2px 18px;
+  font-family: 'Inter', sans-serif; font-size: 13.5px; line-height: 1.8;
+  color: var(--ink-soft); max-width: 56ch; letter-spacing: 0.004em;
+}
 
 /* ----- Sticky mobile add-to-cart ----- */
 .sticky-buy {
@@ -619,7 +739,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 /* ============ Tasting section ============ */
 .tasting {
-  padding: 22vh 8%;
+  padding: 11vh 8%;
   background: var(--bg);
   text-align: center;
 }
@@ -640,7 +760,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   line-height: 1.08;
   letter-spacing: -0.024em;
   color: var(--ink);
-  margin: 0 auto 14vh;
+  margin: 0 auto 7vh;
   max-width: 20ch;
 }
 .section-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.014em; }
@@ -695,13 +815,12 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 /* ============ Origin section ============ */
 .product-origin {
-  padding: 22vh 8%;
+  padding: 12vh 8%;
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   display: grid;
   grid-template-columns: 0.9fr 1fr;
   gap: 10%;
   align-items: center;
-  min-height: 80vh;
 }
 .product-origin .image-frame {
   aspect-ratio: 4 / 5;
@@ -931,7 +1050,17 @@ footer {
   nav.site-nav { padding: 14px 22px; }
   nav.site-nav .nav-right { gap: 18px; }
   .crumbs { padding: 0 7% 4vh; }
-  .hero-stage { grid-template-columns: 1fr; gap: 8vh; padding: 0 7%; }
+  .hero-stage { grid-template-columns: 1fr; gap: 4vh; padding: 0 7%; }
+  /* Mobile gallery: swipe with scroll-snap, dots below, thumbs hidden */
+  .pd-gallery { display: block; position: static; }
+  .pdg-thumbs { display: none; }
+  .pdg-main { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .pdg-main::-webkit-scrollbar { display: none; }
+  .pdg-main img { position: static; flex: 0 0 100%; opacity: 1; transition: none; }
+  .pdg-main:hover img.active { transform: none; }
+  .pdg-main img { scroll-snap-align: center; }
+  .jar-atmos { display: none; }
+  .pdg-dots { display: flex; }
   .product-details { padding-left: 0; }
   .tasting, .product-origin, .details, .also { padding: 12vh 7%; }
   .tasting-grid { grid-template-columns: 1fr; gap: 6vh; }
@@ -984,10 +1113,8 @@ footer {
      Was aspect-ratio: 4 / 5 (taller than wide on full-width phones)
      → ~425 px tall on 375 px viewport, hiding the price + CTA below the fold.
      Now: capped to 60vh so headline/price/CTA come into view sooner. */
-  .big-jar-frame    { aspect-ratio: 1 / 1; max-height: 60vh; margin: 0 auto; width: 100%; }
-  .big-jar-frame img { object-position: center 35%; }
-  /* No floating animation on phone, saves vertical bobble that adds perceived height */
-  .big-jar-frame    { animation: none; }
+  .pdg-main         { aspect-ratio: 1 / 1; max-height: 58vh; }
+  .pdg-main img     { object-position: center 35%; }
 
   /* Title + price block */
   .pd-title         { font-size: clamp(34px, 9.4vw, 44px); max-width: none; }
@@ -1133,8 +1260,8 @@ footer {
    CINEMATIC MOTION, calm, atmospheric, Apple-level restraint
    (image parallax + ambient haze/dust/sheen + CTA sheen + variant fade)
    ============================================================ */
-.big-jar-frame { perspective: 1200px; }
-.big-jar-frame img { will-change: transform; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+.pdg-main { perspective: 1200px; }
+.pdg-main img { will-change: transform; transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
 
 /* ambient atmosphere inside the frame (clipped by its overflow:hidden) */
 .jar-atmos { position: absolute; inset: 0; pointer-events: none; z-index: 2; overflow: hidden; }
@@ -1184,7 +1311,7 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .big-jar-frame img, .jar-haze, .jar-sheen, .jar-dust, .pd-cta::after { animation: none !important; transition: none !important; }
+  .pdg-main img, .jar-haze, .jar-sheen, .jar-dust, .pd-cta::after { animation: none !important; transition: none !important; }
   .jar-sheen, .jar-dust { display: none; }
 }
 </style>
@@ -1300,24 +1427,29 @@ footer {
     <strong data-i18n="product.crumb.current">Edition I &middot; Chestnut Honey</strong>
   </div>
   <div class="hero-stage">
-    <div class="big-jar-frame reveal" id="jarFrame">
-      <img src="harvestdeli.png" alt="Harvest Deli Chestnut Honey jar on stone with honeycomb" / loading="lazy">
-      <div class="jar-atmos" aria-hidden="true">
-        <span class="jar-haze"></span>
-        <span class="jar-sheen"></span>
-        <span class="jar-dust"></span>
+    <div class="pd-gallery reveal" id="pdGallery">
+      <div class="pdg-thumbs" aria-label="Product photos">
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Photo 1: the jar"><img src="harvestdeli.png" alt=""></button>
+        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Photo 2: raw honeycomb"><img src="honeycomb.jpg" alt=""></button>
+        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Photo 3: the estate"><img src="assets/olive-sunrise-poster.jpg" alt=""></button>
       </div>
+      <div class="pdg-main" id="pdgMain">
+        <img src="harvestdeli.png" alt="Harvest Deli Chestnut Honey jar on stone with honeycomb" class="active">
+        <img src="honeycomb.jpg" alt="Raw honeycomb, close" loading="lazy">
+        <img src="assets/olive-sunrise-poster.jpg" alt="The Pelion estate at first light" loading="lazy">
+        <div class="jar-atmos" aria-hidden="true">
+          <span class="jar-haze"></span>
+          <span class="jar-sheen"></span>
+          <span class="jar-dust"></span>
+        </div>
+      </div>
+      <div class="pdg-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
     </div>
 
     <div class="product-details reveal delay-1" id="buy">
       <div class="pd-eyebrow" data-i18n-html="product.eyebrow_html">Edition I <span class="dot"></span> 2025 Harvest</div>
       <h1 class="pd-title" data-i18n-html="product.title_html">Chestnut Honey, <em>Pelion estate.</em></h1>
-      <div class="pd-meta">
-        <span class="tag" data-i18n="product.tag.singleMeadow">Single Meadow</span>
-        <span class="tag" data-i18n="product.tag.coldExtracted">Cold Extracted</span>
-        <span class="tag" data-i18n="product.tag.numbered">Numbered &middot; 384</span>
-      </div>
-      <p class="pd-desc" data-i18n="product.desc">A dark, slow-pouring honey gathered from the sweet chestnut forests that crown the upper ridges of Mount Pelion. Notes of warm wood, dark molasses and a long, almost smoky finish. Bottled in heavy hand-pressed glass, sealed in wax, kept untreated.</p>
+      <p class="pd-lede" data-i18n="product.lede">Dark, slow-pouring chestnut honey from a single grove at 950&nbsp;m on Mount Pelion. Raw, numbered, sealed in wax.</p>
 
       <div class="pd-price-block">
         <div class="pd-price" id="productPrice">€18</div>
@@ -1375,11 +1507,43 @@ footer {
       })();
       </script>
 
-      <button class="pd-cta" data-add-to-cart="chestnut" data-size="480g"><span data-i18n="product.cta">Add to the cellar</span><span class="arrow"></span></button>
+      <div class="pd-buyrow">
+        <div class="pd-qty" role="group" aria-label="Quantity">
+          <button type="button" class="pd-qty-btn" id="pdQtyDec" aria-label="Decrease quantity">&minus;</button>
+          <span class="pd-qty-val" id="pdQtyVal" aria-live="polite">1</span>
+          <button type="button" class="pd-qty-btn" id="pdQtyInc" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="pd-cta" data-add-to-cart="chestnut" data-size="480g" data-qty="1"><span data-i18n="product.cta">Add to the cellar</span><span class="arrow"></span></button>
+      </div>
+      <button type="button" class="pd-express" id="pdExpress"><span data-i18n="product.express">Express checkout</span></button>
+
+      <ul class="pd-trust" aria-label="Why buy from Harvest Deli">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14.5 7.5 21l4.5-2.4L16.5 21 15 14.5"/></svg><span data-i18n="product.trust.q1">100% Greek premium quality</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><span data-i18n="product.trust.q2">Imported directly from Greece</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span data-i18n="product.trust.q3">Fast shipping in the Netherlands</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19c3-4 7-7 11-8"/></svg><span data-i18n="product.trust.q4">Natural &amp; unprocessed</span></li>
+      </ul>
+
+      <div class="pd-acc">
+        <details open>
+          <summary><span data-i18n="product.acc.desc">Description</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body" data-i18n="product.desc">A dark, slow-pouring honey gathered from the sweet chestnut forests that crown the upper ridges of Mount Pelion. Notes of warm wood, dark molasses and a long, almost smoky finish. Bottled in heavy hand-pressed glass, sealed in wax, kept untreated. Single meadow, cold extracted, numbered &middot; 384.</div>
+        </details>
+        <details>
+          <summary><span data-i18n="product.acc.ing">Ingredients</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body" data-i18n="product.acc.ingBody">100% raw Greek chestnut honey. Nothing added, never heated above hive temperature, never filtered.</div>
+        </details>
+        <details>
+          <summary><span data-i18n="product.acc.origin">Origin</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body" data-i18n="product.acc.originBody">Harvested from a single south-facing grove at 950&nbsp;m on Mount Pelion, Greece. One season, 384 numbered jars, each sealed by hand in black wax.</div>
+        </details>
+        <details>
+          <summary><span data-i18n="product.acc.ship">Shipping</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body" data-i18n="product.acc.shipBody">Shipped from our Amsterdam cellar within 1&ndash;2 business days. Free shipping in the EU above &euro;120. Carefully packed, track &amp; trace included.</div>
+        </details>
+      </div>
 
       <button type="button" class="product-wishlist-line" data-wishlist-toggle="chestnut" aria-pressed="false" aria-label="Add to wishlist">Save to wishlist</button>
-
-      <div class="pd-notes" data-i18n-html="product.notes_html">Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars</div>
     </div>
   </div>
 </section>
@@ -1624,7 +1788,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="chestnut" data-size="480g" data-i18n="product.sticky.add">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-50"></script>
+<script src="shared.js?v=hd-2026-06-06-51"></script>
 <script>
 (function() {
   /* Menu */
@@ -1689,6 +1853,59 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+
+<script>
+/* ----- Gallery: thumbs (desktop) + swipe dots (mobile) ----- */
+(function () {
+  var main = document.getElementById('pdgMain'); if (!main) return;
+  var imgs = [].slice.call(main.querySelectorAll('img'));
+  var thumbs = [].slice.call(document.querySelectorAll('.pdg-thumb'));
+  var dots = [].slice.call(document.querySelectorAll('.pdg-dots span'));
+  function mobile() { return window.matchMedia('(max-width: 900px)').matches; }
+  function setActive(i) {
+    imgs.forEach(function (im, j) { im.classList.toggle('active', j === i); });
+    thumbs.forEach(function (t, j) { t.classList.toggle('active', j === i); });
+    dots.forEach(function (d, j) { d.classList.toggle('active', j === i); });
+  }
+  thumbs.forEach(function (t) {
+    t.addEventListener('click', function () {
+      var i = parseInt(t.dataset.slide, 10) || 0;
+      if (mobile()) imgs[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      setActive(i);
+    });
+  });
+  /* Mobile swipe tracking via IntersectionObserver on the slides:
+     robust even where programmatic scrolls don't emit scroll events. */
+  if ('IntersectionObserver' in window) {
+    var sio = new IntersectionObserver(function (entries) {
+      if (!mobile()) return;
+      entries.forEach(function (en) {
+        if (en.isIntersecting && en.intersectionRatio >= 0.6) setActive(imgs.indexOf(en.target));
+      });
+    }, { root: main, threshold: 0.6 });
+    imgs.forEach(function (im) { sio.observe(im); });
+  }
+})();
+
+/* ----- Quantity stepper + express checkout ----- */
+(function () {
+  var val = document.getElementById('pdQtyVal'); if (!val) return;
+  var qty = 1;
+  function apply() {
+    val.textContent = qty;
+    document.querySelectorAll('[data-add-to-cart="chestnut"]').forEach(function (b) { b.dataset.qty = qty; });
+  }
+  document.getElementById('pdQtyDec').addEventListener('click', function () { qty = Math.max(1, qty - 1); apply(); });
+  document.getElementById('pdQtyInc').addEventListener('click', function () { qty = Math.min(12, qty + 1); apply(); });
+  var ex = document.getElementById('pdExpress');
+  if (ex) ex.addEventListener('click', function () {
+    var r = document.querySelector('input[name="hd-variant"]:checked');
+    var size = (r && r.dataset.size) || '480g';
+    if (window.HD_CART) window.HD_CART.add('chestnut', qty, size);
+    window.location.href = 'checkout.html';
+  });
 })();
 </script>
 

@@ -651,6 +651,19 @@
       'product.size.estate': 'Estate',
       'product.size.reserve': 'Reserve',
       'product.cta': 'Add to the cellar',
+      'product.lede': 'Dark, slow-pouring chestnut honey from a single grove at 950\u00a0m on Mount Pelion. Raw, numbered, sealed in wax.',
+      'product.express': 'Express checkout',
+      'product.trust.q1': '100% Greek premium quality',
+      'product.trust.q2': 'Imported directly from Greece',
+      'product.trust.q3': 'Fast shipping in the Netherlands',
+      'product.trust.q4': 'Natural & unprocessed',
+      'product.acc.desc': 'Description',
+      'product.acc.ing': 'Ingredients',
+      'product.acc.ingBody': '100% raw Greek chestnut honey. Nothing added, never heated above hive temperature, never filtered.',
+      'product.acc.origin': 'Origin',
+      'product.acc.originBody': 'Harvested from a single south-facing grove at 950\u00a0m on Mount Pelion, Greece. One season, 384 numbered jars, each sealed by hand in black wax.',
+      'product.acc.ship': 'Shipping',
+      'product.acc.shipBody': 'Shipped from our Amsterdam cellar within 1\u20132 business days. Free shipping in the EU above \u20ac120. Carefully packed, track & trace included.',
       'product.notes_html': 'Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars',
       'product.tasting.eyebrow': 'The Tasting',
       'product.tasting.h_html': 'What you taste, slowly.',
@@ -1231,6 +1244,19 @@
       'product.size.estate': 'Landgoed',
       'product.size.reserve': 'Reserve',
       'product.cta': 'Aan de kelder toevoegen',
+      'product.lede': 'Donkere, traag schenkende kastanjehoning van \u00e9\u00e9n bosperceel op 950\u00a0m op Pelion. Rauw, genummerd, verzegeld in was.',
+      'product.express': 'Direct afrekenen',
+      'product.trust.q1': '100% Griekse topkwaliteit',
+      'product.trust.q2': 'Rechtstreeks ge\u00efmporteerd uit Griekenland',
+      'product.trust.q3': 'Snelle verzending in Nederland',
+      'product.trust.q4': 'Natuurlijk & onbewerkt',
+      'product.acc.desc': 'Beschrijving',
+      'product.acc.ing': 'Ingredi\u00ebnten',
+      'product.acc.ingBody': '100% rauwe Griekse kastanjehoning. Niets toegevoegd, nooit verwarmd boven kasttemperatuur, nooit gefilterd.',
+      'product.acc.origin': 'Herkomst',
+      'product.acc.originBody': 'Geoogst van \u00e9\u00e9n zuidgericht bosperceel op 950\u00a0m op het Pilion-gebergte, Griekenland. \u00c9\u00e9n seizoen, 384 genummerde potten, stuk voor stuk met de hand verzegeld in zwarte was.',
+      'product.acc.ship': 'Verzending',
+      'product.acc.shipBody': 'Binnen 1\u20132 werkdagen verzonden vanuit onze Amsterdamse kelder. Gratis verzending in de EU boven \u20ac120. Zorgvuldig verpakt, met track & trace.',
       'product.notes_html': 'Gratis verzending in de EU boven €120 <span class="dot"></span> Beperkte uitgave · 384 genummerde potten',
       'product.tasting.eyebrow': 'De Proef',
       'product.tasting.h_html': 'Wat je proeft, langzaam.',
@@ -4662,9 +4688,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-50'], ['hd-search-js', 'search.js?v=hd-2026-06-06-50'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-50'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-50'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-50'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-50'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-50'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-50'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-50'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-50']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-51'], ['hd-search-js', 'search.js?v=hd-2026-06-06-51'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-51'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-51'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-51'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-51'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-51'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-51'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-51'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-51']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
