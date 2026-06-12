@@ -1943,55 +1943,70 @@
     'nav.wishlist': 'Wishlist',
     'menu.item.wishlist_html': 'The <em>Cellar Notes</em>',
     'menu.item.wishlist_sub': 'Your wishlist',
-    'wl.eyebrow': 'The cellar notes',
-    'wl.title_html': 'Set aside for the <em>cellar.</em>',
-    'wl.sub': 'Editions you have marked to come back to. Saved quietly to this browser. They wait until you are ready.',
-    'wl.itemsLabel': 'edition saved',
+    'wl.eyebrow': 'The cellar',
+    'wl.title_html': 'Your reserved <em>collection.</em>',
+    'wl.sub': 'Products you set aside quietly, for later.',
+    'wl.itemsLabel': 'reserved',
     'wl.privacyNote': 'Stored locally · never sent',
-    'wl.toolbarInfo': 'Tap a heart to remove an edition, or move it to the cellar in one click.',
-    'wl.clearAll': 'Clear wishlist',
+    'wl.toolbarInfo': 'Your reserved editions',
+    'wl.clearAll': 'Release all',
     'wl.remove': 'Remove',
-    'wl.moveToCellar': 'Move to cellar',
+    'wl.release': 'Release',
+    'wl.addToCart': 'Add to Cart',
+    'wl.metaHarvest': 'Harvest',
+    'wl.metaOrigin': 'Origin',
+    'wl.metaElevation': 'Elevation',
+    'wl.moveToCellar': 'Add to Cart',
     'wl.view': 'View',
-    'wl.empty.title_html': 'Your cellar notes are <em>quiet.</em>',
-    'wl.empty.desc': 'Browse the collection, tap a heart on any edition you would like to come back to, and it appears here. We keep nothing on our side.',
-    'wl.empty.cta': 'View the collection'
+    'wl.empty.title_html': 'The cellar <em>awaits.</em>',
+    'wl.empty.desc': 'Products you quietly set aside will remain here for later. Nothing leaves this browser.',
+    'wl.empty.cta': 'Explore the collection'
   });
   Object.assign(T.nl, {
     'nav.wishlist': 'Verlanglijst',
     'menu.item.wishlist_html': 'De <em>Kelder&shy;notities</em>',
     'menu.item.wishlist_sub': 'Jouw verlanglijst',
-    'wl.eyebrow': 'De keldernotities',
-    'wl.title_html': 'Apart gezet voor het <em>kelder.</em>',
-    'wl.sub': 'Edities die u opzij heeft gezet om op terug te komen. Stil bewaard in deze browser. Ze wachten tot u klaar bent.',
-    'wl.itemsLabel': 'editie opgeslagen',
+    'wl.eyebrow': 'De kelder',
+    'wl.title_html': 'Uw gereserveerde <em>collectie.</em>',
+    'wl.sub': 'Producten die u stil opzij heeft gezet, voor later.',
+    'wl.itemsLabel': 'gereserveerd',
     'wl.privacyNote': 'Lokaal bewaard · nooit verzonden',
-    'wl.toolbarInfo': 'Tik op een hartje om een editie te verwijderen, of verplaats hem in &eacute;&eacute;n klik naar het kelder.',
-    'wl.clearAll': 'Verlanglijst leegmaken',
+    'wl.toolbarInfo': 'Uw gereserveerde edities',
+    'wl.clearAll': 'Alles vrijgeven',
     'wl.remove': 'Verwijderen',
-    'wl.moveToCellar': 'Naar het kelder',
+    'wl.release': 'Vrijgeven',
+    'wl.addToCart': 'In winkelmand',
+    'wl.metaHarvest': 'Oogst',
+    'wl.metaOrigin': 'Herkomst',
+    'wl.metaElevation': 'Hoogte',
+    'wl.moveToCellar': 'In winkelmand',
     'wl.view': 'Bekijken',
-    'wl.empty.title_html': 'Uw keldernotities zijn <em>stil.</em>',
-    'wl.empty.desc': 'Blader door de collectie, tik op een hartje bij elke editie waar u op terug wilt komen, en hij verschijnt hier. Wij bewaren niets aan onze kant.',
-    'wl.empty.cta': 'Bekijk de collectie'
+    'wl.empty.title_html': 'De kelder <em>wacht.</em>',
+    'wl.empty.desc': 'Producten die u stil opzij zet, blijven hier bewaard voor later. Niets verlaat deze browser.',
+    'wl.empty.cta': 'Ontdek de collectie'
   });
   Object.assign(T.el, {
     'nav.wishlist': 'Λίστα επιθυμιών',
     'menu.item.wishlist_html': 'Οι <em>Σημειώσεις Κελαριού</em>',
     'menu.item.wishlist_sub': 'Η λίστα επιθυμιών σας',
-    'wl.eyebrow': 'Οι σημειώσεις κελαριού',
-    'wl.title_html': 'Ξεχωρισμένα για το <em>κελάρι.</em>',
-    'wl.sub': 'Εκδόσεις που έχετε σημειώσει για να επιστρέψετε. Φυλάσσονται ήσυχα σε αυτόν τον φυλλομετρητή. Περιμένουν μέχρι να είστε έτοιμοι.',
-    'wl.itemsLabel': 'έκδοση αποθηκευμένη',
+    'wl.eyebrow': 'Το κελάρι',
+    'wl.title_html': 'Η κρατημένη σας <em>συλλογή.</em>',
+    'wl.sub': 'Προϊόντα που ξεχωρίσατε ήσυχα, για αργότερα.',
+    'wl.itemsLabel': 'κρατημένα',
     'wl.privacyNote': 'Αποθηκευμένο τοπικά · ποτέ δεν αποστέλλεται',
-    'wl.toolbarInfo': 'Πατήστε μια καρδιά για να αφαιρέσετε μια έκδοση, ή μετακινήστε τη στο κελάρι με ένα κλικ.',
-    'wl.clearAll': 'Καθαρισμός λίστας',
+    'wl.toolbarInfo': 'Οι κρατημένες σας εκδόσεις',
+    'wl.clearAll': 'Απελευθέρωση όλων',
     'wl.remove': 'Αφαίρεση',
-    'wl.moveToCellar': 'Στο κελάρι',
+    'wl.release': 'Απελευθέρωση',
+    'wl.addToCart': 'Στο καλάθι',
+    'wl.metaHarvest': 'Συγκομιδή',
+    'wl.metaOrigin': 'Προέλευση',
+    'wl.metaElevation': 'Υψόμετρο',
+    'wl.moveToCellar': 'Στο καλάθι',
     'wl.view': 'Προβολή',
-    'wl.empty.title_html': 'Οι σημειώσεις του κελαριού σας είναι <em>ήσυχες.</em>',
-    'wl.empty.desc': 'Περιηγηθείτε στη συλλογή, πατήστε καρδιά σε όποια έκδοση θέλετε να επιστρέψετε, και θα εμφανιστεί εδώ. Δεν κρατάμε τίποτα από τη δική μας πλευρά.',
-    'wl.empty.cta': 'Δείτε τη συλλογή'
+    'wl.empty.title_html': 'Το κελάρι <em>περιμένει.</em>',
+    'wl.empty.desc': 'Τα προϊόντα που ξεχωρίζετε ήσυχα θα παραμείνουν εδώ για αργότερα. Τίποτα δεν φεύγει από αυτόν τον φυλλομετρητή.',
+    'wl.empty.cta': 'Εξερευνήστε τη συλλογή'
   });
 
   let currentLang = (function () {
@@ -3018,7 +3033,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-65" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-66" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -4751,9 +4766,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-65'], ['hd-search-js', 'search.js?v=hd-2026-06-06-65'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-65'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-65'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-65'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-65'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-65'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-65'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-65'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-65']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-66'], ['hd-search-js', 'search.js?v=hd-2026-06-06-66'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-66'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-66'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-66'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-66'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-66'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-66'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-66'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-66']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

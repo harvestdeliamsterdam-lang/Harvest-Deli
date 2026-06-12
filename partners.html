@@ -18,11 +18,11 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-65" type="image/svg+xml">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-66" type="image/svg+xml">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-65">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-66">
 
 <script type="application/ld+json">
 {
@@ -1396,6 +1396,100 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   .partners-hero .hero-bg::before,
   .final-bg::after { animation: none; }
 }
+
+/* ===================================================================
+   PRIVATE PARTNERSHIPS — single premium screen (split editorial / form)
+   =================================================================== */
+.pp {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding: 96px 6% 44px;
+  background:
+    radial-gradient(120% 90% at 88% 0%, rgba(212, 172, 106, 0.14), transparent 52%),
+    radial-gradient(90% 80% at 0% 100%, rgba(184, 148, 90, 0.10), transparent 58%),
+    linear-gradient(180deg, #F8F3E9 0%, #F2EADB 100%);
+  overflow: hidden;
+}
+.pp__inner {
+  width: 100%; max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 92px);
+  align-items: center;
+}
+/* LEFT — editorial */
+.pp__eyebrow { display: flex; align-items: center; gap: 14px; font-family: 'Inter Tight', sans-serif; font-size: 9.5px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; margin-bottom: 22px; }
+.pp__eyebrow .line { width: 34px; height: 1px; background: var(--gold); }
+.pp__headline { font-family: var(--font-display, 'General Sans', sans-serif); font-weight: 600; font-size: clamp(40px, 5vw, 70px); line-height: 1.0; letter-spacing: -0.028em; color: var(--ink); margin-bottom: 20px; }
+.pp__headline em { color: var(--gold-deep); }
+.pp__sub { font-family: var(--font-display, 'General Sans', sans-serif); font-weight: 420; font-size: clamp(17px, 1.6vw, 22px); line-height: 1.42; letter-spacing: -0.012em; color: #3A3128; max-width: 30ch; margin-bottom: 16px; }
+.pp__support { font-family: 'Inter Tight', sans-serif; font-size: 13px; line-height: 1.7; color: var(--ink-soft); margin-bottom: 28px; }
+.pp__badges { list-style: none; display: flex; flex-direction: column; margin: 0 0 28px; padding: 0; max-width: 300px; }
+.pp__badges li { display: flex; align-items: center; gap: 14px; padding: 13px 0; font-family: 'Inter Tight', sans-serif; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--ink); border-bottom: 1px solid rgba(184, 148, 90, 0.22); }
+.pp__badges li:first-child { border-top: 1px solid rgba(184, 148, 90, 0.22); }
+.pp__badges .tick { width: 24px; height: 24px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: rgba(24, 49, 38, 0.06); color: #183126; }
+.pp__badges .tick svg { width: 13px; height: 13px; }
+/* FAQ — compact, quiet */
+.pp__faq { max-width: 340px; }
+.pp__faq details { border-bottom: 1px solid rgba(26, 22, 18, 0.10); }
+.pp__faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; font-family: 'Inter Tight', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--ink); }
+.pp__faq summary::-webkit-details-marker { display: none; }
+.pp__faq-mark { position: relative; width: 11px; height: 11px; flex-shrink: 0; }
+.pp__faq-mark::before, .pp__faq-mark::after { content: ''; position: absolute; background: var(--gold-deep); transition: opacity 0.3s var(--ease); }
+.pp__faq-mark::before { top: 5px; left: 0; width: 11px; height: 1px; }
+.pp__faq-mark::after { top: 0; left: 5px; width: 1px; height: 11px; }
+.pp__faq details[open] .pp__faq-mark::after { opacity: 0; }
+.pp__faq details p { font-family: 'Inter Tight', sans-serif; font-size: 12px; line-height: 1.6; color: var(--ink-soft); padding: 0 0 13px; margin: 0; max-width: 38ch; }
+/* RIGHT — inquiry card */
+.pp__card { background: rgba(255, 253, 248, 0.7); backdrop-filter: blur(20px) saturate(135%); -webkit-backdrop-filter: blur(20px) saturate(135%); border: 1px solid rgba(184, 148, 90, 0.2); border-radius: 18px; padding: clamp(26px, 2.6vw, 40px); box-shadow: 0 50px 100px -60px rgba(42, 35, 27, 0.34); }
+.pp__card-title { font-family: var(--font-display, 'General Sans', sans-serif); font-weight: 600; font-size: 24px; letter-spacing: -0.018em; color: var(--ink); margin-bottom: 6px; }
+.pp__card-sub { font-family: 'Inter Tight', sans-serif; font-size: 13px; color: var(--ink-soft); margin-bottom: 22px; }
+.pp__fields { display: grid; grid-template-columns: 1fr 1fr; gap: 15px 18px; }
+.pp__field { display: flex; flex-direction: column; }
+.pp__field--full { grid-column: 1 / -1; }
+.pp__field label { font-family: 'Inter Tight', sans-serif; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; margin-bottom: 7px; padding-left: 2px; }
+.pp__field input, .pp__field select, .pp__field textarea {
+  width: 100%; background: rgba(255, 253, 248, 0.6); border: 1px solid rgba(42, 35, 27, 0.1);
+  border-radius: 9px; padding: 13px 14px; font-family: 'Inter Tight', sans-serif; font-size: 15px; color: var(--ink);
+  outline: none; transition: border-color 0.35s var(--ease), background 0.35s var(--ease), box-shadow 0.35s var(--ease);
+  -webkit-appearance: none; appearance: none;
+}
+.pp__field textarea { min-height: 82px; resize: vertical; line-height: 1.55; }
+.pp__field input:hover, .pp__field select:hover, .pp__field textarea:hover { border-color: rgba(184, 148, 90, 0.4); }
+.pp__field input:focus, .pp__field select:focus, .pp__field textarea:focus { border-color: rgba(184, 148, 90, 0.6); background: rgba(255, 253, 248, 0.95); box-shadow: 0 0 0 4px rgba(184, 148, 90, 0.1); }
+.pp__field input::placeholder, .pp__field textarea::placeholder { color: rgba(42, 35, 27, 0.32); }
+.pp__field select { cursor: pointer; padding-right: 36px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%238A6228' stroke-width='1.3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+/* submit */
+.pp__submit-row { margin-top: 20px; }
+.pp__submit {
+  width: 100%; display: inline-flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 17px 28px; background: #183126; color: var(--cream);
+  border: 1px solid rgba(184, 148, 90, 0.45); border-radius: 9px;
+  font-family: 'Inter Tight', sans-serif; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+  cursor: pointer; min-height: 52px; box-shadow: 0 18px 36px -20px rgba(24, 49, 38, 0.6);
+  transition: background 0.45s var(--ease), border-color 0.45s var(--ease), box-shadow 0.45s var(--ease), transform 0.45s var(--ease);
+}
+.pp__submit:hover { background: #214030; border-color: rgba(212, 172, 106, 0.75); transform: translateY(-2px); box-shadow: 0 26px 48px -20px rgba(24, 49, 38, 0.5); }
+.pp__submit:disabled { opacity: 0.55; cursor: default; transform: none; }
+.pp__submit .arrow { width: 20px; height: 1px; background: currentColor; position: relative; }
+.pp__submit .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
+.pp__note { font-family: 'Inter Tight', sans-serif; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; text-align: center; margin-top: 14px; opacity: 0.72; }
+.pp__success { display: none; text-align: center; padding: 22px 0 6px; }
+.pp__success.visible { display: block; }
+.pp__success .check { width: 54px; height: 54px; border-radius: 50%; background: rgba(24, 49, 38, 0.08); color: #183126; display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+.pp__success h4 { font-family: var(--font-display, 'General Sans', sans-serif); font-weight: 600; font-size: 21px; color: var(--ink); margin-bottom: 10px; }
+.pp__success p { font-family: 'Inter Tight', sans-serif; font-size: 13px; line-height: 1.6; color: var(--ink-soft); max-width: 34ch; margin: 0 auto; }
+@media (max-width: 980px) {
+  .pp { min-height: 0; padding: 92px 6% 56px; }
+  .pp__inner { grid-template-columns: 1fr; gap: 44px; }
+  .pp__left { max-width: 560px; }
+  .pp__badges, .pp__faq { max-width: none; }
+}
+@media (max-width: 560px) {
+  .pp__fields { grid-template-columns: 1fr; }
+  .pp__card { padding: 24px 20px; }
+}
 </style>
 </head>
 <body>
@@ -1472,305 +1566,94 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 <main id="content">
 
 
-<!-- ============ HERO ============ -->
-<section class="partners-hero" id="hero">
-  <div class="hero-bg parallax-layer" aria-hidden="true"></div>
-  <div class="hero-grain" aria-hidden="true"></div>
-  <div class="hero-light-line" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span class="line" aria-hidden="true"></span>Partnership programme · 2026</div>
-    <h1 class="hero-headline">Retail &amp;<br><em>Hospitality.</em></h1>
-    <p class="hero-sub">Crafted Greek honey for exceptional stores, cafés, hotels and restaurants.</p>
-    <p class="hero-support">Harvest Deli partners with selected retailers, hospitality concepts and premium food destinations across Europe.</p>
-    <div class="hero-cta-row">
-      <a href="#apply" class="cta-primary"><span>Apply for partnership</span><span class="arrow" aria-hidden="true"></span></a>
-      <a href="#what" class="cta-ghost">Discover the programme<span aria-hidden="true">↓</span></a>
-    </div>
-  </div>
-  <div class="hero-scroll-cue" aria-hidden="true">Scroll</div>
-</section>
+<!-- ============ PRIVATE PARTNERSHIPS — single premium screen ============ -->
+<section class="pp">
+  <div class="pp__inner">
 
-<!-- Brand strip -->
-<div class="brand-strip" aria-label="Selected partners across Europe">
-  <div class="track">
-    <span>Athens</span><span class="glyph"></span>
-    <span>Paris</span><span class="glyph"></span>
-    <span>London</span><span class="glyph"></span>
-    <span>Milan</span><span class="glyph"></span>
-    <span>Mykonos</span><span class="glyph"></span>
-    <span>Amsterdam</span><span class="glyph"></span>
-    <span>Copenhagen</span><span class="glyph"></span>
-    <span>Berlin</span><span class="glyph"></span>
-    <span>Zurich</span><span class="glyph"></span>
-    <span>Vienna</span><span class="glyph"></span>
-    <span>Athens</span><span class="glyph"></span>
-    <span>Paris</span><span class="glyph"></span>
-    <span>London</span><span class="glyph"></span>
-    <span>Milan</span><span class="glyph"></span>
-    <span>Mykonos</span><span class="glyph"></span>
-    <span>Amsterdam</span><span class="glyph"></span>
-    <span>Copenhagen</span><span class="glyph"></span>
-    <span>Berlin</span><span class="glyph"></span>
-    <span>Zurich</span><span class="glyph"></span>
-    <span>Vienna</span><span class="glyph"></span>
-  </div>
-</div>
+    <!-- LEFT — editorial -->
+    <div class="pp__left">
+      <div class="pp__eyebrow"><span class="line" aria-hidden="true"></span>Partnership programme</div>
+      <h1 class="pp__headline">Private <em>Partnerships.</em></h1>
+      <p class="pp__sub">For selected restaurants, boutiques and premium retailers seeking exceptional Greek products.</p>
+      <p class="pp__support">Small-batch sourcing from Greece.<br>Amsterdam distribution &middot; EU wholesale available.</p>
 
-<!-- ============ WHY PARTNER ============ -->
-<section class="why-section" id="what">
-  <div class="section-head">
-    <div class="reveal">
-      <div class="section-eyebrow"><span class="num">I.</span>Why partner with the house</div>
-      <h2 class="section-title">A quiet, <em>premium</em> programme.</h2>
-    </div>
-    <p class="section-intro reveal delay-1">Four assurances we make to every partner. Nothing performative. Each one reflects how the cellar actually works.</p>
-  </div>
-
-  <div class="benefit-grid">
-    <article class="benefit-card reveal">
-      <span class="benefit-num">I.</span>
-      <div class="benefit-icon" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><path d="M14 24 L22 32 L34 18"/></svg>
-      </div>
-      <h3 class="benefit-title">Premium quality</h3>
-      <p class="benefit-desc">Single estate, cold extracted, never blended. Each jar carries an edition number and a season. The standard never moves.</p>
-    </article>
-
-    <article class="benefit-card reveal delay-1">
-      <span class="benefit-num">II.</span>
-      <div class="benefit-icon" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><path d="M6 30 L18 30 L24 14 L30 30 L42 30"/><path d="M2 38 L46 38"/><circle cx="14" cy="38" r="3"/><circle cx="34" cy="38" r="3"/></svg>
-      </div>
-      <h3 class="benefit-title">Fast European shipping</h3>
-      <p class="benefit-desc">Pallet and parcel logistics across the EU. Tracked, insured, signed delivery. Two to five working days from the cellar.</p>
-    </article>
-
-    <article class="benefit-card reveal delay-2">
-      <span class="benefit-num">III.</span>
-      <div class="benefit-icon" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><path d="M10 20 L24 8 L38 20 V40 H10 Z"/><path d="M20 40 V28 H28 V40"/><circle cx="34" cy="14" r="2" fill="currentColor"/></svg>
-      </div>
-      <h3 class="benefit-title">Hospitality ready</h3>
-      <p class="benefit-desc">Trade pricing tiers, branded tasting boxes, menu cards and pairing notes prepared for chefs, sommeliers and concierge teams.</p>
-    </article>
-
-    <article class="benefit-card reveal delay-3">
-      <span class="benefit-num">IV.</span>
-      <div class="benefit-icon" aria-hidden="true">
-        <svg viewBox="0 0 48 48"><rect x="10" y="14" width="28" height="26" rx="1"/><path d="M14 14 V8 H34 V14"/><path d="M18 22 H30 M18 28 H30"/></svg>
-      </div>
-      <h3 class="benefit-title">Private label possibilities</h3>
-      <p class="benefit-desc">For hotels, brands and concept stores. Custom embossing, label design and dedicated allocations from a chosen estate.</p>
-    </article>
-  </div>
-</section>
-
-<!-- ============ WHO WE WORK WITH ============ -->
-<section class="partners-section" id="who">
-  <div class="section-head">
-    <div class="reveal">
-      <div class="section-eyebrow"><span class="num">II.</span>Who we work with</div>
-      <h2 class="section-title">From the <em>boutique</em> to the <em>table.</em></h2>
-    </div>
-    <p class="section-intro reveal delay-1">Six categories of partners, chosen quietly, one season at a time. We answer to the room as much as the brand.</p>
-  </div>
-
-  <div class="partners-grid">
-    <a class="partner-card reveal" href="#apply" aria-label="Hotels">
-      <div class="partner-bg partner-tone-hotel"></div>
-      <div class="partner-overlay"></div>
-      <div class="partner-info">
-        <div class="num">I.</div>
-        <div class="label">Hotels</div>
-        <div class="desc">Five star, boutique, resort</div>
-      </div>
-    </a>
-    <a class="partner-card reveal delay-1" href="#apply" aria-label="Restaurants">
-      <div class="partner-bg partner-tone-rest"></div>
-      <div class="partner-overlay"></div>
-      <div class="partner-info">
-        <div class="num">II.</div>
-        <div class="label">Restaurants</div>
-        <div class="desc">Fine dining, neo-bistro, hotel kitchens</div>
-      </div>
-    </a>
-    <a class="partner-card reveal delay-2" href="#apply" aria-label="Cafés">
-      <div class="partner-bg partner-tone-cafe"></div>
-      <div class="partner-overlay"></div>
-      <div class="partner-info">
-        <div class="num">III.</div>
-        <div class="label">Cafés</div>
-        <div class="desc">Speciality coffee, breakfast houses</div>
-      </div>
-    </a>
-    <a class="partner-card reveal" href="#apply" aria-label="Delicatessen stores">
-      <div class="partner-bg partner-tone-deli"></div>
-      <div class="partner-overlay"></div>
-      <div class="partner-info">
-        <div class="num">IV.</div>
-        <div class="label">Delicatessen Stores</div>
-        <div class="desc">Independent food merchants</div>
-      </div>
-    </a>
-    <a class="partner-card reveal delay-1" href="#apply" aria-label="Concept stores">
-      <div class="partner-bg partner-tone-concept"></div>
-      <div class="partner-overlay"></div>
-      <div class="partner-info">
-        <div class="num">V.</div>
-        <div class="label">Concept Stores</div>
-        <div class="desc">Curated lifestyle, design destinations</div>
-      </div>
-    </a>
-    <a class="partner-card reveal delay-2" href="#apply" aria-label="Luxury retail">
-      <div class="partner-bg partner-tone-retail"></div>
-      <div class="partner-overlay"></div>
-      <div class="partner-info">
-        <div class="num">VI.</div>
-        <div class="label">Luxury Retail</div>
-        <div class="desc">Department stores, gift floors</div>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- ============ PRODUCT SHOWCASE ============ -->
-<section class="products-section" id="collection">
-  <div class="section-head">
-    <div class="reveal">
-      <div class="section-eyebrow"><span class="num">III.</span>The wholesale collection</div>
-      <h2 class="section-title">A small, <em>numbered</em> library.</h2>
-    </div>
-    <p class="section-intro reveal delay-1">Four pillars of the trade list. Single origin honeys, plus the house gift box. Allocations open quarterly.</p>
-  </div>
-
-  <div class="products-grid">
-    <a href="product.html?p=wild-thyme" class="product-card reveal">
-      <div class="product-frame">
-        <span class="product-tag">Edition 2</span>
-        <img src="harvestdeli.png" alt="Wild Thyme Honey, single estate from Lakonia" loading="lazy">
-      </div>
-      <div class="product-eyebrow">Lakonia &middot; 750m</div>
-      <div class="product-name">Thyme Honey</div>
-      <div class="product-meta">Bright, citric, mineral. 250g</div>
-    </a>
-
-    <a href="product.html?p=pine-heather" class="product-card reveal delay-1">
-      <div class="product-frame">
-        <span class="product-tag">Edition 3</span>
-        <img src="harvestdeli.png" alt="Pine Honey, single estate from Halkidiki" loading="lazy">
-      </div>
-      <div class="product-eyebrow">Halkidiki &middot; 1200m</div>
-      <div class="product-name">Pine Honey</div>
-      <div class="product-meta">Dark, resinous, gently bitter. 250g</div>
-    </a>
-
-    <a href="product.html?p=orange-blossom" class="product-card reveal delay-2">
-      <div class="product-frame">
-        <span class="product-tag">Edition 5</span>
-        <img src="harvestdeli.png" alt="Orange Blossom Honey, single estate from the Peloponnese" loading="lazy">
-      </div>
-      <div class="product-eyebrow">Peloponnese &middot; 320m</div>
-      <div class="product-name">Orange Blossom</div>
-      <div class="product-meta">Floral, soft, golden finish. 250g</div>
-    </a>
-
-    <a href="shop.html" class="product-card reveal delay-3">
-      <div class="product-frame">
-        <span class="product-tag">House gift</span>
-        <img src="harvestdeli.png" alt="Harvest Deli oak-veneered gift box with three numbered jars" loading="lazy">
-      </div>
-      <div class="product-eyebrow">Trio &middot; Oak veneer box</div>
-      <div class="product-name">Gift Boxes</div>
-      <div class="product-meta">Three jars, hand-sealed in wax</div>
-    </a>
-  </div>
-</section>
-
-<!-- ============ FORM ============ -->
-<section class="form-section" id="apply">
-  <div class="form-inner">
-    <div class="form-text reveal">
-      <div class="section-eyebrow"><span class="num">IV.</span>Begin the conversation</div>
-      <h2 class="section-title">Apply for <em>partnership.</em></h2>
-      <p class="form-intro">A short note is enough. We read every request personally and reply within forty-eight hours.</p>
-      <ul class="form-bullets">
-        <li>No setup fees, no membership tiers</li>
-        <li>Trade pricing on first allocation</li>
-        <li>Pallet and parcel shipping across the EU</li>
-        <li>Tasting box dispatched on approval</li>
+      <ul class="pp__badges">
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2.6 7.4 L5.6 10.2 L11.4 3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>EU Wholesale</li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2.6 7.4 L5.6 10.2 L11.4 3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Hospitality Supply</li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 14 14" fill="none"><path d="M2.6 7.4 L5.6 10.2 L11.4 3.8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Boutique Retail</li>
       </ul>
+
+      <div class="pp__faq">
+        <details>
+          <summary>Is there a minimum order?<span class="pp__faq-mark" aria-hidden="true"></span></summary>
+          <p>The first allocation starts with a tasting box; ongoing volume is set together, per season.</p>
+        </details>
+        <details>
+          <summary>Do you ship across the EU?<span class="pp__faq-mark" aria-hidden="true"></span></summary>
+          <p>Yes — parcel and pallet, dispatched from our Amsterdam distribution point.</p>
+        </details>
+        <details>
+          <summary>How soon will I hear back?<span class="pp__faq-mark" aria-hidden="true"></span></summary>
+          <p>We read every request personally and reply within 24 to 48 hours.</p>
+        </details>
+      </div>
     </div>
 
-    <form class="form-panel reveal delay-1" id="partnerForm" novalidate>
-      <div class="form-grid">
-        <div class="field">
-          <label for="f-name">Full name</label>
-          <input id="f-name" name="name" type="text" required autocomplete="name" placeholder="Stavros Andreou">
-          <span class="underline"></span>
-        </div>
-        <div class="field">
-          <label for="f-company">Company name</label>
-          <input id="f-company" name="company" type="text" required autocomplete="organization" placeholder="The house, the brand, the estate">
-          <span class="underline"></span>
-        </div>
-        <div class="field">
-          <label for="f-type">Business type</label>
-          <select id="f-type" name="type" required>
-            <option value="">Select one</option>
-            <option value="retail">Retail</option>
-            <option value="hospitality">Hospitality</option>
-            <option value="distributor">Distributor</option>
-            <option value="private-label">Private Label</option>
-            <option value="other">Other</option>
-          </select>
-          <span class="underline"></span>
-        </div>
-        <div class="field">
-          <label for="f-country">Country</label>
-          <input id="f-country" name="country" type="text" required autocomplete="country-name" placeholder="Greece, France, United Kingdom">
-          <span class="underline"></span>
-        </div>
-        <div class="field full">
-          <label for="f-web">Website or Instagram</label>
-          <input id="f-web" name="web" type="text" autocomplete="url" placeholder="https://yourhouse.com or @yourhouse">
-          <span class="underline"></span>
-        </div>
-        <div class="field full">
-          <label for="f-volume">Estimated order volume</label>
-          <input id="f-volume" name="volume" type="text" placeholder="e.g. 120 jars per quarter, sample box first">
-          <span class="underline"></span>
-        </div>
-        <div class="field full">
-          <label for="f-message">Message</label>
-          <textarea id="f-message" name="message" required placeholder="Tell us about the room. The kitchen, the shelf, the guest. We listen for the room first, the volume second."></textarea>
-          <span class="underline"></span>
-        </div>
-      </div>
+    <!-- RIGHT — inquiry card -->
+    <aside class="pp__card">
+      <form id="partnerForm" novalidate>
+        <h2 class="pp__card-title">Request partnership</h2>
+        <p class="pp__card-sub">A short note is enough. We answer personally.</p>
 
-      <div class="form-submit-row">
-        <button type="submit" class="form-submit"><span>Submit Partnership Request</span><span class="arrow" aria-hidden="true"></span></button>
-        <p class="form-reply">We review every partnership request personally and usually respond within 24 to 48 hours.</p>
-      </div>
-
-      <div class="form-success" id="formSuccess" role="status" aria-live="polite">
-        <div class="check" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11 L9 15 L17 7" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+        <div class="form-grid pp__fields">
+          <div class="pp__field">
+            <label for="f-company">Company name</label>
+            <input id="f-company" name="company" type="text" required autocomplete="organization" placeholder="The house, the brand, the estate">
+          </div>
+          <div class="pp__field">
+            <label for="f-email">Business email</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@yourhouse.com">
+          </div>
+          <div class="pp__field">
+            <label for="f-country">Country</label>
+            <input id="f-country" name="country" type="text" required autocomplete="country-name" placeholder="Netherlands">
+          </div>
+          <div class="pp__field">
+            <label for="f-type">Business type</label>
+            <select id="f-type" name="type" required>
+              <option value="">Select one</option>
+              <option value="restaurant">Restaurant</option>
+              <option value="hotel">Hotel &middot; Hospitality</option>
+              <option value="boutique">Boutique &middot; Deli</option>
+              <option value="retail">Premium retail</option>
+              <option value="distributor">Distributor</option>
+            </select>
+          </div>
+          <div class="pp__field pp__field--full">
+            <label for="f-volume">Estimated monthly order volume</label>
+            <input id="f-volume" name="volume" type="text" placeholder="e.g. 120 jars per month, or a sample box first">
+          </div>
+          <div class="pp__field pp__field--full">
+            <label for="f-message">Message</label>
+            <textarea id="f-message" name="message" required placeholder="Tell us about the room — the kitchen, the shelf, the guest."></textarea>
+          </div>
         </div>
-        <h4>Your note is on its way.</h4>
-        <p>Stavros or one of the family will read it personally and write back within two business days.</p>
-      </div>
-    </form>
-  </div>
-</section>
 
-<!-- ============ FINAL ============ -->
-<section class="final-section">
-  <div class="final-bg" aria-hidden="true"></div>
-  <div class="final-content">
-    <div class="final-eyebrow reveal"><span class="line" aria-hidden="true"></span>The house of Harvest Deli</div>
-    <h2 class="final-title reveal delay-1">Rooted in <em>Greece.</em><br>Crafted for exceptional <em>hospitality.</em></h2>
-    <p class="final-meta reveal delay-2">Pelion · Magnesia · Northern Greece</p>
-    <a class="final-cta reveal delay-3" href="#apply"><span>Apply for partnership</span><span class="arrow" aria-hidden="true"></span></a>
+        <div class="form-submit-row pp__submit-row">
+          <button type="submit" class="pp__submit"><span>Request Partnership</span><span class="arrow" aria-hidden="true"></span></button>
+        </div>
+        <p class="pp__note">Reviewed personally &middot; reply within 24&ndash;48 hours</p>
+
+        <div class="form-success pp__success" id="formSuccess" role="status" aria-live="polite">
+          <div class="check" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M5 11 L9 15 L17 7" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h4>Your request is on its way.</h4>
+          <p>The family will read it personally and write back within two business days.</p>
+        </div>
+      </form>
+    </aside>
+
   </div>
 </section>
 
@@ -1812,7 +1695,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-65"></script>
+<script src="shared.js?v=hd-2026-06-06-66"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
@@ -1873,7 +1756,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     if (firstInvalid) { firstInvalid.focus(); return; }
 
     // Visually disable submit, then show success
-    const btn = form.querySelector('.form-submit');
+    const btn = form.querySelector('.pp__submit');
     btn.disabled = true;
     btn.style.opacity = '0.5';
     btn.querySelector('span').textContent = 'Sending';

@@ -7,7 +7,7 @@
 <meta name="description" content="Editions you have set aside for the cellar. Saved locally to your browser.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://harvestdeli.nl/wishlist.html">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-65" type="image/svg+xml">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-66" type="image/svg+xml">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
@@ -16,8 +16,8 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-65">
-<link rel="stylesheet" href="legal.css?v=hd-2026-06-06-65">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-66">
+<link rel="stylesheet" href="legal.css?v=hd-2026-06-06-66">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247;
@@ -26,318 +26,316 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --track-button: 0.42em;
 }
-/* ---- Hero ---- */
+/* author display rules override UA [hidden]; restore it */
+[hidden] { display: none !important; }
+/* ---- Compact header (max ~180px, products above the fold) ---- */
 .wl-hero {
-  padding: 22vh 8% 6vh;
+  padding: 100px 8% 0;
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
   position: relative;
-}
-.wl-hero::after {
-  content: '';
-  display: block;
-  width: 1px; height: 56px;
-  margin: 48px auto 0;
-  background: linear-gradient(180deg, var(--gold), transparent);
-  opacity: 0.5;
 }
 .wl-eyebrow {
   font-size: 9.5px;
   letter-spacing: 0.46em;
   text-transform: uppercase;
   color: var(--gold-deep);
-  font-weight: 500;
-  margin-bottom: 32px;
+  font-weight: 600;
+  margin-bottom: 12px;
   padding-left: 0.46em;
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
 }
-.wl-eyebrow svg { width: 14px; height: 14px; fill: currentColor; }
+.wl-eyebrow svg { width: 13px; height: 13px; fill: currentColor; }
 .wl-title {
-  font-family: 'Newsreader', serif;
-  font-weight: 300;
-  font-size: clamp(46px, 8vw, 124px);
-  line-height: 0.96;
-  letter-spacing: -0.032em;
+  font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif);
+  font-weight: 600;
+  font-size: clamp(28px, 3.4vw, 42px);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
   color: var(--ink);
-  margin-bottom: 32px;
+  margin-bottom: 10px;
 }
-.wl-title em { font-style: italic; color: var(--gold-deep); }
+.wl-title em { color: var(--gold-deep); }
 .wl-sub {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: clamp(18px, 1.9vw, 22px);
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 14.5px;
   line-height: 1.55;
   color: var(--ink-soft);
-  max-width: 580px;
+  max-width: 520px;
   margin: 0 auto;
+  font-weight: 400;
 }
 .wl-meta {
-  margin-top: 36px;
+  margin-top: 16px;
   display: inline-flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 22px;
-  background: rgba(255, 252, 246, 0.6);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(184, 148, 90, 0.22);
-  border-radius: 100px;
-  font-family: 'Inter', sans-serif;
-  font-size: 9.5px;
-  letter-spacing: 0.36em;
+  gap: 12px;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.34em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink-soft);
-  padding-left: calc(22px + 0.36em);
+  padding-left: 0.34em;
 }
 .wl-meta strong {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 18px;
-  letter-spacing: 0;
-  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--gold-deep);
 }
-.wl-meta .dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+.wl-meta .dot { width: 3px; height: 3px; background: var(--gold); border-radius: 50%; }
 
-/* ---- Grid ---- */
-.wl-section { padding: 4vh 8% 16vh; }
+/* ---- Grid (dynamic by count; 1–4 fit above the fold) ---- */
+.wl-section { padding: 36px 8% 64px; }
+/* 1–4 items: fill remaining viewport, vertically centered, no scroll */
+.wl-section--fit {
+  min-height: calc(100vh - 230px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .wl-grid {
-  max-width: 1280px;
+  width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 44px 32px;
+  gap: 34px 30px;
+  align-items: stretch;
 }
+.wl-grid--1 { max-width: 440px; grid-template-columns: 1fr; }
+.wl-grid--2 { max-width: 820px; grid-template-columns: repeat(2, 1fr); }
+.wl-grid--3 { max-width: 1120px; grid-template-columns: repeat(3, 1fr); }
+.wl-grid--4 { max-width: 1280px; grid-template-columns: repeat(4, 1fr); }
+.wl-grid--many { max-width: 1280px; grid-template-columns: repeat(4, 1fr); }
 
 .wl-card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   background: var(--cream);
-  border: 1px solid rgba(184, 148, 90, 0.16);
-  border-radius: 3px;
-  padding: 22px 22px 24px;
+  border: 1px solid rgba(184, 148, 90, 0.18);
+  border-radius: 16px;
+  padding: 18px 18px 22px;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.7s var(--ease), border-color 0.7s var(--ease), box-shadow 0.7s var(--ease);
+  transition: transform 0.6s var(--ease), border-color 0.6s var(--ease), box-shadow 0.6s var(--ease);
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(16px);
 }
 .wl-card.in { opacity: 1; transform: none; }
 .wl-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(184, 148, 90, 0.42);
-  box-shadow: 0 30px 60px rgba(60, 36, 14, 0.16), 0 8px 20px rgba(0,0,0,0.06);
+  border-color: rgba(184, 148, 90, 0.4);
+  box-shadow: 0 44px 84px -46px rgba(60, 36, 14, 0.34), 0 10px 26px -18px rgba(0,0,0,0.10);
 }
 .wl-frame {
   position: relative;
   width: 100%;
   aspect-ratio: 4 / 5;
   background:
-    radial-gradient(ellipse at 50% 40%, rgba(212, 172, 106, 0.42), transparent 60%),
-    linear-gradient(160deg, var(--bg-deep), var(--stone));
-  border-radius: 2px;
+    radial-gradient(ellipse at 50% 38%, rgba(212, 172, 106, 0.30), transparent 62%),
+    linear-gradient(160deg, #F1E7D3, #E4D7BE);
+  border-radius: 11px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 .wl-frame img {
-  max-width: 70%;
-  max-height: 80%;
-  object-fit: contain;
-  filter: drop-shadow(0 22px 30px rgba(0,0,0,0.18));
-  transition: transform 0.9s var(--ease);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1s var(--ease);
 }
-.wl-card:hover .wl-frame img { transform: scale(1.04); }
-.wl-remove {
+.wl-card:hover .wl-frame img { transform: scale(1.05); }
+.wl-frame::after {
+  content: '';
   position: absolute;
-  top: 14px; right: 14px;
-  z-index: 3;
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(255, 250, 240, 0.85);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(184, 148, 90, 0.22);
-  cursor: pointer;
-  color: #B83A3A;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.4s ease, transform 0.5s var(--ease);
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(20, 14, 8, 0.16));
+  pointer-events: none;
 }
-.wl-remove:hover { background: var(--cream); transform: scale(1.06); }
-.wl-remove svg { width: 18px; height: 18px; fill: currentColor; }
-.wl-remove:focus-visible { outline: 1px solid var(--gold-deep); outline-offset: 2px; }
 
-.wl-info {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
+.wl-info { display: flex; flex-direction: column; flex: 1; }
 .wl-row {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
+  margin-bottom: 4px;
 }
 .wl-name {
-  font-family: 'Newsreader', serif;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.18;
+  font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.16;
   letter-spacing: -0.014em;
   color: var(--ink);
 }
 .wl-price {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--ink);
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold-deep);
   flex-shrink: 0;
 }
-.wl-region {
-  font-family: 'Inter', sans-serif;
-  font-size: 10.5px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 500;
-  padding-left: 0.28em;
+/* Collector metadata — Harvest / Origin / Elevation */
+.wl-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0 20px;
+  padding: 15px 0;
+  border-top: 1px solid rgba(184, 148, 90, 0.18);
+  border-bottom: 1px solid rgba(184, 148, 90, 0.18);
 }
-.wl-notes {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-soft);
-  margin: 12px 0 18px;
-  min-height: 40px;
+.wl-meta-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.wl-meta-row .k {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 8.5px; letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold-deep); font-weight: 600; padding-left: 0.24em;
+}
+.wl-meta-row .v {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 11.5px; color: var(--ink); font-weight: 500; text-align: right;
 }
 .wl-actions {
   display: flex;
-  gap: 10px;
+  gap: 9px;
+  margin-top: auto;
 }
-.wl-add {
+/* Primary — forest green, subtle gold border, NO pill */
+.wl-buy {
   flex: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 13px 16px;
-  padding-left: calc(16px + 0.36em);
-  background: var(--ink);
+  gap: 10px;
+  padding: 14px 16px;
+  background: #183126;
   color: var(--cream);
-  border: none;
-  border-radius: 100px;
-  font-family: 'Inter', sans-serif;
+  border: 1px solid rgba(184, 148, 90, 0.45);
+  border-radius: 8px;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
   font-size: 9.5px;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.5s var(--ease);
-  min-height: 44px;
+  min-height: 46px;
+  box-shadow: 0 16px 32px -20px rgba(24, 49, 38, 0.6);
+  transition: background 0.45s var(--ease), border-color 0.45s var(--ease), box-shadow 0.45s var(--ease), transform 0.45s var(--ease);
 }
-.wl-add:hover { background: var(--gold-deep); }
-.wl-add svg { width: 11px; height: 11px; flex-shrink: 0; }
-.wl-view {
+.wl-buy:hover {
+  background: #214030;
+  border-color: rgba(212, 172, 106, 0.75);
+  transform: translateY(-1px);
+  box-shadow: 0 22px 42px -20px rgba(24, 49, 38, 0.5);
+}
+.wl-buy svg { width: 11px; height: 11px; flex-shrink: 0; }
+/* Secondary — transparent, thin border, minimal, NO pill */
+.wl-release {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 0 18px;
-  background: none;
-  color: var(--ink);
-  border: 1px solid rgba(26, 22, 18, 0.18);
-  border-radius: 100px;
-  font-family: 'Inter', sans-serif;
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid rgba(26, 22, 18, 0.16);
+  border-radius: 8px;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
   font-size: 9.5px;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-weight: 500;
-  text-decoration: none;
-  transition: border-color 0.4s var(--ease), color 0.4s var(--ease);
-  padding-left: calc(18px + 0.36em);
-  min-height: 44px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 46px;
+  transition: border-color 0.4s var(--ease), color 0.4s var(--ease), background 0.4s var(--ease);
 }
-.wl-view:hover { border-color: var(--gold-deep); color: var(--gold-deep); }
+.wl-release:hover { border-color: rgba(184, 58, 58, 0.5); color: #B83A3A; }
+.wl-release:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
 
-/* ---- Empty state ---- */
+/* ---- Cinematic empty state (the cellar awaits) ---- */
 .wl-empty {
-  max-width: 580px;
-  margin: 6vh auto 14vh;
-  text-align: center;
-  padding: 0 8%;
-}
-.wl-empty .glyph {
-  width: 88px; height: 88px;
-  margin: 0 auto 28px;
-  border-radius: 50%;
-  background:
-    radial-gradient(ellipse at 50% 40%, rgba(212, 172, 106, 0.4), transparent 60%),
-    linear-gradient(160deg, var(--bg-deep), var(--stone));
-  display: inline-flex;
+  max-width: 600px;
+  margin: 0 auto;
+  min-height: calc(100vh - 230px);
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--gold-deep);
+  text-align: center;
+  padding: 0 8% 4vh;
+}
+.wl-bee {
+  width: 140px; height: 140px;
+  margin: 0 auto 34px;
   position: relative;
+  display: flex; align-items: center; justify-content: center;
 }
-.wl-empty .glyph::before {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border: 1px solid var(--gold-soft);
-  border-radius: 50%;
-  opacity: 0.6;
+.wl-bee__halo {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 172, 106, 0.22), transparent 68%);
+  animation: wlGlow 5s ease-in-out infinite;
 }
-.wl-empty .glyph svg { width: 36px; height: 36px; fill: none; stroke: currentColor; stroke-width: 1.4; }
+.wl-bee__ring { position: absolute; inset: 22px; border: 1px solid rgba(184, 148, 90, 0.30); border-radius: 50%; }
+.wl-bee__ring::after { content: ''; position: absolute; inset: 10px; border: 1px solid rgba(184, 148, 90, 0.16); border-radius: 50%; }
+.wl-bee__bee {
+  width: 62px; height: 56px; position: relative; z-index: 2;
+  animation: wlBeeFloat 4.6s ease-in-out infinite;
+}
+.wl-bee__bee .wing { transform-origin: center top; animation: wlWing 0.42s ease-in-out infinite alternate; }
+@keyframes wlBeeFloat {
+  0%, 100% { transform: translateY(2px) rotate(-5deg); }
+  50%      { transform: translateY(-12px) rotate(5deg); }
+}
+@keyframes wlWing { from { transform: scaleX(1); } to { transform: scaleX(0.62); } }
+@keyframes wlGlow { 0%, 100% { opacity: 0.7; transform: scale(1); } 50% { opacity: 1; transform: scale(1.06); } }
 .wl-empty h2 {
-  font-family: 'Newsreader', serif;
-  font-weight: 300;
-  font-size: clamp(34px, 5.4vw, 64px);
-  line-height: 1.04;
+  font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif);
+  font-weight: 600;
+  font-size: clamp(30px, 4.6vw, 54px);
+  line-height: 1.03;
   letter-spacing: -0.024em;
   color: var(--ink);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-.wl-empty h2 em { font-style: italic; color: var(--gold-deep); }
+.wl-empty h2 em { color: var(--gold-deep); }
 .wl-empty p {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: 18px;
-  line-height: 1.6;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.66;
   color: var(--ink-soft);
-  max-width: 460px;
-  margin: 0 auto 40px;
+  max-width: 420px;
+  margin: 0 auto 36px;
+  font-weight: 400;
 }
 .wl-empty .cta {
   display: inline-flex;
   align-items: center;
-  gap: 22px;
-  padding: 18px 36px;
-  padding-left: calc(36px + var(--track-button));
-  background: var(--ink);
+  gap: 20px;
+  padding: 17px 34px;
+  background: #183126;
   color: var(--cream);
-  border: none;
-  border-radius: 100px;
-  font-family: 'Inter', sans-serif;
+  border: 1px solid rgba(184, 148, 90, 0.45);
+  border-radius: 8px;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
   font-size: 10px;
-  letter-spacing: var(--track-button);
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  transition: background 0.5s var(--ease), transform 0.5s var(--ease);
-  min-height: 44px;
+  transition: background 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease), transform 0.5s var(--ease);
+  min-height: 46px;
+  box-shadow: 0 16px 32px -20px rgba(24, 49, 38, 0.55);
 }
-.wl-empty .cta:hover { background: var(--gold-deep); transform: translateY(-2px); }
-.wl-empty .cta .arrow {
-  width: 20px; height: 1px; background: currentColor;
-  position: relative;
-}
+.wl-empty .cta:hover { background: #214030; border-color: rgba(212, 172, 106, 0.75); transform: translateY(-2px); box-shadow: 0 22px 42px -20px rgba(24, 49, 38, 0.5); }
+.wl-empty .cta .arrow { width: 20px; height: 1px; background: currentColor; position: relative; }
 .wl-empty .cta .arrow::after {
   content: ''; position: absolute; right: 0; top: -3px;
   width: 7px; height: 7px;
@@ -345,44 +343,49 @@
   border-top: 1px solid currentColor;
   transform: rotate(45deg);
 }
+@media (prefers-reduced-motion: reduce) {
+  .wl-bee__bee, .wl-bee__bee .wing, .wl-bee__halo { animation: none; }
+}
 
-/* Toolbar */
+/* Toolbar — slim, only shown for larger collections (5+) */
 .wl-toolbar {
+  width: 100%;
   max-width: 1280px;
-  margin: 0 auto 5vh;
-  padding-top: 4vh;
+  margin: 0 auto 22px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  flex-wrap: wrap;
   gap: 16px;
-  border-top: 1px solid rgba(26, 22, 18, 0.06);
 }
 .wl-toolbar .tb-info {
-  font-family: 'Newsreader', serif;
-  font-style: italic;
-  font-size: 16px;
+  margin-right: auto;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 600;
   color: var(--ink-soft);
+  padding-left: 0.3em;
 }
 .wl-clear {
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 9.5px;
-  letter-spacing: 0.36em;
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--ink);
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-color: var(--gold);
   padding: 10px 4px;
-  padding-left: 0.36em;
+  padding-left: 0.28em;
   min-height: 44px;
   transition: color 0.4s var(--ease);
 }
-.wl-clear:hover { color: var(--gold-deep); }
+.wl-clear:hover { color: #B83A3A; }
 
 /* Card removal animation */
 .wl-card.removing {
@@ -393,14 +396,18 @@
   to { opacity: 0; transform: translateY(-12px) scale(0.96); }
 }
 
-@media (max-width: 1100px) { .wl-grid { grid-template-columns: repeat(3, 1fr); } }
-@media (max-width: 820px)  { .wl-grid { grid-template-columns: repeat(2, 1fr); gap: 32px 22px; } }
-@media (max-width: 480px) {
-  .wl-grid { grid-template-columns: 1fr; }
-  .wl-hero { padding: 18vh 7% 4vh; }
-  .wl-section { padding: 2vh 7% 12vh; }
-  .wl-actions { flex-direction: column; }
-  .wl-view { padding: 12px 16px; padding-left: calc(16px + 0.36em); }
+@media (max-width: 1100px) {
+  .wl-grid--4, .wl-grid--many { grid-template-columns: repeat(3, 1fr); max-width: 980px; }
+}
+@media (max-width: 860px) {
+  .wl-grid--3, .wl-grid--4, .wl-grid--many { grid-template-columns: repeat(2, 1fr); max-width: 660px; }
+}
+@media (max-width: 560px) {
+  .wl-grid, .wl-grid--1, .wl-grid--2, .wl-grid--3, .wl-grid--4, .wl-grid--many { grid-template-columns: 1fr; max-width: 380px; }
+  .wl-section--fit { min-height: 0; display: block; }
+  .wl-hero { padding: 90px 7% 0; }
+  .wl-section { padding: 28px 7% 56px; }
+  .wl-empty { min-height: 62vh; }
 }
 @media (prefers-reduced-motion: reduce) {
   .wl-card { opacity: 1; transform: none; transition: none; }
@@ -477,13 +484,13 @@
 <header class="wl-hero">
   <div class="wl-eyebrow">
     <svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.2C11 20.2 1.8 14 1.8 8C1.8 4.7 4.4 2.2 7.5 2.2C9.1 2.2 10.5 3 11 4.3C11.5 3 12.9 2.2 14.5 2.2C17.6 2.2 20.2 4.7 20.2 8C20.2 14 11 20.2 11 20.2Z"/></svg>
-    <span data-i18n="wl.eyebrow">The cellar notes</span>
+    <span data-i18n="wl.eyebrow">The cellar</span>
   </div>
-  <h1 class="wl-title" data-i18n-html="wl.title_html">Set aside for the <em>cellar.</em></h1>
-  <p class="wl-sub" data-i18n="wl.sub">Editions you have marked to come back to. Saved quietly to this browser. They wait until you are ready.</p>
+  <h1 class="wl-title" data-i18n-html="wl.title_html">Your reserved <em>collection.</em></h1>
+  <p class="wl-sub" data-i18n="wl.sub">Products you set aside quietly, for later.</p>
 
   <div class="wl-meta" id="wlMeta" hidden>
-    <span><strong id="wlCount">0</strong> <span data-i18n="wl.itemsLabel">edition saved</span></span>
+    <span><strong id="wlCount">0</strong> <span data-i18n="wl.itemsLabel">reserved</span></span>
     <span class="dot" aria-hidden="true"></span>
     <span data-i18n="wl.privacyNote">Stored locally · never sent</span>
   </div>
@@ -500,13 +507,22 @@
   <div class="wl-grid" id="wlGrid" aria-label="Saved editions"></div>
 
   <div class="wl-empty" id="wlEmpty" hidden>
-    <div class="glyph" aria-hidden="true">
-      <svg viewBox="0 0 22 22"><path d="M11 20.2C11 20.2 1.8 14 1.8 8C1.8 4.7 4.4 2.2 7.5 2.2C9.1 2.2 10.5 3 11 4.3C11.5 3 12.9 2.2 14.5 2.2C17.6 2.2 20.2 4.7 20.2 8C20.2 14 11 20.2 11 20.2Z"/></svg>
+    <div class="wl-bee" aria-hidden="true">
+      <span class="wl-bee__halo"></span>
+      <span class="wl-bee__ring"></span>
+      <svg class="wl-bee__bee" viewBox="0 0 62 56" fill="none">
+        <path class="wing" d="M25 22 C16 12 12 18 14 26 C16 33 24 31 27 25 Z" fill="rgba(212,172,106,0.30)" stroke="#B8945A" stroke-width="1"/>
+        <path class="wing" d="M37 22 C46 12 50 18 48 26 C46 33 38 31 35 25 Z" fill="rgba(212,172,106,0.30)" stroke="#B8945A" stroke-width="1"/>
+        <ellipse cx="31" cy="36" rx="9.2" ry="13" fill="#8A6228"/>
+        <path d="M22.4 31 H39.6 M22.6 37 H39.4 M25 43 H37" stroke="#F6F1E6" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="31" cy="23.5" r="4.6" fill="#1F1A14"/>
+        <path d="M28.5 19.5 C26 14 24 13 22.6 14 M33.5 19.5 C36 14 38 13 39.4 14" stroke="#1F1A14" stroke-width="1.1" stroke-linecap="round"/>
+      </svg>
     </div>
-    <h2 data-i18n-html="wl.empty.title_html">Your cellar notes are <em>quiet.</em></h2>
-    <p data-i18n="wl.empty.desc">Browse the collection, tap a heart on any edition you would like to come back to, and it appears here. We keep nothing on our side.</p>
+    <h2 data-i18n-html="wl.empty.title_html">The cellar <em>awaits.</em></h2>
+    <p data-i18n="wl.empty.desc">Products you quietly set aside will remain here for later. Nothing leaves this browser.</p>
     <a href="shop.html" class="cta">
-      <span data-i18n="wl.empty.cta">View the collection</span>
+      <span data-i18n="wl.empty.cta">Explore the collection</span>
       <span class="arrow" aria-hidden="true"></span>
     </a>
   </div>
@@ -554,7 +570,7 @@
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-65"></script>
+<script src="shared.js?v=hd-2026-06-06-66"></script>
 <script>
 (function() {
   const menuBtn = document.getElementById('menuBtn');
@@ -568,6 +584,7 @@
   }
 
   const grid = document.getElementById('wlGrid');
+  const section = document.querySelector('.wl-section');
   const empty = document.getElementById('wlEmpty');
   const toolbar = document.getElementById('wlToolbar');
   const meta = document.getElementById('wlMeta');
@@ -579,24 +596,30 @@
     return dict[key] || (window.HD_T && window.HD_T.en && window.HD_T.en[key]) || fallback || key;
   }
 
+  function metaRow(k, v) {
+    if (!v) return '';
+    return '<div class="wl-meta-row"><span class="k">' + k + '</span><span class="v">' + v + '</span></div>';
+  }
+
   function cardHTML(p) {
+    var img = p.image || 'harvestdeli.png';
     return '<article class="wl-card" data-slug="' + p.slug + '">' +
-      '<button type="button" class="wl-remove" data-wl-remove="' + p.slug + '" aria-label="' + t('wl.remove', 'Remove') + '">' +
-        '<svg viewBox="0 0 22 22" aria-hidden="true"><path d="M11 20.2C11 20.2 1.8 14 1.8 8C1.8 4.7 4.4 2.2 7.5 2.2C9.1 2.2 10.5 3 11 4.3C11.5 3 12.9 2.2 14.5 2.2C17.6 2.2 20.2 4.7 20.2 8C20.2 14 11 20.2 11 20.2Z"/></svg>' +
-      '</button>' +
       '<a class="wl-frame" href="' + p.url + '" aria-label="' + p.name + '">' +
-        '<img src="harvestdeli.png" alt="' + p.name + '" loading="lazy">' +
+        '<img src="' + img + '" alt="' + p.name + '" loading="lazy">' +
       '</a>' +
       '<div class="wl-info">' +
-        '<div class="wl-row"><span class="wl-name">' + p.name + '</span><span class="wl-price">€' + p.price + '</span></div>' +
-        '<div class="wl-region">' + p.region + ' &middot; ' + (p.altitude || '') + '</div>' +
-        '<p class="wl-notes">"' + (p.notes || '') + '"</p>' +
+        '<div class="wl-row"><span class="wl-name">' + p.name + '</span><span class="wl-price">&euro;' + p.price + '</span></div>' +
+        '<div class="wl-meta-list">' +
+          metaRow(t('wl.metaHarvest', 'Harvest'), p.edition) +
+          metaRow(t('wl.metaOrigin', 'Origin'), p.region) +
+          metaRow(t('wl.metaElevation', 'Elevation'), p.altitude) +
+        '</div>' +
         '<div class="wl-actions">' +
-          '<button type="button" class="wl-add" data-add-to-cart="' + p.slug + '">' +
+          '<button type="button" class="wl-buy" data-add-to-cart="' + p.slug + '">' +
             '<svg viewBox="0 0 11 11" fill="none" aria-hidden="true"><path d="M5.5 1 V10 M1 5.5 H10" stroke="currentColor" stroke-width="1.1"/></svg>' +
-            '<span>' + t('wl.moveToCellar', 'Move to cellar') + '</span>' +
+            '<span>' + t('wl.addToCart', 'Add to Cart') + '</span>' +
           '</button>' +
-          '<a class="wl-view" href="' + p.url + '"><span>' + t('wl.view', 'View') + '</span></a>' +
+          '<button type="button" class="wl-release" data-wl-remove="' + p.slug + '">' + t('wl.release', 'Release') + '</button>' +
         '</div>' +
       '</div>' +
     '</article>';
@@ -606,27 +629,33 @@
     if (!window.HD_wishlist || !window.HD_product) return;
     const slugs = window.HD_wishlist.all();
     const items = slugs.map(s => window.HD_product(s)).filter(Boolean);
+    const n = items.length;
 
-    countEl.textContent = items.length;
-    document.title = (items.length ? '(' + items.length + ') ' : '') + 'The Cellar Notes, Harvest Deli';
+    countEl.textContent = n;
+    document.title = (n ? '(' + n + ') ' : '') + 'The Cellar, Harvest Deli';
 
-    if (items.length === 0) {
+    if (n === 0) {
       grid.innerHTML = '';
       grid.style.display = 'none';
       toolbar.hidden = true;
       meta.hidden = true;
+      section.classList.remove('wl-section--fit');
       empty.hidden = false;
       return;
     }
     grid.style.display = '';
     empty.hidden = true;
-    toolbar.hidden = false;
     meta.hidden = false;
+    // Toolbar (clear all) only matters for larger collections
+    toolbar.hidden = n < 5;
+    // 1–4 fit above the fold (centered); 5+ allow scrolling
+    section.classList.toggle('wl-section--fit', n <= 4);
+    grid.className = 'wl-grid wl-grid--' + (n >= 5 ? 'many' : n);
     grid.innerHTML = items.map(cardHTML).join('');
     // Stagger reveal
     requestAnimationFrame(() => {
       grid.querySelectorAll('.wl-card').forEach((c, i) => {
-        setTimeout(() => c.classList.add('in'), i * 50);
+        setTimeout(() => c.classList.add('in'), i * 55);
       });
     });
   }
