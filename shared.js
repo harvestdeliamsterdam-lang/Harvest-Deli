@@ -3009,7 +3009,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-57" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-58" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -4689,9 +4689,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-57'], ['hd-search-js', 'search.js?v=hd-2026-06-06-57'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-57'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-57'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-57'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-57'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-57'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-57'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-57'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-57']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-58'], ['hd-search-js', 'search.js?v=hd-2026-06-06-58'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-58'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-58'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-58'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-58'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-58'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-58'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-58'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-58']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

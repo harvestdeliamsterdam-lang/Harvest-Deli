@@ -3506,7 +3506,12 @@ html.hd-intro-pending::before {
   z-index: 9998;
   pointer-events: none;
 }
-html.hd-intro-active body { opacity: 0; }
+/* ACTIVE: the opaque green overlay (mounted in <body>, z-index 9999) covers the
+   page. The body must stay VISIBLE — hiding it (opacity 0) also hides the
+   overlay itself (a child of body), leaving only the beige canvas: the bug that
+   made the intro play invisibly. Keep the canvas green as belt-and-braces. */
+html.hd-intro-active { background: var(--hd-intro-green); }
+html.hd-intro-active body { opacity: 1; }
 html.hd-intro-done body {
   opacity: 1;
   transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
