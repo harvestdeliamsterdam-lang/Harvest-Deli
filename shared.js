@@ -295,7 +295,7 @@
       'idx.scrollHint': 'Scroll',
       'idx.sel.eyebrow': 'The collection',
       'idx.sel.title': 'Selected harvests.',
-      'idx.sel.cta': 'Explore the collection',
+      'idx.sel.cta': 'View Full Collection',
       // ---------- index editorial ----------
       'idx.ch1.eyebrow': 'The Origin',
       'idx.ch1.h': 'Born in the quiet hills of Northern Greece.',
@@ -891,7 +891,7 @@
       'idx.scrollHint': 'Scroll',
       'idx.sel.eyebrow': 'De collectie',
       'idx.sel.title': 'Geselecteerde oogsten.',
-      'idx.sel.cta': 'Bekijk de collectie',
+      'idx.sel.cta': 'Bekijk de volledige collectie',
       // ---------- index editorial ----------
       'idx.ch1.eyebrow': 'De Oorsprong',
       'idx.ch1.h': 'Geboren in de stille heuvels van Noord-Griekenland.',
@@ -1447,7 +1447,7 @@
       'idx.scrollHint': 'Κύλιση',
       'idx.sel.eyebrow': 'Η συλλογή',
       'idx.sel.title': 'Επιλεγμένες συγκομιδές.',
-      'idx.sel.cta': 'Δείτε τη συλλογή',
+      'idx.sel.cta': 'Δείτε όλη τη συλλογή',
       'idx.ch1.eyebrow': 'Η Προέλευση',
       'idx.ch1.h': 'Γεννημένο στους ήσυχους λόφους της Βόρειας Ελλάδας.',
       'idx.ch1.body': 'Επί πέντε γενιές, μία οικογένεια φροντίζει χίλιες κυψέλες πάνω στις ασβεστολιθικές κορυφογραμμές του Πηλίου. Άγριο θυμάρι, ρείκι και κουμαριά ανθίζουν σε μία και μόνη, αμετάφραστη εποχή. Το μέλι παίρνει σχήμα από αυτή τη γη, και από τίποτα άλλο.',
@@ -3049,7 +3049,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-80" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-81" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -4917,9 +4917,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-80'], ['hd-search-js', 'search.js?v=hd-2026-06-06-80'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-80'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-80'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-80'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-80'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-80'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-80'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-80'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-80']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-81'], ['hd-search-js', 'search.js?v=hd-2026-06-06-81'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-81'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-81'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-81'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-81'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-81'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-81'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-81'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-81']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
