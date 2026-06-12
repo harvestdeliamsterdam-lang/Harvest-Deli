@@ -200,19 +200,19 @@
       'concierge.fab': 'Write to us',
       'concierge.title': 'Chat with Harvest Deli',
       'concierge.subtitle': 'Pelion, Greece',
-      'concierge.online': 'Real human · Replies within hours',
-      'concierge.greeting': 'Welcome to Harvest Deli.\nHow may we help you today?',
-      'concierge.intro': 'Choose a topic below, we’ll continue the conversation on WhatsApp.',
-      'concierge.action.product': 'Ask about a product',
+      'concierge.online': 'Personal reply · usually within a few hours',
+      'concierge.greeting': 'Welcome to Harvest Deli.\nHow may we help you?',
+      'concierge.intro': 'Choose a topic. We’ll prepare a WhatsApp message for you.',
+      'concierge.action.product': 'Product question',
       'concierge.action.retail': 'Retail & hospitality',
-      'concierge.action.shipping': 'Shipping & delivery',
-      'concierge.action.gift': 'Gifts & corporate orders',
+      'concierge.action.shipping': 'Shipping',
+      'concierge.action.gift': 'Gifts & business orders',
       'concierge.action.concierge': 'Speak with our team',
-      'concierge.msg.product': 'Hello Harvest Deli, I would like to know more about your collection.',
-      'concierge.msg.retail': 'Hello Harvest Deli, I would like to explore a retail or hospitality partnership.',
-      'concierge.msg.shipping': 'Hello Harvest Deli, I have a question about shipping and delivery.',
-      'concierge.msg.gift': 'Hello Harvest Deli, I would like to arrange a gift or corporate order.',
-      'concierge.msg.concierge': 'Hello Harvest Deli, I would like to speak with your team.',
+      'concierge.msg.product': 'Hi Harvest Deli, I have a question about a product on your website.',
+      'concierge.msg.retail': 'Hi Harvest Deli, I am interested in retail or hospitality purchasing. Could you send me more information?',
+      'concierge.msg.shipping': 'Hi Harvest Deli, I have a question about shipping or delivery.',
+      'concierge.msg.gift': 'Hi Harvest Deli, I would like to know more about gifts or business orders.',
+      'concierge.msg.concierge': 'Hi Harvest Deli, I would like to speak with someone from your team.',
       'concierge.close': 'Close',
       'concierge.privacy': 'Conversations open in WhatsApp. We never share your number.',
       // ---------- Find Us in Amsterdam ----------
@@ -797,19 +797,19 @@
       'concierge.fab': 'Schrijf ons',
       'concierge.title': 'Chat met Harvest Deli',
       'concierge.subtitle': 'Pelion, Griekenland',
-      'concierge.online': 'Echte mens · Reactie binnen enkele uren',
-      'concierge.greeting': 'Welkom bij Harvest Deli.\nWaar kunnen we u mee helpen?',
-      'concierge.intro': 'Kies een onderwerp hieronder, we zetten het gesprek voort op WhatsApp.',
-      'concierge.action.product': 'Vraag over een product',
+      'concierge.online': 'Persoonlijk antwoord · meestal binnen enkele uren',
+      'concierge.greeting': 'Welkom bij Harvest Deli.\nWaarmee mogen we u helpen?',
+      'concierge.intro': 'Kies een onderwerp. We bereiden alvast een WhatsApp-bericht voor.',
+      'concierge.action.product': 'Productvraag',
       'concierge.action.retail': 'Retail & horeca',
-      'concierge.action.shipping': 'Verzending & levering',
+      'concierge.action.shipping': 'Verzending',
       'concierge.action.gift': 'Geschenken & zakelijke orders',
       'concierge.action.concierge': 'Spreek met ons team',
-      'concierge.msg.product': 'Hallo Harvest Deli, ik wil graag meer weten over uw collectie.',
-      'concierge.msg.retail': 'Hallo Harvest Deli, ik wil graag de mogelijkheden voor retail of horeca verkennen.',
-      'concierge.msg.shipping': 'Hallo Harvest Deli, ik heb een vraag over verzending en levering.',
-      'concierge.msg.gift': 'Hallo Harvest Deli, ik wil graag een geschenk of zakelijke order plaatsen.',
-      'concierge.msg.concierge': 'Hallo Harvest Deli, ik wil graag met uw team spreken.',
+      'concierge.msg.product': 'Hallo Harvest Deli, ik heb een vraag over een product op jullie website.',
+      'concierge.msg.retail': 'Hallo Harvest Deli, ik ben geïnteresseerd in retail of horeca inkoop. Kunnen jullie mij meer informatie sturen?',
+      'concierge.msg.shipping': 'Hallo Harvest Deli, ik heb een vraag over verzending of levering.',
+      'concierge.msg.gift': 'Hallo Harvest Deli, ik wil graag meer weten over geschenken of zakelijke orders.',
+      'concierge.msg.concierge': 'Hallo Harvest Deli, ik wil graag met iemand van jullie team spreken.',
       'concierge.close': 'Sluiten',
       'concierge.privacy': 'Gesprekken openen in WhatsApp. We delen uw nummer nooit.',
       'markets.nav': 'Markten',
@@ -1368,19 +1368,19 @@
       'concierge.fab': 'Επικοινωνία',
       'concierge.title': 'Συνομιλία με Harvest Deli',
       'concierge.subtitle': 'Πήλιο, Ελλάδα',
-      'concierge.online': 'Πραγματικός άνθρωπος · Απάντηση σε λίγες ώρες',
+      'concierge.online': 'Προσωπική απάντηση · συνήθως μέσα σε λίγες ώρες',
       'concierge.greeting': 'Καλώς ήρθατε στη Harvest Deli.\nΠώς μπορούμε να σας βοηθήσουμε;',
-      'concierge.intro': 'Επιλέξτε ένα θέμα παρακάτω, η συνομιλία θα συνεχιστεί στο WhatsApp.',
-      'concierge.action.product': 'Ερώτηση για κάποιο προϊόν',
+      'concierge.intro': 'Επιλέξτε ένα θέμα. Θα ετοιμάσουμε ένα μήνυμα WhatsApp για εσάς.',
+      'concierge.action.product': 'Ερώτηση προϊόντος',
       'concierge.action.retail': 'Λιανική & φιλοξενία',
-      'concierge.action.shipping': 'Αποστολή & παράδοση',
+      'concierge.action.shipping': 'Αποστολή',
       'concierge.action.gift': 'Δώρα & εταιρικές παραγγελίες',
       'concierge.action.concierge': 'Συνομιλία με την ομάδα μας',
-      'concierge.msg.product': 'Γεια σας Harvest Deli, θα ήθελα να μάθω περισσότερα για τη συλλογή σας.',
-      'concierge.msg.retail': 'Γεια σας Harvest Deli, θα ήθελα να εξερευνήσω συνεργασία λιανικής ή φιλοξενίας.',
-      'concierge.msg.shipping': 'Γεια σας Harvest Deli, έχω μια ερώτηση για αποστολή και παράδοση.',
-      'concierge.msg.gift': 'Γεια σας Harvest Deli, θα ήθελα να κανονίσω ένα δώρο ή εταιρική παραγγελία.',
-      'concierge.msg.concierge': 'Γεια σας Harvest Deli, θα ήθελα να μιλήσω με την ομάδα σας.',
+      'concierge.msg.product': 'Γεια σας Harvest Deli, έχω μια ερώτηση για ένα προϊόν στον ιστότοπό σας.',
+      'concierge.msg.retail': 'Γεια σας Harvest Deli, ενδιαφέρομαι για αγορές λιανικής ή φιλοξενίας. Μπορείτε να μου στείλετε περισσότερες πληροφορίες;',
+      'concierge.msg.shipping': 'Γεια σας Harvest Deli, έχω μια ερώτηση για την αποστολή ή την παράδοση.',
+      'concierge.msg.gift': 'Γεια σας Harvest Deli, θα ήθελα να μάθω περισσότερα για δώρα ή εταιρικές παραγγελίες.',
+      'concierge.msg.concierge': 'Γεια σας Harvest Deli, θα ήθελα να μιλήσω με κάποιον από την ομάδα σας.',
       'concierge.close': 'Κλείσιμο',
       'concierge.privacy': 'Οι συνομιλίες ανοίγουν στο WhatsApp. Δεν μοιραζόμαστε ποτέ τον αριθμό σας.',
       'markets.nav': 'Αγορές',
@@ -2939,12 +2939,28 @@
   ];
 
   // Inline SVGs
-  // Olive sprig, used as the brand avatar inside the chat panel header
-  const SPRIG_SVG = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">' +
-    '<path d="M12 21V8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>' +
-    '<path d="M12 14C12 11 9 9 6 9.5C6.5 12.5 8.5 14.5 12 14Z" fill="currentColor" opacity="0.85"/>' +
-    '<path d="M12 11C12 8.5 14.5 7 17 7.5C16.5 10 14.5 11.5 12 11Z" fill="currentColor" opacity="0.85"/>' +
-    '<path d="M12 8C12 5.5 14 4 16 4.5C15.5 6.5 14 8 12 8Z" fill="currentColor" opacity="0.85"/></svg>';
+  // Luxury skep beehive — gold gradient body, woven bands, honeycomb entrance,
+  // soft inner glow. Minimal, premium, no cartoon styling.
+  const BEEHIVE_SVG = (
+    '<svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
+      '<defs>' +
+        '<linearGradient id="hdHiveGold" x1="0" y1="0" x2="0" y2="1">' +
+          '<stop offset="0%" stop-color="#FBE7B0"/><stop offset="46%" stop-color="#D9AE62"/><stop offset="100%" stop-color="#9A6F2E"/>' +
+        '</linearGradient>' +
+        '<radialGradient id="hdHiveGlow" cx="40%" cy="26%" r="62%">' +
+          '<stop offset="0%" stop-color="#FFF6DC" stop-opacity="0.78"/><stop offset="100%" stop-color="#FFF6DC" stop-opacity="0"/>' +
+        '</radialGradient>' +
+        '<clipPath id="hdHiveClip"><path d="M12 3.6 C7.4 3.6 5.4 6.2 5.4 9 V16.4 C5.4 17.5 6.3 18.4 7.4 18.4 H16.6 C17.7 18.4 18.6 17.5 18.6 16.4 V9 C18.6 6.2 16.6 3.6 12 3.6 Z"/></clipPath>' +
+      '</defs>' +
+      '<path d="M12 3.6 C7.4 3.6 5.4 6.2 5.4 9 V16.4 C5.4 17.5 6.3 18.4 7.4 18.4 H16.6 C17.7 18.4 18.6 17.5 18.6 16.4 V9 C18.6 6.2 16.6 3.6 12 3.6 Z" fill="url(#hdHiveGold)"/>' +
+      '<g clip-path="url(#hdHiveClip)" fill="none">' +
+        '<g stroke="#7E5A24" stroke-width="0.7" opacity="0.5"><path d="M3 7.4 Q12 6.5 21 7.4"/><path d="M3 10.2 Q12 9.4 21 10.2"/><path d="M3 13 Q12 12.4 21 13"/><path d="M3 15.8 Q12 15.2 21 15.8"/></g>' +
+        '<g stroke="#FFF1CC" stroke-width="0.5" opacity="0.45"><path d="M3 7.0 Q12 6.1 21 7.0"/><path d="M3 9.8 Q12 9.0 21 9.8"/><path d="M3 12.6 Q12 12.0 21 12.6"/></g>' +
+      '</g>' +
+      '<path d="M12 14.6 l1.5 0.85 v1.7 l-1.5 0.85 -1.5 -0.85 v-1.7 z" fill="#5A3E16"/>' +
+      '<path d="M12 3.6 C7.4 3.6 5.4 6.2 5.4 9 V16.4 C5.4 17.5 6.3 18.4 7.4 18.4 H16.6 C17.7 18.4 18.6 17.5 18.6 16.4 V9 C18.6 6.2 16.6 3.6 12 3.6 Z" fill="url(#hdHiveGlow)"/>' +
+    '</svg>'
+  );
 
   // Gold-coin medallion with embossed chat bubble, used as the floating button.
   // Built as a single inline SVG: radial gold gradient base, top-left gloss,
@@ -3033,7 +3049,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-73" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-79" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -3057,8 +3073,9 @@
     root.innerHTML =
       '<div class="hd-concierge__scrim" data-concierge-dismiss></div>' +
       '<div class="hd-concierge__panel" role="document">' +
+        '<span class="hd-concierge__frame" aria-hidden="true"></span>' +
         '<div class="hd-concierge__header">' +
-          '<span class="hd-concierge__avatar">' + SPRIG_SVG + '</span>' +
+          '<span class="hd-concierge__avatar">' + BEEHIVE_SVG + '</span>' +
           '<div class="hd-concierge__id">' +
             '<h2 class="hd-concierge__title" id="hdConciergeTitle" data-i18n="concierge.title">Harvest Concierge</h2>' +
             '<p class="hd-concierge__sub" data-i18n="concierge.subtitle">Pelion, Greece</p>' +
@@ -3148,7 +3165,15 @@
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && panel.classList.contains('open')) close();
+      if (e.key === 'Escape' && panel.classList.contains('open')) { close(); return; }
+      // Focus trap while the dialog is open
+      if (e.key === 'Tab' && panel.classList.contains('open')) {
+        var f = panel.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+        if (!f.length) return;
+        var first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
     });
 
     // Re-translate dynamic strings when language changes
@@ -3842,6 +3867,27 @@
         el.style.filter = on ? 'blur(3px) brightness(0.86)' : '';
       });
     }
+    // Mobile: size the nav font so all items + subtitles fit one viewport (no scroll).
+    // Measurement-based: probe at 32px, then iteratively shrink until the index fits.
+    function fitMobileNav() {
+      if (window.innerWidth > 700) { overlay.style.removeProperty('--hd-nav-fs'); return; }
+      var list = overlay.querySelector('.menu-items');
+      var top = overlay.querySelector('.menu-top');
+      var foot = overlay.querySelector('.hd-menu-foot');
+      if (!list || !top) return;
+      var footShown = foot && getComputedStyle(foot).display !== 'none';
+      var floor = footShown ? foot.getBoundingClientRect().top : (window.innerHeight - 18);
+      var avail = floor - top.getBoundingClientRect().bottom - 46;
+      var fs = 32;
+      overlay.style.setProperty('--hd-nav-fs', fs + 'px');
+      for (var i = 0; i < 6; i++) {
+        var h = list.scrollHeight; // forces synchronous layout at current fs
+        if (h <= avail || fs <= 18) break;
+        fs = Math.max(18, fs * (avail / h) * 0.96);
+        overlay.style.setProperty('--hd-nav-fs', fs.toFixed(1) + 'px');
+      }
+    }
+
     var open = false;
     var obs = new MutationObserver(function () {
       var isOpen = overlay.classList.contains('open');
@@ -3849,10 +3895,11 @@
       open = isOpen;
       document.body.classList.toggle('hd-menu-open', isOpen);
       setBehind(isOpen);
-      if (isOpen) window.addEventListener('mousemove', move, { passive: true });
+      if (isOpen) { fitMobileNav(); window.addEventListener('mousemove', move, { passive: true }); }
       else window.removeEventListener('mousemove', move);
     });
     obs.observe(overlay, { attributes: true, attributeFilter: ['class'] });
+    window.addEventListener('resize', function () { if (overlay.classList.contains('open')) fitMobileNav(); }, { passive: true });
   }
 
   function init() {
@@ -4870,9 +4917,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-73'], ['hd-search-js', 'search.js?v=hd-2026-06-06-73'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-73'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-73'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-73'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-73'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-73'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-73'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-73'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-73']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-79'], ['hd-search-js', 'search.js?v=hd-2026-06-06-79'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-79'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-79'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-79'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-79'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-79'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-79'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-79'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-79']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
