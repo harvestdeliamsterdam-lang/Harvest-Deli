@@ -544,12 +544,15 @@
       'contact.intro': 'For wholesale, hospitality, press, or simply a quiet question about a jar. Stavros and the family read every message, and reply within two business days.',
       'contact.form.h': 'Begin an inquiry.',
       'contact.form.sub': 'A few lines are enough. We respond personally.',
-      'contact.pill.general': 'General',
-      'contact.pill.wholesale': 'Wholesale',
+      'contact.pill.general': 'Personal Inquiry',
+      'contact.pill.wholesale': 'Wholesale Partnership',
       'contact.pill.hospitality': 'Hospitality',
-      'contact.pill.retail': 'Retailers',
+      'contact.pill.retail': 'Retail Partnership',
       'contact.pill.press': 'Press',
       'contact.pill.collab': 'Collaboration',
+      'contact.founder.quote': 'Every Harvest Deli partnership begins with a conversation. We prefer a few long relationships over wide distribution — the jar, and the hands behind it, deserve that.',
+      'contact.founder.name': 'Stavros Andreou',
+      'contact.founder.role': 'The Andreou family · Pelion, Greece',
       'contact.label.name': 'Your name',
       'contact.label.house': 'House / business',
       'contact.label.email': 'Email',
@@ -560,7 +563,7 @@
       'contact.ph.email': 'maria@example.com',
       'contact.ph.country': 'Greece',
       'contact.ph.message': 'Tell us what you have in mind. Quantities, timing, the room you are setting the table in.',
-      'contact.submit': 'Send inquiry',
+      'contact.submit': 'Begin the conversation',
       'contact.formNote': 'By writing to us you agree we may store your message for the purpose of replying. We do not sell or share details. Ever.',
       'contact.success.h': 'Your message is on its way.',
       'contact.success.p': 'Stavros or one of the family will read it personally and write back within two business days.',
@@ -1137,12 +1140,15 @@
       'contact.intro': 'Voor groothandel, gastronomie, pers, of simpelweg een rustige vraag over een pot. Stavros en de familie lezen elk bericht en reageren binnen twee werkdagen.',
       'contact.form.h': 'Begin een aanvraag.',
       'contact.form.sub': 'Een paar regels zijn genoeg. Wij reageren persoonlijk.',
-      'contact.pill.general': 'Algemeen',
+      'contact.pill.general': 'Persoonlijke vraag',
       'contact.pill.wholesale': 'Groothandel',
       'contact.pill.hospitality': 'Gastronomie',
-      'contact.pill.retail': 'Retailers',
+      'contact.pill.retail': 'Retailpartner',
       'contact.pill.press': 'Pers',
       'contact.pill.collab': 'Samenwerking',
+      'contact.founder.quote': 'Elke samenwerking met Harvest Deli begint met een gesprek. Wij verkiezen een paar lange relaties boven brede distributie — de pot, en de handen erachter, verdienen dat.',
+      'contact.founder.name': 'Stavros Andreou',
+      'contact.founder.role': 'De familie Andreou · Pelion, Griekenland',
       'contact.label.name': 'Jouw naam',
       'contact.label.house': 'Huis / onderneming',
       'contact.label.email': 'E-mail',
@@ -1153,7 +1159,7 @@
       'contact.ph.email': 'maria@voorbeeld.nl',
       'contact.ph.country': 'Nederland',
       'contact.ph.message': 'Vertel ons wat je in gedachten hebt. Aantallen, timing, de ruimte waarin je de tafel dekt.',
-      'contact.submit': 'Aanvraag versturen',
+      'contact.submit': 'Begin het gesprek',
       'contact.formNote': 'Door ons te schrijven ga je ermee akkoord dat wij je bericht bewaren met als doel te kunnen antwoorden. Wij verkopen of delen gegevens nooit.',
       'contact.success.h': 'Je bericht is onderweg.',
       'contact.success.p': 'Stavros of een van de familie zal het persoonlijk lezen en binnen twee werkdagen terugschrijven.',
@@ -1527,12 +1533,15 @@
       'contact.intro': 'Για χονδρική, φιλοξενία, τύπο, ή απλά μια ήσυχη ερώτηση για ένα βάζο. Ο Σταύρος και η οικογένεια διαβάζουν κάθε μήνυμα, και απαντούν εντός δύο εργάσιμων ημερών.',
       'contact.form.h': 'Ξεκινήστε ένα αίτημα.',
       'contact.form.sub': 'Λίγες γραμμές αρκούν. Απαντούμε προσωπικά.',
-      'contact.pill.general': 'Γενικά',
-      'contact.pill.wholesale': 'Χονδρική',
+      'contact.pill.general': 'Προσωπικό αίτημα',
+      'contact.pill.wholesale': 'Χονδρική συνεργασία',
       'contact.pill.hospitality': 'Φιλοξενία',
-      'contact.pill.retail': 'Λιανοπωλητές',
+      'contact.pill.retail': 'Λιανική συνεργασία',
       'contact.pill.press': 'Τύπος',
       'contact.pill.collab': 'Συνεργασία',
+      'contact.founder.quote': 'Κάθε συνεργασία με τη Harvest Deli ξεκινά με μια συζήτηση. Προτιμούμε λίγες μακροχρόνιες σχέσεις από την ευρεία διανομή — το βάζο, και τα χέρια πίσω του, το αξίζουν.',
+      'contact.founder.name': 'Σταύρος Ανδρέου',
+      'contact.founder.role': 'Η οικογένεια Ανδρέου · Πήλιο, Ελλάδα',
       'contact.label.name': 'Όνομα',
       'contact.label.house': 'Οίκος / επιχείρηση',
       'contact.label.email': 'Email',
@@ -1543,7 +1552,7 @@
       'contact.ph.email': 'maria@example.com',
       'contact.ph.country': 'Ελλάδα',
       'contact.ph.message': 'Πείτε μας τι έχετε κατά νου. Ποσότητες, χρονοδιαγράμματα, το δωμάτιο που στρώνετε το τραπέζι.',
-      'contact.submit': 'Αποστολή αιτήματος',
+      'contact.submit': 'Ξεκινήστε τη συζήτηση',
       'contact.formNote': 'Γράφοντάς μας συμφωνείτε ότι μπορούμε να αποθηκεύσουμε το μήνυμά σας με σκοπό την απάντηση. Δεν πουλάμε ούτε μοιραζόμαστε στοιχεία. Ποτέ.',
       'contact.success.h': 'Το μήνυμά σας είναι καθ’οδόν.',
       'contact.success.p': 'Ο Σταύρος ή κάποιος από την οικογένεια θα το διαβάσει προσωπικά και θα απαντήσει εντός δύο εργάσιμων ημερών.',
@@ -3009,7 +3018,7 @@
     // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
     // gold hairline, speech tail and notification cell. Self-contained SVG file.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-64" alt="" aria-hidden="true" width="64" height="65">' +
+      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-65" alt="" aria-hidden="true" width="64" height="65">' +
       '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
     return btn;
   }
@@ -4742,9 +4751,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-64'], ['hd-search-js', 'search.js?v=hd-2026-06-06-64'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-64'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-64'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-64'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-64'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-64'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-64'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-64'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-64']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-65'], ['hd-search-js', 'search.js?v=hd-2026-06-06-65'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-65'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-65'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-65'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-65'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-65'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-65'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-65'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-65']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

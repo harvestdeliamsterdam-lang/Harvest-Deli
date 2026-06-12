@@ -19,11 +19,11 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-64" type="image/svg+xml">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-65" type="image/svg+xml">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <meta name="theme-color" content="#1F1A14">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-64">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-65">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -111,7 +111,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .contact-hero__inner { position: relative; z-index: 1; max-width: 900px; }
 @media (prefers-reduced-motion: reduce) {
   .contact-hero__media video { display: none; }
-  .contact-hero__media { background: #0B0907 url('contacthero-poster.jpg?v=hd-2026-06-06-64') center/cover no-repeat; }
+  .contact-hero__media { background: #0B0907 url('contacthero-poster.jpg?v=hd-2026-06-06-65') center/cover no-repeat; }
 }
 .c-eyebrow {
   font-family: 'Inter', sans-serif;
@@ -145,11 +145,28 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 
 /* ---- Form layout ---- */
 .contact-section {
-  padding: 8vh 8% 18vh;
+  position: relative;
+  padding: 10vh 8% 18vh;
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 8%;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 9%;
   align-items: start;
+  isolation: isolate;
+  background:
+    radial-gradient(120% 90% at 88% 6%, rgba(212, 172, 106, 0.13), transparent 52%),
+    radial-gradient(100% 80% at 6% 100%, rgba(184, 148, 90, 0.09), transparent 58%),
+    linear-gradient(180deg, #F8F3E9 0%, #F3ECDD 100%);
+}
+/* Subtle paper grain — luxury imported-goods feel, never noisy */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42  0 0 0 0 0.34  0 0 0 0 0.18  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23g)'/></svg>");
+  opacity: 0.06;
+  mix-blend-mode: multiply;
 }
 
 /* ============================================================
@@ -161,11 +178,11 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   background: linear-gradient(180deg, rgba(255, 253, 248, 0.66), rgba(250, 246, 238, 0.46));
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);
-  border: 1px solid rgba(42, 35, 27, 0.07);
+  border: 1px solid rgba(42, 35, 27, 0.06);
   border-radius: var(--radius-card, 16px);
-  padding: clamp(36px, 4vw, 60px) clamp(28px, 3.4vw, 56px);
+  padding: clamp(40px, 4.4vw, 68px) clamp(32px, 3.8vw, 60px);
   position: relative;
-  box-shadow: 0 36px 80px -50px rgba(42, 35, 27, 0.28);
+  box-shadow: 0 44px 90px -54px rgba(42, 35, 27, 0.26);
 }
 .c-form::before {
   content: '';
@@ -193,7 +210,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 }
 
 .field {
-  margin-bottom: 22px;
+  margin-bottom: 30px;
   position: relative;
 }
 .field label {
@@ -210,10 +227,10 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 /* Soft, contained inputs, tactile, understated, integrated */
 .field input, .field select, .field textarea {
   width: 100%;
-  background: rgba(255, 253, 248, 0.55);
-  border: 1px solid rgba(42, 35, 27, 0.13);
+  background: rgba(255, 253, 248, 0.58);
+  border: 1px solid rgba(42, 35, 27, 0.09);
   border-radius: var(--radius-soft, 10px);
-  padding: 15px 18px;
+  padding: 16px 18px;
   font-weight: 400;
   font-size: 17px;
   color: var(--ink);
@@ -224,7 +241,8 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   appearance: none;
 }
 .field input:hover, .field select:hover, .field textarea:hover {
-  border-color: rgba(42, 35, 27, 0.22);
+  border-color: rgba(184, 148, 90, 0.34);
+  background: rgba(255, 253, 248, 0.78);
 }
 /* Focus, calm border shift + soft warm glow (no browser outline) */
 .field input:focus, .field select:focus, .field textarea:focus {
@@ -267,7 +285,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .field-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px 22px;
+  gap: 0 26px;
 }
 
 .inquiry-pills {
@@ -297,34 +315,35 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   background: rgba(255, 253, 248, 0.85);
 }
 .inquiry-pill.active {
-  background: var(--ink);
+  background: #183126;
   color: var(--cream);
-  border-color: var(--ink);
-  box-shadow: 0 8px 20px -10px rgba(42, 35, 27, 0.5);
+  border-color: #183126;
+  box-shadow: 0 8px 20px -10px rgba(24, 49, 38, 0.5);
 }
 
 .submit-btn {
   display: inline-flex;
   align-items: center;
   gap: 22px;
-  padding: 19px 40px;
-  background: var(--ink);
+  padding: 20px 42px;
+  background: #183126;
   color: var(--cream);
-  border: 1px solid var(--ink);
+  border: 1px solid rgba(184, 148, 90, 0.45);
   font-size: 10px;
   letter-spacing: var(--track-button);
   text-transform: uppercase;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease), transform 0.5s var(--ease);
-  margin-top: 18px;
+  transition: background 0.55s var(--ease), border-color 0.55s var(--ease), box-shadow 0.55s var(--ease), transform 0.55s var(--ease);
+  margin-top: 24px;
   border-radius: var(--radius-pill, 999px);
-  box-shadow: 0 14px 30px -16px rgba(42, 35, 27, 0.5);
+  box-shadow: 0 16px 34px -18px rgba(24, 49, 38, 0.55);
 }
 .submit-btn:hover {
-  background: var(--gold-deep);
-  box-shadow: 0 18px 36px -16px rgba(138, 98, 40, 0.5);
-  transform: translateY(-1px);
+  background: #214030;
+  border-color: rgba(212, 172, 106, 0.75);
+  box-shadow: 0 22px 46px -18px rgba(24, 49, 38, 0.5);
+  transform: translateY(-2px);
 }
 .submit-btn:active { transform: translateY(0); }
 .submit-btn .arrow { width: 22px; height: 1px; background: currentColor; position: relative; transition: width 0.4s var(--ease); }
@@ -378,59 +397,72 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   margin: 0 auto;
 }
 
-/* Side info */
-.c-info {
-  padding-top: 16px;
+/* ============================================================
+   Founder note — editorial, emotional, minimal (replaces the
+   four informational blocks). Quiet luxury, like a printed card.
+   ============================================================ */
+.c-founder {
+  align-self: center;
+  padding: clamp(8px, 2vw, 40px) clamp(4px, 2vw, 30px);
 }
-.c-info h4 {
-  font-family: 'Newsreader', serif;
-  font-weight: 400;
-  font-size: 28px;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin-bottom: 32px;
-  color: var(--ink);
+.c-founder__card {
+  margin: 0;
+  max-width: 30ch;
+  position: relative;
 }
-
-.info-block {
-  padding: 24px 0;
-  border-bottom: 1px solid rgba(26, 22, 18, 0.06);
+.c-founder__mark {
+  display: inline-flex;
+  color: var(--gold-deep, #8A6228);
+  margin-bottom: 30px;
 }
-.info-block:last-child { border-bottom: none; }
-.info-block .label {
-  font-family: 'Inter', sans-serif;
-  font-size: 9.5px;
-  letter-spacing: var(--track-label);
+.c-founder__quotemark {
+  position: absolute;
+  top: 44px;
+  left: -10px;
+  font-family: 'Newsreader', 'EB Garamond', Georgia, serif;
+  font-size: 92px;
+  line-height: 1;
+  color: rgba(184, 148, 90, 0.26);
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+}
+.c-founder__quote {
+  margin: 0 0 34px;
+  font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif);
+  font-weight: 420;
+  font-size: clamp(22px, 2.3vw, 30px);
+  line-height: 1.34;
+  letter-spacing: -0.018em;
+  color: #1B2A22;
+  text-wrap: balance;
+}
+.c-founder__sign {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.c-founder__swash {
+  color: var(--gold, #B8945A);
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+.c-founder__name {
+  font-family: var(--font-display, 'General Sans', sans-serif);
+  font-weight: 560;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  color: var(--ink, #1F1A14);
+}
+.c-founder__role {
+  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 12px;
+  color: var(--ink-soft, #5C5247);
   font-weight: 500;
-  padding-left: var(--track-label);
+  margin-top: 7px;
 }
-.info-block .title {
-  font-family: 'Newsreader', serif;
-  font-weight: 400;
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: var(--ink);
-  letter-spacing: -0.014em;
-}
-.info-block .title em { font-style: italic; color: var(--ink-warm); }
-.info-block p {
-  font-family: 'Inter', sans-serif;
-  font-size: 13.5px;
-  color: var(--ink-soft);
-  line-height: 1.7;
-  max-width: 36ch;
-}
-.info-block a {
-  color: var(--ink-soft);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(26, 22, 18, 0.18);
-  transition: color 0.4s var(--ease), border-color 0.4s var(--ease);
-  padding-bottom: 1px;
-}
-.info-block a:hover { color: var(--gold-deep); border-bottom-color: var(--gold); }
 
 /* Location */
 .location-strip {
@@ -503,10 +535,10 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   .inquiry-pills { gap: 6px; }
   .inquiry-pill { padding: 10px 16px; font-size: 8.5px; letter-spacing: 0.2em; }
   .submit-btn { padding: 18px 30px; padding-left: calc(30px + var(--track-button)); width: 100%; justify-content: center; gap: 16px; }
-  .c-info h4 { font-size: 24px; }
-  .info-block { padding: 22px 0; }
-  .info-block .title { font-size: 18px; }
-  .info-block p { font-size: 13px; }
+  .c-founder { align-self: start; padding: 0; }
+  .c-founder__card { max-width: 38ch; }
+  .c-founder__quote { font-size: 23px; }
+  .c-founder__quotemark { top: 36px; font-size: 76px; }
   .location-strip { padding: 10vh 7%; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 6vh 8%; margin-bottom: 8vh; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
@@ -618,9 +650,9 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
 <!-- ============ Hero ============ -->
 <section class="contact-hero">
   <div class="contact-hero__media" aria-hidden="true">
-    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="contacthero-poster.jpg?v=hd-2026-06-06-64">
-      <source src="contacthero.mp4?v=hd-2026-06-06-64" type="video/mp4">
-      <source src="contacthero.webm?v=hd-2026-06-06-64" type="video/webm">
+    <video autoplay muted loop playsinline webkit-playsinline preload="auto" poster="contacthero-poster.jpg?v=hd-2026-06-06-65">
+      <source src="contacthero.mp4?v=hd-2026-06-06-65" type="video/mp4">
+      <source src="contacthero.webm?v=hd-2026-06-06-65" type="video/webm">
     </video>
   </div>
   <div class="contact-hero__inner">
@@ -637,12 +669,10 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     <p class="sub" data-i18n="contact.form.sub">A few lines are enough. We respond personally.</p>
 
     <div class="inquiry-pills" id="inquiryPills">
-      <button class="inquiry-pill active" data-inquiry="general" data-i18n="contact.pill.general">General</button>
-      <button class="inquiry-pill" data-inquiry="wholesale" data-i18n="contact.pill.wholesale">Wholesale</button>
+      <button class="inquiry-pill active" data-inquiry="general" data-i18n="contact.pill.general">Personal Inquiry</button>
+      <button class="inquiry-pill" data-inquiry="wholesale" data-i18n="contact.pill.wholesale">Wholesale Partnership</button>
       <button class="inquiry-pill" data-inquiry="hospitality" data-i18n="contact.pill.hospitality">Hospitality</button>
-      <button class="inquiry-pill" data-inquiry="retail" data-i18n="contact.pill.retail">Retailers</button>
-      <button class="inquiry-pill" data-inquiry="press" data-i18n="contact.pill.press">Press</button>
-      <button class="inquiry-pill" data-inquiry="collaboration" data-i18n="contact.pill.collab">Collaboration</button>
+      <button class="inquiry-pill" data-inquiry="retail" data-i18n="contact.pill.retail">Retail Partnership</button>
     </div>
 
     <form id="contactForm" onsubmit="event.preventDefault(); document.getElementById('formActive').style.display='none'; document.getElementById('formSuccess').classList.add('show');">
@@ -671,7 +701,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
           <label data-i18n="contact.label.message">Message</label>
           <textarea data-i18n-attr="placeholder:contact.ph.message" placeholder="Tell us what you have in mind. Quantities, timing, the room you are setting the table in." required></textarea>
         </div>
-        <button type="submit" class="submit-btn"><span data-i18n="contact.submit">Send inquiry</span> <span class="arrow"></span></button>
+        <button type="submit" class="submit-btn"><span data-i18n="contact.submit">Begin the conversation</span> <span class="arrow"></span></button>
         <p class="form-note" data-i18n="contact.formNote">By writing to us you agree we may store your message for the purpose of replying. We do not sell or share details. Ever.</p>
       </div>
       <div class="form-success" id="formSuccess">
@@ -682,36 +712,25 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
     </form>
   </div>
 
-  <aside class="c-info reveal delay-1">
-    <h4 data-i18n="contact.info.h">Or write to us directly.</h4>
-
-    <div class="info-block">
-      <div class="label" data-i18n="contact.info.wholesale.lbl">Wholesale</div>
-      <div class="title" data-i18n-html="contact.info.wholesale.title_html">Stocking the <em>collection.</em></div>
-      <p data-i18n="contact.info.wholesale.p">Small allocations available to independent boutiques, delicatessens and tea houses across the EU and select international markets.</p>
-      <p style="margin-top:10px;"><a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a></p>
-    </div>
-
-    <div class="info-block">
-      <div class="label" data-i18n="contact.info.hospitality.lbl">Hospitality &middot; Restaurants</div>
-      <div class="title" data-i18n-html="contact.info.hospitality.title_html">For the <em>table.</em></div>
-      <p data-i18n="contact.info.hospitality.p">We work quietly with a small number of restaurants and hotels each year. Sample boxes ship from Pelion within the week.</p>
-      <p style="margin-top:10px;"><a href="mailto:tables@harvestdeli.nl">tables@harvestdeli.nl</a></p>
-    </div>
-
-    <div class="info-block">
-      <div class="label" data-i18n="contact.info.retail.lbl">Premium retailers</div>
-      <div class="title" data-i18n-html="contact.info.retail.title_html">A discreet <em>shelf.</em></div>
-      <p data-i18n="contact.info.retail.p">Curated retail partners receive an annual allocation, edition by edition, with priority on the limited reserves.</p>
-      <p style="margin-top:10px;"><a href="mailto:retail@harvestdeli.nl">retail@harvestdeli.nl</a></p>
-    </div>
-
-    <div class="info-block">
-      <div class="label" data-i18n="contact.info.press.lbl">Press &middot; Collaboration</div>
-      <div class="title" data-i18n-html="contact.info.press.title_html">A quieter <em>conversation.</em></div>
-      <p data-i18n="contact.info.press.p">Editorial enquiries, photography, and creative collaborations. We reply slowly, but we reply.</p>
-      <p style="margin-top:10px;"><a href="mailto:press@harvestdeli.nl">press@harvestdeli.nl</a></p>
-    </div>
+  <aside class="c-founder reveal delay-1">
+    <figure class="c-founder__card">
+      <span class="c-founder__mark" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="48" height="48">
+          <circle cx="24" cy="24" r="22.4" fill="none" stroke="currentColor" stroke-width="0.9" opacity="0.5"/>
+          <path d="M24 33 C24 27 21 23 16.5 21.5 C20.5 21 24 23.5 24 28.5 M24 33 C24 26 27 22.5 31.5 21 C27.5 20.5 24 23 24 28 M24 33 V19.5" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="24" cy="17.6" r="1.5" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="c-founder__quotemark" aria-hidden="true">&ldquo;</span>
+      <blockquote class="c-founder__quote" data-i18n="contact.founder.quote">Every Harvest Deli partnership begins with a conversation. We prefer a few long relationships over wide distribution &mdash; the jar, and the hands behind it, deserve that.</blockquote>
+      <figcaption class="c-founder__sign">
+        <svg class="c-founder__swash" viewBox="0 0 140 22" width="140" height="22" aria-hidden="true">
+          <path d="M3 15 C18 4 30 4 40 11 C46 15 52 16 58 12 C66 7 78 6 96 12 C108 16 122 15 137 8" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        </svg>
+        <span class="c-founder__name" data-i18n="contact.founder.name">Stavros Andreou</span>
+        <span class="c-founder__role" data-i18n="contact.founder.role">The Andreou family &middot; Pelion, Greece</span>
+      </figcaption>
+    </figure>
   </aside>
 </section>
 
@@ -823,7 +842,7 @@ footer.site-footer { padding: 14vh 8% 6vh; background: var(--bg); border-top: 1p
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-64"></script>
+<script src="shared.js?v=hd-2026-06-06-65"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
