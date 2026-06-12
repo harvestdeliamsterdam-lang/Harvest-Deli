@@ -4811,3 +4811,77 @@ body .product-origin .image-frame {
 img[src*="assets/products-images"] {
   filter: saturate(1.04) contrast(1.02) !important;
 }
+
+
+/* ================================================================
+   PRODUCT PAGE — premium buy experience (shared across product
+   pages). New classes only; product.html keeps its inline copy
+   (which wins for that page). Drives product-olive-oil + tea.
+   ================================================================ */
+.pd-lede {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px; line-height: 1.7; color: var(--ink-soft);
+  max-width: 46ch; margin-bottom: 22px; letter-spacing: 0.004em;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.pd-gallery { display: grid; grid-template-columns: 60px 1fr; gap: 14px; position: sticky; top: 96px; align-self: start; }
+.pdg-thumbs { display: flex; flex-direction: column; gap: 10px; }
+.pdg-thumb { width: 60px; aspect-ratio: 4 / 5; padding: 0; border: 1px solid rgba(26,22,18,0.12); border-radius: 8px; overflow: hidden; cursor: pointer; background: #0E0B08; opacity: 0.55; transition: opacity 0.45s var(--ease), border-color 0.45s var(--ease); }
+.pdg-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pdg-thumb:hover { opacity: 0.85; }
+.pdg-thumb.active { opacity: 1; border-color: var(--gold); }
+.pdg-thumb:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+.pdg-main { position: relative; aspect-ratio: 4 / 5; overflow: hidden; border-radius: var(--radius-card, 16px); background: #0E0B08; box-shadow: 0 60px 90px -38px rgba(40,24,8,0.42), 0 18px 40px -24px rgba(40,24,8,0.28); }
+.pdg-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transition: opacity 0.7s var(--ease), transform 1.4s var(--ease); will-change: transform; }
+.pdg-main img.active { opacity: 1; }
+.pdg-main:hover img.active { transform: scale(1.045); }
+.pdg-dots { display: none; justify-content: center; gap: 8px; padding-top: 12px; }
+.pdg-dots span { width: 6px; height: 6px; border-radius: 50%; border: 1px solid var(--gold); opacity: 0.4; transition: opacity 0.35s var(--ease), background 0.35s var(--ease); }
+.pdg-dots span.active { background: var(--gold); opacity: 1; }
+
+.pd-buyrow { display: flex; gap: 10px; margin-bottom: 10px; align-items: stretch; }
+.pd-buyrow .pd-cta { flex: 1; justify-content: center; padding-top: 0; padding-bottom: 0; min-height: 54px; }
+.pd-qty { display: inline-flex; align-items: center; border: 1px solid rgba(26,22,18,0.18); border-radius: var(--radius-pill, 999px); background: transparent; flex: none; }
+.pd-qty-btn { width: 44px; min-height: 52px; background: none; border: none; cursor: pointer; font-size: 17px; color: var(--ink); line-height: 1; transition: opacity 0.3s var(--ease); }
+.pd-qty-btn:hover { opacity: 0.6; }
+.pd-qty-btn:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: -4px; border-radius: 999px; }
+.pd-qty-val { min-width: 22px; text-align: center; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; color: var(--ink); font-variant-numeric: tabular-nums; }
+
+.pd-express { display: flex; width: 100%; align-items: center; justify-content: center; min-height: 50px; margin-bottom: 18px; border: 1px solid rgba(26,22,18,0.22); border-radius: var(--radius-pill, 999px); background: transparent; cursor: pointer; font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: var(--track-button, 0.42em); text-transform: uppercase; font-weight: 500; color: var(--ink); transition: background 0.5s var(--ease), color 0.5s var(--ease), border-color 0.5s var(--ease); }
+.pd-express span { padding-left: var(--track-button, 0.42em); }
+.pd-express:hover { background: var(--ink); color: var(--cream); border-color: var(--ink); }
+.pd-express:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 3px; }
+
+.pd-trust { list-style: none; margin: 0 0 20px; padding: 14px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px 18px; border-top: 1px solid rgba(26,22,18,0.08); border-bottom: 1px solid rgba(26,22,18,0.08); }
+.pd-trust li { display: flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 11.5px; color: var(--ink-soft); letter-spacing: 0.01em; line-height: 1.4; }
+.pd-trust svg { width: 15px; height: 15px; color: var(--gold-deep); flex: none; }
+
+.pd-acc { margin-bottom: 6px; }
+.pd-acc details { border-bottom: 1px solid rgba(26,22,18,0.10); }
+.pd-acc summary { display: flex; justify-content: space-between; align-items: center; padding: 15px 2px; cursor: pointer; list-style: none; font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: var(--track-label, 0.36em); text-transform: uppercase; font-weight: 500; color: var(--ink); transition: color 0.3s var(--ease); }
+.pd-acc summary::-webkit-details-marker { display: none; }
+.pd-acc summary:hover { color: var(--gold-deep); }
+.pd-acc summary:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
+.pd-acc .acc-icon { position: relative; width: 11px; height: 11px; flex: none; }
+.pd-acc .acc-icon::before, .pd-acc .acc-icon::after { content: ''; position: absolute; background: currentColor; top: 50%; left: 0; width: 11px; height: 1px; margin-top: -0.5px; transition: transform 0.45s var(--ease), opacity 0.45s var(--ease); }
+.pd-acc .acc-icon::after { transform: rotate(90deg); }
+.pd-acc details[open] .acc-icon::after { transform: rotate(0deg); opacity: 0; }
+.pd-acc .acc-body { padding: 0 2px 18px; font-family: 'Inter', sans-serif; font-size: 13.5px; line-height: 1.8; color: var(--ink-soft); max-width: 56ch; letter-spacing: 0.004em; }
+
+@media (max-width: 900px) {
+  .pd-gallery { display: block; position: static; }
+  .pdg-thumbs { display: none; }
+  .pdg-main { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .pdg-main::-webkit-scrollbar { display: none; }
+  .pdg-main img { position: static; flex: 0 0 100%; opacity: 1; transition: none; scroll-snap-align: center; }
+  .pdg-main:hover img.active { transform: none; }
+  .pdg-dots { display: flex; }
+}
+@media (max-width: 540px) {
+  .pdg-main { aspect-ratio: 1 / 1; max-height: 58vh; }
+  .pdg-main img { object-position: center 35%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pdg-main img { transition: opacity 0.3s ease; }
+  .pdg-main:hover img.active { transform: none; }
+}

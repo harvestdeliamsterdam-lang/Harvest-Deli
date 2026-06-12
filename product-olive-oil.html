@@ -16,7 +16,7 @@
 <meta property="og:description" content="Cold-pressed extra virgin olive oil from a single estate on Mount Pelion. Green almond, grass, peppery finish.">
 <meta property="og:image" content="https://harvestdeli.nl/assets/greekoliveoil.PNG">
 <meta property="og:url" content="https://harvestdeli.nl/product-olive-oil.html">
-<meta property="product:price.amount" content="24">
+<meta property="product:price.amount" content="15">
 <meta property="product:price.currency" content="EUR">
 <meta property="product:availability" content="in stock">
 <meta name="twitter:card" content="summary_large_image">
@@ -74,11 +74,9 @@
     }
   ],
   "offers": {
-    "@type": "AggregateOffer",
+    "@type": "Offer",
     "priceCurrency": "EUR",
-    "lowPrice": "14",
-    "highPrice": "34",
-    "offerCount": 3,
+    "price": "15",
     "availability": "https://schema.org/InStock",
     "seller": { "@type": "Organization", "name": "Harvest Deli" },
     "areaServed": ["NL", "BE", "DE", "FR", "AT", "DK", "IE", "IT", "ES", "FI", "SE", "PT", "GR", "EE", "LT", "LV", "PL", "CZ", "SK", "SI", "HR", "HU", "RO", "BG", "MT", "CY", "GB", "CH", "NO"]
@@ -102,7 +100,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-51">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-52">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -296,7 +294,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 /* ============ Product hero ============ */
 .product-hero {
-  padding: 18vh 0 14vh;
+  padding: 13vh 0 9vh;
   background: linear-gradient(180deg, #F5EFE4 0%, #EDE3D2 60%, #E5D9C3 100%);
   position: relative;
   overflow: hidden;
@@ -311,7 +309,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   pointer-events: none;
 }
 .crumbs {
-  padding: 0 8% 6vh;
+  padding: 0 8% 3.5vh;
   font-family: 'Inter', sans-serif;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
@@ -334,11 +332,12 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 .hero-stage {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6%;
+  grid-template-columns: 1.04fr 1fr;
+  gap: clamp(40px, 5.5%, 88px);
   padding: 0 8%;
-  align-items: center;
-  min-height: 78vh;
+  align-items: start;
+  max-width: 1380px;
+  margin: 0 auto;
 }
 
 /* Big jar */
@@ -384,14 +383,13 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   margin: 0 14px; vertical-align: middle; transform: translateY(-2px);
 }
 .pd-title {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
-  font-weight: 400;
-  font-size: clamp(46px, 5.4vw, 84px);
-  line-height: 1.04;
-  letter-spacing: -0.026em;
-  margin-bottom: 32px;
+  font-weight: 480;
+  font-size: clamp(36px, 3.9vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  margin-bottom: 14px;
   color: var(--ink);
-  max-width: 12ch;
+  max-width: 14ch;
   font-feature-settings: "kern" 1, "liga" 1;
 }
 .pd-title em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
@@ -424,18 +422,18 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   letter-spacing: 0.005em;
 }
 .pd-price-block {
-  display: flex; align-items: baseline; gap: 22px;
-  margin-bottom: 40px;
-  padding-bottom: 36px;
+  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 18px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(26,22,18,0.08);
 }
 .pd-price {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
-  font-weight: 400;
-  font-size: 36px;
+  font-weight: 480;
+  font-size: 28px;
   line-height: 1;
-  letter-spacing: -0.018em;
+  letter-spacing: -0.02em;
   color: var(--ink);
+  font-variant-numeric: tabular-nums;
 }
 .pd-price-sub {
   font-family: 'Inter', sans-serif;
@@ -613,7 +611,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 /* ============ Tasting section ============ */
 .tasting {
-  padding: 22vh 8%;
+  padding: 11vh 8%;
   background: var(--bg);
   text-align: center;
 }
@@ -634,7 +632,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   line-height: 1.08;
   letter-spacing: -0.024em;
   color: var(--ink);
-  margin: 0 auto 14vh;
+  margin: 0 auto 7vh;
   max-width: 20ch;
 }
 .section-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.014em; }
@@ -689,13 +687,12 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 
 /* ============ Origin section ============ */
 .product-origin {
-  padding: 22vh 8%;
+  padding: 12vh 8%;
   background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
   display: grid;
   grid-template-columns: 0.9fr 1fr;
   gap: 10%;
   align-items: center;
-  min-height: 80vh;
 }
 .product-origin .image-frame {
   aspect-ratio: 4 / 5;
@@ -925,7 +922,7 @@ footer {
   nav.site-nav { padding: 14px 22px; }
   nav.site-nav .nav-right { gap: 18px; }
   .crumbs { padding: 0 7% 4vh; }
-  .hero-stage { grid-template-columns: 1fr; gap: 8vh; padding: 0 7%; }
+  .hero-stage { grid-template-columns: 1fr; gap: 4vh; padding: 0 7%; }
   .product-details { padding-left: 0; }
   .tasting, .product-origin, .details, .also { padding: 12vh 7%; }
   .tasting-grid { grid-template-columns: 1fr; gap: 6vh; }
@@ -1188,45 +1185,54 @@ footer {
     <strong>Pantry &middot; Extra Virgin Olive Oil</strong>
   </div>
   <div class="hero-stage">
-    <div class="big-jar-frame reveal">
-      <img src="assets/greekoliveoil.PNG" alt="Harvest Deli Extra Virgin Olive Oil bottle with olives and bread" / loading="lazy">
+    <div class="pd-gallery reveal" id="pdGallery">
+      <div class="pdg-thumbs" aria-label="Product photos">
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Photo 1"><img src="assets/greekoliveoil.PNG" alt=""></button><button type="button" class="pdg-thumb" data-slide="1" aria-label="Photo 2"><img src="assets/olive-sunrise-poster.jpg" alt=""></button>
+      </div>
+      <div class="pdg-main" id="pdgMain">
+        <img src="assets/greekoliveoil.PNG" alt="Harvest Deli extra virgin olive oil bottle" class="active"><img src="assets/olive-sunrise-poster.jpg" alt="Olive groves on Mount Pelion at first light" loading="lazy">
+      </div>
+      <div class="pdg-dots" aria-hidden="true"><span class="active"></span><span></span></div>
     </div>
 
     <div class="product-details reveal delay-1" id="buy">
-      <div class="pd-eyebrow">Estate Pressing <span class="dot"></span> 2025 Harvest</div>
+      <div class="pd-eyebrow">Estate Pressing <span class="dot"></span> 2025</div>
       <h1 class="pd-title">Extra Virgin Olive Oil, <em>Pelion estate.</em></h1>
-      <div class="pd-meta">
-        <span class="tag">Single Estate</span>
-        <span class="tag">Cold Pressed</span>
-        <span class="tag">Extra Virgin</span>
-      </div>
-      <p class="pd-desc">A vivid, early-harvest olive oil pressed within hours of picking from the groves that terrace the lower slopes of Mount Pelion. Green almond, fresh-cut grass and a clean, peppery finish that catches at the back of the throat. Unfiltered, cold pressed, bottled in dark glass to keep the light out.</p>
+      <p class="pd-lede">Vivid, early-harvest olive oil pressed within hours of picking on the lower slopes of Mount Pelion. Green almond, fresh grass, a clean peppery finish.</p>
 
       <div class="pd-price-block">
-        <div class="pd-price" id="productPrice">€24</div>
-        <div class="pd-price-sub">incl. VAT &middot; ships worldwide</div>
+        <div class="pd-price" id="productPrice">&euro;15</div>
+        <div class="pd-price-sub">500ml &middot; incl. VAT</div>
         <span class="pd-stock" itemprop="availability" content="InStock">
           <span class="pd-stock-dot" aria-hidden="true"></span>In stock &middot; ready to ship
         </span>
       </div>
 
-      <div class="variant-selector" role="radiogroup" aria-label="Choose size">
-        <div class="lbl">Size &middot; <span id="productSku">HD-OO-500</span></div>
-        <div class="variant-options">
-          <input type="radio" name="hd-variant" id="v-tasting" data-price="14" data-sku="HD-OO-250">
-          <label for="v-tasting"><span>250ml</span><span class="sub">Tasting</span></label>
-          <input type="radio" name="hd-variant" id="v-estate" data-price="24" data-sku="HD-OO-500" checked>
-          <label for="v-estate"><span>500ml</span><span class="sub">Estate</span></label>
-          <input type="radio" name="hd-variant" id="v-reserve" data-price="34" data-sku="HD-OO-750">
-          <label for="v-reserve"><span>750ml</span><span class="sub">Reserve</span></label>
+      <div class="pd-buyrow">
+        <div class="pd-qty" role="group" aria-label="Quantity">
+          <button type="button" class="pd-qty-btn" id="pdQtyDec" aria-label="Decrease quantity">&minus;</button>
+          <span class="pd-qty-val" id="pdQtyVal" aria-live="polite">1</span>
+          <button type="button" class="pd-qty-btn" id="pdQtyInc" aria-label="Increase quantity">+</button>
         </div>
+        <button class="pd-cta" data-add-to-cart="olive-oil" data-size="500ml" data-qty="1"><span>Add to the pantry</span><span class="arrow"></span></button>
+      </div>
+      <button type="button" class="pd-express" id="pdExpress"><span>Express checkout</span></button>
+
+      <ul class="pd-trust" aria-label="Why buy from Harvest Deli">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M9 14.5 7.5 21l4.5-2.4L16.5 21 15 14.5"/></svg><span data-i18n="product.trust.q1">100% Greek premium quality</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.7 2.6 4 5.6 4 9s-1.3 6.4-4 9c-2.7-2.6-4-5.6-4-9s1.3-6.4 4-9z"/></svg><span data-i18n="product.trust.q2">Imported directly from Greece</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg><span data-i18n="product.trust.q3">Fast shipping in the Netherlands</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19c3-4 7-7 11-8"/></svg><span data-i18n="product.trust.q4">Natural &amp; unprocessed</span></li>
+      </ul>
+
+      <div class="pd-acc">
+        <details open><summary><span>Description</span><span class="acc-icon" aria-hidden="true"></span></summary><div class="acc-body">A vivid, early-harvest olive oil pressed within hours of picking from the groves that terrace the lower slopes of Mount Pelion. Green almond, fresh-cut grass and a clean, peppery finish. Unfiltered, cold pressed, bottled in dark glass.</div></details>
+        <details><summary><span>Ingredients</span><span class="acc-icon" aria-hidden="true"></span></summary><div class="acc-body">100% cold-pressed Greek extra virgin olive oil. Single estate, unfiltered, nothing added.</div></details>
+        <details><summary><span>Origin</span><span class="acc-icon" aria-hidden="true"></span></summary><div class="acc-body">Pressed within hours of harvest from groves on the lower slopes of Mount Pelion, Greece.</div></details>
+        <details><summary><span>Shipping</span><span class="acc-icon" aria-hidden="true"></span></summary><div class="acc-body">Shipped from our Amsterdam cellar within 1&ndash;2 business days. Free shipping in the EU above &euro;120. Carefully packed, track &amp; trace included.</div></details>
       </div>
 
-      <button class="pd-cta" data-add-to-cart="olive-oil"><span>Add to the pantry</span><span class="arrow"></span></button>
-
       <button type="button" class="product-wishlist-line" data-wishlist-toggle="olive-oil" aria-pressed="false" aria-label="Add to wishlist">Save to wishlist</button>
-
-      <div class="pd-notes">Free shipping in EU above €120 <span class="dot"></span> Estate pressing · cold extracted</div>
     </div>
   </div>
 </section>
@@ -1471,7 +1477,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="olive-oil">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-51"></script>
+<script src="shared.js?v=hd-2026-06-06-52"></script>
 <script>
 (function() {
   /* Menu */
@@ -1536,6 +1542,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+
+
+<script>
+(function () {
+  var main = document.getElementById('pdgMain'); if (!main) return;
+  var imgs = [].slice.call(main.querySelectorAll('img'));
+  var thumbs = [].slice.call(document.querySelectorAll('.pdg-thumb'));
+  var dots = [].slice.call(document.querySelectorAll('.pdg-dots span'));
+  function mobile(){ return window.matchMedia('(max-width: 900px)').matches; }
+  function setActive(i){ imgs.forEach(function(im,j){im.classList.toggle('active',j===i);}); thumbs.forEach(function(t,j){t.classList.toggle('active',j===i);}); dots.forEach(function(d,j){d.classList.toggle('active',j===i);}); }
+  thumbs.forEach(function(t){ t.addEventListener('click',function(){ var i=parseInt(t.dataset.slide,10)||0; if(mobile()) imgs[i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'}); setActive(i); }); });
+  if ('IntersectionObserver' in window) {
+    var sio=new IntersectionObserver(function(entries){ if(!mobile())return; entries.forEach(function(en){ if(en.isIntersecting&&en.intersectionRatio>=0.6) setActive(imgs.indexOf(en.target)); }); }, {root:main, threshold:0.6});
+    imgs.forEach(function(im){ sio.observe(im); });
+  }
+})();
+(function () {
+  var val=document.getElementById('pdQtyVal'); if(!val) return;
+  var atc=document.querySelector('.pd-buyrow [data-add-to-cart]');
+  var slug=atc?atc.getAttribute('data-add-to-cart'):null;
+  var qty=1;
+  function apply(){ val.textContent=qty; if(slug) document.querySelectorAll('[data-add-to-cart="'+slug+'"]').forEach(function(b){b.dataset.qty=qty;}); }
+  document.getElementById('pdQtyDec').addEventListener('click',function(){qty=Math.max(1,qty-1);apply();});
+  document.getElementById('pdQtyInc').addEventListener('click',function(){qty=Math.min(12,qty+1);apply();});
+  var ex=document.getElementById('pdExpress');
+  if(ex) ex.addEventListener('click',function(){ var size=atc?atc.getAttribute('data-size'):null; if(window.HD_CART&&slug) window.HD_CART.add(slug, qty, size); window.location.href='checkout.html'; });
 })();
 </script>
 
