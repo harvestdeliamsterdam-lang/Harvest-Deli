@@ -45,15 +45,6 @@
       linear-gradient(to bottom, rgba(10, 10, 10, 0.18), rgba(10, 10, 10, 0.42)),
       radial-gradient(125% 95% at 50% 58%, transparent 38%, rgba(10, 10, 10, 0.5) 100%);
   }
-  /* one slow golden shimmer, very subtle */
-  .e404__shimmer {
-    position: fixed; inset: 0; z-index: 1; pointer-events: none;
-    background: linear-gradient(100deg, transparent 38%, rgba(255, 240, 200, 0.10) 49%, rgba(212, 172, 106, 0.06) 52%, transparent 64%);
-    transform: translateX(-120%);
-    animation: e404shimmer 10s ease-in-out 3s infinite;
-  }
-  @keyframes e404shimmer { 0% { transform: translateX(-120%); } 12% { transform: translateX(120%); } 100% { transform: translateX(120%); } }
-
   /* desktop cursor gold glow */
   .e404__cursor {
     position: fixed; top: 0; left: 0; width: 360px; height: 360px; z-index: 2;
@@ -119,7 +110,7 @@
   .e404__title {
     font-family: 'Inter Tight', sans-serif; font-weight: 500;
     font-size: clamp(23px, 4vw, 40px); letter-spacing: -0.022em; line-height: 1.1;
-    color: var(--ivory); margin-top: 22px; text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+    color: var(--ivory); margin-top: clamp(34px, 6vh, 64px); text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
   }
   .e404__sub {
     font-family: 'Inter Tight', sans-serif; font-weight: 400;
@@ -171,8 +162,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .e404__reveal { transition: none; opacity: 1; transform: none; }
-    .e404__frame .travel, .e404__bee .wing, .e404__cta::before, .e404__shimmer { animation: none; }
-    .e404__shimmer { display: none; }
+    .e404__frame .travel, .e404__bee .wing, .e404__cta::before { animation: none; }
   }
 </style>
 </head>
@@ -182,7 +172,6 @@
   <source src="404.mp4?v=hd-2026-06-06-81" type="video/mp4">
 </video>
 <div class="e404__overlay" aria-hidden="true"></div>
-<div class="e404__shimmer" aria-hidden="true"></div>
 <div class="e404__cursor" aria-hidden="true"></div>
 
 <svg class="e404__frame" preserveAspectRatio="none" aria-hidden="true"><rect class="base"/><rect class="travel"/></svg>
