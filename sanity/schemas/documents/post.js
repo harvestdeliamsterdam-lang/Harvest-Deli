@@ -11,6 +11,7 @@ export default {
   groups: [
     { name: 'content', title: 'Content', default: true },
     { name: 'meta', title: 'Meta' },
+    { name: 'faq', title: 'FAQ' },
     { name: 'seo', title: 'SEO' },
   ],
   fields: [
@@ -44,6 +45,35 @@ export default {
       ],
     },
     { name: 'body', title: 'Body', type: 'blockContent', group: 'content' },
+
+    {
+      name: 'cta',
+      title: 'Call to action',
+      type: 'object',
+      group: 'content',
+      description: 'Optional CTA block rendered at the end of the article.',
+      fields: [
+        { name: 'text', type: 'string', title: 'CTA text' },
+        { name: 'link', type: 'string', title: 'CTA link', description: 'A site path (e.g. /shop.html) or full URL.' },
+      ],
+    },
+    {
+      name: 'relatedProduct',
+      title: 'Related product (Shopify handle)',
+      type: 'string',
+      group: 'content',
+      description:
+        'Shopify product handle to surface alongside the article (e.g. "chestnut"). Resolved against the live Shopify catalogue — no product data is stored here.',
+    },
+
+    {
+      name: 'faq',
+      title: 'FAQ',
+      type: 'array',
+      group: 'faq',
+      of: [{ type: 'faq' }],
+      description: 'Q&A pairs. Rendered as an accordion and emitted as FAQPage JSON-LD for SEO.',
+    },
 
     {
       name: 'language',

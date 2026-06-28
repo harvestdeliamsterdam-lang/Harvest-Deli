@@ -50,8 +50,8 @@
       title: 'Taste the Greek Sun.',
       slug: 'taste-the-greek-sun',
       excerpt:
-        'What the Greek sun actually tastes like, why Pelion makes honey unlike anywhere else, and how to taste a single jar, slowly, in three movements.',
-      image: { url: null, alt: 'A jar of Pelion honey in late-summer light', caption: 'Pelion · Late summer 2026' },
+        'What the Greek sun actually tastes like, why Greek mountains make honey unlike anywhere else, and how to taste a single jar, slowly, in three movements.',
+      image: { url: null, alt: 'A jar of Greek honey in late-summer light', caption: 'Greece · Late summer 2026' },
       category: CATEGORIES.tasting,
       author: AUTHORS.cellar,
       publishedAt: '2026-05-26T08:00:00+02:00',
@@ -62,13 +62,13 @@
       language: 'en',
       href: 'article-taste-the-greek-sun.html',
       body: [
-        block('lede', 'Honey is a place before it is a flavour. Pelion is the place this one comes from.'),
+        block('lede', 'Honey is a place before it is a flavour. Greece is the place this one comes from.'),
         block('h2', 'I. The mountain in the jar'),
         block('normal', 'Read the full essay on the article page — this mock body exists only to demonstrate the Portable Text shape.'),
       ],
       seo: {
         title: 'Taste the Greek Sun · Harvest Deli',
-        description: 'How to taste single-origin Pelion honey, slowly, in three movements.',
+        description: 'How to taste single-origin Greek honey, slowly, in three movements.',
         ogImage: null,
       },
     },
@@ -104,7 +104,7 @@
       slug: 'griekse-honing-smaak',
       excerpt:
         'Rauw, ongefilterd en uit één bloei: waarom Griekse berghoning een smaak heeft die geblende supermarkthoning nooit haalt, en wat antioxidanten en koud slingeren ermee te maken hebben.',
-      image: { url: null, alt: 'Raw unfiltered Greek honey', caption: 'Pelion · 2026' },
+      image: { url: null, alt: 'Raw unfiltered Greek honey', caption: 'Greece · 2026' },
       category: CATEGORIES.tasting,
       author: AUTHORS.editor,
       publishedAt: '2026-06-07T09:00:00+02:00',
@@ -139,7 +139,7 @@
     teaser('a-year-on-the-mountain', 'A year on the mountain.', CATEGORIES.estate,
       'Twelve photographs and twelve sentences. The estate in January, in March, in the heat of August. The cellar in the cold light of November.',
       'Coming August 2026 · 4 min read'),
-    teaser('the-1882-notebook', 'The 1882 notebook.', CATEGORIES.origin,
+    teaser('the-cellar-notebook', 'The cellar notebook.', CATEGORIES.origin,
       'A great-grandfather harvest book, pulled from above the oak vats. Yields and temperatures and one sentence about a bear that came in October.',
       'Coming September 2026 · 11 min read'),
   ];

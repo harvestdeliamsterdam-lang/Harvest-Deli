@@ -32,7 +32,7 @@
 
   /* ----------------------------- Config ---------------------------- */
   /** Free shipping threshold, single source of truth lives in shared.js. */
-  var FREE_SHIPPING_AT = (typeof window !== 'undefined' && window.HD_FREE_SHIP) || 120;
+  var FREE_SHIPPING_AT = (typeof window !== 'undefined' && window.HD_FREE_SHIP) || 65;
 
   /** @type {ShippingMethod[]}, order = display order. SEAM: replace
    *  static price/estimate with live PostNL/DHL rate API responses. */
@@ -53,7 +53,7 @@
   /** @type {Object<string,Discount>} */
   var DISCOUNTS = {
     'HARVEST10': { code: 'HARVEST10', type: 'percent', value: 10, label: '10% welcome' },
-    'PELION5':   { code: 'PELION5',   type: 'fixed',   value: 5,  label: '€5 off' }
+    'GREEK5':    { code: 'GREEK5',   type: 'fixed',   value: 5,  label: '€5 off' }
   };
 
   var STATE_KEY = 'hd-checkout-v1';
@@ -436,6 +436,15 @@
 
   /* --------------------------- Place order ------------------------- */
   function placeOrder(btn) {
+    // PRODUCTION = Shopify only. This branded wizard is a PRE-CHECKOUT step: the
+    // final button hands off to Shopify hosted checkout (Mollie). It NEVER
+    // simulates a payment, writes hd-orders-v1, or creates a local order.
+    if ((window.HD_COMMERCE_CONFIG && window.HD_COMMERCE_CONFIG.source) === 'shopify') {
+      if (btn) { btn.classList.add('loading'); btn.disabled = true; } // existing .loading style
+      if (window.HD_startCheckout) { window.HD_startCheckout(); }
+      else { window.location.replace('shop.html'); }
+      return;
+    }
     commitDetails();
     if (!validateStep(5)) return;
     // Order is built from the Commerce cart snapshot (HD_CART fallback inside).
@@ -623,6 +632,26 @@
   // Expose a tiny surface for debugging / future integration.
   window.HD_checkout = { state: function () { return state; }, totals: function () { return { subtotal: subtotal(), discount: discountAmount(), shipping: calcShipping(), total: grandTotal() }; } };
 
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
-  else init();
+  // checkout.html is a BRANDED PRE-CHECKOUT step. It renders the existing premium
+  // multi-step wizard for the experience, but NEVER creates an order or simulates
+  // payment — the final button hands off to Shopify hosted checkout (see
+  // placeOrder). Empty cart → shop.html. In production (source==='shopify') the
+  // wizard is purely presentational; the real payment happens on Shopify (Mollie).
+  function bootCheckout(tries) {
+    var src = (window.HD_COMMERCE_CONFIG && window.HD_COMMERCE_CONFIG.source);
+    if (!src) { // config not loaded yet → wait briefly, then assume mock/dev
+      if ((tries || 0) < 80) return setTimeout(function () { bootCheckout((tries || 0) + 1); }, 50);
+      return init();
+    }
+    if (src !== 'shopify') return init(); // dev/mock → local wizard
+    // Production: empty cart has nothing to pre-check → send to shop.
+    var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
+    if (!has) { window.location.replace('shop.html'); return; }
+    init(); // render the branded pre-checkout UI; final step → Shopify (placeOrder)
+    // Discounts are applied on Shopify's hosted checkout, never here — hide the
+    // local code field so a pre-checkout total can never disagree with Shopify.
+    try { document.querySelectorAll('.wz-discount, .wz-discount-msg').forEach(function (el) { el.style.display = 'none'; }); } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { bootCheckout(0); });
+  else bootCheckout(0);
 })();

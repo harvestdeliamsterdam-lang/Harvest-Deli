@@ -76,6 +76,8 @@
     '"author": author->{ name, "slug": slug.current, role, "image": { "url": image.asset->url } },' +
     '"publishedAt": publishedAt,' +
     'readingTime, status, featured,' +
+    'cta, "relatedProduct": relatedProduct,' +
+    'faq[]{ question, answer },' +
     '"seo": { "title": seoTitle, "description": coalesce(seoDescription, excerpt), "ogImage": coalesce(ogImage.asset->url, mainImage.asset->url) }' +
     '}';
 
@@ -122,6 +124,34 @@
       return query(
         '*[_type == "homeSection"] | order(order asc){ key, order, eyebrow, title, body, ' +
         '"image": { "url": image.asset->url, "alt": image.alt }, cta, enabled }'
+      );
+    },
+    getHomepage: function () {
+      return query(
+        '*[_type == "homepage"][0]{ heroEyebrow, heroTitle, heroIntro, ' +
+        '"heroVideo": heroVideo.asset->url, ' +
+        '"heroPoster": { "url": heroPoster.asset->url, "alt": heroPoster.alt }, ' +
+        'featuredCollectionTitle, "featuredProducts": featuredProducts, ' +
+        'trustBadges[]{ label, detail, icon }, ' +
+        'ctaSection{ eyebrow, title, body, ctaLabel, ctaHref, "image": { "url": image.asset->url, "alt": image.alt } }, ' +
+        'testimonials[]{ quote, author, detail, rating } }'
+      );
+    },
+    getOriginStories: function () {
+      return query(
+        '*[_type == "originStory"]{ productName, "slug": slug.current, "productHandle": productHandle, ' +
+        'region, altitude, harvestSeason, "galleryImages": galleryImages[]{ "url": asset->url, alt } }'
+      );
+    },
+    getOriginStory: function (slugOrHandle) {
+      return query(
+        '*[_type == "originStory" && (slug.current == $key || productHandle == $key)][0]{ ' +
+        'productName, "slug": slug.current, "productHandle": productHandle, ' +
+        'region, altitude, harvestSeason, producerStory, ' +
+        '"galleryImages": galleryImages[]{ "url": asset->url, alt }, ' +
+        'tastingNotes, extractionMethod, ' +
+        '"seo": { "title": seo.title, "description": seo.description, "ogImage": seo.ogImage.asset->url } }',
+        { key: slugOrHandle }
       );
     },
     getAboutStory: function () {

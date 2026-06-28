@@ -103,7 +103,7 @@
       description: 'Premium Greek honey, olive oil and mountain tea.',
       sameAs: [
         // SEAM: real social profiles when available
-        'https://www.instagram.com/harvestdeli'
+        'https://www.instagram.com/harvest.deli/'
       ]
     }, 'ld-organization');
     if (!hasSchemaType('WebSite')) {

@@ -62,12 +62,12 @@
     products: `query Products($first: Int = 50) {
       products(first: $first) {
         nodes {
-          id handle title descriptionHtml productType vendor tags availableForSale totalInventory
+          id handle title descriptionHtml productType vendor tags availableForSale
           seo { title description }
           featuredImage { id url altText width height }
           images(first: 10) { nodes { id url altText width height } }
           variants(first: 50) { nodes {
-            id title sku availableForSale quantityAvailable
+            id title sku availableForSale
             price { amount currencyCode } compareAtPrice { amount currencyCode }
             selectedOptions { name value }
           } }
@@ -78,11 +78,11 @@
     }`,
     productByHandle: `query Product($handle: String!) {
       product(handle: $handle) {
-        id handle title descriptionHtml productType vendor tags availableForSale totalInventory
+        id handle title descriptionHtml productType vendor tags availableForSale
         seo { title description }
         images(first: 10) { nodes { id url altText width height } }
         variants(first: 50) { nodes {
-          id title sku availableForSale quantityAvailable
+          id title sku availableForSale
           price { amount currencyCode } compareAtPrice { amount currencyCode }
           selectedOptions { name value } image { id url altText }
         } }

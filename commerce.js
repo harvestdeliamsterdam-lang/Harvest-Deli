@@ -11,13 +11,13 @@
 (function () {
   'use strict';
 
-  /* Single source of truth for the free-shipping threshold (brand: €120 EU). */
-  if (typeof window.HD_FREE_SHIP !== 'number') window.HD_FREE_SHIP = 120;
+  /* Single source of truth for the free-shipping threshold (€65, unified). */
+  if (typeof window.HD_FREE_SHIP !== 'number') window.HD_FREE_SHIP = 65;
 
   /* --- config: replace with real IDs/number in production --- */
   var GA4_ID = 'G-XXXXXXXXXX';          // SEAM: Google Analytics 4 measurement ID
   var META_PIXEL_ID = '0000000000';      // SEAM: Meta Pixel ID
-  var WHATSAPP_NUMBER = '31600000000';   // SEAM: support WhatsApp number (intl, no +)
+  var WHATSAPP_NUMBER = '31610715083';   // Harvest Deli WhatsApp (+31 6 10715083)
 
   /* ============================ Analytics ============================ */
   window.dataLayer = window.dataLayer || [];
@@ -99,25 +99,34 @@
     if (!bar) {
       bar = document.createElement('div');
       bar.id = 'hdFreeBar'; bar.className = 'hd-free-bar';
-      bar.innerHTML = '<div class="hd-free-msg" role="status" aria-live="polite"></div><div class="hd-free-track"><span class="hd-free-fill"></span></div>';
+      bar.innerHTML = '<div class="hd-free-msg" role="status" aria-live="polite"></div>'
+        + '<div class="hd-free-track"><span class="hd-free-fill"></span>'
+          + '<span class="hd-free-bee" aria-hidden="true"><svg viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">'
+          + '<ellipse cx="9.5" cy="5" rx="4" ry="2.2" fill="rgba(212,172,106,0.5)"/><ellipse cx="13.5" cy="5" rx="4" ry="2.2" fill="rgba(212,172,106,0.45)"/>'
+          + '<ellipse cx="13" cy="9.5" rx="6" ry="3.6" fill="#B8945A" stroke="#6E4E1E" stroke-width="0.5"/>'
+          + '<path d="M11.5 6.4 V12.6" stroke="#3a2a12" stroke-width="0.8" opacity="0.6"/><path d="M14.5 6.6 V12.4" stroke="#3a2a12" stroke-width="0.8" opacity="0.5"/>'
+          + '<circle cx="7.4" cy="9.5" r="2" fill="#2C2113"/></svg></span></div>';
       foot.insertBefore(bar, foot.firstChild);
     }
-    var total = parsePrice(totalEl.textContent);
-    var threshold = window.HD_FREE_SHIP || 120;
-    var remain = threshold - total;
+    // Read the authoritative cart subtotal (HD_CART) — DOM-text parsing was unreliable.
+    var total = (window.HD_CART && typeof window.HD_CART.total === 'function') ? window.HD_CART.total() : parsePrice(totalEl.textContent);
+    var threshold = window.HD_FREE_SHIP || 65;
+    var remain = Math.max(0, threshold - total);
+    var pct = Math.max(0, Math.min(100, threshold > 0 ? (total / threshold) * 100 : 0));
     var msg = bar.querySelector('.hd-free-msg');
     var fill = bar.querySelector('.hd-free-fill');
+    var bee = bar.querySelector('.hd-free-bee');
     var lang = (window.HD_lang && window.HD_lang()) || 'nl';
     if (total <= 0) { bar.hidden = true; return; }
     bar.hidden = false;
+    fill.style.width = pct + '%';
+    if (bee) bee.style.left = pct + '%';
     if (remain <= 0) {
-      msg.textContent = lang === 'nl' ? 'Je komt in aanmerking voor gratis verzending' : (lang === 'el' ? 'Δικαιούστε δωρεάν αποστολή' : 'You qualify for free shipping');
-      msg.classList.add('done');
-      fill.style.width = '100%';
+      msg.textContent = lang === 'nl' ? '✓ Gratis verzending ontgrendeld' : (lang === 'el' ? '✓ Δωρεάν αποστολή ξεκλειδώθηκε' : '✓ Free shipping unlocked');
+      msg.classList.add('done'); bar.classList.add('is-complete');
     } else {
-      msg.classList.remove('done');
-      msg.textContent = (lang === 'nl' ? 'Nog ' + fmt(remain) + ' voor gratis verzending' : (lang === 'el' ? 'Ακόμη ' + fmt(remain) + ' για δωρεάν αποστολή' : fmt(remain) + ' away from free shipping'));
-      fill.style.width = Math.max(4, Math.min(100, (total / threshold) * 100)) + '%';
+      msg.classList.remove('done'); bar.classList.remove('is-complete');
+      msg.textContent = (lang === 'nl' ? 'Nog ' + fmt(remain) + ' voor gratis verzending' : (lang === 'el' ? 'Ακόμη ' + fmt(remain) + ' για δωρεάν αποστολή' : fmt(remain) + ' to free shipping'));
     }
   }
   /* keep the bar in sync: the drawer re-renders #cartTotal text on every change */

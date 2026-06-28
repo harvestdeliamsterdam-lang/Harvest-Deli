@@ -20,7 +20,7 @@
     { type: 'Collection', title: 'Tea', sub: 'Wild mountain tea', url: 'product-mountain-tea.html' },
     { type: 'Story', title: 'Taste the Greek sun', sub: 'Journal', url: 'article-taste-the-greek-sun.html' },
     { type: 'Story', title: 'The Journal', sub: 'Field notes', url: 'journal.html' },
-    { type: 'Story', title: 'The Origin', sub: 'Pelion · Greece', url: 'about.html' }
+    { type: 'Story', title: 'The Origin', sub: 'Greece', url: 'about.html' }
   ];
 
   function fmt(n) { n = Math.round((n || 0) * 100) / 100; return Number.isInteger(n) ? '€' + n : '€' + n.toFixed(2); }

@@ -22,15 +22,15 @@
   window.HD_COMMERCE_CONFIG = {
     // 'mock'    → resolves from the local catalog (current behaviour)
     // 'shopify' → resolves via the Storefront API (commerce/storefront.js)
-    source: 'mock',
+    source: 'shopify',
 
     currency: 'EUR',
     locale: 'nl-NL',
-    freeShippingThreshold: (typeof window.HD_FREE_SHIP === 'number' ? window.HD_FREE_SHIP : 120),
+    freeShippingThreshold: (typeof window.HD_FREE_SHIP === 'number' ? window.HD_FREE_SHIP : 65),
 
     shopify: {
       domain: 'su08c4-v4.myshopify.com',   // the connected store (public)
-      storefrontToken: '',                  // ← PASTE STOREFRONT API TOKEN HERE (placeholder)
+      storefrontToken: 'd3f835bc393675aeb243244e5475f3c6',  // public, read-only Storefront token
       apiVersion: '2024-10'
     }
   };

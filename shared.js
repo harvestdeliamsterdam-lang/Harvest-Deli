@@ -4,6 +4,33 @@
    ============================================================ */
 
 /* =================================================================
+   FLOATING-UI VISIBILITY CONTROLLER (route-based, mobile-first)
+   -----------------------------------------------------------------
+   Single source of truth for when the floating chat (concierge bee)
+   and the scroll-to-top button may appear. On the purchase journey
+   and private/account flow we keep the screen distraction-free on
+   MOBILE so nothing floats near a CTA. Desktop is left untouched.
+
+   It only sets a class on <html> (hd-flow). All hiding + the opacity
+   fade lives in CSS (shared.css), so there is zero layout shift and
+   the floating elements are hidden from first paint, before they are
+   even built later in this file. The cart drawer toggles hd-cart-open
+   separately (see openCart/closeCart) for the in-page cart surface.
+   ================================================================= */
+(function floatingVisibility() {
+  'use strict';
+  var page = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+  if (!page || page.indexOf('.') === -1) page = page || 'index.html';
+  /* Purchase + private/account flow → hide floating UI on mobile.
+     product*, checkout, order-success, account*, login, register,
+     forgot-password, track-order, private-access, cart. Everything
+     else (home, shop/collection, about, journal, article*, contact,
+     markets, legal) keeps the floating UI. */
+  var FLOW = /^(product|checkout|order-success|account|login|register|forgot-password|track-order|private-access|cart)/;
+  if (FLOW.test(page)) document.documentElement.classList.add('hd-flow');
+})();
+
+/* =================================================================
    CINEMATIC INTRO, runs once per session, before anything else.
    Pre-paint shield is set by inline head script; this builds the
    real cinematic overlay (wordmark + halo + sweep + grain) and
@@ -49,7 +76,7 @@
           '<use href="#harvestDeliLogoDark"/>' +
         '</svg>' +
         '<span class="hd-intro__rule hd-intro__rule--bot" aria-hidden="true"></span>' +
-        '<span class="hd-intro__tagline">Pelion · Greece</span>' +
+        '<span class="hd-intro__tagline">Greece</span>' +
       '</div>';
     return wrap;
   }
@@ -112,23 +139,23 @@
   const T = {
     en: {
       'nav.menu': 'Menu',
-      'nav.shop': 'Shop',
+      'nav.shop': 'Collection',
       'nav.acquire': 'Acquire',
       'nav.cellar': 'Cellar',
-      'nav.secureCheckout': 'Secure Checkout',
+      'nav.secureCheckout': 'Secure payment via Mollie',
       'menu.close': 'Close',
       'menu.item.collection_html': 'The <em>Collection</em>',
       'menu.item.collection_sub': 'All editions',
       'menu.item.origin_html': 'The <em>Origin</em>',
-      'menu.item.origin_sub': 'Pelion · Greece',
+      'menu.item.origin_sub': 'Greece',
       'menu.item.process_html': 'The <em>Process</em>',
       'menu.item.process_sub': 'Hand harvested',
       'menu.item.journal_html': 'The <em>Journal</em>',
       'menu.item.journal_sub': 'Field notes',
       'menu.item.contact': 'Contact',
       'menu.item.contact_sub': 'Trade & press',
-      'menu.estate.h': 'Visit the estate',
-      'menu.estate.p': 'By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.',
+      'menu.estate.h': 'Single origin',
+      'menu.estate.p': 'Single-origin Greek honey, olive oil and mountain tea. Small harvests, shipped quietly within the Netherlands & Belgium.',
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Journal',
       'menu.social.wholesale': 'Wholesale',
@@ -137,11 +164,11 @@
       'cart.close': 'Close',
       'cart.empty.eyebrow': 'Your cellar',
       'cart.empty.h': 'The cellar awaits.',
-      'cart.empty.p': 'Small-batch harvests from Pelion, prepared quietly and shipped across Europe.',
+      'cart.empty.p': 'Small-batch Greek harvests, prepared quietly and shipped within the Netherlands & Belgium.',
       'cart.empty.cta': 'View the collection',
       'cart.empty.suggest': 'Begin with',
       'cart.subtotal': 'Subtotal',
-      'cart.note': 'Shipping calculated at checkout. Complimentary across the EU above €120.',
+      'cart.note': 'Shipping calculated at checkout. Free across the EU above €65.',
       'cart.checkout': 'Continue to checkout',
       'cart.remove': 'Remove',
       'cart.added': 'Added',
@@ -155,7 +182,7 @@
       'footer.link.reserve': 'Reserve',
       'footer.link.gift': 'Gift sets',
       'footer.link.origin': 'Origin',
-      'footer.link.estate': 'Estate',
+      'footer.link.estate': 'Process',
       'footer.link.journal': 'Journal',
       'footer.link.contact': 'Contact',
       'footer.link.shipping': 'Shipping',
@@ -166,7 +193,7 @@
       'footer.link.pineHeather': 'Pine & Heather',
       'footer.link.springWildflower': 'Spring Wildflower',
       'footer.link.chestnut': 'Chestnut Honey',
-      'footer.bottom1': '© Harvest Deli · Pelion, Greece',
+      'footer.bottom1': '© Harvest Deli · Greece',
       'footer.bottom2': 'Crafted slowly',
       'footer.builtBy': 'Designed & built by',
       'footer.news.eyebrow': 'The Harvest Letter',
@@ -174,32 +201,45 @@
       'footer.news.placeholder': 'Your email',
       'footer.news.cta': 'Subscribe',
       'footer.news.ok': 'Thank you. A quiet welcome to the table.',
-      'oil.eyebrow': 'The Other Harvest · Olive Oil',
-      'oil.title': 'Pressed from sun-warmed olives, slowly.',
-      'oil.lead': 'From a handful of old groves on the Pelion slope, hand-picked in the first cold weeks of winter and pressed within hours over stone. Unhurried, unfiltered, green and alive.',
-      'oil.note': 'A single estate. A single pressing. Bottled the day it runs.',
-      'oil.cta': 'Discover the oil',
-      'oil.cap': 'Pelion · First cold pressing',
-      'jp.eyebrow': 'The Journal · Field notes from Pelion',
-      'jp.title': 'Slow reading from the mountain.',
+      'oil.eyebrow': 'The Olive Estate',
+      'oil.title_html': 'Cold pressed,<br><em>without compromise.</em>',
+      'oil.l1': 'Harvested by hand in the Greek mountains.',
+      'oil.l2': 'Pressed within hours of harvest.',
+      'oil.w1': 'Unfiltered.',
+      'oil.w2': 'Unrushed.',
+      'oil.w3': 'Untouched.',
+      'oil.cta': 'Discover the Estate',
+      'oil.cap': 'Greece · First cold pressing',
+      'jp.eyebrow': 'From the Harvest Journal',
+      'jp.title': 'The Honey Journal',
       'jp.cat.tasting': 'Tasting',
       'jp.cat.guide': 'Guide',
+      'jp.cat.health': 'Health benefits',
+      'jp.a1.read': '8 min read',
+      'jp.a1.date': 'March 2025',
+      'jp.a2.read': '7 min read',
+      'jp.a2.date': 'February 2025',
+      'jp.a3.read': '6 min read',
+      'jp.a3.date': 'January 2025',
       'jp.a1.title': 'Taste the Greek sun.',
       'jp.a1.excerpt': 'What the Greek sun actually tastes like, and how to read a single jar slowly, in three movements.',
       'jp.a2.title': 'Where to buy real Greek honey in the Netherlands.',
-      'jp.a2.excerpt': 'How to tell single-estate mountain honey from the supermarket shelf, and where to find it in Amsterdam.',
+      'jp.a2.excerpt': 'Where to buy raw Greek honey in the Netherlands, and how to tell single-estate mountain honey from the supermarket shelf in Amsterdam.',
       'jp.a3.title': 'Why Greek honey tastes unlike supermarket honey.',
-      'jp.a3.excerpt': 'Mountain flowers, raw extraction and small batches: the quiet reasons one spoon lingers and another does not.',
+      'jp.a3.excerpt': 'Why raw honey beats supermarket honey: wild mountain flowers, cold extraction and small batches keep enzymes, pollen and natural antibacterial properties intact.',
       'jp.read_html': 'Read the essay <span class="arrow" aria-hidden="true"></span>',
       'jp.cta': 'Visit the Journal',
       'ig.h_html': 'From the grove, <em>in slow rotation.</em>',
       'ig.follow': 'Follow on Instagram',
+      'ig.title': 'Life Around The Harvest',
+      'ig.sub': 'Captured between mountains, markets and slow seasons.',
+      'ig.cta': 'Follow Our Journey',
       'a11y.skipLink': 'Skip to content',
-      'idx.h1': 'Harvest Deli, single-estate Greek honey from the hills of Pelion',
+      'idx.h1': 'Harvest Deli, single-origin Greek honey from the Greek hills',
       // ---------- Harvest Concierge (floating chat) ----------
       'concierge.fab': 'Write to us',
       'concierge.title': 'Chat with Harvest Deli',
-      'concierge.subtitle': 'Pelion, Greece',
+      'concierge.subtitle': 'Greece',
       'concierge.online': 'Personal reply · usually within a few hours',
       'concierge.greeting': 'Welcome to Harvest Deli.\nHow may we help you?',
       'concierge.intro': 'Choose a topic. We’ll prepare a WhatsApp message for you.',
@@ -219,10 +259,47 @@
       'markets.nav': 'Markets',
       'markets.menu_html': 'The <em>Markets</em>',
       'markets.menu_sub': 'Find us in Amsterdam',
-      'markets.eyebrow': 'From Pelion to Amsterdam',
+      'menu.item.partnership_html': 'The <em>Partnership</em>',
+      'menu.item.partnership_sub': 'Retail & Hospitality',
+      'pp.eyebrow': 'Partnership programme',
+      'pp.headline_html': 'Private <em>Partnerships.</em>',
+      'pp.sub': 'For selected restaurants, boutiques and premium retailers seeking exceptional Greek products.',
+      'pp.support_html': 'Small-batch sourcing from Greece.<br>Amsterdam distribution · EU wholesale available.',
+      'pp.badge.wholesale': 'EU Wholesale',
+      'pp.badge.hospitality': 'Hospitality Supply',
+      'pp.badge.retail': 'Boutique Retail',
+      'pp.faq.q1': 'Is there a minimum order?',
+      'pp.faq.a1': 'The first allocation starts with a tasting box; ongoing volume is set together, per season.',
+      'pp.faq.q2': 'Do you ship across the EU?',
+      'pp.faq.a2': 'Yes, parcel and pallet, dispatched from our Amsterdam distribution point.',
+      'pp.faq.q3': 'How soon will I hear back?',
+      'pp.faq.a3': 'We read every request personally and reply within 24 to 48 hours.',
+      'pp.form.title': 'Request partnership',
+      'pp.form.sub': 'A short note is enough. We answer personally.',
+      'pp.form.company': 'Company name',
+      'pp.form.company_ph': 'The house, the brand, the business',
+      'pp.form.email': 'Business email',
+      'pp.form.country': 'Country',
+      'pp.form.country_ph': 'Netherlands',
+      'pp.form.type': 'Business type',
+      'pp.form.type.select': 'Select one',
+      'pp.form.type.restaurant': 'Restaurant',
+      'pp.form.type.hotel': 'Hotel · Hospitality',
+      'pp.form.type.boutique': 'Boutique · Deli',
+      'pp.form.type.retail': 'Premium retail',
+      'pp.form.type.distributor': 'Distributor',
+      'pp.form.volume': 'Estimated monthly order volume',
+      'pp.form.volume_ph': 'e.g. 120 jars per month, or a sample box first',
+      'pp.form.message': 'Message',
+      'pp.form.message_ph': 'Tell us about the room: the kitchen, the shelf, the guest.',
+      'pp.form.submit': 'Request Partnership',
+      'pp.form.note': 'Reviewed personally · reply within 24–48 hours',
+      'pp.success.h': 'Your request is on its way.',
+      'pp.success.p': 'We will read it personally and write back within two business days.',
+      'markets.eyebrow': 'From Greece to Amsterdam',
       'markets.hero.h_html': 'Find us<br><em>in Amsterdam.</em>',
       'markets.hero.kicker': 'The markets',
-      'markets.hero.h': 'From Pelion to Amsterdam.',
+      'markets.hero.h': 'From Greece to Amsterdam.',
       'markets.hero.sub': 'Quiet market mornings, mountain harvests and slow conversations.',
       'markets.badge.weekly': 'Weekly',
       'markets.badge.monthly': 'Monthly',
@@ -250,9 +327,9 @@
       'markets.westerpark.desc': 'A slower Sunday gathering inside the old gasworks. Linen, candlelight at dusk, and the harvest poured one spoon at a time.',
       'markets.story.eyebrow': 'The table',
       'markets.story.lead_html': '“For us, markets are not only about selling honey. They are about <em>conversation, tasting</em> and sharing the harvest.”',
-      'markets.story.body': 'Each morning we set out the same way our family has for four generations on the slopes of Pelion, linen folded, jars uncapped, a spoon laid across the rim. Amsterdam, with its bicycles and its grey-morning light, has welcomed our small ritual. Come early. Stay slow. Taste before you speak.',
-      'markets.story.sig': 'Stelios &amp; Eleni Andreou',
-      'markets.story.sigsub': 'Pelion · Amsterdam',
+      'markets.story.body': 'Each morning we set out the same way, year after year, in the Greek mountains, linen folded, jars uncapped, a spoon laid across the rim. Amsterdam, with its bicycles and its grey-morning light, has welcomed our small ritual. Come early. Stay slow. Taste before you speak.',
+      'markets.story.sig': 'Harvest Deli',
+      'markets.story.sigsub': 'Greece · Amsterdam',
       'markets.gallery.eyebrow': 'A photo journal',
       'markets.gallery.h_html': '<em>Mornings</em> at the table.',
       'markets.gallery.cap1': 'Sunlight through the linen, just after opening.',
@@ -273,10 +350,10 @@
       'markets.cta.trade': 'Retail & Hospitality',
       'idx.markets.eyebrow': 'In Amsterdam',
       'idx.markets.h_html': 'Find us at the <em>market table.</em>',
-      'idx.markets.body': 'From Pelion to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee, quietly brought from the hills of Greece to the markets of Amsterdam.',
+      'idx.markets.body': 'From Greece to Amsterdam. Two tables, set with linen, a tasting spoon and the morning coffee, quietly brought from the hills of Greece to the markets of Amsterdam.',
       'idx.markets.cta': 'Find us in Amsterdam',
       // ---------- index hero ----------
-      'idx.scene0.est': 'Established · Pelion, Greece · Estate №01',
+      'idx.scene0.est': 'Established · Greece',
       'idx.scene1.eyebrow_html': 'Edition 1 <span class="dot"></span> Chestnut Honey',
       'idx.scene1.line_html': 'Captured from<br><em>the Greek sun.</em>',
       'idx.scene2.eyebrow': 'A field of stillness',
@@ -286,7 +363,7 @@
       'idx.card1.h': 'Raw harvesting',
       'idx.card1.p': 'Combs gathered by hand at altitude. Never heated, never processed. Every aromatic note of the season is preserved intact.',
       'idx.card2.h': 'Small batch',
-      'idx.card2.p': 'Each estate produces fewer than four hundred jars per harvest. A quiet number, kept deliberately small.',
+      'idx.card2.p': 'Each harvest stays under four hundred jars. A quiet number, kept deliberately small.',
       'idx.card3.h': 'Natural origin',
       'idx.card3.p': 'Single-source, traceable to a meadow, a mountain, a season. Nothing added. Nothing taken away.',
       'idx.scene4.eyebrow': 'The collection',
@@ -299,16 +376,16 @@
       // ---------- index editorial ----------
       'idx.ch1.eyebrow': 'The Origin',
       'idx.ch1.h': 'Born in the quiet hills of Northern Greece.',
-      'idx.ch1.body': 'For five generations, a single family has tended a thousand hives across the limestone ridges of Mount Pelion. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.',
-      'idx.ch1.caption': 'Pelion · Spring harvest',
+      'idx.ch1.body': 'A thousand hives stand across the limestone ridges of the Greek mountains. Wild thyme, heather and arbutus bloom in a single, untranslatable season. The honey is shaped by this land, and by nothing else.',
+      'idx.ch1.caption': 'Greece · Spring harvest',
       'idx.ch2.eyebrow': 'The Process',
       'idx.ch2.h': 'A practice refined by time, not technology.',
-      'idx.step1.h': 'Gathered at altitude',
-      'idx.step1.p': 'Hives are placed where wildflowers grow untended. Never near agriculture, never near a road. The bees decide where to forage; we simply listen.',
-      'idx.step2.h': 'Cold extracted',
-      'idx.step2.p': 'Combs are spun at the temperature of the cellar, never heated. Every enzyme, every pollen, every memory of the season remains intact.',
-      'idx.step3.h': 'Settled, never strained',
-      'idx.step3.p': 'The honey rests for fourteen days in oak vats. Air rises, sediment falls. Nothing is forced, nothing is filtered, and the texture remains alive.',
+      'idx.step1.h': 'Wild Harvest',
+      'idx.step1.p': 'Combs gathered by hand from hives set high among untended wildflowers — never near a road, never near a field.',
+      'idx.step2.h': 'Cold Extraction',
+      'idx.step2.p': 'Spun slowly at the temperature of the cellar, never heated. Every enzyme and trace of pollen is left intact.',
+      'idx.step3.h': 'Natural Resting',
+      'idx.step3.p': 'Settled for fourteen quiet days in oak. Nothing forced, nothing filtered — the texture left fully alive.',
       'idx.taste.quote': 'A taste that holds the memory of a mountain morning. Warm, golden, slow to leave.',
       'idx.taste.cite': 'Notes from the tasting room',
       'idx.preview.eyebrow': 'The Collection',
@@ -317,13 +394,14 @@
       'idx.preview.exploreAll': 'View all six editions',
       'idx.product.eyebrow': 'The Collection · Edition 1',
       'idx.product.title_html': 'Chestnut Honey, <em>2025 harvest.</em>',
-      'idx.product.originLine_html': 'Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 jars',
+      'idx.product.originLine_html': 'Greece <span class="dot"></span> 950m <span class="dot"></span> 384 jars',
       'idx.product.desc': 'A single-meadow honey of remarkable clarity. Notes of warm resin, sun-baked herb, and a long mineral finish. Bottled in heavy hand-pressed glass, numbered by hand, kept untreated.',
       'idx.product.cta_html': 'View the jar, €68',
       // ---------- shop ----------
-      'shop.eyebrow': 'The Collection · 2025',
-      'shop.headline_html': 'A small, <em>numbered</em> library of the Greek harvest.',
-      'shop.intro': 'Nine single-origin honeys, a cold-pressed olive oil and a wild mountain tea, each kept untreated, sealed by hand, and shipped quietly from Greece within the week.',
+      'shop.eyebrow': 'The Collection',
+      'shop.headline_html': '11 <em>premium</em> Greek delicacies.',
+      'shop.intro': 'Raw. Unpasteurised. Direct from origin.',
+      'shop.trustline': 'Raw & unpasteurised · Harvested in Greece · Free shipping in Europe above €65',
       'shop.filterLabel': 'Filter by',
       'shop.filter.all': 'All',
       'shop.filter.floral': 'Floral',
@@ -335,8 +413,21 @@
       'shop.filter.cold': 'Cold Extracted',
       'shop.filter.dark': 'Dark Honey',
       'shop.filter.light': 'Light Honey',
-      'menu.item.account_html': 'The <em>Account</em>',
-      'menu.item.account_sub': 'Orders & addresses',
+      'menu.item.account_html': 'Private <em>Access</em>',
+      'menu.item.account_sub': 'Members & partners',
+      'access.nav': 'Private Access',
+      'access.close': 'Close',
+      'access.eyebrow': 'Harvest Deli · Members',
+      'access.title': 'Enter Private Access',
+      'access.sub': 'Reserved for returning collectors and selected partners.',
+      'access.email': 'Email address',
+      'access.password': 'Password',
+      'access.show': 'Show',
+      'access.hide': 'Hide',
+      'access.cta': 'Continue Privately',
+      'access.foot_html': 'New to the house? <a href="register.html">Request access</a>',
+      'access.err.email': 'A valid email is needed here.',
+      'access.err.pw': 'A small detail is missing here.',
       'ck.step.cart': 'Cart',
       'ck.step.details': 'Details',
       'ck.step.delivery': 'Delivery',
@@ -344,7 +435,7 @@
       'ck.step.review': 'Review',
       'ck.continue': 'Continue',
       'ck.back': 'Back',
-      'ck.place': 'Place order',
+      'ck.place': 'Continue to secure payment',
       'ck.total': 'Total',
       'ck.apply': 'Apply',
       'ck.add': 'Add',
@@ -377,7 +468,7 @@
       'ck.freeProgress': 'Add {x} more for free shipping',
       'ck.payment.h_html': 'Payment &middot; <em>quietly secure.</em>',
       'ck.demoPill': 'Demo',
-      'ck.payNote': 'Provider-agnostic UI. No card is charged here, Stripe or Mollie connects at this step in production.',
+      'ck.payNote': 'You complete your payment securely via Mollie at Shopify checkout, after this step.',
       'ck.badge.secure': 'Secure SSL checkout',
       'ck.badge.returns': '14-day returns',
       'ck.badge.tracked': 'Tracked & insured',
@@ -455,7 +546,7 @@
       'ok.eyebrow': 'Order confirmed',
       'ok.title_html': 'Thank <em>you.</em>',
       'ok.title': 'Your harvest is reserved.',
-      'ok.sub': 'Packed quietly in Pelion and prepared for its journey. A confirmation is on its way.',
+      'ok.sub': 'Packed quietly in Greece and prepared for its journey. A confirmation is on its way.',
       'ok.orderNo': 'Order number',
       'ok.email': 'A confirmation email is on its way. (Demo: no email is actually sent, your order is stored locally so you can see it in your account.)',
       'ok.track': 'Track order',
@@ -476,16 +567,16 @@
       'shop.empty.p': 'Each season the collection shifts. Try another category or view the full library.',
       'shop.empty.cta': 'View all editions',
       // ---------- about ----------
-      'about.eyebrow': 'The Origin · A house in Pelion',
+      'about.eyebrow': 'The Origin · A house in Greece',
       'about.headline_html': 'A journey into the <em>origin.</em>',
-      'about.intro': 'Five generations of one family, working a thousand hives across a single mountain. The honey is the result. This is the story behind the jar.',
-      'about.page.kicker': 'Pelion · Greece',
+      'about.intro': 'A thousand hives across a single Greek mountain. The honey is the result. This is the story behind the jar.',
+      'about.page.kicker': 'Greece',
       'about.page.title': 'About',
       'about.page.sub': 'A small collection of Greek harvests shaped by mountain air, slow seasons and quiet craftsmanship.',
-      'about.visual.cap': 'Mount Pelion · Northern Greece',
+      'about.visual.cap': 'Northern Greece',
       'about.story.eyebrow': 'Our story',
       'about.story.h': 'A house on a single mountain.',
-      'about.story.p1': 'Harvest Deli began on the southern face of Pelion, where one family has kept bees for five generations. What leaves the mountain is small by nature, a few hundred jars a season, gathered slowly and sealed by hand.',
+      'about.story.p1': 'Harvest Deli is a small Greek producer of single-origin honey, olive oil and mountain tea. What we ship is small by nature, a few hundred jars a season, gathered slowly and sealed by hand.',
       'about.story.p2': 'We work with olive groves and wild tea hillsides in the same spirit: little, seasonal and honest. (Placeholder copy, the full story will follow.)',
       'about.craft.eyebrow': 'How we work',
       'about.craft.h': 'Small by intention.',
@@ -503,17 +594,17 @@
       'about.close.h': 'Taste the mountain.',
       'about.close.shop': 'Explore the collection',
       'about.close.contact': 'Write to us',
-      'about.frameCaption': 'Mount Pelion · Northern Greece',
+      'about.frameCaption': 'Northern Greece',
       'about.ch1.eyebrow': 'Greece · The land',
       'about.ch1.h': 'A mountain that the sea cannot reach.',
-      'about.ch1.p1': 'Pelion rises six hundred metres from the Aegean coast in a single, slow gesture. Its limestone ridges hold wild thyme, heather, oregano, arbutus and chestnut in a single, untranslatable season. We work the southern face, where the sun arrives early and the air keeps its dryness through the afternoon.',
+      'about.ch1.p1': 'The mountains rise six hundred metres from the Aegean coast in a single, slow gesture. Their limestone ridges hold wild thyme, heather, oregano, arbutus and chestnut in a single, untranslatable season. We work the southern face, where the sun arrives early and the air keeps its dryness through the afternoon.',
       'about.ch1.p2': 'Nothing here is cultivated. The bees decide where to forage, and the season decides what they bring back.',
-      'about.ch1.caption': 'Pelion ridges · 1100m',
-      'about.quote.text': '"My grandfather kept thirty hives. My father, three hundred. I keep a thousand, and yet, less."',
-      'about.quote.cite': 'Stavros Andreou · Beekeeper, fifth generation',
+      'about.ch1.caption': 'Greek ridges · 1100m',
+      'about.quote.text': '"Take only what the season gives. Number it, seal it, and let it be exactly what it is."',
+      'about.quote.cite': 'Harvest Deli',
       'about.ch2.eyebrow': 'The beekeeper',
-      'about.ch2.h': 'Stavros, who learned to listen.',
-      'about.ch2.p1': 'Stavros Andreou is the fifth generation of his family to keep bees on this mountain. He inherited the cellar from his father in 2009, and the manuscripts of his great-grandfather sit on a shelf above the vats, recording temperatures and yields back to 1882.',
+      'about.ch2.h': 'Made by listening.',
+      'about.ch2.p1': 'Harvest Deli keeps bees the slow way: reading the bloom, moving the hives by hand, and taking only what the season gives. The combs are spun cool, never filtered, only settled. Nothing is rushed, and nothing is blended.',
       'about.ch2.p2': 'He works alone for ten months of the year. Two younger nephews join him for the harvest. The bees, he says, taught the family more than the family ever taught the bees.',
       'about.ch2.caption': 'The cellar · oak vats',
       'about.ch3.eyebrow': 'The mountains',
@@ -521,8 +612,8 @@
       'about.ch3.p1': 'Each apiary sits between 600 and 1400 metres on the southern slopes. Never near a road. Never near a cultivated field. The walk to the highest hives takes a full morning, and we take care not to disturb the bees more than a season requires.',
       'about.ch3.p2': 'Altitude shapes the honey more than any single flower. The colder nights slow the bees. The honey thickens. The character deepens.',
       'about.ch3.caption': 'Hive №47 · 1280m',
-      'about.n1.lbl': 'Hives across the southern face of Pelion',
-      'about.n2.lbl': 'Generations of one family on the mountain',
+      'about.n1.lbl': 'Hives across the Greek mountains',
+      'about.n2.lbl': 'Hives across the mountain',
       'about.n3.lbl': 'Numbered jars in the Chestnut edition',
       'about.n4.lbl': 'Additives, ever. Raw honey, sealed in wax.',
       'about.ch4.eyebrow': 'The harvest',
@@ -532,16 +623,16 @@
       'about.ch4.caption': 'Harvest morning · April',
       'about.ch5.eyebrow': 'Family tradition',
       'about.ch5.h': 'A practice passed quietly between hands.',
-      'about.ch5.p1': 'Some of what we do has been done in the same way for five generations. Some of it changes every year. The bees keep us honest. The mountain keeps us small.',
+      'about.ch5.p1': 'Some of what we do has been done in the same way for a very long time. Some of it changes every year. The bees keep us honest. The mountain keeps us small.',
       'about.ch5.p2': 'We do not scale. We do not blend. We do not strip the wax from the lids of the jars. Three hundred and eighty four jars in the Chestnut edition, and when they are gone, the season has ended.',
-      'about.ch5.caption': 'Cellar archive · 1882, 2025',
+      'about.ch5.caption': 'Cellar archive · 2025',
       'about.cta.label': 'The Collection · 2025',
       'about.cta.h_html': 'Taste the <em>mountain.</em>',
       'about.cta.btn': 'View the collection',
       // ---------- contact ----------
-      'contact.eyebrow': 'Contact · Pelion, Greece',
+      'contact.eyebrow': 'Contact · Greece',
       'contact.headline_html': 'Write to <em>the house.</em>',
-      'contact.intro': 'For wholesale, hospitality, press, or simply a quiet question about a jar. Stavros and the family read every message, and reply within two business days.',
+      'contact.intro': 'For wholesale, hospitality, press, or simply a quiet question about a jar. We read every message, and reply within two business days.',
       'contact.form.h': 'Begin an inquiry.',
       'contact.form.sub': 'A few lines are enough. We respond personally.',
       'contact.pill.general': 'Personal Inquiry',
@@ -551,14 +642,14 @@
       'contact.pill.press': 'Press',
       'contact.pill.collab': 'Collaboration',
       'contact.founder.quote': 'Every Harvest Deli partnership begins with a conversation. We prefer a few long relationships over wide distribution — the jar, and the hands behind it, deserve that.',
-      'contact.founder.name': 'Stavros Andreou',
-      'contact.founder.role': 'The Andreou family · Pelion, Greece',
+      'contact.founder.name': 'Harvest Deli',
+      'contact.founder.role': 'Harvest Deli · Greece',
       'contact.label.name': 'Your name',
       'contact.label.house': 'House / business',
       'contact.label.email': 'Email',
       'contact.label.country': 'Country',
       'contact.label.message': 'Message',
-      'contact.ph.name': 'Maria Andreou',
+      'contact.ph.name': 'Maria',
       'contact.ph.house': 'Optional',
       'contact.ph.email': 'maria@example.com',
       'contact.ph.country': 'Greece',
@@ -566,30 +657,30 @@
       'contact.submit': 'Begin the conversation',
       'contact.formNote': 'By writing to us you agree we may store your message for the purpose of replying. We do not sell or share details. Ever.',
       'contact.success.h': 'Your message is on its way.',
-      'contact.success.p': 'Stavros or one of the family will read it personally and write back within two business days.',
+      'contact.success.p': 'We will read it personally and write back within two business days.',
       'contact.info.h': 'Or write to us directly.',
       'contact.info.wholesale.lbl': 'Wholesale',
       'contact.info.wholesale.title_html': 'Stocking the <em>collection.</em>',
       'contact.info.wholesale.p': 'Small allocations available to independent boutiques, delicatessens and tea houses across the EU and select international markets.',
       'contact.info.hospitality.lbl': 'Hospitality · Restaurants',
       'contact.info.hospitality.title_html': 'For the <em>table.</em>',
-      'contact.info.hospitality.p': 'We work quietly with a small number of restaurants and hotels each year. Sample boxes ship from Pelion within the week.',
+      'contact.info.hospitality.p': 'We work quietly with a small number of restaurants and hotels each year. Sample boxes ship from Greece within the week.',
       'contact.info.retail.lbl': 'Premium retailers',
       'contact.info.retail.title_html': 'A discreet <em>shelf.</em>',
       'contact.info.retail.p': 'Curated retail partners receive an annual allocation, edition by edition, with priority on the limited reserves.',
       'contact.info.press.lbl': 'Press · Collaboration',
       'contact.info.press.title_html': 'A quieter <em>conversation.</em>',
       'contact.info.press.p': 'Editorial enquiries, photography, and creative collaborations. We reply slowly, but we reply.',
-      'contact.location.lbl': 'The estate',
-      'contact.location.h_html': 'Pelion, <em>Northern Greece.</em>',
-      'contact.address_html': 'Harvest Deli &middot; Estate №01<br>37006 Pelion, Magnesia<br>Greece',
+      'contact.location.lbl': 'Origin',
+      'contact.location.h_html': 'Northern <em>Greece.</em>',
+      'contact.address_html': 'Harvest Deli<br>Greece',
       // ---------- checkout ----------
       'checkout.step.cellar': 'Cellar',
       'checkout.step.checkout': 'Checkout',
       'checkout.step.confirmation': 'Confirmation',
       'checkout.eyebrow': 'Checkout · Edition 1',
       'checkout.headline_html': 'A quiet, <em>careful</em> handover.',
-      'checkout.sub': 'Three steps. Numbered, sealed, shipped from Pelion within the week.',
+      'checkout.sub': 'Three steps. Numbered, sealed, shipped from Greece within the week.',
       'checkout.express.divider': 'Or pay with card',
       'checkout.step1.h_html': 'Contact &middot; <em>where to write back.</em>',
       'checkout.label.email': 'Email',
@@ -630,12 +721,12 @@
       'checkout.package.h_html': 'Sealed in <em>wax.</em> Boxed in oak veneer.',
       'checkout.package.p': 'Each jar is wrapped by hand, sealed with black wax, and laid in an oak-veneered presentation box. A handwritten card travels with the order.',
       'checkout.package.tag': 'Edition 1 · 2025 Harvest',
-      'checkout.trust.stripe1': 'Stripe',
-      'checkout.trust.stripe2': 'encrypted',
-      'checkout.trust.intl1': 'International',
-      'checkout.trust.intl2': 'shipping',
-      'checkout.trust.sealed1': 'Sealed in',
-      'checkout.trust.sealed2': 'Pelion',
+      'checkout.trust.stripe1': 'Securely paid',
+      'checkout.trust.stripe2': 'Via Mollie & iDEAL',
+      'checkout.trust.intl1': 'Delivery in Europe',
+      'checkout.trust.intl2': 'Shipped fast from the Netherlands',
+      'checkout.trust.sealed1': 'Authentic from Greece',
+      'checkout.trust.sealed2': 'Direct from local producers',
       'checkout.row.subtotal': 'Subtotal',
       'checkout.row.shipping': 'Shipping',
       'checkout.row.total': 'Total',
@@ -644,17 +735,17 @@
       'product.crumb.collection': 'Collection',
       'product.crumb.current': 'Edition 1, Chestnut Honey',
       'product.eyebrow_html': 'Edition 1 <span class="dot"></span> 2025 Harvest',
-      'product.title_html': 'Chestnut Honey, <em>Pelion estate.</em>',
+      'product.title_html': 'Chestnut Honey, <em>single origin.</em>',
       'product.tag.singleMeadow': 'Single Meadow',
       'product.tag.coldExtracted': 'Cold Extracted',
       'product.tag.numbered': 'Numbered · 384',
-      'product.desc': 'A clear, slow-pouring honey gathered from the chestnut groves of southern Mount Pelion. Notes of warm resin, sun-baked herb and a long mineral finish. Bottled in heavy hand-pressed glass, sealed in wax, kept untreated.',
-      'product.priceSub_html': 'incl. VAT &middot; ships worldwide',
+      'product.desc': 'A clear, slow-pouring honey gathered from the Greek chestnut groves. Notes of warm resin, sun-baked herb and a long mineral finish. Bottled in heavy hand-pressed glass, sealed in wax, kept untreated.',
+      'product.priceSub_html': 'incl. VAT &middot; ships within the Netherlands & Belgium',
       'product.size.tasting': 'Tasting',
-      'product.size.estate': 'Estate',
+      'product.size.estate': 'Large',
       'product.size.reserve': 'Reserve',
       'product.cta': 'Add to the cellar',
-      'product.lede': 'Dark, slow-pouring chestnut honey from a single grove at 950\u00a0m on Mount Pelion. Raw, numbered, sealed in wax.',
+      'product.lede': 'Dark, slow-pouring chestnut honey from a single grove at 950\u00a0m in the Greek mountains. Raw, numbered, sealed in wax.',
       'product.express': 'Express checkout',
       'product.trust.q1': '100% Greek premium quality',
       'product.trust.q2': 'Imported directly from Greece',
@@ -664,10 +755,10 @@
       'product.acc.ing': 'Ingredients',
       'product.acc.ingBody': '100% raw Greek chestnut honey. Nothing added, never heated above hive temperature, never filtered.',
       'product.acc.origin': 'Origin',
-      'product.acc.originBody': 'Harvested from a single south-facing grove at 950\u00a0m on Mount Pelion, Greece. One season, 384 numbered jars, each sealed by hand in black wax.',
+      'product.acc.originBody': 'Harvested from a single south-facing grove at 950\u00a0m on Mount Greece. One season, 384 numbered jars, each sealed by hand in black wax.',
       'product.acc.ship': 'Shipping',
-      'product.acc.shipBody': 'Shipped from our Amsterdam cellar within 1\u20132 business days. Free shipping in the EU above \u20ac120. Carefully packed, track & trace included.',
-      'product.notes_html': 'Free shipping in EU above €120 <span class="dot"></span> Limited release · 384 numbered jars',
+      'product.acc.shipBody': 'Shipped from our Amsterdam cellar within 1\u20132 business days. Free shipping within the Netherlands & Belgium above \u20ac65. Carefully packed, track & trace included.',
+      'product.notes_html': 'Free shipping within the Netherlands & Belgium above €65 <span class="dot"></span> Limited release · 384 numbered jars',
       'product.tasting.eyebrow': 'The Tasting',
       'product.tasting.h_html': 'What you taste, slowly.',
       'product.tasting.first.h': 'First',
@@ -681,15 +772,15 @@
       'product.tasting.finish.p': 'A slow descent into stone and salt. Subtle, almost dry. The kind of finish that lingers in the room long after the spoon has been set down.',
       'product.origin.eyebrow': 'The Origin',
       'product.origin.h_html': 'One meadow, one season.',
-      'product.origin.p1': 'The 2025 harvest comes from a single, south-facing chestnut grove at 950 metres on the slopes of Mount Pelion, where the trees bloom in a narrow window each late summer.',
+      'product.origin.p1': 'The 2025 harvest comes from a single, south-facing chestnut grove at 950 metres in the Greek mountains, where the trees bloom in a narrow window each late summer.',
       'product.origin.p2': 'Three hundred and eighty-four jars were drawn from this season. Every one numbered by hand, sealed with black wax, and kept exactly as it left the comb.',
-      'product.origin.caption': 'Pelion · 950m · Late summer',
+      'product.origin.caption': 'Greece · 950m · Late summer',
       'product.details.eyebrow': 'The Particulars',
       'product.details.h_html': 'Quietly, carefully made.',
       'product.det.weight.lbl': 'Net weight',
       'product.det.weight.val_html': '250g <em>glass jar</em>',
       'product.det.origin.lbl': 'Origin',
-      'product.det.origin.val_html': 'Pelion, <em>Greece</em>',
+      'product.det.origin.val_html': '<em>Greece</em>',
       'product.det.vintage.lbl': 'Vintage',
       'product.det.vintage.val_html': 'Late summer <em>2025</em>',
       'product.det.edition.lbl': 'Edition',
@@ -704,42 +795,42 @@
       'product.det.package.val_html': 'Hand-pressed glass, <em>black wax</em>',
       'product.also.eyebrow': 'Also From The Collection',
       'product.also.h_html': 'The rest of the house.',
-      'product.sticky.name': 'Chestnut Honey, Pelion estate',
+      'product.sticky.name': 'Chestnut Honey',
       'product.sticky.price': '€18 · Edition 1',
       'product.sticky.add': 'Add'
     },
     nl: {
       'nav.menu': 'Menu',
-      'nav.shop': 'Shop',
+      'nav.shop': 'Collectie',
       'nav.acquire': 'Bestellen',
-      'nav.cellar': 'Kelder',
-      'nav.secureCheckout': 'Veilig Afrekenen',
+      'nav.cellar': 'Winkelmand',
+      'nav.secureCheckout': 'Veilige betaling via Mollie',
       'menu.close': 'Sluiten',
       'menu.item.collection_html': 'De <em>Collectie</em>',
       'menu.item.collection_sub': 'Alle edities',
       'menu.item.origin_html': 'De <em>Oorsprong</em>',
-      'menu.item.origin_sub': 'Pelion · Griekenland',
+      'menu.item.origin_sub': 'Griekenland',
       'menu.item.process_html': 'Het <em>Proces</em>',
       'menu.item.process_sub': 'Met de hand geoogst',
       'menu.item.journal_html': 'Het <em>Dagboek</em>',
       'menu.item.journal_sub': 'Veldnotities',
       'menu.item.contact': 'Contact',
       'menu.item.contact_sub': 'Handel & pers',
-      'menu.estate.h': 'Bezoek het landgoed',
-      'menu.estate.p': 'Op afspraak tussen april en oktober. Kleine groepen, één dag, begeleide proeverijen in de kelder.',
+      'menu.estate.h': 'Eén herkomst',
+      'menu.estate.p': 'Honing, olijfolie en bergthee van één herkomst uit Griekenland. Kleine oogsten, rustig verzonden door heel Europa.',
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Dagboek',
       'menu.social.wholesale': 'Groothandel',
       'menu.copyright': '© Harvest Deli',
-      'cart.title_html': 'Jouw <em>Kelder</em>',
+      'cart.title_html': 'Jouw <em>winkelmand</em>',
       'cart.close': 'Sluiten',
-      'cart.empty.eyebrow': 'Jouw kelder',
-      'cart.empty.h': 'De kelder wacht.',
-      'cart.empty.p': 'Kleinschalige oogsten uit Pelion, rustig klaargemaakt en verzonden door heel Europa.',
+      'cart.empty.eyebrow': 'Winkelmand',
+      'cart.empty.h': 'Je winkelmand is leeg.',
+      'cart.empty.p': 'Kleinschalige Griekse oogsten, rustig klaargemaakt en verzonden door heel Europa.',
       'cart.empty.cta': 'Bekijk de collectie',
       'cart.empty.suggest': 'Begin met',
       'cart.subtotal': 'Subtotaal',
-      'cart.note': 'Verzending wordt bij de afrekening berekend. Gratis binnen de EU boven €120.',
+      'cart.note': 'Verzending wordt bij de afrekening berekend. Gratis binnen de EU boven €65.',
       'cart.checkout': 'Naar de afrekening',
       'cart.remove': 'Verwijderen',
       'cart.added': 'Toegevoegd',
@@ -753,7 +844,7 @@
       'footer.link.reserve': 'Reserve',
       'footer.link.gift': 'Cadeausets',
       'footer.link.origin': 'Oorsprong',
-      'footer.link.estate': 'Landgoed',
+      'footer.link.estate': 'Proces',
       'footer.link.journal': 'Dagboek',
       'footer.link.contact': 'Contact',
       'footer.link.shipping': 'Verzending',
@@ -764,61 +855,111 @@
       'footer.link.pineHeather': 'Den & Heide',
       'footer.link.springWildflower': 'Lente Wilde Bloem',
       'footer.link.chestnut': 'Tamme Kastanje',
-      'footer.bottom1': '© Harvest Deli · Pelion, Griekenland',
+      'footer.bottom1': '© Harvest Deli · Griekenland',
       'footer.bottom2': 'Met zorg gemaakt',
       'footer.news.eyebrow': 'De Oogstbrief',
       'footer.news.lead': 'Af en toe een brief uit de bergen: nieuwe oogsten, stille verhalen, niets meer.',
       'footer.news.placeholder': 'Je e-mailadres',
       'footer.news.cta': 'Inschrijven',
       'footer.news.ok': 'Dank je. Een rustig welkom aan tafel.',
-      'oil.eyebrow': 'De andere oogst · Olijfolie',
-      'oil.title': 'Geperst uit door de zon verwarmde olijven, langzaam.',
-      'oil.lead': 'Van een handvol oude gaarden op de flank van Pelion, met de hand geplukt in de eerste koude winterweken en binnen enkele uren geperst over steen. Ongehaast, ongefilterd, groen en levend.',
-      'oil.note': 'Eén landgoed. Eén persing. Gebotteld op de dag dat het loopt.',
-      'oil.cta': 'Ontdek de olie',
-      'oil.cap': 'Pelion · Eerste koude persing',
-      'jp.eyebrow': 'Het Journal · Veldnotities uit Pelion',
-      'jp.title': 'Traag lezen, vanaf de berg.',
+      'oil.eyebrow': 'Het Olijfdomein',
+      'oil.title_html': 'Koud geperst,<br><em>zonder compromis.</em>',
+      'oil.l1': 'Met de met de hand geoogst in de Griekse bergen.',
+      'oil.l2': 'Geperst binnen enkele uren na de oogst.',
+      'oil.w1': 'Ongefilterd.',
+      'oil.w2': 'Ongehaast.',
+      'oil.w3': 'Onaangeroerd.',
+      'oil.cta': 'Ontdek het Domein',
+      'oil.cap': 'Griekenland · Eerste koude persing',
+      'jp.eyebrow': 'Uit het Harvest Journal',
+      'jp.title': 'Het Honing Journal',
+      'jp.a1.read': '8 min lezen',
+      'jp.a1.date': 'Maart 2025',
+      'jp.a2.read': '7 min lezen',
+      'jp.a2.date': 'Februari 2025',
+      'jp.a3.read': '6 min lezen',
+      'jp.a3.date': 'Januari 2025',
       'jp.cat.tasting': 'Proeven',
       'jp.cat.guide': 'Gids',
+      'jp.cat.health': 'Gezondheid',
       'jp.a1.title': 'Proef de Griekse zon.',
-      'jp.a1.excerpt': 'Hoe de Griekse zon werkelijk smaakt, en hoe je één pot langzaam leest, in drie bewegingen.',
+      'jp.a1.excerpt': 'Hoe de Griekse zon werkelijk smaakt, en hoe je één pot pure honing langzaam leest, in drie bewegingen.',
       'jp.a2.title': 'Waar koop je echte Griekse honing in Nederland?',
-      'jp.a2.excerpt': 'Hoe je single-estate berghoning herkent tussen de supermarktschappen, en waar je het vindt in Amsterdam.',
+      'jp.a2.excerpt': 'Rauwe honing kopen in Nederland: hoe je single-estate berghoning herkent tussen de supermarktschappen, en waar je echte Griekse honing vindt in Amsterdam.',
       'jp.a3.title': 'Waarom Griekse honing anders smaakt dan supermarkthoning.',
-      'jp.a3.excerpt': 'Bergbloemen, rauwe extractie en kleine oogsten: de stille redenen dat de ene lepel blijft hangen en de andere niet.',
+      'jp.a3.excerpt': 'De voordelen van rauwe honing: bergbloemen, koude extractie en kleine oogsten houden enzymen en stuifmeel intact, anders dan industriële supermarkthoning.',
       'jp.read_html': 'Lees het essay <span class="arrow" aria-hidden="true"></span>',
       'jp.cta': 'Bezoek het Journal',
       'ig.h_html': 'Uit de gaard, <em>in trage rotatie.</em>',
       'ig.follow': 'Volg op Instagram',
+      'ig.title': 'Het leven rond de oogst',
+      'ig.sub': 'Gevangen tussen bergen, markten en trage seizoenen.',
+      'ig.cta': 'Volg onze reis',
       'footer.builtBy': 'Ontworpen & gebouwd door',
       'a11y.skipLink': 'Ga naar inhoud',
-      'idx.h1': 'Harvest Deli, Griekse honing van één landgoed in Pelion',
+      'idx.h1': 'Harvest Deli, Griekse honing van één herkomst',
       'concierge.fab': 'Schrijf ons',
       'concierge.title': 'Chat met Harvest Deli',
-      'concierge.subtitle': 'Pelion, Griekenland',
+      'concierge.subtitle': 'Griekenland',
       'concierge.online': 'Persoonlijk antwoord · meestal binnen enkele uren',
       'concierge.greeting': 'Welkom bij Harvest Deli.\nWaarmee mogen we u helpen?',
       'concierge.intro': 'Kies een onderwerp. We bereiden alvast een WhatsApp-bericht voor.',
       'concierge.action.product': 'Productvraag',
       'concierge.action.retail': 'Retail & horeca',
       'concierge.action.shipping': 'Verzending',
-      'concierge.action.gift': 'Geschenken & zakelijke orders',
+      'concierge.action.gift': 'Geschenken & zakelijke bestellingen',
       'concierge.action.concierge': 'Spreek met ons team',
       'concierge.msg.product': 'Hallo Harvest Deli, ik heb een vraag over een product op jullie website.',
       'concierge.msg.retail': 'Hallo Harvest Deli, ik ben geïnteresseerd in retail of horeca inkoop. Kunnen jullie mij meer informatie sturen?',
       'concierge.msg.shipping': 'Hallo Harvest Deli, ik heb een vraag over verzending of levering.',
-      'concierge.msg.gift': 'Hallo Harvest Deli, ik wil graag meer weten over geschenken of zakelijke orders.',
+      'concierge.msg.gift': 'Hallo Harvest Deli, ik wil graag meer weten over geschenken of zakelijke bestellingen.',
       'concierge.msg.concierge': 'Hallo Harvest Deli, ik wil graag met iemand van jullie team spreken.',
       'concierge.close': 'Sluiten',
       'concierge.privacy': 'Gesprekken openen in WhatsApp. We delen uw nummer nooit.',
       'markets.nav': 'Markten',
       'markets.menu_html': 'De <em>Markten</em>',
       'markets.menu_sub': 'Vind ons in Amsterdam',
-      'markets.eyebrow': 'Van Pelion naar Amsterdam',
+      'menu.item.partnership_html': 'Het <em>Partnerschap</em>',
+      'menu.item.partnership_sub': 'Retail & horeca',
+      'pp.eyebrow': 'Partnerprogramma',
+      'pp.headline_html': 'Private <em>partnerschappen.</em>',
+      'pp.sub': 'Voor geselecteerde restaurants, boutiques en premium retailers die uitzonderlijke Griekse producten zoeken.',
+      'pp.support_html': 'Sourcing in kleine oplages uit Griekenland.<br>Distributie vanuit Amsterdam · EU-groothandel beschikbaar.',
+      'pp.badge.wholesale': 'EU-groothandel',
+      'pp.badge.hospitality': 'Horecalevering',
+      'pp.badge.retail': 'Boutique-retail',
+      'pp.faq.q1': 'Is er een minimale bestelling?',
+      'pp.faq.a1': 'De eerste levering begint met een proefbox; het doorlopende volume bepalen we samen, per seizoen.',
+      'pp.faq.q2': 'Verzenden jullie binnen de hele EU?',
+      'pp.faq.a2': 'Ja, pakket en pallet, verzonden vanuit ons distributiepunt in Amsterdam.',
+      'pp.faq.q3': 'Hoe snel hoor ik iets terug?',
+      'pp.faq.a3': 'We lezen elke aanvraag persoonlijk en reageren binnen 24 tot 48 uur.',
+      'pp.form.title': 'Partnerschap aanvragen',
+      'pp.form.sub': 'Een kort bericht is genoeg. We antwoorden persoonlijk.',
+      'pp.form.company': 'Bedrijfsnaam',
+      'pp.form.company_ph': 'Het huis, het merk, de zaak',
+      'pp.form.email': 'Zakelijk e-mailadres',
+      'pp.form.country': 'Land',
+      'pp.form.country_ph': 'Nederland',
+      'pp.form.type': 'Type onderneming',
+      'pp.form.type.select': 'Maak een keuze',
+      'pp.form.type.restaurant': 'Restaurant',
+      'pp.form.type.hotel': 'Hotel · horeca',
+      'pp.form.type.boutique': 'Boutique · deli',
+      'pp.form.type.retail': 'Premium retail',
+      'pp.form.type.distributor': 'Distributeur',
+      'pp.form.volume': 'Geschat maandelijks bestelvolume',
+      'pp.form.volume_ph': 'bijv. 120 potten per maand, of eerst een proefbox',
+      'pp.form.message': 'Bericht',
+      'pp.form.message_ph': 'Vertel ons over de ruimte: de keuken, het schap, de gast.',
+      'pp.form.submit': 'Partnerschap aanvragen',
+      'pp.form.note': 'Persoonlijk beoordeeld · antwoord binnen 24–48 uur',
+      'pp.success.h': 'Je aanvraag is onderweg.',
+      'pp.success.p': 'We lezen hem persoonlijk en schrijven binnen twee werkdagen terug.',
+      'markets.eyebrow': 'Van Griekenland naar Amsterdam',
       'markets.hero.h_html': 'Vind ons<br><em>in Amsterdam.</em>',
       'markets.hero.kicker': 'De markten',
-      'markets.hero.h': 'Van Pelion naar Amsterdam.',
+      'markets.hero.h': 'Van Griekenland naar Amsterdam.',
       'markets.hero.sub': 'Stille marktochtenden, bergoogsten en trage gesprekken.',
       'markets.badge.weekly': 'Wekelijks',
       'markets.badge.monthly': 'Maandelijks',
@@ -846,9 +987,9 @@
       'markets.westerpark.desc': 'Een rustigere zondagse samenkomst in de oude gasfabriek. Linnen, kaarslicht bij schemering, en de oogst, één lepel tegelijk geschonken.',
       'markets.story.eyebrow': 'De tafel',
       'markets.story.lead_html': '"Voor ons gaan markten niet alleen over het verkopen van honing. Ze gaan over <em>gesprek, proeven</em> en het delen van de oogst."',
-      'markets.story.body': 'Elke ochtend dekken we de tafel op dezelfde manier als onze familie dat al vier generaties doet op de hellingen van Pelion, linnen gevouwen, potten geopend, een lepel over de rand. Amsterdam, met zijn fietsen en zijn grijze ochtendlicht, heeft ons kleine ritueel verwelkomd. Kom vroeg. Blijf rustig. Proef voordat u spreekt.',
-      'markets.story.sig': 'Stelios &amp; Eleni Andreou',
-      'markets.story.sigsub': 'Pelion · Amsterdam',
+      'markets.story.body': 'Elke ochtend dekken we de tafel op dezelfde manier, jaar na jaar, op de Griekse berghellingen, linnen gevouwen, potten geopend, een lepel over de rand. Amsterdam, met zijn fietsen en zijn grijze ochtendlicht, heeft ons kleine ritueel verwelkomd. Kom vroeg. Blijf rustig. Proef voordat u spreekt.',
+      'markets.story.sig': 'Harvest Deli',
+      'markets.story.sigsub': 'Greece · Amsterdam',
       'markets.gallery.eyebrow': 'Een fotojournaal',
       'markets.gallery.h_html': '<em>Ochtenden</em> aan de tafel.',
       'markets.gallery.cap1': 'Zonlicht door het linnen, vlak na opening.',
@@ -869,10 +1010,10 @@
       'markets.cta.trade': 'Retail & horeca',
       'idx.markets.eyebrow': 'In Amsterdam',
       'idx.markets.h_html': 'Vind ons aan de <em>markttafel.</em>',
-      'idx.markets.body': 'Van Pelion naar Amsterdam. Twee tafels, gedekt met linnen, een proeflepel en de ochtendkoffie, stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
+      'idx.markets.body': 'Van Griekenland naar Amsterdam. Twee tafels, gedekt met linnen, een proeflepel en de ochtendkoffie, stilletjes meegebracht uit de heuvels van Griekenland naar de markten van Amsterdam.',
       'idx.markets.cta': 'Vind ons in Amsterdam',
       // ---------- index hero ----------
-      'idx.scene0.est': 'Opgericht · Pelion, Griekenland · Landgoed №01',
+      'idx.scene0.est': 'Opgericht · Griekenland',
       'idx.scene1.eyebrow_html': 'Editie 1 <span class="dot"></span> Tamme Kastanje',
       'idx.scene1.line_html': 'Gevangen uit<br><em>de Griekse zon.</em>',
       'idx.scene2.eyebrow': 'Een veld vol stilte',
@@ -882,7 +1023,7 @@
       'idx.card1.h': 'Rauwe oogst',
       'idx.card1.p': 'Raten met de hand verzameld op grote hoogte. Nooit verhit, nooit bewerkt. Elke aromatische noot van het seizoen blijft volledig intact.',
       'idx.card2.h': 'Kleine batch',
-      'idx.card2.p': 'Elk landgoed produceert minder dan vierhonderd potten per oogst. Een rustig aantal, bewust klein gehouden.',
+      'idx.card2.p': 'Elke oogst blijft onder de vierhonderd potten. Een rustig aantal, bewust klein gehouden.',
       'idx.card3.h': 'Natuurlijke herkomst',
       'idx.card3.p': 'Eén bron, herleidbaar tot een weide, een berg, een seizoen. Niets toegevoegd. Niets weggehaald.',
       'idx.scene4.eyebrow': 'De collectie',
@@ -895,31 +1036,32 @@
       // ---------- index editorial ----------
       'idx.ch1.eyebrow': 'De Oorsprong',
       'idx.ch1.h': 'Geboren in de stille heuvels van Noord-Griekenland.',
-      'idx.ch1.body': 'Vijf generaties lang verzorgt één familie duizend bijenkasten over de kalksteenrichels van de berg Pelion. Wilde tijm, heide en aardbeiboom bloeien in een enkel, onvertaalbaar seizoen. De honing wordt gevormd door dit land, en door niets anders.',
-      'idx.ch1.caption': 'Pelion · Voorjaarsoogst',
+      'idx.ch1.body': 'Duizend bijenkasten staan verspreid over de Griekse kalksteenrichels. Wilde tijm, heide en aardbeiboom bloeien in een enkel, onvertaalbaar seizoen. De honing wordt gevormd door dit land, en door niets anders.',
+      'idx.ch1.caption': 'Griekenland · Voorjaarsoogst',
       'idx.ch2.eyebrow': 'Het Proces',
       'idx.ch2.h': 'Een ambacht verfijnd door tijd, niet door technologie.',
-      'idx.step1.h': 'Op hoogte verzameld',
-      'idx.step1.p': 'De kasten staan waar wilde bloemen ongestoord groeien. Nooit bij landbouw, nooit bij een weg. De bijen bepalen waar ze foerageren; wij luisteren slechts.',
-      'idx.step2.h': 'Koud gewonnen',
-      'idx.step2.p': 'Raten worden gecentrifugeerd op de temperatuur van de kelder, nooit verhit. Elk enzym, elke stuifmeelkorrel, elke herinnering aan het seizoen blijft intact.',
-      'idx.step3.h': 'Bezonken, nooit gezeefd',
-      'idx.step3.p': 'De honing rust veertien dagen in eikenhouten vaten. Lucht stijgt, bezinksel zakt. Niets wordt geforceerd, niets wordt gefilterd, en de structuur blijft levend.',
+      'idx.step1.h': 'Wilde Oogst',
+      'idx.step1.p': 'Met de hand verzamelde raten uit kasten hoog tussen ongerepte wilde bloemen — nooit bij een weg, nooit bij een akker.',
+      'idx.step2.h': 'Koude Winning',
+      'idx.step2.p': 'Langzaam gecentrifugeerd op keldertemperatuur, nooit verhit. Elk enzym en spoor stuifmeel blijft volledig intact.',
+      'idx.step3.h': 'Natuurlijke Rust',
+      'idx.step3.p': 'Veertien stille dagen bezonken in eikenhout. Niets geforceerd, niets gezeefd — de structuur blijft volledig levend.',
       'idx.taste.quote': 'Een smaak die de herinnering aan een bergochtend vasthoudt. Warm, goudkleurig, traag om te vertrekken.',
       'idx.taste.cite': 'Notities uit de proefruimte',
       'idx.preview.eyebrow': 'De Collectie',
       'idx.preview.h_html': 'Drie uit de kelder, <em>genummerd.</em>',
-      'idx.preview.addToCellar': 'Aan de kelder toevoegen',
+      'idx.preview.addToCellar': 'In de winkelmand',
       'idx.preview.exploreAll': 'Bekijk alle zes edities',
       'idx.product.eyebrow': 'De Collectie · Editie 1',
       'idx.product.title_html': 'Tamme Kastanje, <em>oogst 2025.</em>',
-      'idx.product.originLine_html': 'Pelion <span class="dot"></span> 950m <span class="dot"></span> 384 potten',
+      'idx.product.originLine_html': 'Greece <span class="dot"></span> 950m <span class="dot"></span> 384 potten',
       'idx.product.desc': 'Een honing uit één weide met opmerkelijke helderheid. Tonen van warme hars, in de zon gerijpte kruiden en een lange minerale afdronk. Gebotteld in zwaar handgeperst glas, met de hand genummerd, ongepasteuriseerd.',
       'idx.product.cta_html': 'Bekijk de pot, €68',
       // ---------- shop ----------
-      'shop.eyebrow': 'De Collectie · 2025',
-      'shop.headline_html': 'Een kleine, <em>genummerde</em> bibliotheek van de Griekse oogst.',
-      'shop.intro': 'Negen honingen van enkele oorsprong, een koudgeperste olijfolie en een wilde bergthee, elk ongepasteuriseerd, met de hand verzegeld en stil verzonden vanuit Griekenland binnen de week.',
+      'shop.eyebrow': 'De Collectie',
+      'shop.headline_html': '11 <em>premium</em> Griekse delicatessen.',
+      'shop.intro': 'Rauw. Ongepasteuriseerd. Rechtstreeks van de bron.',
+      'shop.trustline': 'Rauw & ongepasteuriseerd · Geoogst in Griekenland · Gratis verzending in Europa boven €65',
       'shop.filterLabel': 'Filter op',
       'shop.filter.all': 'Alles',
       'shop.filter.floral': 'Bloemig',
@@ -931,8 +1073,21 @@
       'shop.filter.cold': 'Koud Gewonnen',
       'shop.filter.dark': 'Donkere Honing',
       'shop.filter.light': 'Lichte Honing',
-      'menu.item.account_html': 'Het <em>Account</em>',
-      'menu.item.account_sub': 'Bestellingen & adressen',
+      'menu.item.account_html': 'Privé <em>Toegang</em>',
+      'menu.item.account_sub': 'Leden & partners',
+      'access.nav': 'Privé toegang',
+      'access.close': 'Sluiten',
+      'access.eyebrow': 'Harvest Deli · Leden',
+      'access.title': 'Privé Toegang',
+      'access.sub': 'Voorbehouden aan terugkerende verzamelaars en geselecteerde partners.',
+      'access.email': 'E-mailadres',
+      'access.password': 'Wachtwoord',
+      'access.show': 'Toon',
+      'access.hide': 'Verberg',
+      'access.cta': 'Betreed Privé',
+      'access.foot_html': 'Nieuw bij het huis? <a href="register.html">Vraag toegang aan</a>',
+      'access.err.email': 'Hier is een geldig e-mailadres nodig.',
+      'access.err.pw': 'Hier ontbreekt nog een klein detail.',
       'ck.step.cart': 'Mandje',
       'ck.step.details': 'Gegevens',
       'ck.step.delivery': 'Bezorging',
@@ -940,7 +1095,7 @@
       'ck.step.review': 'Controle',
       'ck.continue': 'Verder',
       'ck.back': 'Terug',
-      'ck.place': 'Bestelling plaatsen',
+      'ck.place': 'Verder naar veilige betaling',
       'ck.total': 'Totaal',
       'ck.apply': 'Toepassen',
       'ck.add': 'Toevoegen',
@@ -954,7 +1109,7 @@
       'ck.shipping': 'Verzending',
       'ck.free': 'Gratis',
       'ck.pickup': 'Afhalen',
-      'ck.empty.h': 'Je kelder is leeg',
+      'ck.empty.h': 'Je winkelmand is leeg',
       'ck.empty.p': 'Begin de collectie, elke pot is genummerd, verzegeld in was en verzonden binnen de week.',
       'ck.empty.cta': 'Bekijk de collectie',
       'ck.discount.label': 'Kortingscode',
@@ -973,7 +1128,7 @@
       'ck.freeProgress': 'Nog {x} voor gratis verzending',
       'ck.payment.h_html': 'Betaling &middot; <em>rustig & veilig.</em>',
       'ck.demoPill': 'Demo',
-      'ck.payNote': 'Aanbieder-onafhankelijke UI. Hier wordt niets afgeschreven, Stripe of Mollie koppelt hier in productie.',
+      'ck.payNote': 'Je rondt je betaling veilig af via Mollie bij de Shopify-checkout, na deze stap.',
       'ck.badge.secure': 'Veilige SSL-checkout',
       'ck.badge.returns': '14 dagen retour',
       'ck.badge.tracked': 'Verzekerd & traceerbaar',
@@ -1051,7 +1206,7 @@
       'ok.eyebrow': 'Bestelling bevestigd',
       'ok.title_html': 'Dank <em>je wel.</em>',
       'ok.title': 'Je oogst is gereserveerd.',
-      'ok.sub': 'Rustig ingepakt in Pelion en klaargemaakt voor de reis. Een bevestiging is onderweg.',
+      'ok.sub': 'Rustig ingepakt in Griekenland en klaargemaakt voor de reis. Een bevestiging is onderweg.',
       'ok.orderNo': 'Bestelnummer',
       'ok.email': 'Een bevestigingsmail is onderweg. (Demo: er wordt geen e-mail verstuurd, je bestelling is lokaal opgeslagen zodat je hem in je account ziet.)',
       'ok.track': 'Bestelling volgen',
@@ -1072,16 +1227,16 @@
       'shop.empty.p': 'Elk seizoen verandert de collectie. Probeer een andere categorie of bekijk de volledige bibliotheek.',
       'shop.empty.cta': 'Bekijk alle edities',
       // ---------- about ----------
-      'about.eyebrow': 'De Oorsprong · Een huis in Pelion',
+      'about.eyebrow': 'De Oorsprong · Een huis in Griekenland',
       'about.headline_html': 'Een reis naar de <em>oorsprong.</em>',
-      'about.intro': 'Vijf generaties van één familie, die duizend bijenkasten verzorgen over één enkele berg. De honing is het resultaat. Dit is het verhaal achter de pot.',
-      'about.page.kicker': 'Pelion · Griekenland',
+      'about.intro': 'Duizend bijenkasten over één enkele Griekse berg. De honing is het resultaat. Dit is het verhaal achter de pot.',
+      'about.page.kicker': 'Griekenland',
       'about.page.title': 'Over ons',
       'about.page.sub': 'Een kleine collectie Griekse oogsten, gevormd door berglucht, trage seizoenen en stil vakmanschap.',
-      'about.visual.cap': 'Pelion · Noord-Griekenland',
+      'about.visual.cap': 'Noord-Griekenland',
       'about.story.eyebrow': 'Ons verhaal',
       'about.story.h': 'Een huis op één berg.',
-      'about.story.p1': 'Harvest Deli begon op de zuidflank van Pelion, waar één familie al vijf generaties bijen houdt. Wat de berg verlaat is van nature klein, een paar honderd potten per seizoen, traag verzameld en met de hand verzegeld.',
+      'about.story.p1': 'Harvest Deli is een kleine Griekse producent van honing, olijfolie en bergthee van één herkomst. Wat we verzenden is van nature klein, een paar honderd potten per seizoen, traag verzameld en met de hand verzegeld.',
       'about.story.p2': 'We werken met olijfgaarden en wilde theehellingen in dezelfde geest: klein, seizoensgebonden en eerlijk. (Tijdelijke tekst, het volledige verhaal volgt.)',
       'about.craft.eyebrow': 'Hoe we werken',
       'about.craft.h': 'Klein met opzet.',
@@ -1099,17 +1254,17 @@
       'about.close.h': 'Proef de berg.',
       'about.close.shop': 'Bekijk de collectie',
       'about.close.contact': 'Schrijf ons',
-      'about.frameCaption': 'Berg Pelion · Noord-Griekenland',
+      'about.frameCaption': 'Noord-Griekenland',
       'about.ch1.eyebrow': 'Griekenland · Het land',
       'about.ch1.h': 'Een berg die de zee niet kan bereiken.',
-      'about.ch1.p1': 'Pelion stijgt zeshonderd meter uit de Egeïsche kust op in één enkel, traag gebaar. De kalksteenrichels herbergen wilde tijm, heide, oregano, aardbeiboom en kastanje in een enkel, onvertaalbaar seizoen. Wij werken op de zuidflank, waar de zon vroeg arriveert en de lucht haar droogte tot in de middag bewaart.',
+      'about.ch1.p1': 'De bergen stijgen zeshonderd meter uit de Egeïsche kust op in één enkel, traag gebaar. De kalksteenrichels herbergen wilde tijm, heide, oregano, aardbeiboom en kastanje in een enkel, onvertaalbaar seizoen. Wij werken op de zuidflank, waar de zon vroeg arriveert en de lucht haar droogte tot in de middag bewaart.',
       'about.ch1.p2': 'Niets hier wordt gecultiveerd. De bijen kiezen waar ze foerageren, en het seizoen bepaalt wat ze meebrengen.',
-      'about.ch1.caption': 'Pelion richels · 1100m',
-      'about.quote.text': '"Mijn grootvader hield dertig kasten. Mijn vader, driehonderd. Ik houd er duizend, en toch minder."',
-      'about.quote.cite': 'Stavros Andreou · Imker, vijfde generatie',
+      'about.ch1.caption': 'Griekse richels · 1100m',
+      'about.quote.text': '"Neem alleen wat het seizoen geeft. Nummer het, verzegel het, en laat het precies zijn wat het is."',
+      'about.quote.cite': 'Harvest Deli',
       'about.ch2.eyebrow': 'De imker',
-      'about.ch2.h': 'Stavros, die leerde te luisteren.',
-      'about.ch2.p1': 'Stavros Andreou is de vijfde generatie van zijn familie die bijen houdt op deze berg. Hij erfde de kelder van zijn vader in 2009, en de handschriften van zijn overgrootvader liggen op een plank boven de vaten, met temperaturen en opbrengsten genoteerd tot in 1882.',
+      'about.ch2.h': 'Gemaakt door te luisteren.',
+      'about.ch2.p1': 'Harvest Deli houdt bijen op de trage manier: de bloei lezen, de kasten met de hand verplaatsen, en alleen nemen wat het seizoen geeft. De raten worden koel geslingerd, nooit gefilterd, alleen laten bezinken. Niets wordt gehaast, en niets wordt geblend.',
       'about.ch2.p2': 'Tien maanden per jaar werkt hij alleen. Twee jongere neven sluiten zich aan voor de oogst. De bijen, zegt hij, leerden de familie meer dan de familie ooit de bijen leerde.',
       'about.ch2.caption': 'De kelder · eikenhouten vaten',
       'about.ch3.eyebrow': 'De bergen',
@@ -1117,8 +1272,8 @@
       'about.ch3.p1': 'Elke bijenstand ligt tussen de 600 en 1400 meter op de zuidelijke hellingen. Nooit bij een weg. Nooit bij een bewerkt veld. De wandeling naar de hoogste kasten kost een hele ochtend, en wij zorgen ervoor de bijen niet meer te storen dan een seizoen vraagt.',
       'about.ch3.p2': 'Hoogte vormt de honing meer dan welke afzonderlijke bloem dan ook. Koudere nachten vertragen de bijen. De honing wordt dikker. Het karakter wordt dieper.',
       'about.ch3.caption': 'Kast №47 · 1280m',
-      'about.n1.lbl': 'Bijenkasten over de zuidflank van Pelion',
-      'about.n2.lbl': 'Generaties van één familie op de berg',
+      'about.n1.lbl': 'Bijenkasten over de Griekse bergen',
+      'about.n2.lbl': 'Bijenkasten op de berg',
       'about.n3.lbl': 'Genummerde potten in de Tamme Kastanje editie',
       'about.n4.lbl': 'Toevoegingen, ooit. Rauwe honing, verzegeld in was.',
       'about.ch4.eyebrow': 'De oogst',
@@ -1128,16 +1283,16 @@
       'about.ch4.caption': 'Oogstochtend · april',
       'about.ch5.eyebrow': 'Familietraditie',
       'about.ch5.h': 'Een ambacht stil doorgegeven van hand tot hand.',
-      'about.ch5.p1': 'Een deel van wat wij doen wordt al vijf generaties op dezelfde manier gedaan. Een deel verandert elk jaar. De bijen houden ons eerlijk. De berg houdt ons klein.',
+      'about.ch5.p1': 'Een deel van wat wij doen wordt al heel lang op dezelfde manier gedaan. Een deel verandert elk jaar. De bijen houden ons eerlijk. De berg houdt ons klein.',
       'about.ch5.p2': 'Wij schalen niet op. Wij mengen niet. Wij verwijderen de was niet van de deksels van de potten. Driehonderdvierentachtig potten in de Tamme Kastanje editie, en als ze op zijn, is het seizoen voorbij.',
-      'about.ch5.caption': 'Kelderarchief · 1882, 2025',
+      'about.ch5.caption': 'Kelderarchief · 2025',
       'about.cta.label': 'De Collectie · 2025',
       'about.cta.h_html': 'Proef de <em>berg.</em>',
       'about.cta.btn': 'Bekijk de collectie',
       // ---------- contact ----------
-      'contact.eyebrow': 'Contact · Pelion, Griekenland',
+      'contact.eyebrow': 'Contact · Griekenland',
       'contact.headline_html': 'Schrijf naar <em>het huis.</em>',
-      'contact.intro': 'Voor groothandel, gastronomie, pers, of simpelweg een rustige vraag over een pot. Stavros en de familie lezen elk bericht en reageren binnen twee werkdagen.',
+      'contact.intro': 'Voor groothandel, gastronomie, pers, of simpelweg een rustige vraag over een pot. Wij lezen elk bericht en reageren binnen twee werkdagen.',
       'contact.form.h': 'Begin een aanvraag.',
       'contact.form.sub': 'Een paar regels zijn genoeg. Wij reageren persoonlijk.',
       'contact.pill.general': 'Persoonlijke vraag',
@@ -1147,14 +1302,14 @@
       'contact.pill.press': 'Pers',
       'contact.pill.collab': 'Samenwerking',
       'contact.founder.quote': 'Elke samenwerking met Harvest Deli begint met een gesprek. Wij verkiezen een paar lange relaties boven brede distributie — de pot, en de handen erachter, verdienen dat.',
-      'contact.founder.name': 'Stavros Andreou',
-      'contact.founder.role': 'De familie Andreou · Pelion, Griekenland',
+      'contact.founder.name': 'Harvest Deli',
+      'contact.founder.role': 'Harvest Deli · Griekenland',
       'contact.label.name': 'Jouw naam',
       'contact.label.house': 'Huis / onderneming',
       'contact.label.email': 'E-mail',
       'contact.label.country': 'Land',
       'contact.label.message': 'Bericht',
-      'contact.ph.name': 'Maria Andreou',
+      'contact.ph.name': 'Maria',
       'contact.ph.house': 'Optioneel',
       'contact.ph.email': 'maria@voorbeeld.nl',
       'contact.ph.country': 'Nederland',
@@ -1162,30 +1317,30 @@
       'contact.submit': 'Begin het gesprek',
       'contact.formNote': 'Door ons te schrijven ga je ermee akkoord dat wij je bericht bewaren met als doel te kunnen antwoorden. Wij verkopen of delen gegevens nooit.',
       'contact.success.h': 'Je bericht is onderweg.',
-      'contact.success.p': 'Stavros of een van de familie zal het persoonlijk lezen en binnen twee werkdagen terugschrijven.',
+      'contact.success.p': 'We lezen het persoonlijk en schrijven binnen twee werkdagen terug.',
       'contact.info.h': 'Of schrijf rechtstreeks naar ons.',
       'contact.info.wholesale.lbl': 'Groothandel',
       'contact.info.wholesale.title_html': 'De <em>collectie</em> voeren.',
       'contact.info.wholesale.p': 'Kleine toewijzingen beschikbaar voor onafhankelijke boetieks, delicatessenwinkels en theehuizen in de EU en geselecteerde internationale markten.',
       'contact.info.hospitality.lbl': 'Gastronomie · Restaurants',
       'contact.info.hospitality.title_html': 'Voor de <em>tafel.</em>',
-      'contact.info.hospitality.p': 'Wij werken in alle rust met een klein aantal restaurants en hotels per jaar. Proefdozen verzenden binnen de week vanuit Pelion.',
+      'contact.info.hospitality.p': 'Wij werken in alle rust met een klein aantal restaurants en hotels per jaar. Proefdozen verzenden binnen de week vanuit Griekenland.',
       'contact.info.retail.lbl': 'Premium retailers',
       'contact.info.retail.title_html': 'Een discrete <em>plank.</em>',
       'contact.info.retail.p': 'Geselecteerde retailpartners ontvangen een jaarlijkse toewijzing, editie per editie, met voorrang op de beperkte reserves.',
       'contact.info.press.lbl': 'Pers · Samenwerking',
       'contact.info.press.title_html': 'Een rustiger <em>gesprek.</em>',
       'contact.info.press.p': 'Redactionele vragen, fotografie en creatieve samenwerkingen. Wij reageren langzaam, maar wij reageren.',
-      'contact.location.lbl': 'Het landgoed',
-      'contact.location.h_html': 'Pelion, <em>Noord-Griekenland.</em>',
-      'contact.address_html': 'Harvest Deli &middot; Landgoed №01<br>37006 Pelion, Magnesia<br>Griekenland',
+      'contact.location.lbl': 'Herkomst',
+      'contact.location.h_html': 'Noord-<em>Griekenland.</em>',
+      'contact.address_html': 'Harvest Deli<br>Griekenland',
       // ---------- checkout ----------
-      'checkout.step.cellar': 'Kelder',
+      'checkout.step.cellar': 'Winkelmand',
       'checkout.step.checkout': 'Afrekenen',
       'checkout.step.confirmation': 'Bevestiging',
       'checkout.eyebrow': 'Afrekenen · Editie 1',
       'checkout.headline_html': 'Een rustige, <em>zorgvuldige</em> overdracht.',
-      'checkout.sub': 'Drie stappen. Genummerd, verzegeld, binnen de week verzonden vanuit Pelion.',
+      'checkout.sub': 'Drie stappen. Genummerd, verzegeld, binnen de week verzonden vanuit Griekenland.',
       'checkout.express.divider': 'Of betaal met kaart',
       'checkout.step1.h_html': 'Contact &middot; <em>waar wij terugschrijven.</em>',
       'checkout.label.email': 'E-mail',
@@ -1217,21 +1372,21 @@
       'checkout.stripeNote': 'End-to-end versleuteld verwerkt. Wij zien of bewaren je kaart nooit.',
       'checkout.confirm': 'Bestelling bevestigen',
       'checkout.terms_html': 'Door deze bestelling te plaatsen ga je akkoord met onze <a href="#">voorwaarden</a> en <a href="#">privacy</a>. Internationale bestellingen kunnen lokale heffingen meebrengen.',
-      'checkout.side.eyebrow': 'Jouw kelder',
+      'checkout.side.eyebrow': 'Jouw winkelmand',
       'checkout.side.title_html': 'Bestel<em>overzicht</em>',
-      'checkout.empty.h': 'Je kelder is leeg.',
+      'checkout.empty.h': 'Je winkelmand is leeg.',
       'checkout.empty.p': 'Voeg een pot uit de collectie toe om af te rekenen.',
       'checkout.empty.cta': 'Bekijk de collectie',
       'checkout.package.lbl': 'Luxe verpakking',
       'checkout.package.h_html': 'Verzegeld in <em>was.</em> In eikenfineer doos.',
       'checkout.package.p': 'Elke pot wordt met de hand gewikkeld, met zwarte was verzegeld en in een doos met eikenfineer gelegd. Een handgeschreven kaart reist met de bestelling mee.',
       'checkout.package.tag': 'Editie 1 · Oogst 2025',
-      'checkout.trust.stripe1': 'Stripe',
-      'checkout.trust.stripe2': 'versleuteld',
-      'checkout.trust.intl1': 'Wereldwijde',
-      'checkout.trust.intl2': 'verzending',
-      'checkout.trust.sealed1': 'Verzegeld in',
-      'checkout.trust.sealed2': 'Pelion',
+      'checkout.trust.stripe1': 'Veilig betaald',
+      'checkout.trust.stripe2': 'Via Mollie & iDEAL',
+      'checkout.trust.intl1': 'Levering in Europa',
+      'checkout.trust.intl2': 'Snel verzonden vanuit Nederland',
+      'checkout.trust.sealed1': 'Authentiek uit Griekenland',
+      'checkout.trust.sealed2': 'Rechtstreeks van lokale producenten',
       'checkout.row.subtotal': 'Subtotaal',
       'checkout.row.shipping': 'Verzending',
       'checkout.row.total': 'Totaal',
@@ -1240,17 +1395,17 @@
       'product.crumb.collection': 'Collectie',
       'product.crumb.current': 'Editie 1, Tamme Kastanje',
       'product.eyebrow_html': 'Editie 1 <span class="dot"></span> Oogst 2025',
-      'product.title_html': 'Tamme Kastanje, <em>landgoed Pelion.</em>',
+      'product.title_html': 'Tamme Kastanje',
       'product.tag.singleMeadow': 'Eén Weide',
       'product.tag.coldExtracted': 'Koud Gewonnen',
       'product.tag.numbered': 'Genummerd · 384',
-      'product.desc': 'Een heldere, traag schenkende honing uit de kastanjebossen op de zuidflank van Pelion. Tonen van warme hars, in de zon gerijpte kruiden en een lange minerale afdronk. Gebotteld in zwaar handgeperst glas, verzegeld in was, ongepasteuriseerd.',
-      'product.priceSub_html': 'incl. btw &middot; wereldwijd verzonden',
+      'product.desc': 'Een heldere, traag schenkende honing uit de kastanjebossen in de Griekse bergen. Tonen van warme hars, in de zon gerijpte kruiden en een lange minerale afdronk. Gebotteld in zwaar handgeperst glas, verzegeld in was, ongepasteuriseerd.',
+      'product.priceSub_html': 'incl. btw &middot; verzending binnen Nederland & België',
       'product.size.tasting': 'Proef',
-      'product.size.estate': 'Landgoed',
+      'product.size.estate': 'Groot',
       'product.size.reserve': 'Reserve',
-      'product.cta': 'Aan de kelder toevoegen',
-      'product.lede': 'Donkere, traag schenkende kastanjehoning van \u00e9\u00e9n bosperceel op 950\u00a0m op Pelion. Rauw, genummerd, verzegeld in was.',
+      'product.cta': 'In de winkelmand',
+      'product.lede': 'Donkere, traag schenkende kastanjehoning van \u00e9\u00e9n bosperceel op 950\u00a0m in de Griekse bergen. Rauw, genummerd, verzegeld in was.',
       'product.express': 'Direct afrekenen',
       'product.trust.q1': '100% Griekse topkwaliteit',
       'product.trust.q2': 'Rechtstreeks ge\u00efmporteerd uit Griekenland',
@@ -1262,8 +1417,8 @@
       'product.acc.origin': 'Herkomst',
       'product.acc.originBody': 'Geoogst van \u00e9\u00e9n zuidgericht bosperceel op 950\u00a0m op het Pilion-gebergte, Griekenland. \u00c9\u00e9n seizoen, 384 genummerde potten, stuk voor stuk met de hand verzegeld in zwarte was.',
       'product.acc.ship': 'Verzending',
-      'product.acc.shipBody': 'Binnen 1\u20132 werkdagen verzonden vanuit onze Amsterdamse kelder. Gratis verzending in de EU boven \u20ac120. Zorgvuldig verpakt, met track & trace.',
-      'product.notes_html': 'Gratis verzending in de EU boven €120 <span class="dot"></span> Beperkte uitgave · 384 genummerde potten',
+      'product.acc.shipBody': 'Binnen 1\u20132 werkdagen verzonden vanuit onze Amsterdamse kelder. Gratis verzending binnen Nederland & België boven \u20ac65. Zorgvuldig verpakt, met track & trace.',
+      'product.notes_html': 'Gratis verzending binnen Nederland & België boven €65 <span class="dot"></span> Beperkte uitgave · 384 genummerde potten',
       'product.tasting.eyebrow': 'De Proef',
       'product.tasting.h_html': 'Wat je proeft, langzaam.',
       'product.tasting.first.h': 'Eerst',
@@ -1277,15 +1432,15 @@
       'product.tasting.finish.p': 'Een trage afdaling in steen en zout. Subtiel, bijna droog. Het soort afdronk dat in de kamer blijft hangen lang nadat de lepel is neergelegd.',
       'product.origin.eyebrow': 'De Oorsprong',
       'product.origin.h_html': 'Eén weide, één seizoen.',
-      'product.origin.p1': 'De oogst van 2025 komt uit één enkel, zuid-georiënteerd kastanjebos op 950 meter aan de hellingen van de berg Pelion, waar de bomen elk laat zomerseizoen bloeien in een smal venster.',
+      'product.origin.p1': 'De oogst van 2025 komt uit één enkel, zuid-georiënteerd kastanjebos op 950 meter in de Griekse bergen, waar de bomen elk laat zomerseizoen bloeien in een smal venster.',
       'product.origin.p2': 'Driehonderdvierentachtig potten zijn aan dit seizoen onttrokken. Elk met de hand genummerd, met zwarte was verzegeld, en bewaard precies zoals het de raat verliet.',
-      'product.origin.caption': 'Pelion · 950m · Late zomer',
+      'product.origin.caption': 'Griekenland · 950m · Late zomer',
       'product.details.eyebrow': 'De Bijzonderheden',
       'product.details.h_html': 'Stil, met zorg gemaakt.',
       'product.det.weight.lbl': 'Netto gewicht',
       'product.det.weight.val_html': '250g <em>glazen pot</em>',
       'product.det.origin.lbl': 'Herkomst',
-      'product.det.origin.val_html': 'Pelion, <em>Griekenland</em>',
+      'product.det.origin.val_html': '<em>Griekenland</em>',
       'product.det.vintage.lbl': 'Jaargang',
       'product.det.vintage.val_html': 'Late zomer <em>2025</em>',
       'product.det.edition.lbl': 'Editie',
@@ -1300,29 +1455,29 @@
       'product.det.package.val_html': 'Handgeperst glas, <em>zwarte was</em>',
       'product.also.eyebrow': 'Ook Uit De Collectie',
       'product.also.h_html': 'De rest van het huis.',
-      'product.sticky.name': 'Tamme Kastanje, landgoed Pelion',
+      'product.sticky.name': 'Tamme Kastanje',
       'product.sticky.price': '€18 · Editie 1',
       'product.sticky.add': 'Voeg toe'
     },
     el: {
       'nav.menu': 'Μενού',
-      'nav.shop': 'Κατάστημα',
+      'nav.shop': 'Συλλογή',
       'nav.acquire': 'Αγορά',
       'nav.cellar': 'Κελάρι',
-      'nav.secureCheckout': 'Ασφαλής Πληρωμή',
+      'nav.secureCheckout': 'Ασφαλής πληρωμή μέσω Mollie',
       'menu.close': 'Κλείσιμο',
       'menu.item.collection_html': 'Η <em>Συλλογή</em>',
       'menu.item.collection_sub': 'Όλες οι εκδόσεις',
       'menu.item.origin_html': 'Η <em>Προέλευση</em>',
-      'menu.item.origin_sub': 'Πήλιο · Ελλάδα',
+      'menu.item.origin_sub': 'Ελλάδα',
       'menu.item.process_html': 'Η <em>Διαδικασία</em>',
       'menu.item.process_sub': 'Χειροποίητη συγκομιδή',
       'menu.item.journal_html': 'Το <em>Ημερολόγιο</em>',
       'menu.item.journal_sub': 'Σημειώσεις από το πεδίο',
       'menu.item.contact': 'Επικοινωνία',
       'menu.item.contact_sub': 'Χονδρική & Τύπος',
-      'menu.estate.h': 'Επισκεφθείτε το κτήμα',
-      'menu.estate.p': 'Με ραντεβού από Απρίλιο έως Οκτώβριο. Μικρές ομάδες, μία ημέρα, συνοδευόμενες γευσιγνωσίες στο κελάρι.',
+      'menu.estate.h': 'Μία προέλευση',
+      'menu.estate.p': 'Μέλι, ελαιόλαδο και βουνίσιο τσάι μίας προέλευσης από την Ελλάδα. Μικρές σοδειές, αποστέλλονται ήσυχα σε όλη την Ευρώπη.',
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Ημερολόγιο',
       'menu.social.wholesale': 'Χονδρική',
@@ -1331,11 +1486,11 @@
       'cart.close': 'Κλείσιμο',
       'cart.empty.eyebrow': 'Το κελάρι σας',
       'cart.empty.h': 'Το κελάρι περιμένει.',
-      'cart.empty.p': 'Μικρές σοδειές από το Πήλιο, ετοιμασμένες ήσυχα και αποστέλλονται σε όλη την Ευρώπη.',
+      'cart.empty.p': 'Μικρές σοδειές από την Ελλάδα, ετοιμασμένες ήσυχα και αποστέλλονται σε όλη την Ευρώπη.',
       'cart.empty.cta': 'Δείτε τη συλλογή',
       'cart.empty.suggest': 'Ξεκινήστε με',
       'cart.subtotal': 'Μερικό σύνολο',
-      'cart.note': 'Τα μεταφορικά υπολογίζονται κατά την πληρωμή. Δωρεάν εντός ΕΕ άνω των €120.',
+      'cart.note': 'Τα μεταφορικά υπολογίζονται κατά την πληρωμή. Δωρεάν εντός ΕΕ άνω των €65.',
       'cart.checkout': 'Συνέχεια στην πληρωμή',
       'cart.remove': 'Αφαίρεση',
       'cart.added': 'Προστέθηκε',
@@ -1349,7 +1504,7 @@
       'footer.link.reserve': 'Ρεζέρβα',
       'footer.link.gift': 'Σετ δώρου',
       'footer.link.origin': 'Προέλευση',
-      'footer.link.estate': 'Κτήμα',
+      'footer.link.estate': 'Διαδικασία',
       'footer.link.journal': 'Ημερολόγιο',
       'footer.link.contact': 'Επικοινωνία',
       'footer.link.shipping': 'Αποστολές',
@@ -1360,14 +1515,14 @@
       'footer.link.pineHeather': 'Πεύκο & Ρείκι',
       'footer.link.springWildflower': 'Ανοιξιάτικα Αγριολούλουδα',
       'footer.link.chestnut': 'Καστανόμελο',
-      'footer.bottom1': '© Harvest Deli · Πήλιο, Ελλάδα',
+      'footer.bottom1': '© Harvest Deli · Ελλάδα',
       'footer.bottom2': 'Φτιαγμένο με φροντίδα',
       'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
       'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
-      'idx.h1': 'Harvest Deli, μονοκτηματικό ελληνικό μέλι από το Πήλιο',
+      'idx.h1': 'Harvest Deli, μονοπροέλευσης ελληνικό μέλι',
       'concierge.fab': 'Επικοινωνία',
       'concierge.title': 'Συνομιλία με Harvest Deli',
-      'concierge.subtitle': 'Πήλιο, Ελλάδα',
+      'concierge.subtitle': 'Ελλάδα',
       'concierge.online': 'Προσωπική απάντηση · συνήθως μέσα σε λίγες ώρες',
       'concierge.greeting': 'Καλώς ήρθατε στη Harvest Deli.\nΠώς μπορούμε να σας βοηθήσουμε;',
       'concierge.intro': 'Επιλέξτε ένα θέμα. Θα ετοιμάσουμε ένα μήνυμα WhatsApp για εσάς.',
@@ -1386,7 +1541,44 @@
       'markets.nav': 'Αγορές',
       'markets.menu_html': 'Οι <em>Αγορές</em>',
       'markets.menu_sub': 'Βρείτε μας στο Άμστερνταμ',
-      'markets.eyebrow': 'Από το Πήλιο στο Άμστερνταμ',
+      'menu.item.partnership_html': 'Η <em>Συνεργασία</em>',
+      'menu.item.partnership_sub': 'Λιανική & φιλοξενία',
+      'pp.eyebrow': 'Πρόγραμμα συνεργασίας',
+      'pp.headline_html': 'Ιδιωτικές <em>συνεργασίες.</em>',
+      'pp.sub': 'Για επιλεγμένα εστιατόρια, boutiques και premium καταστήματα που αναζητούν εξαιρετικά ελληνικά προϊόντα.',
+      'pp.support_html': 'Προμήθεια μικρής παραγωγής από την Ελλάδα.<br>Διανομή από το Άμστερνταμ · διαθέσιμη χονδρική ΕΕ.',
+      'pp.badge.wholesale': 'Χονδρική ΕΕ',
+      'pp.badge.hospitality': 'Εφοδιασμός φιλοξενίας',
+      'pp.badge.retail': 'Boutique λιανική',
+      'pp.faq.q1': 'Υπάρχει ελάχιστη παραγγελία;',
+      'pp.faq.a1': 'Η πρώτη παραλαβή ξεκινά με ένα κουτί γευσιγνωσίας· ο συνεχής όγκος καθορίζεται μαζί, ανά εποχή.',
+      'pp.faq.q2': 'Στέλνετε σε όλη την ΕΕ;',
+      'pp.faq.a2': 'Ναι, δέμα και παλέτα, με αποστολή από το σημείο διανομής μας στο Άμστερνταμ.',
+      'pp.faq.q3': 'Πόσο σύντομα θα λάβω απάντηση;',
+      'pp.faq.a3': 'Διαβάζουμε κάθε αίτημα προσωπικά και απαντάμε εντός 24 έως 48 ωρών.',
+      'pp.form.title': 'Αίτημα συνεργασίας',
+      'pp.form.sub': 'Ένα σύντομο μήνυμα αρκεί. Απαντάμε προσωπικά.',
+      'pp.form.company': 'Επωνυμία επιχείρησης',
+      'pp.form.company_ph': 'Το σπίτι, η μάρκα, η επιχείρηση',
+      'pp.form.email': 'Επαγγελματικό email',
+      'pp.form.country': 'Χώρα',
+      'pp.form.country_ph': 'Ολλανδία',
+      'pp.form.type': 'Τύπος επιχείρησης',
+      'pp.form.type.select': 'Επιλέξτε',
+      'pp.form.type.restaurant': 'Εστιατόριο',
+      'pp.form.type.hotel': 'Ξενοδοχείο · φιλοξενία',
+      'pp.form.type.boutique': 'Boutique · deli',
+      'pp.form.type.retail': 'Premium λιανική',
+      'pp.form.type.distributor': 'Διανομέας',
+      'pp.form.volume': 'Εκτιμώμενος μηνιαίος όγκος παραγγελιών',
+      'pp.form.volume_ph': 'π.χ. 120 βάζα τον μήνα, ή πρώτα ένα δοκιμαστικό κουτί',
+      'pp.form.message': 'Μήνυμα',
+      'pp.form.message_ph': 'Πείτε μας για τον χώρο: την κουζίνα, το ράφι, τον επισκέπτη.',
+      'pp.form.submit': 'Αίτημα συνεργασίας',
+      'pp.form.note': 'Προσωπική αξιολόγηση · απάντηση εντός 24–48 ωρών',
+      'pp.success.h': 'Το αίτημά σας είναι καθ’ οδόν.',
+      'pp.success.p': 'Θα το διαβάσουμε προσωπικά και θα απαντήσουμε εντός δύο εργάσιμων ημερών.',
+      'markets.eyebrow': 'Από την Ελλάδα στο Άμστερνταμ',
       'markets.hero.h_html': 'Βρείτε μας<br><em>στο Άμστερνταμ.</em>',
       'markets.hero.sub': 'Συναντήστε τη Harvest Deli από κοντά στις εβδομαδιαίες και μηνιαίες αγορές μας, ήσυχα φερμένες από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
       'markets.cards.eyebrow': 'Δύο τραπέζια',
@@ -1403,9 +1595,9 @@
       'markets.westerpark.desc': 'Μια πιο αργή Κυριακάτικη συνάντηση μέσα στο παλιό εργοστάσιο φωταερίου. Λινό, φως κεριών το σούρουπο, και η σοδειά, μια κουταλιά τη φορά.',
       'markets.story.eyebrow': 'Το τραπέζι',
       'markets.story.lead_html': '"Για εμάς, οι αγορές δεν είναι μόνο πώληση μελιού. Είναι <em>συνομιλία, δοκιμή</em> και μοίρασμα της σοδειάς."',
-      'markets.story.body': 'Κάθε πρωί στρώνουμε το τραπέζι όπως η οικογένειά μας τέσσερις γενιές τώρα στις πλαγιές του Πηλίου, λινό διπλωμένο, βάζα ανοιχτά, ένα κουτάλι πάνω στο χείλος. Το Άμστερνταμ, με τα ποδήλατά του και το γκρίζο πρωινό του φως, υποδέχτηκε το μικρό μας τελετουργικό. Ελάτε νωρίς. Μείνετε αργά. Δοκιμάστε πριν μιλήσετε.',
-      'markets.story.sig': 'Στέλιος &amp; Ελένη Ανδρέου',
-      'markets.story.sigsub': 'Πήλιο · Άμστερνταμ',
+      'markets.story.body': 'Κάθε πρωί στρώνουμε το τραπέζι με τον ίδιο τρόπο, χρόνο με τον χρόνο, στα ελληνικά βουνά, λινό διπλωμένο, βάζα ανοιχτά, ένα κουτάλι πάνω στο χείλος. Το Άμστερνταμ, με τα ποδήλατά του και το γκρίζο πρωινό του φως, υποδέχτηκε το μικρό μας τελετουργικό. Ελάτε νωρίς. Μείνετε αργά. Δοκιμάστε πριν μιλήσετε.',
+      'markets.story.sig': 'Harvest Deli',
+      'markets.story.sigsub': 'Ελλάδα · Άμστερνταμ',
       'markets.gallery.eyebrow': 'Ένα φωτογραφικό ημερολόγιο',
       'markets.gallery.h_html': '<em>Πρωινά</em> στο τραπέζι.',
       'markets.gallery.cap1': 'Ηλιαχτίδα μέσα από το λινό, μετά το άνοιγμα.',
@@ -1426,9 +1618,9 @@
       'markets.cta.trade': 'Λιανική & φιλοξενία',
       'idx.markets.eyebrow': 'Στο Άμστερνταμ',
       'idx.markets.h_html': 'Βρείτε μας στο <em>τραπέζι της αγοράς.</em>',
-      'idx.markets.body': 'Από το Πήλιο στο Άμστερνταμ. Δύο τραπέζια, στρωμένα με λινό, ένα κουτάλι για δοκιμή και ο πρωινός καφές, ήσυχα φερμένα από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
+      'idx.markets.body': 'Από την Ελλάδα στο Άμστερνταμ. Δύο τραπέζια, στρωμένα με λινό, ένα κουτάλι για δοκιμή και ο πρωινός καφές, ήσυχα φερμένα από τα βουνά της Ελλάδας στις αγορές του Άμστερνταμ.',
       'idx.markets.cta': 'Βρείτε μας στο Άμστερνταμ',
-      'idx.scene0.est': 'Ιδρύθηκε · Πήλιο, Ελλάδα · Κτήμα №01',
+      'idx.scene0.est': 'Ιδρύθηκε · Ελλάδα',
       'idx.scene1.eyebrow_html': 'Έκδοση I <span class="dot"></span> Καστανόμελο',
       'idx.scene1.line_html': 'Αιχμαλωτισμένο από<br><em>τον ελληνικό ήλιο.</em>',
       'idx.scene2.eyebrow': 'Ένα πεδίο γαλήνης',
@@ -1438,7 +1630,7 @@
       'idx.card1.h': 'Φυσική συγκομιδή',
       'idx.card1.p': 'Κηρήθρες συλλέγονται με το χέρι σε υψόμετρο. Ποτέ θερμασμένες, ποτέ επεξεργασμένες. Κάθε αρωματική νότα της εποχής διατηρείται ανέπαφη.',
       'idx.card2.h': 'Μικρή παρτίδα',
-      'idx.card2.p': 'Κάθε κτήμα παράγει λιγότερα από τετρακόσια βάζα ανά συγκομιδή. Ένας ήσυχος αριθμός, σκοπίμως μικρός.',
+      'idx.card2.p': 'Κάθε συγκομιδή μένει κάτω από τετρακόσια βάζα. Ένας ήσυχος αριθμός, σκοπίμως μικρός.',
       'idx.card3.h': 'Φυσική προέλευση',
       'idx.card3.p': 'Από μία πηγή, ιχνηλάσιμη σε ένα λιβάδι, ένα βουνό, μια εποχή. Τίποτα δεν προστίθεται. Τίποτα δεν αφαιρείται.',
       'idx.scene4.eyebrow': 'Η συλλογή',
@@ -1450,16 +1642,16 @@
       'idx.sel.cta': 'Δείτε όλη τη συλλογή',
       'idx.ch1.eyebrow': 'Η Προέλευση',
       'idx.ch1.h': 'Γεννημένο στους ήσυχους λόφους της Βόρειας Ελλάδας.',
-      'idx.ch1.body': 'Επί πέντε γενιές, μία οικογένεια φροντίζει χίλιες κυψέλες πάνω στις ασβεστολιθικές κορυφογραμμές του Πηλίου. Άγριο θυμάρι, ρείκι και κουμαριά ανθίζουν σε μία και μόνη, αμετάφραστη εποχή. Το μέλι παίρνει σχήμα από αυτή τη γη, και από τίποτα άλλο.',
-      'idx.ch1.caption': 'Πήλιο · Ανοιξιάτικη συγκομιδή',
+      'idx.ch1.body': 'Χίλιες κυψέλες απλώνονται στις ασβεστολιθικές κορυφογραμμές των ελληνικών βουνών. Άγριο θυμάρι, ρείκι και κουμαριά ανθίζουν σε μία και μόνη, αμετάφραστη εποχή. Το μέλι παίρνει σχήμα από αυτή τη γη, και από τίποτα άλλο.',
+      'idx.ch1.caption': 'Ελλάδα · Ανοιξιάτικη συγκομιδή',
       'idx.ch2.eyebrow': 'Η Διαδικασία',
       'idx.ch2.h': 'Μια πρακτική εξευγενισμένη από τον χρόνο, όχι από την τεχνολογία.',
-      'idx.step1.h': 'Συλλεγμένο σε υψόμετρο',
-      'idx.step1.p': 'Οι κυψέλες τοποθετούνται εκεί όπου τα αγριολούλουδα μεγαλώνουν αφρόντιστα. Ποτέ κοντά σε καλλιέργειες, ποτέ κοντά σε δρόμο. Οι μέλισσες αποφασίζουν πού θα τραφούν· εμείς απλά ακούμε.',
-      'idx.step2.h': 'Ψυχρή εκχύλιση',
-      'idx.step2.p': 'Οι κηρήθρες φυγοκεντρούνται στη θερμοκρασία του κελαριού, ποτέ δεν θερμαίνονται. Κάθε ένζυμο, κάθε γύρη, κάθε μνήμη της εποχής παραμένει ανέπαφη.',
-      'idx.step3.h': 'Καθίζηση, χωρίς διήθηση',
-      'idx.step3.p': 'Το μέλι ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός. Ο αέρας ανεβαίνει, το ίζημα κατακάθεται. Τίποτα δεν εξαναγκάζεται, τίποτα δεν φιλτράρεται, και η υφή παραμένει ζωντανή.',
+      'idx.step1.h': 'Άγρια Συγκομιδή',
+      'idx.step1.p': 'Κηρήθρες μαζεμένες στο χέρι από κυψέλες ψηλά σε ανέγγιχτα αγριολούλουδα — ποτέ κοντά σε δρόμο ή χωράφι.',
+      'idx.step2.h': 'Ψυχρή Εκχύλιση',
+      'idx.step2.p': 'Φυγοκεντρείται αργά στη θερμοκρασία του κελαριού, ποτέ δεν θερμαίνεται. Κάθε ένζυμο και ίχνος γύρης παραμένει ανέπαφο.',
+      'idx.step3.h': 'Φυσική Ανάπαυση',
+      'idx.step3.p': 'Δεκατέσσερις ήσυχες ημέρες καθίζησης σε δρυ. Τίποτα εξαναγκασμένο, τίποτα φιλτραρισμένο — η υφή μένει ζωντανή.',
       'idx.taste.quote': 'Μια γεύση που κρατά τη μνήμη ενός ορεινού πρωινού. Ζεστή, χρυσαφένια, αργή να φύγει.',
       'idx.taste.cite': 'Σημειώσεις από το δωμάτιο γευσιγνωσίας',
       'idx.preview.eyebrow': 'Η Συλλογή',
@@ -1468,12 +1660,13 @@
       'idx.preview.exploreAll': 'Δείτε και τις έξι εκδόσεις',
       'idx.product.eyebrow': 'Η Συλλογή · Έκδοση I',
       'idx.product.title_html': 'Καστανόμελο, <em>συγκομιδή 2025.</em>',
-      'idx.product.originLine_html': 'Πήλιο <span class="dot"></span> 950μ <span class="dot"></span> 384 βάζα',
+      'idx.product.originLine_html': 'Ελλάδα <span class="dot"></span> 950μ <span class="dot"></span> 384 βάζα',
       'idx.product.desc': 'Μέλι μιας μοναδικής λιβαδιάς αξιοσημείωτης διαύγειας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, αριθμημένο με το χέρι, διατηρημένο ανεπεξέργαστο.',
       'idx.product.cta_html': 'Δείτε το βάζο, €68',
-      'shop.eyebrow': 'Η Συλλογή · 2025',
-      'shop.headline_html': 'Μια μικρή, <em>αριθμημένη</em> βιβλιοθήκη της ελληνικής σοδειάς.',
-      'shop.intro': 'Εννέα μέλια μονής προέλευσης, ένα ελαιόλαδο ψυχρής έκθλιψης και ένα άγριο τσάι του βουνού, το καθένα ανεπεξέργαστο, σφραγισμένο στο χέρι και αποστελλόμενο ήσυχα από την Ελλάδα εντός της εβδομάδας.',
+      'shop.eyebrow': 'Η Συλλογή',
+      'shop.headline_html': '11 <em>premium</em> ελληνικές λιχουδιές.',
+      'shop.intro': 'Ωμό. Απαστερίωτο. Απευθείας από την πηγή.',
+      'shop.trustline': 'Ωμό & απαστερίωτο · Συγκομιδή στην Ελλάδα · Δωρεάν αποστολή στην Ευρώπη άνω των €65',
       'shop.filterLabel': 'Φίλτρο κατά',
       'shop.filter.all': 'Όλα',
       'shop.filter.floral': 'Ανθόσπαρτα',
@@ -1490,20 +1683,20 @@
       'shop.empty.h': 'Καμία έκδοση δεν ταιριάζει με αυτό το φίλτρο.',
       'shop.empty.p': 'Κάθε εποχή η συλλογή αλλάζει. Δοκιμάστε μια άλλη κατηγορία ή δείτε ολόκληρη τη βιβλιοθήκη.',
       'shop.empty.cta': 'Δείτε όλες τις εκδόσεις',
-      'about.eyebrow': 'Η Προέλευση · Ένας οίκος στο Πήλιο',
+      'about.eyebrow': 'Η Προέλευση · Ένας οίκος στην Ελλάδα',
       'about.headline_html': 'Ένα ταξίδι στην <em>προέλευση.</em>',
-      'about.intro': 'Πέντε γενιές μιας οικογένειας, που εργάζονται σε χίλιες κυψέλες πάνω σε ένα και μόνο βουνό. Το μέλι είναι το αποτέλεσμα. Αυτή είναι η ιστορία πίσω από το βάζο.',
-      'about.frameCaption': 'Όρος Πήλιο · Βόρεια Ελλάδα',
+      'about.intro': 'Χίλιες κυψέλες πάνω σε ένα και μόνο ελληνικό βουνό. Το μέλι είναι το αποτέλεσμα. Αυτή είναι η ιστορία πίσω από το βάζο.',
+      'about.frameCaption': 'Βόρεια Ελλάδα',
       'about.ch1.eyebrow': 'Ελλάδα · Η γη',
       'about.ch1.h': 'Ένα βουνό που η θάλασσα δεν μπορεί να φτάσει.',
-      'about.ch1.p1': 'Το Πήλιο ανυψώνεται εξακόσια μέτρα από την ακτή του Αιγαίου σε μία και μόνη, αργή χειρονομία. Οι ασβεστολιθικές κορυφογραμμές του κρατούν άγριο θυμάρι, ρείκι, ρίγανη, κουμαριά και καστανιά σε μία και μόνη, αμετάφραστη εποχή. Δουλεύουμε τη νότια πλευρά, όπου ο ήλιος έρχεται νωρίς και ο αέρας κρατά την ξηρότητά του μέχρι το απόγευμα.',
+      'about.ch1.p1': 'Τα βουνά ανυψώνονται εξακόσια μέτρα από την ακτή του Αιγαίου σε μία και μόνη, αργή χειρονομία. Οι ασβεστολιθικές κορυφογραμμές του κρατούν άγριο θυμάρι, ρείκι, ρίγανη, κουμαριά και καστανιά σε μία και μόνη, αμετάφραστη εποχή. Δουλεύουμε τη νότια πλευρά, όπου ο ήλιος έρχεται νωρίς και ο αέρας κρατά την ξηρότητά του μέχρι το απόγευμα.',
       'about.ch1.p2': 'Τίποτα εδώ δεν καλλιεργείται. Οι μέλισσες αποφασίζουν πού θα τραφούν, και η εποχή αποφασίζει τι θα φέρουν πίσω.',
-      'about.ch1.caption': 'Κορυφογραμμές Πηλίου · 1100μ',
-      'about.quote.text': '"Ο παππούς μου κρατούσε τριάντα κυψέλες. Ο πατέρας μου, τριακόσιες. Εγώ κρατώ χίλιες, και όμως, λιγότερες."',
-      'about.quote.cite': 'Σταύρος Ανδρέου · Μελισσοκόμος, πέμπτη γενιά',
+      'about.ch1.caption': 'Ελληνικές κορυφογραμμές · 1100μ',
+      'about.quote.text': '"Πάρε μόνο ό,τι δίνει η εποχή. Αρίθμησέ το, σφράγισέ το, και άσ’ το να είναι ακριβώς αυτό που είναι."',
+      'about.quote.cite': 'Harvest Deli',
       'about.ch2.eyebrow': 'Ο μελισσοκόμος',
-      'about.ch2.h': 'Σταύρος, που έμαθε να ακούει.',
-      'about.ch2.p1': 'Ο Σταύρος Ανδρέου είναι η πέμπτη γενιά της οικογένειάς του που κρατά μέλισσες σε αυτό το βουνό. Κληρονόμησε το κελάρι από τον πατέρα του το 2009, και τα χειρόγραφα του προπάππου του στέκονται σε ένα ράφι πάνω από τις δεξαμενές, καταγράφοντας θερμοκρασίες και αποδόσεις μέχρι το 1882.',
+      'about.ch2.h': 'Φτιαγμένο με την ακρόαση.',
+      'about.ch2.p1': 'Η Harvest Deli κρατά μέλισσες με τον αργό τρόπο: διαβάζοντας την ανθοφορία, μετακινώντας τις κυψέλες με το χέρι, παίρνοντας μόνο ό,τι δίνει η εποχή. Οι κηρήθρες φυγοκεντρούνται δροσερές, ποτέ φιλτραρισμένες, μόνο αφήνονται να κατακαθίσουν. Τίποτα δεν βιάζεται, και τίποτα δεν αναμειγνύεται.',
       'about.ch2.p2': 'Δουλεύει μόνος δέκα μήνες τον χρόνο. Δύο νεότεροι ανιψιοί τον συνοδεύουν στη συγκομιδή. Οι μέλισσες, λέει, δίδαξαν στην οικογένεια πολύ περισσότερα απ’όσα η οικογένεια έμαθε ποτέ στις μέλισσες.',
       'about.ch2.caption': 'Το κελάρι · δεξαμενές δρυός',
       'about.ch3.eyebrow': 'Τα βουνά',
@@ -1511,8 +1704,8 @@
       'about.ch3.p1': 'Κάθε μελισσοκομείο βρίσκεται μεταξύ 600 και 1400 μέτρων στις νότιες πλαγιές. Ποτέ κοντά σε δρόμο. Ποτέ κοντά σε καλλιεργημένο χωράφι. Το περπάτημα προς τις υψηλότερες κυψέλες παίρνει ένα ολόκληρο πρωινό, και προσέχουμε να μην ενοχλούμε τις μέλισσες περισσότερο απ’όσο απαιτεί η εποχή.',
       'about.ch3.p2': 'Το υψόμετρο διαμορφώνει το μέλι περισσότερο από οποιοδήποτε μεμονωμένο λουλούδι. Οι ψυχρότερες νύχτες επιβραδύνουν τις μέλισσες. Το μέλι πυκνώνει. Ο χαρακτήρας βαθαίνει.',
       'about.ch3.caption': 'Κυψέλη №47 · 1280μ',
-      'about.n1.lbl': 'Κυψέλες κατά μήκος της νότιας πλευράς του Πηλίου',
-      'about.n2.lbl': 'Γενιές μιας οικογένειας στο βουνό',
+      'about.n1.lbl': 'Κυψέλες κατά μήκος της νότιας πλευράς των ελληνικών βουνών',
+      'about.n2.lbl': 'Κυψέλες στο βουνό',
       'about.n3.lbl': 'Αριθμημένα βάζα στην έκδοση Καστανιάς',
       'about.n4.lbl': 'Πρόσθετα, ποτέ. Ωμό μέλι, σφραγισμένο με κερί.',
       'about.ch4.eyebrow': 'Η συγκομιδή',
@@ -1522,15 +1715,15 @@
       'about.ch4.caption': 'Πρωινό συγκομιδής · Απρίλιος',
       'about.ch5.eyebrow': 'Οικογενειακή παράδοση',
       'about.ch5.h': 'Μια πρακτική που περνά ήσυχα από χέρι σε χέρι.',
-      'about.ch5.p1': 'Μερικά απ’αυτά που κάνουμε γίνονται με τον ίδιο τρόπο για πέντε γενιές. Άλλα αλλάζουν κάθε χρόνο. Οι μέλισσες μας κρατούν ειλικρινείς. Το βουνό μας κρατά μικρούς.',
+      'about.ch5.p1': 'Μερικά απ’αυτά που κάνουμε γίνονται με τον ίδιο τρόπο εδώ και πολύ καιρό. Άλλα αλλάζουν κάθε χρόνο. Οι μέλισσες μας κρατούν ειλικρινείς. Το βουνό μας κρατά μικρούς.',
       'about.ch5.p2': 'Δεν κλιμακώνουμε. Δεν αναμειγνύουμε. Δεν αφαιρούμε το κερί από τα καπάκια των βάζων. Τριακόσια ογδόντα τέσσερα βάζα στην έκδοση Καστανιάς, και όταν τελειώσουν, η εποχή έχει τελειώσει.',
-      'about.ch5.caption': 'Αρχείο κελαριού · 1882, 2025',
+      'about.ch5.caption': 'Αρχείο κελαριού · 2025',
       'about.cta.label': 'Η Συλλογή · 2025',
       'about.cta.h_html': 'Γευτείτε το <em>βουνό.</em>',
       'about.cta.btn': 'Δείτε τη συλλογή',
-      'contact.eyebrow': 'Επικοινωνία · Πήλιο, Ελλάδα',
+      'contact.eyebrow': 'Επικοινωνία · Ελλάδα',
       'contact.headline_html': 'Γράψτε στον <em>οίκο.</em>',
-      'contact.intro': 'Για χονδρική, φιλοξενία, τύπο, ή απλά μια ήσυχη ερώτηση για ένα βάζο. Ο Σταύρος και η οικογένεια διαβάζουν κάθε μήνυμα, και απαντούν εντός δύο εργάσιμων ημερών.',
+      'contact.intro': 'Για χονδρική, φιλοξενία, τύπο, ή απλά μια ήσυχη ερώτηση για ένα βάζο. Διαβάζουμε κάθε μήνυμα, και απαντούν εντός δύο εργάσιμων ημερών.',
       'contact.form.h': 'Ξεκινήστε ένα αίτημα.',
       'contact.form.sub': 'Λίγες γραμμές αρκούν. Απαντούμε προσωπικά.',
       'contact.pill.general': 'Προσωπικό αίτημα',
@@ -1540,14 +1733,14 @@
       'contact.pill.press': 'Τύπος',
       'contact.pill.collab': 'Συνεργασία',
       'contact.founder.quote': 'Κάθε συνεργασία με τη Harvest Deli ξεκινά με μια συζήτηση. Προτιμούμε λίγες μακροχρόνιες σχέσεις από την ευρεία διανομή — το βάζο, και τα χέρια πίσω του, το αξίζουν.',
-      'contact.founder.name': 'Σταύρος Ανδρέου',
-      'contact.founder.role': 'Η οικογένεια Ανδρέου · Πήλιο, Ελλάδα',
+      'contact.founder.name': 'Harvest Deli',
+      'contact.founder.role': 'Harvest Deli · Ελλάδα',
       'contact.label.name': 'Όνομα',
       'contact.label.house': 'Οίκος / επιχείρηση',
       'contact.label.email': 'Email',
       'contact.label.country': 'Χώρα',
       'contact.label.message': 'Μήνυμα',
-      'contact.ph.name': 'Μαρία Ανδρέου',
+      'contact.ph.name': 'Μαρία',
       'contact.ph.house': 'Προαιρετικό',
       'contact.ph.email': 'maria@example.com',
       'contact.ph.country': 'Ελλάδα',
@@ -1555,29 +1748,29 @@
       'contact.submit': 'Ξεκινήστε τη συζήτηση',
       'contact.formNote': 'Γράφοντάς μας συμφωνείτε ότι μπορούμε να αποθηκεύσουμε το μήνυμά σας με σκοπό την απάντηση. Δεν πουλάμε ούτε μοιραζόμαστε στοιχεία. Ποτέ.',
       'contact.success.h': 'Το μήνυμά σας είναι καθ’οδόν.',
-      'contact.success.p': 'Ο Σταύρος ή κάποιος από την οικογένεια θα το διαβάσει προσωπικά και θα απαντήσει εντός δύο εργάσιμων ημερών.',
+      'contact.success.p': 'Θα το διαβάσουμε προσωπικά και θα απαντήσουμε εντός δύο εργάσιμων ημερών.',
       'contact.info.h': 'Ή γράψτε μας απευθείας.',
       'contact.info.wholesale.lbl': 'Χονδρική',
       'contact.info.wholesale.title_html': 'Στοκάροντας τη <em>συλλογή.</em>',
       'contact.info.wholesale.p': 'Μικρές κατανομές διαθέσιμες σε ανεξάρτητες μπουτίκ, ντελικατέσεν και τεϊοποτεία σε όλη την ΕΕ και επιλεγμένες διεθνείς αγορές.',
       'contact.info.hospitality.lbl': 'Φιλοξενία · Εστιατόρια',
       'contact.info.hospitality.title_html': 'Για το <em>τραπέζι.</em>',
-      'contact.info.hospitality.p': 'Συνεργαζόμαστε ήσυχα με ένα μικρό αριθμό εστιατορίων και ξενοδοχείων κάθε χρόνο. Δειγματοκιβώτια αποστέλλονται από το Πήλιο εντός της εβδομάδας.',
+      'contact.info.hospitality.p': 'Συνεργαζόμαστε ήσυχα με ένα μικρό αριθμό εστιατορίων και ξενοδοχείων κάθε χρόνο. Δειγματοκιβώτια αποστέλλονται από την Ελλάδα εντός της εβδομάδας.',
       'contact.info.retail.lbl': 'Επιλεγμένοι λιανοπωλητές',
       'contact.info.retail.title_html': 'Ένα διακριτικό <em>ράφι.</em>',
       'contact.info.retail.p': 'Επιλεγμένοι συνεργάτες λιανικής λαμβάνουν ετήσια κατανομή, έκδοση προς έκδοση, με προτεραιότητα στις περιορισμένες ρεζέρβες.',
       'contact.info.press.lbl': 'Τύπος · Συνεργασία',
       'contact.info.press.title_html': 'Μια πιο ήσυχη <em>συζήτηση.</em>',
       'contact.info.press.p': 'Συντακτικά αιτήματα, φωτογραφία και δημιουργικές συνεργασίες. Απαντούμε αργά, αλλά απαντούμε.',
-      'contact.location.lbl': 'Το κτήμα',
-      'contact.location.h_html': 'Πήλιο, <em>Βόρεια Ελλάδα.</em>',
-      'contact.address_html': 'Harvest Deli &middot; Κτήμα №01<br>37006 Πήλιο, Μαγνησία<br>Ελλάδα',
+      'contact.location.lbl': 'Προέλευση',
+      'contact.location.h_html': 'Βόρεια <em>Ελλάδα.</em>',
+      'contact.address_html': 'Harvest Deli<br>Ελλάδα',
       'checkout.step.cellar': 'Κελάρι',
       'checkout.step.checkout': 'Πληρωμή',
       'checkout.step.confirmation': 'Επιβεβαίωση',
       'checkout.eyebrow': 'Πληρωμή · Έκδοση I',
       'checkout.headline_html': 'Μια ήσυχη, <em>προσεκτική</em> παράδοση.',
-      'checkout.sub': 'Τρία βήματα. Αριθμημένα, σφραγισμένα, αποστελλόμενα από το Πήλιο εντός της εβδομάδας.',
+      'checkout.sub': 'Τρία βήματα. Αριθμημένα, σφραγισμένα, αποστελλόμενα από την Ελλάδα εντός της εβδομάδας.',
       'checkout.express.divider': 'Ή πληρώστε με κάρτα',
       'checkout.step1.h_html': 'Επικοινωνία &middot; <em>πού να απαντήσουμε.</em>',
       'checkout.label.email': 'Email',
@@ -1618,12 +1811,12 @@
       'checkout.package.h_html': 'Σφραγισμένο σε <em>κερί.</em> Συσκευασμένο σε καπλαμά δρυός.',
       'checkout.package.p': 'Κάθε βάζο τυλίγεται με το χέρι, σφραγίζεται με μαύρο κερί, και τοποθετείται σε ένα κουτί παρουσίασης με καπλαμά δρυός. Μια χειρόγραφη κάρτα ταξιδεύει με την παραγγελία.',
       'checkout.package.tag': 'Έκδοση I · Συγκομιδή 2025',
-      'checkout.trust.stripe1': 'Stripe',
-      'checkout.trust.stripe2': 'κρυπτογραφημένο',
-      'checkout.trust.intl1': 'Διεθνής',
-      'checkout.trust.intl2': 'αποστολή',
-      'checkout.trust.sealed1': 'Σφραγισμένο στο',
-      'checkout.trust.sealed2': 'Πήλιο',
+      'checkout.trust.stripe1': 'Ασφαλής πληρωμή',
+      'checkout.trust.stripe2': 'Μέσω Mollie & iDEAL',
+      'checkout.trust.intl1': 'Παράδοση στην Ευρώπη',
+      'checkout.trust.intl2': 'Γρήγορη αποστολή από Ολλανδία',
+      'checkout.trust.sealed1': 'Αυθεντικό από την Ελλάδα',
+      'checkout.trust.sealed2': 'Απευθείας από τοπικούς παραγωγούς',
       'checkout.row.subtotal': 'Μερικό σύνολο',
       'checkout.row.shipping': 'Αποστολή',
       'checkout.row.total': 'Σύνολο',
@@ -1631,17 +1824,17 @@
       'product.crumb.collection': 'Συλλογή',
       'product.crumb.current': 'Έκδοση I, Καστανόμελο',
       'product.eyebrow_html': 'Έκδοση I <span class="dot"></span> Συγκομιδή 2025',
-      'product.title_html': 'Καστανόμελο, <em>κτήμα Πηλίου.</em>',
+      'product.title_html': 'Καστανόμελο, <em>μία προέλευση.</em>',
       'product.tag.singleMeadow': 'Μία Λιβαδιά',
       'product.tag.coldExtracted': 'Ψυχρή Εκχύλιση',
       'product.tag.numbered': 'Αριθμημένα · 384',
-      'product.desc': 'Ένα διαυγές, αργό μέλι συγκομισμένο από τους καστανεώνες της νότιας πλαγιάς του Πηλίου. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, σφραγισμένο με κερί, διατηρημένο ανεπεξέργαστο.',
-      'product.priceSub_html': 'με ΦΠΑ &middot; αποστολή παγκοσμίως',
+      'product.desc': 'Ένα διαυγές, αργό μέλι συγκομισμένο από τους καστανεώνες της νότιας πλαγιάς της Ελλάδας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, σφραγισμένο με κερί, διατηρημένο ανεπεξέργαστο.',
+      'product.priceSub_html': 'με ΦΠΑ &middot; αποστολή εντός Ολλανδίας & Βελγίου',
       'product.size.tasting': 'Γευσιγνωσία',
-      'product.size.estate': 'Κτήμα',
+      'product.size.estate': 'Μεγάλο',
       'product.size.reserve': 'Ρεζέρβα',
       'product.cta': 'Προσθήκη στο κελάρι',
-      'product.notes_html': 'Δωρεάν αποστολή στην ΕΕ άνω των €120 <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
+      'product.notes_html': 'Δωρεάν αποστολή στην Ευρώπη άνω των €65 <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
       'product.tasting.eyebrow': 'Η Γευσιγνωσία',
       'product.tasting.h_html': 'Τι γεύεστε, αργά.',
       'product.tasting.first.h': 'Πρώτη',
@@ -1655,15 +1848,15 @@
       'product.tasting.finish.p': 'Μια αργή κάθοδος προς την πέτρα και το αλάτι. Διακριτική, σχεδόν ξηρή. Το είδος της επίγευσης που παραμένει στο δωμάτιο πολύ μετά την απόθεση του κουταλιού.',
       'product.origin.eyebrow': 'Η Προέλευση',
       'product.origin.h_html': 'Μία λιβαδιά, μία εποχή.',
-      'product.origin.p1': 'Η συγκομιδή 2025 προέρχεται από έναν μοναδικό, νότιο καστανεώνα στα 950 μέτρα στις πλαγιές του Όρους Πηλίου, όπου τα δέντρα ανθίζουν σε ένα στενό παράθυρο κάθε αργό καλοκαίρι.',
+      'product.origin.p1': 'Η συγκομιδή 2025 προέρχεται από έναν μοναδικό, νότιο καστανεώνα στα 950 μέτρα στις πλαγιές του Όρους Ελλάδας, όπου τα δέντρα ανθίζουν σε ένα στενό παράθυρο κάθε αργό καλοκαίρι.',
       'product.origin.p2': 'Τριακόσια ογδόντα τέσσερα βάζα αντλήθηκαν από αυτή την εποχή. Καθένα αριθμημένο με το χέρι, σφραγισμένο με μαύρο κερί, και διατηρημένο ακριβώς όπως άφησε την κηρήθρα.',
-      'product.origin.caption': 'Πήλιο · 950μ · Αργό καλοκαίρι',
+      'product.origin.caption': 'Ελλάδα · 950μ · Αργό καλοκαίρι',
       'product.details.eyebrow': 'Οι Λεπτομέρειες',
       'product.details.h_html': 'Ήσυχα, προσεκτικά φτιαγμένο.',
       'product.det.weight.lbl': 'Καθαρό βάρος',
       'product.det.weight.val_html': '250g <em>γυάλινο βάζο</em>',
       'product.det.origin.lbl': 'Προέλευση',
-      'product.det.origin.val_html': 'Πήλιο, <em>Ελλάδα</em>',
+      'product.det.origin.val_html': '<em>Ελλάδα</em>',
       'product.det.vintage.lbl': 'Εσοδεία',
       'product.det.vintage.val_html': 'Αργό καλοκαίρι <em>2025</em>',
       'product.det.edition.lbl': 'Έκδοση',
@@ -1678,7 +1871,7 @@
       'product.det.package.val_html': 'Χειροπίεστο γυαλί, <em>μαύρο κερί</em>',
       'product.also.eyebrow': 'Επίσης Από Τη Συλλογή',
       'product.also.h_html': 'Τα υπόλοιπα του οίκου.',
-      'product.sticky.name': 'Καστανόμελο, κτήμα Πηλίου',
+      'product.sticky.name': 'Καστανόμελο, μία προέλευση',
       'product.sticky.price': '€18 · Έκδοση I',
       'product.sticky.add': 'Προσθήκη'
     }
@@ -1689,14 +1882,15 @@
   //  FAQ i18n bundle (homepage + contact), extends T
   // =====================================================
   Object.assign(T.en, {
-    'idx.faq.eyebrow': 'Frequently asked',
-    'idx.faq.title_html': 'Slowly <em>answered.</em>',
-    'idx.faq.desc': 'The short replies we send to first-time visitors of the cellar. Tap a question to read the longer answer.',
+    'idx.faq.eyebrow': 'The concierge',
+    'idx.faq.title_html': 'Questions,<br>answered with <em>care.</em>',
+    'idx.faq.desc': 'Private assistance for those who value slow food.',
+    'idx.faq.response': 'Response time — usually within 24 hours',
     'idx.faq.help_html': 'Cannot find your question? Write to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'How quickly do you ship?',
     'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch you can expect one to two working days inside the Netherlands and two to eight working days across the EU. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.',
     'idx.faq.q2': 'Where do you ship to?',
-    'idx.faq.a2_html': 'The whole of the Netherlands, every EU member state, plus the United Kingdom, Switzerland and Norway. Worldwide on request. Shipping is complimentary above &euro;90 in the Netherlands and above &euro;120 across the EU.',
+    'idx.faq.a2_html': 'The whole of the Netherlands, every EU member state, plus the United Kingdom, Switzerland and Norway. Shipping is complimentary within the Netherlands & Belgium above &euro;65.',
     'idx.faq.q3': 'Is your honey raw?',
     'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-taste-the-greek-sun.html">tasting essay</a>.',
     'idx.faq.q4': 'How long does the honey keep?',
@@ -1707,8 +1901,8 @@
     'idx.faq.a6_html': 'Yes. An oak-veneered presentation box, lined in linen, holds one to three jars and travels with a handwritten card. Select gift packaging in the checkout, with a small &euro;9,50 surcharge.',
     'idx.faq.q7': 'Is raw honey safe for young children?',
     'idx.faq.a7_html': 'Do not give honey to children under twelve months of age. This is the standard advice of the Dutch Voedingscentrum, due to a very small risk of infant botulism in any unprocessed honey. For everyone above one year, honey is safe to enjoy.',
-    'idx.faq.q8': 'Can I visit the estate?',
-    'idx.faq.a8_html': 'By appointment we welcome small groups between April and October at the Andreou cellar in Pelion, Greece. A single day, an accompanied tasting, a walk to the higher hives if the weather allows. Send your preferred dates to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>.',
+    'idx.faq.q8': 'Can I visit you?',
+    'idx.faq.a8_html': 'There is no public estate to visit. Harvest Deli is small; everything is gathered in Greece and shipped from our Amsterdam depot. For press or wholesale, write to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>.',
 
     'cnt.faq.eyebrow': 'Before you write',
     'cnt.faq.title_html': 'Frequently <em>asked.</em>',
@@ -1719,24 +1913,25 @@
     'cnt.faq.q2': 'Which channel should I use?',
     'cnt.faq.a2_html': 'Use <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> for general questions, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> for shipping and delivery, <a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a> for retail and hospitality, and <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a> for data and access requests under the GDPR.',
     'cnt.faq.q3': 'Wholesale or hospitality enquiry?',
-    'cnt.faq.a3_html': 'Send a short note via the form on our <a href="partners.html">partnership programme</a>. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Pelion the same week.',
+    'cnt.faq.a3_html': 'Send a short note via the form on our <a href="partners.html">partnership programme</a>. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Greece the same week.',
     'cnt.faq.q4': 'My order has not arrived or arrived damaged.',
     'cnt.faq.a4_html': 'Email <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> with your order number and, where possible, a photograph of the outer box. We arrange a free replacement shipment or full refund within two working days. Read more on the <a href="legal-shipping.html">shipping</a> and <a href="legal-returns.html">returns</a> pages.',
-    'cnt.faq.q5': 'Can I visit the estate or the depot?',
-    'cnt.faq.a5_html': 'By appointment, yes. Press, wholesale partners and existing clients are welcome. Send a request with date and reason to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. The Andreou cellar in Pelion is open to small groups between April and October.',
+    'cnt.faq.q5': 'Can I visit the depot?',
+    'cnt.faq.a5_html': 'By appointment, yes. Press, wholesale partners and existing clients are welcome. Send a request with date and reason to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Visits are at our Amsterdam depot only; there is no public estate in Greece.',
     'cnt.faq.q6': 'Do you exist on social media?',
     'cnt.faq.a6_html': 'Quietly, on Instagram. We do not run paid advertising and we do not chase the algorithm. Subscribe to the <a href="journal.html">journal</a> for slower correspondence, three or four times a year.'
   });
 
   Object.assign(T.nl, {
-    'idx.faq.eyebrow': 'Veelgestelde vragen',
-    'idx.faq.title_html': 'Rustig <em>beantwoord.</em>',
-    'idx.faq.desc': 'De korte antwoorden die wij aan eerste bezoekers van het kelder sturen. Tik op een vraag voor het uitgebreide antwoord.',
+    'idx.faq.eyebrow': 'De conciërge',
+    'idx.faq.title_html': 'Vragen,<br>met <em>zorg</em> beantwoord.',
+    'idx.faq.desc': 'Persoonlijke hulp voor wie slow food waardeert.',
+    'idx.faq.response': 'Reactietijd — meestal binnen 24 uur',
     'idx.faq.help_html': 'Staat uw vraag er niet bij? Schrijf naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> en wij reageren binnen twee werkdagen. Voor bestellingen: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Hoe snel wordt mijn bestelling verzonden?',
     'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en twee tot acht werkdagen binnen de EU. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="legal-shipping.html">verzendpagina</a>.',
     'idx.faq.q2': 'Waar verzenden jullie naartoe?',
-    'idx.faq.a2_html': 'Heel Nederland, alle EU-lidstaten, plus het Verenigd Koninkrijk, Zwitserland en Noorwegen. Wereldwijd op aanvraag. Verzending is gratis vanaf &euro;90 binnen Nederland en vanaf &euro;120 binnen de EU.',
+    'idx.faq.a2_html': 'Heel Nederland, alle EU-lidstaten, plus het Verenigd Koninkrijk, Zwitserland en Noorwegen. Verzending is gratis binnen Nederland & België boven &euro;65.',
     'idx.faq.q3': 'Is jullie honing rauw?',
     'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="article-taste-the-greek-sun.html">proefverslag</a>.',
     'idx.faq.q4': 'Hoe lang blijft de honing goed?',
@@ -1747,8 +1942,8 @@
     'idx.faq.a6_html': 'Ja. In een houtfineer cadeaudoos met linnen voering, voor &eacute;&eacute;n tot drie potten, met een handgeschreven kaartje. Selecteer cadeauverpakking in de checkout, met een toeslag van &euro;9,50.',
     'idx.faq.q7': 'Is rauwe honing veilig voor jonge kinderen?',
     'idx.faq.a7_html': 'Geef geen honing aan kinderen jonger dan twaalf maanden. Dit advies komt van het Voedingscentrum, vanwege een zeer klein risico op zuigelingenbotulisme in alle ongepasteuriseerde honing. Voor iedereen ouder dan &eacute;&eacute;n jaar is honing veilig.',
-    'idx.faq.q8': 'Kan ik het landgoed bezoeken?',
-    'idx.faq.a8_html': 'Op afspraak ontvangen wij kleine groepen tussen april en oktober op het Andreou-kelder in Pelion, Griekenland. &Eacute;&eacute;n dag, een begeleide proeverij, en bij goed weer een wandeling naar de hogere kasten. Stuur uw voorkeursdata naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>.',
+    'idx.faq.q8': 'Kan ik jullie bezoeken?',
+    'idx.faq.a8_html': 'Er is geen open locatie om te bezoeken. Harvest Deli is klein; alles wordt in Griekenland verzameld en vanuit ons depot in Amsterdam verzonden. Voor pers of wholesale, mail naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>.',
 
     'cnt.faq.eyebrow': 'Voordat u schrijft',
     'cnt.faq.title_html': 'Veel<em>gestelde vragen.</em>',
@@ -1759,24 +1954,25 @@
     'cnt.faq.q2': 'Welk kanaal kan ik het beste gebruiken?',
     'cnt.faq.a2_html': 'Gebruik <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> voor algemene vragen, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> voor verzending en levering, <a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a> voor wholesale en horeca, en <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a> voor inzage- en datavragen onder de AVG.',
     'cnt.faq.q3': 'Wholesale- of horeca-aanvraag?',
-    'cnt.faq.a3_html': 'Stuur een korte boodschap via het formulier op het <a href="partners.html">partnership-programma</a>. Wij beantwoorden elke aanvraag persoonlijk en reageren doorgaans binnen 24 tot 48 uur, vaak met een sampledoos die nog dezelfde week vanuit Pelion vertrekt.',
+    'cnt.faq.a3_html': 'Stuur een korte boodschap via het formulier op het <a href="partners.html">partnership-programma</a>. Wij beantwoorden elke aanvraag persoonlijk en reageren doorgaans binnen 24 tot 48 uur, vaak met een sampledoos die nog dezelfde week vanuit Griekenland vertrekt.',
     'cnt.faq.q4': 'Mijn bestelling is niet aangekomen of beschadigd.',
     'cnt.faq.a4_html': 'Mail <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> met uw bestelnummer en, indien mogelijk, een foto van de buitendoos. Wij regelen kosteloos een vervangende zending of volledige terugbetaling binnen twee werkdagen. Lees verder op de <a href="legal-shipping.html">verzend-</a> en <a href="legal-returns.html">retourpagina</a>.',
-    'cnt.faq.q5': 'Kan ik het landgoed of het depot bezoeken?',
-    'cnt.faq.a5_html': 'Op afspraak, ja. Pers, wholesale-partners en bestaande klanten zijn welkom. Stuur een verzoek met datum en reden naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Het Andreou-kelder in Pelion is geopend voor kleine groepen tussen april en oktober.',
+    'cnt.faq.q5': 'Kan ik het depot bezoeken?',
+    'cnt.faq.a5_html': 'Op afspraak, ja. Pers, wholesale-partners en bestaande klanten zijn welkom. Stuur een verzoek met datum en reden naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Bezoeken zijn alleen bij ons depot in Amsterdam; er is geen open locatie in Griekenland.',
     'cnt.faq.q6': 'Bestaan jullie op social media?',
     'cnt.faq.a6_html': 'Zachtjes, op Instagram. Wij draaien geen betaalde advertenties en jagen niet op het algoritme. Abonneer u op het <a href="journal.html">journal</a> voor langzamere correspondentie, drie tot vier keer per jaar.'
   });
 
   Object.assign(T.el, {
-    'idx.faq.eyebrow': 'Συχνές ερωτήσεις',
-    'idx.faq.title_html': 'Αργές <em>απαντήσεις.</em>',
-    'idx.faq.desc': 'Οι σύντομες απαντήσεις που στέλνουμε στους πρώτους επισκέπτες του κελαριού. Πατήστε μια ερώτηση για την εκτενέστερη απάντηση.',
+    'idx.faq.eyebrow': 'Ο θυρωρός',
+    'idx.faq.title_html': 'Ερωτήσεις,<br>απαντημένες με <em>φροντίδα.</em>',
+    'idx.faq.desc': 'Προσωπική βοήθεια για όσους εκτιμούν το slow food.',
+    'idx.faq.response': 'Χρόνος απάντησης — συνήθως εντός 24 ωρών',
     'idx.faq.help_html': 'Δεν βρίσκετε την ερώτησή σας; Γράψτε στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> και απαντούμε εντός δύο εργάσιμων ημερών. Για παραγγελίες: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Πόσο γρήγορα αποστέλλετε;',
     'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες εντός Ολλανδίας και δύο έως οκτώ εργάσιμες σε όλη την ΕΕ. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="legal-shipping.html">σελίδα αποστολών</a>.',
     'idx.faq.q2': 'Πού αποστέλλετε;',
-    'idx.faq.a2_html': 'Σε όλη την Ολλανδία, σε κάθε κράτος μέλος της ΕΕ, καθώς και στο Ηνωμένο Βασίλειο, την Ελβετία και τη Νορβηγία. Παγκοσμίως κατόπιν αιτήματος. Δωρεάν αποστολή άνω των &euro;90 εντός Ολλανδίας και άνω των &euro;120 εντός ΕΕ.',
+    'idx.faq.a2_html': 'Σε όλη την Ολλανδία, σε κάθε κράτος μέλος της ΕΕ, καθώς και στο Ηνωμένο Βασίλειο, την Ελβετία και τη Νορβηγία. Δωρεάν αποστολή στην Ευρώπη άνω των &euro;65.',
     'idx.faq.q3': 'Είναι ωμό το μέλι σας;',
     'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="article-taste-the-greek-sun.html">δοκίμιο γευσιγνωσίας</a>.',
     'idx.faq.q4': 'Πόσο διαρκεί το μέλι;',
@@ -1787,8 +1983,8 @@
     'idx.faq.a6_html': 'Ναι. Ένα κουτί παρουσίασης από καπλαμά δρυός με λινό εσωτερικό, για ένα έως τρία βάζα, με χειρόγραφη κάρτα. Επιλέξτε συσκευασία δώρου στο checkout, με μικρή επιβάρυνση &euro;9,50.',
     'idx.faq.q7': 'Είναι ασφαλές το ωμό μέλι για μικρά παιδιά;',
     'idx.faq.a7_html': 'Μη δίνετε μέλι σε παιδιά κάτω των δώδεκα μηνών. Αυτή είναι η συμβουλή του Ολλανδικού Voedingscentrum, λόγω ελάχιστου κινδύνου παιδικής αλλαντίασης σε κάθε μη επεξεργασμένο μέλι. Για όλους άνω του ενός έτους, το μέλι είναι ασφαλές.',
-    'idx.faq.q8': 'Μπορώ να επισκεφθώ το κτήμα;',
-    'idx.faq.a8_html': 'Κατόπιν ραντεβού δεχόμαστε μικρές ομάδες μεταξύ Απριλίου και Οκτωβρίου στο κελάρι Ανδρέου στο Πήλιο. Μία ημέρα, μια συνοδευόμενη γευσιγνωσία και, αν ο καιρός το επιτρέπει, μια βόλτα στις υψηλότερες κυψέλες. Στείλτε τις προτιμώμενες ημερομηνίες στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>.',
+    'idx.faq.q8': 'Μπορώ να σας επισκεφθώ;',
+    'idx.faq.a8_html': 'Δεν υπάρχει χώρος ανοιχτός για επισκέψεις. Η Harvest Deli είναι μικρή· όλα συγκεντρώνονται στην Ελλάδα και αποστέλλονται από την αποθήκη μας στο Άμστερνταμ. Για τύπο ή χονδρική, γράψτε στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>.',
 
     'cnt.faq.eyebrow': 'Πριν γράψετε',
     'cnt.faq.title_html': 'Συχνές <em>ερωτήσεις.</em>',
@@ -1799,11 +1995,11 @@
     'cnt.faq.q2': 'Ποιο κανάλι να χρησιμοποιήσω;',
     'cnt.faq.a2_html': 'Χρησιμοποιήστε <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> για γενικές ερωτήσεις, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> για αποστολές και παραδόσεις, <a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a> για χονδρική και φιλοξενία, και <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a> για αιτήματα προσωπικών δεδομένων σύμφωνα με τον ΓΚΠΔ.',
     'cnt.faq.q3': 'Αίτημα χονδρικής ή φιλοξενίας;',
-    'cnt.faq.a3_html': 'Στείλτε ένα σύντομο μήνυμα μέσω της φόρμας στο <a href="partners.html">πρόγραμμα συνεργασίας</a>. Απαντάμε σε κάθε αίτημα προσωπικά, συνήθως εντός 24 έως 48 ωρών, συχνά με μια δειγματοθήκη να φεύγει από το Πήλιο την ίδια εβδομάδα.',
+    'cnt.faq.a3_html': 'Στείλτε ένα σύντομο μήνυμα μέσω της φόρμας στο <a href="partners.html">πρόγραμμα συνεργασίας</a>. Απαντάμε σε κάθε αίτημα προσωπικά, συνήθως εντός 24 έως 48 ωρών, συχνά με μια δειγματοθήκη να φεύγει από την Ελλάδα την ίδια εβδομάδα.',
     'cnt.faq.q4': 'Η παραγγελία μου δεν έφτασε ή έφτασε φθαρμένη.',
     'cnt.faq.a4_html': 'Στείλτε email στο <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> με τον αριθμό παραγγελίας και, αν είναι δυνατόν, μια φωτογραφία του εξωτερικού κουτιού. Κανονίζουμε δωρεάν αντικατάσταση ή πλήρη επιστροφή χρημάτων εντός δύο εργάσιμων ημερών. Διαβάστε περισσότερα στις σελίδες <a href="legal-shipping.html">αποστολών</a> και <a href="legal-returns.html">επιστροφών</a>.',
-    'cnt.faq.q5': 'Μπορώ να επισκεφθώ το κτήμα ή την αποθήκη;',
-    'cnt.faq.a5_html': 'Κατόπιν ραντεβού, ναι. Δεχόμαστε τύπο, συνεργάτες χονδρικής και υπάρχοντες πελάτες. Στείλτε αίτημα με ημερομηνία και λόγο στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Το κελάρι Ανδρέου στο Πήλιο είναι ανοιχτό για μικρές ομάδες μεταξύ Απριλίου και Οκτωβρίου.',
+    'cnt.faq.q5': 'Μπορώ να επισκεφθώ την αποθήκη;',
+    'cnt.faq.a5_html': 'Κατόπιν ραντεβού, ναι. Δεχόμαστε τύπο, συνεργάτες χονδρικής και υπάρχοντες πελάτες. Στείλτε αίτημα με ημερομηνία και λόγο στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Οι επισκέψεις γίνονται μόνο στην αποθήκη μας στο Άμστερνταμ· δεν υπάρχει χώρος ανοιχτός στην Ελλάδα.',
     'cnt.faq.q6': 'Είστε στα social media;',
     'cnt.faq.a6_html': 'Διακριτικά, στο Instagram. Δεν τρέχουμε επί πληρωμή διαφημίσεις και δεν κυνηγάμε τον αλγόριθμο. Εγγραφείτε στο <a href="journal.html">ημερολόγιο</a> για πιο αργή αλληλογραφία, τρεις με τέσσερις φορές τον χρόνο.'
   });
@@ -1863,7 +2059,7 @@
     'shop.sort.harvest': 'Laatste oogst', 'shop.sort.lightest': 'Lichtste smaak',
     'shop.sort.richest': 'Rijkste smaak', 'shop.sort.limited': 'Beperkte edities',
     'shop.fp.eyebrow': 'Verfijn de collectie',
-    'shop.fp.title_html': 'Zes landgoederen, <em>één berg per keer.</em>',
+    'shop.fp.title_html': 'Negen honingen, <em>één berg per keer.</em>',
     'shop.fp.close': 'Sluiten',
     'shop.fp.g.type': 'Honingsoort', 'shop.fp.g.region': 'Herkomstregio',
     'shop.fp.g.flavor': 'Smaakprofiel', 'shop.fp.g.color': 'Kleur',
@@ -1904,7 +2100,7 @@
     'shop.sort.harvest': 'Τελευταία συγκομιδή', 'shop.sort.lightest': 'Πιο ελαφριά γεύση',
     'shop.sort.richest': 'Πιο πλούσια γεύση', 'shop.sort.limited': 'Περιορισμένες εκδόσεις',
     'shop.fp.eyebrow': 'Βελτιώστε τη συλλογή',
-    'shop.fp.title_html': 'Έξι κτήματα, <em>ένα βουνό κάθε φορά.</em>',
+    'shop.fp.title_html': 'Εννέα μέλια, <em>ένα βουνό κάθε φορά.</em>',
     'shop.fp.close': 'Κλείσιμο',
     'shop.fp.g.type': 'Τύπος μελιού', 'shop.fp.g.region': 'Περιοχή προέλευσης',
     'shop.fp.g.flavor': 'Προφίλ γεύσης', 'shop.fp.g.color': 'Χρώμα',
@@ -2015,10 +2211,8 @@
       const stored = localStorage.getItem('hd-lang');
       if (stored === 'en' || stored === 'nl' || stored === 'el') return stored;
     } catch (e) {}
-    // Otherwise: NL-based business, default to Dutch.
-    // Greek visitors still get EL automatically (brand origin language).
-    const nav = (navigator.language || '').toLowerCase();
-    if (nav.startsWith('el')) return 'el';
+    // First-time visitors always get Dutch (the primary storefront language).
+    // EN/EL remain available via the language switcher; the choice is then stored.
     return 'nl';
   })();
   window.HD_lang = function () { return currentLang; };
@@ -2049,8 +2243,8 @@
         if (v !== undefined) el.setAttribute(attr, v);
       });
     });
-    // Update language toggle states
-    document.querySelectorAll('.lang-toggle button[data-lang]').forEach(b => {
+    // Update language toggle states (desktop nav + mobile menu switcher)
+    document.querySelectorAll('.lang-toggle button[data-lang], .hd-menu-lang button[data-lang]').forEach(b => {
       b.classList.toggle('active', b.dataset.lang === currentLang);
     });
   }
@@ -2086,7 +2280,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.jpg',
+      image: 'assets/products-images/fir-vanilla.webp',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2105,7 +2299,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.jpg',
+      image: 'assets/products-images/acacia.webp',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2124,12 +2318,12 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.jpg',
+      image: 'assets/products-images/pine.webp',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
     'orange-blossom': {
-      name: loc('Orange Blossom Honey', 'Sinaasappelhoning', 'Πορτοκαλόμελο'),
+      name: loc('Orange Blossom Honey', 'Sinaasappelbloesemhoning', 'Πορτοκαλόμελο'),
       edition: loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'),
       region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
       altitude: '200m',
@@ -2143,14 +2337,14 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.jpg',
+      image: 'assets/products-images/orange-blossom.webp',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
     'chestnut': {
       name: loc('Chestnut Honey', 'Kastanjehoning', 'Καστανόμελο'),
       edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
-      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
+      region: loc('Greece', 'Griekenland', 'Ελλάδα'),
       altitude: '950m',
       type: 'honey',
       sizes: [{ id: '480g', label: '480g', price: 18 }, { id: '950g', label: '950g', price: 32 }],
@@ -2180,12 +2374,12 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.jpg',
+      image: 'assets/products-images/oak.webp',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
     'arbutus': {
-      name: loc('Arbutus Honey', 'Aardbeiboom Honing', 'Κουμαρόμελο'),
+      name: loc('Arbutus Honey', 'Aardbeiboomhoning', 'Κουμαρόμελο'),
       edition: loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή'),
       region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
       altitude: '600m',
@@ -2199,7 +2393,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.jpg',
+      image: 'assets/products-images/arbutus.webp',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2222,7 +2416,7 @@
       url: 'product.html?p=thyme'
     },
     'oregano': {
-      name: loc('Wild Oregano', 'Wilde Oregano', 'Άγρια Ρίγανη'),
+      name: loc('Wild Oregano', 'Wilde oregano', 'Άγρια Ρίγανη'),
       edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
       region: loc('Wild hills · Greece', 'Wilde heuvels · Griekenland', 'Άγριοι λόφοι · Ελλάδα'),
       altitude: '700m',
@@ -2241,16 +2435,16 @@
       url: 'shop.html'
     },
     'olive-oil': {
-      name: loc('Extra Virgin Olive Oil', 'Extra Vergine Olijfolie', 'Εξαιρετικό Παρθένο Ελαιόλαδο'),
-      edition: loc('Estate Pressing · 2025', 'Landgoed Persing · 2025', 'Κτήμα · 2025'),
-      region: loc('Pelion · Greece', 'Pelion · Griekenland', 'Πήλιο · Ελλάδα'),
+      name: loc('Extra Virgin Olive Oil', 'Extra vierge olijfolie', 'Εξαιρετικό Παρθένο Ελαιόλαδο'),
+      edition: loc('Single Origin · 2025', 'Eén herkomst · 2025', 'Μία προέλευση · 2025'),
+      region: loc('Greece', 'Griekenland', 'Ελλάδα'),
       altitude: '400m',
       type: 'oil',
       sizes: [{ id: '500ml', label: '500ml', price: 15 }],
       defaultSize: '500ml',
       price: 15,
       hue: 'pale',
-      image: 'assets/greekoliveoil.PNG',
+      image: 'assets/greekoliveoil.webp',
       notes: loc('Green almond, fresh-cut grass, peppery finish.', 'Groene amandel, versgemaaid gras, peperige afdronk.', 'Πράσινο αμύγδαλο, φρεσκοκομμένο χορτάρι, πιπεράτη επίγευση.'),
       texture: loc('Bright, grassy, robust', 'Fris, grasachtig, robuust', 'Ζωηρό, χορταρένιο, εύρωστο'),
       weight: '500ml',
@@ -2270,7 +2464,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.jpg',
+      image: 'assets/products-images/mountain-tea.webp',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2298,7 +2492,7 @@
       multiSize: sizes.length > 1,
       bundle: p.bundle || null,
       hue: p.hue,
-      image: p.image || 'harvestdeli.png',
+      image: p.image || 'harvestdeli.webp',
       altitude: p.altitude,
       weight: p.weight,
       tags: p.tags,
@@ -2347,16 +2541,10 @@
     return qty * unit;
   }
   function sameLine(i, slug, size) { return i.slug === slug && sizeOf(i) === size; }
-  // Basket offer: 3 honey jars, OR 2 honey jars + 1 olive oil → €5 off (once).
+  // Basket offer removed for launch: pricing is owned solely by Shopify hosted
+  // checkout, so no on-site discount may diverge from what the customer is charged.
   function offerDiscount() {
-    let honey = 0, oil = 0;
-    cart.items.forEach(i => {
-      const p = PRODUCTS[i.slug];
-      if (!p) return;
-      if (p.type === 'honey') honey += i.qty;
-      else if (p.type === 'oil') oil += i.qty;
-    });
-    return (honey >= 3 || (honey >= 2 && oil >= 1)) ? 5 : 0;
+    return 0;
   }
 
   // ---------- Cart state ----------
@@ -2541,6 +2729,9 @@
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    // Cart is the conversion surface — let the floating-UI controller fade out
+    // distractions (chat / scroll-to-top) on mobile while it is open.
+    document.documentElement.classList.add('hd-cart-open');
   }
   function closeCart() {
     const drawer = document.getElementById('cartDrawer');
@@ -2548,6 +2739,7 @@
     drawer.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
+    document.documentElement.classList.remove('hd-cart-open');
   }
   window.HD_openCart = openCart;
   window.HD_closeCart = closeCart;
@@ -2585,7 +2777,7 @@
       return;
     }
     const subtotal = cart.total();
-    const shipping = subtotal >= 120 ? 0 : 9;
+    const shipping = subtotal >= 65 ? 0 : 9;
     const total = subtotal + shipping;
     const lines = cart.items.map(i => {
       const p = localizedProduct(i.slug);
@@ -2658,8 +2850,13 @@
       cart.add(slug, qty, size);
       const p = localizedProduct(slug);
       toast(lookup('cart.added') + ', ' + p.name);
+      var flew = window.HD_cellarFly ? window.HD_cellarFly(addBtn) : false;
+      // If the add came from the quick-view modal, close it so the cart drawer
+      // takes over and its button can't be double-clicked (premium single response).
+      var _qv = document.querySelector('.qv-overlay.open');
+      if (_qv) { var _qc = _qv.querySelector('[data-qv-close]'); if (_qc) _qc.click(); }
       if (addBtn.dataset.openCart !== 'false') {
-        setTimeout(openCart, 240);
+        setTimeout(openCart, flew ? 780 : 240);
       }
     });
 
@@ -2800,7 +2997,7 @@
     bar.setAttribute('aria-live', 'polite');
     bar.innerHTML = ''
       + '<div class="cb-eyebrow">' + svgGlyph() + ' Cookies &middot; Privacy</div>'
-      + '<h3>A quiet word about cookies.</h3>'
+      + '<h3>Even over cookies.</h3>'
       + '<p>We gebruiken alleen strikt noodzakelijke cookies om de winkel te laten werken. '
       + 'Voor analyse en marketing vragen we eerst om je toestemming. '
       + 'Meer info in onze <a href="legal-cookies.html">cookieverklaring</a> en '
@@ -2838,7 +3035,7 @@
       + '<div class="cb-actions">'
         + '<button type="button" class="cb-btn cb-reject" data-cb-action="reject">Alleen noodzakelijk</button>'
         + '<button type="button" class="cb-btn cb-customize" data-cb-action="customize" aria-expanded="' + (forceExpanded ? 'true' : 'false') + '">Voorkeuren</button>'
-        + '<button type="button" class="cb-btn cb-accept" data-cb-action="accept">Alle accepteren</button>'
+        + '<button type="button" class="cb-btn cb-accept" data-cb-action="accept">Alles accepteren</button>'
       + '</div>';
 
     document.body.appendChild(bar);
@@ -2929,7 +3126,7 @@
    experience: gold glass FAB → cinematic dark chat panel → only THEN open WA. */
 (function () {
   'use strict';
-  const PHONE = '31000000000'; // TODO: replace with real business WhatsApp number (no + or spaces)
+  const PHONE = '31610715083'; // Harvest Deli WhatsApp (+31 6 10715083)
   const ACTIONS = [
     { key: 'product',   i18nKey: 'concierge.action.product',   msgKey: 'concierge.msg.product' },
     { key: 'retail',    i18nKey: 'concierge.action.retail',    msgKey: 'concierge.msg.retail' },
@@ -3033,8 +3230,18 @@
   }
 
   function openWhatsApp(msgKey) {
-    const text = encodeURIComponent(t(msgKey, 'Hello Harvest Deli'));
-    const url = 'https://wa.me/' + PHONE + '?text=' + text;
+    var base = t(msgKey, 'Hello Harvest Deli');
+    // On a product page, append the product name so the chat is never generic.
+    try {
+      var slugMeta = document.querySelector('meta[name="hd-product-slug"]');
+      var p = (slugMeta && slugMeta.content && window.HD_product) ? window.HD_product(slugMeta.content) : null;
+      if (p && p.name && (msgKey === 'concierge.msg.product')) {
+        var nl = (window.HD_lang && window.HD_lang() === 'nl');
+        base = nl ? ('Hallo Harvest Deli, ik heb een vraag over ' + p.name + '.')
+                  : ('Hi Harvest Deli, I have a question about ' + p.name + '.');
+      }
+    } catch (e) {}
+    var url = 'https://wa.me/' + PHONE + '?text=' + encodeURIComponent(base);
     window.open(url, '_blank', 'noopener,noreferrer');
   }
 
@@ -3046,11 +3253,28 @@
     btn.setAttribute('aria-label', t('concierge.title', 'Harvest Concierge'));
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.setAttribute('aria-expanded', 'false');
-    // Honeycomb (honingraat) chat icon — a hexagon cut from forest green with a
-    // gold hairline, speech tail and notification cell. Self-contained SVG file.
+    // Circular luxury emblem — deep emerald medallion, metallic gold rim, a
+    // refined heraldic bee engraved at centre, slow shimmer + soft glow.
+    // Hermès / Diptyque / Aman register; no hexagon, no honeycomb, no web3.
     btn.innerHTML =
-      '<img class="hd-fab-hex" src="assets/chat-hex.svg?v=hd-2026-06-06-81" alt="" aria-hidden="true" width="64" height="65">' +
-      '<span class="hd-fab-label" data-i18n="concierge.fab">Chat</span>';
+      '<span class="hd-fab-emblem" aria-hidden="true">' +
+        '<svg class="hd-fab-bee" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+          '<defs><linearGradient id="hdBeeGold" x1="0" y1="0" x2="0" y2="1">' +
+            '<stop offset="0" stop-color="#F4DCA1"/><stop offset="0.5" stop-color="#D9B36E"/><stop offset="1" stop-color="#B98E47"/>' +
+          '</linearGradient></defs>' +
+          '<g stroke="url(#hdBeeGold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M30.2 17.6C27.4 12.8 24.4 11.8 22.6 13.4"/>' +
+            '<path d="M33.8 17.6C36.6 12.8 39.6 11.8 41.4 13.4"/>' +
+            '<circle cx="32" cy="20" r="3.1" fill="rgba(217,179,110,0.20)"/>' +
+            '<path d="M30 27C19.6 22 13.6 26.6 16.4 32.6C18.2 36.6 25 35 30 30.8Z" fill="rgba(241,215,154,0.13)"/>' +
+            '<path d="M34 27C44.4 22 50.4 26.6 47.6 32.6C45.8 36.6 39 35 34 30.8Z" fill="rgba(241,215,154,0.13)"/>' +
+            '<path d="M32 24C36.4 24 39 28 39 34C39 41 36 47 32 47C28 47 25 41 25 34C25 28 27.6 24 32 24Z" fill="rgba(217,179,110,0.16)"/>' +
+            '<path d="M26.5 31H37.5"/><path d="M25.7 36H38.3"/><path d="M27.2 41.4H36.8"/>' +
+          '</g>' +
+        '</svg>' +
+        '<span class="hd-fab-shimmer"></span>' +
+      '</span>' +
+      '<span class="hd-fab-label" data-i18n="concierge.fab">Write to us</span>';
     return btn;
   }
 
@@ -3078,7 +3302,7 @@
           '<span class="hd-concierge__avatar">' + BEEHIVE_SVG + '</span>' +
           '<div class="hd-concierge__id">' +
             '<h2 class="hd-concierge__title" id="hdConciergeTitle" data-i18n="concierge.title">Harvest Concierge</h2>' +
-            '<p class="hd-concierge__sub" data-i18n="concierge.subtitle">Pelion, Greece</p>' +
+            '<p class="hd-concierge__sub" data-i18n="concierge.subtitle">Greece</p>' +
             '<span class="hd-concierge__status">' +
               '<span class="hd-concierge__dot" aria-hidden="true"></span>' +
               '<span data-i18n="concierge.online">Real human · Replies within hours</span>' +
@@ -3108,6 +3332,8 @@
   }
 
   function init() {
+    // Checkout flow: no floating chat widget at all (overlaps the mobile CTA).
+    if (/checkout\.html|order-success\.html/.test(location.pathname)) return;
     if (document.body.dataset.noFab === '1') return;
     if (document.getElementById('hdConciergeFab') || document.getElementById('hdConcierge')) return;
 
@@ -3251,6 +3477,149 @@
         var ok = news.querySelector('.footer-news__ok'); ok.hidden = false;
       });
     });
+    try { if (typeof window.HD_applyTranslations === 'function') window.HD_applyTranslations(); } catch (e) {}
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- The Creativity Lab, hidden atelier signature (all pages, absolute bottom) ---------- */
+(function () {
+  'use strict';
+  function init() {
+    return; // Disabled site-wide: the purchase flow (and brand) shows only Harvest Deli.
+    // The Creativity Lab signature lives only in the global website footer of
+    // marketing pages — never in the checkout/order (commerce) flow.
+    if (/checkout\.html|order-success\.html/.test(location.pathname)) return;
+    var footers = document.querySelectorAll('footer.site-footer, footer');
+    if (!footers.length) return;
+    var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.4 }) : null;
+    footers.forEach(function (ftr) {
+      if (ftr.querySelector('.tcl-sign')) return;
+      var sign = document.createElement('div');
+      sign.className = 'tcl-sign';
+      sign.innerHTML = '<span class="tcl-sign__inner">From the atelier of <span class="name">The Creativity Lab</span></span>';
+      // adapt contrast to the footer's actual background luminance
+      try {
+        var bg = getComputedStyle(ftr).backgroundColor;
+        var m = bg.match(/(\d+(?:\.\d+)?)/g);
+        if (m && m.length >= 3) {
+          var lum = (0.299 * +m[0] + 0.587 * +m[1] + 0.114 * +m[2]);
+          if (lum < 110) sign.classList.add('on-dark');
+        }
+      } catch (e) {}
+      ftr.appendChild(sign);
+      if (io) io.observe(sign); else sign.classList.add('in');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- Private Access, luxury member overlay (all pages) ---------- */
+(function () {
+  'use strict';
+  function init() {
+    if (document.querySelector('.pa-overlay')) return;
+    // 1. Subtle nav mark
+    document.querySelectorAll('nav.site-nav .nav-right').forEach(function (navRight) {
+      if (navRight.querySelector('.nav-access')) return;
+      var btn = document.createElement('a');
+      btn.className = 'nav-access';
+      btn.setAttribute('href', 'https://su08c4-v4.myshopify.com/account'); // Shopify customer account, same tab
+      btn.setAttribute('data-i18n', 'access.nav');
+      btn.textContent = 'Private Access';
+      var cart = navRight.querySelector('.nav-cart');
+      if (cart) navRight.insertBefore(btn, cart); else navRight.appendChild(btn);
+    });
+    // PRODUCTION: the custom Private Access modal is disabled. "Privé toegang" now
+    // links straight to the Shopify customer account (no overlay, no z-index/scroll
+    // bleed-through). The overlay code below is intentionally left intact for future
+    // use but is never injected or opened.
+    return;
+    // 2. The overlay
+    var ov = document.createElement('div');
+    ov.className = 'pa-overlay';
+    ov.setAttribute('role', 'dialog');
+    ov.setAttribute('aria-modal', 'true');
+    ov.setAttribute('aria-hidden', 'true');
+    ov.setAttribute('aria-label', 'Private Access');
+    var particles = '';
+    var P = [[8,'24s','0s','40px'],[22,'28s','-6s','-30px'],[42,'20s','-12s','50px'],[63,'30s','-3s','-40px'],[78,'26s','-9s','30px'],[91,'22s','-15s','-50px']];
+    for (var i = 0; i < P.length; i++) {
+      particles += '<span style="left:' + P[i][0] + '%;bottom:-10px;--d:' + P[i][1] + ';--delay:' + P[i][2] + ';--dx:' + P[i][3] + '"></span>';
+    }
+    ov.innerHTML =
+      '<div class="pa-overlay__scrim" data-pa-close></div>' +
+      '<div class="pa-particles" aria-hidden="true">' + particles + '</div>' +
+      '<div class="pa-panel" role="document">' +
+        '<button class="pa-close" type="button" data-pa-close data-i18n="access.close">Close</button>' +
+        '<div class="pa-eyebrow" data-i18n="access.eyebrow">Harvest Deli · Members</div>' +
+        '<h2 class="pa-title" data-i18n="access.title">Enter Private Access</h2>' +
+        '<p class="pa-sub" data-i18n="access.sub">Reserved for returning collectors and selected partners.</p>' +
+        '<form class="pa-form" novalidate>' +
+          '<div class="pa-field"><label for="paEmail" data-i18n="access.email">Email address</label>' +
+            '<input id="paEmail" type="email" autocomplete="email" inputmode="email" required></div>' +
+          '<div class="pa-field"><label for="paPw" data-i18n="access.password">Password</label>' +
+            '<input id="paPw" type="password" autocomplete="current-password" required>' +
+            '<button class="pa-pwtoggle" type="button" data-pa-pw data-i18n="access.show">Show</button></div>' +
+          '<p class="pa-error" role="alert" aria-live="polite"></p>' +
+          '<button class="pa-cta" type="submit"><span data-i18n="access.cta">Continue Privately</span></button>' +
+        '</form>' +
+        '<p class="pa-foot" data-i18n-html="access.foot_html">New to the house? <a href="register.html">Request access</a></p>' +
+      '</div>';
+    document.body.appendChild(ov);
+
+    var panel = ov.querySelector('.pa-panel');
+    var form = ov.querySelector('.pa-form');
+    var emailEl = ov.querySelector('#paEmail');
+    var pwEl = ov.querySelector('#paPw');
+    var errEl = ov.querySelector('.pa-error');
+    var lastFocus = null;
+
+    function open() {
+      lastFocus = document.activeElement;
+      ov.classList.add('open'); ov.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function () { try { emailEl.focus(); } catch (e) {} }, 120);
+    }
+    function close() {
+      ov.classList.remove('open'); ov.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      errEl.textContent = '';
+      if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
+    }
+
+    document.addEventListener('click', function (e) {
+      var opener = e.target.closest('[data-open-access]');
+      if (opener) { e.preventDefault(); open(); return; }
+      if (e.target.closest('[data-pa-close]')) { e.preventDefault(); close(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && ov.classList.contains('open')) close();
+    });
+    ov.querySelector('[data-pa-pw]').addEventListener('click', function () {
+      var show = pwEl.type === 'password';
+      pwEl.type = show ? 'text' : 'password';
+      var T = (window.HD_T && window.HD_T[window.HD_lang ? window.HD_lang() : 'en']) || {};
+      this.textContent = show ? (T['access.hide'] || 'Hide') : (T['access.show'] || 'Show');
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var T = (window.HD_T && window.HD_T[window.HD_lang ? window.HD_lang() : 'en']) || {};
+      if (!emailEl.value || !emailEl.checkValidity()) { errEl.textContent = T['access.err.email'] || 'A valid email is needed here.'; emailEl.focus(); return; }
+      if (!pwEl.value) { errEl.textContent = T['access.err.pw'] || 'A small detail is missing here.'; pwEl.focus(); return; }
+      errEl.textContent = '';
+      // SEAM: Shopify customer login (storefront customerAccessTokenCreate). Demo: open a local private session.
+      try {
+        if (window.HD_account && window.HD_account.signIn) { window.HD_account.signIn(emailEl.value); }
+        else { localStorage.setItem('hd-account-v1', JSON.stringify({ email: (emailEl.value || '').toLowerCase(), addresses: [], demo: true, createdAt: new Date().toISOString() })); }
+      } catch (err) {}
+      window.location.href = 'account.html';
+    });
+
     try { if (typeof window.HD_applyTranslations === 'function') window.HD_applyTranslations(); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
@@ -3661,7 +4030,7 @@
             '<span class="label" data-i18n="cart.subtotal">Subtotal</span>' +
             '<span class="total" id="cartTotal">€0</span>' +
           '</div>' +
-          '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Complimentary across the EU above €120.</p>' +
+          '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Free within the Netherlands & Belgium above €65.</p>' +
           '<a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>' +
         '</footer>' +
       '</aside>';
@@ -3780,6 +4149,29 @@
       overlay.insertBefore(scrim, overlay.firstChild);
       overlay.insertBefore(img, overlay.firstChild);
     });
+    // Mobile language switcher (Option A) — inject just below the logo in
+    // every menu overlay. CSS hides it on desktop; the nav switcher there
+    // is untouched. Selection persists via HD_setLang (localStorage).
+    document.querySelectorAll('.menu-overlay').forEach(overlay => {
+      const top = overlay.querySelector('.menu-top');
+      if (!top || overlay.querySelector('.hd-menu-lang')) return;
+      const cur = (window.HD_lang && window.HD_lang()) || 'nl';
+      const bar = document.createElement('div');
+      bar.className = 'hd-menu-lang';
+      bar.setAttribute('role', 'group');
+      bar.setAttribute('aria-label', 'Language');
+      ['nl', 'en', 'el'].forEach(code => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.setAttribute('data-lang', code);
+        b.setAttribute('aria-label', code.toUpperCase());
+        b.textContent = code.toUpperCase();
+        if (code === cur) b.classList.add('active');
+        b.addEventListener('click', () => { if (window.HD_setLang) window.HD_setLang(code); });
+        bar.appendChild(b);
+      });
+      top.parentNode.insertBefore(bar, top.nextSibling);
+    });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', inject);
   else inject();
@@ -3834,7 +4226,7 @@
     var ghost = document.createElement('div');
     ghost.className = 'hd-menu-ghost';
     ghost.setAttribute('aria-hidden', 'true');
-    ghost.innerHTML = '<span>Harvest</span><span>Pelion</span><span>Greece</span>';
+    ghost.innerHTML = '<span>Harvest</span><span>Deli</span><span>Greece</span>';
     overlay.appendChild(ghost);
 
     // Fixed, centered footer navigation
@@ -3842,7 +4234,7 @@
     foot.className = 'hd-menu-foot';
     foot.setAttribute('aria-label', 'Social and quick links');
     foot.innerHTML =
-      '<a href="https://www.instagram.com/harvestdeli" target="_blank" rel="noopener">Instagram</a>' +
+      '<a href="https://www.instagram.com/harvest.deli/" target="_blank" rel="noopener">Instagram</a>' +
       '<a href="journal.html" data-i18n="footer.link.journal">Journal</a>' +
       '<a href="about.html" data-i18n="footer.link.origin">Origin</a>' +
       '<a href="contact.html" data-i18n="footer.link.contact">Contact</a>';
@@ -4697,6 +5089,16 @@
   let overlay = null;
 
   function qvLang() { try { return (window.HD_lang && window.HD_lang()) || document.documentElement.lang || 'en'; } catch (e) { return 'en'; } }
+  function qvL(en, nl, el) { var l = qvLang(); return l === 'nl' ? nl : (l === 'el' ? (el || en) : en); }
+  var QV_ICONS = {
+    greek: '<path d="M5 19c0-8 5-13 14-14-1 9-6 14-14 14z"/><path d="M5 19c3-4 7-7 11-8"/>',
+    truck: '<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/>',
+    leaf:  '<path d="M11 21C5 21 3 14 5 5c9-2 14 1 14 8 0 5-4 8-8 8z"/><path d="M9 17c1-4 3-6 6-7"/>',
+    lock:  '<rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>'
+  };
+  function qvTrustItem(icon, label) {
+    return '<li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (QV_ICONS[icon] || '') + '</svg><span>' + label + '</span></li>';
+  }
   function qvFmt(n) { return '€' + (Number.isInteger(n) ? n : Number(n).toFixed(2).replace('.', ',')); }
 
   function buildOverlay() {
@@ -4717,8 +5119,6 @@
     if (!p) return;
     if (!overlay) buildOverlay();
 
-    const badges = (p.badges || []).slice(0, 3).map(b => '<span class="qv-badge">' + b + '</span>').join('');
-
     overlay.innerHTML =
       '<div class="qv-panel">' +
         '<button type="button" class="qv-close" data-qv-close aria-label="Close"></button>' +
@@ -4727,14 +5127,13 @@
           '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy">' +
         '</div>' +
         '<div class="qv-content">' +
-          '<div class="qv-eyebrow">' + (p.region || '') + ' &middot; ' + (p.altitude || '') + '</div>' +
+          '<div class="qv-eyebrow">' + (p.altitude || '') + '</div>' +
           '<h2>' + p.name + '</h2>' +
           '<div class="qv-region">' + (p.edition || '') + '</div>' +
           '<p class="qv-notes">&ldquo;' + (p.notes || '') + '&rdquo;</p>' +
-          (badges ? '<div class="qv-badges">' + badges + '</div>' : '') +
           '<div class="qv-meta">' +
-            '<div><div class="lbl">Texture</div><div class="val">' + (p.texture || '-') + '</div></div>' +
-            '<div><div class="lbl">Weight</div><div class="val">' + (p.weight || '') + '</div></div>' +
+            '<div><div class="lbl">' + qvL('Character', 'Karakter', 'Χαρακτήρας') + '</div><div class="val">' + (p.texture || '-') + '</div></div>' +
+            '<div><div class="lbl">' + qvL('Format', 'Formaat', 'Μέγεθος') + '</div><div class="val">' + (p.weight || '') + '</div></div>' +
           '</div>' +
           (p.multiSize
             ? '<div class="qv-sizes" role="group" aria-label="Size">' +
@@ -4748,12 +5147,18 @@
           (p.bundle ? '<div class="qv-bundle">' + p.bundle.qty + (qvLang() === 'nl' ? ' voor ' : qvLang() === 'el' ? ' για ' : ' for ') + qvFmt(p.bundle.price) + '</div>' : '') +
           '<div class="qv-price-row">' +
             '<span class="qv-price">' + qvFmt(p.price) + '</span>' +
-            '<span class="qv-price-sub">incl. VAT &middot; ships worldwide</span>' +
+            '<span class="qv-price-sub">' + qvL('Handcrafted harvest &middot; Shipping within the Netherlands & Belgium', 'Ambachtelijk geoogst &middot; Verzending binnen Nederland & België', 'Χειροποίητη συγκομιδή &middot; Αποστολή εντός Ολλανδίας & Βελγίου') + '</span>' +
           '</div>' +
           '<div class="qv-actions">' +
-            '<button class="cta qv-add" type="button" data-add-to-cart="' + p.slug + '" data-size="' + p.defaultSize + '">Add to cellar <span class="arrow" aria-hidden="true"></span></button>' +
-            '<a class="cta-ghost qv-view" href="' + p.url + '">Full details</a>' +
+            '<button class="cta qv-add" type="button" data-add-to-cart="' + p.slug + '" data-size="' + p.defaultSize + '">' + qvL('Add to collection', 'Toevoegen aan collectie', 'Προσθήκη στη συλλογή') + ' <span class="arrow" aria-hidden="true"></span></button>' +
+            '<a class="cta-ghost qv-view" href="' + p.url + '">' + qvL('View details', 'Bekijk details', 'Λεπτομέρειες') + '</a>' +
           '</div>' +
+          '<ul class="qv-trust" aria-label="' + qvL('Why Harvest Deli', 'Waarom Harvest Deli', 'Γιατί Harvest Deli') + '">' +
+            qvTrustItem('greek', qvL('Premium Greek product', 'Premium Grieks product', 'Premium ελληνικό προϊόν')) +
+            qvTrustItem('truck', qvL('Fast delivery, NL &amp; Belgium', 'Snelle levering, NL &amp; België', 'Γρήγορη παράδοση, NL &amp; Βέλγιο')) +
+            qvTrustItem('leaf', qvL('Directly from Greek producers', 'Rechtstreeks van Griekse producenten', 'Απευθείας από Έλληνες παραγωγούς')) +
+            qvTrustItem('lock', qvL('Secure checkout', 'Veilig afrekenen', 'Ασφαλής πληρωμή')) +
+          '</ul>' +
         '</div>' +
       '</div>';
 
@@ -4768,6 +5173,9 @@
         if (add) add.dataset.size = b.dataset.size;
       });
     });
+
+    // (Add-to-cart close + double-click protection is handled centrally in the
+    //  universal [data-add-to-cart] handler, which closes any open quick view.)
 
     // Inject cinematic atmosphere into the image side (haze + drifting motes)
     const imgWrap = overlay.querySelector('.qv-image');
@@ -4915,11 +5323,11 @@
    Commerce layer bootstrap (Phase 1), loads commerce.js site-wide
    and pins the free-shipping threshold before checkout.js reads it.
    ================================================================= */
-window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
+window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-81'], ['hd-search-js', 'search.js?v=hd-2026-06-06-81'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-81'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-81'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-81'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-81'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-81'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-81'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-81'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-81']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-137'], ['hd-search-js', 'search.js?v=hd-2026-06-06-137'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-137'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-137'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-137'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-137'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-137'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-137'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-137'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-137']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
@@ -5032,6 +5440,8 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
 (function () {
   'use strict';
   if (!window.matchMedia) return;
+  // Checkout flow: no brand bee anywhere on screen.
+  if (/checkout\.html|order-success\.html/.test(location.pathname)) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (!window.matchMedia('(pointer: fine)').matches) return; // mouse/trackpad only
 
@@ -5121,4 +5531,187 @@ window.HD_FREE_SHIP = 120; // brand: free shipping across the EU above €120
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+})();
+
+/* =================================================================
+   Harvest Deli — luxury motion layer
+   4) ambient bee   5) museum product-card hover   6) add-to-cellar flight
+   ================================================================= */
+(function HDLuxuryMotion() {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- 6) Add-to-Cellar golden flight ---------- */
+  window.HD_cellarFly = function (btn) {
+    if (reduce) return false;
+    var target = document.getElementById('navCart');
+    if (!target || !btn) return false;
+    var card = btn.closest('.p-card, article, .qv-panel, .product-stage, .product-main, main') || document.body;
+    var src = card.querySelector('.card-photo') || card.querySelector('.jar-wrap img') ||
+              card.querySelector('img') || btn;
+    var sr = src.getBoundingClientRect(), tr = target.getBoundingClientRect();
+    if (!sr.width || !sr.height) return false;
+    var sx = sr.left + sr.width / 2, sy = sr.top + sr.height / 2;
+    var tx = tr.left + tr.width / 2, ty = tr.top + tr.height / 2;
+    var w = Math.min(sr.width, 140), h = sr.height * (w / sr.width);
+    var fly = src.cloneNode(true);
+    fly.className = 'hd-fly';
+    fly.removeAttribute('id');
+    fly.style.cssText = 'position:fixed;left:0;top:0;width:' + w + 'px;height:' + h + 'px;margin:0;' +
+      'border-radius:14px;overflow:hidden;pointer-events:none;z-index:2000;object-fit:cover;' +
+      'box-shadow:0 18px 40px -16px rgba(40,28,12,0.5);will-change:transform,opacity;' +
+      'transform:translate(' + (sx - w / 2) + 'px,' + (sy - h / 2) + 'px);';
+    document.body.appendChild(fly);
+    var dx = tx - sx, dy = ty - sy;
+    var anim = fly.animate([
+      { transform: 'translate(' + (sx - w / 2) + 'px,' + (sy - h / 2) + 'px) scale(1)', opacity: 1, offset: 0 },
+      { transform: 'translate(' + (sx - w / 2 + dx * 0.5) + 'px,' + (sy - h / 2 + dy * 0.5 - 70) + 'px) scale(0.55)', opacity: 1, offset: 0.55 },
+      { transform: 'translate(' + (tx - w / 2) + 'px,' + (ty - h / 2) + 'px) scale(0.1)', opacity: 0.15, offset: 1 }
+    ], { duration: 700, easing: 'cubic-bezier(0.5,0,0.75,1)' });
+    anim.onfinish = function () { fly.remove(); burst(tx, ty); pulse(target); };
+    return true;
+  };
+  function burst(x, y) {
+    for (var i = 0; i < 12; i++) {
+      var p = document.createElement('span');
+      var a = Math.PI * 2 * (i / 12) + i * 0.7, d = 16 + (i % 4) * 10;
+      p.style.cssText = 'position:fixed;left:' + x + 'px;top:' + y + 'px;width:6px;height:6px;border-radius:50%;' +
+        'pointer-events:none;z-index:2001;background:radial-gradient(circle,#fbe6a8,#caa86a);' +
+        'box-shadow:0 0 8px 1px rgba(202,168,106,0.7);';
+      document.body.appendChild(p);
+      (function (p, a, d) {
+        p.animate([
+          { transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
+          { transform: 'translate(calc(-50% + ' + (Math.cos(a) * d) + 'px),calc(-50% + ' + (Math.sin(a) * d) + 'px)) scale(0.2)', opacity: 0 }
+        ], { duration: 520 + d * 6, easing: 'cubic-bezier(0.2,0.7,0.3,1)' }).onfinish = function () { p.remove(); };
+      })(p, a, d);
+    }
+  }
+  function pulse(el) {
+    el.classList.remove('hd-cellar-pulse'); void el.offsetWidth; el.classList.add('hd-cellar-pulse');
+    setTimeout(function () { el.classList.remove('hd-cellar-pulse'); }, 950);
+  }
+
+  /* ---------- 5) Museum product-card hover (shop) ---------- */
+  function museumCards() {
+    var cards = document.querySelectorAll('.p-card');
+    if (!cards.length) return;
+    cards.forEach(function (card) {
+      if (card.__museum) return; card.__museum = true;
+      var host = card.querySelector('.jar-wrap') || card;
+      var glass = document.createElement('span'); glass.className = 'pc-glass'; glass.setAttribute('aria-hidden', 'true');
+      host.appendChild(glass);
+      if (reduce) return;
+      var raf = false, rx = 0, ry = 0, mx = 50, my = 50;
+      card.addEventListener('pointermove', function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+        ry = (px - 0.5) * 7; rx = (0.5 - py) * 7; mx = px * 100; my = py * 100;
+        if (!raf) {
+          raf = true;
+          requestAnimationFrame(function () {
+            raf = false;
+            card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-8px)';
+            glass.style.setProperty('--mx', mx + '%');
+            glass.style.setProperty('--my', my + '%');
+          });
+        }
+      });
+      card.addEventListener('pointerenter', function () { card.classList.add('pc-tilt'); });
+      card.addEventListener('pointerleave', function () { card.classList.remove('pc-tilt'); card.style.transform = ''; });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', museumCards); else museumCards();
+  setTimeout(museumCards, 900);
+
+  /* ---------- 4) Ambient bee ---------- */
+  (function ambientBee() {
+    if (reduce) return;
+    // Checkout flow: keep the screen calm, no flying bee near the CTA.
+    if (/checkout\.html|order-success\.html/.test(location.pathname)) return;
+    var bee = null, flying = false, timer = null;
+    function vw() { return window.innerWidth; }
+    function vh() { return window.innerHeight; }
+    function make() {
+      var b = document.createElement('div');
+      b.className = 'hd-bee'; b.setAttribute('aria-hidden', 'true');
+      b.innerHTML = '<svg viewBox="0 0 40 28" xmlns="http://www.w3.org/2000/svg">' +
+        '<g class="hb-wings">' +
+        '<ellipse class="hb-w" cx="15" cy="8.5" rx="9" ry="5" fill="rgba(255,255,255,0.55)" stroke="rgba(150,120,70,0.5)" stroke-width="0.6"/>' +
+        '<ellipse class="hb-w" cx="22.5" cy="8.5" rx="7.5" ry="4.4" fill="rgba(255,255,255,0.45)" stroke="rgba(150,120,70,0.5)" stroke-width="0.6"/>' +
+        '</g>' +
+        '<ellipse cx="20" cy="16.5" rx="12" ry="7" fill="#c79a3f"/>' +
+        '<rect x="15.5" y="10" width="2.4" height="13" rx="1.2" fill="#241a0d" transform="rotate(0 16.7 16.5)"/>' +
+        '<rect x="20" y="10" width="2.4" height="13" rx="1.2" fill="#241a0d"/>' +
+        '<rect x="24.5" y="11" width="2.2" height="11" rx="1.1" fill="#241a0d"/>' +
+        '<circle cx="31.5" cy="15.5" r="3.6" fill="#241a0d"/>' +
+        '<path d="M33 12.5 C35 10 36.5 10 37 11" stroke="#241a0d" stroke-width="0.8" fill="none" stroke-linecap="round"/>' +
+        '</svg>';
+      document.body.appendChild(b); return b;
+    }
+    function ctas() {
+      var sel = '.cta,.oo__cta,.jp-cta,.idx-sel-cta,.confirm-btn,.form-submit,[data-add-to-cart]';
+      return [].slice.call(document.querySelectorAll(sel)).filter(function (el) {
+        if (!el.offsetParent) return false;
+        var r = el.getBoundingClientRect();
+        return r.width > 40 && r.top > 70 && r.bottom < vh() - 24 && r.left > 24 && r.right < vw() - 24;
+      });
+    }
+    function schedule() { clearTimeout(timer); timer = setTimeout(flight, 20000 + Math.random() * 20000); }
+    function flight() {
+      if (flying || document.hidden) { schedule(); return; }
+      flying = true;
+      if (!bee) bee = make();
+      bee.style.opacity = '0';
+      var fromLeft = Math.random() < 0.5;
+      var sX = fromLeft ? -50 : vw() + 50, eX = fromLeft ? vw() + 50 : -50;
+      var sY = 70 + Math.random() * (vh() - 200), eY = 70 + Math.random() * (vh() - 200);
+      var list = ctas(), land = null;
+      if (list.length && Math.random() < 0.55) {
+        var c = list[(Math.random() * list.length) | 0].getBoundingClientRect();
+        land = { x: c.left + c.width / 2, y: c.top - 10 };
+      }
+      var legs = [];
+      if (land) {
+        legs.push({ x0: sX, y0: sY, x1: land.x, y1: land.y, dur: 2700, wob: 1 });
+        legs.push({ hold: 2000 });
+        legs.push({ x0: land.x, y0: land.y, x1: eX, y1: eY, dur: 2700, wob: 1 });
+      } else {
+        legs.push({ x0: sX, y0: sY, x1: eX, y1: eY, dur: 5400, wob: 1.4 });
+      }
+      run(legs, 0);
+    }
+    function run(legs, i) {
+      if (i >= legs.length) { bee.style.opacity = '0'; flying = false; schedule(); return; }
+      var leg = legs[i];
+      if (leg.hold) {
+        bee.classList.add('hd-bee--land');
+        setTimeout(function () { bee.classList.remove('hd-bee--land'); run(legs, i + 1); }, leg.hold);
+        return;
+      }
+      var t0 = performance.now();
+      var ang = Math.atan2(leg.y1 - leg.y0, leg.x1 - leg.x0);
+      var dir = (leg.x1 < leg.x0) ? -1 : 1;
+      function step(now) {
+        var p = Math.min(1, (now - t0) / leg.dur);
+        var e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        var x = leg.x0 + (leg.x1 - leg.x0) * e;
+        var y = leg.y0 + (leg.y1 - leg.y0) * e;
+        var wob = Math.sin(p * Math.PI * (3 + leg.wob * 2)) * 11 * leg.wob;
+        x += Math.cos(ang + Math.PI / 2) * wob;
+        y += Math.sin(ang + Math.PI / 2) * wob;
+        var op = 1;
+        if (i === 0) op = Math.min(1, p * 4);
+        if (i === legs.length - 1) op = Math.min(op, Math.max(0, (1 - p) * 4));
+        bee.style.opacity = op;
+        bee.style.transform = 'translate(' + x + 'px,' + y + 'px) translate(-50%,-50%) scaleX(' + dir + ')';
+        if (p < 1 && !document.hidden) requestAnimationFrame(step);
+        else run(legs, i + 1);
+      }
+      requestAnimationFrame(step);
+    }
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) clearTimeout(timer); else schedule();
+    });
+    setTimeout(flight, 9000 + Math.random() * 7000);
+  })();
 })();

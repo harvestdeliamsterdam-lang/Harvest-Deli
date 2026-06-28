@@ -7,17 +7,22 @@
 <meta name="description" content="Editions you have set aside for the cellar. Saved locally to your browser.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://harvestdeli.nl/wishlist.html">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-81" type="image/svg+xml">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#1F1A14">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-137">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-137" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-137">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-137">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-137">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-137" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-137">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-137">
+<meta name="theme-color" content="#10281f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-81">
-<link rel="stylesheet" href="legal.css?v=hd-2026-06-06-81">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-137">
+<link rel="stylesheet" href="legal.css?v=hd-2026-06-06-137">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247;
@@ -460,7 +465,7 @@
   <div class="menu-content">
     <ol class="menu-items">
       <li><span class="roman">I</span><a href="shop.html" data-i18n-html="menu.item.collection_html">The <em>Collection</em></a><span class="sub" data-i18n="menu.item.collection_sub">All editions</span></li>
-      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Pelion · Greece</span></li>
+      <li><span class="roman">II</span><a href="about.html" data-i18n-html="menu.item.origin_html">The <em>Origin</em></a><span class="sub" data-i18n="menu.item.origin_sub">Greece</span></li>
       <li><span class="roman">III</span><a href="find-us-amsterdam.html" data-i18n-html="markets.menu_html">The <em>Markets</em></a><span class="sub" data-i18n="markets.menu_sub">Find us in Amsterdam</span></li>
       <li><span class="roman">IV</span><a href="journal.html" data-i18n-html="menu.item.journal_html">The <em>Journal</em></a><span class="sub" data-i18n="menu.item.journal_sub">Field notes</span></li>
       <li><span class="roman">V</span><a href="partners.html">The <em>Partnership</em></a><span class="sub">Retail &amp; Hospitality</span></li>
@@ -469,10 +474,10 @@
     </ol>
     <aside class="menu-side">
       <h5 data-i18n="menu.estate.h">Visit the estate</h5>
-      <p data-i18n="menu.estate.p">By appointment between April and October. Small groups, single day, accompanied tastings at the cellar.</p>
+      <p data-i18n="menu.estate.p">Single-origin Greek honey, olive oil and mountain tea. Small harvests, shipped quietly within the Netherlands & Belgium.</p>
       <div class="contact">
         <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a><br>
-        +30 24210 882 14<br>Pelion, 37006 &middot; Greece
+        +31 6 10715083<br>Nederland
       </div>
     </aside>
   </div>
@@ -565,12 +570,13 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <span data-i18n="footer.bottom1">© Harvest Deli &middot; Pelion, Greece</span>
-    <span>KvK [00000000] &middot; BTW NL[000000000]B01</span>
+    <span data-i18n="footer.bottom1">© Harvest Deli &middot; Greece</span>
+    <span>Ilias Basiakoulis &middot; KvK 83852565 &middot; BTW NL003883043B40</span>
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-81"></script>
+<script src="shared.js?v=hd-2026-06-06-137"></script>
+<script src="analytics.js?v=hd-2026-06-06-137"></script>
 <script>
 (function() {
   const menuBtn = document.getElementById('menuBtn');
@@ -602,7 +608,7 @@
   }
 
   function cardHTML(p) {
-    var img = p.image || 'harvestdeli.png';
+    var img = p.image || 'harvestdeli.webp';
     return '<article class="wl-card" data-slug="' + p.slug + '">' +
       '<a class="wl-frame" href="' + p.url + '" aria-label="' + p.name + '">' +
         '<img src="' + img + '" alt="' + p.name + '" loading="lazy">' +

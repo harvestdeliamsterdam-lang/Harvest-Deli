@@ -70,7 +70,7 @@
       '<tr><td style="padding:22px 36px 30px;border-top:1px solid rgba(26,22,18,0.08);text-align:center">' +
         '<div style="font-family:Inter,Arial,sans-serif;font-size:11px;line-height:1.7;color:' + BRAND.soft + '">' +
         'Questions? <a href="mailto:' + BRAND.supportEmail + '" style="color:' + BRAND.goldDeep + '">' + BRAND.supportEmail + '</a><br>' +
-        '© ' + BRAND.name + ' · Pelion, Greece</div>' +
+        '© ' + BRAND.name + ' · Greece</div>' +
       '</td></tr>' +
       '</table></td></tr></table></body></html>';
   }
@@ -110,7 +110,7 @@
     },
     abandonedCart: function (d) {
       return { subject: 'Your cellar is waiting', preheader: 'A few jars are still in your cart.',
-        body: h('Still thinking it over?') + p('Your selection is held quietly in your cart. Pick up where you left off whenever you are ready.') + lineItems(d.items) + button('Return to your cart', BRAND.site + '/checkout.html') };
+        body: h('Still thinking it over?') + p('Your selection is held quietly in your cart. Pick up where you left off whenever you are ready.') + lineItems(d.items) + button('Continue your selection', (d.checkoutUrl && /^https:\/\//.test(d.checkoutUrl)) ? d.checkoutUrl : (BRAND.site + '/shop.html')) };
     },
     contactConfirmation: function (d) {
       return { subject: 'We received your message', preheader: 'Thank you for writing.',

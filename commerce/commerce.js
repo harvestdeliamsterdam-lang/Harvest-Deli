@@ -120,6 +120,25 @@
     if (!n) return null;
     var imgs = (n.images && n.images.nodes) ? n.images.nodes : (n.featuredImage ? [n.featuredImage] : []);
     var variants = (n.variants && n.variants.nodes) ? n.variants.nodes : [];
+    /* Record slug|sizeLabel → variantId so the cart/checkout can build real
+       Shopify lines. Keyed by the "Size" option value (matches HD_CART size labels). */
+    try {
+      var mapped = false;
+      variants.forEach(function (v) {
+        if (!v || !v.id) return;
+        var sz = 'default';
+        if (v.selectedOptions) {
+          for (var i = 0; i < v.selectedOptions.length; i++) {
+            if (v.selectedOptions[i].name === 'Size') { sz = v.selectedOptions[i].value; break; }
+          }
+        }
+        if (sz === 'default' && v.title && v.title !== 'Default Title') sz = v.title;
+        VARIANT_MAP[n.handle + '|' + sz] = v.id;
+        if (variants.length === 1) VARIANT_MAP[n.handle + '|' + 'default'] = v.id;
+        mapped = true;
+      });
+      if (mapped) saveVariantMap();
+    } catch (e) {}
     return {
       id: n.id, handle: n.handle, title: n.title,
       descriptionHtml: n.descriptionHtml || '',
@@ -176,7 +195,7 @@
       totalQuantity: items.reduce(function (a, it) { return a + it.qty; }, 0),
       cost: { subtotalAmount: money(subtotal), totalAmount: money(Math.max(0, subtotal - offer)) },
       discountAmount: money(offer),
-      freeShippingThreshold: (CFG().freeShippingThreshold || 120),
+      freeShippingThreshold: (CFG().freeShippingThreshold || 65),
       checkoutUrl: 'checkout.html'   // local wizard; Shopify checkoutUrl is used by Commerce.checkout() when live
     };
   }
@@ -197,6 +216,49 @@
     return lines;
   }
 
+  /* ---- Storefront product cache (session-scoped + in-memory, TTL) so the
+     home/shop/product pages don't refetch on every navigation and repeat
+     views render instantly from the same Shopify data. Variant map is
+     repopulated on cache hits so checkout keeps working. ---- */
+  var PCACHE_KEY = 'hd-sf-products-v1';
+  var PCACHE_TTL = 10 * 60 * 1000; // 10 minutes
+  var _pcache = null;
+  function readPCache() {
+    if (_pcache && (Date.now() - _pcache.t) < PCACHE_TTL) return _pcache;
+    try {
+      var raw = JSON.parse(sessionStorage.getItem(PCACHE_KEY) || 'null');
+      if (raw && raw.t && (Date.now() - raw.t) < PCACHE_TTL && raw.list) { _pcache = raw; return raw; }
+    } catch (e) {}
+    return null;
+  }
+  function writePCache(list) {
+    var byHandle = {};
+    list.forEach(function (p) { if (p) byHandle[p.handle] = p; });
+    _pcache = { t: Date.now(), list: list, byHandle: byHandle };
+    try { sessionStorage.setItem(PCACHE_KEY, JSON.stringify(_pcache)); } catch (e) {}
+  }
+  function rememberVariantsFromList(list) {
+    try {
+      var changed = false;
+      list.forEach(function (p) {
+        ((p && p.variants) || []).forEach(function (v) {
+          if (!v || !v.id) return;
+          var sz = 'default';
+          if (v.selectedOptions) {
+            for (var i = 0; i < v.selectedOptions.length; i++) {
+              if (v.selectedOptions[i].name === 'Size') { sz = v.selectedOptions[i].value; break; }
+            }
+          }
+          if (sz === 'default' && v.title && v.title !== 'Default Title') sz = v.title;
+          VARIANT_MAP[p.handle + '|' + sz] = v.id;
+          if ((p.variants || []).length === 1) VARIANT_MAP[p.handle + '|' + 'default'] = v.id;
+          changed = true;
+        });
+      });
+      if (changed) saveVariantMap();
+    } catch (e) {}
+  }
+
   /* ---------------- public API ---------------- */
   var Commerce = {
     config: CFG,
@@ -205,6 +267,8 @@
       /** @returns {Promise<Product|null>} */
       async get(handle) {
         if (useShopify()) {
+          var c = readPCache();
+          if (c && c.byHandle && c.byHandle[handle]) return c.byHandle[handle];
           var d = await SF().safeFetch(SF().QUERIES.productByHandle, { handle: handle });
           if (d && d.product) return normalizeShopifyProduct(d.product);
         }
@@ -213,8 +277,14 @@
       /** @returns {Promise<Product[]>} */
       async all() {
         if (useShopify()) {
+          var c = readPCache();
+          if (c && c.list) { rememberVariantsFromList(c.list); return c.list; }
           var d = await SF().safeFetch(SF().QUERIES.products, { first: 50 });
-          if (d && d.products && d.products.nodes) return d.products.nodes.map(normalizeShopifyProduct);
+          if (d && d.products && d.products.nodes) {
+            var list = d.products.nodes.map(normalizeShopifyProduct);
+            writePCache(list);
+            return list;
+          }
         }
         return SLUGS.map(toProduct).filter(Boolean);
       },
@@ -251,21 +321,33 @@
       async remove(handle, size) { if (window.HD_CART) window.HD_CART.remove(handle, size); return buildCart(); }
     },
 
-    /* Checkout: when live + catalog synced, create a Shopify cart from HD_CART and
-       return Shopify's hosted checkoutUrl. Otherwise return the local wizard URL.
-       @returns {Promise<string>} a URL to navigate to. */
+    /* Checkout: PRODUCTION = Shopify only. When live, create a Shopify cart from
+       HD_CART, clear the local cart, and return Shopify's hosted checkoutUrl.
+       On ANY failure returns null (caller shows an error modal — there is NO
+       fall-through to the legacy local checkout.html). Only when source!=='shopify'
+       (dev/mock) does it return the local wizard URL.
+       @returns {Promise<string|null>} a URL to navigate to, or null on failure. */
     async checkout() {
       if (useShopify()) {
         var lines = shopifyLinesFromCart();
+        if (!lines) {
+          // a cart item has no mapped variant yet → hydrate the whole catalog once, then retry
+          try { await Commerce.products.all(); } catch (e) {}
+          lines = shopifyLinesFromCart();
+        }
         if (lines && lines.length) {
           var d = await SF().safeFetch(SF().QUERIES.cartCreate, { lines: lines });
           var cart = d && d.cartCreate && d.cartCreate.cart;
-          if (cart && cart.checkoutUrl) { setCartId(cart.id); return cart.checkoutUrl; }
+          if (cart && cart.checkoutUrl) {
+            setCartId(cart.id);
+            clearLocalCart();          // PHASE 5: cart cleared the instant a Shopify checkout URL exists
+            return cart.checkoutUrl;
+          }
         }
-        // not synced / API failed → safe fallback to the local wizard
-        if (window.console) console.warn('[commerce] Shopify checkout unavailable, using local checkout.html');
+        if (window.console) console.warn('[commerce] Shopify checkout could not be created');
+        return null;                   // PHASE 3: no checkout.html fallback in production
       }
-      return 'checkout.html';
+      return 'checkout.html';          // dev/mock only (source !== 'shopify')
     },
 
     search: {
@@ -360,7 +442,7 @@
           slug: n.handle, name: n.title, url: 'product.html?p=' + n.handle,
           price: +(n.priceRange.minVariantPrice.amount || 0), priceFrom: +(n.priceRange.minVariantPrice.amount || 0),
           sizes: sizes, defaultSize: sizes[0] && sizes[0].id, multiSize: sizes.length > 1,
-          image: (n.images[0] && n.images[0].url) || 'harvestdeli.png',
+          image: (n.images[0] && n.images[0].url) || 'harvestdeli.webp',
           notes: (n.descriptionHtml || '').replace(/<[^>]+>/g, '').trim(),
           tags: n.tags || [], badges: [], type: (n.productType || '').toLowerCase()
           // region/altitude/hue/edition: map from Shopify metafields here when modelled.
@@ -371,14 +453,62 @@
 
   window.Commerce = Commerce;
 
-  /* Checkout redirect interceptor — INERT under mock (the link works normally).
-     Only when live + synced does it create a Shopify cart and redirect to the
-     hosted checkout. Keeps the existing checkout.html flow untouched otherwise. */
+  /* PHASE 5 helper: empty the local HD_CART (size-aware). Called once a Shopify
+     checkout URL is created — the items now live in the Shopify cart. */
+  function clearLocalCart() {
+    try {
+      if (window.HD_CART && window.HD_CART.items) {
+        window.HD_CART.items.slice().forEach(function (it) { window.HD_CART.remove(it.slug, it.size); });
+      }
+    } catch (e) {}
+  }
+
+  /* Minimal, brand-neutral error modal (uses existing CSS vars; no stylesheet
+     edits). Shown when a Shopify checkout cannot be created — NEVER a silent
+     fall-through to a fake order. */
+  function showCheckoutError() {
+    if (document.getElementById('hdCoErr')) { document.getElementById('hdCoErr').style.display = 'flex'; return; }
+    var nl = (window.HD_lang && window.HD_lang() === 'nl');
+    var wrap = document.createElement('div');
+    wrap.id = 'hdCoErr';
+    wrap.setAttribute('role', 'alertdialog'); wrap.setAttribute('aria-modal', 'true'); wrap.setAttribute('aria-labelledby', 'hdCoErrT');
+    wrap.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(20,14,8,0.55);padding:24px;';
+    wrap.innerHTML =
+      '<div style="max-width:420px;width:100%;background:var(--cream,#FAF6EE);color:var(--ink,#1F1A14);border:1px solid rgba(184,148,90,0.4);border-radius:6px;padding:30px 28px;font-family:Inter,system-ui,sans-serif;box-shadow:0 30px 80px -30px rgba(40,24,8,0.5);">' +
+      '<h2 id="hdCoErrT" style="margin:0 0 10px;font-family:Newsreader,serif;font-weight:400;font-size:22px;">' + (nl ? 'Checkout tijdelijk niet beschikbaar' : 'Checkout temporarily unavailable') + '</h2>' +
+      '<p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:var(--ink-soft,#5C5247);">' + (nl ? 'We konden de betaalpagina niet openen. Je winkelmandje is bewaard. Probeer het zo opnieuw.' : 'We could not open the payment page. Your cart is saved. Please try again in a moment.') + '</p>' +
+      '<button type="button" id="hdCoErrClose" style="cursor:pointer;border:1px solid var(--ink,#1F1A14);background:var(--ink,#1F1A14);color:var(--cream,#FAF6EE);font:inherit;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:13px 24px;border-radius:999px;min-height:44px;">' + (nl ? 'Sluiten' : 'Close') + '</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    function close() { wrap.style.display = 'none'; }
+    wrap.querySelector('#hdCoErrClose').addEventListener('click', close);
+    wrap.addEventListener('click', function (e) { if (e.target === wrap) close(); });
+  }
+
+  /* THE single checkout entry point for the whole site. Every "checkout"/"buy now"
+     action routes here. Production (source==='shopify') → Shopify hosted checkout
+     or an error modal. Dev/mock → the local checkout.html wizard. */
+  function startCheckout() {
+    if (!useShopify()) { window.location.href = 'checkout.html'; return; } // dev/mock only
+    var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
+    if (!has) { window.location.href = 'shop.html'; return; }
+    Commerce.checkout().then(function (url) {
+      if (url && /^https?:\/\//.test(url)) { window.location.href = url; }
+      else { showCheckoutError(); }
+    }).catch(function () { showCheckoutError(); });
+  }
+  window.HD_startCheckout = startCheckout;
+
+  /* Checkout routing. In production (source==='shopify') the cart drawer
+     "Continue to checkout" (a.cart-checkout) and any [data-shopify-checkout]
+     element go STRAIGHT to Shopify hosted checkout — no local pre-checkout
+     wizard, no double address/payment entry. In dev/mock the cart-checkout
+     anchor keeps its href (checkout.html) so the wizard can be previewed. */
   document.addEventListener('click', function (e) {
-    if (!useShopify()) return;                                  // mock → do nothing, normal link
-    var a = e.target.closest && e.target.closest('a.cart-checkout, [data-shopify-checkout]');
+    var a = e.target.closest && e.target.closest('[data-shopify-checkout], a.cart-checkout');
     if (!a) return;
+    if (!useShopify()) return;
     e.preventDefault();
-    Commerce.checkout().then(function (url) { window.location.href = url; });
+    startCheckout();
   }, true);
 })();

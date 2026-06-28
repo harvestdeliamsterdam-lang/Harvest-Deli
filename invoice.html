@@ -6,14 +6,19 @@
 <title>Invoice · Harvest Deli</title>
 <meta name="description" content="Your Harvest Deli invoice.">
 <meta name="robots" content="noindex,follow">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-81" type="image/svg+xml">
-<link rel="manifest" href="site.webmanifest">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-137">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-137" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-137">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-137">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-137">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-137" color="#10281f">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-137">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-81">
-<link rel="stylesheet" href="account.css?v=hd-2026-06-06-81">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-137">
+<link rel="stylesheet" href="account.css?v=hd-2026-06-06-137">
 <style>
 .inv-wrap{max-width:780px;margin:0 auto;padding:120px 6% 8vh}
 @media print{ .site-nav,.site-footer,.inv-actions,.hd-whats,.nav-search,#cookieBar,.hd-fab,.hd-concierge,.cart-drawer{display:none!important} .inv-wrap{padding:0;max-width:none} body{background:#fff} .inv-sheet{box-shadow:none;border:none} }
@@ -65,9 +70,10 @@
 <div class="footer-col"><h4>Help</h4><a href="track-order.html">Track order</a><a href="returns.html">Returns</a><a href="legal-shipping.html">Shipping</a><a href="contact.html">Contact</a></div>
 <div class="footer-col"><h4>Account</h4><a href="account.html">Dashboard</a><a href="account-orders.html">Orders</a><a href="returns.html">Returns</a></div>
 <div class="footer-col"><h4>Legal</h4><a href="legal-terms.html">Terms</a><a href="legal-privacy.html">Privacy</a><a href="legal-payment.html">Payment</a><a href="legal-returns.html">Returns policy</a></div>
-</div><div class="footer-bottom"><span>© Harvest Deli · Pelion, Greece</span><span>KvK [00000000] · BTW NL[000000000]B01</span></div></footer>
-<script src="shared.js?v=hd-2026-06-06-81"></script>
-<script src="account.js?v=hd-2026-06-06-81"></script>
+</div><div class="footer-bottom"><span>© Harvest Deli · Greece</span><span>Ilias Basiakoulis · KvK 83852565 · BTW NL003883043B40</span></div></footer>
+<script src="shared.js?v=hd-2026-06-06-137"></script>
+<script src="analytics.js?v=hd-2026-06-06-137"></script>
+<script src="account.js?v=hd-2026-06-06-137"></script>
 <script>
 (function(){
   function money(n){n=Math.round((n||0)*100)/100;return '€'+n.toFixed(2);}
@@ -85,7 +91,7 @@
   '<div class="inv-top"><div class="inv-brand">HARVEST DELI<small>Premium Greek products</small></div>'+
     '<div class="inv-meta"><strong>Invoice</strong><br>'+o.id+'<br>'+d.toLocaleDateString()+'</div></div>'+
   '<div class="inv-parties">'+
-    '<div><h5>From</h5><div>Harvest Deli B.V.<br>Ten Katestraat, Amsterdam<br>Netherlands<br>KvK [00000000] · BTW NL[000000000]B01</div></div>'+
+    '<div><h5>From</h5><div>Harvest Deli B.V.<br>Ten Katestraat, Amsterdam<br>Netherlands<br>Ilias Basiakoulis · KvK 83852565 · BTW NL003883043B40</div></div>'+
     '<div><h5>Billed to</h5><div>'+((c.firstName||'')+' '+(c.lastName||'')).trim()+(c.company?'<br>'+c.company:'')+'<br>'+[addr.line1,addr.line2].filter(Boolean).join('<br>')+'<br>'+((addr.postcode||'')+' '+(addr.city||'')).trim()+'<br>'+(addr.country||'')+(c.vat?'<br>VAT: '+c.vat:'')+'</div></div>'+
   '</div>'+
   '<table class="inv-table"><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Unit</th><th class="num">Amount</th></tr></thead><tbody>'+rows+'</tbody></table>'+

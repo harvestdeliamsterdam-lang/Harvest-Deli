@@ -4,18 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout, Harvest Deli</title>
-<meta name="description" content="Secure checkout for Harvest Deli. Pay with iDEAL, card, Klarna or Apple Pay. Free EU shipping above €120.">
+<meta name="description" content="Secure checkout for Harvest Deli. Pay securely with iDEAL, Bancontact, card and more via Mollie. Free shipping within the Netherlands & Belgium above €65.">
 <meta name="robots" content="noindex,follow">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-81" type="image/svg+xml">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="manifest" href="site.webmanifest">
-<meta name="theme-color" content="#1F1A14">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-137">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-137" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-137">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-137">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-137">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-137" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-137">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-137">
+<meta name="theme-color" content="#10281f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-81">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-137">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -623,6 +628,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   .ck-sub { font-size: 15px; margin-bottom: 5vh; }
   .step-num { margin-bottom: 24px; gap: 14px; }
   .step-num h3 { font-size: 22px; }
+  .ck-sub { margin-bottom: 3vh; }
   .field-row, .field-row.three { grid-template-columns: 1fr; gap: 0; }
   .field { margin-bottom: 22px; }
   .field input, .field select { font-size: 17px; padding: 14px 0 14px; }
@@ -824,6 +830,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
 /* Header steps, thin, animated gold progress, soft active glow */
 .wz-steps { margin: 0 0 44px; }
+@media (max-width: 900px) { .wz-steps { margin: 0 0 22px; } }
 .wz-dot .n { border-radius: 50%; transition: all .5s var(--ck-ease); }
 .wz-dot:not(:last-child)::after { width: 26px; background: rgba(26,22,18,0.16); transition: background .5s var(--ck-ease); }
 .wz-dot.done:not(:last-child)::after { background: var(--gold, #B8945A); }
@@ -852,6 +859,28 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   box-shadow: 0 0 0 4px rgba(184,148,90,0.1) !important;
 }
 .field input::placeholder { font-style: normal; }
+/* Kill the browser autofill blue → keep the cream theme */
+.field input:-webkit-autofill,
+.field input:-webkit-autofill:hover,
+.field input:-webkit-autofill:focus,
+.field input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--ink) !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255,253,248,0.92) inset !important;
+  box-shadow: 0 0 0 1000px rgba(255,253,248,0.92) inset !important;
+  border-color: rgba(26,22,18,0.12) !important;
+  caret-color: var(--ink);
+  transition: background-color 9999s ease-in-out 0s, border-color .4s var(--ck-ease) !important;
+  font-family: 'Newsreader', serif !important;
+}
+.field input:-webkit-autofill:focus {
+  border-color: rgba(184,148,90,0.55) !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255,253,248,0.98) inset, 0 0 0 4px rgba(184,148,90,0.1) !important;
+  box-shadow: 0 0 0 1000px rgba(255,253,248,0.98) inset, 0 0 0 4px rgba(184,148,90,0.1) !important;
+}
+.field input:autofill {
+  -webkit-text-fill-color: var(--ink);
+  box-shadow: 0 0 0 1000px rgba(255,253,248,0.92) inset;
+}
 
 /* Ship options → floating rounded panels */
 .ship-opt { border: 1px solid rgba(26,22,18,0.1); border-radius: var(--ck-rad-sm); background: rgba(255,253,248,0.5); padding: 16px 18px; transition: border-color .4s var(--ck-ease), box-shadow .4s var(--ck-ease), transform .4s var(--ck-ease); }
@@ -1007,7 +1036,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
     <div class="lang-toggle" role="group" aria-label="Language">
       <button data-lang="en">EN</button><span class="sep"></span><button data-lang="nl">NL</button><span class="sep"></span><button data-lang="el">EL</button>
     </div>
-    <a href="contact.html" class="secure-link" data-i18n="nav.secureCheckout">Secure Checkout</a>
+    <span class="secure-link" data-i18n="nav.secureCheckout" role="note">Secure payment via Mollie</span>
   </div>
 </nav>
 
@@ -1025,7 +1054,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
         <span class="label" data-i18n="cart.subtotal">Subtotal</span>
         <span class="total" id="cartTotal">€0</span>
       </div>
-      <p class="cart-note" data-i18n="cart.note">Shipping calculated below. Complimentary across the EU above €120.</p>
+      <p class="cart-note" data-i18n="cart.note">Shipping calculated below. Free within the Netherlands & Belgium above €65.</p>
       <a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>
     </footer>
   </aside>
@@ -1165,7 +1194,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
 
         <div class="stripe-note">
           <span class="pill" data-i18n="ck.demoPill">Demo</span>
-          <span data-i18n="ck.payNote">Provider-agnostic UI. No card is charged here, Stripe or Mollie connects at this step in production.</span>
+          <span data-i18n="ck.payNote">You complete your payment securely via Mollie at Shopify checkout, after this step.</span>
         </div>
 
         <div class="payment-methods" aria-label="Accepted payment methods">
@@ -1246,7 +1275,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
       </div>
       <div class="trust-cell">
         <div class="ico">⌬</div>
-        <div class="lbl"><span data-i18n="checkout.trust.sealed1">Sealed in</span><br><span data-i18n="checkout.trust.sealed2">Pelion</span></div>
+        <div class="lbl"><span data-i18n="checkout.trust.sealed1">Sealed in</span><br><span data-i18n="checkout.trust.sealed2">Greece</span></div>
       </div>
     </div>
   </aside>
@@ -1262,7 +1291,8 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   <button type="button" class="wz-mobile-btn" id="wzMobileBtn"><span id="wzMobileAction" data-i18n="ck.continue">Continue</span> <span class="arrow"></span></button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-81"></script>
-<script src="checkout.js?v=hd-2026-06-06-81"></script>
+<script src="shared.js?v=hd-2026-06-06-137"></script>
+<script src="analytics.js?v=hd-2026-06-06-137"></script>
+<script src="checkout.js?v=hd-2026-06-06-137"></script>
 </body>
 </html>

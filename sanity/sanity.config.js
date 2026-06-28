@@ -30,9 +30,17 @@ export default defineConfig({
               .title('Journal articles')
               .schemaType('post')
               .child(S.documentTypeList('post').title('Journal articles')),
+            S.listItem()
+              .title('Origin stories')
+              .schemaType('originStory')
+              .child(S.documentTypeList('originStory').title('Origin stories')),
             S.listItem().title('Categories').schemaType('category').child(S.documentTypeList('category')),
             S.listItem().title('Authors').schemaType('author').child(S.documentTypeList('author')),
             S.divider(),
+            // Homepage as a singleton
+            S.listItem()
+              .title('Homepage')
+              .child(S.document().schemaType('homepage').documentId('homepage')),
             S.listItem().title('Homepage sections').schemaType('homeSection').child(S.documentTypeList('homeSection')),
             // About story as a singleton
             S.listItem()

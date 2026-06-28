@@ -61,28 +61,11 @@
     clearReservations: function () { saveReservations({}); }
   };
 
-  /* ---------- labels ---------- */
-  function badgeLabel(st) {
-    if (st.status === 'out') return L('Sold out', 'Uitverkocht');
-    if (st.status === 'backorder') return L('Pre-order', 'Pre-order');
-    if (st.status === 'low') return L('Only {n} left', 'Nog {n} op voorraad').replace('{n}', st.qty);
-    return '';
-  }
-
   /* ---------- shop cards ---------- */
-  function decorateCards() {
-    document.querySelectorAll('.p-card[data-slug]').forEach(function (card) {
-      if (card.querySelector('.stock-flag')) return;
-      var st = statusOf(card.getAttribute('data-slug'));
-      if (st.status === 'in') return; // subtle: only flag non-plentiful
-      var wrap = card.querySelector('.jar-wrap') || card;
-      var flag = document.createElement('span');
-      flag.className = 'stock-flag stock-' + st.status;
-      flag.textContent = badgeLabel(st);
-      wrap.appendChild(flag);
-      if (st.status === 'out') card.classList.add('is-soldout');
-    });
-  }
+  /* Stock/scarcity badges removed: a premium luxury card shows no urgency
+     indicators (no "low stock" / "sold out" / "pre-order" flags). The stock
+     model (HD_stock) stays available for the oversell guard only. */
+  function decorateCards() { /* intentionally no visual badge */ }
   function watchGrid() {
     var grid = document.getElementById('shopGrid');
     if (!grid) return;
@@ -91,33 +74,16 @@
   }
 
   /* ---------- product page ---------- */
+  /* No scarcity on product pages: only a calm, localized "in stock · ready to
+     ship" reassurance line. No "low / sold out / pre-order" states, no CTA gating. */
   function decorateProduct() {
-    var meta = document.querySelector('meta[name="hd-product-slug"]');
-    if (!meta || !meta.content) return;
-    var st = statusOf(meta.content);
     var stockEl = document.querySelector('.pd-stock');
-    if (stockEl) {
-      var dot = stockEl.querySelector('.pd-stock-dot');
-      stockEl.classList.remove('is-low', 'is-out', 'is-backorder');
-      var txt;
-      if (st.status === 'out') { txt = L('Sold out', 'Uitverkocht'); stockEl.classList.add('is-out'); }
-      else if (st.status === 'backorder') { txt = L('Available to pre-order', 'Beschikbaar voor pre-order') + (st.eta ? ' · ' + st.eta : ''); stockEl.classList.add('is-backorder'); }
-      else if (st.status === 'low') { txt = L('Only {n} left · ready to ship', 'Nog {n} op voorraad · klaar voor verzending').replace('{n}', st.qty); stockEl.classList.add('is-low'); }
-      else { txt = L('In stock · ready to ship', 'Op voorraad · klaar voor verzending'); }
-      stockEl.innerHTML = '';
-      if (dot) stockEl.appendChild(dot);
-      stockEl.appendChild(document.createTextNode(' ' + txt));
-    }
-    // gate the CTA
-    var cta = document.querySelector('.pd-cta[data-add-to-cart]');
-    if (cta) {
-      if (st.status === 'out') {
-        cta.disabled = true;
-        var span = cta.querySelector('span:first-child'); if (span) span.textContent = L('Sold out', 'Uitverkocht');
-      } else if (st.status === 'backorder') {
-        var s2 = cta.querySelector('span:first-child'); if (s2) s2.textContent = L('Pre-order', 'Pre-order');
-      }
-    }
+    if (!stockEl) return;
+    var dot = stockEl.querySelector('.pd-stock-dot');
+    stockEl.classList.remove('is-low', 'is-out', 'is-backorder');
+    stockEl.innerHTML = '';
+    if (dot) stockEl.appendChild(dot);
+    stockEl.appendChild(document.createTextNode(' ' + L('In stock · ready to ship', 'Op voorraad · klaar voor verzending')));
   }
 
   /* ---------- oversell guard (capture phase, beats other handlers) ---------- */
