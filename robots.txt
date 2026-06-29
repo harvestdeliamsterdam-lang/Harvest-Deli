@@ -5,7 +5,6 @@ User-agent: *
 Allow: /
 Disallow: /checkout.html
 Disallow: /assets/
-Disallow: /*?p=
 Disallow: /*?v=
 
 # Common AI scrapers — adjust to taste

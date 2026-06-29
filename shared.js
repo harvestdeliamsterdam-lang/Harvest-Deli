@@ -89,8 +89,8 @@
     root.classList.remove('hd-intro-pending');
     root.classList.add('hd-intro-active');
 
-    const HOLD = reduced ? 2200 : 6100;  // ms before the curtain begins to rise (cinematic, unhurried)
-    const EXIT = reduced ? 800 : 1400;   // ms for the curtain transition itself
+    const HOLD = reduced ? 700 : 1400;   // ms before the curtain rises (kept brief so it never gates LCP)
+    const EXIT = reduced ? 600 : 1100;   // ms for the curtain transition itself
 
     let dismissed = false;
     let exitTimer = setTimeout(beginExit, HOLD);
@@ -2209,7 +2209,7 @@
     // Saved user choice always wins
     try {
       const stored = localStorage.getItem('hd-lang');
-      if (stored === 'en' || stored === 'nl' || stored === 'el') return stored;
+      if (stored === 'en' || stored === 'nl') return stored;  // Greek (el) retired; any stored 'el' falls back to nl
     } catch (e) {}
     // First-time visitors always get Dutch (the primary storefront language).
     // EN/EL remain available via the language switcher; the choice is then stored.
@@ -2251,7 +2251,7 @@
   window.HD_applyTranslations = applyTranslations;
 
   function setLang(lang) {
-    if (lang !== 'en' && lang !== 'nl' && lang !== 'el') return;
+    if (lang !== 'en' && lang !== 'nl') return;  // Greek (el) retired
     currentLang = lang;
     try { localStorage.setItem('hd-lang', lang); } catch (e) {}
     applyTranslations();
@@ -4160,7 +4160,7 @@
       bar.className = 'hd-menu-lang';
       bar.setAttribute('role', 'group');
       bar.setAttribute('aria-label', 'Language');
-      ['nl', 'en', 'el'].forEach(code => {
+      ['nl', 'en'].forEach(code => {
         const b = document.createElement('button');
         b.type = 'button';
         b.setAttribute('data-lang', code);
@@ -5325,9 +5325,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-137'], ['hd-search-js', 'search.js?v=hd-2026-06-06-137'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-137'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-137'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-137'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-137'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-137'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-137'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-137'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-137']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-143'], ['hd-search-js', 'search.js?v=hd-2026-06-06-143'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-143'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-143'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-143'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-143'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-143'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-143'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-143'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-143']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

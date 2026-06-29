@@ -499,16 +499,15 @@
   }
   window.HD_startCheckout = startCheckout;
 
-  /* Checkout routing. In production (source==='shopify') the cart drawer
-     "Continue to checkout" (a.cart-checkout) and any [data-shopify-checkout]
-     element go STRAIGHT to Shopify hosted checkout — no local pre-checkout
-     wizard, no double address/payment entry. In dev/mock the cart-checkout
-     anchor keeps its href (checkout.html) so the wizard can be previewed. */
+  /* Checkout routing. Every checkout entry (the cart drawer "Continue to
+     checkout" a.cart-checkout and any [data-shopify-checkout] element) routes
+     through the branded pre-checkout wizard (checkout.html). The wizard's final
+     step hands off to Shopify hosted checkout (Mollie) for the actual payment
+     — see startCheckout()/HD_startCheckout, invoked from checkout.js placeOrder. */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('[data-shopify-checkout], a.cart-checkout');
     if (!a) return;
-    if (!useShopify()) return;
     e.preventDefault();
-    startCheckout();
+    window.location.href = 'checkout.html';
   }, true);
 })();
