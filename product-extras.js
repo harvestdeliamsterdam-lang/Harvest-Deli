@@ -330,7 +330,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-164';
+      var ASSET_V = '?v=hd-2026-06-06-165';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
@@ -358,6 +358,35 @@
         });
       }
     }
+
+    /* ---- Sticky add-to-cart bar: must always mirror THIS product ---- */
+    var price = (p && p.price != null) ? p.price : null;
+    var checkedPr = document.querySelector('input[name="hd-variant"]:checked');
+    if (checkedPr && checkedPr.dataset.price) price = checkedPr.dataset.price;
+    var sbName = document.querySelector('.sticky-buy .sb-name');
+    if (sbName) { sbName.removeAttribute('data-i18n'); sbName.textContent = name; }
+    var sbPrice = document.querySelector('.sticky-buy .sb-price');
+    if (sbPrice && price != null) { sbPrice.removeAttribute('data-i18n'); sbPrice.textContent = '€' + price + ' · ' + (nl ? 'Editie I' : 'Edition I'); }
+    var sbImg = document.querySelector('.sticky-buy .sb-thumb img');
+    if (sbImg && p && p.image) { sbImg.src = p.image; sbImg.alt = name; }
+    var sbBtn = document.querySelector('.sticky-buy button[data-add-to-cart]');
+    if (sbBtn) sbBtn.setAttribute('data-add-to-cart', slug);
+    var wishBtn = document.querySelector('[data-wishlist-toggle]');
+    if (wishBtn) wishBtn.setAttribute('data-wishlist-toggle', slug);
+
+    /* ---- Net weight: driven from the real variant sizes (no invented weights).
+           Stable selector (first detail cell) so it re-updates on language switch. ---- */
+    if (p && p.sizes && p.sizes.length) {
+      var sizeLabels = p.sizes.map(function (sz) { return sz.label; }).join(' & ');
+      setHTML('.details-grid .detail-cell:first-child p', sizeLabels + ' <em>' + (nl ? 'glazen pot' : 'glass jar') + '</em>');
+    }
+
+    /* ---- Accordions: per-honey origin + description, never chestnut copy.
+           Order = 1 Description · 2 Ingredients · 3 Origin · 4 Shipping. ---- */
+    var accDesc = document.querySelector('.pd-acc details:nth-of-type(1) .acc-body');
+    if (accDesc) { accDesc.removeAttribute('data-i18n'); accDesc.textContent = L(s.lede[0], s.lede[1]); }
+    var accOrigin = document.querySelector('.pd-acc details:nth-of-type(3) .acc-body');
+    if (accOrigin) { accOrigin.removeAttribute('data-i18n'); accOrigin.textContent = L(s.origin[0], s.origin[1]) + (s.result ? ' ' + L(s.result[0], s.result[1]) : ''); }
   }
 
   function init() {
