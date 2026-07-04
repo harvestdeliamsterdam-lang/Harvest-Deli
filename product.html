@@ -6,14 +6,14 @@
 <title>Chestnut Honey, Edition 1 · Harvest Deli</title>
 <meta name="description" content="Cold extracted chestnut honey from a single Greek grove. Dark, resinous, mineral. 384 numbered jars per harvest. Sealed in wax, shipped from Greece within the week.">
 <link rel="canonical" href="https://harvestdeli.nl/product.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-161">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-161" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-161">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-161">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-161">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-161" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-161">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-161">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-162">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-162" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-162">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-162">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-162">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-162" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-162">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-162">
 <meta name="hd-product-slug" content="chestnut">
 <script>(function(){try{var p=new URLSearchParams(location.search).get('p');var ok=['chestnut','pine','oak','arbutus','fir-vanilla','orange-blossom','acacia','thyme','heather'];var c=document.querySelector('link[rel="canonical"]');if(p&&ok.indexOf(p)>-1){var m=document.querySelector('meta[name="hd-product-slug"]');if(m)m.setAttribute('content',p);/* chestnut == bare product.html (clean canonical); every other honey is its own ?p= URL */if(c)c.setAttribute('href',p==='chestnut'?'https://harvestdeli.nl/product.html':'https://harvestdeli.nl/product.html?p='+p);}}catch(e){}})();</script>
 
@@ -115,7 +115,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-161">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-162">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -452,6 +452,22 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   overflow: hidden;
 }
 .pd-title em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.018em; }
+/* ----- Product story: the full per-honey description, top of the buy column ----- */
+.pd-story {
+  max-width: 56ch;                    /* ~560px comfortable editorial measure */
+  margin: 26px 0 34px;
+  padding-left: 18px;
+  border-left: 1px solid rgba(184, 148, 90, 0.38);   /* quiet gold rule, not a box */
+}
+.pd-story p {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  letter-spacing: 0.004em;
+  margin: 0 0 14px;
+}
+.pd-story p:last-child { margin-bottom: 0; }
 .pd-meta {
   display: flex;
   flex-wrap: wrap;
@@ -1172,6 +1188,8 @@ footer {
   .pd-desc          { margin-bottom: 24px; }
   .pd-price         { font-size: 28px; }
   .pd-price-sub     { margin-bottom: 28px; }
+  .pd-story         { margin: 22px 0 28px; padding-left: 14px; }
+  .pd-story p       { font-size: 16px; line-height: 1.75; }
 
   /* Tag chips wrap nicely instead of pushing right edge */
   .pd-meta          { gap: 8px 10px; margin-bottom: 28px; }
@@ -1472,18 +1490,18 @@ footer {
   <div class="hero-stage">
     <div class="pd-gallery reveal" id="pdGallery">
       <div class="pdg-main" id="pdgMain">
-        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-161" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
-        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-161" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
-        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-161" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
+        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
+        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
+        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
         <div class="jar-atmos" aria-hidden="true">
           <span class="jar-haze"></span>
           <span class="jar-dust"></span>
         </div>
       </div>
       <div class="pdg-thumbs" id="pdgThumbs">
-        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-161" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-161" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-161" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-162" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-162" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-162" alt="" loading="lazy"></button>
       </div>
     </div>
 
@@ -1498,6 +1516,11 @@ footer {
         <span class="pd-stock" itemprop="availability" content="InStock">
           <span class="pd-stock-dot" aria-hidden="true"></span>In stock &middot; ready to ship
         </span>
+      </div>
+
+      <div class="pd-story" id="pdStory">
+        <p>In early summer, bees collect nectar from blooming chestnut trees growing in Greek mountain forests.</p>
+        <p>Chestnut honey is rich and beautifully layered, with warm woody aromas and long-lasting depth.</p>
       </div>
 
       <div class="variant-selector" role="radiogroup" aria-label="Kies formaat">
@@ -1821,7 +1844,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Sticky mobile buy bar -->
 <div class="sticky-buy" id="stickyBuy">
-  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-161" width="1228" height="2200" alt="" loading="lazy"></div>
+  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="" loading="lazy"></div>
   <div class="sb-meta">
     <div class="sb-name" data-i18n="product.sticky.name">Chestnut Honey</div>
     <div class="sb-price" data-i18n="product.sticky.price">€18 &middot; Edition 1</div>
@@ -1829,8 +1852,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="chestnut" data-size="480g" data-i18n="product.sticky.add">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-161"></script>
-<script src="analytics.js?v=hd-2026-06-06-161"></script>
+<script src="shared.js?v=hd-2026-06-06-162"></script>
+<script src="analytics.js?v=hd-2026-06-06-162"></script>
 <script>
 (function() {
   /* Menu */

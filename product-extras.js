@@ -198,12 +198,13 @@
   }
   function originSectionHTML(slug) {
     var s = HONEY_SPEC[slug]; if (!s) return '';
+    // The full origin/character story now lives at the TOP of the page
+    // (#pdStory, filled by hydrateInfo) — this lower section is only the
+    // distilled editorial statement, so the copy never appears twice.
     return '<section class="px-section px-origin" aria-label="' + L('Origin', 'Herkomst') + '">' +
       '<div class="px-origin-inner">' +
         '<span class="px-eyebrow">' + L('From the mountains of Greece', 'Uit de bergen van Griekenland') + '</span>' +
         '<h2 class="px-title">' + L(s.tagline[0], s.tagline[1]) + '</h2>' +
-        '<p class="px-origin-body">' + L(s.origin[0], s.origin[1]) + '</p>' +
-        (s.result ? '<p class="px-origin-body">' + L(s.result[0], s.result[1]) + '</p>' : '') +
       '</div>' +
     '</section>';
   }
@@ -313,6 +314,9 @@
     setHTML('.pd-eyebrow', (nl ? 'Editie I' : 'Edition I') + ' <span class="dot"></span> ' + (nl ? 'Oogst 2025' : 'Harvest 2025') + ' <span class="dot"></span> ' + (nl ? 'Griekse honing' : 'Greek honey'));
     setHTML('.pd-title', name + ', <em>' + s.greek + '.</em>');
     var le = document.querySelector('.pd-lede'); if (le) { le.removeAttribute('data-i18n'); le.textContent = L(s.lede[0], s.lede[1]); }
+    // The full product story (origin + character), top of the buy column.
+    var st = document.getElementById('pdStory');
+    if (st) st.innerHTML = '<p>' + L(s.origin[0], s.origin[1]) + '</p>' + (s.result ? '<p>' + L(s.result[0], s.result[1]) + '</p>' : '');
     var cr = document.querySelector('.crumbs strong'); if (cr) { cr.removeAttribute('data-i18n'); cr.textContent = (nl ? 'Editie I · ' : 'Edition I · ') + name; }
     var cta = document.querySelector('.pd-cta[data-add-to-cart]'); if (cta) cta.setAttribute('data-add-to-cart', slug);
     // Per-honey pricing: keep size keys (480g/950g) so the Shopify variant map
@@ -326,7 +330,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-161';
+      var ASSET_V = '?v=hd-2026-06-06-162';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
@@ -368,7 +372,10 @@
       try { hydrateInfo(slug); } catch (e) {}
       var priceBlock = document.querySelector('.pd-price-block');
       if (priceBlock && !document.getElementById('pdBenefits')) {
-        priceBlock.insertAdjacentHTML('afterend', benefitsPanelHTML(slug));
+        // Tasting card sits BELOW the product story when present (price →
+        // story → tasting profile), else directly after the price block.
+        var storyAnchor = document.getElementById('pdStory') || priceBlock;
+        storyAnchor.insertAdjacentHTML('afterend', benefitsPanelHTML(slug));
       }
       window.addEventListener('hd:lang', function () {
         try { hydrateInfo(slug); } catch (e) {}
