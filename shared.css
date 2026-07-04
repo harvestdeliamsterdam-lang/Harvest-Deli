@@ -3240,10 +3240,17 @@ nav.site-nav.nav-hidden { transform: translateY(-110%); }
 .footer-pay .hd-pay--ap { gap: 1px; }
 .footer-pay .hd-pay--ap svg { height: 14px; }
 .footer-pay .hd-pay--ap span { color: #000; font-weight: 600; font-size: 10px; }
+.footer-pay .hd-pay--kl { background: #FFA8CD; color: #17120A; font-weight: 700; font-size: 9px; letter-spacing: 0.1px; }
 @media (max-width: 600px) {
   .footer-pay { padding: 22px 20px 0; gap: 6px; }
   .footer-pay .hd-pay { width: 40px; height: 25px; }
 }
+/* Compact variant: payment icons under the cart-drawer checkout button */
+.footer-pay.cart-pay { padding: 14px 0 0; gap: 6px; max-width: none; }
+.footer-pay.cart-pay .hd-pay { width: 38px; height: 24px; font-size: 9px; opacity: 0.92; box-shadow: none; }
+.footer-pay.cart-pay .hd-pay svg { height: 13px; }
+/* Same chips inside the checkout wizard payment step */
+.footer-pay.checkout-pay { padding: 0; margin: 18px 0 22px; justify-content: flex-start; max-width: none; }
 
 /* 5. Rich add-to-cart toast (own element, sits alongside existing .cart-toast) */
 #hdRichToast {

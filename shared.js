@@ -2280,7 +2280,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-160',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2299,7 +2299,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-160',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2318,7 +2318,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-160',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2337,7 +2337,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-160',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2356,7 +2356,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-160',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2375,7 +2375,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-160',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2394,7 +2394,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-160',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2413,7 +2413,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-160',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2466,7 +2466,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-159',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-160',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -3990,6 +3990,14 @@
           '</div>' +
           '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Free within the Netherlands & Belgium above €65.</p>' +
           '<a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>' +
+          '<div class="footer-pay cart-pay" aria-label="Accepted payment methods">' +
+            '<span class="hd-pay hd-pay--ideal" title="iDEAL"><b>i</b>DEAL</span>' +
+            '<span class="hd-pay hd-pay--bc" role="img" aria-label="Bancontact" title="Bancontact"><svg viewBox="0 0 44 24" aria-hidden="true"><path d="M7 16.5c2.6 0 4.4-1.1 5.8-2.7l4.7-5.6c1.4-1.6 3.2-2.7 5.8-2.7h-12L7 16.5z" fill="#1E3791"/><path d="M31 7.5c-2.6 0-4.4 1.1-5.8 2.7l-4.7 5.6c-1.4 1.6-3.2 2.7-5.8 2.7h12L31 7.5z" fill="#FFCC00"/></svg></span>' +
+            '<span class="hd-pay hd-pay--visa" title="Visa"><b>VISA</b></span>' +
+            '<span class="hd-pay hd-pay--mc" role="img" aria-label="Mastercard" title="Mastercard"><svg viewBox="0 0 36 22" aria-hidden="true"><circle cx="14" cy="11" r="8.2" fill="#EB001B"/><circle cx="22" cy="11" r="8.2" fill="#F79E1B"/><path d="M18 4.6a8.2 8.2 0 0 0 0 12.8 8.2 8.2 0 0 0 0-12.8z" fill="#FF5F00"/></svg></span>' +
+            '<span class="hd-pay hd-pay--pp" title="PayPal"><b>Pay</b><i>Pal</i></span>' +
+            '<span class="hd-pay hd-pay--kl" title="Klarna">Klarna</span>' +
+          '</div>' +
         '</footer>' +
       '</aside>';
     document.body.appendChild(wrap);
@@ -4733,21 +4741,22 @@
   /* 4b. Payment-methods strip in the footer (injected on every page) */
   (function paymentStrip() {
     var ICONS = {
-      ideal: '<span class="hd-pay hd-pay--ideal"><b>i</b>DEAL</span>',
-      bancontact: '<span class="hd-pay hd-pay--bc"><svg viewBox="0 0 44 24" aria-hidden="true">'
+      ideal: '<span class="hd-pay hd-pay--ideal" title="iDEAL"><b>i</b>DEAL</span>',
+      bancontact: '<span class="hd-pay hd-pay--bc" role="img" aria-label="Bancontact" title="Bancontact"><svg viewBox="0 0 44 24" aria-hidden="true">'
         + '<path d="M7 16.5c2.6 0 4.4-1.1 5.8-2.7l4.7-5.6c1.4-1.6 3.2-2.7 5.8-2.7h-12L7 16.5z" fill="#1E3791"/>'
         + '<path d="M31 7.5c-2.6 0-4.4 1.1-5.8 2.7l-4.7 5.6c-1.4 1.6-3.2 2.7-5.8 2.7h12L31 7.5z" fill="#FFCC00"/></svg></span>',
-      visa: '<span class="hd-pay hd-pay--visa"><b>VISA</b></span>',
-      mastercard: '<span class="hd-pay hd-pay--mc"><svg viewBox="0 0 36 22" aria-hidden="true">'
+      visa: '<span class="hd-pay hd-pay--visa" title="Visa"><b>VISA</b></span>',
+      mastercard: '<span class="hd-pay hd-pay--mc" role="img" aria-label="Mastercard" title="Mastercard"><svg viewBox="0 0 36 22" aria-hidden="true">'
         + '<circle cx="14" cy="11" r="8.2" fill="#EB001B"/><circle cx="22" cy="11" r="8.2" fill="#F79E1B"/>'
         + '<path d="M18 4.6a8.2 8.2 0 0 0 0 12.8 8.2 8.2 0 0 0 0-12.8z" fill="#FF5F00"/></svg></span>',
-      maestro: '<span class="hd-pay hd-pay--mo"><svg viewBox="0 0 36 22" aria-hidden="true">'
+      maestro: '<span class="hd-pay hd-pay--mo" role="img" aria-label="Maestro" title="Maestro"><svg viewBox="0 0 36 22" aria-hidden="true">'
         + '<circle cx="14" cy="11" r="8.2" fill="#0099DF"/><circle cx="22" cy="11" r="8.2" fill="#ED0006"/>'
         + '<path d="M18 4.6a8.2 8.2 0 0 0 0 12.8 8.2 8.2 0 0 0 0-12.8z" fill="#6C6BBD"/></svg></span>',
-      paypal: '<span class="hd-pay hd-pay--pp"><b>Pay</b><i>Pal</i></span>',
-      applepay: '<span class="hd-pay hd-pay--ap"><svg viewBox="0 0 14 16" aria-hidden="true"><path d="M9.6 2.3c.5-.6.8-1.4.7-2.3-.7 0-1.6.5-2.1 1.1-.5.5-.9 1.4-.7 2.2.8.1 1.6-.4 2.1-1zM10.3 4.4c-1.2-.1-2.1.7-2.7.7-.6 0-1.4-.6-2.3-.6-1.2 0-2.3.7-2.9 1.8-1.2 2.2-.3 5.4.9 7.2.6.9 1.3 1.8 2.2 1.8.9 0 1.2-.6 2.3-.6 1 0 1.4.6 2.3.5.9 0 1.5-.9 2.1-1.7.7-1 .9-1.9.9-2-.1 0-1.8-.7-1.8-2.7 0-1.6 1.3-2.4 1.4-2.5-.8-1.1-2-1.2-2.6-1.3z" fill="#000"/></svg><span>Pay</span></span>'
+      paypal: '<span class="hd-pay hd-pay--pp" title="PayPal"><b>Pay</b><i>Pal</i></span>',
+      klarna: '<span class="hd-pay hd-pay--kl" title="Klarna">Klarna</span>',
+      applepay: '<span class="hd-pay hd-pay--ap" role="img" aria-label="Apple Pay" title="Apple Pay"><svg viewBox="0 0 14 16" aria-hidden="true"><path d="M9.6 2.3c.5-.6.8-1.4.7-2.3-.7 0-1.6.5-2.1 1.1-.5.5-.9 1.4-.7 2.2.8.1 1.6-.4 2.1-1zM10.3 4.4c-1.2-.1-2.1.7-2.7.7-.6 0-1.4-.6-2.3-.6-1.2 0-2.3.7-2.9 1.8-1.2 2.2-.3 5.4.9 7.2.6.9 1.3 1.8 2.2 1.8.9 0 1.2-.6 2.3-.6 1 0 1.4.6 2.3.5.9 0 1.5-.9 2.1-1.7.7-1 .9-1.9.9-2-.1 0-1.8-.7-1.8-2.7 0-1.6 1.3-2.4 1.4-2.5-.8-1.1-2-1.2-2.6-1.3z" fill="#000"/></svg><span>Pay</span></span>'
     };
-    var ORDER = ['ideal', 'bancontact', 'visa', 'mastercard', 'maestro', 'paypal', 'applepay'];
+    var ORDER = ['ideal', 'bancontact', 'visa', 'mastercard', 'maestro', 'paypal', 'klarna', 'applepay'];
     function init() {
       var footers = document.querySelectorAll('.site-footer');
       for (var i = 0; i < footers.length; i++) {
@@ -4762,6 +4771,21 @@
         var bottom = footer.querySelector('.footer-bottom');
         if (bottom) footer.insertBefore(wrap, bottom);
         else footer.appendChild(wrap);
+      }
+      // Compact strip under the cart-drawer checkout button (pages with a
+      // static drawer; the shared.js-injected drawer carries its own copy).
+      var cos = document.querySelectorAll('.cart-drawer .cart-checkout, #cartDrawer .cart-checkout');
+      var DRAWER_ORDER = ['ideal', 'bancontact', 'visa', 'mastercard', 'paypal', 'klarna'];
+      for (var j = 0; j < cos.length; j++) {
+        var co = cos[j];
+        if (co.parentNode.querySelector('.cart-pay')) continue;
+        var strip = document.createElement('div');
+        strip.className = 'footer-pay cart-pay';
+        strip.setAttribute('aria-label', 'Accepted payment methods');
+        var h = '';
+        for (var m = 0; m < DRAWER_ORDER.length; m++) h += ICONS[DRAWER_ORDER[m]];
+        strip.innerHTML = h;
+        co.parentNode.insertBefore(strip, co.nextSibling);
       }
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
@@ -5283,9 +5307,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-159'], ['hd-search-js', 'search.js?v=hd-2026-06-06-159'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-159'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-159'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-159'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-159'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-159'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-159'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-159'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-159']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-160'], ['hd-search-js', 'search.js?v=hd-2026-06-06-160'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-160'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-160'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-160'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-160'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-160'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-160'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-160'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-160']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
