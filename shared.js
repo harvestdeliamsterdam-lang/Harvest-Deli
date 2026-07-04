@@ -2273,7 +2273,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-167',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2292,7 +2292,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-167',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2311,7 +2311,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-167',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2330,7 +2330,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-167',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2349,7 +2349,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-167',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2368,7 +2368,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-167',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2387,7 +2387,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-167',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2406,7 +2406,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-167',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2459,7 +2459,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-166',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-167',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -5302,9 +5302,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-166'], ['hd-search-js', 'search.js?v=hd-2026-06-06-166'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-166'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-166'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-166'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-166'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-166'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-166'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-166'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-166']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-167'], ['hd-search-js', 'search.js?v=hd-2026-06-06-167'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-167'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-167'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-167'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-167'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-167'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-167'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-167'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-167']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
