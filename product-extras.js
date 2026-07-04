@@ -5,7 +5,7 @@
    content model keyed by product slug (read from <meta hd-product-slug>):
      • Composition, ingredients, allergens, nutrition table
      • Pairs well with, curated complementary products
-     • Build your ritual, a honey + tea + olive-oil bundle
+     • The Ritual Saving promo (image + real HTML overlay, links to the shop)
      • A product FAQ accordion
    Loaded site-wide by shared.js; no-ops on non-product pages.
    Bilingual (EN/NL); falls back to EN.
@@ -212,10 +212,6 @@
   /* Honeys with a full 3-shot gallery (hero + origin + serving), generated per-honey */
   var GALLERY_SET = ['chestnut', 'pine', 'arbutus', 'fir-vanilla', 'orange-blossom', 'acacia', 'thyme'];
 
-  /* The ritual bundle, honey + tea + olive oil */
-  var BUNDLE = ['chestnut', 'mountain-tea', 'olive-oil'];
-  var BUNDLE_DISCOUNT = 0.12; // 12% off the trio
-
   function getDetail(slug) {
     if (DETAILS[slug]) return DETAILS[slug];
     // any other honey slug → generic honey content
@@ -259,29 +255,24 @@
     '</section>';
   }
 
-  function bundleHTML(slug) {
-    var items = BUNDLE.map(function (s) { return window.HD_product && window.HD_product(s); }).filter(Boolean);
-    if (items.length < 2) return '';
-    var sum = items.reduce(function (a, p) { return a + p.price; }, 0);
-    var price = Math.round(sum * (1 - BUNDLE_DISCOUNT));
-    var save = sum - price;
-    var thumbs = items.map(function (p) { return '<span class="px-bundle-thumb"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></span>'; }).join('<span class="px-plus" aria-hidden="true">+</span>');
-    var names = items.map(function (p) { return p.name; }).join(' · ');
+  /* The Ritual Saving promo — image background + real HTML overlay (no baked-in
+     text, no fixed product names, no mountain tea). Mirrors the live Shopify
+     automatic discount: any 3 honeys, or 2 honeys + olive oil, save €5. */
+  function ritualPromoHTML() {
+    var bg = 'assets/products-images/thyme-serving.webp';   // lifestyle honey-drizzle image, text lives in HTML
     return '' +
-    '<section class="px-section px-bundle" aria-label="' + L('Build your ritual', 'Stel je ritueel samen') + '">' +
-      '<div class="px-bundle-inner">' +
-        '<div class="px-bundle-visual">' + thumbs + '</div>' +
-        '<div class="px-bundle-body">' +
-          '<span class="px-eyebrow">' + L('The Ritual', 'Het Ritueel') + '</span>' +
-          '<h2 class="px-title">' + L('Honey, tea &amp; olive oil.', 'Honing, thee &amp; olijfolie.') + '</h2>' +
-          '<p class="px-bundle-sub">' + names + '</p>' +
-          '<p class="px-bundle-desc">' + L('The three pillars of the Greek table, bound together and gift-wrapped, at a quiet saving.',
-                                            'De drie pijlers van de Griekse tafel, samengebracht en cadeauverpakt, met een rustige korting.') + '</p>' +
-          '<div class="px-bundle-buy">' +
-            '<span class="px-bundle-price">' + fmt(price) + ' <s>' + fmt(sum) + '</s></span>' +
-            '<button type="button" class="confirm-btn px-bundle-add" data-px-bundle><span>' + L('Add the ritual', 'Voeg het ritueel toe') + '</span> <span class="arrow"></span></button>' +
-          '</div>' +
-          '<span class="px-bundle-save">' + L('You save', 'Je bespaart') + ' ' + fmt(save) + '</span>' +
+    '<section class="px-section px-ritual" aria-label="' + L('Build your ritual', 'Stel je ritueel samen') + '">' +
+      '<div class="px-ritual-card">' +
+        '<div class="px-ritual-bg" style="background-image:url(\'' + bg + '\')" role="img" aria-label="' + L('Greek honey, poured', 'Griekse honing, geschonken') + '"></div>' +
+        '<span class="px-ritual-scrim" aria-hidden="true"></span>' +
+        '<div class="px-ritual-body">' +
+          '<span class="px-ritual-eyebrow">' + L('The Ritual Saving', 'De Ritueelkorting') + '</span>' +
+          '<h2 class="px-ritual-title">' + L('Build your ritual.', 'Stel je ritueel samen.') + '</h2>' +
+          '<p class="px-ritual-copy">' + L('Combine any 3 honeys, or 2 honeys with olive oil, and save €5.',
+                                           'Combineer 3 honingen, of 2 honingen met olijfolie, en bespaar €5.') + '</p>' +
+          '<a class="px-ritual-cta" href="shop.html"><span>' + L('Build your ritual', 'Stel je ritueel samen') + '</span> <span class="arrow" aria-hidden="true"></span></a>' +
+          '<p class="px-ritual-fine">' + L('One ritual saving per order · applied automatically at checkout.',
+                                           'Eén ritueelkorting per bestelling · automatisch verrekend bij het afrekenen.') + '</p>' +
         '</div>' +
       '</div>' +
     '</section>';
@@ -330,7 +321,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-167';
+      var ASSET_V = '?v=hd-2026-06-06-168';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
@@ -415,23 +406,16 @@
 
     var wrap = document.createElement('div');
     wrap.id = 'pxExtras';
-    wrap.innerHTML = compositionHTML(d) + originSectionHTML(slug) + pairsHTML(slug) + bundleHTML(slug) + faqHTML(d);
+    wrap.innerHTML = compositionHTML(d) + originSectionHTML(slug) + pairsHTML(slug) + ritualPromoHTML() + faqHTML(d);
 
     var anchor = document.querySelector('.reviews-section') || document.querySelector('.also') || null;
     if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(wrap, anchor);
     else (document.querySelector('main') || document.body).appendChild(wrap);
 
-    // FAQ accordion
+    // FAQ accordion (the ritual promo is a plain link to the shop, no JS needed)
     wrap.addEventListener('click', function (e) {
       var q = e.target.closest && e.target.closest('.px-faq-q');
       if (q) { var it = q.parentElement; it.classList.toggle('open'); q.setAttribute('aria-expanded', it.classList.contains('open')); return; }
-      if (e.target.closest('[data-px-bundle]')) {
-        BUNDLE.forEach(function (s) { if (window.HD_CART) window.HD_CART.add(s, 1); });
-        if (window.HD_renderCart) window.HD_renderCart();
-        if (window.HD_toast) window.HD_toast(L('The ritual is in your cellar', 'Het ritueel staat in je kelder'));
-        if (window.HD_openCart) setTimeout(window.HD_openCart, 240);
-        if (window.HD_track) window.HD_track('add_to_cart', { item_id: 'bundle-ritual', currency: 'EUR', items: BUNDLE.map(function (s) { return { item_id: s, quantity: 1 }; }) });
-      }
     });
   }
 

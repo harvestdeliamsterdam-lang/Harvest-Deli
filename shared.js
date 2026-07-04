@@ -2273,7 +2273,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-168',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2292,7 +2292,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-168',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2311,7 +2311,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-168',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2330,7 +2330,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-168',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2349,7 +2349,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-168',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2368,7 +2368,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-168',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2387,7 +2387,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-168',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2406,7 +2406,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-168',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2459,7 +2459,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-167',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-168',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2536,10 +2536,73 @@
     return qty * unit;
   }
   function sameLine(i, slug, size) { return i.slug === slug && sizeOf(i) === size; }
-  // Basket offer removed for launch: pricing is owned solely by Shopify hosted
-  // checkout, so no on-site discount may diverge from what the customer is charged.
+
+  /* ============================================================
+     THE RITUAL SAVING — mirrors the LIVE Shopify automatic discounts,
+     which are the source of truth for what the customer is actually charged:
+       • "3 honingpotten — €5"          → ≥3 honey jars      = €5 (once)
+       • "2 honing + 1 olijfolie — €5"  → ≥2 honey + ≥1 oil  = €5 (once)
+     Both are non-combining / non-stacking in Shopify, so the order gets
+     AT MOST €5. The on-site cart shows exactly this, so the total never
+     diverges from the Shopify checkout charge (no overcharge, no false promise).
+     One ritual saving per order.
+
+     TODO (Shopify): if discount stacking/combining is ever enabled in Shopify
+     (e.g. €5 per group → 6 honeys = €10, 4 honey + 2 oil = €10), update this
+     function to count qualifying GROUPS instead of a single flat €5, and mirror
+     the new Shopify rule exactly. Do not change this without changing Shopify
+     first — the two must always match.
+     ============================================================ */
+  var RITUAL_SAVING = 5;
+  function calculateHarvestBundleDiscount(cartItems) {
+    var nl = currentLang === 'nl';
+    function T(en, nlS) { return nl ? nlS : en; }
+    var honey = 0, oil = 0;
+    (cartItems || []).forEach(function (it) {
+      var p = PRODUCTS[it.slug] || (window.HD_product && window.HD_product(it.slug)) || null;
+      var type = (p && p.type) || it.type || '';
+      var q = it.qty || it.quantity || 1;
+      if (type === 'honey') honey += q;
+      else if (type === 'oil' || type === 'olive-oil') oil += q;
+      // tea + everything else: intentionally ignored (do NOT count).
+    });
+
+    var rule = null;
+    if (honey >= 3) rule = '3_honey';
+    else if (honey >= 2 && oil >= 1) rule = '2_honey_1_oil';
+
+    var discountAmount = rule ? RITUAL_SAVING : 0;
+    var bundleCount = rule ? 1 : 0; // non-stacking → never more than one
+
+    var message, upsell = null;
+    if (rule) {
+      message = T('Ritual saving applied: €5 off.', 'Ritueelkorting toegepast: €5 eraf.');
+      // Non-stacking → deliberately no "next bundle" upsell. One saving per order.
+    } else {
+      message = T('Combine any 3 honeys, or 2 honeys with olive oil, and save €5.',
+                  'Combineer 3 honingen, of 2 honingen met olijfolie, en bespaar €5.');
+      if (honey >= 2) {
+        upsell = T('Add 1 more honey or olive oil and save €5.',
+                   'Voeg nog 1 honing of olijfolie toe en bespaar €5.');
+      } else if (honey === 1 && oil >= 1) {
+        upsell = T('Add 1 more honey and save €5.', 'Voeg nog 1 honing toe en bespaar €5.');
+      } else if (oil >= 1 && honey < 2) {
+        upsell = T('Add 2 honey jars and save €5.', 'Voeg 2 honingpotten toe en bespaar €5.');
+      } else if (honey === 1) {
+        upsell = T('Add 2 more honeys, or an olive oil, and save €5.',
+                   'Voeg 2 honingen toe, of een olijfolie, en bespaar €5.');
+      }
+    }
+    return {
+      discountAmount: discountAmount, bundleCount: bundleCount,
+      matchedRule: rule, message: message, upsellMessage: upsell,
+      honeyCount: honey, oilCount: oil
+    };
+  }
+  window.HD_bundleDiscount = calculateHarvestBundleDiscount;
+
   function offerDiscount() {
-    return 0;
+    return calculateHarvestBundleDiscount(cart.items).discountAmount;
   }
 
   // ---------- Cart state ----------
@@ -2672,42 +2735,79 @@
 
     // Totals, from Commerce subtotal when available
     const total = document.getElementById('cartTotal');
-    const offer = _snap ? 0 : cart.offerDiscount();
+    const bd = calculateHarvestBundleDiscount(cart.items);   // mirrors live Shopify discount
+    const offer = _snap ? 0 : bd.discountAmount;
     const sub = _snap ? (+_snap.cost.subtotalAmount.amount) : cart.total();
-    const L = { offer: { nl: 'Aanbieding', el: 'Προσφορά', en: 'Offer' }, totalW: { nl: 'Totaal', el: 'Σύνολο', en: 'Total' } };
+    const L = { totalW: { nl: 'Totaal', el: 'Σύνολο', en: 'Total' } };
     const lw = function (o) { return o[currentLang] || o.en; };
-    // Basket offer line (3 honeys, or 2 honeys + 1 olive oil → −€5).
-    // The drawer is inline static HTML on most pages, so create the row if absent.
+    const nlNow = currentLang === 'nl';
+    const T = function (en, nl) { return nlNow ? nl : en; };
+
+    /* ---- THE RITUAL SAVING block (premium, gold accent). Reuses #cartOffer,
+       upgraded from a plain −€5 row into label + message + upsell + quick add.
+       One saving per order, mirroring the non-stacking Shopify discount. ---- */
     let offerRow = document.getElementById('cartOffer');
     if (!offerRow) {
       const totalsEl = document.querySelector('.cart-foot .cart-totals');
       if (totalsEl && totalsEl.parentNode) {
         offerRow = document.createElement('div');
-        offerRow.className = 'cart-offer';
         offerRow.id = 'cartOffer';
-        offerRow.hidden = true;
-        offerRow.innerHTML = '<span class="cart-offer-label"></span><span class="cart-offer-val"></span>';
         totalsEl.parentNode.insertBefore(offerRow, totalsEl);
       }
     }
-    if (offerRow) {
-      if (offer > 0) {
-        offerRow.hidden = false;
-        const lbl = offerRow.querySelector('.cart-offer-label');
-        const val = offerRow.querySelector('.cart-offer-val');
-        if (lbl) lbl.textContent = lw(L.offer);
-        if (val) val.textContent = '−' + formatPrice(offer);
-      } else {
-        offerRow.hidden = true;
-      }
+    if (offerRow && cart.items.length) {
+      const active = bd.discountAmount > 0;
+      offerRow.className = 'cart-ritual' + (active ? ' is-active' : '');
+      offerRow.hidden = false;
+      // quick-action: when 2 honeys are already in, nudge the olive oil (completes
+      // the mixed bundle + cross-sells); otherwise nudge honey.
+      const wantsOil = (!active && bd.honeyCount >= 2 && bd.oilCount === 0);
+      const qaSlug = wantsOil ? 'olive-oil' : 'chestnut';
+      const qaLabel = wantsOil ? T('Add olive oil', 'Voeg olijfolie toe') : T('Add honey', 'Voeg honing toe');
+      const secondary = active
+        ? '<p class="cr-note">' + T('One ritual saving per order.', 'Eén ritueelkorting per bestelling.') + '</p>'
+        : (bd.upsellMessage ? '<button type="button" class="cr-quick" data-ritual-add="' + qaSlug + '">'
+             + '<span class="cr-quick-plus" aria-hidden="true"></span>' + qaLabel + '</button>' : '');
+      offerRow.innerHTML =
+        '<div class="cr-head">' +
+          '<span class="cr-mark" aria-hidden="true">' +
+            (active
+              ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+              : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg>') +
+          '</span>' +
+          '<span class="cr-label">' + T('The Ritual Saving', 'De Ritueelkorting') + '</span>' +
+          (active ? '<span class="cr-val">−' + formatPrice(bd.discountAmount) + '</span>' : '') +
+        '</div>' +
+        '<p class="cr-msg">' + (active ? bd.message : (bd.upsellMessage || bd.message)) + '</p>' +
+        secondary;
+    } else if (offerRow) {
+      offerRow.hidden = true;
+      offerRow.className = 'cart-ritual';
+      offerRow.innerHTML = '';
     }
-    // When the offer applies, the headline becomes the (discounted) Total.
+
+    // When the saving applies, the headline becomes the (discounted) Total.
     const subLabel = document.querySelector('.cart-foot .cart-totals .label');
     if (subLabel) {
       if (offer > 0) { subLabel.textContent = lw(L.totalW); subLabel.removeAttribute('data-i18n'); }
       else if (!subLabel.getAttribute('data-i18n')) { subLabel.setAttribute('data-i18n', 'cart.subtotal'); subLabel.textContent = lookup('cart.subtotal'); }
     }
     if (total) total.textContent = formatPrice(Math.max(0, sub - offer));
+
+    /* Cart nudge / celebration: fire only on a STATE TRANSITION (not every render),
+       so it feels like a reward, not spam. */
+    const ritualState = bd.matchedRule ? 'applied' : (bd.honeyCount >= 2 || (bd.honeyCount >= 1 && bd.oilCount >= 1) ? 'close' : 'none');
+    // Only react to a genuine change, and never on the very first render (page load
+    // with a saved cart shouldn't pop a celebration out of nowhere).
+    if (_lastRitualState !== null && _lastRitualState !== ritualState) {
+      if (ritualState === 'applied' && window.HD_toast) {
+        window.HD_toast(T('€5 ritual saving applied.', '€5 ritueelkorting toegepast.'), 'ritual');
+        if (offerRow) { offerRow.classList.remove('cr-celebrate'); void offerRow.offsetWidth; offerRow.classList.add('cr-celebrate'); }
+      } else if (ritualState === 'close' && _lastRitualState === 'none' && window.HD_toast) {
+        window.HD_toast(T('You’re one product away from €5 off.', 'Nog één product en je krijgt €5 korting.'), 'nudge');
+      }
+    }
+    _lastRitualState = ritualState;
 
     // Checkout button → Commerce checkoutUrl (SEAM: becomes Shopify checkout when live)
     if (_snap && _snap.checkoutUrl) { const _co = document.querySelector('.cart-checkout'); if (_co) _co.setAttribute('href', _snap.checkoutUrl); }
@@ -2738,18 +2838,20 @@
 
   // ---------- Toast ----------
   let toastT;
-  function toast(msg) {
+  let _lastRitualState = null;   // null = not yet rendered; tracks ritual-saving transitions for the nudge/celebration
+  function toast(msg, variant) {
     let el = document.getElementById('cartToast');
     if (!el) {
       el = document.createElement('div');
       el.id = 'cartToast';
-      el.className = 'cart-toast';
       document.body.appendChild(el);
     }
+    // variant: 'ritual' (gold, saving applied) | 'nudge' (one away) | default
+    el.className = 'cart-toast' + (variant ? ' cart-toast--' + variant : '');
     el.textContent = msg;
     requestAnimationFrame(() => el.classList.add('show'));
     clearTimeout(toastT);
-    toastT = setTimeout(() => el.classList.remove('show'), 2400);
+    toastT = setTimeout(() => el.classList.remove('show'), variant === 'ritual' ? 3200 : 2600);
   }
   window.HD_toast = toast;
 
@@ -2766,6 +2868,9 @@
       drawer.querySelector('.cart-backdrop').addEventListener('click', closeCart);
       drawer.querySelector('.cart-close').addEventListener('click', closeCart);
       drawer.addEventListener('click', (e) => {
+        // Ritual-saving quick action: add the product that completes the bundle.
+        const rq = e.target.closest('[data-ritual-add]');
+        if (rq) { const s = rq.dataset.ritualAdd; if (cart.add) cart.add(s, 1); return; }
         const btn = e.target.closest('button[data-act], a');
         if (!btn) return;
         const line = e.target.closest('.cart-line');
@@ -5302,9 +5407,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-167'], ['hd-search-js', 'search.js?v=hd-2026-06-06-167'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-167'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-167'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-167'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-167'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-167'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-167'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-167'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-167']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-168'], ['hd-search-js', 'search.js?v=hd-2026-06-06-168'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-168'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-168'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-168'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-168'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-168'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-168'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-168'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-168']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

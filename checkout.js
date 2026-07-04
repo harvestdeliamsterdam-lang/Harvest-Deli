@@ -302,8 +302,11 @@
              '<span class="sm-line-price">' + fmt(l.lineTotal) + '</span></div>';
     }).join('');
     var disc = discountAmount();
-    var offer = offerAmount();
-    var offerLabel = (window.HD_lang && window.HD_lang() === 'nl') ? 'Aanbieding' : (window.HD_lang && window.HD_lang() === 'el') ? 'Προσφορά' : 'Offer';
+    var offer = offerAmount();   // HD_CART.offerDiscount() = the Ritual Saving (mirrors live Shopify auto-discount)
+    // TODO (Shopify): the €5 Ritual Saving mirrors the store's automatic discounts
+    // ("3 honingpotten — €5" / "2 honing + 1 olijfolie — €5"), which apply at the
+    // Shopify hosted checkout. Keep this label + amount in lockstep with Shopify.
+    var offerLabel = (window.HD_lang && window.HD_lang() === 'nl') ? 'Ritueelkorting' : 'Ritual saving';
     var ship = calcShipping();
     var rows = '' +
       '<div class="sm-row"><span>' + lookup('ck.subtotal', 'Subtotal') + '</span><span>' + fmt(subtotal()) + '</span></div>' +
