@@ -44,12 +44,14 @@
     { id: 'standard', label: 'Standard shipping', estimate: 'Calculated securely at checkout', price: 6.95, free: true }
   ];
 
-  /** @type {PaymentMethod[]}, UI only. SEAM: Stripe/Mollie at placeOrder(). */
+  /** @type {PaymentMethod[]}, UI only — a preference the buyer confirms at the
+   *  Shopify hosted checkout. Must mirror the LIVE Mollie gateways exactly
+   *  (verified: Mollie - iDeal / Bancontact / Credit Card). Do not add methods
+   *  here that Mollie doesn't offer, or buyers hit a dead end at checkout. */
   var PAYMENTS = [
     { id: 'ideal',      label: 'iDEAL' },
     { id: 'card',       label: 'Card' },
-    { id: 'bancontact', label: 'Bancontact' },
-    { id: 'paypal',     label: 'PayPal' }
+    { id: 'bancontact', label: 'Bancontact' }
   ];
 
   /** @type {Object<string,Discount>} */
@@ -105,6 +107,9 @@
         var p = JSON.parse(raw);
         state = Object.assign(state, p);
         state.details = Object.assign(blankDetails(), p.details || {});
+        // A previously saved method may no longer be offered (e.g. PayPal
+        // removed when we went Mollie-only) — fall back to the first one.
+        if (!PAYMENTS.some(function (m) { return m.id === state.paymentId; })) state.paymentId = PAYMENTS[0].id;
       }
     } catch (e) {}
     // Prefill from a saved account session if present (guest checkout still default).
