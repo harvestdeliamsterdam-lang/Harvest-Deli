@@ -1181,7 +1181,9 @@ body nav.site-nav .logo-mark.nav-size {
    Hermès / Diptyque / Aesop / Aman register. */
 .hd-concierge-fab {
   position: fixed;
-  bottom: 26px;
+  /* anchored to the safe-area edge so it never sits under the iOS home
+     indicator and keeps a constant gap when Safari's toolbar collapses */
+  bottom: calc(26px + env(safe-area-inset-bottom));
   right: 26px;
   z-index: 130;
   width: 62px;
@@ -1199,6 +1201,7 @@ body nav.site-nav .logo-mark.nav-size {
   transition:
     opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;                 /* promote to its own layer, no reflow on scroll */
   -webkit-tap-highlight-color: transparent;
 }
 .hd-concierge-fab.ready {
@@ -1324,7 +1327,7 @@ body nav.site-nav .logo-mark.nav-size {
   .hd-fab-shimmer::after { animation: none; opacity: 0; }
 }
 @media (max-width: 600px) {
-  .hd-concierge-fab { bottom: 18px; right: 18px; width: 56px; height: 56px; }
+  .hd-concierge-fab { bottom: calc(18px + env(safe-area-inset-bottom)); right: 18px; width: 56px; height: 56px; }
 }
 
 /* ------------ Concierge panel ------------ */
@@ -2372,15 +2375,22 @@ body nav.site-nav .logo-mark.nav-size {
   border: 1px solid rgba(26, 22, 18, 0.20);
   border-radius: var(--radius-xs, 8px);
   cursor: pointer;
-  transition: border-color 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), transform 0.3s var(--ease), box-shadow 0.35s var(--ease);
+  /* kill the 300ms tap delay + the grey iOS tap flash so the whole card
+     reads as one crisp, native segmented-control cell */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  transition: border-color 0.35s var(--ease), background 0.35s var(--ease), color 0.35s var(--ease), transform 0.2s var(--ease), box-shadow 0.35s var(--ease);
 }
 .variant-options label:hover { border-color: rgba(26, 22, 18, 0.46); transform: translateY(-1px); box-shadow: 0 8px 18px -14px rgba(26,22,18,0.35); }
+.variant-options label:active { transform: scale(0.98); }   /* pressed feedback */
 .variant-options input:checked + label {
   background: #241C14;            /* matte deep olive-brown, restrained, no gloss/glow */
   border-color: #241C14;
   color: #F3EAD9;
   box-shadow: 0 10px 22px -14px rgba(26,22,18,0.45);
 }
+.variant-options input:checked + label:active { transform: scale(0.98); }
 .variant-options input:focus-visible + label { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
 .variant-options .price-diff { display: none; }   /* no pricing inside the buttons */
 
@@ -5796,8 +5806,11 @@ body .hd-concierge-fab:hover .hd-fab-hex {
   filter: drop-shadow(0 24px 40px rgba(0,0,0,0.55)) drop-shadow(0 8px 30px rgba(216,184,108,0.3));
 }
 @media (max-width: 600px) {
-  body .hd-concierge-fab { bottom: 18px; right: 18px; }
+  body .hd-concierge-fab { bottom: calc(18px + env(safe-area-inset-bottom)); right: 18px; }
   body .hd-concierge-fab .hd-fab-hex { width: 56px; height: 57px; }
+  /* When the product page's sticky buy-bar is showing (~80px tall), lift the
+     concierge emblem above it so the two never overlap. Harmless elsewhere. */
+  body.has-sticky-buy .hd-concierge-fab { bottom: calc(92px + env(safe-area-inset-bottom)); }
 }
 
 /* =================================================================

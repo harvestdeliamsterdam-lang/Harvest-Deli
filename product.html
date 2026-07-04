@@ -6,14 +6,14 @@
 <title>Chestnut Honey, Edition 1 · Harvest Deli</title>
 <meta name="description" content="Cold extracted chestnut honey from a single Greek grove. Dark, resinous, mineral. 384 numbered jars per harvest. Sealed in wax, shipped from Greece within the week.">
 <link rel="canonical" href="https://harvestdeli.nl/product.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-162">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-162" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-162">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-162">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-162">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-162" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-162">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-162">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-163">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-163" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-163">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-163">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-163">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-163" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-163">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-163">
 <meta name="hd-product-slug" content="chestnut">
 <script>(function(){try{var p=new URLSearchParams(location.search).get('p');var ok=['chestnut','pine','oak','arbutus','fir-vanilla','orange-blossom','acacia','thyme','heather'];var c=document.querySelector('link[rel="canonical"]');if(p&&ok.indexOf(p)>-1){var m=document.querySelector('meta[name="hd-product-slug"]');if(m)m.setAttribute('content',p);/* chestnut == bare product.html (clean canonical); every other honey is its own ?p= URL */if(c)c.setAttribute('href',p==='chestnut'?'https://harvestdeli.nl/product.html':'https://harvestdeli.nl/product.html?p='+p);}}catch(e){}})();</script>
 
@@ -115,7 +115,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-162">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-163">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -729,6 +729,10 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   gap: 14px;
   transform: translateY(110%);
   transition: transform 0.7s var(--ease);
+  /* rock-solid: only transform animates, its own layer, no reflow on the page
+     as Safari's toolbar collapses/expands or the keyboard opens */
+  will-change: transform;
+  contain: layout paint;
 }
 .sticky-buy.show { transform: translateY(0); }
 .sticky-buy .sb-thumb {
@@ -1202,27 +1206,37 @@ footer {
   .pd-size-opt      { padding: 17px 19px; flex-direction: row; align-items: center; justify-content: space-between; gap: 14px; text-align: left; }
   .pd-size-opt strong { font-size: 18px; }
 
-  .variant-selector { margin: 22px 0 24px; }
+  /* Format selector: two equal cells side by side, iOS segmented-control feel.
+     Full card is the tap target (label wraps a hidden radio), 58px tall,
+     12px gap, 16px radius. Selected = dark fill + white text + soft shadow;
+     unselected = white with a visible warm-grey border. */
+  .variant-selector { margin: 22px 0 26px; }
   .variant-options {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;   /* 480g | 950g, each exactly 50% */
+    gap: 12px;
     width: 100%;
-    gap: 0;
   }
   .variant-options label {
     width: 100%;
-    padding: 14px 16px;
-    padding-left: calc(16px + 0.36em);
-    border-right: none;
-    border-bottom: 1px solid rgba(26, 22, 18, 0.1);
-    justify-content: space-between;
-    gap: 12px;
-    font-size: 9px;
-    letter-spacing: 0.32em;
+    min-width: 0;
+    min-height: 58px;
+    padding: 0 18px;
+    justify-content: center;
+    background: #FFFFFF;
+    border: 1px solid #D8CFC0;
+    border-radius: 16px;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    box-shadow: none;
+    transition: background-color 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease), box-shadow 0.2s var(--ease), transform 0.12s var(--ease);
   }
-  .variant-options label:last-of-type { border-bottom: none; }
-  .variant-options label .sub {
-    font-size: 12px;
+  .variant-options label:hover { transform: none; box-shadow: none; border-color: #CBBFA9; }
+  .variant-options input:checked + label {
+    background: #241C14;
+    border-color: #241C14;
+    color: #F3EAD9;
+    box-shadow: 0 8px 20px -10px rgba(26, 22, 18, 0.5);
   }
 
   /* Primary CTA: full-width pill on phones */
@@ -1371,6 +1385,11 @@ footer {
   opacity: 0; transform: translateY(4px);
 }
 
+/* Very small phones (<340px): the two format cells would get cramped → stack. */
+@media (max-width: 339px) {
+  .variant-options { grid-template-columns: 1fr; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pdg-main img, .jar-haze, .jar-dust, .pd-cta::after { animation: none !important; transition: none !important; }
   .jar-dust { display: none; }
@@ -1490,18 +1509,18 @@ footer {
   <div class="hero-stage">
     <div class="pd-gallery reveal" id="pdGallery">
       <div class="pdg-main" id="pdgMain">
-        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
-        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
-        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
+        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-163" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
+        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-163" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
+        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-163" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
         <div class="jar-atmos" aria-hidden="true">
           <span class="jar-haze"></span>
           <span class="jar-dust"></span>
         </div>
       </div>
       <div class="pdg-thumbs" id="pdgThumbs">
-        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-162" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-162" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-162" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-163" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-163" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-163" alt="" loading="lazy"></button>
       </div>
     </div>
 
@@ -1844,7 +1863,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Sticky mobile buy bar -->
 <div class="sticky-buy" id="stickyBuy">
-  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-162" width="1228" height="2200" alt="" loading="lazy"></div>
+  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-163" width="1228" height="2200" alt="" loading="lazy"></div>
   <div class="sb-meta">
     <div class="sb-name" data-i18n="product.sticky.name">Chestnut Honey</div>
     <div class="sb-price" data-i18n="product.sticky.price">€18 &middot; Edition 1</div>
@@ -1852,8 +1871,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="chestnut" data-size="480g" data-i18n="product.sticky.add">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-162"></script>
-<script src="analytics.js?v=hd-2026-06-06-162"></script>
+<script src="shared.js?v=hd-2026-06-06-163"></script>
+<script src="analytics.js?v=hd-2026-06-06-163"></script>
 <script>
 (function() {
   /* Menu */
