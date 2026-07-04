@@ -6,7 +6,7 @@
    and the product catalog (window.HD_product).
 
    This file owns ONLY checkout logic. Real payment / carrier APIs are
-   marked with `// SEAM:`, that is where Stripe/Mollie/PostNL/DHL plug
+   marked with `// SEAM:`, that is where Stripe/Mollie/PostNL plug
    in later. Nothing here pretends to charge a card or authenticate.
    ================================================================= */
 
@@ -34,12 +34,14 @@
   /** Free shipping threshold, single source of truth lives in shared.js. */
   var FREE_SHIPPING_AT = (typeof window !== 'undefined' && window.HD_FREE_SHIP) || 65;
 
-  /** @type {ShippingMethod[]}, order = display order. SEAM: replace
-   *  static price/estimate with live PostNL/DHL rate API responses. */
+  /** @type {ShippingMethod[]}, order = display order. This is a DISPLAY ESTIMATE
+   *  only, verified to match Shopify's live delivery profile (NL/BE: €6.95 flat,
+   *  free ≥ FREE_SHIPPING_AT). Shopify's own checkout is the source of truth for
+   *  the actual charge — do not add carrier-branded or invented methods here
+   *  (e.g. a local "Pickup" option) unless Shopify's delivery profile offers it;
+   *  verify via a live test cart before adding anything back. */
   var SHIPPING = [
-    { id: 'postnl-standard', carrier: 'PostNL', label: 'PostNL, standard', estimate: '1–2 business days · track & trace', price: 6.95, free: true },
-    { id: 'dhl-standard',    carrier: 'DHL',    label: 'DHL, standard',    estimate: '1–2 business days · track & trace', price: 7.50, free: true },
-    { id: 'pickup',          carrier: 'Pickup', label: 'Pickup, Amsterdam', estimate: 'Ready in 1–2 days · Ten Kate market', price: 0, free: true }
+    { id: 'standard', label: 'Standard shipping', estimate: 'Calculated securely at checkout', price: 6.95, free: true }
   ];
 
   /** @type {PaymentMethod[]}, UI only. SEAM: Stripe/Mollie at placeOrder(). */
@@ -287,19 +289,22 @@
 
   function summaryHTML() {
     var lines = cartLines().map(function (l) {
-      return '<div class="sm-line"><span class="sm-line-name">' + l.name + ' <em>×' + l.qty + '</em></span>' +
+      var p = window.HD_product && window.HD_product(l.slug);
+      var img = (p && p.image) || '';
+      return '<div class="sm-line">' +
+             '<span class="sm-line-thumb">' + (img ? '<img src="' + img + '" alt="" loading="lazy">' : '') + '</span>' +
+             '<span class="sm-line-name">' + l.name + ' <em>×' + l.qty + '</em></span>' +
              '<span class="sm-line-price">' + fmt(l.lineTotal) + '</span></div>';
     }).join('');
     var disc = discountAmount();
     var offer = offerAmount();
     var offerLabel = (window.HD_lang && window.HD_lang() === 'nl') ? 'Aanbieding' : (window.HD_lang && window.HD_lang() === 'el') ? 'Προσφορά' : 'Offer';
     var ship = calcShipping();
-    var freeShip = ship === 0 && shippingMethod().price > 0;
     var rows = '' +
       '<div class="sm-row"><span>' + lookup('ck.subtotal', 'Subtotal') + '</span><span>' + fmt(subtotal()) + '</span></div>' +
       (offer > 0 ? '<div class="sm-row sm-discount"><span>' + offerLabel + '</span><span>−' + fmt(offer) + '</span></div>' : '') +
       (disc > 0 ? '<div class="sm-row sm-discount"><span>' + lookup('ck.discount', 'Discount') + ' · ' + state.discountCode + '</span><span>−' + fmt(disc) + '</span></div>' : '') +
-      '<div class="sm-row"><span>' + lookup('ck.shipping', 'Shipping') + '</span><span>' + (ship === 0 ? (freeShip ? lookup('ck.free', 'Free') : lookup('ck.pickup', 'Pickup')) : fmt(ship)) + '</span></div>' +
+      '<div class="sm-row"><span>' + lookup('ck.shipping', 'Shipping') + '</span><span>' + (ship === 0 ? lookup('ck.free', 'Free') : fmt(ship)) + '</span></div>' +
       '<div class="sm-row sm-grand"><span>' + lookup('ck.total', 'Total') + '</span><span>' + fmt(grandTotal()) + '</span></div>';
     return '<div class="sm-lines">' + lines + '</div><div class="sm-rows">' + rows + '</div>';
   }
@@ -310,10 +315,14 @@
     var bar = $('#wzMobileTotal'); if (bar) bar.textContent = fmt(grandTotal());
     var prog = $('#wzFreeProgress');
     if (prog) {
-      var remain = FREE_SHIPPING_AT - (subtotal() - discountAmount());
+      var subAfter = subtotal() - discountAmount();
+      var remain = FREE_SHIPPING_AT - subAfter;
       if (remain > 0 && (window.HD_CART && window.HD_CART.items.length)) {
         prog.hidden = false;
-        prog.textContent = lookup('ck.freeProgress', 'Add {x} more for free shipping').replace('{x}', fmt(remain));
+        var pct = Math.max(4, Math.min(100, (subAfter / FREE_SHIPPING_AT) * 100));
+        var txt = lookup('ck.freeProgress', 'Add {x} more for free shipping').replace('{x}', fmt(remain));
+        prog.innerHTML = '<span class="fp-label">' + txt + '</span>' +
+          '<span class="fp-track" aria-hidden="true"><span class="fp-fill" style="width:' + pct.toFixed(1) + '%"></span></span>';
       } else { prog.hidden = true; }
     }
   }
@@ -440,8 +449,9 @@
     // final button hands off to Shopify hosted checkout (Mollie). It NEVER
     // simulates a payment, writes hd-orders-v1, or creates a local order.
     if ((window.HD_COMMERCE_CONFIG && window.HD_COMMERCE_CONFIG.source) === 'shopify') {
+      commitDetails(); // freshest contact/address, so the hosted checkout opens pre-filled
       if (btn) { btn.classList.add('loading'); btn.disabled = true; } // existing .loading style
-      if (window.HD_startCheckout) { window.HD_startCheckout(); }
+      if (window.HD_startCheckout) { window.HD_startCheckout(state.details); }
       else { window.location.replace('shop.html'); }
       return;
     }

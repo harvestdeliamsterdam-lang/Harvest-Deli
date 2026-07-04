@@ -107,8 +107,8 @@
     }`,
 
     /* ---- cart + checkout ---- */
-    cartCreate: `mutation cartCreate($lines: [CartLineInput!]) {
-      cartCreate(input: { lines: $lines }) {
+    cartCreate: `mutation cartCreate($lines: [CartLineInput!], $buyerIdentity: CartBuyerIdentityInput) {
+      cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
         cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } } }
         userErrors { field message }
       } }`,

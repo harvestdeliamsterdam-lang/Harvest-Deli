@@ -6,14 +6,14 @@
 <title>Chestnut Honey, Edition 1 · Harvest Deli</title>
 <meta name="description" content="Cold extracted chestnut honey from a single Greek grove. Dark, resinous, mineral. 384 numbered jars per harvest. Sealed in wax, shipped from Greece within the week.">
 <link rel="canonical" href="https://harvestdeli.nl/product.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-143">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-143" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-143">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-143">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-143">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-143" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-143">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-143">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-159">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-159" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-159">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-159">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-159">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-159" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-159">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-159">
 <meta name="hd-product-slug" content="chestnut">
 <script>(function(){try{var p=new URLSearchParams(location.search).get('p');var ok=['chestnut','pine','oak','arbutus','fir-vanilla','orange-blossom','acacia','thyme','heather'];var c=document.querySelector('link[rel="canonical"]');if(p&&ok.indexOf(p)>-1){var m=document.querySelector('meta[name="hd-product-slug"]');if(m)m.setAttribute('content',p);/* chestnut == bare product.html (clean canonical); every other honey is its own ?p= URL */if(c)c.setAttribute('href',p==='chestnut'?'https://harvestdeli.nl/product.html':'https://harvestdeli.nl/product.html?p='+p);}}catch(e){}})();</script>
 
@@ -115,7 +115,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-143">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-159">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -355,27 +355,12 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   margin: 0 auto;
 }
 
-/* ----- Gallery: vertical thumbs (desktop) + large frame, swipe on mobile ----- */
+/* ----- Gallery: single large frame, sticky on desktop ----- */
 .pd-gallery {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  gap: 14px;
   position: sticky;
   top: 96px;                            /* stays in view while the accordion scrolls */
   align-self: start;
 }
-.pdg-thumbs { display: flex; flex-direction: column; gap: 10px; }
-.pdg-thumb {
-  width: 60px; aspect-ratio: 4 / 5;
-  padding: 0; border: 1px solid rgba(26,22,18,0.12); border-radius: 8px;
-  overflow: hidden; cursor: pointer; background: #0E0B08;
-  opacity: 0.55;
-  transition: opacity 0.45s var(--ease), border-color 0.45s var(--ease);
-}
-.pdg-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.pdg-thumb:hover { opacity: 0.85; }
-.pdg-thumb.active { opacity: 1; border-color: var(--gold); }
-.pdg-thumb:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
 .pdg-main {
   position: relative;
   aspect-ratio: 4 / 5;
@@ -396,17 +381,33 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 }
 .pdg-main img.active { opacity: 1; }
 .pdg-main:hover img.active { transform: scale(1.045); }  /* subtle premium zoom */
-.pdg-dots { display: none; justify-content: center; gap: 8px; padding-top: 12px; }
-.pdg-dots span {
-  width: 6px; height: 6px; border-radius: 50%;
-  border: 1px solid var(--gold); opacity: 0.4;
-  transition: opacity 0.35s var(--ease), background 0.35s var(--ease);
-}
-.pdg-dots span.active { background: var(--gold); opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .pdg-main img { transition: opacity 0.3s ease; }
   .pdg-main:hover img.active { transform: none; }
 }
+
+/* ----- Gallery: thumbnail rail (hero / origin / serving) ----- */
+.pdg-thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+.pdg-thumb {
+  position: relative;
+  width: 62px;
+  aspect-ratio: 4 / 5;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 0;
+  border: 1.5px solid transparent;
+  background: #0E0B08;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.pdg-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pdg-thumb:hover { opacity: 0.8; }
+.pdg-thumb.active { opacity: 1; border-color: var(--gold); }
 
 /* Product details */
 .product-details {
@@ -480,7 +481,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   letter-spacing: 0.005em;
 }
 .pd-price-block {
-  display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  display: flex; flex-direction: column; align-items: flex-start;
   margin-bottom: 18px;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(26,22,18,0.08);
@@ -501,6 +502,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   color: var(--ink-soft);
   font-weight: 500;
   padding-left: var(--track-label);
+  margin-top: 12px;
 }
 
 .pd-size {
@@ -508,8 +510,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 }
 .pd-size-opt {
   flex: 1;
-  padding: 20px 16px;
+  padding: 23px 19px;
   border: 1px solid rgba(26,22,18,0.16);
+  border-radius: 3px;
   background: transparent;
   font-family: 'Inter', sans-serif;
   font-size: 9px;
@@ -519,9 +522,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   cursor: pointer;
   color: var(--ink-soft);
   text-align: center;
-  transition: all 0.5s var(--ease);
-  display: flex; flex-direction: column; gap: 8px;
-  padding-left: calc(16px + 0.18em);
+  transition: border-color 0.35s var(--ease), background-color 0.35s var(--ease), box-shadow 0.35s var(--ease), color 0.35s var(--ease);
+  display: flex; flex-direction: column; gap: 9px;
+  padding-left: calc(19px + 0.18em);
 }
 .pd-size-opt strong {
   font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
@@ -536,6 +539,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   background: var(--ink);
   color: var(--cream);
   border-color: var(--ink);
+  box-shadow: 0 10px 24px -14px rgba(26,22,18,0.45);
 }
 .pd-size-opt.active strong { color: var(--cream); }
 .pd-size-opt.active span { color: rgba(250, 246, 238, 0.78); }
@@ -646,17 +650,17 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.36em;
   text-transform: uppercase; font-weight: 500; color: var(--gold-deep); margin-bottom: 15px;
 }
-.pd-benefits .pdb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 11px; }
-.pd-benefits .pdb-list li { display: grid; grid-template-columns: 22px 92px 1fr; align-items: center; gap: 12px; }
-.pd-benefits .pdb-ic { color: var(--gold-deep); display: inline-flex; }
-.pd-benefits .pdb-ic svg { width: 17px; height: 17px; }
-.pd-benefits .pdb-k { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); }
-.pd-benefits .pdb-v { font-family: 'Newsreader', serif; font-size: 16px; color: var(--ink); letter-spacing: -0.01em; }
+.pd-benefits .pdb-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 13px; }
+.pd-benefits .pdb-list li { display: grid; grid-template-columns: 22px 116px 1fr; align-items: center; gap: 12px; line-height: 1.3; }
+.pd-benefits .pdb-ic { color: var(--gold-deep); display: inline-flex; align-items: center; }
+.pd-benefits .pdb-ic svg { width: 17px; height: 17px; display: block; }
+.pd-benefits .pdb-k { font-family: 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; line-height: 1.3; }
+.pd-benefits .pdb-v { font-family: 'Newsreader', serif; font-size: 16px; color: var(--ink); letter-spacing: -0.01em; line-height: 1.3; padding-left: 16px; }
 .pd-benefits .pdb-natural { margin: 15px 0 0; padding-top: 13px; border-top: 1px solid rgba(26, 22, 18, 0.10); font-family: 'Inter', sans-serif; font-size: 12px; line-height: 1.6; color: var(--ink-soft); }
 @media (max-width: 600px) {
   .pd-benefits { padding: 16px 18px; }
-  .pd-benefits .pdb-list li { grid-template-columns: 20px 82px 1fr; gap: 10px; }
-  .pd-benefits .pdb-v { font-size: 15px; }
+  .pd-benefits .pdb-list li { grid-template-columns: 20px 112px 1fr; gap: 10px; }
+  .pd-benefits .pdb-v { font-size: 15px; padding-left: 12px; }
 }
 /* ----- Origin storytelling section ----- */
 .px-origin .px-origin-inner { max-width: 760px; margin: 0 auto; text-align: center; }
@@ -1098,16 +1102,13 @@ footer {
   nav.site-nav .nav-right { gap: 18px; }
   .crumbs { padding: 0 7% 4vh; }
   .hero-stage { grid-template-columns: 1fr; gap: 4vh; padding: 0 7%; }
-  /* Mobile gallery: swipe with scroll-snap, dots below, thumbs hidden */
+  /* Mobile gallery: single frame, static */
   .pd-gallery { display: block; position: static; }
-  .pdg-thumbs { display: none; }
-  .pdg-main { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-  .pdg-main::-webkit-scrollbar { display: none; }
-  .pdg-main img { position: static; flex: 0 0 100%; opacity: 1; transition: none; }
+  .pdg-main img { opacity: 0; transition: opacity 0.3s ease; }
+  .pdg-main img.active { opacity: 1; }
   .pdg-main:hover img.active { transform: none; }
-  .pdg-main img { scroll-snap-align: center; }
   .jar-atmos { display: none; }
-  .pdg-dots { display: flex; }
+  .pdg-thumbs { justify-content: center; }
   .product-details { padding-left: 0; }
   .tasting, .product-origin, .details, .also { padding: 12vh 7%; }
   .tasting-grid { grid-template-columns: 1fr; gap: 6vh; }
@@ -1162,6 +1163,8 @@ footer {
      Now: capped to 60vh so headline/price/CTA come into view sooner. */
   .pdg-main         { aspect-ratio: 1 / 1; max-height: 58vh; }
   .pdg-main img     { object-position: center 35%; }
+  .pdg-thumbs       { margin-top: 12px; gap: 8px; }
+  .pdg-thumb        { width: 52px; }
 
   /* Title + price block */
   .pd-title         { font-size: clamp(34px, 9.4vw, 44px); max-width: none; }
@@ -1178,7 +1181,7 @@ footer {
      Note: the actual selector class is .variant-options (from shared.css),
      not .pd-size. Both targeted below for safety. */
   .pd-size          { flex-direction: column; gap: 8px; margin-bottom: 28px; }
-  .pd-size-opt      { padding: 14px 16px; flex-direction: row; align-items: center; justify-content: space-between; gap: 14px; text-align: left; }
+  .pd-size-opt      { padding: 17px 19px; flex-direction: row; align-items: center; justify-content: space-between; gap: 14px; text-align: left; }
   .pd-size-opt strong { font-size: 18px; }
 
   .variant-selector { margin: 22px 0 24px; }
@@ -1319,13 +1322,6 @@ footer {
   animation: jarHaze 9s ease-in-out infinite;
 }
 @keyframes jarHaze { 0%,100% { opacity: 0.45; transform: scale(1) translateY(0); } 50% { opacity: 0.8; transform: scale(1.08) translateY(-2%); } }
-.jar-sheen {
-  position: absolute; top: -40%; left: -30%; width: 60%; height: 180%;
-  background: linear-gradient(75deg, rgba(255,248,235,0) 0%, rgba(255,248,235,0.16) 50%, rgba(255,248,235,0) 100%);
-  transform: rotate(8deg); filter: blur(8px);
-  animation: jarSheen 11s ease-in-out infinite;
-}
-@keyframes jarSheen { 0%,100% { transform: translateX(0) rotate(8deg); opacity: 0; } 45% { opacity: 1; } 55% { opacity: 1; } 100% { transform: translateX(320%) rotate(8deg); opacity: 0; } }
 /* faint floating dust motes (pure CSS, very restrained) */
 .jar-dust {
   position: absolute; inset: 0; opacity: 0.5;
@@ -1358,8 +1354,8 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pdg-main img, .jar-haze, .jar-sheen, .jar-dust, .pd-cta::after { animation: none !important; transition: none !important; }
-  .jar-sheen, .jar-dust { display: none; }
+  .pdg-main img, .jar-haze, .jar-dust, .pd-cta::after { animation: none !important; transition: none !important; }
+  .jar-dust { display: none; }
 }
 </style>
 </head>
@@ -1475,22 +1471,20 @@ footer {
   </div>
   <div class="hero-stage">
     <div class="pd-gallery reveal" id="pdGallery">
-      <div class="pdg-thumbs" aria-label="Product photos">
-        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Photo 1: the jar"><img src="harvestdeli.webp" width="1122" height="1402" alt=""></button>
-        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Photo 2: raw honeycomb"><img src="honeycomb.jpg" width="1200" height="2150" alt=""></button>
-        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Photo 3: the estate"><img src="assets/olive-sunrise-poster.webp" width="1300" height="731" alt=""></button>
-      </div>
       <div class="pdg-main" id="pdgMain">
-        <img src="harvestdeli.webp" width="1122" height="1402" alt="Harvest Deli Chestnut Honey jar on stone with honeycomb" class="active">
-        <img src="honeycomb.jpg" width="1200" height="2150" alt="Raw honeycomb, close" loading="lazy">
-        <img src="assets/olive-sunrise-poster.webp" width="1300" height="731" alt="A Greek estate at first light" loading="lazy">
+        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-159" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
+        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-159" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
+        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-159" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
         <div class="jar-atmos" aria-hidden="true">
           <span class="jar-haze"></span>
-          <span class="jar-sheen"></span>
           <span class="jar-dust"></span>
         </div>
       </div>
-      <div class="pdg-dots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+      <div class="pdg-thumbs" id="pdgThumbs">
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-159" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-159" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-159" alt="" loading="lazy"></button>
+      </div>
     </div>
 
     <div class="product-details reveal delay-1" id="buy">
@@ -1827,7 +1821,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Sticky mobile buy bar -->
 <div class="sticky-buy" id="stickyBuy">
-  <div class="sb-thumb"><img src="harvestdeli.webp" width="1122" height="1402" alt="" loading="lazy"></div>
+  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-159" width="1228" height="2200" alt="" loading="lazy"></div>
   <div class="sb-meta">
     <div class="sb-name" data-i18n="product.sticky.name">Chestnut Honey</div>
     <div class="sb-price" data-i18n="product.sticky.price">€18 &middot; Edition 1</div>
@@ -1835,8 +1829,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="chestnut" data-size="480g" data-i18n="product.sticky.add">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-143"></script>
-<script src="analytics.js?v=hd-2026-06-06-143"></script>
+<script src="shared.js?v=hd-2026-06-06-159"></script>
+<script src="analytics.js?v=hd-2026-06-06-159"></script>
 <script>
 (function() {
   /* Menu */
@@ -1867,6 +1861,19 @@ document.addEventListener('DOMContentLoaded', () => {
       opt.classList.add('active');
     });
   });
+
+  /* Gallery: switch between hero / origin / serving photos */
+  const pdgMain = document.getElementById('pdgMain');
+  const pdgThumbs = document.getElementById('pdgThumbs');
+  if (pdgMain && pdgThumbs) {
+    pdgThumbs.addEventListener('click', (e) => {
+      const btn = e.target.closest('.pdg-thumb');
+      if (!btn) return;
+      const idx = btn.getAttribute('data-slide');
+      pdgMain.querySelectorAll('img').forEach(img => img.classList.toggle('active', img.getAttribute('data-slide') === idx));
+      pdgThumbs.querySelectorAll('.pdg-thumb').forEach(t => t.classList.toggle('active', t === btn));
+    });
+  }
 
   /* Force origin video to start on iOS (some Safari versions need a touch nudge) */
   const originVideo = document.getElementById('originVideo');
@@ -1905,38 +1912,6 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <script>
-/* ----- Gallery: thumbs (desktop) + swipe dots (mobile) ----- */
-(function () {
-  var main = document.getElementById('pdgMain'); if (!main) return;
-  var imgs = [].slice.call(main.querySelectorAll('img'));
-  var thumbs = [].slice.call(document.querySelectorAll('.pdg-thumb'));
-  var dots = [].slice.call(document.querySelectorAll('.pdg-dots span'));
-  function mobile() { return window.matchMedia('(max-width: 900px)').matches; }
-  function setActive(i) {
-    imgs.forEach(function (im, j) { im.classList.toggle('active', j === i); });
-    thumbs.forEach(function (t, j) { t.classList.toggle('active', j === i); });
-    dots.forEach(function (d, j) { d.classList.toggle('active', j === i); });
-  }
-  thumbs.forEach(function (t) {
-    t.addEventListener('click', function () {
-      var i = parseInt(t.dataset.slide, 10) || 0;
-      if (mobile()) imgs[i].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      setActive(i);
-    });
-  });
-  /* Mobile swipe tracking via IntersectionObserver on the slides:
-     robust even where programmatic scrolls don't emit scroll events. */
-  if ('IntersectionObserver' in window) {
-    var sio = new IntersectionObserver(function (entries) {
-      if (!mobile()) return;
-      entries.forEach(function (en) {
-        if (en.isIntersecting && en.intersectionRatio >= 0.6) setActive(imgs.indexOf(en.target));
-      });
-    }, { root: main, threshold: 0.6 });
-    imgs.forEach(function (im) { sio.observe(im); });
-  }
-})();
-
 /* ----- Quantity stepper + express checkout ----- */
 (function () {
   var val = document.getElementById('pdQtyVal'); if (!val) return;

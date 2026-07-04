@@ -6,14 +6,14 @@
 <title>The Collection, All editions · Harvest Deli</title>
 <meta name="description" content="Nine single-origin Greek honeys, a cold-pressed olive oil and a wild mountain tea. Raw, hand-sealed, free shipping within the Netherlands & Belgium above €65.">
 <link rel="canonical" href="https://harvestdeli.nl/shop.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-143">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-143" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-143">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-143">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-143">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-143" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-143">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-143">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-159">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-159" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-159">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-159">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-159">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-159" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-159">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-159">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Collection, All editions · Harvest Deli">
 <meta property="og:description" content="Nine single-origin Greek honeys, a cold-pressed olive oil and a wild mountain tea. Raw, hand-sealed.">
@@ -61,7 +61,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-143">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-159">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1818,7 +1818,7 @@ footer.site-footer {
   <div class="shop-eyebrow" data-i18n="shop.eyebrow">The Collection</div>
   <h1 class="shop-headline" data-i18n-html="shop.headline_html">11 <em>premium</em> Greek delicacies.</h1>
   <p class="shop-intro" data-i18n="shop.intro">Raw. Unpasteurised. Direct from origin.</p>
-  <div class="shop-trustline" data-i18n="shop.trustline">Raw &amp; unpasteurised &middot; Harvested in Greece &middot; Free shipping in Europe above €65</div>
+  <div class="shop-trustline" data-i18n="shop.trustline">Raw &amp; unpasteurised &middot; Harvested in Greece &middot; Free shipping in the Netherlands &amp; Belgium above €65</div>
 </section>
 
 <!-- ============ Sticky toolbar ============ -->
@@ -1990,8 +1990,8 @@ footer.site-footer {
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-143"></script>
-<script src="analytics.js?v=hd-2026-06-06-143"></script>
+<script src="shared.js?v=hd-2026-06-06-159"></script>
+<script src="analytics.js?v=hd-2026-06-06-159"></script>
 <script>
 (function () {
   /* Menu */
@@ -2022,17 +2022,18 @@ footer.site-footer {
     'chestnut':       { cat:'honey', htype:'mountain',region:'greece',        process:['raw'] },
     'pine':           { cat:'honey', htype:'forest',  region:'halkidiki',     process:['raw'] },
     'heather':        { cat:'honey', htype:'creamy',  region:'evia',          process:['raw'] },
+    'oregano':        { cat:'herbs', htype:null,      region:'greece',        process:['handpicked'] },
     'olive-oil':      { cat:'oil',   htype:null,      region:'greece',        process:['coldpressed'] },
     'mountain-tea':   { cat:'tea',   htype:null,      region:'wildmountains', process:['caffeinefree'] }
   };
   const TAX = {
-    cat: { honey:{nl:'Honing',en:'Honey'}, oil:{nl:'Olijfolie',en:'Olive oil'}, tea:{nl:'Thee',en:'Tea'} },
+    cat: { honey:{nl:'Honing',en:'Honey'}, oil:{nl:'Olijfolie',en:'Olive oil'}, tea:{nl:'Thee',en:'Tea'}, herbs:{nl:'Kruiden',en:'Herbs'} },
     htype: { mountain:{nl:'Berghoning',en:'Mountain honey'}, blossom:{nl:'Bloesemhoning',en:'Blossom honey'}, forest:{nl:'Boshoning',en:'Forest honey'}, island:{nl:'Eilandhoning',en:'Island honey'}, creamy:{nl:'Romig',en:'Creamy'}, rare:{nl:'Zeldzame oogst',en:'Rare harvest'} },
     region: { greece:{nl:'Griekenland',en:'Greece'}, peloponnese:{nl:'Peloponnesos',en:'Peloponnese'}, crete:{nl:'Kreta',en:'Crete'}, epirus:{nl:'Epirus',en:'Epirus'}, olympus:{nl:'Berg Olympus',en:'Mt. Olympus'}, macedonia:{nl:'Macedonië',en:'Macedonia'}, halkidiki:{nl:'Halkidiki',en:'Halkidiki'}, evia:{nl:'Evia',en:'Evia'}, wildmountains:{nl:'Wilde Bergen',en:'Wild Mountains'} },
-    process: { raw:{nl:'Rauw',en:'Raw'}, spring:{nl:'Voorjaarsoogst',en:'Spring harvest'}, coldpressed:{nl:'Koudgeperst',en:'Cold-pressed'}, caffeinefree:{nl:'Cafeïnevrij',en:'Caffeine-free'} }
+    process: { raw:{nl:'Rauw',en:'Raw'}, spring:{nl:'Voorjaarsoogst',en:'Spring harvest'}, coldpressed:{nl:'Koudgeperst',en:'Cold-pressed'}, caffeinefree:{nl:'Cafeïnevrij',en:'Caffeine-free'}, handpicked:{nl:'Handgeplukt',en:'Hand-picked'} }
   };
   const GROUPS = [
-    { key:'cat',     title:{nl:'Categorie',en:'Category'},          options:['honey','oil','tea'], open:true },
+    { key:'cat',     title:{nl:'Categorie',en:'Category'},          options:['honey','oil','tea','herbs'], open:true },
     { key:'htype',   title:{nl:'Soort honing',en:'Honey type'},     options:['mountain','blossom','forest','island','creamy','rare'], open:true },
     { key:'process', title:{nl:'Oogst & methode',en:'Harvest & method'}, options:['raw','spring','coldpressed','caffeinefree'], open:false }
   ];

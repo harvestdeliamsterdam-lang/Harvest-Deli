@@ -6,21 +6,21 @@
 <title>Checkout, Harvest Deli</title>
 <meta name="description" content="Secure checkout for Harvest Deli. Pay securely with iDEAL, Bancontact, card and more via Mollie. Free shipping within the Netherlands & Belgium above €65.">
 <meta name="robots" content="noindex,follow">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-143">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-143" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-143">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-143">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-143">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-143" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-143">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-143">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-159">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-159" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-159">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-159">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-159">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-159" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-159">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-159">
 <meta name="theme-color" content="#10281f">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-143">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-159">
 <style>
 :root {
   --bg: #F5EFE4; --bg-deep: #EDE3D2; --ink: #1F1A14; --ink-soft: #5C5247; --ink-warm: #756859;
@@ -392,21 +392,6 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   margin-bottom: 5vh;
 }
 .side-title em { font-style: italic; font-weight: 400; color: var(--ink-warm); }
-
-#checkoutSummary { margin-bottom: 5vh; }
-.checkout-empty { padding: 6vh 0; text-align: center; }
-.checkout-empty h3 { font-family: 'Newsreader', serif; font-weight: 400; font-size: 26px; line-height: 1.15; color: var(--ink); margin-bottom: 12px; }
-.checkout-empty p { font-size: 13px; color: var(--ink-soft); line-height: 1.7; max-width: 32ch; margin: 0 auto 28px; }
-.checkout-empty-cta {
-  display: inline-flex; align-items: center; gap: 14px;
-  padding: 14px 28px;
-  font-family: 'Inter', sans-serif;
-  font-size: 10px; letter-spacing: var(--track-button); text-transform: uppercase;
-  font-weight: 500; color: var(--ink); border: 1px solid rgba(26, 22, 18, 0.36);
-  text-decoration: none; transition: all 0.6s var(--ease);
-  padding-left: calc(28px + var(--track-button));
-}
-.checkout-empty-cta:hover { background: var(--ink); color: var(--cream); }
 
 .ck-line {
   display: grid;
@@ -1004,6 +989,75 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   .ship-opt .radio::after { transition: none; }
 }
 
+/* ============================================================
+   Premium refinement pass — boutique checkout (Aesop / Loro Piana)
+   Last in source so it intentionally overrides the rules above.
+   ============================================================ */
+
+/* 1 · Step indicator — readable, weighted, soft-gold connectors */
+.wz-dot { color:#8e8275; opacity:1; font-weight:500; }
+.wz-dot .l { font-weight:500; letter-spacing:0.2em; }
+.wz-dot .n { border-color:rgba(186,155,107,0.5); }
+.wz-dot:not(:last-child)::after { background:rgba(186,155,107,0.35); height:1.5px; }
+.wz-dot.active { color:#1f1a17; opacity:1; }
+.wz-dot.active .n { background:#1f1a17; border-color:#1f1a17; color:var(--cream); }
+.wz-dot.done { color:#1f1a17; opacity:1; }
+.wz-dot.done .n { background:var(--gold); border-color:var(--gold); color:#fff; }
+
+/* 2 · Step bar as a soft luxury glass strip (premium floating feel) */
+.wz-steps {
+  background:rgba(255,255,255,0.42);
+  -webkit-backdrop-filter:blur(18px) saturate(180%);
+  backdrop-filter:blur(18px) saturate(180%);
+  border:1px solid rgba(184,155,107,0.18);
+  border-radius:14px;
+  padding:18px 22px; gap:10px;
+  box-shadow:0 20px 44px -30px rgba(31,26,20,0.30);
+}
+@media (max-width:560px){ .wz-steps { padding:14px 16px; } }
+
+/* 3 · Order summary — thumbnails, card depth, breathing totals */
+.wz-summary {
+  background:var(--cream, #FAF6EE);
+  border:1px solid rgba(184,155,107,0.16);
+  border-radius:14px;
+  padding:6px 20px 16px;
+  box-shadow:0 22px 48px -34px rgba(31,26,20,0.26);
+}
+.wz-summary .sm-lines, .wz-review-items .sm-lines { margin-bottom:6px; }
+.wz-summary .sm-line, .wz-review-items .sm-line {
+  display:grid; grid-template-columns:46px 1fr auto; gap:14px; align-items:center;
+  padding:12px 0; border-bottom:1px solid rgba(184,155,107,0.12);
+}
+.wz-summary .sm-line:last-child { border-bottom:none; }
+.sm-line-thumb { width:46px; height:46px; border-radius:7px; overflow:hidden; background:var(--bg-deep);
+  box-shadow:inset 0 0 0 1px rgba(184,155,107,0.14); flex:none; }
+.sm-line-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.sm-line-name { font-size:13px; line-height:1.35; color:var(--ink-soft); }
+.sm-rows { border-top:none; padding-top:2px; }
+.sm-row { padding:8px 0; font-size:13.5px; }
+.sm-row span:first-child { color:#6b5f50; }
+.sm-row.sm-grand { margin-top:10px; padding-top:16px; border-top:1px solid rgba(184,155,107,0.28); }
+.sm-row.sm-grand span { font-size:23px; }
+
+/* 4 · Free-shipping progress — elegant track + gold fill */
+.wz-free-progress {
+  margin-top:16px; text-align:left;
+  background:rgba(184,155,107,0.10); border:1px solid rgba(184,155,107,0.18);
+  border-radius:12px; padding:13px 15px; color:var(--gold-deep);
+}
+.wz-free-progress .fp-label { display:block; font-size:11.5px; letter-spacing:0.04em; font-weight:500; }
+.wz-free-progress .fp-track { display:block; height:5px; margin-top:9px; border-radius:999px;
+  background:rgba(184,155,107,0.20); overflow:hidden; }
+.wz-free-progress .fp-fill { display:block; height:100%; border-radius:999px;
+  background:linear-gradient(90deg, var(--gold-light), var(--gold-deep)); transition:width .55s var(--ease); }
+
+/* 5 · USP cards — subtle depth, tighter trailing whitespace */
+.checkout-side .trust-strip { margin-top:20px; margin-bottom:0; }
+.checkout-side .trust-cell { box-shadow:0 12px 30px -22px rgba(31,26,20,0.28); }
+.checkout-side { padding-bottom:6vh; }
+@media (max-width:900px){ .checkout-side { padding-bottom:7vh; } }
+
 </style>
 </head>
 <body>
@@ -1130,7 +1184,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
           <div class="field"><label for="ckPostcode" data-i18n="checkout.label.postcode">Postcode</label><input id="ckPostcode" type="text" autocomplete="postal-code" required></div>
           <div class="field"><label for="ckCountry" data-i18n="checkout.label.country">Country</label>
             <select id="ckCountry" autocomplete="country-name">
-              <option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other, international</option>
+              <option>Netherlands</option><option>Belgium</option>
             </select>
           </div>
         </div>
@@ -1149,7 +1203,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
             <div class="field"><label for="shCity" data-i18n="checkout.label.city">City</label><input id="shCity" type="text"></div>
             <div class="field"><label for="shPostcode" data-i18n="checkout.label.postcode">Postcode</label><input id="shPostcode" type="text"></div>
             <div class="field"><label for="shCountry" data-i18n="checkout.label.country">Country</label>
-              <select id="shCountry"><option>Netherlands</option><option>Belgium</option><option>Germany</option><option>France</option><option>Greece</option><option>Italy</option><option>Spain</option><option>Austria</option><option>United Kingdom</option><option>Switzerland</option><option>Other, international</option></select>
+              <select id="shCountry"><option>Netherlands</option><option>Belgium</option></select>
             </div>
           </div>
         </div>
@@ -1166,7 +1220,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
       <section class="wz-step" data-step="3" hidden aria-label="Delivery method">
         <div class="step-num"><span class="roman">III</span><h3 data-i18n-html="ck.delivery.h_html">Delivery &middot; <em>how it travels.</em></h3></div>
         <div class="ship-options" id="wzShipOptions"></div>
-        <p class="wz-free-note" data-i18n="ck.deliveryNote">Free standard shipping on orders over €75. Every parcel ships tracked &amp; insured.</p>
+        <p class="wz-free-note" data-i18n="ck.deliveryNote">Free standard shipping on orders over €65. Every parcel ships tracked &amp; insured.</p>
         <div class="wz-actions">
           <button type="button" class="wz-back-link" data-wz-prev data-i18n="ck.back">Back</button>
           <button type="button" class="confirm-btn wz-next" data-wz-next><span data-i18n="ck.toPayment">Continue to payment</span> <span class="arrow"></span></button>
@@ -1247,7 +1301,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
       </div>
       <div class="wz-faq-item">
         <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q2">Do you ship internationally?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
-        <div class="wz-faq-a" data-i18n="ck.faq.a2">Yes, across the EU and beyond, tracked &amp; insured. Delivery estimates are shown per carrier at the delivery step.</div>
+        <div class="wz-faq-a" data-i18n="ck.faq.a2">We currently ship within the Netherlands and Belgium, with select international destinations available. Your exact shipping option and price are confirmed securely at Shopify checkout.</div>
       </div>
       <div class="wz-faq-item">
         <button type="button" class="wz-faq-q" aria-expanded="false"><span data-i18n="ck.faq.q3">Can I return an order?</span><span class="wz-faq-mark" aria-hidden="true"></span></button>
@@ -1271,7 +1325,7 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
       </div>
       <div class="trust-cell">
         <div class="ico">⌖</div>
-        <div class="lbl"><span data-i18n="checkout.trust.intl1">International</span><br><span data-i18n="checkout.trust.intl2">shipping</span></div>
+        <div class="lbl"><span data-i18n="checkout.trust.intl1">Delivery in NL & BE</span><br><span data-i18n="checkout.trust.intl2">Shipped fast from the Netherlands</span></div>
       </div>
       <div class="trust-cell">
         <div class="ico">⌬</div>
@@ -1291,8 +1345,8 @@ nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text
   <button type="button" class="wz-mobile-btn" id="wzMobileBtn"><span id="wzMobileAction" data-i18n="ck.continue">Continue</span> <span class="arrow"></span></button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-143"></script>
-<script src="analytics.js?v=hd-2026-06-06-143"></script>
-<script src="checkout.js?v=hd-2026-06-06-143"></script>
+<script src="shared.js?v=hd-2026-06-06-159"></script>
+<script src="analytics.js?v=hd-2026-06-06-159"></script>
+<script src="checkout.js?v=hd-2026-06-06-159"></script>
 </body>
 </html>

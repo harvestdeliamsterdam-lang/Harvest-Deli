@@ -90,11 +90,11 @@
     },
     shippingConfirmation: function (d) {
       return { subject: 'Your order has shipped · ' + (d.orderId || ''), preheader: 'On its way from the Netherlands.',
-        body: h('On its way.') + p('Order <strong>' + esc(d.orderId) + '</strong> has left us, carefully packed, via ' + esc(d.carrier || 'PostNL') + '.') + button('Track & trace', d.trackUrl || (BRAND.site + '/track-order.html')) };
+        body: h('On its way.') + p('Order <strong>' + esc(d.orderId) + '</strong> has left us, carefully packed, via ' + esc(d.carrier || 'our shipping partner') + '.') + button('Track & trace', d.trackUrl || (BRAND.site + '/track-order.html')) };
     },
     trackTrace: function (d) {
       return { subject: 'Track your Harvest Deli order', preheader: 'Follow your parcel.',
-        body: h('Follow your parcel.') + p('Tracking is now live for order ' + esc(d.orderId) + ' (' + esc(d.carrier || 'PostNL') + ', ' + esc(d.tracking || '-') + ').') + button('Open tracking', d.trackUrl || (BRAND.site + '/track-order.html')) };
+        body: h('Follow your parcel.') + p('Tracking is now live for order ' + esc(d.orderId) + ' (' + esc(d.carrier || 'our shipping partner') + ', ' + esc(d.tracking || '-') + ').') + button('Open tracking', d.trackUrl || (BRAND.site + '/track-order.html')) };
     },
     delivered: function (d) {
       return { subject: 'Delivered · ' + (d.orderId || ''), preheader: 'Your jars have arrived.',

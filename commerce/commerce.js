@@ -326,8 +326,10 @@
        On ANY failure returns null (caller shows an error modal — there is NO
        fall-through to the legacy local checkout.html). Only when source!=='shopify'
        (dev/mock) does it return the local wizard URL.
+       @param {object} [buyer] state.details from the wizard (email/name/address);
+         when present + complete, the hosted checkout is PRE-FILLED via buyerIdentity.
        @returns {Promise<string|null>} a URL to navigate to, or null on failure. */
-    async checkout() {
+    async checkout(buyer) {
       if (useShopify()) {
         var lines = shopifyLinesFromCart();
         if (!lines) {
@@ -336,7 +338,12 @@
           lines = shopifyLinesFromCart();
         }
         if (lines && lines.length) {
-          var d = await SF().safeFetch(SF().QUERIES.cartCreate, { lines: lines });
+          var vars = { lines: lines };
+          // Prefill the hosted checkout (contact + shipping) when we have a usable
+          // address. Purely additive: no/partial address → cart creates as before.
+          var bi = buildBuyerIdentity(buyer);
+          if (bi) vars.buyerIdentity = bi;
+          var d = await SF().safeFetch(SF().QUERIES.cartCreate, vars);
           var cart = d && d.cartCreate && d.cartCreate.cart;
           if (cart && cart.checkoutUrl) {
             setCartId(cart.id);
@@ -485,14 +492,77 @@
     wrap.addEventListener('click', function (e) { if (e.target === wrap) close(); });
   }
 
+  /* Country name (as shown in the wizard <select>) → ISO 3166-1 alpha-2 code that
+     Shopify's CartBuyerIdentityInput.countryCode expects. Unknown → null (omit). */
+  var COUNTRY_CODES = {
+    'Netherlands': 'NL', 'Nederland': 'NL', 'Belgium': 'BE', 'België': 'BE', 'Belgique': 'BE',
+    'Germany': 'DE', 'Duitsland': 'DE', 'France': 'FR', 'Frankrijk': 'FR',
+    'Greece': 'GR', 'Griekenland': 'GR', 'Italy': 'IT', 'Italië': 'IT',
+    'Spain': 'ES', 'Spanje': 'ES', 'Austria': 'AT', 'Oostenrijk': 'AT',
+    'United Kingdom': 'GB', 'Switzerland': 'CH', 'Zwitserland': 'CH'
+  };
+
+  /* ISO country code → international dialling code, for E.164 phone normalisation. */
+  var DIAL_CODES = { NL:'31', BE:'32', DE:'49', FR:'33', GR:'30', IT:'39', ES:'34', AT:'43', GB:'44', CH:'41' };
+
+  /* Normalise a user-typed phone to E.164 (e.g. "06 10 71-50 83" → "+31610715083").
+     Shopify's buyerIdentity.phone / address.phone require E.164 or the value is
+     dropped. Rules: strip spaces/dashes/parens/dots; keep already-international
+     (+…) unchanged; "00…" → "+…"; a leading national 0 gets the country dial code
+     (default NL when the cart country is unknown). Returns null when not usable. */
+  function normalizePhone(raw, isoCode) {
+    if (!raw) return null;
+    var s = String(raw).replace(/[\s\-().]/g, '');
+    if (!s) return null;
+    if (s.charAt(0) === '+') return s;                 // already international
+    if (s.slice(0, 2) === '00') return '+' + s.slice(2); // 0031… → +31…
+    if (s.charAt(0) === '0') {                          // national number
+      var dial = DIAL_CODES[isoCode] || DIAL_CODES.NL; // default to NL
+      return '+' + dial + s.slice(1);
+    }
+    return /^[0-9]+$/.test(s) ? '+' + s : null;         // bare digits → assume already country-prefixed
+  }
+
+  /* Map the wizard's state.details → Shopify CartBuyerIdentityInput so the hosted
+     checkout opens pre-filled (contact + shipping). Returns null when there is no
+     usable address, so cartCreate stays exactly as before (purely additive). */
+  function buildBuyerIdentity(buyer) {
+    if (!buyer) return null;
+    var a = buyer.shipping && buyer.shipping.line1 ? buyer.shipping : buyer.billing;
+    var code = a && a.country ? COUNTRY_CODES[a.country.trim()] : null;
+    var bi = {};
+    var phone = normalizePhone(buyer.phone, code); // E.164, or null
+    if (buyer.email) bi.email = buyer.email.trim();
+    if (phone) bi.phone = phone; // CartBuyerIdentityInput.phone requires E.164
+    if (code) bi.countryCode = code; // CartBuyerIdentityInput.countryCode = ISO enum
+    // A delivery address only prefills if it is complete enough for Shopify to accept.
+    // deliveryAddress is a MailingAddressInput: its field is `country` (a name string),
+    // NOT `countryCode`. We require a known country so the top-level enum is set too.
+    if (a && a.line1 && a.city && a.postcode && a.country && code) {
+      var da = {
+        firstName: (buyer.firstName || '').trim(),
+        lastName: (buyer.lastName || '').trim(),
+        address1: a.line1.trim(),
+        city: a.city.trim(),
+        zip: a.postcode.trim(),
+        country: a.country.trim()
+      };
+      if (a.line2 && a.line2.trim()) da.address2 = a.line2.trim();
+      if (phone) da.phone = phone; // MailingAddressInput.phone → prefills the shipping phone field
+      bi.deliveryAddressPreferences = [{ deliveryAddress: da }];
+    }
+    return Object.keys(bi).length ? bi : null;
+  }
+
   /* THE single checkout entry point for the whole site. Every "checkout"/"buy now"
      action routes here. Production (source==='shopify') → Shopify hosted checkout
-     or an error modal. Dev/mock → the local checkout.html wizard. */
-  function startCheckout() {
+     or an error modal. Dev/mock → the local checkout.html wizard.
+     @param {object} [buyer] state.details from the wizard, for checkout prefill. */
+  function startCheckout(buyer) {
     if (!useShopify()) { window.location.href = 'checkout.html'; return; } // dev/mock only
     var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
     if (!has) { window.location.href = 'shop.html'; return; }
-    Commerce.checkout().then(function (url) {
+    Commerce.checkout(buyer).then(function (url) {
       if (url && /^https?:\/\//.test(url)) { window.location.href = url; }
       else { showCheckoutError(); }
     }).catch(function () { showCheckoutError(); });

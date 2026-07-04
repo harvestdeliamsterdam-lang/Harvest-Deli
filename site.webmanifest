@@ -9,11 +9,11 @@
   "lang": "en",
   "scope": "/",
   "icons": [
-    { "src": "/favicon.svg?v=hd-2026-06-06-143",          "type": "image/svg+xml", "sizes": "any",     "purpose": "any" },
-    { "src": "/favicon-32.png?v=hd-2026-06-06-143",       "type": "image/png",     "sizes": "32x32",   "purpose": "any" },
-    { "src": "/favicon-16.png?v=hd-2026-06-06-143",       "type": "image/png",     "sizes": "16x16",   "purpose": "any" },
-    { "src": "/apple-touch-icon.png?v=hd-2026-06-06-143", "type": "image/png",     "sizes": "180x180", "purpose": "any" },
-    { "src": "/android-chrome-192.png?v=hd-2026-06-06-143","type": "image/png",     "sizes": "192x192", "purpose": "any maskable" },
-    { "src": "/android-chrome-512.png?v=hd-2026-06-06-143","type": "image/png",     "sizes": "512x512", "purpose": "any maskable" }
+    { "src": "/favicon.svg?v=hd-2026-06-06-157",          "type": "image/svg+xml", "sizes": "any",     "purpose": "any" },
+    { "src": "/favicon-32.png?v=hd-2026-06-06-157",       "type": "image/png",     "sizes": "32x32",   "purpose": "any" },
+    { "src": "/favicon-16.png?v=hd-2026-06-06-157",       "type": "image/png",     "sizes": "16x16",   "purpose": "any" },
+    { "src": "/apple-touch-icon.png?v=hd-2026-06-06-157", "type": "image/png",     "sizes": "180x180", "purpose": "any" },
+    { "src": "/android-chrome-192.png?v=hd-2026-06-06-157","type": "image/png",     "sizes": "192x192", "purpose": "any maskable" },
+    { "src": "/android-chrome-512.png?v=hd-2026-06-06-157","type": "image/png",     "sizes": "512x512", "purpose": "any maskable" }
   ]
 }
