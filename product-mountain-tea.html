@@ -6,14 +6,14 @@
 <title>Greek Mountain Tea · Harvest Deli</title>
 <meta name="description" content="Wild-grown Greek mountain tea (Tsai tou Vounou), hand-harvested in the high Greek mountains. Caffeine free, floral and naturally soothing. Shipped from Greece within the week.">
 <link rel="canonical" href="https://harvestdeli.nl/product-mountain-tea.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-163">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-163" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-163">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-163">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-163">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-163" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-163">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-163">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-164">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-164" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-164">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-164">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-164">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-164" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-164">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-164">
 <meta name="hd-product-slug" content="mountain-tea">
 
 <meta property="og:type" content="product">
@@ -112,7 +112,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-163">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-164">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -546,6 +546,10 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   gap: 14px;
   transform: translateY(110%);
   transition: transform 0.7s var(--ease);
+  /* rock-solid: only transform animates, own layer, no reflow when Safari's
+     toolbar collapses/expands or the keyboard opens */
+  will-change: transform;
+  contain: layout paint;
 }
 .sticky-buy.show { transform: translateY(0); }
 .sticky-buy .sb-thumb {
@@ -1199,7 +1203,7 @@ footer {
   <div class="hero-stage">
     <div class="pd-gallery reveal" id="pdGallery">
       <div class="pdg-main" id="pdgMain">
-        <img src="assets/products-images/mountain-tea.webp?v=hd-2026-06-06-163" width="732" height="1100" alt="Harvest Deli Greek mountain tea" class="active">
+        <img src="assets/products-images/mountain-tea.webp?v=hd-2026-06-06-164" width="732" height="1100" alt="Harvest Deli Greek mountain tea" class="active">
       </div>
     </div>
 
@@ -1485,8 +1489,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="mountain-tea">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-163"></script>
-<script src="analytics.js?v=hd-2026-06-06-163"></script>
+<script src="shared.js?v=hd-2026-06-06-164"></script>
+<script src="analytics.js?v=hd-2026-06-06-164"></script>
 <script>
 (function() {
   /* Menu */
