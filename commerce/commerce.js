@@ -340,9 +340,13 @@
         if (lines && lines.length) {
           var vars = { lines: lines };
           // Prefill the hosted checkout (contact + shipping) when we have a usable
-          // address. Purely additive: no/partial address → cart creates as before.
-          var bi = buildBuyerIdentity(buyer);
-          if (bi) vars.buyerIdentity = bi;
+          // address. countryCode is ALWAYS sent (default NL): Shopify only surfaces
+          // local payment methods (iDEAL/Bancontact via Mollie) when the cart has a
+          // market context of NL/BE + EUR. The buyer can still switch country in
+          // the hosted checkout itself.
+          var bi = buildBuyerIdentity(buyer) || {};
+          if (!bi.countryCode) bi.countryCode = 'NL';
+          vars.buyerIdentity = bi;
           var d = await SF().safeFetch(SF().QUERIES.cartCreate, vars);
           var cart = d && d.cartCreate && d.cartCreate.cart;
           if (cart && cart.checkoutUrl) {
