@@ -34,33 +34,6 @@
 <meta name="theme-color" content="#10281f">
 <link rel="stylesheet" href="shared.css?v=hd-2026-06-06-168">
 
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  "name": "The Harvest Deli Journal",
-  "description": "Field notes, tasting essays and harvest journals from Harvest Deli, a small Greek producer.",
-  "url": "https://harvestdeli.nl/journal.html",
-  "publisher": {
-    "@type": "Organization",
-    "name": "Harvest Deli",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://harvestdeli.nl/harvestdeli.png"
-    }
-  },
-  "blogPost": [{
-    "@type": "BlogPosting",
-    "headline": "Taste the Greek Sun: a field guide to honey from Greece",
-    "description": "What the Greek sun actually tastes like, why Greek mountains make honey unlike anywhere else, and how to taste a single jar properly.",
-    "datePublished": "2026-05-26",
-    "url": "https://harvestdeli.nl/article-taste-the-greek-sun.html",
-    "author": { "@type": "Person", "name": "Harvest Deli" },
-    "image": "https://harvestdeli.nl/harvestdeli.png"
-  }]
-}
-</script>
-
 <style>
 :root {
   --bg: #F5EFE4;
@@ -761,7 +734,183 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   .jr-news__form { flex-direction: column; }
   .jr-news__form button { width: 100%; }
 }
+
+/* ===== JRX-HUB — knowledge hub layer (generated rebuild) ===== */
+.jrx-search { margin: 38px 0 0; display: flex; gap: 10px; max-width: 560px; }
+.jrx-search input { flex: 1; min-height: 52px; padding: 0 22px; border-radius: 12px; border: 1px solid rgba(31,26,20,0.16); background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-family: 'Inter', sans-serif; font-size: 15px; color: var(--ink); outline: none; transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease); }
+.jrx-search input:focus { border-color: var(--gold-deep); box-shadow: 0 0 0 3px rgba(184,148,90,0.18); }
+.jrx-search input::placeholder { color: rgba(31,26,20,0.38); }
+.jrx-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 22px 0 0; }
+.jrx-chip { min-height: 44px; padding: 0 18px; display: inline-flex; align-items: center; gap: 8px; border-radius: 999px; border: 1px solid rgba(31,26,20,0.18); background: transparent; color: var(--ink); font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 550; cursor: pointer; transition: background 0.25s var(--ease), color 0.25s var(--ease), border-color 0.25s var(--ease); -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+.jrx-chip:hover { border-color: var(--ink); }
+.jrx-chip[aria-pressed="true"] { background: #241C14; border-color: #241C14; color: #F3EAD9; }
+.jrx-chip .n { font-size: 10px; opacity: 0.55; }
+.jrx-chip[disabled] { opacity: 0.45; cursor: default; }
+.jrx-chip[disabled]:hover { border-color: rgba(31,26,20,0.18); }
+.jrx-picks { padding: clamp(30px,5vh,64px) 0 0; }
+.jrx-rowhead { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
+.jrx-rowhead h2 { font-size: clamp(22px,2.8vw,34px); letter-spacing: -0.02em; color: var(--ink); font-weight: 540; margin: 0; }
+.jrx-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.jrx-card { display: flex; flex-direction: column; text-decoration: none; border-radius: 16px; overflow: hidden; background: rgba(255,255,255,0.55); backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%); border: 1px solid rgba(31,26,20,0.09); box-shadow: 0 24px 54px -42px rgba(31,26,20,0.45); transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease); }
+.jrx-card:hover { transform: translateY(-5px); box-shadow: 0 38px 76px -44px rgba(31,26,20,0.55); }
+.jrx-card__im { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #E0D6C2; }
+.jrx-card__im img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s var(--ease); }
+.jrx-card:hover .jrx-card__im img { transform: scale(1.045); }
+.jrx-card__cat { position: absolute; top: 14px; left: 14px; z-index: 2; padding: 6px 12px; border-radius: 999px; background: rgba(14,11,8,0.55); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); color: rgba(250,246,238,0.95); font-size: 8.5px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 600; }
+.jrx-card__tx { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+.jrx-card__h { font-family: 'Newsreader', serif; font-weight: 460; font-size: 21px; line-height: 1.22; letter-spacing: -0.015em; color: var(--ink); margin: 0 0 10px; }
+.jrx-card:hover .jrx-card__h { color: var(--gold-deep); }
+.jrx-card__d { font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin: 0 0 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.jrx-card__m { margin-top: auto; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(31,26,20,0.5); font-weight: 550; display: flex; align-items: center; gap: 10px; }
+.jrx-card__m .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold-deep); display: inline-block; }
+.jrx-most { padding: clamp(40px,7vh,80px) 0 0; }
+.jrx-most ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; counter-reset: mr; }
+.jrx-most a { display: block; text-decoration: none; padding: 20px 0 0; border-top: 1px solid rgba(31,26,20,0.14); counter-increment: mr; }
+.jrx-most a::before { content: counter(mr, decimal-leading-zero); font-family: 'Newsreader', serif; font-size: 30px; color: var(--gold-deep); display: block; margin-bottom: 12px; }
+.jrx-most .h { font-family: 'Newsreader', serif; font-size: 18.5px; line-height: 1.25; color: var(--ink); transition: color 0.3s var(--ease); }
+.jrx-most a:hover .h { color: var(--gold-deep); }
+.jrx-most .m { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(31,26,20,0.5); margin-top: 10px; font-weight: 550; }
+.jrx-empty { display: none; padding: 60px 0; text-align: center; color: var(--ink-soft); font-size: 15px; }
+.jrx-empty.show { display: block; }
+.jrx-empty a { color: var(--gold-deep); }
+@media (max-width: 960px) { .jrx-grid { grid-template-columns: repeat(2, 1fr); } .jrx-most ol { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px) { .jrx-grid { grid-template-columns: 1fr; } .jrx-most ol { grid-template-columns: 1fr; gap: 4px; } .jrx-most a { display: flex; align-items: baseline; gap: 14px; padding: 16px 0; } .jrx-most a::before { margin: 0; font-size: 22px; } .jrx-search { max-width: none; } }
+@media (prefers-reduced-motion: reduce) { .jrx-card, .jrx-card__im img { transition: none; } }
+
 </style>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Blog",
+ "@id": "https://harvestdeli.nl/journal.html",
+ "name": "The Harvest Deli Journal",
+ "description": "The knowledge hub on Greek honey: raw honey science, health evidence, beekeeping tradition, varieties and buying guides.",
+ "url": "https://harvestdeli.nl/journal.html",
+ "publisher": {
+  "@type": "Organization",
+  "name": "Harvest Deli",
+  "logo": {
+   "@type": "ImageObject",
+   "url": "https://harvestdeli.nl/harvestdeli.png"
+  }
+ },
+ "blogPost": [
+  {
+   "@type": "BlogPosting",
+   "headline": "The Ultimate Guide to Greek Honey",
+   "url": "https://harvestdeli.nl/article-ultimate-guide-greek-honey.html",
+   "datePublished": "2026-07-01",
+   "image": "https://harvestdeli.nl/assets/products-images/thyme-origin.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Greek Honey vs Manuka Honey: An Honest Comparison",
+   "url": "https://harvestdeli.nl/article-greek-honey-vs-manuka.html",
+   "datePublished": "2026-06-30",
+   "image": "https://harvestdeli.nl/assets/products-images/fir-vanilla-origin.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Raw Honey vs Processed Honey: What Is Actually Different?",
+   "url": "https://harvestdeli.nl/article-raw-honey-vs-processed-honey.html",
+   "datePublished": "2026-06-25",
+   "image": "https://harvestdeli.nl/assets/products-images/acacia-serving.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Raw Greek Honey: What \"Raw\" Actually Means",
+   "url": "https://harvestdeli.nl/article-raw-greek-honey.html",
+   "datePublished": "2026-06-18",
+   "image": "https://harvestdeli.nl/assets/products-images/acacia-origin.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Greek Honey & Health: What the Evidence Actually Says",
+   "url": "https://harvestdeli.nl/article-greek-honey-health-benefits.html",
+   "datePublished": "2026-06-05",
+   "image": "https://harvestdeli.nl/assets/products-images/fir-vanilla-serving.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Taste the Greek Sun: A Field Guide to Greek Honey",
+   "url": "https://harvestdeli.nl/article-taste-the-greek-sun.html",
+   "datePublished": "2026-05-26",
+   "image": "https://harvestdeli.nl/assets/olive-sunrise-poster.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "From Hive to Jar: How Greek Honey Is Made",
+   "url": "https://harvestdeli.nl/article-how-greek-honey-is-made.html",
+   "datePublished": "2026-05-20",
+   "image": "https://harvestdeli.nl/assets/products-images/pine-origin.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Three Thousand Years of Greek Beekeeping",
+   "url": "https://harvestdeli.nl/article-greek-beekeeping-tradition.html",
+   "datePublished": "2026-05-02",
+   "image": "https://harvestdeli.nl/assets/products-images/arbutus-origin.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Greek Honey Varieties Explained: Thyme, Pine, Fir, Chestnut & More",
+   "url": "https://harvestdeli.nl/article-greek-honey-varieties.html",
+   "datePublished": "2026-04-30",
+   "image": "https://harvestdeli.nl/assets/products-images/thyme-serving.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Waarom Griekse honing anders smaakt dan supermarkthoning",
+   "url": "https://harvestdeli.nl/article-griekse-honing-smaak.html",
+   "datePublished": "2026-04-22",
+   "image": "https://harvestdeli.nl/honeycomb.jpg"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Why Does Honey Crystallize? (And Why That Is Good News)",
+   "url": "https://harvestdeli.nl/article-why-does-honey-crystallize.html",
+   "datePublished": "2026-04-14",
+   "image": "https://harvestdeli.nl/assets/products-images/orange-blossom-origin.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "How Long Does Honey Last? Shelf Life, Storage & the 3,000-Year Jar",
+   "url": "https://harvestdeli.nl/article-how-long-does-honey-last.html",
+   "datePublished": "2026-03-28",
+   "image": "https://harvestdeli.nl/assets/products-images/chestnut-serving.webp"
+  },
+  {
+   "@type": "BlogPosting",
+   "headline": "Waar koop je echte Griekse honing in Nederland?",
+   "url": "https://harvestdeli.nl/article-griekse-honing-nederland.html",
+   "datePublished": "2026-03-15",
+   "image": "https://harvestdeli.nl/assets/markt.webp"
+  }
+ ]
+}
+</script>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://harvestdeli.nl/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "The Journal",
+   "item": "https://harvestdeli.nl/journal.html"
+  }
+ ]
+}
+</script>
+
 </head>
 <body>
 
@@ -833,59 +982,224 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </div>
 
-<main id="content" class="jr">
+<main id="content" class="jr"><!-- JRX-HUB -->
 
   <!-- ============ Hero ============ -->
   <section class="jr-hero reveal">
-    <div class="jr-eyebrow">The Journal · Field notes from Greece</div>
-    <h1 class="jr-hero__h">Slow notes from a single mountain.</h1>
-    <p class="jr-hero__intro">Tasting essays, harvest journals and quiet reports from the cellar. We publish only when the season has something to say.</p>
+    <div class="jr-eyebrow">The Journal · The knowledge hub on Greek honey</div>
+    <h1 class="jr-hero__h">Everything the mountain knows.</h1>
+    <p class="jr-hero__intro">Tasting essays, raw-honey science, beekeeping tradition and buying guides — written slowly, from a single Greek harvest. We publish when the season has something to say.</p>
+    <form class="jrx-search" role="search" onsubmit="return false">
+      <input type="search" id="jrxSearch" placeholder="Search the Journal — thyme, crystallization, Manuka…" aria-label="Search articles">
+    </form>
+    <div class="jrx-chips" id="jrxChips" role="group" aria-label="Filter by category">
+      <button class="jrx-chip" type="button" data-cat="" aria-pressed="true">All <span class="n">13</span></button>
+      <button class="jrx-chip" type="button" data-cat="health" aria-pressed="false">Health</button>
+      <button class="jrx-chip" type="button" data-cat="raw-honey" aria-pressed="false">Raw Honey</button>
+      <button class="jrx-chip" type="button" data-cat="beekeeping" aria-pressed="false">Beekeeping</button>
+      <button class="jrx-chip" type="button" data-cat="greek-nature" aria-pressed="false">Greek Nature</button>
+      <button class="jrx-chip" type="button" data-cat="guides" aria-pressed="false">Guides</button>
+      <button class="jrx-chip" type="button" disabled title="First recipes arrive with the next harvest">Recipes · soon</button>
+    </div>
   </section>
 
-  <!-- ============ Featured ============ -->
+  <!-- ============ Featured cornerstone ============ -->
   <section class="jr-featured">
-    <a class="jr-feat reveal" href="article-taste-the-greek-sun.html" aria-label="Read: Taste the Greek Sun">
+    <a class="jr-feat reveal" href="article-ultimate-guide-greek-honey.html" aria-label="Read: The Ultimate Guide to Greek Honey">
       <div class="jr-feat__media">
-        <video class="jr-feat__img" autoplay muted loop playsinline preload="metadata"
-               poster="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-168" aria-hidden="true">
-          <source src="assets/olive-sunrise.mp4?v=hd-2026-06-06-168" type="video/mp4">
-        </video>
-        <span class="jr-feat__cap">Greece · Late summer 2026</span>
+        <img class="jr-feat__img" src="assets/products-images/thyme-origin.webp?v=hd-2026-06-06-168" alt="" width="1228" height="2200" style="object-fit:cover" fetchpriority="high">
+        <span class="jr-feat__cap">Greece · The cornerstone guide</span>
       </div>
       <div class="jr-feat__text">
-        <span class="jr-feat__badge">Edition 1 · Featured</span>
-        <div class="jr-feat__meta"><span>Tasting</span><span class="dot"></span><span>26 May 2026</span><span class="dot"></span><span>8 min read</span></div>
-        <h2 class="jr-feat__title">Taste the Greek Sun.</h2>
-        <p class="jr-feat__excerpt">What the Greek sun actually tastes like, why Greek mountains make honey unlike anywhere else, and how to taste a single jar, slowly, in three movements.</p>
-        <span class="jr-readlink">Read the essay <span class="arrow" aria-hidden="true"></span></span>
+        <span class="jr-feat__badge">Featured · Cornerstone</span>
+        <div class="jr-feat__meta"><span>Guides</span><span class="dot"></span><span><time datetime="2026-07-01">July 1, 2026</time></span><span class="dot"></span><span>12 min read</span></div>
+        <h2 class="jr-feat__title">The Ultimate Guide to Greek Honey</h2>
+        <p class="jr-feat__excerpt">Everything worth knowing about Greek honey in one place — the varieties, the mountains, the harvest, the health substance behind the legend, and how to buy a jar that is actually real.</p>
+        <span class="jr-readlink">Read the guide <span class="arrow" aria-hidden="true"></span></span>
       </div>
     </a>
   </section>
 
-  <!-- ============ Archive ============ -->
-  <section class="jr-archive">
+  <!-- ============ Editor's picks ============ -->
+  <section class="jrx-picks jr-archive" aria-labelledby="picksH">
+    <div class="jrx-rowhead reveal">
+      <h2 id="picksH">Editor&rsquo;s picks.</h2>
+    </div>
+    <div class="jrx-grid">
+<!-- JR:PICKS START -->
+      <a class="jrx-card reveal" href="article-greek-honey-vs-manuka.html" data-cats="health,guides" data-q="greek honey vs manuka honey: an honest comparison manuka built a global brand on one molecule and a grading system. greek honey built three thousand years on flavour and place. which one belongs in your kitchen — and what does the science really say? health guides">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Health</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Greek Honey vs Manuka Honey: An Honest Comparison</h3>
+          <p class="jrx-card__d">Manuka built a global brand on one molecule and a grading system. Greek honey built three thousand years on flavour and place. Which one belongs in your kitchen — and what does the science really say?</p>
+          <div class="jrx-card__m"><time datetime="2026-06-30">June 30, 2026</time><span class="dot"></span>8 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-raw-greek-honey.html" data-cats="raw-honey,guides" data-q="raw greek honey: what raw actually means raw is the most used and least protected word in the honey aisle. here is what it technically means, how raw greek honey is handled, and how to verify a jar yourself. raw honey guides">
+        <div class="jrx-card__im"><img src="assets/products-images/acacia-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Raw Honey</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Raw Greek Honey: What "Raw" Actually Means</h3>
+          <p class="jrx-card__d">"Raw" is the most used and least protected word in the honey aisle. Here is what it technically means, how raw Greek honey is handled, and how to verify a jar yourself.</p>
+          <div class="jrx-card__m"><time datetime="2026-06-18">June 18, 2026</time><span class="dot"></span>8 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-greek-honey-health-benefits.html" data-cats="health" data-q="greek honey & health: what the evidence actually says antibacterial activity, antioxidants, coughs and colds, blood sugar — a sober, source-aware walk through what research supports, what it does not, and why rawness decides everything. health">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-serving.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Health</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Greek Honey & Health: What the Evidence Actually Says</h3>
+          <p class="jrx-card__d">Antibacterial activity, antioxidants, coughs and colds, blood sugar — a sober, source-aware walk through what research supports, what it does not, and why rawness decides everything.</p>
+          <div class="jrx-card__m"><time datetime="2026-06-05">June 5, 2026</time><span class="dot"></span>9 min read</div>
+        </div>
+      </a>
+<!-- JR:PICKS END -->
+    </div>
+  </section>
+
+  <!-- ============ All articles ============ -->
+  <section class="jr-archive" aria-labelledby="archH">
     <div class="jr-archive__head reveal">
-      <div class="jr-eyebrow">More from the cellar</div>
-      <h2 class="jr-archive__h">From the archive.</h2>
+      <div class="jr-eyebrow">The library</div>
+      <h2 class="jr-archive__h" id="archH">All articles.</h2>
     </div>
-
-    <div class="jr-list">
-      <a class="jr-post reveal" href="article-griekse-honing-smaak.html" aria-label="Read: Why Greek honey tastes unlike supermarket honey">
-        <div class="jr-post__media"><img class="jr-post__img" src="honeycomb.jpg?v=hd-2026-06-06-168" width="1200" height="2150" alt="Raw Greek honeycomb dripping with unfiltered honey" loading="lazy" style="object-fit:cover;object-position:50% 28%"></div>
-        <div class="jr-post__cat">Tasting</div>
-        <h3 class="jr-post__title">Why Greek honey tastes unlike supermarket honey.</h3>
-        <p class="jr-post__excerpt">Wild mountain flowers, cold extraction and small batches keep the enzymes, pollen and natural antibacterial qualities intact — the quiet reasons one spoon lingers and another does not.</p>
-        <div class="jr-post__meta">18 May 2026 · 6 min read</div>
+    <div class="jrx-grid" id="jrxGrid">
+<!-- JR:GRID START -->
+      <a class="jrx-card reveal" href="article-greek-honey-vs-manuka.html" data-cats="health,guides" data-q="greek honey vs manuka honey: an honest comparison manuka built a global brand on one molecule and a grading system. greek honey built three thousand years on flavour and place. which one belongs in your kitchen — and what does the science really say? health guides">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Health</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Greek Honey vs Manuka Honey: An Honest Comparison</h3>
+          <p class="jrx-card__d">Manuka built a global brand on one molecule and a grading system. Greek honey built three thousand years on flavour and place. Which one belongs in your kitchen — and what does the science really say?</p>
+          <div class="jrx-card__m"><time datetime="2026-06-30">June 30, 2026</time><span class="dot"></span>8 min read</div>
+        </div>
       </a>
-
-      <a class="jr-post reveal" href="article-griekse-honing-nederland.html" aria-label="Read: Where to buy real Greek honey in the Netherlands">
-        <div class="jr-post__media"><img class="jr-post__img" src="assets/markt.webp?v=hd-2026-06-06-168" width="1300" height="975" alt="Amsterdam market stall with single-estate Greek honey" loading="lazy" style="object-fit:cover"></div>
-        <div class="jr-post__cat">Guide</div>
-        <h3 class="jr-post__title">Where to buy real Greek honey in the Netherlands.</h3>
-        <p class="jr-post__excerpt">How to tell single-estate mountain honey from the supermarket shelf, where to find raw Greek honey in Amsterdam, and what to look for on the jar.</p>
-        <div class="jr-post__meta">2 May 2026 · 7 min read</div>
+      <a class="jrx-card reveal" href="article-raw-honey-vs-processed-honey.html" data-cats="raw-honey,health" data-q="raw honey vs processed honey: what is actually different? heat, filtration and blending turn a living food into a shelf-stable syrup. a side-by-side account of what processing removes, what survives, and how to tell which jar you are holding. raw honey health">
+        <div class="jrx-card__im"><img src="assets/products-images/acacia-serving.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Raw Honey</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Raw Honey vs Processed Honey: What Is Actually Different?</h3>
+          <p class="jrx-card__d">Heat, filtration and blending turn a living food into a shelf-stable syrup. A side-by-side account of what processing removes, what survives, and how to tell which jar you are holding.</p>
+          <div class="jrx-card__m"><time datetime="2026-06-25">June 25, 2026</time><span class="dot"></span>8 min read</div>
+        </div>
       </a>
+      <a class="jrx-card reveal" href="article-raw-greek-honey.html" data-cats="raw-honey,guides" data-q="raw greek honey: what raw actually means raw is the most used and least protected word in the honey aisle. here is what it technically means, how raw greek honey is handled, and how to verify a jar yourself. raw honey guides">
+        <div class="jrx-card__im"><img src="assets/products-images/acacia-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Raw Honey</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Raw Greek Honey: What "Raw" Actually Means</h3>
+          <p class="jrx-card__d">"Raw" is the most used and least protected word in the honey aisle. Here is what it technically means, how raw Greek honey is handled, and how to verify a jar yourself.</p>
+          <div class="jrx-card__m"><time datetime="2026-06-18">June 18, 2026</time><span class="dot"></span>8 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-greek-honey-health-benefits.html" data-cats="health" data-q="greek honey & health: what the evidence actually says antibacterial activity, antioxidants, coughs and colds, blood sugar — a sober, source-aware walk through what research supports, what it does not, and why rawness decides everything. health">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-serving.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Health</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Greek Honey & Health: What the Evidence Actually Says</h3>
+          <p class="jrx-card__d">Antibacterial activity, antioxidants, coughs and colds, blood sugar — a sober, source-aware walk through what research supports, what it does not, and why rawness decides everything.</p>
+          <div class="jrx-card__m"><time datetime="2026-06-05">June 5, 2026</time><span class="dot"></span>9 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-taste-the-greek-sun.html" data-cats="guides,greek-nature" data-q="taste the greek sun: a field guide to greek honey what the greek sun actually tastes like, why a single mountain matters, and how to read a jar in three movements. guides greek nature">
+        <div class="jrx-card__im"><img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Guides</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Taste the Greek Sun: A Field Guide to Greek Honey</h3>
+          <p class="jrx-card__d">What the Greek sun actually tastes like, why a single mountain matters, and how to read a jar in three movements.</p>
+          <div class="jrx-card__m"><time datetime="2026-05-26">May 26, 2026</time><span class="dot"></span>7 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-how-greek-honey-is-made.html" data-cats="beekeeping,greek-nature" data-q="from hive to jar: how greek honey is made migratory hives, mountain summers, cold extraction and a village workshop — the actual production journey of a jar of greek honey, season by season. beekeeping greek nature">
+        <div class="jrx-card__im"><img src="assets/products-images/pine-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Beekeeping</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">From Hive to Jar: How Greek Honey Is Made</h3>
+          <p class="jrx-card__d">Migratory hives, mountain summers, cold extraction and a village workshop — the actual production journey of a jar of Greek honey, season by season.</p>
+          <div class="jrx-card__m"><time datetime="2026-05-20">May 20, 2026</time><span class="dot"></span>8 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-greek-beekeeping-tradition.html" data-cats="beekeeping,greek-nature" data-q="three thousand years of greek beekeeping from aristotle’s hive observations to the mountain beekeepers of today — how greece built, and kept, the oldest continuous beekeeping culture in europe. beekeeping greek nature">
+        <div class="jrx-card__im"><img src="assets/products-images/arbutus-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Beekeeping</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Three Thousand Years of Greek Beekeeping</h3>
+          <p class="jrx-card__d">From Aristotle’s hive observations to the mountain beekeepers of today — how Greece built, and kept, the oldest continuous beekeeping culture in Europe.</p>
+          <div class="jrx-card__m"><time datetime="2026-05-02">May 2, 2026</time><span class="dot"></span>7 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-greek-honey-varieties.html" data-cats="raw-honey,guides" data-q="greek honey varieties explained: thyme, pine, fir, chestnut & more eight varieties define greek beekeeping, and no two behave alike. colour, aroma, texture, crystallization and what to eat each one with — a working reference. raw honey guides">
+        <div class="jrx-card__im"><img src="assets/products-images/thyme-serving.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Raw Honey</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Greek Honey Varieties Explained: Thyme, Pine, Fir, Chestnut & More</h3>
+          <p class="jrx-card__d">Eight varieties define Greek beekeeping, and no two behave alike. Colour, aroma, texture, crystallization and what to eat each one with — a working reference.</p>
+          <div class="jrx-card__m"><time datetime="2026-04-30">April 30, 2026</time><span class="dot"></span>9 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-griekse-honing-smaak.html" data-cats="raw-honey" data-q="waarom griekse honing anders smaakt dan supermarkthoning hoogte, wilde flora en koude slingering — waarom een pot griekse berghoning niets deelt met de knijpfles uit het schap. raw honey">
+        <div class="jrx-card__im"><img src="honeycomb.jpg?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Raw Honey</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Waarom Griekse honing anders smaakt dan supermarkthoning</h3>
+          <p class="jrx-card__d">Hoogte, wilde flora en koude slingering — waarom een pot Griekse berghoning niets deelt met de knijpfles uit het schap.</p>
+          <div class="jrx-card__m"><time datetime="2026-04-22">April 22, 2026</time><span class="dot"></span>6 min read<span class="dot"></span>NL</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-why-does-honey-crystallize.html" data-cats="guides,raw-honey" data-q="why does honey crystallize? (and why that is good news) crystallized honey is not spoiled, old or fake — usually it is the opposite. the science of honey crystallization, which varieties set fastest, and how to re-liquefy a jar without ruining it. guides raw honey">
+        <div class="jrx-card__im"><img src="assets/products-images/orange-blossom-origin.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Guides</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Why Does Honey Crystallize? (And Why That Is Good News)</h3>
+          <p class="jrx-card__d">Crystallized honey is not spoiled, old or fake — usually it is the opposite. The science of honey crystallization, which varieties set fastest, and how to re-liquefy a jar without ruining it.</p>
+          <div class="jrx-card__m"><time datetime="2026-04-14">April 14, 2026</time><span class="dot"></span>6 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-how-long-does-honey-last.html" data-cats="guides" data-q="how long does honey last? shelf life, storage & the 3,000-year jar edible honey has been found in ancient tombs. why honey effectively never spoils, what the date on the jar really means, and the few storage mistakes that can actually degrade it. guides">
+        <div class="jrx-card__im"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Guides</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">How Long Does Honey Last? Shelf Life, Storage & the 3,000-Year Jar</h3>
+          <p class="jrx-card__d">Edible honey has been found in ancient tombs. Why honey effectively never spoils, what the date on the jar really means, and the few storage mistakes that can actually degrade it.</p>
+          <div class="jrx-card__m"><time datetime="2026-03-28">March 28, 2026</time><span class="dot"></span>6 min read</div>
+        </div>
+      </a>
+      <a class="jrx-card reveal" href="article-griekse-honing-nederland.html" data-cats="guides" data-q="waar koop je echte griekse honing in nederland? van markt tot webshop: hoe je echte griekse berghoning herkent tussen de griekse stijl-blends. guides">
+        <div class="jrx-card__im"><img src="assets/markt.webp?v=hd-2026-06-06-168" alt="" loading="lazy" width="800" height="500">
+          <span class="jrx-card__cat">Guides</span></div>
+        <div class="jrx-card__tx">
+          <h3 class="jrx-card__h">Waar koop je echte Griekse honing in Nederland?</h3>
+          <p class="jrx-card__d">Van markt tot webshop: hoe je echte Griekse berghoning herkent tussen de "Griekse stijl"-blends.</p>
+          <div class="jrx-card__m"><time datetime="2026-03-15">March 15, 2026</time><span class="dot"></span>6 min read<span class="dot"></span>NL</div>
+        </div>
+      </a>
+<!-- JR:GRID END -->
     </div>
+    <p class="jrx-empty" id="jrxEmpty">Nothing found for that search — try a broader word, or <a href="journal.html">browse everything</a>.</p>
+  </section>
+
+  <!-- ============ Most read ============ -->
+  <section class="jrx-most jr-archive" aria-labelledby="mostH">
+    <div class="jrx-rowhead reveal">
+      <h2 id="mostH">Most read.</h2>
+    </div>
+    <ol>
+<!-- JR:MOST START -->
+      <li><a href="article-ultimate-guide-greek-honey.html"><span class="h">The Ultimate Guide to Greek Honey</span><span class="m">Guides · 12 min</span></a></li>
+      <li><a href="article-raw-honey-vs-processed-honey.html"><span class="h">Raw Honey vs Processed Honey: What Is Actually Different?</span><span class="m">Raw Honey · 8 min</span></a></li>
+      <li><a href="article-greek-honey-health-benefits.html"><span class="h">Greek Honey & Health: What the Evidence Actually Says</span><span class="m">Health · 9 min</span></a></li>
+      <li><a href="article-how-greek-honey-is-made.html"><span class="h">From Hive to Jar: How Greek Honey Is Made</span><span class="m">Beekeeping · 8 min</span></a></li>
+<!-- JR:MOST END -->
+    </ol>
+  </section>
+
+  <!-- ============ Newsletter ============ -->
+  <section class="newsletter-strip" aria-labelledby="nlH">
+    <div class="eyebrow">The quiet letter</div>
+    <h2 id="nlH">One letter per harvest.<br>Nothing in between.</h2>
+    <p style="max-width:52ch;margin:26px auto 34px;font-size:15px;line-height:1.7;color:rgba(245,239,228,0.78)">New articles, the state of the hives and first access to small editions. A few letters a year, written like the Journal — slowly.</p>
+    <a class="coda-btn" href="mailto:hello@harvestdeli.nl?subject=Journal%20subscription&body=I%27d%20like%20to%20receive%20the%20Harvest%20Deli%20letter." style="display:inline-flex;padding:18px 34px;background:var(--gold);color:#1F1A14;text-decoration:none;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;border-radius:3px">Subscribe by e-mail</a>
   </section>
 
 </main>
@@ -955,6 +1269,39 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+</script>
+<script src="journal-data.js?v=hd-2026-06-06-168"></script>
+<script>
+(function () {
+  var grid = document.getElementById('jrxGrid');
+  var chips = document.getElementById('jrxChips');
+  var search = document.getElementById('jrxSearch');
+  var empty = document.getElementById('jrxEmpty');
+  if (!grid || !chips) return;
+  var cat = '', q = '';
+  function apply() {
+    var shown = 0;
+    grid.querySelectorAll('.jrx-card').forEach(function (c) {
+      var okC = !cat || (c.getAttribute('data-cats') || '').split(',').indexOf(cat) !== -1;
+      var okQ = !q || (c.getAttribute('data-q') || '').indexOf(q) !== -1;
+      var ok = okC && okQ;
+      c.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    if (empty) empty.classList.toggle('show', shown === 0);
+  }
+  chips.addEventListener('click', function (e) {
+    var b = e.target.closest('.jrx-chip'); if (!b || b.disabled) return;
+    cat = b.getAttribute('data-cat') || '';
+    chips.querySelectorAll('.jrx-chip').forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+    apply();
+  });
+  var t;
+  if (search) search.addEventListener('input', function () {
+    clearTimeout(t);
+    t = setTimeout(function () { q = search.value.trim().toLowerCase(); apply(); }, 160);
+  });
 })();
 </script>
 </body>
