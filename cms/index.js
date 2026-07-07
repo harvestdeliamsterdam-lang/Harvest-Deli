@@ -1,5 +1,5 @@
 /* =============================================================
-   Harvest Deli — CMS facade
+   Harvest Deli, CMS facade
    One stable API the frontend calls, regardless of source. Reads
    HD_CMS.config.source to pick the mock or sanity provider.
 

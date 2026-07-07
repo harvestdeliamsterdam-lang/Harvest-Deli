@@ -1,5 +1,5 @@
 /**
- * FAQ item — a question/answer pair. An array of these on an article powers
+ * FAQ item, a question/answer pair. An array of these on an article powers
  * an on-page accordion AND a FAQPage JSON-LD block (rich-result eligible).
  * The frontend serialises these into schema.org FAQPage markup for SEO.
  */

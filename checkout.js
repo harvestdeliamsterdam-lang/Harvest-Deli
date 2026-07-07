@@ -37,14 +37,14 @@
   /** @type {ShippingMethod[]}, order = display order. This is a DISPLAY ESTIMATE
    *  only, verified to match Shopify's live delivery profile (NL/BE: €6.95 flat,
    *  free ≥ FREE_SHIPPING_AT). Shopify's own checkout is the source of truth for
-   *  the actual charge — do not add carrier-branded or invented methods here
+   *  the actual charge, do not add carrier-branded or invented methods here
    *  (e.g. a local "Pickup" option) unless Shopify's delivery profile offers it;
    *  verify via a live test cart before adding anything back. */
   var SHIPPING = [
     { id: 'standard', label: 'Standard shipping', estimate: 'Calculated securely at checkout', price: 6.95, free: true }
   ];
 
-  /** @type {PaymentMethod[]}, UI only — a preference the buyer confirms at the
+  /** @type {PaymentMethod[]}, UI only, a preference the buyer confirms at the
    *  Shopify hosted checkout. Must mirror the LIVE Mollie gateways exactly
    *  (verified: Mollie - iDeal / Bancontact / Credit Card). Do not add methods
    *  here that Mollie doesn't offer, or buyers hit a dead end at checkout. */
@@ -108,7 +108,7 @@
         state = Object.assign(state, p);
         state.details = Object.assign(blankDetails(), p.details || {});
         // A previously saved method may no longer be offered (e.g. PayPal
-        // removed when we went Mollie-only) — fall back to the first one.
+        // removed when we went Mollie-only), fall back to the first one.
         if (!PAYMENTS.some(function (m) { return m.id === state.paymentId; })) state.paymentId = PAYMENTS[0].id;
       }
     } catch (e) {}
@@ -304,7 +304,7 @@
     var disc = discountAmount();
     var offer = offerAmount();   // HD_CART.offerDiscount() = the Ritual Saving (mirrors live Shopify auto-discount)
     // TODO (Shopify): the €5 Ritual Saving mirrors the store's automatic discounts
-    // ("3 honingpotten — €5" / "2 honing + 1 olijfolie — €5"), which apply at the
+    // ("3 honingpotten, €5" / "2 honing + 1 olijfolie, €5"), which apply at the
     // Shopify hosted checkout. Keep this label + amount in lockstep with Shopify.
     var offerLabel = (window.HD_lang && window.HD_lang() === 'nl') ? 'Ritueelkorting' : 'Ritual saving';
     var ship = calcShipping();
@@ -652,7 +652,7 @@
 
   // checkout.html is a BRANDED PRE-CHECKOUT step. It renders the existing premium
   // multi-step wizard for the experience, but NEVER creates an order or simulates
-  // payment — the final button hands off to Shopify hosted checkout (see
+  // payment, the final button hands off to Shopify hosted checkout (see
   // placeOrder). Empty cart → shop.html. In production (source==='shopify') the
   // wizard is purely presentational; the real payment happens on Shopify (Mollie).
   function bootCheckout(tries) {
@@ -666,9 +666,9 @@
     var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
     if (!has) { window.location.replace('shop.html'); return; }
     init(); // render the branded pre-checkout UI; final step → Shopify (placeOrder)
-    // Discounts are applied on Shopify's hosted checkout, never here — hide the
+    // Discounts are applied on Shopify's hosted checkout, never here, hide the
     // local code field so a pre-checkout total can never disagree with Shopify.
-    try { document.querySelectorAll('.wz-discount, .wz-discount-msg').forEach(function (el) { el.style.display = 'none'; }); } catch (e) {}
+    try { document.querySelectorAll('.wz-discount.wz-discount-msg').forEach(function (el) { el.style.display = 'none'; }); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { bootCheckout(0); });
   else bootCheckout(0);

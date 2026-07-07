@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Shopify Storefront API client (THE SEAM)
+   Harvest Deli, Shopify Storefront API client (THE SEAM)
    -----------------------------------------------------------------
    This is the ONE file that talks to Shopify. Today it is inert
    (config.source === 'mock'). To go live:
@@ -23,7 +23,7 @@
   async function storefrontFetch(query, variables) {
     var s = cfg();
     if (!s.domain || !s.storefrontToken) {
-      throw new Error('[storefront] not configured — set domain + storefrontToken and source:"shopify"');
+      throw new Error('[storefront] not configured, set domain + storefrontToken and source:"shopify"');
     }
     var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
     var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, TIMEOUT_MS) : null;
@@ -46,7 +46,7 @@
     }
   }
 
-  /** Same call, but never throws — returns null on any failure (timeout, network,
+  /** Same call, but never throws, returns null on any failure (timeout, network,
       GraphQL error). commerce.js uses this so it can fall back to the mock catalog. */
   async function safeFetch(query, variables) {
     try { return await storefrontFetch(query, variables); }
@@ -56,7 +56,7 @@
     }
   }
 
-  /* The canonical queries/mutations — kept here so the integration is copy-paste. */
+  /* The canonical queries/mutations, kept here so the integration is copy-paste. */
   var QUERIES = {
     /* ---- catalog reads ---- */
     products: `query Products($first: Int = 50) {

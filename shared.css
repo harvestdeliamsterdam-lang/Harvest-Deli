@@ -767,7 +767,7 @@ body nav.site-nav .logo-mark.nav-size {
    FAQ block (reusable, light background variant)
    Used on index.html and contact.html
    ================================================================= */
-/* ============ FAQ — private concierge (Aesop × Apple × Saint Laurent) ============ */
+/* ============ FAQ, private concierge (Aesop × Apple × Saint Laurent) ============ */
 @property --faq-angle { syntax: '<angle>'; initial-value: 90deg; inherits: false; }
 .faq-block {
   padding: var(--sp-y, clamp(48px, 7.4vw, 96px)) var(--sp-x, 8%);
@@ -1176,7 +1176,7 @@ body nav.site-nav .logo-mark.nav-size {
 /* ------------ Correspondence button (matte pill, "Write to us") ------------ */
 /* Calm Mediterranean-hospitality entry point. No glossy coin, no glow, no pulse,
    a quiet matte pill that reads as an invitation to write, not a chat widget. */
-/* Circular luxury emblem — deep emerald medallion, metallic gold rim,
+/* Circular luxury emblem, deep emerald medallion, metallic gold rim,
    refined engraved bee, slow shimmer, soft golden glow, gentle float.
    Hermès / Diptyque / Aesop / Aman register. */
 .hd-concierge-fab {
@@ -1390,7 +1390,7 @@ body nav.site-nav .logo-mark.nav-size {
   mix-blend-mode: overlay;
   border-radius: inherit;
 }
-/* Warm ambient honey glow — slowly drifts behind the header (WOW: option B) */
+/* Warm ambient honey glow, slowly drifts behind the header (WOW: option B) */
 .hd-concierge__panel::after {
   content: '';
   position: absolute;
@@ -1407,7 +1407,7 @@ body nav.site-nav .logo-mark.nav-size {
   100% { transform: translate(4%, 2.5%); }
 }
 
-/* Animated thin gold border travelling clockwise (12s) — like a luxury honey box */
+/* Animated thin gold border travelling clockwise (12s), like a luxury honey box */
 .hd-concierge__frame {
   position: absolute;
   inset: 0;
@@ -2816,7 +2816,7 @@ body .menu-overlay .menu-bottom .social a:hover { color: var(--gold-deep, #8A622
 }
 
 /* =================================================================
-   CINEMATIC MENU REDESIGN — luxury digital showroom
+   CINEMATIC MENU REDESIGN, luxury digital showroom
    Animated gold border · ghost typography · cursor light · brutal
    nav type · premium hover · fixed footer · VisionOS open transition
    ================================================================= */
@@ -2839,7 +2839,7 @@ body .menu-overlay .menu-items { width: 100%; }
 /* --- Navigation typography: +20%, stronger, more editorial --- */
 /* Compact vertical rhythm so all 7 editions fit above the fixed footer */
 body .menu-overlay .menu-top { padding-bottom: clamp(2.6vh, 3.5vh, 5vh) !important; }
-/* Link left, sub-label inline-right on the same baseline — saves vertical
+/* Link left, sub-label inline-right on the same baseline, saves vertical
    space so all editions fit, and reads more editorial */
 body .menu-overlay .menu-items li {
   grid-template-columns: 1fr auto !important;
@@ -3033,7 +3033,7 @@ body.hd-menu-open > footer {
 }
 
 /* =================================================================
-   MOBILE MENU — fits one viewport, no scroll, editorial two-line index.
+   MOBILE MENU, fits one viewport, no scroll, editorial two-line index.
    Font size is driven by --hd-nav-fs (set per item-count/height by JS,
    fitMobileNav) so 5- and 7-item menus both fit any phone.
    ================================================================= */
@@ -3131,7 +3131,7 @@ nav.site-nav.nav-hidden { transform: translateY(-110%); }
   box-shadow: 0 0 8px rgba(212, 172, 106, 0.4);
 }
 
-/* 4. Scroll-to-top button (bottom-left) — light interior, gold ring that fills with scroll progress */
+/* 4. Scroll-to-top button (bottom-left), light interior, gold ring that fills with scroll progress */
 .hd-stt {
   position: fixed;
   bottom: 22px; left: 22px;
@@ -3860,7 +3860,7 @@ body.hd-loaded { opacity: 1; }
 }
 
 /* =================================================================
-   QUICK VIEW — phone, conversion-first compaction
+   QUICK VIEW, phone, conversion-first compaction
    -----------------------------------------------------------------
    The whole purchase decision (name → origin → tagline → price →
    variant → Add → details) fits in the first viewport. Image is small,
@@ -4258,7 +4258,7 @@ html.hd-intro-pending::before {
   pointer-events: none;
 }
 /* ACTIVE: the opaque green overlay (mounted in <body>, z-index 9999) covers the
-   page. The body must stay VISIBLE — hiding it (opacity 0) also hides the
+   page. The body must stay VISIBLE, hiding it (opacity 0) also hides the
    overlay itself (a child of body), leaving only the beige canvas: the bug that
    made the intro play invisibly. Keep the canvas green as belt-and-braces. */
 html.hd-intro-active { background: var(--hd-intro-green); }
@@ -4633,7 +4633,7 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 }
 .hd-search-bar, .hd-search-results { position: relative; z-index: 1; }
 
-/* Animated thin gold border travelling clockwise (12s) — luxury box opening */
+/* Animated thin gold border travelling clockwise (12s), luxury box opening */
 .hd-search-frame {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   border-radius: inherit; padding: 1px;
@@ -4758,7 +4758,7 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 .hd-s-empty p { font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 16px; color: var(--ink-soft, #5C5247); margin: 0 8px 10px; }
 
 @media (max-width: 700px) {
-  /* Floating ivory card — fits the viewport, never overflows; results scroll inside */
+  /* Floating ivory card, fits the viewport, never overflows; results scroll inside */
   .hd-search-panel {
     margin: calc(16px + env(safe-area-inset-top)) auto calc(16px + env(safe-area-inset-bottom));
     width: calc(100vw - 24px); max-width: none;
@@ -4806,7 +4806,7 @@ input[type="password"], input[type="number"], select, textarea, .wz-discount inp
 .px-pair-note { font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft,#5C5247); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .px-pair-price { font-family:'Inter',sans-serif; font-size:13px; color:var(--gold-deep,#8A6228); margin-top:4px; }
 
-/* The Ritual Saving promo — image background + real HTML overlay (no baked-in text) */
+/* The Ritual Saving promo, image background + real HTML overlay (no baked-in text) */
 .px-ritual-card { position:relative; overflow:hidden; border-radius:var(--radius-card,16px); min-height:340px; display:flex; align-items:flex-end; box-shadow:0 30px 70px -40px rgba(26,22,18,0.55); }
 .px-ritual-bg { position:absolute; inset:0; background-size:cover; background-position:center 42%; transform:scale(1.02); transition:transform 1.2s var(--ease,cubic-bezier(0.22,1,0.36,1)); }
 .px-ritual-card:hover .px-ritual-bg { transform:scale(1.06); }
@@ -4875,7 +4875,7 @@ body :not(svg):not(svg *) {
   font-family: var(--font-body) !important;
 }
 
-/* no italics anywhere — kills every italic accent site-wide (brand = upright grotesk only) */
+/* no italics anywhere, kills every italic accent site-wide (brand = upright grotesk only) */
 body, body *, body em, body i { font-style: normal !important; }
 
 /* display / headings → General Sans, the editorial display voice.
@@ -5361,7 +5361,7 @@ body nav.site-nav .nav-cart .cart-count { font-variant-numeric: tabular-nums; }
 /* Full nav (≥1280px): the whole control set (language, shop, account,
    wishlist, cart) only fits at large-desktop widths. Here we reserve a
    fixed box per text control sized to the widest language, so switching
-   EN / NL / EL only swaps the text — never the layout. */
+   EN / NL / EL only swaps the text, never the layout. */
 @media (min-width: 1280px) {
   body nav.site-nav .menu-btn,
   body nav.site-nav .nav-acquire,
@@ -5374,7 +5374,7 @@ body nav.site-nav .nav-cart .cart-count { font-variant-numeric: tabular-nums; }
 }
 /* Below 1280px the bar collapses to the essentials (logo + search + Menu
    + cart); the longer controls move into the Menu overlay. Drop the Menu
-   / Cellar text labels too so what remains is a fixed-width icon nav —
+   / Cellar text labels too so what remains is a fixed-width icon nav ,
    language switching can't resize it and nothing overflows. Hamburger
    lines, cart glyph and the count stay. */
 @media (max-width: 1279px) {
@@ -5682,7 +5682,7 @@ body .product-origin .image-frame {
 }
 
 /* ================================================================
-   CURSOR BEE — a small brand companion that lazily follows the
+   CURSOR BEE, a small brand companion that lazily follows the
    mouse. Desktop pointer only; removed entirely under
    prefers-reduced-motion (see JS guard). Never intercepts input.
    ================================================================ */
@@ -5711,7 +5711,7 @@ body .product-origin .image-frame {
 }
 
 /* ================================================================
-   REAL PRODUCT PHOTOGRAPHY — true colours.
+   REAL PRODUCT PHOTOGRAPHY, true colours.
    The per-hue filters (.card-photo.amber/.pale/.bronze/.deep/.straw)
    were designed to tint ONE identical placeholder jar. Products that
    now have their own photo (assets/products-images/*) must not be
@@ -5724,7 +5724,7 @@ img[src*="assets/products-images"] {
 
 
 /* ================================================================
-   PRODUCT PAGE — premium buy experience (shared across product
+   PRODUCT PAGE, premium buy experience (shared across product
    pages). New classes only; product.html keeps its inline copy
    (which wins for that page). Drives product-olive-oil + tea.
    ================================================================ */
@@ -5817,7 +5817,7 @@ body .hd-concierge-fab:hover .hd-fab-hex {
 }
 
 /* =================================================================
-   Luxury motion layer — ambient bee, museum cards, cellar flight
+   Luxury motion layer, ambient bee, museum cards, cellar flight
    ================================================================= */
 .hd-bee { position: fixed; top: 0; left: 0; width: 30px; height: 21px; z-index: 1400; pointer-events: none;
   opacity: 0; will-change: transform, opacity; filter: drop-shadow(0 6px 5px rgba(40, 28, 12, 0.30)); }
@@ -5844,7 +5844,7 @@ body .hd-concierge-fab:hover .hd-fab-hex {
 }
 
 /* =================================================================
-   Light-glass navigation — site-wide (supersedes the gold-on-black bar).
+   Light-glass navigation, site-wide (supersedes the gold-on-black bar).
    Non-hero pages: frosted cream glass + ink text + gold accents.
    The homepage overrides this (index.html inline, loads later) to
    transparent glass + cream text over the cinematic hero.
@@ -5911,7 +5911,7 @@ html.hd-cart-open .cookie-bar {
 }
 
 /* ============================================================
-   THE RITUAL SAVING — cart-drawer bundle block + toast variants
+   THE RITUAL SAVING, cart-drawer bundle block + toast variants
    Mirrors the live Shopify automatic discount (flat €5, one per order).
    Gold/bronze accent, stable layout (no CLS, no jumping checkout button).
    ============================================================ */

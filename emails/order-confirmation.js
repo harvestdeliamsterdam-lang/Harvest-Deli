@@ -1,5 +1,5 @@
 /**
- * EMAIL TYPE 3 — order confirmation (ARCHITECTURE ONLY, NOT ACTIVATED).
+ * EMAIL TYPE 3, order confirmation (ARCHITECTURE ONLY, NOT ACTIVATED).
  * -----------------------------------------------------------------
  * Shopify already sends the live order confirmation from its own
  * Notifications. This template is a ready, on-brand replacement for the
@@ -49,7 +49,7 @@ function orderConfirmation(order) {
 
   return {
     subject: 'Your Harvest Deli order ' + L.esc(order.orderNumber) + ' is confirmed',
-    html: L.shell({ preheader: 'Thank you — your Harvest Deli order is confirmed.', body: body }),
+    html: L.shell({ preheader: 'Thank you, your Harvest Deli order is confirmed.', body: body }),
   };
 }
 

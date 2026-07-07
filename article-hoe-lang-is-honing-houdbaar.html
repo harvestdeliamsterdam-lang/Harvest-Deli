@@ -32,16 +32,16 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-169">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-169" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-169">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-169">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-169">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-169" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-169">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-169">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-170">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-170" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-170">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-170">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-170">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-170" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-170">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-170">
 <meta name="theme-color" content="#10281f">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-169">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-170">
 
 <style>
 :root {
@@ -90,7 +90,7 @@ nav.site-nav {
 }
 nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; color: inherit; }
 nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
-.menu-btn, .nav-acquire {
+.menu-btn.nav-acquire {
   background: none; border: none; color: inherit; cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
@@ -99,9 +99,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   text-decoration: none; transition: opacity 0.5s var(--ease);
   opacity: 0.92; padding-left: var(--track-label);
 }
-.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
+.menu-btn:hover.nav-acquire:hover { opacity: 1; }
 .menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
-.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before.menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
 .menu-btn .lines::before { width: 100%; }
 .menu-btn .lines::after { width: 70%; }
 .nav-acquire { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
@@ -118,7 +118,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding: 0 24px;
 }
 .article-hero {
-  padding: 18vh 0 0;
+  padding-top: 18vh;
 }
 .breadcrumb {
   font-size: 9px;
@@ -303,7 +303,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   margin-top: 40px;
   margin-bottom: 14px;
 }
-.article-body ul, .article-body ol {
+.article-body ul.article-body ol {
   margin: 20px 0 36px;
   padding-left: 28px;
 }
@@ -476,7 +476,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   position: relative;
   margin-top: 6px;
 }
-.faq-q .plus::before, .faq-q .plus::after {
+.faq-q .plus::before.faq-q .plus::after {
   content: '';
   position: absolute;
   background: var(--gold-deep);
@@ -590,7 +590,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   box-shadow: 0 60px 100px -42px rgba(60, 36, 14, 0.55), 0 18px 38px -20px rgba(0, 0, 0, 0.24);
   transform: translateY(-4px);
 }
-/* Info — editorial stack, price quiet */
+/* Info, editorial stack, price quiet */
 .related-card .row { display: block; margin: 0; padding: 0 7%; }
 .related-card .name {
   position: relative; display: inline-block;
@@ -621,11 +621,11 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .related-card .region { display: none; }
 @media (max-width: 860px) {
   .related-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 56px; }
-  .related-card, .related-card:nth-child(1), .related-card:nth-child(2), .related-card:nth-child(3) { --ty: 0px; transform: none; }
+  .related-card.related-card:nth-child(1).related-card:nth-child(2).related-card:nth-child(3) { --ty: 0px; transform: none; }
   .related-card:hover { transform: translateY(-8px) rotate(-1.4deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .related-card, .related-card:hover { transition: none; transform: none; }
+  .related-card.related-card:hover { transition: none; transform: none; }
   .related-card:hover .frame img { transform: none; }
 }
 
@@ -806,7 +806,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-button);
 }
 .menu-close .x { width: 18px; height: 1px; background: currentColor; position: relative; }
-.menu-close .x::before, .menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
+.menu-close .x::before.menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
 .menu-close .x::before { transform: rotate(45deg); }
 .menu-close .x::after { transform: rotate(-45deg); }
 .menu-content {
@@ -932,14 +932,16 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 @media (max-width: 600px) {
   nav.site-nav { padding: 16px 22px; }
   nav.site-nav .nav-right { gap: 16px; }
-  .article-hero { padding: 16vh 0 0; }
+  .article-hero { padding-top: 16vh; }
   .article-body p { font-size: 16px; }
   .article-body p.lede { font-size: 19px; }
   .article-body p.lede::first-letter { font-size: 60px; }
+  .article-title { font-size: clamp(38px, 10vw, 44px); line-height: 1.06; }
+  .article-dek { font-size: 18px; margin-bottom: 44px; }
 }
 
 /* ======================================================================
-   Article coda — premium editorial close (replaces old related sections)
+   Article coda, premium editorial close (replaces old related sections)
    ====================================================================== */
 .article-coda {
   position: relative;
@@ -1043,7 +1045,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .coda-btn--ghost { background: transparent; color: var(--ink); border-color: rgba(26, 22, 18, 0.26); }
 .coda-btn--ghost:hover { color: var(--gold-deep); border-color: var(--gold); box-shadow: 0 14px 34px -22px rgba(138, 98, 40, 0.45), 0 0 16px rgba(184, 148, 90, 0.18); }
 
-/* reveal — staggered fade-up */
+/* reveal, staggered fade-up */
 .article-coda .coda-inner > * { opacity: 0; transform: translateY(18px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
 .article-coda.in .coda-inner > * { opacity: 1; transform: none; }
 .article-coda.in .coda-inner > *:nth-child(2) { transition-delay: 0.08s; }
@@ -1051,7 +1053,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .article-coda.in .coda-inner > *:nth-child(4) { transition-delay: 0.24s; }
 .article-coda.in .coda-inner > *:nth-child(5) { transition-delay: 0.32s; }
 
-/* a single bee, flying slowly past — once */
+/* a single bee, flying slowly past, once */
 .coda-bee {
   position: absolute; top: 28%; left: -56px; width: 30px; height: 20px; z-index: 3;
   opacity: 0; pointer-events: none; will-change: transform, opacity;
@@ -1080,7 +1082,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 @media (prefers-reduced-motion: reduce) {
   .coda-bee { display: none; }
   .article-coda .coda-inner > * { opacity: 1; transform: none; transition: none; }
-  .coda-jar img, .coda-btn { transition: none; }
+  .coda-jar img.coda-btn { transition: none; }
   .coda-btn::before { display: none; }
 }
 
@@ -1146,7 +1148,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   "@id": "https://harvestdeli.nl/article-hoe-lang-is-honing-houdbaar.html"
  },
  "articleSection": "Gidsen",
- "wordCount": 493,
+ "wordCount": 484,
  "inLanguage": "nl"
 }
 </script>
@@ -1186,7 +1188,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
    "name": "Kan honing bederven?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Gesloten en droog bewaard feitelijk niet — de lage wateractiviteit, zuurgraad en peroxidewerking maken microbieel bederf onmogelijk. Het enige echte risico is gisting nadat de honing vocht heeft opgenomen door slordige bewaring (natte lepels, open deksel in vochtige lucht)."
+    "text": "Gesloten en droog bewaard feitelijk niet, de lage wateractiviteit, zuurgraad en peroxidewerking maken microbieel bederf onmogelijk. Het enige echte risico is gisting nadat de honing vocht heeft opgenomen door slordige bewaring (natte lepels, open deksel in vochtige lucht)."
    }
   },
   {
@@ -1207,10 +1209,10 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   },
   {
    "@type": "Question",
-   "name": "Mijn honing ruikt zuur en bruist — wat is er gebeurd?",
+   "name": "Mijn honing ruikt zuur en bruist, wat is er gebeurd?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Hij heeft vocht opgenomen en is gaan gisten — het enige echte bederf dat honing kent. Voorkomen is simpel: deksel dicht, droge lepel, droge voorraadkast."
+    "text": "Hij heeft vocht opgenomen en is gaan gisten, het enige echte bederf dat honing kent. Voorkomen is simpel: deksel dicht, droge lepel, droge voorraadkast."
    }
   },
   {
@@ -1218,7 +1220,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
    "name": "Betekent gekristalliseerde honing dat hij over datum is?",
    "acceptedAnswer": {
     "@type": "Answer",
-    "text": "Nee — kristallisatie is natuurlijk, omkeerbaar en doorgaans juist een teken van rauwe honing. Zet de pot in warm water van maximaal 40 graden om hem weer vloeibaar te maken."
+    "text": "Nee, kristallisatie is natuurlijk, omkeerbaar en doorgaans juist een teken van rauwe honing. Zet de pot in warm water van maximaal 40 graden om hem weer vloeibaar te maken."
    }
   }
  ]
@@ -1306,7 +1308,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
       <span class="crumb-sep">/</span>
       <span class="current">Hoe lang is honing houdbaar? Bewaren, THT &…</span>
     </nav>
-    <div class="article-eyebrow">Gidsen · 3 min lezen</div>
+    <div class="article-eyebrow">Gidsen</div>
     <h1 class="article-title">Hoe lang is honing houdbaar? Langer dan <em>jij.</em></h1>
     <p class="article-dek">In Egyptische graven is eetbare honing van duizenden jaren oud gevonden. Waarom honing feitelijk nooit bederft, wat de datum op de pot echt betekent, en de paar bewaarfouten die hem wél kunnen aantasten.</p>
     <div class="article-meta">
@@ -1322,31 +1324,31 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 
   <div class="article-wide">
     <figure class="article-image art-hero-crop">
-      <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-169" alt="Donkere kastanjehoning gedruppeld over belegen kaas met brood" fetchpriority="high" width="1228" height="2200">
+      <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-170" alt="Donkere kastanjehoning gedruppeld over belegen kaas met brood" fetchpriority="high" width="1228" height="2200">
     </figure>
   </div>
 
   <div class="article-wrap article-body">
-<p class="lede">Archeologen die Egyptische graven blootlegden, vonden meer dan eens verzegelde vaten honing — millennia oud en chemisch nog altijd herkenbaar als honing. Het is de standaardanekdote van de levensmiddelenwetenschap, en hij klopt. Honing is het enige gangbare levensmiddel met een feitelijk onbeperkte houdbaarheid, en de redenen zijn structureel, niet wonderbaarlijk.</p>
+<p class="lede">Archeologen die Egyptische graven blootlegden, vonden meer dan eens verzegelde vaten honing, millennia oud en chemisch nog altijd herkenbaar als honing. Het is de standaardanekdote van de levensmiddelenwetenschap, en hij klopt. Honing is het enige gangbare levensmiddel met een feitelijk onbeperkte houdbaarheid, en de redenen zijn structureel, niet wonderbaarlijk.</p>
 
 <h2 id="s1">Het levensmiddel dat niet bederft</h2>
 <p>Honing bestaat voor zo’n tachtig procent uit suiker en voor minder dan achttien procent uit water: de <em>wateractiviteit</em> is zo laag dat bacteriën en schimmels erin uitdrogen in plaats van groeien. De zuurgraad (pH 3,4–4,5) is die van menig azijn. En rauwe honing maakt via het door bijen toegevoegde glucose-oxidase doorlopend kleine hoeveelheden waterstofperoxide aan. Niets ziekmakends overleeft die combinatie. Gesloten en droog bewaard wordt honing simpelweg niet slecht.</p>
 <h2 id="s2">Waarom staat er dan een datum op de pot?</h2>
-<p>Omdat de Europese etiketteringsregels op vrijwel elk verpakt levensmiddel een THT-datum eisen — honing incluis. Meestal twee jaar na botteling, soms drie. Het is een wettelijke formaliteit, geen biologische voorspelling. Wat de datum losjes volgt, is het <em>smaakhoogtepunt</em>: over de jaren vervagen de vluchtige aroma’s langzaam, wordt de kleur donkerder en neemt de enzymactiviteit af. Een tijmhoning van vijf jaar oud is volkomen veilig; hij is alleen een stillere versie van zijn jonge zelf.</p>
-<p>De ene zichtbare verandering die je veel eerder tegenkomt, is <a href="article-waarom-kristalliseert-honing.html">kristallisatie</a> — een textuurgebeurtenis, geen bederf, en omkeerbaar met een warm waterbad.</p>
+<p>Omdat de Europese etiketteringsregels op vrijwel elk verpakt levensmiddel een THT-datum eisen, honing incluis. Meestal twee jaar na botteling, soms drie. Het is een wettelijke formaliteit, geen biologische voorspelling. Wat de datum losjes volgt, is het <em>smaakhoogtepunt</em>: over de jaren vervagen de vluchtige aroma’s langzaam, wordt de kleur donkerder en neemt de enzymactiviteit af. Een tijmhoning van vijf jaar oud is volkomen veilig; hij is alleen een stillere versie van zijn jonge zelf.</p>
+<p>De ene zichtbare verandering die je veel eerder tegenkomt, is <a href="article-waarom-kristalliseert-honing.html">kristallisatie</a>, een textuurgebeurtenis, geen bederf, en omkeerbaar met een warm waterbad.</p>
 <aside class="art-cta" aria-label="Uit de collectie">
-      <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-169" alt="Pot Chestnut Honey" loading="lazy" width="128" height="192">
+      <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-170" alt="Pot Chestnut Honey" loading="lazy" width="128" height="192">
       <div class="t"><span class="k">Proef waar je over leest</span>
         <div class="n">Chestnut Honey</div>
         <div class="p">Rauw &middot; &eacute;&eacute;n oorsprong &middot; &euro;18</div></div>
       <a class="go" href="product.html?p=chestnut">Bekijk de pot</a>
     </aside>
 <h2 id="s3">De fouten die honing wél aantasten</h2>
-<p>Honing kan niet rotten, maar hij kan beschadigd raken — en alle drie de manieren zijn menselijk. <strong>Vocht</strong>: honing is hygroscopisch. Laat je de pot open staan in een vochtige keuken, dan neemt hij water op, en boven ruwweg negentien procent vocht kunnen wilde gisten hem laten gisten (zure geur, schuim, belletjes: het enige echte bederf dat honing kent). Deksel erop, lepel droog. <strong>Hitte</strong>: een plek naast de oven of in de zon sloopt langzaam dezelfde enzymen en aroma’s als pasteurisatie — in slow motion. <strong>Licht</strong>: direct zonlicht breekt op den duur de fenolen af.</p>
-<p>De regels dus: gesloten, koel (kamertemperatuur of lager — maar niet de koelkast, die versnelt alleen kristallisatie), donker, en altijd een schone, droge lepel. Dat is het volledige bewaarprotocol voor een product dat beschavingen overleeft.</p>
+<p>Honing kan niet rotten, maar hij kan beschadigd raken, en alle drie de manieren zijn menselijk. <strong>Vocht</strong>: honing is hygroscopisch. Laat je de pot open staan in een vochtige keuken, dan neemt hij water op, en boven ruwweg negentien procent vocht kunnen wilde gisten hem laten gisten (zure geur, schuim, belletjes: het enige echte bederf dat honing kent). Deksel erop, lepel droog. <strong>Hitte</strong>: een plek naast de oven of in de zon sloopt langzaam dezelfde enzymen en aroma’s als pasteurisatie, in slow motion. <strong>Licht</strong>: direct zonlicht breekt op den duur de fenolen af.</p>
+<p>De regels dus: gesloten, koel (kamertemperatuur of lager, maar niet de koelkast, die versnelt alleen kristallisatie), donker, en altijd een schone, droge lepel. Dat is het volledige bewaarprotocol voor een product dat beschavingen overleeft.</p>
 <h2 id="s4">Rauwe honing rijpt, bewerkte honing wordt alleen ouder</h2>
-<p>Nog één onderscheid dat de moeite waard is. De langzame evolutie van rauwe honing — verdiepende kleur, milder wordend aroma, uiteindelijk kristallisatie — is het rijpen van een levend product, en sommige donkere soorten (kastanje, eik, <a href="product.html?p=pine">dennen</a>) winnen in hun eerste jaren zelfs aan rondheid. Bewerkte honing heeft niets om te evolueren: de enzymen zijn al doodverhit, de aroma’s al gestript. Die rijpt niet; die staat er alleen maar.</p>
-<p>Praktisch: koop rauwe honing in hoeveelheden die je binnen een paar jaar opeet — niet omdat hij vervalt, maar omdat de felste aroma’s het vangen waard zijn. Onze potten dragen hun oogst op het etiket; <a href="shop.html">een pot van het nieuwe seizoen</a> is het honing-equivalent van een jonge jaargang, op zijn levendigst.</p>
+<p>Nog één onderscheid dat de moeite waard is. De langzame evolutie van rauwe honing, verdiepende kleur, milder wordend aroma, uiteindelijk kristallisatie, is het rijpen van een levend product, en sommige donkere soorten (kastanje, eik, <a href="product.html?p=pine">dennen</a>) winnen in hun eerste jaren zelfs aan rondheid. Bewerkte honing heeft niets om te evolueren: de enzymen zijn al doodverhit, de aroma’s al gestript. Die rijpt niet; die staat er alleen maar.</p>
+<p>Praktisch: koop rauwe honing in hoeveelheden die je binnen een paar jaar opeet, niet omdat hij vervalt, maar omdat de felste aroma’s het vangen waard zijn. Onze potten dragen hun oogst op het etiket; <a href="shop.html">een pot van het nieuwe seizoen</a> is het honing-equivalent van een jonge jaargang, op zijn levendigst.</p>
   </div>
 
   <section class="faq-section" aria-label="Veelgestelde vragen">
@@ -1354,11 +1356,11 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
       <div class="faq-eyebrow">Goed om te weten</div>
       <h2 class="faq-title">Vragen, <em>beantwoord.</em></h2>
       <div class="faq-list">
-<div class="faq-item"><h3 class="faq-q">Kan honing bederven?</h3><div class="faq-a"><p>Gesloten en droog bewaard feitelijk niet — de lage wateractiviteit, zuurgraad en peroxidewerking maken microbieel bederf onmogelijk. Het enige echte risico is gisting nadat de honing vocht heeft opgenomen door slordige bewaring (natte lepels, open deksel in vochtige lucht).</p></div></div>
+<div class="faq-item"><h3 class="faq-q">Kan honing bederven?</h3><div class="faq-a"><p>Gesloten en droog bewaard feitelijk niet, de lage wateractiviteit, zuurgraad en peroxidewerking maken microbieel bederf onmogelijk. Het enige echte risico is gisting nadat de honing vocht heeft opgenomen door slordige bewaring (natte lepels, open deksel in vochtige lucht).</p></div></div>
 <div class="faq-item"><h3 class="faq-q">Is honing na de THT-datum nog goed?</h3><div class="faq-a"><p>Ja. De datum is een Europese etiketteringsverplichting, geen veiligheidsgrens. Oudere honing kan donkerder, meer gekristalliseerd en minder aromatisch zijn, maar blijft veilig om te eten.</p></div></div>
 <div class="faq-item"><h3 class="faq-q">Moet honing in de koelkast?</h3><div class="faq-a"><p>Nee. Koelen conserveert niets (er valt niets te conserveren) en versnelt alleen de kristallisatie. Kamertemperatuur, gesloten en donker is ideaal.</p></div></div>
-<div class="faq-item"><h3 class="faq-q">Mijn honing ruikt zuur en bruist — wat is er gebeurd?</h3><div class="faq-a"><p>Hij heeft vocht opgenomen en is gaan gisten — het enige echte bederf dat honing kent. Voorkomen is simpel: deksel dicht, droge lepel, droge voorraadkast.</p></div></div>
-<div class="faq-item"><h3 class="faq-q">Betekent gekristalliseerde honing dat hij over datum is?</h3><div class="faq-a"><p>Nee — kristallisatie is natuurlijk, omkeerbaar en doorgaans juist een teken van rauwe honing. Zet de pot in warm water van maximaal 40 graden om hem weer vloeibaar te maken.</p></div></div>
+<div class="faq-item"><h3 class="faq-q">Mijn honing ruikt zuur en bruist, wat is er gebeurd?</h3><div class="faq-a"><p>Hij heeft vocht opgenomen en is gaan gisten, het enige echte bederf dat honing kent. Voorkomen is simpel: deksel dicht, droge lepel, droge voorraadkast.</p></div></div>
+<div class="faq-item"><h3 class="faq-q">Betekent gekristalliseerde honing dat hij over datum is?</h3><div class="faq-a"><p>Nee, kristallisatie is natuurlijk, omkeerbaar en doorgaans juist een teken van rauwe honing. Zet de pot in warm water van maximaal 40 graden om hem weer vloeibaar te maken.</p></div></div>
       </div>
     </div>
   </section>
@@ -1369,7 +1371,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
       <div>
         <div class="label">Over de auteur</div>
         <h3>Harvest Deli</h3>
-        <p>Harvest Deli haalt Griekse honing, olijfolie en bergthee van &eacute;&eacute;n oorsprong naar Nederland — geoogst door &eacute;&eacute;n familie, verzonden vanuit Amsterdam. Veldnotities tussen de oogsten door. Antwoordt langzaam.</p>
+        <p>Harvest Deli haalt Griekse honing, olijfolie en bergthee van &eacute;&eacute;n oorsprong naar Nederland, geoogst door &eacute;&eacute;n familie, verzonden vanuit Amsterdam. Veldnotities tussen de oogsten door. Antwoordt langzaam.</p>
       </div>
     </div>
   </section>
@@ -1383,10 +1385,10 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     <div class="coda-inner">
       <span class="coda-rule" aria-hidden="true"></span>
       <h2 class="coda-title" id="codaTitle">Een stille <em>oogst.</em></h2>
-      <p class="coda-sub">Uit de Griekse bergen — elke oogst volgt de natuur, nooit de haast.</p>
+      <p class="coda-sub">Uit de Griekse bergen, elke oogst volgt de natuur, nooit de haast.</p>
       <div class="coda-product">
         <a class="coda-jar" href="product.html?p=chestnut" aria-label="Chestnut Honey, geoogst in Griekenland">
-          <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-169" alt="Pot rauwe Chestnut Honey uit Griekenland" loading="lazy" width="200" height="200">
+          <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-170" alt="Pot rauwe Chestnut Honey uit Griekenland" loading="lazy" width="200" height="200">
         </a>
         <div class="coda-product-text">
           <span class="coda-product-eyebrow">Proef wat je zojuist las</span>
@@ -1450,8 +1452,8 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-169"></script>
-<script src="analytics.js?v=hd-2026-06-06-169"></script>
+<script src="shared.js?v=hd-2026-06-06-170"></script>
+<script src="analytics.js?v=hd-2026-06-06-170"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
@@ -1480,7 +1482,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 </script>
-<script src="journal-data.js?v=hd-2026-06-06-169"></script>
+<script src="journal-data.js?v=hd-2026-06-06-170"></script>
 <script>
 (function () {
   var grid = document.getElementById('relatedGrid');
@@ -1496,7 +1498,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   });
   grid.innerHTML = all.slice(0, 3).map(function (a) {
     return '<a class="rel-card" href="' + a.url + '">' +
-      '<div class="im"><img src="' + a.image + '?v=hd-2026-06-06-169" alt="" loading="lazy"></div>' +
+      '<div class="im"><img src="' + a.image + '?v=hd-2026-06-06-170" alt="" loading="lazy"></div>' +
       '<div class="tx"><span class="c">' + a.catLabel + '</span>' +
       '<div class="h">' + a.title + '</div>' +
       '<div class="m">' + a.readMin + ' min lezen</div></div></a>';

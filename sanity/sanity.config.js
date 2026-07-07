@@ -10,12 +10,12 @@ import { schemaTypes } from './schemas'
  *   cd sanity && npm install && npm run dev
  *
  * This Studio is standalone tooling for editors. It does NOT run on the
- * static site — the site reads published content through the HTTP API via
+ * static site, the site reads published content through the HTTP API via
  * /cms/sanity.js. Keep this decoupled from commerce (Shopify).
  */
 export default defineConfig({
   name: 'harvest-deli',
-  title: 'Harvest Deli — Journal & Editorial',
+  title: 'Harvest Deli, Journal & Editorial',
 
   projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'REPLACE_WITH_PROJECT_ID',
   dataset: process.env.SANITY_STUDIO_DATASET || 'production',

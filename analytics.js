@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli, Google Analytics 4 — consent-gated (GDPR / AVG)
+   Harvest Deli, Google Analytics 4, consent-gated (GDPR / AVG)
    -----------------------------------------------------------------
    GA4 (G-DH37SQEXFL) loads ONLY after the visitor accepts the
    "analytics" cookie category in the Harvest Deli consent banner

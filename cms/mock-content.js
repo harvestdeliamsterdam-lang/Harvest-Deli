@@ -1,5 +1,5 @@
 /* =============================================================
-   Harvest Deli — MOCK content provider
+   Harvest Deli, MOCK content provider
    Returns the SAME runtime shape that cms/sanity.js produces, so the
    frontend never knows or cares which source is active. Swap the source
    in cms/config.js (or ?cms=sanity) once the Sanity project is live.
@@ -7,7 +7,7 @@
    Runtime post shape (already dereferenced + image URLs resolved):
    {
      id, type:'post', title, slug, excerpt,
-     body: [ { _type:'block', style, children:[{text}] }, ... ],
+     body: [ { _type:'block', style, children:[{text}] }... ],
      image: { url|null, alt, caption },          // featured image
      category: { title, slug, tone },
      author:   { name, slug, role, image:{url|null} },
@@ -64,7 +64,7 @@
       body: [
         block('lede', 'Honey is a place before it is a flavour. Greece is the place this one comes from.'),
         block('h2', 'I. The mountain in the jar'),
-        block('normal', 'Read the full essay on the article page — this mock body exists only to demonstrate the Portable Text shape.'),
+        block('normal', 'Read the full essay on the article page, this mock body exists only to demonstrate the Portable Text shape.'),
       ],
       seo: {
         title: 'Taste the Greek Sun · Harvest Deli',

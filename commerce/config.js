@@ -1,9 +1,9 @@
 /* =================================================================
-   Harvest Deli — Commerce config
+   Harvest Deli, Commerce config
    Single place to flip from mock data to a live Shopify backend.
    =================================================================
 
-   GO LIVE WITH SHOPIFY — 2 edits, here:
+   GO LIVE WITH SHOPIFY, 2 edits, here:
      1) shopify.storefrontToken : paste the Storefront API access token
         (Shopify admin → Settings → Apps and sales channels → Develop apps
          → your app → API credentials → Storefront API access token).
@@ -14,7 +14,7 @@
    local mock catalog, so the site never breaks.
 
    NOTE: the Storefront access token is a PUBLIC, read-only token (safe in
-   client code). It is NOT the Admin API token — never put an Admin token here.
+   client code). It is NOT the Admin API token, never put an Admin token here.
    There is no build step, so this value is read directly from this file.
    ================================================================= */
 (function () {

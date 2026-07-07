@@ -1,12 +1,12 @@
 // @ts-check
 /**
- * Harvest Deli — contact / partnership form handler (Vercel serverless).
+ * Harvest Deli, contact / partnership form handler (Vercel serverless).
  * -----------------------------------------------------------------
  * POST /api/contact  →  sends two transactional emails via Resend:
  *   1) internal notification to hello@harvestdeli.nl (reply-to = customer)
  *   2) warm confirmation to the customer
  *
- * Resend is the ONLY provider. No SDK — plain fetch to the REST API, so
+ * Resend is the ONLY provider. No SDK, plain fetch to the REST API, so
  * this needs zero npm install and deploys on the existing static project.
  *
  * Security: same-origin gate · honeypot · time-trap · in-memory rate
@@ -56,14 +56,14 @@ function readBody(req) {
 }
 
 /** Derive a readable plain-text alternative from an HTML email (better
- *  inbox placement — multipart text+html scores lower in spam filters). */
+ *  inbox placement, multipart text+html scores lower in spam filters). */
 function htmlToText(html) {
   return String(html || '')
     .replace(/<style[\s\S]*?<\/style>/gi, '')
     .replace(/<\/(p|div|tr|h1|h2|h3|td|table)>/gi, '\n')
     .replace(/<br\s*\/?>/gi, '\n')
     .replace(/<[^>]+>/g, '')
-    .replace(/&amp;/g, '&').replace(/&middot;/g, '·').replace(/&mdash;/g, '—')
+    .replace(/&amp;/g, '&').replace(/&middot;/g, '·').replace(/&mdash;/g, ',')
     .replace(/&[a-z#0-9]+;/gi, ' ')
     .replace(/\n{3,}/g, '\n\n').replace(/[ \t]{2,}/g, ' ').trim();
 }
@@ -103,7 +103,7 @@ module.exports = async function handler(req, res) {
 
   const b = await readBody(req);
 
-  // Bot traps — silently accept (200) so bots don't learn the filter.
+  // Bot traps, silently accept (200) so bots don't learn the filter.
   const honeypot = clean(b.company_url || b.website, 200); // hidden field, must be empty
   const t = Number(b.t || 0);
   const elapsed = Date.now() - t;
@@ -144,7 +144,7 @@ module.exports = async function handler(req, res) {
       console.error('Resend internal send failed', sent.status, sent.data);
       res.statusCode = 502; return res.end(JSON.stringify({ ok: false, error: 'Could not send your message. Please email us at hello@harvestdeli.nl.' }));
     }
-    // Customer confirmation — best-effort (never fails the request).
+    // Customer confirmation, best-effort (never fails the request).
     try {
       const conf = contactConfirmation(data);
       await sendEmail({ from: FROM, to: [email], reply_to: TO, subject: conf.subject, html: conf.html });

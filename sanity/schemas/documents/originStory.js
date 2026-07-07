@@ -1,9 +1,9 @@
 /**
- * Origin Story — the provenance / terroir story behind a single product
+ * Origin Story, the provenance / terroir story behind a single product
  * (a honey varietal, the olive oil, the mountain tea).
  *
- * IMPORTANT: this is editorial content only. The product itself — price,
- * inventory, variants, checkout — lives in Shopify and is NEVER duplicated
+ * IMPORTANT: this is editorial content only. The product itself, price,
+ * inventory, variants, checkout, lives in Shopify and is NEVER duplicated
  * here. `productHandle` is a plain string that maps to the Shopify product
  * handle so the frontend can cross-link the story to the live product page.
  */

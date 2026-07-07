@@ -1,11 +1,11 @@
 /* =================================================================
-   Harvest Deli — Commerce adapter (window.Commerce)
+   Harvest Deli, Commerce adapter (window.Commerce)
    -----------------------------------------------------------------
    The single API surface the frontend uses for commerce. Today it
    resolves from the local catalog (HD_product / HD_stock / HD_CART)
    and RESHAPES everything into Shopify Storefront types (types.js).
    When config.source === 'shopify' AND a token is set, the read +
-   cart + checkout paths route through HD_Storefront instead — same
+   cart + checkout paths route through HD_Storefront instead, same
    shapes out, so the UI never changes. Every Shopify call is wrapped
    so a failure falls back to the local catalog (the site never breaks).
 
@@ -201,7 +201,7 @@
   }
 
   /* Build Shopify cart line inputs from HD_CART. Returns null if any line has no
-     mapped variant id (i.e. catalog not synced yet) — caller falls back to local. */
+     mapped variant id (i.e. catalog not synced yet), caller falls back to local. */
   function shopifyLinesFromCart() {
     var items = (window.HD_CART && window.HD_CART.items) || [];
     if (!items.length) return null;
@@ -323,7 +323,7 @@
 
     /* Checkout: PRODUCTION = Shopify only. When live, create a Shopify cart from
        HD_CART, clear the local cart, and return Shopify's hosted checkoutUrl.
-       On ANY failure returns null (caller shows an error modal — there is NO
+       On ANY failure returns null (caller shows an error modal, there is NO
        fall-through to the legacy local checkout.html). Only when source!=='shopify'
        (dev/mock) does it return the local wizard URL.
        @param {object} [buyer] state.details from the wizard (email/name/address);
@@ -465,7 +465,7 @@
   window.Commerce = Commerce;
 
   /* PHASE 5 helper: empty the local HD_CART (size-aware). Called once a Shopify
-     checkout URL is created — the items now live in the Shopify cart. */
+     checkout URL is created, the items now live in the Shopify cart. */
   function clearLocalCart() {
     try {
       if (window.HD_CART && window.HD_CART.items) {
@@ -475,7 +475,7 @@
   }
 
   /* Minimal, brand-neutral error modal (uses existing CSS vars; no stylesheet
-     edits). Shown when a Shopify checkout cannot be created — NEVER a silent
+     edits). Shown when a Shopify checkout cannot be created, NEVER a silent
      fall-through to a fake order. */
   function showCheckoutError() {
     if (document.getElementById('hdCoErr')) { document.getElementById('hdCoErr').style.display = 'flex'; return; }
@@ -577,7 +577,7 @@
      checkout" a.cart-checkout and any [data-shopify-checkout] element) routes
      through the branded pre-checkout wizard (checkout.html). The wizard's final
      step hands off to Shopify hosted checkout (Mollie) for the actual payment
-     — see startCheckout()/HD_startCheckout, invoked from checkout.js placeOrder. */
+   , see startCheckout()/HD_startCheckout, invoked from checkout.js placeOrder. */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('[data-shopify-checkout], a.cart-checkout');
     if (!a) return;

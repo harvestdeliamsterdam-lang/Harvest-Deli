@@ -1,5 +1,5 @@
 /**
- * Portable Text body — the rich-text field for journal articles.
+ * Portable Text body, the rich-text field for journal articles.
  * Mirrors the editorial structure already used in article-*.html:
  * numbered H2 sections, lede paragraphs, pull quotes and figures.
  */

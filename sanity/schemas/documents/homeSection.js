@@ -1,5 +1,5 @@
 /**
- * Homepage editorial section — lets editors manage the copy/imagery of the
+ * Homepage editorial section, lets editors manage the copy/imagery of the
  * homepage's editorial chapters (origin, process, altitude, olive oil, etc.)
  * without touching markup. The frontend can later hydrate matching sections by
  * their `key`. Purely additive: unused until the homepage opts a section in.

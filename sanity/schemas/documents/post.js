@@ -1,7 +1,7 @@
 /**
  * Journal article (blog post).
  * The frontend adapter (cms/) projects this to a flat shape with category/author
- * dereferenced and image URLs resolved — see cms/sanity.js GROQ and
+ * dereferenced and image URLs resolved, see cms/sanity.js GROQ and
  * cms/mock-content.js for the exact runtime shape.
  */
 export default {
@@ -63,7 +63,7 @@ export default {
       type: 'string',
       group: 'content',
       description:
-        'Shopify product handle to surface alongside the article (e.g. "chestnut"). Resolved against the live Shopify catalogue — no product data is stored here.',
+        'Shopify product handle to surface alongside the article (e.g. "chestnut"). Resolved against the live Shopify catalogue, no product data is stored here.',
     },
 
     {
@@ -117,7 +117,7 @@ export default {
       title: 'Reading time',
       type: 'string',
       group: 'meta',
-      description: 'e.g. "8 min read". Optional — can be computed from body later.',
+      description: 'e.g. "8 min read". Optional, can be computed from body later.',
     },
     {
       name: 'status',

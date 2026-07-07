@@ -1,4 +1,4 @@
-# Harvest Deli — robots.txt
+# Harvest Deli, robots.txt
 # Documentation: https://www.robotstxt.org/robotstxt.html
 
 User-agent: *
@@ -7,7 +7,7 @@ Disallow: /checkout.html
 Disallow: /assets/
 Disallow: /*?v=
 
-# Common AI scrapers — adjust to taste
+# Common AI scrapers, adjust to taste
 User-agent: GPTBot
 Allow: /
 

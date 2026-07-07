@@ -1,4 +1,4 @@
-# Harvest Deli — CMS / editorial layer (Sanity-ready)
+# Harvest Deli, CMS / editorial layer (Sanity-ready)
 
 A **future-proof content layer** for the Journal/blog and editorial site content.
 It is **additive and safe**: the live static site renders exactly as before. Nothing
@@ -14,8 +14,8 @@ here touches commerce. Shopify is **not** involved.
 ```
 cms/
   config.js          Single switch: source ('mock' | 'sanity') + render flag + Sanity creds
-  mock-content.js    Mock provider — real article data in the exact Sanity runtime shape
-  sanity.js          Live provider — fetch + GROQ against the Sanity HTTP API (no SDK/build)
+  mock-content.js    Mock provider, real article data in the exact Sanity runtime shape
+  sanity.js          Live provider, fetch + GROQ against the Sanity HTTP API (no SDK/build)
   index.js           Facade: HD_CMS.getPosts/getPost/... picks the active provider (+ toHtml)
   journal-render.js  DORMANT renderer for journal.html (reuses existing card markup)
   README.md          This file
@@ -102,7 +102,7 @@ Load order (already wired in `journal.html`):
 
 ## Preview it now (mock, safe)
 
-The static page is the default. Opt in per-visit with a URL flag — nothing is
+The static page is the default. Opt in per-visit with a URL flag, nothing is
 committed or changed:
 
 - `journal.html` → untouched static page
@@ -136,17 +136,17 @@ mock** so the page is never empty.
 
 3. **Allow the website to read content (CORS)**
    In sanity.io/manage → API → CORS origins, add your site origin(s)
-   (e.g. `https://harvestdeli.nl`, `http://localhost:3007`). No token needed —
+   (e.g. `https://harvestdeli.nl`, `http://localhost:3007`). No token needed ,
    published content is public via `apicdn.sanity.io`.
 
-4. **Seed content** — create a few `category` + `author` docs, then `post` docs.
+4. **Seed content**, create a few `category` + `author` docs, then `post` docs.
    (Optional) migrate the existing `article-*.html` essays into `post` bodies.
 
 5. **Go live with the CMS**
    - Per page: visit with `?cms=sanity`, or
    - Globally: set `source:'sanity'` and `render:true` in `cms/config.js`.
 
-That's the whole swap — **mock → Sanity is a one-line source change**, because both
+That's the whole swap, **mock → Sanity is a one-line source change**, because both
 providers honour the identical runtime shape.
 
 ---
@@ -158,5 +158,5 @@ providers honour the identical runtime shape.
 - `render` is **false** by default; the CMS never overwrites static HTML unless asked.
 - No commerce coupling, no Shopify, no build step, no new runtime dependency on the
   static site (Sanity reads are plain `fetch`).
-- `homeSection` / `aboutStory` ship **disabled** — the homepage and About page keep
+- `homeSection` / `aboutStory` ship **disabled**, the homepage and About page keep
   their built-in copy until an editor enables a section.

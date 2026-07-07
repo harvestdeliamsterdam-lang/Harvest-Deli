@@ -1,5 +1,5 @@
 /* =============================================================
-   Harvest Deli — SANITY content provider (live HTTP API)
+   Harvest Deli, SANITY content provider (live HTTP API)
    No SDK, no build step: plain fetch + GROQ against the Sanity
    query endpoint. Projects documents into the SAME runtime shape
    as cms/mock-content.js so the frontend is source-agnostic.

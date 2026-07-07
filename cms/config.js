@@ -1,5 +1,5 @@
 /* =============================================================
-   Harvest Deli — CMS config (single switch point)
+   Harvest Deli, CMS config (single switch point)
    Plain browser global (no build step). Loaded before the other
    cms/* scripts. Decoupled from commerce (Shopify untouched).
    ============================================================= */

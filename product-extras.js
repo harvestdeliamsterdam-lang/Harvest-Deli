@@ -85,14 +85,14 @@
   /* color/aroma/texture/crystal/sweetness/natural/origin/result/tagline are
      verbatim from the Harvest Deli Greek Honey Collection text document
      (EN side); NL side is a faithful translation, since the source PDF is
-     English-only. Do not paraphrase EN when updating — copy it exactly. */
+     English-only. Do not paraphrase EN when updating, copy it exactly. */
   var HONEY_SPEC = {
     'chestnut': { greek: 'Kástano',
       color: ['Dark amber', 'Donker amber'], aroma: ['Warm and woody', 'Warm en houtachtig'],
       texture: ['Thick and rich', 'Dik en rijk'], crystal: ['Slow to medium', 'Langzaam tot gemiddeld'],
       sweetness: ['Rich and rounded', 'Rijk en rond'],
       natural: ['Naturally rich in minerals, tannins and antioxidants, appreciated for its depth and botanical complexity.', 'Van nature rijk aan mineralen, tannines en antioxidanten, gewaardeerd om zijn diepte en botanische complexiteit.'],
-      lede: ['A dark, slow-pouring honey from chestnut forests high in the Greek mountains — warm, woody and layered, with a long finish.', 'Een donkere, traag vloeiende honing uit kastanjebossen hoog in de Griekse bergen — warm, houtachtig en gelaagd, met een lange afdronk.'],
+      lede: ['A dark, slow-pouring honey from chestnut forests high in the Greek mountains, warm, woody and layered, with a long finish.', 'Een donkere, traag vloeiende honing uit kastanjebossen hoog in de Griekse bergen, warm, houtachtig en gelaagd, met een lange afdronk.'],
       origin: ['In early summer, bees collect nectar from blooming chestnut trees growing in Greek mountain forests.', 'In de vroege zomer verzamelen bijen nectar van bloeiende kastanjebomen in de Griekse bergbossen.'],
       result: ['Chestnut honey is rich and beautifully layered, with warm woody aromas and long-lasting depth.', 'Kastanjehoning is rijk en prachtig gelaagd, met warme houtachtige aroma’s en een langdurige diepte.'],
       tagline: ['A mountain honey full of character.', 'Een berghoning vol karakter.'] },
@@ -101,7 +101,7 @@
       texture: ['Thick and smooth', 'Dik en glad'], crystal: ['Very slow', 'Zeer langzaam'],
       sweetness: ['Mild and balanced', 'Mild en gebalanceerd'],
       natural: ['Naturally rich in trace minerals and antioxidants, with low glucose content that helps maintain its smooth texture.', 'Van nature rijk aan sporenmineralen en antioxidanten, met een laag glucosegehalte dat de gladde textuur helpt behouden.'],
-      lede: ['A traditional Greek pinewood honey — bees gather honeydew among the pines, sea air and sunshine. Smooth-bodied and naturally balanced.', 'Een traditionele Griekse dennenhoning — bijen verzamelen honingdauw tussen de dennen, zeelucht en zon. Soepel van body en van nature in balans.'],
+      lede: ['A traditional Greek pinewood honey, bees gather honeydew among the pines, sea air and sunshine. Smooth-bodied and naturally balanced.', 'Een traditionele Griekse dennenhoning, bijen verzamelen honingdauw tussen de dennen, zeelucht en zon. Soepel van body en van nature in balans.'],
       origin: ['Produced in the pine forests of Greece, where bees gather honeydew from pine trees surrounded by sea air and sunshine.', 'Geproduceerd in de dennenbossen van Griekenland, waar bijen honingdauw verzamelen van dennenbomen, omringd door zeelucht en zon.'],
       result: ['Pine honey is one of Greece’s most loved traditional varieties, known for its smooth body and naturally balanced flavor.', 'Dennenhoning is een van Griekenlands meest geliefde traditionele soorten, bekend om zijn zachte body en van nature gebalanceerde smaak.'],
       tagline: ['A timeless taste of Greece.', 'Een tijdloze smaak van Griekenland.'] },
@@ -110,7 +110,7 @@
       texture: ['Dense and smooth', 'Dicht en glad'], crystal: ['Very slow', 'Zeer langzaam'],
       sweetness: ['Mild and full-bodied', 'Mild en vol'],
       natural: ['Naturally rich in potassium, magnesium, iron and antioxidants, appreciated for its mineral richness and deep nutritional profile.', 'Van nature rijk aan kalium, magnesium, ijzer en antioxidanten, gewaardeerd om de mineraalrijkdom en het diepe voedingsprofiel.'],
-      lede: ['A dark forest honeydew honey from the oak woods of Greece — rich, smooth and full-bodied, with deep forest aromas.', 'Een donkere boshoning (honingdauw) uit de eikenbossen van Griekenland — rijk, glad en vol, met diepe bosaroma’s.'],
+      lede: ['A dark forest honeydew honey from the oak woods of Greece, rich, smooth and full-bodied, with deep forest aromas.', 'Een donkere boshoning (honingdauw) uit de eikenbossen van Griekenland, rijk, glad en vol, met diepe bosaroma’s.'],
       origin: ['Collected from the majestic oak forests of Greece, this honey begins when bees gather honeydew found naturally on oak trees in mountain and woodland landscapes.', 'Verzameld uit de statige eikenbossen van Griekenland, ontstaat deze honing wanneer bijen honingdauw verzamelen die van nature voorkomt op eikenbomen in berg- en boslandschappen.'],
       result: ['Oak honey is rich, smooth and full-bodied, with deep forest aromas and remarkable depth. Its dark color and naturally dense texture make it one of Greece’s most distinctive honeys.', 'Eikenhoning is rijk, glad en vol, met diepe bosaroma’s en een opmerkelijke diepte. De donkere kleur en van nature dichte textuur maken het een van Griekenlands meest onderscheidende honingsoorten.'],
       tagline: ['A beautifully rich Greek forest honey with depth and elegance.', 'Een prachtig rijke Griekse boshoning met diepte en elegantie.'] },
@@ -119,8 +119,8 @@
       texture: ['Dense and rich, often naturally creamy', 'Dicht en rijk, vaak van nature romig'], crystal: ['Natural over time', 'Natuurlijk na verloop van tijd'],
       sweetness: ['Low and balanced', 'Laag en gebalanceerd'],
       natural: ['Naturally rich in polyphenols and antioxidants, traditionally appreciated for digestion support and its remarkable botanical richness.', 'Van nature rijk aan polyfenolen en antioxidanten, traditioneel gewaardeerd voor spijsverteringsondersteuning en zijn opmerkelijke botanische rijkdom.'],
-      lede: ['One of Greece’s rarest nectars from the late-flowering wild strawberry tree — distinctly bittersweet, herbal and beautifully complex.', 'Een van Griekenlands zeldzaamste nectars van de laatbloeiende aardbeiboom — uitgesproken bitterzoet, kruidig en prachtig complex.'],
-      origin: ['As autumn settles over the Greek countryside and most summer blooms begin to fade, bees continue their work among the blossoms of the wild strawberry tree — known in Greece as Koumaria. Growing naturally across Mediterranean hillsides and forests, this remarkable tree flowers late in the season, offering bees access to one of Greece’s rarest nectars.', 'Terwijl de herfst neerdaalt over het Griekse platteland en de meeste zomerbloesems beginnen te vervagen, gaan bijen door met hun werk tussen de bloesems van de aardbeiboom — in Griekenland bekend als Koumaria. Deze opmerkelijke boom groeit van nature op mediterrane hellingen en in bossen en bloeit laat in het seizoen, waardoor bijen toegang krijgen tot een van Griekenlands zeldzaamste nectars.'],
+      lede: ['One of Greece’s rarest nectars from the late-flowering wild strawberry tree, distinctly bittersweet, herbal and beautifully complex.', 'Een van Griekenlands zeldzaamste nectars van de laatbloeiende aardbeiboom, uitgesproken bitterzoet, kruidig en prachtig complex.'],
+      origin: ['As autumn settles over the Greek countryside and most summer blooms begin to fade, bees continue their work among the blossoms of the wild strawberry tree, known in Greece as Koumaria. Growing naturally across Mediterranean hillsides and forests, this remarkable tree flowers late in the season, offering bees access to one of Greece’s rarest nectars.', 'Terwijl de herfst neerdaalt over het Griekse platteland en de meeste zomerbloesems beginnen te vervagen, gaan bijen door met hun werk tussen de bloesems van de aardbeiboom, in Griekenland bekend als Koumaria. Deze opmerkelijke boom groeit van nature op mediterrane hellingen en in bossen en bloeit laat in het seizoen, waardoor bijen toegang krijgen tot een van Griekenlands zeldzaamste nectars.'],
       result: ['Arbutus honey is known for its distinctive bittersweet character, aromatic herbal depth and beautifully complex finish. Less sweet than many floral honeys, it offers a truly memorable tasting experience.', 'Arbutushoning staat bekend om zijn kenmerkende bitterzoete karakter, aromatische kruidige diepte en prachtig complexe afdronk. Minder zoet dan veel bloemige honingsoorten, biedt het een werkelijk gedenkwaardige smaakervaring.'],
       tagline: ['A truly exceptional Greek honey with unforgettable character.', 'Een werkelijk uitzonderlijke Griekse honing met onvergetelijk karakter.'] },
     'fir-vanilla': { greek: 'Elátis Vanília',
@@ -128,7 +128,7 @@
       texture: ['Thick, silky and glossy', 'Dik, zijdezacht en glanzend'], crystal: ['Extremely slow', 'Extreem langzaam'],
       sweetness: ['Smooth and balanced', 'Zacht en gebalanceerd'],
       natural: ['Naturally rich in trace minerals and known for its very low glucose content, which helps preserve its smooth fluid texture for exceptionally long periods.', 'Van nature rijk aan sporenmineralen en bekend om het zeer lage glucosegehalte, dat helpt de gladde, vloeibare textuur uitzonderlijk lang te behouden.'],
-      lede: ['A rare fir honeydew honey from the high Greek mountains — naturally glossy and silky, with elegant vanilla-like notes.', 'Een zeldzame sparrenhoning (honingdauw) uit de hoge Griekse bergen — van nature glanzend en zijdezacht, met elegante vanille-achtige tonen.'],
+      lede: ['A rare fir honeydew honey from the high Greek mountains, naturally glossy and silky, with elegant vanilla-like notes.', 'Een zeldzame sparrenhoning (honingdauw) uit de hoge Griekse bergen, van nature glanzend en zijdezacht, met elegante vanille-achtige tonen.'],
       origin: ['High in the Greek mountains, bees gather honeydew from fir trees surrounded by fresh air and untouched nature.', 'Hoog in de Griekse bergen verzamelen bijen honingdauw van sparrenbomen, omringd door frisse lucht en ongerepte natuur.'],
       result: ['This rare honey is famous for its naturally glossy appearance, silky texture and elegant flavor with delicate vanilla-like notes.', 'Deze zeldzame honing staat bekend om zijn van nature glanzende uiterlijk, zijdezachte textuur en elegante smaak met subtiele vanille-achtige tonen.'],
       tagline: ['One of the treasures of Greek honey.', 'Een van de schatten van Griekse honing.'] },
@@ -137,7 +137,7 @@
       texture: ['Smooth and flowing', 'Glad en vloeiend'], crystal: ['Natural over time', 'Natuurlijk na verloop van tijd'],
       sweetness: ['Bright and gentle', 'Helder en zacht'],
       natural: ['Naturally rich in floral compounds and enzymes, appreciated for its uplifting aroma and beautifully vibrant character.', 'Van nature rijk aan bloemige verbindingen en enzymen, gewaardeerd om het verkwikkende aroma en prachtig levendige karakter.'],
-      lede: ['Bright and beautifully aromatic — bees gather nectar straight from the white spring blossom of Greek orange groves.', 'Helder en prachtig aromatisch — bijen verzamelen nectar rechtstreeks uit de witte voorjaarsbloesem van Griekse sinaasappelgaarden.'],
+      lede: ['Bright and beautifully aromatic, bees gather nectar straight from the white spring blossom of Greek orange groves.', 'Helder en prachtig aromatisch, bijen verzamelen nectar rechtstreeks uit de witte voorjaarsbloesem van Griekse sinaasappelgaarden.'],
       origin: ['Every spring, orange groves across Greece bloom with fragrant white flowers while bees gather nectar directly from the blossoms.', 'Elke lente bloeien sinaasappelgaarden door heel Griekenland met geurige witte bloemen, terwijl bijen rechtstreeks nectar verzamelen uit de bloesems.'],
       result: ['The result is a bright and beautifully aromatic honey with fresh floral sweetness and delicate citrus notes.', 'Het resultaat is een heldere en prachtig aromatische honing met een frisse bloemige zoetheid en subtiele citrustonen.'],
       tagline: ['A taste of the Greek spring.', 'Een proeverij van de Griekse lente.'] },
@@ -146,7 +146,7 @@
       texture: ['Silky and smooth', 'Zijdezacht en glad'], crystal: ['Very slow', 'Zeer langzaam'],
       sweetness: ['Gentle and clean', 'Zacht en zuiver'],
       natural: ['Naturally high in fructose and rich in enzymes, helping preserve its liquid texture and delicate sweetness for longer.', 'Van nature hoog in fructose en rijk aan enzymen, wat helpt de vloeibare textuur en fijne zoetheid langer te behouden.'],
-      lede: ['Prized for its clarity and elegant sweetness — a beautifully soft floral aroma with a clean, smooth finish.', 'Geliefd om de helderheid en elegante zoetheid — een prachtig zacht bloemig aroma met een zuivere, gladde afdronk.'],
+      lede: ['Prized for its clarity and elegant sweetness, a beautifully soft floral aroma with a clean, smooth finish.', 'Geliefd om de helderheid en elegante zoetheid, een prachtig zacht bloemig aroma met een zuivere, gladde afdronk.'],
       origin: ['During spring, bees gather nectar from the delicate white blossoms of acacia trees blooming throughout the Greek countryside.', 'In de lente verzamelen bijen nectar uit de fijne witte bloesem van acaciabomen die overal op het Griekse platteland bloeien.'],
       result: ['Known for its clarity and elegant sweetness, Acacia honey has a beautifully soft floral aroma and smooth finish.', 'Acaciahoning staat bekend om zijn helderheid en elegante zoetheid, met een prachtig zacht bloemig aroma en gladde afdronk.'],
       tagline: ['A wonderfully refined Greek honey.', 'Een heerlijk verfijnde Griekse honing.'] },
@@ -155,16 +155,16 @@
       texture: ['Smooth and rich', 'Glad en rijk'], crystal: ['Natural over time', 'Natuurlijk na verloop van tijd'],
       sweetness: ['Warm and balanced', 'Warm en gebalanceerd'],
       natural: ['Naturally rich in thymol, aromatic essential oils and antioxidants, traditionally valued for its botanical richness.', 'Van nature rijk aan thymol, aromatische etherische oliën en antioxidanten, traditioneel gewaardeerd om zijn botanische rijkdom.'],
-      lede: ['One of Greece’s most iconic honeys — golden and aromatic, from wild thyme on sun-baked islands and hillsides.', 'Een van Griekenlands meest iconische honingsoorten — goudkleurig en aromatisch, van wilde tijm op zonovergoten eilanden en hellingen.'],
+      lede: ['One of Greece’s most iconic honeys, golden and aromatic, from wild thyme on sun-baked islands and hillsides.', 'Een van Griekenlands meest iconische honingsoorten, goudkleurig en aromatisch, van wilde tijm op zonovergoten eilanden en hellingen.'],
       origin: ['Under the warm Mediterranean sun, bees collect nectar from wild thyme growing across Greek islands, rocky hillsides and mountain landscapes.', 'Onder de warme mediterrane zon verzamelen bijen nectar van wilde tijm die groeit op Griekse eilanden, rotsachtige hellingen en berglandschappen.'],
-      result: ['This creates one of Greece’s most iconic honeys — golden, aromatic and deeply Mediterranean.', 'Dit resulteert in een van Griekenlands meest iconische honingsoorten — goudkleurig, aromatisch en doorleefd mediterraan.'],
+      result: ['This creates one of Greece’s most iconic honeys, golden, aromatic and deeply Mediterranean.', 'Dit resulteert in een van Griekenlands meest iconische honingsoorten, goudkleurig, aromatisch en doorleefd mediterraan.'],
       tagline: ['The essence of the Greek summer.', 'De essentie van de Griekse zomer.'] },
     'heather': { greek: 'Sousoúra',
       color: ['Amber to reddish amber', 'Amber tot roodachtig amber'], aroma: ['Floral and warm', 'Bloemig en warm'],
       texture: ['Thick and creamy', 'Dik en romig'], crystal: ['Fast and natural', 'Snel en natuurlijk'],
       sweetness: ['Rich and balanced', 'Rijk en gebalanceerd'],
       natural: ['Naturally rich in minerals and antioxidants, with a naturally creamy texture due to its glucose composition.', 'Van nature rijk aan mineralen en antioxidanten, met een van nature romige textuur dankzij de glucosesamenstelling.'],
-      lede: ['A rich, naturally creamy honey with beautiful depth — bees gather nectar from thousands of tiny heather blossoms across the Greek hills.', 'Een rijke, van nature romige honing met prachtige diepte — bijen verzamelen nectar uit duizenden kleine heidebloesems op de Griekse heuvels.'],
+      lede: ['A rich, naturally creamy honey with beautiful depth, bees gather nectar from thousands of tiny heather blossoms across the Greek hills.', 'Een rijke, van nature romige honing met prachtige diepte, bijen verzamelen nectar uit duizenden kleine heidebloesems op de Griekse heuvels.'],
       origin: ['When wild heather blooms across the Greek hills and mountains, bees gather nectar from thousands of tiny blossoms.', 'Wanneer wilde heide bloeit op de Griekse heuvels en bergen, verzamelen bijen nectar uit duizenden kleine bloesems.'],
       result: ['Heather honey develops a rich floral aroma and a naturally creamy texture with beautiful depth.', 'Heidehoning ontwikkelt een rijk bloemig aroma en een van nature romige textuur met prachtige diepte.'],
       tagline: ['A beautiful raw Greek honey full of life.', 'Een prachtige rauwe Griekse honing vol leven.'] }
@@ -199,7 +199,7 @@
   function originSectionHTML(slug) {
     var s = HONEY_SPEC[slug]; if (!s) return '';
     // The full origin/character story now lives at the TOP of the page
-    // (#pdStory, filled by hydrateInfo) — this lower section is only the
+    // (#pdStory, filled by hydrateInfo), this lower section is only the
     // distilled editorial statement, so the copy never appears twice.
     return '<section class="px-section px-origin" aria-label="' + L('Origin', 'Herkomst') + '">' +
       '<div class="px-origin-inner">' +
@@ -255,7 +255,7 @@
     '</section>';
   }
 
-  /* The Ritual Saving promo — image background + real HTML overlay (no baked-in
+  /* The Ritual Saving promo, image background + real HTML overlay (no baked-in
      text, no fixed product names, no mountain tea). Mirrors the live Shopify
      automatic discount: any 3 honeys, or 2 honeys + olive oil, save €5. */
   function ritualPromoHTML() {
@@ -321,7 +321,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-169';
+      var ASSET_V = '?v=hd-2026-06-06-170';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;

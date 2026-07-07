@@ -381,11 +381,11 @@
       'idx.ch2.eyebrow': 'The Process',
       'idx.ch2.h': 'A practice refined by time, not technology.',
       'idx.step1.h': 'Wild Harvest',
-      'idx.step1.p': 'Combs gathered by hand from hives set high among untended wildflowers — never near a road, never near a field.',
+      'idx.step1.p': 'Combs gathered by hand from hives set high among untended wildflowers, never near a road, never near a field.',
       'idx.step2.h': 'Cold Extraction',
       'idx.step2.p': 'Spun slowly at the temperature of the cellar, never heated. Every enzyme and trace of pollen is left intact.',
       'idx.step3.h': 'Natural Resting',
-      'idx.step3.p': 'Settled for fourteen quiet days in oak. Nothing forced, nothing filtered — the texture left fully alive.',
+      'idx.step3.p': 'Settled for fourteen quiet days in oak. Nothing forced, nothing filtered, the texture left fully alive.',
       'idx.taste.quote': 'A taste that holds the memory of a mountain morning. Warm, golden, slow to leave.',
       'idx.taste.cite': 'Notes from the tasting room',
       'idx.preview.eyebrow': 'The Collection',
@@ -641,7 +641,7 @@
       'contact.pill.retail': 'Retail Partnership',
       'contact.pill.press': 'Press',
       'contact.pill.collab': 'Collaboration',
-      'contact.founder.quote': 'Every Harvest Deli partnership begins with a conversation. We prefer a few long relationships over wide distribution — the jar, and the hands behind it, deserve that.',
+      'contact.founder.quote': 'Every Harvest Deli partnership begins with a conversation. We prefer a few long relationships over wide distribution, the jar, and the hands behind it, deserve that.',
       'contact.founder.name': 'Harvest Deli',
       'contact.founder.role': 'Harvest Deli · Greece',
       'contact.label.name': 'Your name',
@@ -770,7 +770,7 @@
       'product.tasting.finish.h': 'Finish',
       'product.tasting.finish.quote': '"Mineral, long, golden."',
       'product.tasting.finish.p': 'A slow descent into stone and salt. Subtle, almost dry. The kind of finish that lingers in the room long after the spoon has been set down.',
-      /* product.origin.* keys retired — the static "THE ORIGIN" section was removed
+      /* product.origin.* keys retired, the static "THE ORIGIN" section was removed
          from product.html; per-honey origin now lives in the injected .px-origin block. */
       'product.details.eyebrow': 'The Particulars',
       'product.details.h_html': 'Quietly, carefully made.',
@@ -1038,11 +1038,11 @@
       'idx.ch2.eyebrow': 'Het Proces',
       'idx.ch2.h': 'Een ambacht verfijnd door tijd, niet door technologie.',
       'idx.step1.h': 'Wilde Oogst',
-      'idx.step1.p': 'Met de hand verzamelde raten uit kasten hoog tussen ongerepte wilde bloemen — nooit bij een weg, nooit bij een akker.',
+      'idx.step1.p': 'Met de hand verzamelde raten uit kasten hoog tussen ongerepte wilde bloemen, nooit bij een weg, nooit bij een akker.',
       'idx.step2.h': 'Koude Winning',
       'idx.step2.p': 'Langzaam gecentrifugeerd op keldertemperatuur, nooit verhit. Elk enzym en spoor stuifmeel blijft volledig intact.',
       'idx.step3.h': 'Natuurlijke Rust',
-      'idx.step3.p': 'Veertien stille dagen bezonken in eikenhout. Niets geforceerd, niets gezeefd — de structuur blijft volledig levend.',
+      'idx.step3.p': 'Veertien stille dagen bezonken in eikenhout. Niets geforceerd, niets gezeefd, de structuur blijft volledig levend.',
       'idx.taste.quote': 'Een smaak die de herinnering aan een bergochtend vasthoudt. Warm, goudkleurig, traag om te vertrekken.',
       'idx.taste.cite': 'Notities uit de proefruimte',
       'idx.preview.eyebrow': 'De Collectie',
@@ -1298,7 +1298,7 @@
       'contact.pill.retail': 'Retailpartner',
       'contact.pill.press': 'Pers',
       'contact.pill.collab': 'Samenwerking',
-      'contact.founder.quote': 'Elke samenwerking met Harvest Deli begint met een gesprek. Wij verkiezen een paar lange relaties boven brede distributie — de pot, en de handen erachter, verdienen dat.',
+      'contact.founder.quote': 'Elke samenwerking met Harvest Deli begint met een gesprek. Wij verkiezen een paar lange relaties boven brede distributie, de pot, en de handen erachter, verdienen dat.',
       'contact.founder.name': 'Harvest Deli',
       'contact.founder.role': 'Harvest Deli · Griekenland',
       'contact.label.name': 'Jouw naam',
@@ -1427,7 +1427,7 @@
       'product.tasting.finish.h': 'Afdronk',
       'product.tasting.finish.quote': '"Mineraal, lang, goudkleurig."',
       'product.tasting.finish.p': 'Een trage afdaling in steen en zout. Subtiel, bijna droog. Het soort afdronk dat in de kamer blijft hangen lang nadat de lepel is neergelegd.',
-      /* product.origin.* keys retired — zie EN-blok. */
+      /* product.origin.* keys retired, zie EN-blok. */
       'product.details.eyebrow': 'De Bijzonderheden',
       'product.details.h_html': 'Stil, met zorg gemaakt.',
       'product.det.weight.lbl': 'Netto gewicht',
@@ -1640,11 +1640,11 @@
       'idx.ch2.eyebrow': 'Η Διαδικασία',
       'idx.ch2.h': 'Μια πρακτική εξευγενισμένη από τον χρόνο, όχι από την τεχνολογία.',
       'idx.step1.h': 'Άγρια Συγκομιδή',
-      'idx.step1.p': 'Κηρήθρες μαζεμένες στο χέρι από κυψέλες ψηλά σε ανέγγιχτα αγριολούλουδα — ποτέ κοντά σε δρόμο ή χωράφι.',
+      'idx.step1.p': 'Κηρήθρες μαζεμένες στο χέρι από κυψέλες ψηλά σε ανέγγιχτα αγριολούλουδα, ποτέ κοντά σε δρόμο ή χωράφι.',
       'idx.step2.h': 'Ψυχρή Εκχύλιση',
       'idx.step2.p': 'Φυγοκεντρείται αργά στη θερμοκρασία του κελαριού, ποτέ δεν θερμαίνεται. Κάθε ένζυμο και ίχνος γύρης παραμένει ανέπαφο.',
       'idx.step3.h': 'Φυσική Ανάπαυση',
-      'idx.step3.p': 'Δεκατέσσερις ήσυχες ημέρες καθίζησης σε δρυ. Τίποτα εξαναγκασμένο, τίποτα φιλτραρισμένο — η υφή μένει ζωντανή.',
+      'idx.step3.p': 'Δεκατέσσερις ήσυχες ημέρες καθίζησης σε δρυ. Τίποτα εξαναγκασμένο, τίποτα φιλτραρισμένο, η υφή μένει ζωντανή.',
       'idx.taste.quote': 'Μια γεύση που κρατά τη μνήμη ενός ορεινού πρωινού. Ζεστή, χρυσαφένια, αργή να φύγει.',
       'idx.taste.cite': 'Σημειώσεις από το δωμάτιο γευσιγνωσίας',
       'idx.preview.eyebrow': 'Η Συλλογή',
@@ -1725,7 +1725,7 @@
       'contact.pill.retail': 'Λιανική συνεργασία',
       'contact.pill.press': 'Τύπος',
       'contact.pill.collab': 'Συνεργασία',
-      'contact.founder.quote': 'Κάθε συνεργασία με τη Harvest Deli ξεκινά με μια συζήτηση. Προτιμούμε λίγες μακροχρόνιες σχέσεις από την ευρεία διανομή — το βάζο, και τα χέρια πίσω του, το αξίζουν.',
+      'contact.founder.quote': 'Κάθε συνεργασία με τη Harvest Deli ξεκινά με μια συζήτηση. Προτιμούμε λίγες μακροχρόνιες σχέσεις από την ευρεία διανομή, το βάζο, και τα χέρια πίσω του, το αξίζουν.',
       'contact.founder.name': 'Harvest Deli',
       'contact.founder.role': 'Harvest Deli · Ελλάδα',
       'contact.label.name': 'Όνομα',
@@ -1878,7 +1878,7 @@
     'idx.faq.eyebrow': 'The concierge',
     'idx.faq.title_html': 'Questions,<br>answered with <em>care.</em>',
     'idx.faq.desc': 'Private assistance for those who value slow food.',
-    'idx.faq.response': 'Response time — usually within 24 hours',
+    'idx.faq.response': 'Response time, usually within 24 hours',
     'idx.faq.help_html': 'Cannot find your question? Write to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'How quickly do you ship?',
     'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch you can expect one to two working days inside the Netherlands and Belgium. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.',
@@ -1919,7 +1919,7 @@
     'idx.faq.eyebrow': 'De conciërge',
     'idx.faq.title_html': 'Vragen,<br>met <em>zorg</em> beantwoord.',
     'idx.faq.desc': 'Persoonlijke hulp voor wie slow food waardeert.',
-    'idx.faq.response': 'Reactietijd — meestal binnen 24 uur',
+    'idx.faq.response': 'Reactietijd, meestal binnen 24 uur',
     'idx.faq.help_html': 'Staat uw vraag er niet bij? Schrijf naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> en wij reageren binnen twee werkdagen. Voor bestellingen: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Hoe snel wordt mijn bestelling verzonden?',
     'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en België. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="legal-shipping.html">verzendpagina</a>.',
@@ -1960,7 +1960,7 @@
     'idx.faq.eyebrow': 'Ο θυρωρός',
     'idx.faq.title_html': 'Ερωτήσεις,<br>απαντημένες με <em>φροντίδα.</em>',
     'idx.faq.desc': 'Προσωπική βοήθεια για όσους εκτιμούν το slow food.',
-    'idx.faq.response': 'Χρόνος απάντησης — συνήθως εντός 24 ωρών',
+    'idx.faq.response': 'Χρόνος απάντησης, συνήθως εντός 24 ωρών',
     'idx.faq.help_html': 'Δεν βρίσκετε την ερώτησή σας; Γράψτε στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> και απαντούμε εντός δύο εργάσιμων ημερών. Για παραγγελίες: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Πόσο γρήγορα αποστέλλετε;',
     'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες εντός Ολλανδίας και Βελγίου. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="legal-shipping.html">σελίδα αποστολών</a>.',
@@ -2237,7 +2237,7 @@
       });
     });
     // Update language toggle states (desktop nav + mobile menu switcher)
-    document.querySelectorAll('.lang-toggle button[data-lang], .hd-menu-lang button[data-lang]').forEach(b => {
+    document.querySelectorAll('.lang-toggle button[data-lang].hd-menu-lang button[data-lang]').forEach(b => {
       b.classList.toggle('active', b.dataset.lang === currentLang);
     });
   }
@@ -2273,7 +2273,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-170',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2292,7 +2292,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-170',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2311,7 +2311,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-170',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2330,7 +2330,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-170',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2349,7 +2349,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-170',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2368,7 +2368,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-170',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2387,7 +2387,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-170',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2406,7 +2406,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-170',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2459,7 +2459,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-169',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-170',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2538,10 +2538,10 @@
   function sameLine(i, slug, size) { return i.slug === slug && sizeOf(i) === size; }
 
   /* ============================================================
-     THE RITUAL SAVING — mirrors the LIVE Shopify automatic discounts,
+     THE RITUAL SAVING, mirrors the LIVE Shopify automatic discounts,
      which are the source of truth for what the customer is actually charged:
-       • "3 honingpotten — €5"          → ≥3 honey jars      = €5 (once)
-       • "2 honing + 1 olijfolie — €5"  → ≥2 honey + ≥1 oil  = €5 (once)
+       • "3 honingpotten, €5"          → ≥3 honey jars      = €5 (once)
+       • "2 honing + 1 olijfolie, €5"  → ≥2 honey + ≥1 oil  = €5 (once)
      Both are non-combining / non-stacking in Shopify, so the order gets
      AT MOST €5. The on-site cart shows exactly this, so the total never
      diverges from the Shopify checkout charge (no overcharge, no false promise).
@@ -2551,7 +2551,7 @@
      (e.g. €5 per group → 6 honeys = €10, 4 honey + 2 oil = €10), update this
      function to count qualifying GROUPS instead of a single flat €5, and mirror
      the new Shopify rule exactly. Do not change this without changing Shopify
-     first — the two must always match.
+     first, the two must always match.
      ============================================================ */
   var RITUAL_SAVING = 5;
   function calculateHarvestBundleDiscount(cartItems) {
@@ -2820,7 +2820,7 @@
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    // Cart is the conversion surface — let the floating-UI controller fade out
+    // Cart is the conversion surface, let the floating-UI controller fade out
     // distractions (chat / scroll-to-top) on mobile while it is open.
     document.documentElement.classList.add('hd-cart-open');
   }
@@ -3192,7 +3192,7 @@
   ];
 
   // Inline SVGs
-  // Luxury skep beehive — gold gradient body, woven bands, honeycomb entrance,
+  // Luxury skep beehive, gold gradient body, woven bands, honeycomb entrance,
   // soft inner glow. Minimal, premium, no cartoon styling.
   const BEEHIVE_SVG = (
     '<svg viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">' +
@@ -3309,7 +3309,7 @@
     btn.setAttribute('aria-label', t('concierge.title', 'Harvest Concierge'));
     btn.setAttribute('aria-haspopup', 'dialog');
     btn.setAttribute('aria-expanded', 'false');
-    // Circular luxury emblem — deep emerald medallion, metallic gold rim, a
+    // Circular luxury emblem, deep emerald medallion, metallic gold rim, a
     // refined heraldic bee engraved at centre, slow shimmer + soft glow.
     // Hermès / Diptyque / Aman register; no hexagon, no honeycomb, no web3.
     btn.innerHTML =
@@ -3502,7 +3502,7 @@
 (function () {
   'use strict';
   function init() {
-    /* Newsletter removed at the client's request — no footer injection site-wide. */
+    /* Newsletter removed at the client's request, no footer injection site-wide. */
     return;
     document.querySelectorAll('footer').forEach(function (ftr) {
       var bottom = ftr.querySelector('.footer-bottom');
@@ -3545,7 +3545,7 @@
   function init() {
     return; // Disabled site-wide: the purchase flow (and brand) shows only Harvest Deli.
     // The Creativity Lab signature lives only in the global website footer of
-    // marketing pages — never in the checkout/order (commerce) flow.
+    // marketing pages, never in the checkout/order (commerce) flow.
     if (/checkout\.html|order-success\.html/.test(location.pathname)) return;
     var footers = document.querySelectorAll('footer.site-footer, footer');
     if (!footers.length) return;
@@ -3804,7 +3804,7 @@
   // call repeatedly; shop/filters re-render their grids and fire
   // 'hd:wishlist-change', so this runs again and fills the fresh buttons.
   function ensureIcons() {
-    document.querySelectorAll('.wishlist-btn, .product-wishlist-line').forEach(btn => {
+    document.querySelectorAll('.wishlist-btn.product-wishlist-line').forEach(btn => {
       if (!btn.querySelector('svg')) btn.insertAdjacentHTML('afterbegin', HEART_SVG);
     });
   }
@@ -4212,7 +4212,7 @@
       overlay.insertBefore(scrim, overlay.firstChild);
       overlay.insertBefore(img, overlay.firstChild);
     });
-    // Mobile language switcher (Option A) — inject just below the logo in
+    // Mobile language switcher (Option A), inject just below the logo in
     // every menu overlay. CSS hides it on desktop; the nav switcher there
     // is untouched. Selection persists via HD_setLang (localStorage).
     document.querySelectorAll('.menu-overlay').forEach(overlay => {
@@ -4241,7 +4241,7 @@
 })();
 
 /* =================================================================
-   CINEMATIC MENU — gold border, ghost type, cursor light, fixed
+   CINEMATIC MENU, gold border, ghost type, cursor light, fixed
    footer, VisionOS open transition. All injected, no per-page edits.
    ================================================================= */
 (function () {
@@ -4303,7 +4303,7 @@
       '<a href="contact.html" data-i18n="footer.link.contact">Contact</a>';
     overlay.appendChild(foot);
 
-    // Cursor tracking — only while the menu is open
+    // Cursor tracking, only while the menu is open
     var move = function (e) {
       light.style.setProperty('--mx', e.clientX + 'px');
       light.style.setProperty('--my', e.clientY + 'px');
@@ -4409,23 +4409,13 @@
 }
 
 /* --- Kill legacy "black slide-up" / fill pseudo-elements globally --- */
-.cta::before, .pd-cta::before, .cta-primary::before, .cta-link::before,
-.form-submit::before, .cart-checkout::before, .fp-apply::before,
-.confirm-btn::before, .wl-add::before, .es-reset::before,
-.final-cta::before, .track-cta::before, .preview-cta .explore-link::before,
-.card-add::before, .cb-btn.cb-accept::before {
+.cta::before.pd-cta::before.cta-primary::before.cta-link::before.form-submit::before.cart-checkout::before.fp-apply::before.confirm-btn::before.wl-add::before.es-reset::before.final-cta::before.track-cta::before.preview-cta .explore-link::before.card-add::before.cb-btn.cb-accept::before {
   display: none;
   content: none;
 }
 
 /* --- PRIMARY filled button, espresso ink + warm ivory text --- */
-.cta, .pd-cta, .cta-primary, .cta-link, .about-cta .cta-link,
-.form-submit, .cart-checkout, .fp-apply,
-.confirm-btn, .track-cta, .wl-add, .es-reset, .empty-state .es-reset,
-.final-cta, .preview-cta .explore-link, .preview-card .card-add,
-.card-add, .product-cta,
-.newsletter-form button[type="submit"],
-.cb-btn.cb-accept {
+.cta.pd-cta.cta-primary.cta-link.about-cta .cta-link.form-submit.cart-checkout.fp-apply.confirm-btn.track-cta.wl-add.es-reset.empty-state .es-reset.final-cta.preview-cta .explore-link.preview-card .card-add.card-add.product-cta.newsletter-form button[type="submit"].cb-btn.cb-accept {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4458,13 +4448,7 @@
 }
 
 /* Amber shimmer that softly sweeps across on hover */
-.cta::after, .pd-cta::after, .cta-primary::after, .cta-link::after,
-.form-submit::after, .cart-checkout::after, .fp-apply::after,
-.confirm-btn::after, .wl-add::after, .es-reset::after,
-.final-cta::after, .track-cta::after, .preview-cta .explore-link::after,
-.preview-card .card-add::after, .card-add::after, .product-cta::after,
-.newsletter-form button[type="submit"]::after,
-.cb-btn.cb-accept::after {
+.cta::after.pd-cta::after.cta-primary::after.cta-link::after.form-submit::after.cart-checkout::after.fp-apply::after.confirm-btn::after.wl-add::after.es-reset::after.final-cta::after.track-cta::after.preview-cta .explore-link::after.preview-card .card-add::after.card-add::after.product-cta::after.newsletter-form button[type="submit"]::after.cb-btn.cb-accept::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -4482,61 +4466,32 @@
 }
 
 /* Hover, calm lift + amber border glow + shimmer swipe */
-.cta:hover, .pd-cta:hover, .cta-primary:hover, .cta-link:hover,
-.about-cta .cta-link:hover, .form-submit:hover, .cart-checkout:hover,
-.fp-apply:hover, .confirm-btn:hover, .track-cta:hover, .wl-add:hover,
-.es-reset:hover, .empty-state .es-reset:hover, .final-cta:hover,
-.preview-cta .explore-link:hover, .preview-card .card-add:hover,
-.card-add:hover, .product-cta:hover,
-.newsletter-form button[type="submit"]:hover,
-.cb-btn.cb-accept:hover {
+.cta:hover.pd-cta:hover.cta-primary:hover.cta-link:hover.about-cta .cta-link:hover.form-submit:hover.cart-checkout:hover.fp-apply:hover.confirm-btn:hover.track-cta:hover.wl-add:hover.es-reset:hover.empty-state .es-reset:hover.final-cta:hover.preview-cta .explore-link:hover.preview-card .card-add:hover.card-add:hover.product-cta:hover.newsletter-form button[type="submit"]:hover.cb-btn.cb-accept:hover {
   background: var(--btn-bg-primary-hover);
   color: var(--btn-fg-primary);
   border-color: var(--btn-border-primary-hover);
   box-shadow: var(--btn-shadow-hover);
   transform: translateY(-1px) scale(1.008);
 }
-.cta:hover::after, .pd-cta:hover::after, .cta-primary:hover::after,
-.cta-link:hover::after, .form-submit:hover::after, .cart-checkout:hover::after,
-.fp-apply:hover::after, .confirm-btn:hover::after, .wl-add:hover::after,
-.track-cta:hover::after, .preview-cta .explore-link:hover::after,
-.preview-card .card-add:hover::after, .card-add:hover::after,
-.product-cta:hover::after,
-.newsletter-form button[type="submit"]:hover::after,
-.cb-btn.cb-accept:hover::after {
+.cta:hover::after.pd-cta:hover::after.cta-primary:hover::after.cta-link:hover::after.form-submit:hover::after.cart-checkout:hover::after.fp-apply:hover::after.confirm-btn:hover::after.wl-add:hover::after.track-cta:hover::after.preview-cta .explore-link:hover::after.preview-card .card-add:hover::after.card-add:hover::after.product-cta:hover::after.newsletter-form button[type="submit"]:hover::after.cb-btn.cb-accept:hover::after {
   transform: translateX(110%);
 }
 
 /* Active, pressed */
-.cta:active, .pd-cta:active, .cta-primary:active, .form-submit:active,
-.cart-checkout:active, .fp-apply:active, .confirm-btn:active,
-.track-cta:active, .wl-add:active, .es-reset:active,
-.final-cta:active, .preview-card .card-add:active,
-.card-add:active, .product-cta:active {
+.cta:active.pd-cta:active.cta-primary:active.form-submit:active.cart-checkout:active.fp-apply:active.confirm-btn:active.track-cta:active.wl-add:active.es-reset:active.final-cta:active.preview-card .card-add:active.card-add:active.product-cta:active {
   transform: translateY(0) scale(0.992);
   transition-duration: 0.15s;
   box-shadow: var(--btn-shadow);
 }
 
 /* Focus visible, accessible warm gold ring */
-.cta:focus-visible, .pd-cta:focus-visible, .cta-primary:focus-visible,
-.cta-link:focus-visible, .form-submit:focus-visible,
-.cart-checkout:focus-visible, .fp-apply:focus-visible,
-.confirm-btn:focus-visible, .track-cta:focus-visible, .wl-add:focus-visible,
-.es-reset:focus-visible, .final-cta:focus-visible,
-.preview-card .card-add:focus-visible, .card-add:focus-visible,
-.product-cta:focus-visible,
-.newsletter-form button[type="submit"]:focus-visible,
-.cb-btn.cb-accept:focus-visible {
+.cta:focus-visible.pd-cta:focus-visible.cta-primary:focus-visible.cta-link:focus-visible.form-submit:focus-visible.cart-checkout:focus-visible.fp-apply:focus-visible.confirm-btn:focus-visible.track-cta:focus-visible.wl-add:focus-visible.es-reset:focus-visible.final-cta:focus-visible.preview-card .card-add:focus-visible.card-add:focus-visible.product-cta:focus-visible.newsletter-form button[type="submit"]:focus-visible.cb-btn.cb-accept:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.42), var(--btn-shadow-hover);
 }
 
 /* Disabled */
-.cta:disabled, .pd-cta:disabled, .cta-primary:disabled, .form-submit:disabled,
-.fp-apply:disabled, .confirm-btn:disabled, .wl-add:disabled, .card-add:disabled,
-.preview-card .card-add:disabled,
-.newsletter-form button[type="submit"]:disabled {
+.cta:disabled.pd-cta:disabled.cta-primary:disabled.form-submit:disabled.fp-apply:disabled.confirm-btn:disabled.wl-add:disabled.card-add:disabled.preview-card .card-add:disabled.newsletter-form button[type="submit"]:disabled {
   opacity: 0.42;
   cursor: not-allowed;
   transform: none;
@@ -4544,8 +4499,7 @@
 }
 
 /* --- SECONDARY ghost/outline button, warm transparent + dark text --- */
-.cta-ghost, .fp-reset, .wl-view, .cb-btn.cb-reject, .cb-btn.cb-customize,
-.empty-state .es-reset.secondary {
+.cta-ghost.fp-reset.wl-view.cb-btn.cb-reject.cb-btn.cb-customize.empty-state .es-reset.secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4576,27 +4530,24 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
-.cta-ghost:hover, .fp-reset:hover, .wl-view:hover,
-.cb-btn.cb-reject:hover, .cb-btn.cb-customize:hover {
+.cta-ghost:hover.fp-reset:hover.wl-view:hover.cb-btn.cb-reject:hover.cb-btn.cb-customize:hover {
   background: var(--btn-bg-secondary-hover);
   border-color: var(--btn-border-secondary-hover);
   color: var(--btn-fg-secondary);
   box-shadow: var(--btn-shadow-soft-hover);
   transform: translateY(-1px) scale(1.008);
 }
-.cta-ghost:active, .fp-reset:active, .wl-view:active,
-.cb-btn.cb-reject:active, .cb-btn.cb-customize:active {
+.cta-ghost:active.fp-reset:active.wl-view:active.cb-btn.cb-reject:active.cb-btn.cb-customize:active {
   transform: translateY(0) scale(0.994);
   transition-duration: 0.15s;
 }
-.cta-ghost:focus-visible, .fp-reset:focus-visible, .wl-view:focus-visible,
-.cb-btn.cb-reject:focus-visible, .cb-btn.cb-customize:focus-visible {
+.cta-ghost:focus-visible.fp-reset:focus-visible.wl-view:focus-visible.cb-btn.cb-reject:focus-visible.cb-btn.cb-customize:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.38), var(--btn-shadow-soft-hover);
 }
 
 /* Ghost on dark surfaces (e.g. menu overlay) keeps the same shape but inverts colors */
-.menu-close, .fp-close {
+.menu-close.fp-close {
   border-radius: var(--btn-radius);
   padding: 12px 22px 12px 22px;
   padding-left: calc(22px + 0.36em);
@@ -4610,7 +4561,7 @@
 .fp-close:hover { background: rgba(26, 22, 18, 0.05); }
 
 /* --- PILL nav controls (calm hover, no aggressive slide) --- */
-.filter-trigger, .sort-trigger, .nav-acquire {
+.filter-trigger.sort-trigger.nav-acquire {
   transition:
     background 0.4s var(--btn-ease),
     color 0.4s var(--btn-ease),
@@ -4632,25 +4583,16 @@
 .ac-chip:hover { transform: translateY(-1px); box-shadow: var(--btn-shadow-soft-hover); }
 
 /* --- Plus / arrow micro-interactions inside buttons --- */
-.card-add .add-icon, .wl-add svg, .preview-card .card-add .add-icon {
+.card-add .add-icon.wl-add svg.preview-card .card-add .add-icon {
   transition: transform 0.5s var(--btn-ease);
 }
-.card-add:hover .add-icon, .wl-add:hover svg, .preview-card .card-add:hover .add-icon {
+.card-add:hover .add-icon.wl-add:hover svg.preview-card .card-add:hover .add-icon {
   transform: rotate(90deg);
 }
-.cta .arrow, .pd-cta .arrow, .cta-primary .arrow, .form-submit .arrow,
-.cart-checkout .arrow, .fp-apply .arrow, .confirm-btn .arrow,
-.wl-add .arrow, .final-cta .arrow, .product-cta .arrow,
-.cta-ghost .arrow, .fp-reset .arrow, .preview-cta .explore-link .arrow,
-.read-link .arrow {
+.cta .arrow.pd-cta .arrow.cta-primary .arrow.form-submit .arrow.cart-checkout .arrow.fp-apply .arrow.confirm-btn .arrow.wl-add .arrow.final-cta .arrow.product-cta .arrow.cta-ghost .arrow.fp-reset .arrow.preview-cta .explore-link .arrow.read-link .arrow {
   transition: width 0.5s var(--btn-ease);
 }
-.cta:hover .arrow, .pd-cta:hover .arrow, .cta-primary:hover .arrow,
-.form-submit:hover .arrow, .cart-checkout:hover .arrow,
-.fp-apply:hover .arrow, .confirm-btn:hover .arrow, .wl-add:hover .arrow,
-.final-cta:hover .arrow, .product-cta:hover .arrow,
-.cta-ghost:hover .arrow, .fp-reset:hover .arrow,
-.preview-cta .explore-link:hover .arrow, .read-link:hover .arrow {
+.cta:hover .arrow.pd-cta:hover .arrow.cta-primary:hover .arrow.form-submit:hover .arrow.cart-checkout:hover .arrow.fp-apply:hover .arrow.confirm-btn:hover .arrow.wl-add:hover .arrow.final-cta:hover .arrow.product-cta:hover .arrow.cta-ghost:hover .arrow.fp-reset:hover .arrow.preview-cta .explore-link:hover .arrow.read-link:hover .arrow {
   width: 26px;
 }
 
@@ -4666,29 +4608,23 @@
 
 /* --- Reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
-  .cta, .pd-cta, .cta-primary, .cta-link, .form-submit, .cart-checkout,
-  .fp-apply, .confirm-btn, .track-cta, .wl-add, .es-reset, .final-cta,
-  .cta-ghost, .fp-reset, .wl-view, .preview-card .card-add, .product-cta,
-  .card-add, .filter-trigger, .sort-trigger, .nav-acquire, .cookie-bar .cb-btn {
+  .cta.pd-cta.cta-primary.cta-link.form-submit.cart-checkout.fp-apply.confirm-btn.track-cta.wl-add.es-reset.final-cta.cta-ghost.fp-reset.wl-view.preview-card .card-add.product-cta.card-add.filter-trigger.sort-trigger.nav-acquire.cookie-bar .cb-btn {
     transition: background 0.2s linear, border-color 0.2s linear, color 0.2s linear;
     transform: none !important;
   }
-  .cta::after, .pd-cta::after, .cta-primary::after, .form-submit::after,
-  .cart-checkout::after, .fp-apply::after, .confirm-btn::after, .wl-add::after,
-  .card-add::after, .preview-card .card-add::after, .cb-btn.cb-accept::after {
+  .cta::after.pd-cta::after.cta-primary::after.form-submit::after.cart-checkout::after.fp-apply::after.confirm-btn::after.wl-add::after.card-add::after.preview-card .card-add::after.cb-btn.cb-accept::after {
     display: none;
   }
 }
 
 /* --- Mobile tweaks --- */
 @media (max-width: 600px) {
-  .cta, .pd-cta, .cta-primary, .form-submit, .cart-checkout, .fp-apply,
-  .confirm-btn, .wl-add, .es-reset, .final-cta, .track-cta {
+  .cta.pd-cta.cta-primary.form-submit.cart-checkout.fp-apply.confirm-btn.wl-add.es-reset.final-cta.track-cta {
     padding: 16px 28px;
     padding-left: calc(28px + 0.18em);
     min-height: 48px;
   }
-  .cta-ghost, .fp-reset, .wl-view {
+  .cta-ghost.fp-reset.wl-view {
     padding: 14px 22px;
     padding-left: calc(22px + 0.18em);
     min-height: 44px;
@@ -5410,9 +5346,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-169'], ['hd-search-js', 'search.js?v=hd-2026-06-06-169'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-169'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-169'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-169'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-169'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-169'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-169'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-169'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-169']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-170'], ['hd-search-js', 'search.js?v=hd-2026-06-06-170'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-170'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-170'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-170'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-170'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-170'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-170'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-170'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-170']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
@@ -5515,7 +5451,7 @@ window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shippin
 })();
 
 /* =================================================================
-   CURSOR BEE — brand companion. A small bee lazily follows the
+   CURSOR BEE, brand companion. A small bee lazily follows the
    pointer (never glued to it): spring-lag flight, banks into turns,
    flips when flying left, and hovers in a gentle figure-eight when
    the mouse rests. Guards: fine pointers only, skipped entirely on
@@ -5619,7 +5555,7 @@ window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shippin
 })();
 
 /* =================================================================
-   Harvest Deli — luxury motion layer
+   Harvest Deli, luxury motion layer
    4) ambient bee   5) museum product-card hover   6) add-to-cellar flight
    ================================================================= */
 (function HDLuxuryMotion() {
@@ -5630,7 +5566,7 @@ window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shippin
     if (reduce) return false;
     var target = document.getElementById('navCart');
     if (!target || !btn) return false;
-    var card = btn.closest('.p-card, article, .qv-panel, .product-stage, .product-main, main') || document.body;
+    var card = btn.closest('.p-card, article.qv-panel.product-stage.product-main, main') || document.body;
     var src = card.querySelector('.card-photo') || card.querySelector('.jar-wrap img') ||
               card.querySelector('img') || btn;
     var sr = src.getBoundingClientRect(), tr = target.getBoundingClientRect();
@@ -5734,7 +5670,7 @@ window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shippin
       document.body.appendChild(b); return b;
     }
     function ctas() {
-      var sel = '.cta,.oo__cta,.jp-cta,.idx-sel-cta,.confirm-btn,.form-submit,[data-add-to-cart]';
+      var sel = '.cta.oo__cta.jp-cta.idx-sel-cta.confirm-btn.form-submit,[data-add-to-cart]';
       return [].slice.call(document.querySelectorAll(sel)).filter(function (el) {
         if (!el.offsetParent) return false;
         var r = el.getBoundingClientRect();

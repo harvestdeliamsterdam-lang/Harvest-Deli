@@ -1,13 +1,13 @@
 /**
- * Harvest Deli — shared email layout + primitives.
+ * Harvest Deli, shared email layout + primitives.
  * -----------------------------------------------------------------
  * Email clients strip <style>, flexbox, grid and most modern CSS, so
  * every template is built from nested <table>s with INLINE styles only.
  * This module is the single source of brand truth for all emails
  * (contact, confirmation, future order confirmation) so they stay
- * visually identical — an extension of the harvestdeli.nl experience.
+ * visually identical, an extension of the harvestdeli.nl experience.
  *
- * Pure CommonJS, no dependencies — safe inside a Vercel Node function.
+ * Pure CommonJS, no dependencies, safe inside a Vercel Node function.
  */
 'use strict';
 

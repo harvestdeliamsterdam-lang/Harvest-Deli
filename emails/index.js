@@ -1,9 +1,9 @@
 /**
- * Harvest Deli — email template registry.
+ * Harvest Deli, email template registry.
  * Single import surface for the API layer:
  *   const { contactInternal, contactConfirmation, orderConfirmation } = require('../emails');
  *
- * Types are expressed as JSDoc @typedefs — fully checkable by the
+ * Types are expressed as JSDoc @typedefs, fully checkable by the
  * TypeScript language server (`// @ts-check`) without adding a build step
  * to this static site, matching the project's existing typing approach.
  */
@@ -18,7 +18,7 @@
  * @property {string} [company]   House / business / company name
  * @property {string} [country]   Country, if provided
  * @property {string} [businessType] Partnership only
- * @property {string} [volume]    Partnership only — estimated volume
+ * @property {string} [volume]    Partnership only, estimated volume
  * @property {string} timestamp   Human-readable received time (Europe/Amsterdam)
  */
 

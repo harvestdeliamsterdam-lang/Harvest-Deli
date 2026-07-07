@@ -108,7 +108,7 @@
           + '<circle cx="7.4" cy="9.5" r="2" fill="#2C2113"/></svg></span></div>';
       foot.insertBefore(bar, foot.firstChild);
     }
-    // Read the authoritative cart subtotal (HD_CART) — DOM-text parsing was unreliable.
+    // Read the authoritative cart subtotal (HD_CART), DOM-text parsing was unreliable.
     var total = (window.HD_CART && typeof window.HD_CART.total === 'function') ? window.HD_CART.total() : parsePrice(totalEl.textContent);
     var threshold = window.HD_FREE_SHIP || 65;
     var remain = Math.max(0, threshold - total);

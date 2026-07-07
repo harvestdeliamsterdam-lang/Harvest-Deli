@@ -1,4 +1,4 @@
-# Harvest Deli — Commerce architecture (Shopify-ready)
+# Harvest Deli, Commerce architecture (Shopify-ready)
 
 This folder is the **commerce abstraction layer**. The storefront UI (shop,
 product, cart drawer, checkout, account) keeps working exactly as today; this
@@ -14,7 +14,7 @@ layer makes the **headless Shopify Storefront API** integration plug-and-play.
 | `config.js` | One switch: `source: 'mock' \| 'shopify'` + Shopify creds + currency/locale. **The token goes here.** |
 | `types.js` | Storefront-shaped types (`Product, ProductVariant, Collection, Cart, …`). |
 | `storefront.js` | **The seam.** The only file that calls Shopify. GraphQL queries/mutations + a safe (timeout + fallback) fetch. Inert until configured. |
-| `commerce.js` | `window.Commerce` — the API the frontend uses: `products / collections / cart / checkout / search / filters / customer / sync`. Async, Shopify-shaped. Reads the local catalog today; flips to Shopify via config. |
+| `commerce.js` | `window.Commerce`, the API the frontend uses: `products / collections / cart / checkout / search / filters / customer / sync`. Async, Shopify-shaped. Reads the local catalog today; flips to Shopify via config. |
 
 ---
 
@@ -37,14 +37,14 @@ Get the token in Shopify admin → **Settings → Apps and sales channels → De
 → (your app) → API credentials → Storefront API access token**. It is a **public,
 read-only** token, safe in client code. **Never** put the Admin API token here.
 
-That's it — no other file changes. Because there's no build step, the value is read
+That's it, no other file changes. Because there's no build step, the value is read
 directly from `config.js` at runtime.
 
 ---
 
 ## How the Shopify checkout flow works
 
-The on-site cart UX stays local (`HD_CART` — size/bundle/offer aware). Shopify's
+The on-site cart UX stays local (`HD_CART`, size/bundle/offer aware). Shopify's
 **hosted checkout** is used at the final step:
 
 1. User adds items → they live in `HD_CART` (drawer, totals, the €5 offer).
@@ -56,7 +56,7 @@ The on-site cart UX stays local (`HD_CART` — size/bundle/offer aware). Shopify
    - **Mock / not synced / API error:** returns `checkout.html` → the existing
      local wizard (unchanged). This is the automatic, safe fallback.
 3. A click interceptor on `a.cart-checkout` (and any `[data-shopify-checkout]`)
-   performs the redirect — **inert while `source: 'mock'`** (the link behaves normally),
+   performs the redirect, **inert while `source: 'mock'`** (the link behaves normally),
    so today's UI/flow is byte-identical.
 
 ## How storefront syncing works (real products replace mock)
@@ -65,7 +65,7 @@ The on-site cart UX stays local (`HD_CART` — size/bundle/offer aware). Shopify
 
 - Fetches every product via the Storefront API (`products` query).
 - Caches them at `window.HD_SHOPIFY` (by handle).
-- Builds `VARIANT_MAP` (`slug|sizeLabel → variantId`) in `localStorage` — this is
+- Builds `VARIANT_MAP` (`slug|sizeLabel → variantId`) in `localStorage`, this is
   what lets `Commerce.checkout()` create real Shopify carts.
 - `Commerce.sync.localShape(handle)` returns a product in the **`HD_product` shape**
   (name, sizes, price, image, tags…). This is the seam to let real Shopify data

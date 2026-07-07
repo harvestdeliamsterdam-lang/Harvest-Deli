@@ -1,5 +1,5 @@
 /**
- * SEO object — reused by post, homeSection, aboutStory and any page document.
+ * SEO object, reused by post, homeSection, aboutStory and any page document.
  * Keep this the single source of truth for meta fields so every content type
  * exposes the same SEO shape to the frontend adapter (cms/*).
  */

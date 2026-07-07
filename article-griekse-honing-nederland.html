@@ -36,16 +36,16 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-169">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-169" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-169">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-169">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-169">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-169" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-169">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-169">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-170">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-170" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-170">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-170">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-170">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-170" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-170">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-170">
 <meta name="theme-color" content="#10281f">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-169">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-170">
 
 <!-- BlogPosting schema -->
 <script type="application/ld+json">
@@ -187,7 +187,7 @@ nav.site-nav {
 }
 nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; color: inherit; }
 nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
-.menu-btn, .nav-acquire {
+.menu-btn.nav-acquire {
   background: none; border: none; color: inherit; cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
@@ -196,9 +196,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   text-decoration: none; transition: opacity 0.5s var(--ease);
   opacity: 0.92; padding-left: var(--track-label);
 }
-.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
+.menu-btn:hover.nav-acquire:hover { opacity: 1; }
 .menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
-.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before.menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
 .menu-btn .lines::before { width: 100%; }
 .menu-btn .lines::after { width: 70%; }
 .nav-acquire { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
@@ -215,7 +215,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding: 0 24px;
 }
 .article-hero {
-  padding: 18vh 0 0;
+  padding-top: 18vh;
 }
 .breadcrumb {
   font-size: 9px;
@@ -400,7 +400,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   margin-top: 40px;
   margin-bottom: 14px;
 }
-.article-body ul, .article-body ol {
+.article-body ul.article-body ol {
   margin: 20px 0 36px;
   padding-left: 28px;
 }
@@ -573,7 +573,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   position: relative;
   margin-top: 6px;
 }
-.faq-q .plus::before, .faq-q .plus::after {
+.faq-q .plus::before.faq-q .plus::after {
   content: '';
   position: absolute;
   background: var(--gold-deep);
@@ -687,7 +687,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   box-shadow: 0 60px 100px -42px rgba(60, 36, 14, 0.55), 0 18px 38px -20px rgba(0, 0, 0, 0.24);
   transform: translateY(-4px);
 }
-/* Info — editorial stack, price quiet */
+/* Info, editorial stack, price quiet */
 .related-card .row { display: block; margin: 0; padding: 0 7%; }
 .related-card .name {
   position: relative; display: inline-block;
@@ -718,11 +718,11 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .related-card .region { display: none; }
 @media (max-width: 860px) {
   .related-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 56px; }
-  .related-card, .related-card:nth-child(1), .related-card:nth-child(2), .related-card:nth-child(3) { --ty: 0px; transform: none; }
+  .related-card.related-card:nth-child(1).related-card:nth-child(2).related-card:nth-child(3) { --ty: 0px; transform: none; }
   .related-card:hover { transform: translateY(-8px) rotate(-1.4deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .related-card, .related-card:hover { transition: none; transform: none; }
+  .related-card.related-card:hover { transition: none; transform: none; }
   .related-card:hover .frame img { transform: none; }
 }
 
@@ -903,7 +903,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-button);
 }
 .menu-close .x { width: 18px; height: 1px; background: currentColor; position: relative; }
-.menu-close .x::before, .menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
+.menu-close .x::before.menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
 .menu-close .x::before { transform: rotate(45deg); }
 .menu-close .x::after { transform: rotate(-45deg); }
 .menu-content {
@@ -1029,14 +1029,16 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 @media (max-width: 600px) {
   nav.site-nav { padding: 16px 22px; }
   nav.site-nav .nav-right { gap: 16px; }
-  .article-hero { padding: 16vh 0 0; }
+  .article-hero { padding-top: 16vh; }
   .article-body p { font-size: 16px; }
   .article-body p.lede { font-size: 19px; }
   .article-body p.lede::first-letter { font-size: 60px; }
+  .article-title { font-size: clamp(38px, 10vw, 44px); line-height: 1.06; }
+  .article-dek { font-size: 18px; margin-bottom: 44px; }
 }
 
 /* ======================================================================
-   Article coda — premium editorial close (replaces old related sections)
+   Article coda, premium editorial close (replaces old related sections)
    ====================================================================== */
 .article-coda {
   position: relative;
@@ -1140,7 +1142,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .coda-btn--ghost { background: transparent; color: var(--ink); border-color: rgba(26, 22, 18, 0.26); }
 .coda-btn--ghost:hover { color: var(--gold-deep); border-color: var(--gold); box-shadow: 0 14px 34px -22px rgba(138, 98, 40, 0.45), 0 0 16px rgba(184, 148, 90, 0.18); }
 
-/* reveal — staggered fade-up */
+/* reveal, staggered fade-up */
 .article-coda .coda-inner > * { opacity: 0; transform: translateY(18px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
 .article-coda.in .coda-inner > * { opacity: 1; transform: none; }
 .article-coda.in .coda-inner > *:nth-child(2) { transition-delay: 0.08s; }
@@ -1148,7 +1150,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .article-coda.in .coda-inner > *:nth-child(4) { transition-delay: 0.24s; }
 .article-coda.in .coda-inner > *:nth-child(5) { transition-delay: 0.32s; }
 
-/* a single bee, flying slowly past — once */
+/* a single bee, flying slowly past, once */
 .coda-bee {
   position: absolute; top: 28%; left: -56px; width: 30px; height: 20px; z-index: 3;
   opacity: 0; pointer-events: none; will-change: transform, opacity;
@@ -1177,7 +1179,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 @media (prefers-reduced-motion: reduce) {
   .coda-bee { display: none; }
   .article-coda .coda-inner > * { opacity: 1; transform: none; transition: none; }
-  .coda-jar img, .coda-btn { transition: none; }
+  .coda-jar img.coda-btn { transition: none; }
   .coda-btn::before { display: none; }
 }
 </style>
@@ -1287,7 +1289,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   <!-- Hero image -->
   <div class="article-wide">
     <figure class="article-image">
-      <img src="assets/markt.webp?v=hd-2026-06-06-169" width="1300" height="975" alt="Griekse honing op de markt in Amsterdam" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
+      <img src="assets/markt.webp?v=hd-2026-06-06-170" width="1300" height="975" alt="Griekse honing op de markt in Amsterdam" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;">
       <span class="caption">De wekelijkse tafel &middot; Amsterdam</span>
     </figure>
   </div>
@@ -1406,7 +1408,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </section>
 
-<!-- ============ Article coda — a quiet close ============ -->
+<!-- ============ Article coda, a quiet close ============ -->
 <section class="article-coda reveal" aria-labelledby="codaTitle">
   <div class="coda-inner">
     <span class="coda-rule" aria-hidden="true"></span>
@@ -1416,7 +1418,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 
     <div class="coda-product">
       <a class="coda-jar" href="product.html" aria-label="Chestnut Honey, harvested in Greece">
-        <img src="assets/products-images/oak.webp?v=hd-2026-06-06-169" alt="Jar of raw chestnut honey from Greece" loading="lazy" width="200" height="200">
+        <img src="assets/products-images/oak.webp?v=hd-2026-06-06-170" alt="Jar of raw chestnut honey from Greece" loading="lazy" width="200" height="200">
       </a>
       <div class="coda-product-text">
         <span class="coda-product-eyebrow">Taste what you just read</span>
@@ -1499,8 +1501,8 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-169"></script>
-<script src="analytics.js?v=hd-2026-06-06-169"></script>
+<script src="shared.js?v=hd-2026-06-06-170"></script>
+<script src="analytics.js?v=hd-2026-06-06-170"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');

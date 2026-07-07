@@ -1,9 +1,9 @@
 /**
- * Homepage CMS — a single editable document for the marketing surface of the
+ * Homepage CMS, a single editable document for the marketing surface of the
  * homepage (hero, featured collection, trust badges, CTA, testimonials).
  *
  * Editor-managed copy/media ONLY. Featured products are referenced by their
- * Shopify handle (plain strings) — pricing, stock and checkout stay 100% in
+ * Shopify handle (plain strings), pricing, stock and checkout stay 100% in
  * Shopify. This is a singleton (one document, id "homepage").
  */
 export default {

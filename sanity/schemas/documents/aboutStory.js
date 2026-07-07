@@ -1,5 +1,5 @@
 /**
- * About page story content — a singleton document holding the editorial
+ * About page story content, a singleton document holding the editorial
  * narrative for about.html (hero + ordered story chapters + pull quote).
  * Editors manage the story; the frontend can hydrate it later. Additive.
  */

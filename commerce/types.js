@@ -1,5 +1,5 @@
 /* =================================================================
-   Harvest Deli — Commerce types (JSDoc; the vanilla equivalent of
+   Harvest Deli, Commerce types (JSDoc; the vanilla equivalent of
    TypeScript interfaces). These intentionally mirror the Shopify
    Storefront API so integration is plug-and-play. No runtime code.
    ================================================================= */

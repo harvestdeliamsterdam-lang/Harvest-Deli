@@ -1,4 +1,4 @@
-// Schema registry — import every type here and feed it to the Studio config.
+// Schema registry, import every type here and feed it to the Studio config.
 import seo from './objects/seo'
 import blockContent from './objects/blockContent'
 import faq from './objects/faq'

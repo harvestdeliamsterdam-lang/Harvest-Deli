@@ -8,31 +8,31 @@
      drops itself so the body is never permanently hidden. -->
 <script>(function(){try{if(!sessionStorage.getItem('hd-intro-played-v1')){document.documentElement.classList.add('hd-intro-pending');setTimeout(function(){var r=document.documentElement;if(r.classList.contains('hd-intro-pending')){r.classList.remove('hd-intro-pending');r.classList.add('hd-intro-done');setTimeout(function(){r.classList.remove('hd-intro-done');},800);}},8000);}}catch(e){}})();</script>
 <style>
-  /* CRITICAL pre-paint shield — inline so it applies at the very first paint,
+  /* CRITICAL pre-paint shield, inline so it applies at the very first paint,
      independent of shared.css's network fetch. Without this, Safari can paint
      the page's beige body for a beat before shared.css's shield loads. */
   html.hd-intro-pending, html.hd-intro-active { background: #0F2A1F; }
   html.hd-intro-pending body { opacity: 0 !important; }
   html.hd-intro-pending::before { content:''; position:fixed; inset:0; height:100vh; height:100lvh; background:#0F2A1F; z-index:9998; pointer-events:none; }
   /* during the intro the body must stay visible: the green overlay lives INSIDE
-     body — hiding body would hide the intro itself (the invisible-intro bug) */
+     body, hiding body would hide the intro itself (the invisible-intro bug) */
   html.hd-intro-active body { opacity: 1 !important; }
   /* The hero is ALWAYS dark (the cinematic still), never the beige body, even
-     before the main CSS / video load — kills the beige gap on first/returning loads. */
+     before the main CSS / video load, kills the beige gap on first/returning loads. */
   .hero { background-color: #0E0B08; }
   .video-stage { background-color: #0E0B08; }
 </style>
 <title>Harvest Deli, Liquid Sunlight, Slow &amp; Small</title>
 <meta name="description" content="Single estate, cold extracted honey from Greece. Numbered editions, sealed in wax, shipped from the cellar.">
 <link rel="canonical" href="https://harvestdeli.nl/">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-169">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-169" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-169">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-169">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-169">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-169" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-169">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-169">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-170">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-170" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-170">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-170">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-170">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-170" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-170">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-170">
 <meta name="theme-color" content="#10281f">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Harvest Deli, Liquid sunlight from Greece">
@@ -42,7 +42,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:alt" content="Harvest Deli — single-estate Greek honey from the Greek mountains">
+<meta property="og:image:alt" content="Harvest Deli, single-estate Greek honey from the Greek mountains">
 <meta property="og:url" content="https://harvestdeli.nl/">
 <meta property="og:site_name" content="Harvest Deli">
 <meta property="og:locale" content="nl_NL">
@@ -50,7 +50,7 @@
 <meta property="og:locale:alternate" content="el_GR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://harvestdeli.nl/assets/og/og-home.png">
-<meta name="twitter:image:alt" content="Harvest Deli — single-estate Greek honey from the Greek mountains">
+<meta name="twitter:image:alt" content="Harvest Deli, single-estate Greek honey from the Greek mountains">
 
 <script type="application/ld+json">
 {
@@ -117,7 +117,7 @@
      without waiting for the heavy video. We deliberately do NOT preload the
      video itself (it would saturate the connection ahead of shared.js and
      stall the intro IIFE). The <video preload="auto" fetchpriority="low"> below is enough. -->
-<link rel="preload" as="image" href="hero-poster.jpg?v=hd-2026-06-06-169" fetchpriority="high">
+<link rel="preload" as="image" href="hero-poster.jpg?v=hd-2026-06-06-170" fetchpriority="high">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap">
 <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
 <!-- Fonts loaded non-render-blocking (media=print swap); display=swap shows text immediately. -->
@@ -127,7 +127,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 </noscript>
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-169">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-170">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -187,9 +187,7 @@ body {
 
 /* ============ Logo SVG ============ */
 .logo-svg { display: block; height: 100%; width: auto; }
-.logo-svg .arched,
-.logo-svg .deli,
-.logo-svg .tagline { font-family: 'Newsreader', serif; }
+.logo-svg .arched.logo-svg .deli.logo-svg .tagline { font-family: 'Newsreader', serif; }
 .logo-mark.nav-size { height: 53px; }
 .logo-mark.loader-size { height: 120px; }
 .logo-mark.hero-size {
@@ -270,7 +268,7 @@ nav.site-nav .nav-right {
   align-items: center;
   gap: 28px;
 }
-.menu-btn, .nav-acquire {
+.menu-btn.nav-acquire {
   background: none;
   border: none;
   color: inherit;
@@ -289,8 +287,8 @@ nav.site-nav .nav-right {
   opacity: 0.92;
   padding-left: var(--track-label);
 }
-.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
-/* Homepage nav typography — premium, less technical (scoped here to win over shared.css) */
+.menu-btn:hover.nav-acquire:hover { opacity: 1; }
+/* Homepage nav typography, premium, less technical (scoped here to win over shared.css) */
 nav.site-nav .menu-btn,
 nav.site-nav .nav-acquire,
 nav.site-nav .nav-access,
@@ -305,7 +303,7 @@ nav.site-nav .nav-cart {
   gap: 4px;
   width: 18px;
 }
-.menu-btn .lines::before, .menu-btn .lines::after {
+.menu-btn .lines::before.menu-btn .lines::after {
   content: '';
   display: block;
   height: 1px;
@@ -372,7 +370,7 @@ nav.site-nav .nav-cart {
   width: 18px; height: 18px;
   position: relative;
 }
-.menu-close .x::before, .menu-close .x::after {
+.menu-close .x::before.menu-close .x::after {
   content: '';
   position: absolute;
   top: 50%; left: 0;
@@ -534,9 +532,9 @@ nav.site-nav .nav-cart {
   overflow: hidden;
   transition: opacity 1.4s var(--ease);
   /* The poster (= the video's exact first frame) is ALWAYS the backdrop, so the
-     hero is the cinematic still instantly — never a beige/empty gap while the
+     hero is the cinematic still instantly, never a beige/empty gap while the
      heavy video loads. The video sits on top and 'comes alive' seamlessly. */
-  background: #0E0B08 url("hero-poster.jpg?v=hd-2026-06-06-169") center/cover no-repeat;
+  background: #0E0B08 url("hero-poster.jpg?v=hd-2026-06-06-170") center/cover no-repeat;
 }
 .video-stage video {
   width: 100%;
@@ -869,7 +867,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   letter-spacing: 0.005em;
 }
 
-/* Origin — immersive split screen: editorial text left, cinematic video right */
+/* Origin, immersive split screen: editorial text left, cinematic video right */
 .origin {
   position: relative;
   display: grid;
@@ -894,7 +892,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 }
 .origin > * { position: relative; z-index: 1; }
 .origin__text { max-width: 46ch; justify-self: end; }
-/* video hugs the left edge of its column so it sits close to the text — no dead centre */
+/* video hugs the left edge of its column so it sits close to the text, no dead centre */
 .origin__media { justify-self: start; }
 .origin__head {
   font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif) !important;
@@ -914,7 +912,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 }
 .origin__text.in .origin__line { transform: scaleX(1); }
 .origin__text .chapter-body { margin-top: 30px; }
-/* vertical cinematic video — rounded 28px, softly floating, soft shadow */
+/* vertical cinematic video, rounded 28px, softly floating, soft shadow */
 .origin__media { display: flex; justify-content: center; }
 .origin__video-wrap {
   position: relative; width: 100%; max-width: 460px; aspect-ratio: 4 / 5;
@@ -945,7 +943,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   .origin__line { transition: none; transform: scaleX(1); }
 }
 
-/* ============ Process — centered vertical timeline (Aman × Loewe × Apple) ============ */
+/* ============ Process, centered vertical timeline (Aman × Loewe × Apple) ============ */
 .chapter.proc {
   position: relative;
   overflow: hidden;
@@ -1070,7 +1068,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 
 @media (max-width: 760px) {
   .proc__timeline { max-width: 460px; }
-  .proc__rail, .proc__rail-fill { left: 23px; }
+  .proc__rail.proc__rail-fill { left: 23px; }
   .proc__bee { left: 23px; }
   .proc__step {
     grid-template-columns: 46px 1fr;
@@ -1078,8 +1076,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   }
   .proc__step:not(:last-child) { margin-bottom: clamp(34px, 7vh, 56px); }
   .proc__node { grid-column: 1; }
-  .proc__step:nth-child(odd) .proc__content,
-  .proc__step:nth-child(even) .proc__content {
+  .proc__step:nth-child(odd) .proc__content.proc__step:nth-child(even) .proc__content {
     grid-column: 2; text-align: left; justify-self: start;
     padding: 0 0 0 18px; max-width: none;
   }
@@ -1596,8 +1593,7 @@ footer {
    front (also guards against content staying hidden if the reveal
    observer is delayed). */
 @media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .preview-card {
+  .reveal.preview-card {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -1629,14 +1625,14 @@ footer {
   .brand-reveal .brand-glow { width: 92vw; height: 60vh; }
   .brand-reveal .est { font-size: 9.5px; letter-spacing: 0.55em; }
   section.chapter { padding: var(--sp-y) var(--sp-x); }
-  .origin, .product-stage { grid-template-columns: 1fr; gap: 8vh; }
+  .origin.product-stage { grid-template-columns: 1fr; gap: 8vh; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 6vh 8%; }
   .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
   .display.huge { font-size: clamp(42px, 10.5vw, 70px); letter-spacing: -0.022em; line-height: 1.04; }
   .display.large { font-size: clamp(30px, 7.6vw, 50px); letter-spacing: -0.016em; line-height: 1.08; }
   .chapter-headline { font-size: clamp(38px, 9.5vw, 62px); letter-spacing: -0.02em; }
   .pd-title { font-size: clamp(40px, 10vw, 64px); }
-  .chapter-body, .product-meta .desc, .product-origin-meta p, .pd-desc { font-size: 14.5px; line-height: 1.8; }
+  .chapter-body.product-meta .desc.product-origin-meta p.pd-desc { font-size: 14.5px; line-height: 1.8; }
   .logo-mark.hero-size { height: 170px; max-width: 84vw; }
 }
 
@@ -1647,7 +1643,7 @@ footer {
 .idx-sel-title { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540; font-size: clamp(30px, 4.2vw, 52px); letter-spacing: -0.028em; line-height: 1.04; color: var(--ink, #1F1A14); max-width: 16ch; }
 /* Horizontal cinematic carousel: drag (desktop) + native swipe (mobile),
    scroll-snap, cards reveal as the rail enters view, then vertical flow resumes. */
-/* Centred, exclusive 3-up showcase — no horizontal scroll */
+/* Centred, exclusive 3-up showcase, no horizontal scroll */
 .idx-sel-head { text-align: center; }
 .idx-sel-title { margin-left: auto; margin-right: auto; max-width: 22ch; }
 .idx-sel-grid {
@@ -1728,13 +1724,13 @@ footer {
   .idx-sel-grid { grid-template-columns: 1fr; max-width: 440px; gap: 30px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .idx-sel-img img, .idx-sel-cta, .idx-sel-cta::after { transition: none; }
+  .idx-sel-img img.idx-sel-cta.idx-sel-cta::after { transition: none; }
   .idx-sel-card { opacity: 1 !important; transform: none !important; transition: none !important; }
-  .idx-sel-card:hover .idx-sel-img::after, .idx-sel-cta::before { animation: none; }
+  .idx-sel-card:hover .idx-sel-img::after.idx-sel-cta::before { animation: none; }
 }
 
 /* ============ Olive oil feature (replaces the large honey-jar block) ============ */
-/* ============ Olive oil — calm editorial split (Aesop × Loewe × Tom Ford) ============ */
+/* ============ Olive oil, calm editorial split (Aesop × Loewe × Tom Ford) ============ */
 .oo {
   position: relative; isolation: isolate; overflow: hidden;
   color: var(--ink, #1F1A14);
@@ -1794,7 +1790,7 @@ footer {
 .oo__cta .arrow { width: 22px; height: 1px; background: currentColor; transition: width 0.45s var(--ease); display: inline-block; }
 .oo__cta:hover .arrow { width: 34px; }
 
-/* the product card — bottle on cream, soft shadow, subtle float + cursor depth */
+/* the product card, bottle on cream, soft shadow, subtle float + cursor depth */
 .oo__stage { position: relative; display: flex; justify-content: center; align-items: center; }
 .oo__bottle {
   position: relative; z-index: 1; width: clamp(248px, 30vw, 392px);
@@ -1832,10 +1828,10 @@ footer {
   .oo__bottle { width: clamp(220px, 62vw, 320px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .oo__card, .oo__shimmer { animation: none; }
+  .oo__card.oo__shimmer { animation: none; }
 }
 
-/* ============ Editorial journal — magazine layout (Kinfolk × Aesop × Apple) ============ */
+/* ============ Editorial journal, magazine layout (Kinfolk × Aesop × Apple) ============ */
 .journal-preview { max-width: var(--page-max); margin: 0 auto; padding: var(--sp-y-tight) var(--sp-x) var(--sp-y); }
 .jp-head { text-align: center; margin: 0 auto clamp(44px, 6vw, 78px); max-width: none; }
 .jp-eyebrow { font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 600; margin-bottom: 16px; }
@@ -1902,7 +1898,7 @@ footer {
 }
 @media (prefers-reduced-motion: reduce) {
   .jp-card:hover::before { animation: none; }
-  .jp-figure img, .jp-card { transition: none; }
+  .jp-figure img.jp-card { transition: none; }
 }
 
 /* ============ Homepage hero, calm luxury after intro ============ */
@@ -1914,7 +1910,7 @@ footer {
 .video-stage::before { background: radial-gradient(ellipse at 50% 48%, transparent 52%, rgba(10,7,4,0.3) 100%); }
 .video-stage::after { background: linear-gradient(180deg, rgba(10,7,4,0.2) 0%, transparent 24%, transparent 74%, rgba(10,7,4,0.28) 100%); }
 
-/* ===== Homepage cinematic nav — luxury light glass (overrides the shared gold-on-black nav system) ===== */
+/* ===== Homepage cinematic nav, luxury light glass (overrides the shared gold-on-black nav system) ===== */
 body nav.site-nav {
   background: rgba(255, 255, 255, 0.08) !important;
   -webkit-backdrop-filter: blur(22px) saturate(130%) !important;
@@ -2092,10 +2088,10 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
        The cinematic scene language is preserved as-is below. -->
   <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli, Single-estate Greek honey</h1>
   <div class="video-stage">
-    <video id="heroVideo" muted loop playsinline webkit-playsinline preload="none" poster="hero-poster.jpg?v=hd-2026-06-06-169">
+    <video id="heroVideo" muted loop playsinline webkit-playsinline preload="none" poster="hero-poster.jpg?v=hd-2026-06-06-170">
       <!-- Desktop/large screens get the crisp 2560-wide master; phones fall back to the lean 1920 (saves data, their screens can't show more). -->
-      <source src="video-2k.mp4?v=hd-2026-06-06-169" type="video/mp4" media="(min-width: 900px)">
-      <source src="video.mp4?v=hd-2026-06-06-169" type="video/mp4">
+      <source src="video-2k.mp4?v=hd-2026-06-06-170" type="video/mp4" media="(min-width: 900px)">
+      <source src="video.mp4?v=hd-2026-06-06-170" type="video/mp4">
     </video>
   </div>
 
@@ -2124,7 +2120,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 </section>
 <script>
 (function () {
-  /* Three featured harvests only — a curated, centred showcase (no scroll) */
+  /* Three featured harvests only, a curated, centred showcase (no scroll) */
   var SLUGS = ['chestnut', 'olive-oil', 'mountain-tea'];
   var FROM_WORD = { nl: 'vanaf', el: 'από', en: 'from' };
   function fromWord() { return FROM_WORD[(window.HD_lang && window.HD_lang()) || 'en'] || 'from'; }
@@ -2206,8 +2202,8 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     </div>
     <div class="origin__media reveal delay-1">
       <div class="origin__video-wrap">
-        <video class="origin__video" id="originVideo" muted loop playsinline webkit-playsinline preload="none" poster="hero-poster.jpg?v=hd-2026-06-06-169" aria-hidden="true">
-          <source src="origin.mp4?v=hd-2026-06-06-169" type="video/mp4">
+        <video class="origin__video" id="originVideo" muted loop playsinline webkit-playsinline preload="none" poster="hero-poster.jpg?v=hd-2026-06-06-170" aria-hidden="true">
+          <source src="origin.mp4?v=hd-2026-06-06-170" type="video/mp4">
         </video>
         <span class="origin__caption" data-i18n="idx.ch1.caption">Greece &middot; Spring harvest</span>
       </div>
@@ -2239,7 +2235,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
         <div class="proc__content">
           <span class="proc__num">01</span>
           <h3 class="proc__name" data-i18n="idx.step1.h">Wild Harvest</h3>
-          <p class="proc__desc" data-i18n="idx.step1.p">Combs gathered by hand from hives set high among untended wildflowers — never near a road, never near a field.</p>
+          <p class="proc__desc" data-i18n="idx.step1.p">Combs gathered by hand from hives set high among untended wildflowers, never near a road, never near a field.</p>
         </div>
       </div>
       <div class="proc__step reveal">
@@ -2255,7 +2251,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
         <div class="proc__content">
           <span class="proc__num">03</span>
           <h3 class="proc__name" data-i18n="idx.step3.h">Natural Resting</h3>
-          <p class="proc__desc" data-i18n="idx.step3.p">Settled for fourteen quiet days in oak. Nothing forced, nothing filtered — the texture left fully alive.</p>
+          <p class="proc__desc" data-i18n="idx.step3.p">Settled for fourteen quiet days in oak. Nothing forced, nothing filtered, the texture left fully alive.</p>
         </div>
       </div>
     </div>
@@ -2271,7 +2267,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <a class="jp-card reveal" href="article-de-smaak-van-de-griekse-zon.html">
         <div class="jp-figure">
           <span class="jp-tag" data-i18n="jp.cat.tasting">Tasting</span>
-          <img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-169" width="1300" height="731" alt="Golden light over a Greek grove at sunrise" loading="lazy">
+          <img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-170" width="1300" height="731" alt="Golden light over a Greek grove at sunrise" loading="lazy">
         </div>
         <div class="jp-body">
           <div class="jp-metar"><span data-i18n="jp.a1.read">8 min read</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.a1.date">March 2025</span></div>
@@ -2283,7 +2279,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <a class="jp-card reveal delay-1" href="article-griekse-honing-smaak.html">
         <div class="jp-figure">
           <span class="jp-tag" data-i18n="jp.cat.health">Health benefits</span>
-          <img src="honeycomb.jpg?v=hd-2026-06-06-169" width="1200" height="2150" alt="Raw Greek honeycomb dripping with unfiltered honey" loading="lazy">
+          <img src="honeycomb.jpg?v=hd-2026-06-06-170" width="1200" height="2150" alt="Raw Greek honeycomb dripping with unfiltered honey" loading="lazy">
         </div>
         <div class="jp-body">
           <div class="jp-metar"><span data-i18n="jp.a3.read">6 min read</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.a3.date">January 2025</span></div>
@@ -2295,7 +2291,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <a class="jp-card reveal delay-2" href="article-griekse-honing-nederland.html">
         <div class="jp-figure">
           <span class="jp-tag" data-i18n="jp.cat.guide">Guide</span>
-          <img src="assets/markt.webp?v=hd-2026-06-06-169" width="1300" height="975" alt="Amsterdam market stall with single-estate Greek honey" loading="lazy">
+          <img src="assets/markt.webp?v=hd-2026-06-06-170" width="1300" height="975" alt="Amsterdam market stall with single-estate Greek honey" loading="lazy">
         </div>
         <div class="jp-body">
           <div class="jp-metar"><span data-i18n="jp.a2.read">7 min read</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.a2.date">February 2025</span></div>
@@ -2325,7 +2321,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <div class="oo__stage reveal delay-1">
         <div class="oo__bottle" id="ooBottle">
           <div class="oo__card">
-            <img class="oo__bottle-img" src="assets/greekoliveoil.webp?v=hd-2026-06-06-169" width="1086" height="1448" alt="Single-estate Harvest extra virgin olive oil, first cold pressing from Greece" loading="lazy">
+            <img class="oo__bottle-img" src="assets/greekoliveoil.webp?v=hd-2026-06-06-170" width="1086" height="1448" alt="Single-estate Harvest extra virgin olive oil, first cold pressing from Greece" loading="lazy">
             <span class="oo__shimmer" aria-hidden="true"></span>
           </div>
         </div>
@@ -2345,28 +2341,28 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     </div>
     <div class="lhw__wall reveal delay-1">
       <div class="lhw__item" style="--l:0%;--t:3%;--w:25%;--ar:4/5;--rot:-3deg;--dur:8.5s;--delay:-1s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-1.jpg?v=hd-2026-06-06-169" width="618" height="826" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-1.jpg?v=hd-2026-06-06-170" width="618" height="826" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:27%;--t:0%;--w:20%;--ar:2/3;--rot:2.4deg;--dur:9.5s;--delay:-3s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-2.jpg?v=hd-2026-06-06-169" width="616" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-2.jpg?v=hd-2026-06-06-170" width="616" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:50%;--t:7%;--w:23%;--ar:1/1;--rot:-2deg;--dur:7.5s;--delay:-2s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-3.jpg?v=hd-2026-06-06-169" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-3.jpg?v=hd-2026-06-06-170" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:76%;--t:2%;--w:21%;--ar:4/5;--rot:3deg;--dur:8s;--delay:-4s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-4.jpg?v=hd-2026-06-06-169" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-4.jpg?v=hd-2026-06-06-170" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:4%;--t:54%;--w:21%;--ar:1/1;--rot:2.6deg;--dur:9s;--delay:-2.5s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-5.jpg?v=hd-2026-06-06-169" width="622" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-5.jpg?v=hd-2026-06-06-170" width="622" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:28%;--t:49%;--w:24%;--ar:4/5;--rot:-2.4deg;--dur:8.8s;--delay:0s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-6.jpg?v=hd-2026-06-06-169" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-6.jpg?v=hd-2026-06-06-170" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:57%;--t:53%;--w:21%;--ar:3/4;--rot:2.8deg;--dur:7.8s;--delay:-3.5s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-7.jpg?v=hd-2026-06-06-169" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-7.jpg?v=hd-2026-06-06-170" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:81%;--t:47%;--w:17%;--ar:4/5;--rot:-3deg;--dur:9.2s;--delay:-1.5s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-8.jpg?v=hd-2026-06-06-169" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-8.jpg?v=hd-2026-06-06-170" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
     </div>
   </div>
@@ -2398,7 +2394,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     box-shadow: 0 44px 96px -58px rgba(31, 26, 20, 0.42);
     background:
       linear-gradient(180deg, rgba(20, 14, 8, 0.08) 40%, rgba(20, 14, 8, 0.46) 100%),
-      url("assets/markt.webp?v=hd-2026-06-06-169") center / cover no-repeat,
+      url("assets/markt.webp?v=hd-2026-06-06-170") center / cover no-repeat,
       radial-gradient(120% 80% at 30% 30%, #C58F3F 0%, #8E5B23 38%, #4F3415 80%, #2A1B0A 100%);
   }
   .idx-markets__media::after {
@@ -2634,7 +2630,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
       <div class="faq-eyebrow"><span class="num">VII.</span><span data-i18n="idx.faq.eyebrow">The concierge</span></div>
       <h2 id="faqHeading" data-i18n-html="idx.faq.title_html">Questions,<br>answered with <em>care.</em></h2>
       <p class="faq-desc" data-i18n="idx.faq.desc">Private assistance for those who value slow food.</p>
-      <p class="faq-response" data-i18n="idx.faq.response">Response time — usually within 24 hours</p>
+      <p class="faq-response" data-i18n="idx.faq.response">Response time, usually within 24 hours</p>
       <p class="faq-help" data-i18n-html="idx.faq.help_html">Cannot find your question? Write to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.</p>
     </div>
 
@@ -2715,8 +2711,8 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-169"></script>
-<script defer src="analytics.js?v=hd-2026-06-06-169"></script>
+<script src="shared.js?v=hd-2026-06-06-170"></script>
+<script defer src="analytics.js?v=hd-2026-06-06-170"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');
@@ -2764,12 +2760,12 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     loader.classList.add('hidden');
     setTimeout(() => { loader.style.display = 'none'; }, 1800);
   }
-  /* Hide the loader as soon as the hero is VISUALLY ready — the poster is the
+  /* Hide the loader as soon as the hero is VISUALLY ready, the poster is the
      video's exact first frame, so it fills the stage instantly. No reason to
      wait for the heavy video to be playable; it crosses in seamlessly when
      ready. This kills the long "loading" wait on returning visits. */
   /* The poster backdrop (on .video-stage) is the cinematic still instantly, so
-     the loader can lift as soon as it's ready — no waiting on the heavy video,
+     the loader can lift as soon as it's ready, no waiting on the heavy video,
      no beige/empty gap. The video plays on top; poster = its first frame, so it
      'comes alive' seamlessly. */
   var hp = new Image();

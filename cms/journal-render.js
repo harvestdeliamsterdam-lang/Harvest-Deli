@@ -1,5 +1,5 @@
 /* =============================================================
-   Harvest Deli — Journal renderer (DORMANT by default)
+   Harvest Deli, Journal renderer (DORMANT by default)
    Renders journal.html's featured + archive lists from the CMS,
    reproducing the EXISTING card markup/classes (.jr-feat / .jr-post)
    so there is no redesign. Does nothing unless HD_CMS.config.render

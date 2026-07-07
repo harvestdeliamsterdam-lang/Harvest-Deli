@@ -1,5 +1,5 @@
 /**
- * EMAIL TYPE 1 — internal notification sent to hello@harvestdeli.nl when a
+ * EMAIL TYPE 1, internal notification sent to hello@harvestdeli.nl when a
  * customer submits the contact (or partnership) form. Reads like a luxury
  * brand inquiry: structured, calm, gold-accented.
  */
@@ -13,7 +13,7 @@ const L = require('./layout');
 function contactInternal(d) {
   const isPartner = d.formType === 'partnership';
   const who = d.name || d.company || 'A visitor';
-  const subject = (isPartner ? 'New partnership request — ' : 'New inquiry — ') + who;
+  const subject = (isPartner ? 'New partnership request, ' : 'New inquiry, ') + who;
 
   let rows = '';
   rows += L.kv('Name', L.esc(d.name) || '&mdash;');
@@ -34,7 +34,7 @@ function contactInternal(d) {
     L.kv('Message', '<span style="font-family:' + L.SERIF + ';font-size:16px;line-height:1.8;color:' + L.C.ink + ';">' + L.multiline(d.message) + '</span>') +
     '<div style="height:20px;"></div>' +
     L.button('Reply to ' + (d.name || 'them'), 'mailto:' + L.esc(d.email)) +
-    '<p style="margin:14px 0 0;font-family:' + L.SANS + ';font-size:12px;color:' + L.C.inkSoft + ';">Reply directly to this email — it goes straight to ' + L.esc(d.email) + '.</p>';
+    '<p style="margin:14px 0 0;font-family:' + L.SANS + ';font-size:12px;color:' + L.C.inkSoft + ';">Reply directly to this email, it goes straight to ' + L.esc(d.email) + '.</p>';
 
   return { subject: subject, html: L.shell({ preheader: (isPartner ? 'Partnership request from ' : 'Message from ') + who, body: body }) };
 }
