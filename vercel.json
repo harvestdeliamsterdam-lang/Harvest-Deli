@@ -3,16 +3,85 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=()"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(mp4|webm|jpg|jpeg|png|svg|webp|woff2)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/article-ultimate-guide-greek-honey.html",
+      "destination": "/article-griekse-honing-complete-gids.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-raw-greek-honey.html",
+      "destination": "/article-rauwe-griekse-honing.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-greek-honey-health-benefits.html",
+      "destination": "/article-is-honing-gezond.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-how-greek-honey-is-made.html",
+      "destination": "/article-hoe-wordt-honing-gemaakt.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-greek-beekeeping-tradition.html",
+      "destination": "/article-griekse-imkertraditie.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-why-does-honey-crystallize.html",
+      "destination": "/article-waarom-kristalliseert-honing.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-how-long-does-honey-last.html",
+      "destination": "/article-hoe-lang-is-honing-houdbaar.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-greek-honey-varieties.html",
+      "destination": "/article-griekse-honingsoorten.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-raw-honey-vs-processed-honey.html",
+      "destination": "/article-rauwe-honing-vs-bewerkte-honing.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-greek-honey-vs-manuka.html",
+      "destination": "/article-griekse-honing-vs-manuka-honing.html",
+      "permanent": true
+    },
+    {
+      "source": "/article-taste-the-greek-sun.html",
+      "destination": "/article-de-smaak-van-de-griekse-zon.html",
+      "permanent": true
     }
   ]
 }

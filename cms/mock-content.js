@@ -60,7 +60,7 @@
       status: 'published',
       featured: true,
       language: 'en',
-      href: 'article-taste-the-greek-sun.html',
+      href: 'article-de-smaak-van-de-griekse-zon.html',
       body: [
         block('lede', 'Honey is a place before it is a flavour. Greece is the place this one comes from.'),
         block('h2', 'I. The mountain in the jar'),

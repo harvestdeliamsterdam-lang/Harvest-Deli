@@ -1885,7 +1885,7 @@
     'idx.faq.q2': 'Where do you ship to?',
     'idx.faq.a2_html': 'The Netherlands and Belgium, with a limited number of other destinations available at checkout. Shipping is complimentary within the Netherlands & Belgium above &euro;65.',
     'idx.faq.q3': 'Is your honey raw?',
-    'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-taste-the-greek-sun.html">tasting essay</a>.',
+    'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-de-smaak-van-de-griekse-zon.html">tasting essay</a>.',
     'idx.faq.q4': 'How long does the honey keep?',
     'idx.faq.a4_html': 'Indefinitely, sealed. Honey contains almost no water and is naturally antibacterial. Store cool, dry and out of direct light. Crystallisation is natural and reversible: warm the jar in a water bath at no more than 35&deg;C to return it to liquid without damaging it.',
     'idx.faq.q5': 'Can I return an order?',
@@ -1926,7 +1926,7 @@
     'idx.faq.q2': 'Waar verzenden jullie naartoe?',
     'idx.faq.a2_html': 'Nederland en België, met een beperkt aantal overige bestemmingen beschikbaar bij de checkout. Verzending is gratis binnen Nederland & België boven &euro;65.',
     'idx.faq.q3': 'Is jullie honing rauw?',
-    'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="article-taste-the-greek-sun.html">proefverslag</a>.',
+    'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="article-de-smaak-van-de-griekse-zon.html">proefverslag</a>.',
     'idx.faq.q4': 'Hoe lang blijft de honing goed?',
     'idx.faq.a4_html': 'Onbeperkt, mits gesloten bewaard. Honing bevat vrijwel geen water en is van nature antibacterieel. Bewaar koel, droog en uit het licht. Kristallisatie is natuurlijk en omkeerbaar: plaats de pot in een waterbad van maximaal 35&deg;C om hem voorzichtig vloeibaar te maken.',
     'idx.faq.q5': 'Kan ik mijn bestelling retourneren?',
@@ -1967,7 +1967,7 @@
     'idx.faq.q2': 'Πού αποστέλλετε;',
     'idx.faq.a2_html': 'Ολλανδία και Βέλγιο, με περιορισμένο αριθμό άλλων προορισμών διαθέσιμων στο checkout. Δωρεάν αποστολή εντός Ολλανδίας και Βελγίου άνω των &euro;65.',
     'idx.faq.q3': 'Είναι ωμό το μέλι σας;',
-    'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="article-taste-the-greek-sun.html">δοκίμιο γευσιγνωσίας</a>.',
+    'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="article-de-smaak-van-de-griekse-zon.html">δοκίμιο γευσιγνωσίας</a>.',
     'idx.faq.q4': 'Πόσο διαρκεί το μέλι;',
     'idx.faq.a4_html': 'Επ’ αόριστον, σφραγισμένο. Το μέλι έχει σχεδόν καθόλου νερό και είναι από τη φύση του αντιβακτηριδιακό. Φυλάξτε δροσερό, ξηρό και μακριά από το φως. Η κρυστάλλωση είναι φυσική και αντιστρέψιμη: ζεστάνετε το βάζο σε υδατόλουτρο μέχρι 35&deg;C για να επιστρέψει σε υγρή μορφή.',
     'idx.faq.q5': 'Μπορώ να επιστρέψω μια παραγγελία;',
@@ -2273,7 +2273,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-169',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2292,7 +2292,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-169',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2311,7 +2311,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-169',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2330,7 +2330,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-169',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2349,7 +2349,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-169',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2368,7 +2368,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-169',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2387,7 +2387,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-169',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2406,7 +2406,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-169',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2459,7 +2459,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-168',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-169',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -5330,20 +5330,23 @@
     const minutes = Math.max(1, Math.round(words / 220)); // 220 wpm = thoughtful reading pace
     const meta = document.querySelector('.article-meta');
     if (!meta) return;
-    // Replace any hard-coded "X min read" span if present
+    // Replace any hard-coded reading-time span if present (EN "min read" or NL "min lezen"),
+    // keeping the language of the page's own copy.
+    const nl = ((window.HD_lang && window.HD_lang()) || document.documentElement.lang || 'nl') === 'nl';
     const spans = meta.querySelectorAll('span');
     let replaced = false;
     spans.forEach(s => {
-      if (/min\s+read/i.test(s.textContent)) {
-        s.textContent = minutes + ' min read';
+      const m = /min\s+(read|lezen)/i.exec(s.textContent);
+      if (m) {
+        s.textContent = minutes + ' min ' + m[1].toLowerCase();
         replaced = true;
       }
     });
     if (!replaced) {
-      // Inject before first dot/separator
+      // Inject before first dot/separator, in the page language
       const dot = meta.querySelector('.dot');
       const node = document.createElement('span');
-      node.textContent = minutes + ' min read';
+      node.textContent = minutes + (nl ? ' min lezen' : ' min read');
       if (dot) meta.insertBefore(node, dot);
       else meta.appendChild(node);
     }
@@ -5407,9 +5410,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-168'], ['hd-search-js', 'search.js?v=hd-2026-06-06-168'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-168'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-168'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-168'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-168'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-168'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-168'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-168'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-168']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-169'], ['hd-search-js', 'search.js?v=hd-2026-06-06-169'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-169'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-169'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-169'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-169'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-169'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-169'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-169'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-169']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

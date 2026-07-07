@@ -18,7 +18,7 @@
     { type: 'Collection', title: 'Honey', sub: 'Nine single-origin honeys', url: 'shop.html' },
     { type: 'Collection', title: 'Olive Oil', sub: 'Estate pressing', url: 'product-olive-oil.html' },
     { type: 'Collection', title: 'Tea', sub: 'Wild mountain tea', url: 'product-mountain-tea.html' },
-    { type: 'Story', title: 'Taste the Greek sun', sub: 'Journal', url: 'article-taste-the-greek-sun.html' },
+    { type: 'Story', title: 'Proef de Griekse zon', sub: 'Journal', url: 'article-de-smaak-van-de-griekse-zon.html' },
     { type: 'Story', title: 'The Journal', sub: 'Field notes', url: 'journal.html' },
     { type: 'Story', title: 'The Origin', sub: 'Greece', url: 'about.html' }
   ];
