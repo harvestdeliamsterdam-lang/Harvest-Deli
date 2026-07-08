@@ -33,16 +33,16 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-170">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-170" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-170">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-170">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-170">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-170" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-170">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-170">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-171">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-171" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-171">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-171">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-171">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-171" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-171">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-171">
 <meta name="theme-color" content="#10281f">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-170">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-171">
 
 <style>
 :root {
@@ -91,7 +91,7 @@ nav.site-nav {
 }
 nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; color: inherit; }
 nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
-.menu-btn.nav-acquire {
+.menu-btn, .nav-acquire {
   background: none; border: none; color: inherit; cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
@@ -100,9 +100,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   text-decoration: none; transition: opacity 0.5s var(--ease);
   opacity: 0.92; padding-left: var(--track-label);
 }
-.menu-btn:hover.nav-acquire:hover { opacity: 1; }
+.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
 .menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
-.menu-btn .lines::before.menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
 .menu-btn .lines::before { width: 100%; }
 .menu-btn .lines::after { width: 70%; }
 .nav-acquire { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
@@ -304,7 +304,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   margin-top: 40px;
   margin-bottom: 14px;
 }
-.article-body ul.article-body ol {
+.article-body ul, .article-body ol {
   margin: 20px 0 36px;
   padding-left: 28px;
 }
@@ -477,7 +477,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   position: relative;
   margin-top: 6px;
 }
-.faq-q .plus::before.faq-q .plus::after {
+.faq-q .plus::before, .faq-q .plus::after {
   content: '';
   position: absolute;
   background: var(--gold-deep);
@@ -622,11 +622,11 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .related-card .region { display: none; }
 @media (max-width: 860px) {
   .related-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; gap: 56px; }
-  .related-card.related-card:nth-child(1).related-card:nth-child(2).related-card:nth-child(3) { --ty: 0px; transform: none; }
+  .related-card, .related-card:nth-child(1), .related-card:nth-child(2), .related-card:nth-child(3) { --ty: 0px; transform: none; }
   .related-card:hover { transform: translateY(-8px) rotate(-1.4deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .related-card.related-card:hover { transition: none; transform: none; }
+  .related-card, .related-card:hover { transition: none; transform: none; }
   .related-card:hover .frame img { transform: none; }
 }
 
@@ -807,7 +807,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   padding-left: var(--track-button);
 }
 .menu-close .x { width: 18px; height: 1px; background: currentColor; position: relative; }
-.menu-close .x::before.menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
+.menu-close .x::before, .menu-close .x::after { content: ''; position: absolute; inset: 0; background: currentColor; transform-origin: center; }
 .menu-close .x::before { transform: rotate(45deg); }
 .menu-close .x::after { transform: rotate(-45deg); }
 .menu-content {
@@ -1083,7 +1083,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 @media (prefers-reduced-motion: reduce) {
   .coda-bee { display: none; }
   .article-coda .coda-inner > * { opacity: 1; transform: none; transition: none; }
-  .coda-jar img.coda-btn { transition: none; }
+  .coda-jar img, .coda-btn { transition: none; }
   .coda-btn::before { display: none; }
 }
 
@@ -1149,7 +1149,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   "@id": "https://harvestdeli.nl/article-griekse-honingsoorten.html"
  },
  "articleSection": "Rauwe Honing",
- "wordCount": 465,
+ "wordCount": 476,
  "inLanguage": "nl"
 }
 </script>
@@ -1325,7 +1325,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 
   <div class="article-wide">
     <figure class="article-image art-hero-crop">
-      <img src="assets/products-images/thyme-serving.webp?v=hd-2026-06-06-170" alt="Tijmhoning gedruppeld over ricotta op zuurdesem met verse tijm" fetchpriority="high" width="1228" height="2200">
+      <img src="assets/products-images/thyme-serving.webp?v=hd-2026-06-06-171" alt="Tijmhoning gedruppeld over ricotta op zuurdesem met verse tijm" fetchpriority="high" width="1228" height="2200">
     </figure>
   </div>
 
@@ -1340,7 +1340,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 <p><strong><a href="product.html?p=pine">Dennen (Péfko)</a></strong>, amber tot donker, harsig en warm, mild en opvallend weinig zoet. De dagelijkse honing van Griekenland en zijn grootste oogst, gemaakt van honingdauw in de kustdennenbossen. Rijk aan sporenelementen, kristalliseert zeer traag. De allrounder: brood, kaas, marinades, thee.</p>
 <p><strong><a href="product.html?p=fir-vanilla">Spar (Eláti)</a></strong>, parelgoud, dik, zijdezacht en glanzend, met elegante vanille-achtige tonen. De bergzeldzaamheid, verzameld boven de duizend meter; kristalliseert vrijwel niet dankzij het lage glucosegehalte. Een honing om van de lepel te eten en te serveren aan gasten die je wilt overtuigen.</p>
 <aside class="art-cta" aria-label="Uit de collectie">
-      <img src="assets/products-images/thyme.webp?v=hd-2026-06-06-170" alt="Pot Thyme Honey" loading="lazy" width="128" height="192">
+      <img src="assets/products-images/thyme.webp?v=hd-2026-06-06-171" alt="Pot Thyme Honey" loading="lazy" width="128" height="192">
       <div class="t"><span class="k">Proef waar je over leest</span>
         <div class="n">Thyme Honey</div>
         <div class="p">Rauw &middot; &eacute;&eacute;n oorsprong &middot; &euro;19</div></div>
@@ -1392,7 +1392,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
       <p class="coda-sub">Uit de Griekse bergen, elke oogst volgt de natuur, nooit de haast.</p>
       <div class="coda-product">
         <a class="coda-jar" href="product.html?p=thyme" aria-label="Thyme Honey, geoogst in Griekenland">
-          <img src="assets/products-images/thyme.webp?v=hd-2026-06-06-170" alt="Pot rauwe Thyme Honey uit Griekenland" loading="lazy" width="200" height="200">
+          <img src="assets/products-images/thyme.webp?v=hd-2026-06-06-171" alt="Pot rauwe Thyme Honey uit Griekenland" loading="lazy" width="200" height="200">
         </a>
         <div class="coda-product-text">
           <span class="coda-product-eyebrow">Proef wat je zojuist las</span>
@@ -1456,8 +1456,8 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-170"></script>
-<script src="analytics.js?v=hd-2026-06-06-170"></script>
+<script src="shared.js?v=hd-2026-06-06-171"></script>
+<script src="analytics.js?v=hd-2026-06-06-171"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
@@ -1486,7 +1486,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 </script>
-<script src="journal-data.js?v=hd-2026-06-06-170"></script>
+<script src="journal-data.js?v=hd-2026-06-06-171"></script>
 <script>
 (function () {
   var grid = document.getElementById('relatedGrid');
@@ -1502,7 +1502,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   });
   grid.innerHTML = all.slice(0, 3).map(function (a) {
     return '<a class="rel-card" href="' + a.url + '">' +
-      '<div class="im"><img src="' + a.image + '?v=hd-2026-06-06-170" alt="" loading="lazy"></div>' +
+      '<div class="im"><img src="' + a.image + '?v=hd-2026-06-06-171" alt="" loading="lazy"></div>' +
       '<div class="tx"><span class="c">' + a.catLabel + '</span>' +
       '<div class="h">' + a.title + '</div>' +
       '<div class="m">' + a.readMin + ' min lezen</div></div></a>';

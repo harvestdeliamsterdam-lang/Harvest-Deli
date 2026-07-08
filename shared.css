@@ -486,6 +486,51 @@
   .lang-toggle button { min-width: 44px; min-height: 44px; padding: 0; }
 }
 
+/* ===== Mobile glass NL/EN toggle (injected into the nav by shared.js) =====
+   Hidden on desktop (the full .lang-toggle handles that); on phones it is a
+   compact frosted-glass segmented pill, always visible at the top. Colours
+   ride the nav's gold accent tokens so it reads right on every page. */
+.hd-lang-mobile { display: none; }
+@media (max-width: 900px) {
+  body nav.site-nav .hd-lang-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    -webkit-backdrop-filter: blur(16px) saturate(150%);
+    backdrop-filter: blur(16px) saturate(150%);
+    border: 1px solid rgba(212, 172, 106, 0.30);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 6px 16px -10px rgba(20, 14, 8, 0.55);
+    flex: 0 0 auto;
+  }
+  body nav.site-nav .hd-lang-mobile button {
+    -webkit-appearance: none; appearance: none;
+    border: 0; background: transparent; cursor: pointer; margin: 0;
+    min-width: 38px; min-height: 34px; padding: 0 12px;
+    border-radius: 999px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px !important; letter-spacing: 0.14em; font-weight: 600;
+    text-transform: uppercase;
+    color: var(--hd-nav-gold-soft, #C7A667);
+    opacity: 0.7;
+    line-height: 1;
+    transition: background 0.3s var(--ease, ease), color 0.3s var(--ease, ease), opacity 0.3s var(--ease, ease);
+    -webkit-tap-highlight-color: transparent; touch-action: manipulation;
+  }
+  body nav.site-nav .hd-lang-mobile button:hover { opacity: 1; }
+  body nav.site-nav .hd-lang-mobile button.active {
+    background: rgba(245, 239, 228, 0.96);   /* clear cream fill = unmistakably selected */
+    color: #241C14;
+    opacity: 1;
+    box-shadow: 0 2px 8px -3px rgba(20, 14, 8, 0.5);
+  }
+  body nav.site-nav .hd-lang-mobile button:focus-visible {
+    outline: 2px solid var(--gold-deep, #9C6F2E); outline-offset: 2px;
+  }
+}
+
 /* ============================================================
    Skip to content link, appears for keyboard users only.
    Injected on every page by shared.js.

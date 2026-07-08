@@ -6,14 +6,14 @@
 <title>Chestnut Honey, Edition 1 · Harvest Deli</title>
 <meta name="description" content="Cold extracted chestnut honey from a single Greek grove. Dark, resinous, mineral. 384 numbered jars per harvest. Sealed in wax, shipped from Greece within the week.">
 <link rel="canonical" href="https://harvestdeli.nl/product.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-170">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-170" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-170">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-170">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-170">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-170" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-170">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-170">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-171">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-171" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-171">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-171">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-171">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-171" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-171">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-171">
 <meta name="hd-product-slug" content="chestnut">
 <script>(function(){try{var p=new URLSearchParams(location.search).get('p');var ok=['chestnut','pine','oak','arbutus','fir-vanilla','orange-blossom','acacia','thyme','heather'];var c=document.querySelector('link[rel="canonical"]');if(p&&ok.indexOf(p)>-1){var m=document.querySelector('meta[name="hd-product-slug"]');if(m)m.setAttribute('content',p);/* chestnut == bare product.html (clean canonical); every other honey is its own ?p= URL */if(c)c.setAttribute('href',p==='chestnut'?'https://harvestdeli.nl/product.html':'https://harvestdeli.nl/product.html?p='+p);}}catch(e){}})();</script>
 
@@ -115,7 +115,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-170">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-171">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -175,7 +175,7 @@ nav.site-nav {
 }
 nav.site-nav .nav-brand { display: flex; align-items: center; height: 44px; text-decoration: none; }
 nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
-.menu-btn.nav-acquire {
+.menu-btn, .nav-acquire {
   background: none; border: none; color: inherit; cursor: pointer;
   font-family: 'Inter', sans-serif;
   font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
@@ -185,9 +185,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
   opacity: 0.92;
   padding-left: var(--track-label);
 }
-.menu-btn:hover.nav-acquire:hover { opacity: 1; }
+.menu-btn:hover, .nav-acquire:hover { opacity: 1; }
 .menu-btn .lines { display: inline-flex; flex-direction: column; gap: 4px; width: 18px; }
-.menu-btn .lines::before.menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
+.menu-btn .lines::before, .menu-btn .lines::after { content: ''; display: block; height: 1px; background: currentColor; }
 .menu-btn .lines::before { width: 100%; }
 .menu-btn .lines::after { width: 70%; }
 .nav-acquire { border-bottom: 1px solid currentColor; padding-bottom: 4px; }
@@ -222,7 +222,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 }
 .menu-close:hover { opacity: 1; }
 .menu-close .x { width: 18px; height: 18px; position: relative; }
-.menu-close .x::before.menu-close .x::after {
+.menu-close .x::before, .menu-close .x::after {
   content: ''; position: absolute; top: 50%; left: 0;
   width: 100%; height: 1px; background: currentColor;
 }
@@ -700,7 +700,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 36px; }
 .pd-acc summary:hover { color: var(--gold-deep); }
 .pd-acc summary:focus-visible { outline: 2px solid var(--gold-deep); outline-offset: 2px; }
 .pd-acc .acc-icon { position: relative; width: 11px; height: 11px; flex: none; }
-.pd-acc .acc-icon::before.pd-acc .acc-icon::after {
+.pd-acc .acc-icon::before, .pd-acc .acc-icon::after {
   content: ''; position: absolute; background: currentColor;
   top: 50%; left: 0; width: 11px; height: 1px; margin-top: -0.5px;
   transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
@@ -1130,7 +1130,7 @@ footer {
   .jar-atmos { display: none; }
   .pdg-thumbs { justify-content: center; }
   .product-details { padding-left: 0; }
-  .tasting.product-origin.details.also { padding: 12vh 7%; }
+  .tasting, .product-origin, .details, .also { padding: 12vh 7%; }
   .tasting-grid { grid-template-columns: 1fr; gap: 6vh; }
   .product-origin { grid-template-columns: 1fr; gap: 6vh; }
   .details-grid { grid-template-columns: 1fr 1fr; gap: 5vh 6%; }
@@ -1147,7 +1147,7 @@ footer {
   .pd-title { font-size: clamp(40px, 10vw, 64px); letter-spacing: -0.022em; line-height: 1.06; }
   .section-headline { font-size: clamp(36px, 9vw, 58px); letter-spacing: -0.02em; line-height: 1.1; }
   .product-origin-meta h2 { font-size: clamp(34px, 8.5vw, 52px); }
-  .pd-desc.product-origin-meta p.taste-col p { font-size: 14.5px; line-height: 1.8; }
+  .pd-desc, .product-origin-meta p, .taste-col p { font-size: 14.5px; line-height: 1.8; }
   .pd-price { font-size: 32px; }
   .detail-cell p { font-size: 19px; }
   .pd-meta { gap: 10px 14px; }
@@ -1165,11 +1165,16 @@ footer {
   .crumbs           { padding: 0 5% 2vh; font-size: 8.5px; gap: 10px; flex-wrap: wrap; }
   .crumbs .sep      { width: 3px; }
   .hero-stage       { padding: 0 5%; gap: 4vh; min-height: auto; }
-  .tasting.product-origin.details.also,
+  .tasting,
+  .product-origin,
+  .details,
+  .also,
   footer            { padding-left: 5%; padding-right: 5%; }
   /* Compact hero: less top air, less below the image */
   .product-hero     { padding: 10vh 0 8vh; }
-  .tasting.product-origin.details          { padding-top: 10vh; padding-bottom: 10vh; }
+  .tasting,
+  .product-origin,
+  .details          { padding-top: 10vh; padding-bottom: 10vh; }
   .also             { padding-top: 12vh; padding-bottom: 12vh; }
 
   /* Big jar capped so it doesn't push buy info off-screen.
@@ -1252,7 +1257,8 @@ footer {
   .also-card .mini-photo-frame { margin-bottom: 20px; }
 
   /* Section headlines: a hair smaller */
-  .section-headline.product-origin-meta h2 { font-size: clamp(28px, 8.6vw, 38px); }
+  .section-headline,
+  .product-origin-meta h2 { font-size: clamp(28px, 8.6vw, 38px); }
 
   /* Sticky buy bar: don't let the thumb + button + name fight on 375 px */
   .sticky-buy       { padding: 10px 14px; padding-bottom: calc(10px + env(safe-area-inset-bottom)); gap: 10px; }
@@ -1372,10 +1378,10 @@ footer {
 .pd-cta:hover::after { left: 130%; }
 
 /* variant switching, calm fade + tiny reposition */
-.variant-meta .vm-edition.variant-meta .vm-desc, #productPrice {
+.variant-meta .vm-edition, .variant-meta .vm-desc, #productPrice {
   transition: opacity 0.32s var(--ease, ease), transform 0.32s var(--ease, ease);
 }
-.variant-meta.is-swapping .vm-edition.variant-meta.is-swapping .vm-desc, #productPrice.is-swapping {
+.variant-meta.is-swapping .vm-edition, .variant-meta.is-swapping .vm-desc, #productPrice.is-swapping {
   opacity: 0; transform: translateY(4px);
 }
 
@@ -1385,7 +1391,7 @@ footer {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .pdg-main img.jar-haze.jar-dust.pd-cta::after { animation: none !important; transition: none !important; }
+  .pdg-main img, .jar-haze, .jar-dust, .pd-cta::after { animation: none !important; transition: none !important; }
   .jar-dust { display: none; }
 }
 </style>
@@ -1503,18 +1509,18 @@ footer {
   <div class="hero-stage">
     <div class="pd-gallery reveal" id="pdGallery">
       <div class="pdg-main" id="pdgMain">
-        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-170" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
-        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-170" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
-        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-170" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
+        <img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-171" width="1228" height="2200" alt="Harvest Deli Chestnut Honey jar in a Greek chestnut grove" class="active" data-slide="0">
+        <img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-171" width="1228" height="2200" alt="Chestnut Honey, origin, wild chestnut grove in the Greek mountains" data-slide="1">
+        <img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-171" width="1228" height="2200" alt="Chestnut Honey drizzled over cheese and bread" data-slide="2">
         <div class="jar-atmos" aria-hidden="true">
           <span class="jar-haze"></span>
           <span class="jar-dust"></span>
         </div>
       </div>
       <div class="pdg-thumbs" id="pdgThumbs">
-        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-170" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-170" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-170" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="Product photo"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-171" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Origin photo"><img src="assets/products-images/chestnut-origin.webp?v=hd-2026-06-06-171" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Serving photo"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-171" alt="" loading="lazy"></button>
       </div>
     </div>
 
@@ -1841,7 +1847,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- Sticky mobile buy bar -->
 <div class="sticky-buy" id="stickyBuy">
-  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-170" width="1228" height="2200" alt="" loading="lazy"></div>
+  <div class="sb-thumb"><img src="assets/products-images/chestnut.webp?v=hd-2026-06-06-171" width="1228" height="2200" alt="" loading="lazy"></div>
   <div class="sb-meta">
     <div class="sb-name" data-i18n="product.sticky.name">Chestnut Honey</div>
     <div class="sb-price" data-i18n="product.sticky.price">€18 &middot; Edition 1</div>
@@ -1849,8 +1855,8 @@ document.addEventListener('DOMContentLoaded', () => {
   <button data-add-to-cart="chestnut" data-size="480g" data-i18n="product.sticky.add">Add</button>
 </div>
 
-<script src="shared.js?v=hd-2026-06-06-170"></script>
-<script src="analytics.js?v=hd-2026-06-06-170"></script>
+<script src="shared.js?v=hd-2026-06-06-171"></script>
+<script src="analytics.js?v=hd-2026-06-06-171"></script>
 <script>
 (function() {
   /* Menu */

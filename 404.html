@@ -6,13 +6,13 @@
 <title>404 · Our bee got lost · Harvest Deli</title>
 <meta name="robots" content="noindex,follow">
 <meta name="theme-color" content="#0E0B08">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-170">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-170" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-170">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-170">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-170">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-170" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-170">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-171">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-171" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-171">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-171">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-171">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-171" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-171">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
@@ -146,11 +146,11 @@
     animation: e404liquid 3.5s linear infinite;
   }
   @keyframes e404liquid { to { background-position: -150% 0; } }
-  .e404__cta:hover.e404__cta:focus-visible {
+  .e404__cta:hover, .e404__cta:focus-visible {
     color: #20160A; border-color: var(--gold-bright); transform: translateY(-2px);
     box-shadow: 0 22px 48px -18px rgba(184, 146, 79, 0.6);
   }
-  .e404__cta:hover::before.e404__cta:focus-visible::before { opacity: 1; }
+  .e404__cta:hover::before, .e404__cta:focus-visible::before { opacity: 1; }
   .e404__cta:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 4px; }
   .e404__cta .arrow { width: 22px; height: 1px; background: currentColor; position: relative; transition: width 0.4s var(--ease); }
   .e404__cta .arrow::after { content: ''; position: absolute; right: 0; top: -3px; width: 7px; height: 7px; border-right: 1px solid currentColor; border-top: 1px solid currentColor; transform: rotate(45deg); }
@@ -167,14 +167,14 @@
   }
   @media (prefers-reduced-motion: reduce) {
     .e404__reveal { transition: none; opacity: 1; transform: none; }
-    .e404__frame .travel.e404__bee .wing.e404__cta::before { animation: none; }
+    .e404__frame .travel, .e404__bee .wing, .e404__cta::before { animation: none; }
   }
 </style>
 </head>
 <body>
 
 <video class="e404__video" autoplay muted loop playsinline webkit-playsinline preload="auto" fetchpriority="low" aria-hidden="true">
-  <source src="404.mp4?v=hd-2026-06-06-170" type="video/mp4">
+  <source src="404.mp4?v=hd-2026-06-06-171" type="video/mp4">
 </video>
 <div class="e404__overlay" aria-hidden="true"></div>
 <div class="e404__cursor" aria-hidden="true"></div>
@@ -264,7 +264,7 @@
 
   /* Smooth fade-out before navigating home; Escape also returns home */
   function goHome(e) { if (e) e.preventDefault(); body.classList.add('e404-leaving'); setTimeout(function () { window.location.href = '/'; }, reduce ? 0 : 480); }
-  document.querySelectorAll('[data-home].e404__brand').forEach(function (a) {
+  document.querySelectorAll('[data-home], .e404__brand').forEach(function (a) {
     a.addEventListener('click', goHome);
   });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') goHome(e); });

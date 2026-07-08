@@ -668,7 +668,7 @@
     init(); // render the branded pre-checkout UI; final step → Shopify (placeOrder)
     // Discounts are applied on Shopify's hosted checkout, never here, hide the
     // local code field so a pre-checkout total can never disagree with Shopify.
-    try { document.querySelectorAll('.wz-discount.wz-discount-msg').forEach(function (el) { el.style.display = 'none'; }); } catch (e) {}
+    try { document.querySelectorAll('.wz-discount, .wz-discount-msg').forEach(function (el) { el.style.display = 'none'; }); } catch (e) {}
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { bootCheckout(0); });
   else bootCheckout(0);

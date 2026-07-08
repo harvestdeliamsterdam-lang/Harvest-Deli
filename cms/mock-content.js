@@ -7,7 +7,7 @@
    Runtime post shape (already dereferenced + image URLs resolved):
    {
      id, type:'post', title, slug, excerpt,
-     body: [ { _type:'block', style, children:[{text}] }... ],
+     body: [ { _type:'block', style, children:[{text}] }, ... ],
      image: { url|null, alt, caption },          // featured image
      category: { title, slug, tone },
      author:   { name, slug, role, image:{url|null} },

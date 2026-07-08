@@ -2236,9 +2236,11 @@
         if (v !== undefined) el.setAttribute(attr, v);
       });
     });
-    // Update language toggle states (desktop nav + mobile menu switcher)
-    document.querySelectorAll('.lang-toggle button[data-lang].hd-menu-lang button[data-lang]').forEach(b => {
-      b.classList.toggle('active', b.dataset.lang === currentLang);
+    // Update language toggle states (desktop nav + mobile menu switcher + mobile glass toggle)
+    document.querySelectorAll('.lang-toggle button[data-lang], .hd-menu-lang button[data-lang], .hd-lang-mobile button[data-lang]').forEach(b => {
+      var on = b.dataset.lang === currentLang;
+      b.classList.toggle('active', on);
+      if (b.closest('.hd-lang-mobile')) b.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
   window.HD_applyTranslations = applyTranslations;
@@ -2273,7 +2275,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-171',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2292,7 +2294,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-171',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2311,7 +2313,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-171',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2330,7 +2332,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-171',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2349,7 +2351,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-171',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2368,7 +2370,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-171',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2387,7 +2389,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-171',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2406,7 +2408,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-171',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2459,7 +2461,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-170',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-171',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -3589,6 +3591,27 @@
       btn.textContent = 'Private Access';
       var cart = navRight.querySelector('.nav-cart');
       if (cart) navRight.insertBefore(btn, cart); else navRight.appendChild(btn);
+
+      // Mobile-only glass NL/EN toggle, always visible at the top on phones
+      // (the desktop .lang-toggle is hidden ≤900px). Wired to the same setLang.
+      if (!navRight.querySelector('.hd-lang-mobile')) {
+        var cur = (window.HD_lang && window.HD_lang()) || 'nl';
+        var lg = document.createElement('div');
+        lg.className = 'hd-lang-mobile';
+        lg.setAttribute('role', 'group');
+        lg.setAttribute('aria-label', 'Taal / Language');
+        ['nl', 'en'].forEach(function (code) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('data-lang', code);
+          b.setAttribute('aria-pressed', code === cur ? 'true' : 'false');
+          if (code === cur) b.classList.add('active');
+          b.textContent = code.toUpperCase();
+          b.addEventListener('click', function () { if (window.HD_setLang) window.HD_setLang(code); });
+          lg.appendChild(b);
+        });
+        navRight.insertBefore(lg, navRight.firstChild);
+      }
     });
     // PRODUCTION: the custom Private Access modal is disabled. "Privé toegang" now
     // links straight to the Shopify customer account (no overlay, no z-index/scroll
@@ -3804,7 +3827,7 @@
   // call repeatedly; shop/filters re-render their grids and fire
   // 'hd:wishlist-change', so this runs again and fills the fresh buttons.
   function ensureIcons() {
-    document.querySelectorAll('.wishlist-btn.product-wishlist-line').forEach(btn => {
+    document.querySelectorAll('.wishlist-btn, .product-wishlist-line').forEach(btn => {
       if (!btn.querySelector('svg')) btn.insertAdjacentHTML('afterbegin', HEART_SVG);
     });
   }
@@ -4409,13 +4432,23 @@
 }
 
 /* --- Kill legacy "black slide-up" / fill pseudo-elements globally --- */
-.cta::before.pd-cta::before.cta-primary::before.cta-link::before.form-submit::before.cart-checkout::before.fp-apply::before.confirm-btn::before.wl-add::before.es-reset::before.final-cta::before.track-cta::before.preview-cta .explore-link::before.card-add::before.cb-btn.cb-accept::before {
+.cta::before, .pd-cta::before, .cta-primary::before, .cta-link::before,
+.form-submit::before, .cart-checkout::before, .fp-apply::before,
+.confirm-btn::before, .wl-add::before, .es-reset::before,
+.final-cta::before, .track-cta::before, .preview-cta .explore-link::before,
+.card-add::before, .cb-btn.cb-accept::before {
   display: none;
   content: none;
 }
 
 /* --- PRIMARY filled button, espresso ink + warm ivory text --- */
-.cta.pd-cta.cta-primary.cta-link.about-cta .cta-link.form-submit.cart-checkout.fp-apply.confirm-btn.track-cta.wl-add.es-reset.empty-state .es-reset.final-cta.preview-cta .explore-link.preview-card .card-add.card-add.product-cta.newsletter-form button[type="submit"].cb-btn.cb-accept {
+.cta, .pd-cta, .cta-primary, .cta-link, .about-cta .cta-link,
+.form-submit, .cart-checkout, .fp-apply,
+.confirm-btn, .track-cta, .wl-add, .es-reset, .empty-state .es-reset,
+.final-cta, .preview-cta .explore-link, .preview-card .card-add,
+.card-add, .product-cta,
+.newsletter-form button[type="submit"],
+.cb-btn.cb-accept {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4448,7 +4481,13 @@
 }
 
 /* Amber shimmer that softly sweeps across on hover */
-.cta::after.pd-cta::after.cta-primary::after.cta-link::after.form-submit::after.cart-checkout::after.fp-apply::after.confirm-btn::after.wl-add::after.es-reset::after.final-cta::after.track-cta::after.preview-cta .explore-link::after.preview-card .card-add::after.card-add::after.product-cta::after.newsletter-form button[type="submit"]::after.cb-btn.cb-accept::after {
+.cta::after, .pd-cta::after, .cta-primary::after, .cta-link::after,
+.form-submit::after, .cart-checkout::after, .fp-apply::after,
+.confirm-btn::after, .wl-add::after, .es-reset::after,
+.final-cta::after, .track-cta::after, .preview-cta .explore-link::after,
+.preview-card .card-add::after, .card-add::after, .product-cta::after,
+.newsletter-form button[type="submit"]::after,
+.cb-btn.cb-accept::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -4466,32 +4505,61 @@
 }
 
 /* Hover, calm lift + amber border glow + shimmer swipe */
-.cta:hover.pd-cta:hover.cta-primary:hover.cta-link:hover.about-cta .cta-link:hover.form-submit:hover.cart-checkout:hover.fp-apply:hover.confirm-btn:hover.track-cta:hover.wl-add:hover.es-reset:hover.empty-state .es-reset:hover.final-cta:hover.preview-cta .explore-link:hover.preview-card .card-add:hover.card-add:hover.product-cta:hover.newsletter-form button[type="submit"]:hover.cb-btn.cb-accept:hover {
+.cta:hover, .pd-cta:hover, .cta-primary:hover, .cta-link:hover,
+.about-cta .cta-link:hover, .form-submit:hover, .cart-checkout:hover,
+.fp-apply:hover, .confirm-btn:hover, .track-cta:hover, .wl-add:hover,
+.es-reset:hover, .empty-state .es-reset:hover, .final-cta:hover,
+.preview-cta .explore-link:hover, .preview-card .card-add:hover,
+.card-add:hover, .product-cta:hover,
+.newsletter-form button[type="submit"]:hover,
+.cb-btn.cb-accept:hover {
   background: var(--btn-bg-primary-hover);
   color: var(--btn-fg-primary);
   border-color: var(--btn-border-primary-hover);
   box-shadow: var(--btn-shadow-hover);
   transform: translateY(-1px) scale(1.008);
 }
-.cta:hover::after.pd-cta:hover::after.cta-primary:hover::after.cta-link:hover::after.form-submit:hover::after.cart-checkout:hover::after.fp-apply:hover::after.confirm-btn:hover::after.wl-add:hover::after.track-cta:hover::after.preview-cta .explore-link:hover::after.preview-card .card-add:hover::after.card-add:hover::after.product-cta:hover::after.newsletter-form button[type="submit"]:hover::after.cb-btn.cb-accept:hover::after {
+.cta:hover::after, .pd-cta:hover::after, .cta-primary:hover::after,
+.cta-link:hover::after, .form-submit:hover::after, .cart-checkout:hover::after,
+.fp-apply:hover::after, .confirm-btn:hover::after, .wl-add:hover::after,
+.track-cta:hover::after, .preview-cta .explore-link:hover::after,
+.preview-card .card-add:hover::after, .card-add:hover::after,
+.product-cta:hover::after,
+.newsletter-form button[type="submit"]:hover::after,
+.cb-btn.cb-accept:hover::after {
   transform: translateX(110%);
 }
 
 /* Active, pressed */
-.cta:active.pd-cta:active.cta-primary:active.form-submit:active.cart-checkout:active.fp-apply:active.confirm-btn:active.track-cta:active.wl-add:active.es-reset:active.final-cta:active.preview-card .card-add:active.card-add:active.product-cta:active {
+.cta:active, .pd-cta:active, .cta-primary:active, .form-submit:active,
+.cart-checkout:active, .fp-apply:active, .confirm-btn:active,
+.track-cta:active, .wl-add:active, .es-reset:active,
+.final-cta:active, .preview-card .card-add:active,
+.card-add:active, .product-cta:active {
   transform: translateY(0) scale(0.992);
   transition-duration: 0.15s;
   box-shadow: var(--btn-shadow);
 }
 
 /* Focus visible, accessible warm gold ring */
-.cta:focus-visible.pd-cta:focus-visible.cta-primary:focus-visible.cta-link:focus-visible.form-submit:focus-visible.cart-checkout:focus-visible.fp-apply:focus-visible.confirm-btn:focus-visible.track-cta:focus-visible.wl-add:focus-visible.es-reset:focus-visible.final-cta:focus-visible.preview-card .card-add:focus-visible.card-add:focus-visible.product-cta:focus-visible.newsletter-form button[type="submit"]:focus-visible.cb-btn.cb-accept:focus-visible {
+.cta:focus-visible, .pd-cta:focus-visible, .cta-primary:focus-visible,
+.cta-link:focus-visible, .form-submit:focus-visible,
+.cart-checkout:focus-visible, .fp-apply:focus-visible,
+.confirm-btn:focus-visible, .track-cta:focus-visible, .wl-add:focus-visible,
+.es-reset:focus-visible, .final-cta:focus-visible,
+.preview-card .card-add:focus-visible, .card-add:focus-visible,
+.product-cta:focus-visible,
+.newsletter-form button[type="submit"]:focus-visible,
+.cb-btn.cb-accept:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.42), var(--btn-shadow-hover);
 }
 
 /* Disabled */
-.cta:disabled.pd-cta:disabled.cta-primary:disabled.form-submit:disabled.fp-apply:disabled.confirm-btn:disabled.wl-add:disabled.card-add:disabled.preview-card .card-add:disabled.newsletter-form button[type="submit"]:disabled {
+.cta:disabled, .pd-cta:disabled, .cta-primary:disabled, .form-submit:disabled,
+.fp-apply:disabled, .confirm-btn:disabled, .wl-add:disabled, .card-add:disabled,
+.preview-card .card-add:disabled,
+.newsletter-form button[type="submit"]:disabled {
   opacity: 0.42;
   cursor: not-allowed;
   transform: none;
@@ -4499,7 +4567,8 @@
 }
 
 /* --- SECONDARY ghost/outline button, warm transparent + dark text --- */
-.cta-ghost.fp-reset.wl-view.cb-btn.cb-reject.cb-btn.cb-customize.empty-state .es-reset.secondary {
+.cta-ghost, .fp-reset, .wl-view, .cb-btn.cb-reject, .cb-btn.cb-customize,
+.empty-state .es-reset.secondary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4530,24 +4599,27 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
-.cta-ghost:hover.fp-reset:hover.wl-view:hover.cb-btn.cb-reject:hover.cb-btn.cb-customize:hover {
+.cta-ghost:hover, .fp-reset:hover, .wl-view:hover,
+.cb-btn.cb-reject:hover, .cb-btn.cb-customize:hover {
   background: var(--btn-bg-secondary-hover);
   border-color: var(--btn-border-secondary-hover);
   color: var(--btn-fg-secondary);
   box-shadow: var(--btn-shadow-soft-hover);
   transform: translateY(-1px) scale(1.008);
 }
-.cta-ghost:active.fp-reset:active.wl-view:active.cb-btn.cb-reject:active.cb-btn.cb-customize:active {
+.cta-ghost:active, .fp-reset:active, .wl-view:active,
+.cb-btn.cb-reject:active, .cb-btn.cb-customize:active {
   transform: translateY(0) scale(0.994);
   transition-duration: 0.15s;
 }
-.cta-ghost:focus-visible.fp-reset:focus-visible.wl-view:focus-visible.cb-btn.cb-reject:focus-visible.cb-btn.cb-customize:focus-visible {
+.cta-ghost:focus-visible, .fp-reset:focus-visible, .wl-view:focus-visible,
+.cb-btn.cb-reject:focus-visible, .cb-btn.cb-customize:focus-visible {
   outline: none;
   box-shadow: 0 0 0 3px rgba(212, 172, 106, 0.38), var(--btn-shadow-soft-hover);
 }
 
 /* Ghost on dark surfaces (e.g. menu overlay) keeps the same shape but inverts colors */
-.menu-close.fp-close {
+.menu-close, .fp-close {
   border-radius: var(--btn-radius);
   padding: 12px 22px 12px 22px;
   padding-left: calc(22px + 0.36em);
@@ -4561,7 +4633,7 @@
 .fp-close:hover { background: rgba(26, 22, 18, 0.05); }
 
 /* --- PILL nav controls (calm hover, no aggressive slide) --- */
-.filter-trigger.sort-trigger.nav-acquire {
+.filter-trigger, .sort-trigger, .nav-acquire {
   transition:
     background 0.4s var(--btn-ease),
     color 0.4s var(--btn-ease),
@@ -4583,16 +4655,25 @@
 .ac-chip:hover { transform: translateY(-1px); box-shadow: var(--btn-shadow-soft-hover); }
 
 /* --- Plus / arrow micro-interactions inside buttons --- */
-.card-add .add-icon.wl-add svg.preview-card .card-add .add-icon {
+.card-add .add-icon, .wl-add svg, .preview-card .card-add .add-icon {
   transition: transform 0.5s var(--btn-ease);
 }
-.card-add:hover .add-icon.wl-add:hover svg.preview-card .card-add:hover .add-icon {
+.card-add:hover .add-icon, .wl-add:hover svg, .preview-card .card-add:hover .add-icon {
   transform: rotate(90deg);
 }
-.cta .arrow.pd-cta .arrow.cta-primary .arrow.form-submit .arrow.cart-checkout .arrow.fp-apply .arrow.confirm-btn .arrow.wl-add .arrow.final-cta .arrow.product-cta .arrow.cta-ghost .arrow.fp-reset .arrow.preview-cta .explore-link .arrow.read-link .arrow {
+.cta .arrow, .pd-cta .arrow, .cta-primary .arrow, .form-submit .arrow,
+.cart-checkout .arrow, .fp-apply .arrow, .confirm-btn .arrow,
+.wl-add .arrow, .final-cta .arrow, .product-cta .arrow,
+.cta-ghost .arrow, .fp-reset .arrow, .preview-cta .explore-link .arrow,
+.read-link .arrow {
   transition: width 0.5s var(--btn-ease);
 }
-.cta:hover .arrow.pd-cta:hover .arrow.cta-primary:hover .arrow.form-submit:hover .arrow.cart-checkout:hover .arrow.fp-apply:hover .arrow.confirm-btn:hover .arrow.wl-add:hover .arrow.final-cta:hover .arrow.product-cta:hover .arrow.cta-ghost:hover .arrow.fp-reset:hover .arrow.preview-cta .explore-link:hover .arrow.read-link:hover .arrow {
+.cta:hover .arrow, .pd-cta:hover .arrow, .cta-primary:hover .arrow,
+.form-submit:hover .arrow, .cart-checkout:hover .arrow,
+.fp-apply:hover .arrow, .confirm-btn:hover .arrow, .wl-add:hover .arrow,
+.final-cta:hover .arrow, .product-cta:hover .arrow,
+.cta-ghost:hover .arrow, .fp-reset:hover .arrow,
+.preview-cta .explore-link:hover .arrow, .read-link:hover .arrow {
   width: 26px;
 }
 
@@ -4608,23 +4689,29 @@
 
 /* --- Reduced motion --- */
 @media (prefers-reduced-motion: reduce) {
-  .cta.pd-cta.cta-primary.cta-link.form-submit.cart-checkout.fp-apply.confirm-btn.track-cta.wl-add.es-reset.final-cta.cta-ghost.fp-reset.wl-view.preview-card .card-add.product-cta.card-add.filter-trigger.sort-trigger.nav-acquire.cookie-bar .cb-btn {
+  .cta, .pd-cta, .cta-primary, .cta-link, .form-submit, .cart-checkout,
+  .fp-apply, .confirm-btn, .track-cta, .wl-add, .es-reset, .final-cta,
+  .cta-ghost, .fp-reset, .wl-view, .preview-card .card-add, .product-cta,
+  .card-add, .filter-trigger, .sort-trigger, .nav-acquire, .cookie-bar .cb-btn {
     transition: background 0.2s linear, border-color 0.2s linear, color 0.2s linear;
     transform: none !important;
   }
-  .cta::after.pd-cta::after.cta-primary::after.form-submit::after.cart-checkout::after.fp-apply::after.confirm-btn::after.wl-add::after.card-add::after.preview-card .card-add::after.cb-btn.cb-accept::after {
+  .cta::after, .pd-cta::after, .cta-primary::after, .form-submit::after,
+  .cart-checkout::after, .fp-apply::after, .confirm-btn::after, .wl-add::after,
+  .card-add::after, .preview-card .card-add::after, .cb-btn.cb-accept::after {
     display: none;
   }
 }
 
 /* --- Mobile tweaks --- */
 @media (max-width: 600px) {
-  .cta.pd-cta.cta-primary.form-submit.cart-checkout.fp-apply.confirm-btn.wl-add.es-reset.final-cta.track-cta {
+  .cta, .pd-cta, .cta-primary, .form-submit, .cart-checkout, .fp-apply,
+  .confirm-btn, .wl-add, .es-reset, .final-cta, .track-cta {
     padding: 16px 28px;
     padding-left: calc(28px + 0.18em);
     min-height: 48px;
   }
-  .cta-ghost.fp-reset.wl-view {
+  .cta-ghost, .fp-reset, .wl-view {
     padding: 14px 22px;
     padding-left: calc(22px + 0.18em);
     min-height: 44px;
@@ -5346,9 +5433,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-170'], ['hd-search-js', 'search.js?v=hd-2026-06-06-170'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-170'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-170'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-170'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-170'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-170'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-170'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-170'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-170']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-171'], ['hd-search-js', 'search.js?v=hd-2026-06-06-171'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-171'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-171'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-171'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-171'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-171'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-171'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-171'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-171']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
@@ -5566,7 +5653,7 @@ window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shippin
     if (reduce) return false;
     var target = document.getElementById('navCart');
     if (!target || !btn) return false;
-    var card = btn.closest('.p-card, article.qv-panel.product-stage.product-main, main') || document.body;
+    var card = btn.closest('.p-card, article, .qv-panel, .product-stage, .product-main, main') || document.body;
     var src = card.querySelector('.card-photo') || card.querySelector('.jar-wrap img') ||
               card.querySelector('img') || btn;
     var sr = src.getBoundingClientRect(), tr = target.getBoundingClientRect();
@@ -5670,7 +5757,7 @@ window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shippin
       document.body.appendChild(b); return b;
     }
     function ctas() {
-      var sel = '.cta.oo__cta.jp-cta.idx-sel-cta.confirm-btn.form-submit,[data-add-to-cart]';
+      var sel = '.cta,.oo__cta,.jp-cta,.idx-sel-cta,.confirm-btn,.form-submit,[data-add-to-cart]';
       return [].slice.call(document.querySelectorAll(sel)).filter(function (el) {
         if (!el.offsetParent) return false;
         var r = el.getBoundingClientRect();
