@@ -399,7 +399,7 @@
       'idx.product.cta_html': 'View the jar, €68',
       // ---------- shop ----------
       'shop.eyebrow': 'The Collection',
-      'shop.headline_html': '11 <em>premium</em> Greek delicacies.',
+      'shop.headline_html': '13 <em>premium</em> Greek delicacies.',
       'shop.intro': 'Raw. Unpasteurised. Direct from origin.',
       'shop.trustline': 'Raw & unpasteurised · Harvested in Greece · Free shipping in the Netherlands & Belgium above €65',
       'shop.filterLabel': 'Filter by',
@@ -1056,7 +1056,7 @@
       'idx.product.cta_html': 'Bekijk de pot, €68',
       // ---------- shop ----------
       'shop.eyebrow': 'De Collectie',
-      'shop.headline_html': '11 <em>premium</em> Griekse delicatessen.',
+      'shop.headline_html': '13 <em>premium</em> Griekse delicatessen.',
       'shop.intro': 'Rauw. Ongepasteuriseerd. Rechtstreeks van de bron.',
       'shop.trustline': 'Rauw & ongepasteuriseerd · Geoogst in Griekenland · Gratis verzending in Nederland & België boven €65',
       'shop.filterLabel': 'Filter op',
@@ -1657,7 +1657,7 @@
       'idx.product.desc': 'Μέλι μιας μοναδικής λιβαδιάς αξιοσημείωτης διαύγειας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, αριθμημένο με το χέρι, διατηρημένο ανεπεξέργαστο.',
       'idx.product.cta_html': 'Δείτε το βάζο, €68',
       'shop.eyebrow': 'Η Συλλογή',
-      'shop.headline_html': '11 <em>premium</em> ελληνικές λιχουδιές.',
+      'shop.headline_html': '13 <em>premium</em> ελληνικές λιχουδιές.',
       'shop.intro': 'Ωμό. Απαστερίωτο. Απευθείας από την πηγή.',
       'shop.trustline': 'Ωμό & απαστερίωτο · Συγκομιδή στην Ελλάδα · Δωρεάν αποστολή σε Ολλανδία & Βέλγιο άνω των €65',
       'shop.filterLabel': 'Φίλτρο κατά',
@@ -2276,7 +2276,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-174',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2295,7 +2295,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-174',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2314,7 +2314,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-174',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2333,7 +2333,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-174',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2352,7 +2352,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-174',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2371,7 +2371,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-174',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2390,7 +2390,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-174',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2409,7 +2409,7 @@
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-174',
       slug: 'heather',
       url: 'product.html?p=heather'
     },
@@ -2428,7 +2428,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-174',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2481,7 +2481,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-173',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-174',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2489,6 +2489,26 @@
       badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
       slug: 'mountain-tea',
       url: 'product-mountain-tea.html'
+    },
+    'chamomile-tea': {
+      name: loc('Greek Chamomile Tea', 'Griekse Kamillethee', 'Χαμομήλι'),
+      edition: loc('Summer Harvest', 'Zomeroogst', 'Καλοκαιρινή Συγκομιδή'),
+      region: loc('Wild fields · Greece', 'Wilde velden · Griekenland', 'Άγροι · Ελλάδα'),
+      altitude: '300m',
+      type: 'tea',
+      sizes: [{ id: '25g', label: '25g', price: 5 }],
+      defaultSize: '25g',
+      bundle: { qty: 2, price: 8 },
+      price: 5,
+      hue: 'straw',
+      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-174',
+      notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
+      texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
+      weight: '25g',
+      tags: ['tea', 'herbal', 'caffeine-free'],
+      badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
+      slug: 'chamomile-tea',
+      url: 'product-chamomile-tea.html'
     }
   };
   // Localize on access: returns plain-string clone for current lang.
@@ -3946,7 +3966,7 @@
     if (!wrap || !window.HD_product) return;
     const meta = document.querySelector('meta[name="hd-product-slug"]');
     const current = meta ? meta.content : '';
-    const all = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea'];
+    const all = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea','chamomile-tea'];
     const others = all.filter(s => s !== current).slice(0, 3);
     wrap.innerHTML = others.map(s => {
       const p = window.HD_product(s);
@@ -4047,7 +4067,7 @@
   function render() {
     if (!window.HD_product) return;
     const q = (input.value || '').toLowerCase().trim();
-    const slugs = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea'];
+    const slugs = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea','chamomile-tea'];
     const matches = slugs.map(s => window.HD_product(s)).filter(p => {
       if (!p) return false;
       if (!q) return true;
@@ -5453,9 +5473,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-173'], ['hd-search-js', 'search.js?v=hd-2026-06-06-173'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-173'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-173'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-173'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-173'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-173'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-173'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-173'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-173']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-174'], ['hd-search-js', 'search.js?v=hd-2026-06-06-174'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-174'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-174'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-174'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-174'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-174'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-174'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-174'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-174']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

@@ -6,14 +6,14 @@
 <title>The Collection, All editions · Harvest Deli</title>
 <meta name="description" content="Nine single-origin Greek honeys, a cold-pressed olive oil and a wild mountain tea. Raw, hand-sealed, free shipping within the Netherlands & Belgium above €65.">
 <link rel="canonical" href="https://harvestdeli.nl/shop.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-173">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-173" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-173">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-173">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-173">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-173" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-173">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-173">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-174">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-174" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-174">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-174">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-174">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-174" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-174">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-174">
 <meta property="og:type" content="website">
 <meta property="og:title" content="The Collection, All editions · Harvest Deli">
 <meta property="og:description" content="Nine single-origin Greek honeys, a cold-pressed olive oil and a wild mountain tea. Raw, hand-sealed.">
@@ -61,7 +61,7 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-173">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-174">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1990,8 +1990,8 @@ footer.site-footer {
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-173"></script>
-<script src="analytics.js?v=hd-2026-06-06-173"></script>
+<script src="shared.js?v=hd-2026-06-06-174"></script>
+<script src="analytics.js?v=hd-2026-06-06-174"></script>
 <script>
 (function () {
   /* Menu */
@@ -2007,7 +2007,7 @@ footer.site-footer {
 
   /* Render grid using localized product accessor */
   const grid = document.getElementById('shopGrid');
-  const order = ['fir-vanilla', 'acacia', 'pine', 'orange-blossom', 'chestnut', 'oak', 'arbutus', 'thyme', 'heather', 'oregano', 'olive-oil', 'mountain-tea'];
+  const order = ['fir-vanilla', 'acacia', 'pine', 'orange-blossom', 'chestnut', 'oak', 'arbutus', 'thyme', 'heather', 'oregano', 'olive-oil', 'mountain-tea', 'chamomile-tea'];
   const FROM_WORD = { nl: 'vanaf', el: 'από', en: 'from' };
   function fromWord() { return FROM_WORD[(window.HD_lang && window.HD_lang()) || 'en'] || 'from'; }
 
@@ -2024,7 +2024,8 @@ footer.site-footer {
     'heather':        { cat:'honey', htype:'creamy',  region:'evia',          process:['raw'] },
     'oregano':        { cat:'herbs', htype:null,      region:'greece',        process:['handpicked'] },
     'olive-oil':      { cat:'oil',   htype:null,      region:'greece',        process:['coldpressed'] },
-    'mountain-tea':   { cat:'tea',   htype:null,      region:'wildmountains', process:['caffeinefree'] }
+    'mountain-tea':   { cat:'tea',   htype:null,      region:'wildmountains', process:['caffeinefree'] },
+    'chamomile-tea':  { cat:'tea',   htype:null,      region:'greece',        process:['caffeinefree'] }
   };
   const TAX = {
     cat: { honey:{nl:'Honing',en:'Honey'}, oil:{nl:'Olijfolie',en:'Olive oil'}, tea:{nl:'Thee',en:'Tea'}, herbs:{nl:'Kruiden',en:'Herbs'} },
@@ -2252,6 +2253,14 @@ footer.site-footer {
       season: 'summer', limited: false, raw: true,
       pairings: ['tea'],
       popularity: 70, harvestDate: '2025-07-15', flavorIntensity: 1
+    },
+    'chamomile-tea': {
+      type: 'chamomile-tea', region: 'greece',
+      flavor: ['herbal', 'floral'],
+      color: 'pale', texture: 'liquid',
+      season: 'summer', limited: false, raw: true,
+      pairings: ['tea'],
+      popularity: 68, harvestDate: '2025-07-20', flavorIntensity: 1
     }
   };
 

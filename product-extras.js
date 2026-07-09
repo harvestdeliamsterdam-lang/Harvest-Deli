@@ -70,13 +70,29 @@
          L('Yes, mountain tea is a herbal infusion, not a true tea, so it is naturally caffeine free and gentle enough for the evening.',
            'Ja, bergthee is een kruideninfusie, geen echte thee, dus van nature cafeïnevrij en zacht genoeg voor de avond.')]
       ]
+    },
+    'chamomile-tea': {
+      ingredients: L('100% wild Greek chamomile flowers (Matricaria chamomilla), gently dried whole.',
+                     '100% wilde Griekse kamillebloemen (Matricaria chamomilla), heel en zacht gedroogd.'),
+      allergens: L('Naturally caffeine free. Free from gluten, dairy and nuts.', 'Van nature cafeïnevrij. Vrij van gluten, zuivel en noten.'),
+      nutritionLabel: L('Per cup (brewed)', 'Per kop (gezet)'),
+      nutrition: [['Energy', '0 kJ / 0 kcal'], ['Caffeine', L('None', 'Geen')], ['Fat', '0 g'], ['Sugars', '0 g'], ['Salt', '0 g']],
+      faqs: [
+        [L('How do I brew it?', 'Hoe zet ik het?'),
+         L('Steep 1–2 spoonfuls of flowers in water at 90–95°C for 5–7 minutes. Lovely on its own, or with a spoon of honey or a slice of lemon.',
+           'Laat 1–2 lepels bloemen 5–7 minuten trekken in water van 90–95°C. Heerlijk puur, of met een lepel honing of een schijfje citroen.')],
+        [L('Is it really caffeine free?', 'Is het echt cafeïnevrij?'),
+         L('Yes, chamomile is a herbal infusion, naturally caffeine free and soft enough for the evening or before sleep.',
+           'Ja, kamille is een kruideninfusie, van nature cafeïnevrij en zacht genoeg voor de avond of voor het slapen.')]
+      ]
     }
   };
 
   var PAIRS = {
     'chestnut': ['mountain-tea', 'olive-oil', 'thyme'],
     'olive-oil': ['chestnut', 'thyme', 'mountain-tea'],
-    'mountain-tea': ['chestnut', 'acacia', 'orange-blossom']
+    'mountain-tea': ['chestnut', 'acacia', 'orange-blossom'],
+    'chamomile-tea': ['acacia', 'orange-blossom', 'mountain-tea']
   };
 
   /* ---- Per-honey tasting spec (source of truth: Harvest Deli honey PDF) ----
@@ -321,7 +337,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-173';
+      var ASSET_V = '?v=hd-2026-06-06-174';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
