@@ -210,7 +210,7 @@
   }
 
   /* Honeys with a full 3-shot gallery (hero + origin + serving), generated per-honey */
-  var GALLERY_SET = ['chestnut', 'pine', 'arbutus', 'fir-vanilla', 'orange-blossom', 'acacia', 'thyme'];
+  var GALLERY_SET = ['chestnut', 'pine', 'arbutus', 'fir-vanilla', 'orange-blossom', 'acacia', 'thyme', 'heather'];
 
   function getDetail(slug) {
     if (DETAILS[slug]) return DETAILS[slug];
@@ -321,7 +321,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-171';
+      var ASSET_V = '?v=hd-2026-06-06-173';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
@@ -378,6 +378,47 @@
     if (accDesc) { accDesc.removeAttribute('data-i18n'); accDesc.textContent = L(s.lede[0], s.lede[1]); }
     var accOrigin = document.querySelector('.pd-acc details:nth-of-type(3) .acc-body');
     if (accOrigin) { accOrigin.removeAttribute('data-i18n'); accOrigin.textContent = L(s.origin[0], s.origin[1]) + (s.result ? ' ' + L(s.result[0], s.result[1]) : ''); }
+
+    /* ---- Per-honey SEO: title, meta description, OG + Product JSON-LD, both
+           languages. Keeps head metadata in sync with the hydrated product so
+           every honey (not just the static default) ships correct structured data. ---- */
+    try { updateSEO(slug, p, s, name, nl, price); } catch (e) {}
+  }
+
+  function setMeta(sel, attr, val) {
+    var el = document.querySelector(sel);
+    if (!el) { el = document.createElement('meta'); if (sel.indexOf('property=') !== -1) el.setAttribute('property', sel.replace(/.*property="([^"]+)".*/, '$1')); else el.setAttribute('name', sel.replace(/.*name="([^"]+)".*/, '$1')); document.head.appendChild(el); }
+    el.setAttribute(attr, val);
+  }
+  function updateSEO(slug, p, s, name, nl, price) {
+    var desc = L(s.lede[0], s.lede[1]);
+    var title = name + (nl ? ' · Rauwe Griekse honing · Harvest Deli' : ' · Raw Greek Honey · Harvest Deli');
+    var origin = (location.origin && location.origin.indexOf('http') === 0) ? location.origin : 'https://harvestdeli.nl';
+    var imgAbs = (p && p.image) ? (origin + '/' + p.image.split('?')[0].replace(/^\//, '')) : '';
+    var url = origin + '/product.html?p=' + slug;
+    document.title = title;
+    setMeta('meta[name="description"]', 'content', desc);
+    setMeta('meta[property="og:title"]', 'content', title);
+    setMeta('meta[property="og:description"]', 'content', desc);
+    setMeta('meta[property="og:type"]', 'content', 'product');
+    setMeta('meta[property="og:url"]', 'content', url);
+    if (imgAbs) setMeta('meta[property="og:image"]', 'content', imgAbs);
+    var offers = (p && p.sizes && p.sizes.length)
+      ? p.sizes.filter(function (sz) { return sz.price != null; }).map(function (sz) {
+          return { '@type': 'Offer', name: sz.label, price: String(sz.price), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url };
+        })
+      : [{ '@type': 'Offer', price: String(price != null ? price : (p && p.price) || ''), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url }];
+    var ld = {
+      '@context': 'https://schema.org/', '@type': 'Product',
+      name: name, description: desc,
+      image: imgAbs ? [imgAbs] : undefined,
+      brand: { '@type': 'Brand', name: 'Harvest Deli' },
+      category: (nl ? 'Rauwe Griekse honing' : 'Raw Greek honey'),
+      offers: offers
+    };
+    var tag = document.getElementById('pdProductLd');
+    if (!tag) { tag = document.createElement('script'); tag.type = 'application/ld+json'; tag.id = 'pdProductLd'; document.head.appendChild(tag); }
+    tag.textContent = JSON.stringify(ld);
   }
 
   function init() {
