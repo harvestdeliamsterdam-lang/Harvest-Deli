@@ -2276,7 +2276,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-177',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2295,7 +2295,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-177',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2314,7 +2314,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-177',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2333,7 +2333,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-177',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2352,7 +2352,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-177',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2371,7 +2371,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-177',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2390,7 +2390,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-177',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2409,7 +2409,7 @@
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-177',
       slug: 'heather',
       url: 'product.html?p=heather'
     },
@@ -2428,7 +2428,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-177',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2481,7 +2481,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-177',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2501,7 +2501,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-176',
+      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-177',
       notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -2582,18 +2582,17 @@
   /* ============================================================
      THE RITUAL SAVING, mirrors the LIVE Shopify automatic discounts,
      which are the source of truth for what the customer is actually charged:
-       • "3 honingpotten, €5"          → ≥3 honey jars      = €5 (once)
-       • "2 honing + 1 olijfolie, €5"  → ≥2 honey + ≥1 oil  = €5 (once)
-     Both are non-combining / non-stacking in Shopify, so the order gets
-     AT MOST €5. The on-site cart shows exactly this, so the total never
-     diverges from the Shopify checkout charge (no overcharge, no false promise).
-     One ritual saving per order.
+       • Honey tier ladder (€5 per 3 jars), each a non-combining automatic
+         "Amount off products" discount on the 9 honeys:
+           ≥3 → €5   ·   ≥6 → €10   ·   ≥9 → €15   ·   ≥12 → €20 (cap)
+       • "2 honing + 1 olijfolie, €5"  → BxGy, ≥2 honey + ≥1 oil = €5 (once)
+     All are non-combining, so Shopify applies the SINGLE most valuable one to
+     the order (verified: 6 honey → €10, not €5). The on-site cart takes the
+     max of the honey tier and the oil bundle, never the sum, so the shown
+     total always equals the Shopify checkout charge (no false promise).
 
-     TODO (Shopify): if discount stacking/combining is ever enabled in Shopify
-     (e.g. €5 per group → 6 honeys = €10, 4 honey + 2 oil = €10), update this
-     function to count qualifying GROUPS instead of a single flat €5, and mirror
-     the new Shopify rule exactly. Do not change this without changing Shopify
-     first, the two must always match.
+     ⚠ The Shopify tiers and this function must stay in lockstep: change one and
+     you must change the other (Shopify discount nodes: "3/6/9/12 honingpotten").
      ============================================================ */
   var RITUAL_SAVING = 5;
   function calculateHarvestBundleDiscount(cartItems) {
@@ -2609,17 +2608,28 @@
       // tea + everything else: intentionally ignored (do NOT count).
     });
 
-    var rule = null;
-    if (honey >= 3) rule = '3_honey';
-    else if (honey >= 2 && oil >= 1) rule = '2_honey_1_oil';
-
-    var discountAmount = rule ? RITUAL_SAVING : 0;
-    var bundleCount = rule ? 1 : 0; // non-stacking → never more than one
+    // Honey stacks €5 per 3 jars, mirroring the Shopify tier ladder
+    // (≥3 €5, ≥6 €10, ≥9 €15, ≥12 €20), capped at €20 from 12 jars up.
+    // The 2-honey + 1-oil bundle is a flat €5. Shopify applies the single most
+    // valuable non-combining automatic discount, so we take the max, never sum.
+    var honeyGroups = honey >= 3 ? Math.min(Math.floor(honey / 3), 4) : 0;
+    var honeyTier = honeyGroups * RITUAL_SAVING;
+    var oilBundle = (honey >= 2 && oil >= 1) ? RITUAL_SAVING : 0;
+    var discountAmount = Math.max(honeyTier, oilBundle);
+    var rule = discountAmount === 0 ? null
+             : (honeyTier >= oilBundle ? honeyGroups + '_honey' : '2_honey_1_oil');
+    var bundleCount = discountAmount > 0 ? 1 : 0;
 
     var message, upsell = null;
-    if (rule) {
-      message = T('Ritual saving applied: €5 off.', 'Ritueelkorting toegepast: €5 eraf.');
-      // Non-stacking → deliberately no "next bundle" upsell. One saving per order.
+    if (discountAmount > 0) {
+      message = T('Ritual saving applied: €' + discountAmount + ' off.',
+                  'Ritueelkorting toegepast: €' + discountAmount + ' eraf.');
+      // gentle nudge to the next €5 tier while the honey groups aren't maxed
+      if (honeyTier >= oilBundle && honeyGroups >= 1 && honeyGroups < 4) {
+        var need = (honeyGroups + 1) * 3 - honey;
+        upsell = T('Add ' + need + ' more honey and save another €5.',
+                   'Voeg nog ' + need + ' honing toe en bespaar nog €5.');
+      }
     } else {
       message = T('Combine any 3 honeys, or 2 honeys with olive oil, and save €5.',
                   'Combineer 3 honingen, of 2 honingen met olijfolie, en bespaar €5.');
@@ -5473,9 +5483,9 @@
    ================================================================= */
 window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-176'], ['hd-search-js', 'search.js?v=hd-2026-06-06-176'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-176'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-176'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-176'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-176'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-176'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-176'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-176'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-176']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-177'], ['hd-search-js', 'search.js?v=hd-2026-06-06-177'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-177'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-177'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-177'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-177'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-177'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-177'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-177'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-177']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
