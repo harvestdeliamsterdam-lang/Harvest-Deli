@@ -1914,33 +1914,65 @@ footer {
 .video-stage::before { background: radial-gradient(ellipse at 50% 48%, transparent 52%, rgba(10,7,4,0.3) 100%); }
 .video-stage::after { background: linear-gradient(180deg, rgba(10,7,4,0.2) 0%, transparent 24%, transparent 74%, rgba(10,7,4,0.28) 100%); }
 
-/* ===== Homepage cinematic nav, luxury light glass (overrides the shared gold-on-black nav system) ===== */
+/* ===== Homepage nav, refined Greek-cream identity =====
+   Warm cream bar (like premium olive-oil / wine packaging) carrying a
+   whisper-soft topographic landscape, with a deep label-green wordmark and
+   icons. Replaces the old translucent gold-on-glass bar. */
+:root {
+  --hd-brand-green: #182C21;   /* deep Greek label green (from the product labels) */
+  --hd-nav-cream:   #F5EFE4;   /* warm cream */
+  --hd-nav-cream-2: #E7DDCF;   /* slightly darker cream, texture tone */
+}
 body nav.site-nav {
-  background: rgba(255, 255, 255, 0.08) !important;
-  -webkit-backdrop-filter: blur(22px) saturate(130%) !important;
-  backdrop-filter: blur(22px) saturate(130%) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: none !important;
-  color: #F6F1E8 !important;
+  background: var(--hd-nav-cream) !important;
+  -webkit-backdrop-filter: saturate(104%) !important;
+  backdrop-filter: saturate(104%) !important;
+  border-bottom: 1px solid rgba(24, 44, 33, 0.10) !important;
+  box-shadow: 0 6px 22px rgba(46, 38, 22, 0.05) !important;
+  color: var(--hd-brand-green) !important;
+  /* keep the inherited position: fixed; it also contains the ::before texture */
 }
-/* Kill the gold-foil shimmer/grain layer (it belonged to the matte-black bar) */
-body nav.site-nav::before { display: none !important; }
+/* Whisper-soft topographic landscape (rolling hills + contour lines), only
+   noticed on a close look. Reuses the nav ::before layer. */
+body nav.site-nav::before {
+  display: block !important;
+  content: "" !important;
+  position: absolute !important; inset: 0 !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-175") center / cover no-repeat !important;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+/* Keep the wordmark + controls above the texture */
+body nav.site-nav .nav-brand,
+body nav.site-nav .nav-right { position: relative; z-index: 1; }
+/* Recolor the wordmark deep label-green. The logo is a <use> of a shared
+   symbol, so we theme it with a CSS custom property that inherits through the
+   shadow tree (the symbol falls back to gold anywhere the var is unset, e.g.
+   the footer). */
+body nav.site-nav .nav-brand .logo-svg { --hd-logo-fill: var(--hd-brand-green); }
+/* The menu overlay sits on cream too, keep its wordmark green for continuity */
+#menuOverlay .logo-svg { --hd-logo-fill: var(--hd-brand-green); }
 body nav.site-nav.scrolled {
-  background: rgba(255, 255, 255, 0.14) !important;
-  -webkit-backdrop-filter: blur(28px) saturate(150%) !important;
-  backdrop-filter: blur(28px) saturate(150%) !important;
-  color: var(--ink) !important;
-  border-bottom: 1px solid rgba(26, 22, 18, 0.06) !important;
+  background: var(--hd-nav-cream) !important;
+  color: var(--hd-brand-green) !important;
+  border-bottom: 1px solid rgba(24, 44, 33, 0.14) !important;
+  box-shadow: 0 8px 26px rgba(46, 38, 22, 0.10) !important;
 }
-/* Labels: cream over the hero, ink once scrolled (legible, no gold-on-glass contrast issue) */
+/* Labels + icons: deep label green, matching the wordmark */
 body nav.site-nav .menu-btn,
 body nav.site-nav .nav-acquire,
 body nav.site-nav .nav-access,
 body nav.site-nav .nav-cart,
+body nav.site-nav .nav-search,
+body nav.site-nav .nav-wishlist,
 body nav.site-nav .lang-toggle,
 body nav.site-nav .lang-toggle button {
-  color: inherit !important;
+  color: var(--hd-brand-green) !important;
 }
+body nav.site-nav .nav-search svg,
+body nav.site-nav .nav-cart .cart-glyph svg,
+body nav.site-nav .nav-wishlist svg { color: var(--hd-brand-green) !important; stroke: var(--hd-brand-green) !important; }
 body nav.site-nav .menu-btn,
 body nav.site-nav .nav-acquire,
 body nav.site-nav .nav-access,
@@ -1970,30 +2002,29 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 @media (max-width: 900px) {
   body nav.site-nav,
   body nav.site-nav.scrolled {
-    background: rgba(238, 231, 215, 0.68) !important;
-    -webkit-backdrop-filter: blur(18px) saturate(140%) !important;
-    backdrop-filter: blur(18px) saturate(140%) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35) !important;
-    box-shadow: 0 8px 30px rgba(32, 24, 12, 0.10) !important;
-    color: #2B241C !important;
+    background: var(--hd-nav-cream) !important;
+    -webkit-backdrop-filter: saturate(104%) !important;
+    backdrop-filter: saturate(104%) !important;
+    border-bottom: 1px solid rgba(24, 44, 33, 0.10) !important;
+    box-shadow: 0 6px 22px rgba(46, 38, 22, 0.06) !important;
+    color: var(--hd-brand-green) !important;
     padding: 14px 22px !important;
     padding-top: calc(14px + env(safe-area-inset-top)) !important;
     transition: background 0.45s var(--ease, ease),
                 box-shadow 0.45s var(--ease, ease),
                 border-color 0.45s var(--ease, ease) !important;
   }
-  /* Scrolled, slightly more opaque + a deeper shadow, no height or colour jump */
+  /* Scrolled, a touch deeper shadow, no height or colour jump */
   body nav.site-nav.scrolled {
-    background: rgba(236, 228, 210, 0.86) !important;
-    box-shadow: 0 10px 34px rgba(32, 24, 12, 0.16) !important;
-    border-bottom: 1px solid rgba(43, 36, 28, 0.08) !important;
+    box-shadow: 0 9px 28px rgba(46, 38, 22, 0.12) !important;
+    border-bottom: 1px solid rgba(24, 44, 33, 0.14) !important;
   }
   /* Every control, warm charcoal, comfortable 44px tap target */
   body nav.site-nav .nav-search,
   body nav.site-nav .menu-btn,
   body nav.site-nav .nav-cart,
   body nav.site-nav .nav-wishlist {
-    color: #2B241C !important;
+    color: var(--hd-brand-green) !important;
     min-height: 44px;
   }
   body nav.site-nav .nav-search {
@@ -2004,8 +2035,8 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   body nav.site-nav .nav-search svg,
   body nav.site-nav .nav-cart .cart-glyph svg,
   body nav.site-nav .nav-wishlist svg {
-    color: #2B241C !important;
-    stroke: #2B241C !important;
+    color: var(--hd-brand-green) !important;
+    stroke: var(--hd-brand-green) !important;
   }
   /* Hamburger, thicker, wider, charcoal, balanced spacing */
   body nav.site-nav .menu-btn .lines { width: 22px; gap: 5px; }
@@ -2013,7 +2044,7 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
   body nav.site-nav .menu-btn .lines::after {
     height: 2px !important;
     border-radius: 2px;
-    background: #2B241C !important;
+    background: var(--hd-brand-green) !important;
   }
   body nav.site-nav .menu-btn .lines::after { width: 64%; }
   /* Cart quantity badge, Harvest Deli gold with dark readable text.
@@ -2024,34 +2055,34 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     left: auto !important;
     right: -2px !important;
     top: -5px !important;
-    background: var(--gold, #C9A24B) !important;
-    color: #241C14 !important;
+    background: var(--hd-brand-green) !important;
+    color: #F5EFE4 !important;
     font-weight: 700 !important;
-    box-shadow: 0 0 0 2px rgba(238, 231, 215, 0.92),
-                0 2px 6px rgba(32, 24, 12, 0.22) !important;
+    box-shadow: 0 0 0 2px rgba(245, 239, 228, 0.95),
+                0 2px 6px rgba(24, 44, 33, 0.28) !important;
   }
-  /* Language switcher, compact champagne pill with strong inner contrast */
+  /* Language switcher, keep the soft cream-glass segmented pill */
   body nav.site-nav .hd-lang-mobile {
     padding: 3px !important;
     gap: 2px !important;
-    background: rgba(255, 255, 255, 0.42) !important;
-    border: 1px solid rgba(43, 36, 28, 0.16) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+    background: rgba(255, 253, 248, 0.55) !important;
+    border: 1px solid rgba(24, 44, 33, 0.14) !important;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
   }
   body nav.site-nav .hd-lang-mobile button {
     min-width: 36px !important;
     min-height: 34px !important;
     padding: 0 11px !important;
-    color: rgba(43, 36, 28, 0.48) !important;
+    color: rgba(24, 44, 33, 0.52) !important;
     opacity: 1 !important;
   }
   body nav.site-nav .hd-lang-mobile button.active {
     background: #FBF7EF !important;
-    color: #2B241C !important;
-    box-shadow: 0 1px 5px rgba(32, 24, 12, 0.20) !important;
+    color: var(--hd-brand-green) !important;
+    box-shadow: 0 1px 5px rgba(24, 44, 33, 0.18) !important;
   }
   body nav.site-nav .hd-lang-mobile button:focus-visible {
-    outline: 2px solid var(--gold-deep, #9C6F2E) !important;
+    outline: 2px solid var(--hd-brand-green) !important;
     outline-offset: 2px;
   }
 }
@@ -2079,10 +2110,10 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     </linearGradient>
     <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
     <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
-      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoil)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoil)">DELI</text>
-      <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoil)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoil)">PREMIUM GREEK PRODUCTS</text>
+      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="var(--hd-logo-fill, url(#goldFoil))"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
+      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="var(--hd-logo-fill, url(#goldFoil))">DELI</text>
+      <line x1="80" y1="80" x2="180" y2="80" stroke="var(--hd-logo-fill, url(#goldFoil))" stroke-width="0.5" opacity="0.5"/>
+      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="var(--hd-logo-fill, url(#goldFoil))">PREMIUM GREEK PRODUCTS</text>
     </symbol>
     <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
       <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
