@@ -1992,14 +1992,22 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
 @media (max-width: 880px) { body nav.site-nav, body nav.site-nav.scrolled { padding: 14px 22px; } }
 
 /* ============================================================
-   Mobile hero-nav, champagne glass over the film (≤900px)
-   The homepage nav sits on a full-bleed video; the old 8%-white
-   glass with cream controls vanished on bright frames. On phones
-   we swap to a warm ivory frosted bar with dark-charcoal controls
-   that stay legible on every frame, and firm up gently on scroll.
-   Mobile-only, the desktop cinematic nav is untouched.
+   Header treatment, applied at EVERY width so desktop === mobile.
+   One warm-cream bar with the deep-green wordmark, the glass language
+   pill, icon-only Menu + cart, and the whisper topographic texture.
+   The desktop-only inline controls (EN/NL toggle, Shop, Private Access,
+   Wishlist, Menu/Cellar text) are hidden so the bar reads identically
+   on phone and desktop. Ultra-narrow (≤360px) compaction still applies.
    ============================================================ */
-@media (max-width: 900px) {
+/* Desktop parity: show the glass pill, drop the extra inline controls */
+body nav.site-nav .hd-lang-mobile { display: inline-flex !important; }
+body nav.site-nav .lang-toggle,
+body nav.site-nav .nav-acquire,
+body nav.site-nav .nav-access,
+body nav.site-nav .nav-wishlist { display: none !important; }
+body nav.site-nav .menu-btn span[data-i18n],
+body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
+@media (min-width: 1px) {
   body nav.site-nav,
   body nav.site-nav.scrolled {
     background: var(--hd-nav-cream) !important;
@@ -2061,20 +2069,32 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     box-shadow: 0 0 0 2px rgba(245, 239, 228, 0.95),
                 0 2px 6px rgba(24, 44, 33, 0.28) !important;
   }
-  /* Language switcher, keep the soft cream-glass segmented pill */
+  /* Language switcher, soft cream-glass segmented pill (self-sufficient at
+     every width, the shared base only styles it ≤900px). */
   body nav.site-nav .hd-lang-mobile {
+    display: inline-flex !important;
+    align-items: center !important;
     padding: 3px !important;
     gap: 2px !important;
+    border-radius: 999px !important;
     background: rgba(255, 253, 248, 0.55) !important;
     border: 1px solid rgba(24, 44, 33, 0.14) !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    flex: 0 0 auto;
   }
   body nav.site-nav .hd-lang-mobile button {
+    -webkit-appearance: none; appearance: none; border: 0; cursor: pointer; margin: 0;
     min-width: 36px !important;
     min-height: 34px !important;
     padding: 0 11px !important;
+    border-radius: 999px !important;
+    background: transparent;
+    font-family: 'Inter', sans-serif;
+    font-size: 10.5px !important; letter-spacing: 0.14em; font-weight: 600; line-height: 1;
+    text-transform: uppercase;
     color: rgba(24, 44, 33, 0.52) !important;
     opacity: 1 !important;
+    transition: background 0.3s var(--ease, ease), color 0.3s var(--ease, ease);
   }
   body nav.site-nav .hd-lang-mobile button.active {
     background: #FBF7EF !important;
@@ -2085,6 +2105,13 @@ html.hd-intro-done nav.site-nav { opacity: 1; transform: none; }
     outline: 2px solid var(--hd-brand-green) !important;
     outline-offset: 2px;
   }
+}
+/* Desktop: the shared ≥1280px rules reserve wide fixed boxes for the Menu /
+   Cellar text labels we now hide, leaving big empty controls. Reset them so
+   the icon controls sit tight, exactly like mobile. */
+@media (min-width: 901px) {
+  body nav.site-nav .menu-btn,
+  body nav.site-nav .nav-cart { min-width: 0 !important; }
 }
 /* Ultra-narrow phones (≤360px), tighten spacing + trim the oversized logo a
    touch so the four controls never crowd or overlap the wordmark at 320px. */
