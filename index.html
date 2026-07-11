@@ -2112,6 +2112,9 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
 @media (min-width: 901px) {
   body nav.site-nav .menu-btn,
   body nav.site-nav .nav-cart { min-width: 0 !important; }
+  /* Wordmark +30% on desktop (61px → 79px); mobile keeps its size */
+  body nav.site-nav .nav-brand,
+  body nav.site-nav .logo-mark.nav-size { height: 79px !important; }
 }
 /* Ultra-narrow phones (≤360px), tighten spacing + trim the oversized logo a
    touch so the four controls never crowd or overlap the wordmark at 320px. */
