@@ -23,16 +23,16 @@
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-182">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-182" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-182">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-182">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-182">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-182" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-182">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-182">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-183">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-183" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-183">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-183">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-183">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-183" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-183">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-183">
 <meta name="theme-color" content="#10281f">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-182">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-183">
 
 <style>
 :root {
@@ -716,6 +716,123 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 .jr-news__form button { flex: none; background: var(--ink); color: var(--cream); border: none; border-radius: var(--radius-pill, 999px); padding: 14px 26px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; cursor: pointer; transition: background .4s var(--ease); }
 .jr-news__form button:hover { background: var(--gold-deep); }
 
+/* ============ Newsletter, floating editorial card (2026) ============
+   A standalone espresso card that floats on the cream page, generous
+   cream spacers above and below so the footer stays visually separate. */
+.jr-nl {
+  padding: clamp(88px, 13vh, 120px) 6vw clamp(76px, 11vh, 96px);
+  display: flex;
+  justify-content: center;
+  background: var(--bg);
+}
+.jr-nl__card {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 34px;
+  padding: clamp(72px, 10vw, 120px) clamp(30px, 6vw, 72px);
+  text-align: center;
+  color: var(--cream);
+  background:
+    radial-gradient(122% 82% at 50% -10%, rgba(212, 172, 106, 0.16), transparent 58%),
+    linear-gradient(168deg, #1B140D 0%, #130E08 58%, #0E0A06 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 240, 214, 0.06) inset,
+    0 30px 64px -32px rgba(20, 14, 8, 0.6),
+    0 14px 30px -20px rgba(31, 26, 20, 0.38);
+  isolation: isolate;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  will-change: opacity, transform;
+}
+.jr-nl__card.in { opacity: 1; transform: translateY(var(--nl-par, 0px)); }
+/* faint amber glow underneath, kept clear of the footer */
+.jr-nl__card::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 14%; right: 14%;
+  bottom: -22px;
+  height: 84px;
+  background: radial-gradient(ellipse at center, rgba(198, 148, 78, 0.3), transparent 70%);
+  filter: blur(26px);
+  pointer-events: none;
+}
+.jr-nl__eyebrow {
+  font-size: 9.5px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  font-weight: 600;
+  margin: 0 0 26px;
+  padding-left: 0.4em;
+}
+.jr-nl__h {
+  font-family: 'Newsreader', serif;
+  font-weight: 300;
+  font-size: clamp(30px, 3.5vw, 46px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin: 0 auto 22px;
+  max-width: 15ch;
+  color: var(--cream);
+}
+.jr-nl__p {
+  max-width: 460px;
+  margin: 0 auto clamp(34px, 5vh, 46px);
+  font-size: 15px;
+  line-height: 1.78;
+  font-weight: 300;
+  color: rgba(245, 239, 228, 0.72);
+}
+.jr-nl__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gold);
+  color: #1F1A14;
+  text-decoration: none;
+  padding: 16px 30px;
+  border-radius: 13px;
+  font-size: 10px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  font-weight: 700;
+  box-shadow: 0 12px 26px -14px rgba(184, 148, 90, 0.7);
+  transition: transform 0.4s var(--ease), filter 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.jr-nl__cta .arw {
+  width: 15px; height: 1.5px; background: currentColor; position: relative;
+  transition: transform 0.4s var(--ease);
+}
+.jr-nl__cta .arw::after {
+  content: ''; position: absolute; right: 0; top: -3px;
+  width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor; border-top: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+.jr-nl__cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 30px -14px rgba(184, 148, 90, 0.82);
+}
+.jr-nl__cta:hover .arw { transform: translateX(4px); }
+.jr-nl__cta:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+@media (max-width: 640px) {
+  /* cancel the parent <main class="jr"> 6vw gutter so the card sits at a
+     true 16px inset (width: calc(100% - 32px)) */
+  .jr-nl { margin-left: -6vw; margin-right: -6vw; padding: 56px 16px; }
+  .jr-nl__card { border-radius: 24px; padding: 48px 26px 52px; max-width: none; }
+  .jr-nl__cta { width: 100%; justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .jr-nl__card { transition: opacity 0.4s ease; transform: none; }
+  .jr-nl__card.in { transform: none; }
+  .jr-nl__cta, .jr-nl__cta .arw { transition: none; }
+}
+
 /* Soft, warm Mediterranean tone fields (replace the near-black blocks) */
 .tone-honey  { --tone: radial-gradient(120% 120% at 28% 24%, rgba(255,243,214,0.85), transparent 62%), linear-gradient(150deg, #EAD7A6 0%, #CDA766 100%); }
 .tone-bee    { --tone: radial-gradient(120% 120% at 30% 26%, rgba(255,238,200,0.8), transparent 60%), linear-gradient(150deg, #F1DEAC 0%, #D6AC6A 100%); }
@@ -1021,7 +1138,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   <section class="jr-featured">
     <a class="jr-feat reveal" href="article-griekse-honing-complete-gids.html" aria-label="Lees: Griekse honing: de complete gids (soorten, gezondheid & koopadvies)">
       <div class="jr-feat__media">
-        <img class="jr-feat__img" src="assets/products-images/thyme-origin.webp?v=hd-2026-06-06-182" alt="" width="1228" height="2200" style="object-fit:cover" fetchpriority="high">
+        <img class="jr-feat__img" src="assets/products-images/thyme-origin.webp?v=hd-2026-06-06-183" alt="" width="1228" height="2200" style="object-fit:cover" fetchpriority="high">
         <span class="jr-feat__cap">Griekenland · De hoeksteengids</span>
       </div>
       <div class="jr-feat__text">
@@ -1042,7 +1159,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     <div class="jrx-grid">
 <!-- JR:PICKS START -->
       <a class="jrx-card reveal" href="article-griekse-honing-vs-manuka-honing.html" data-cats="health,guides" data-q="griekse honing vs. manuka-honing: een eerlijke vergelijking manuka bouwde een wereldmerk op één molecuul en een keurmerk. griekse honing bouwde drieduizend jaar op smaak en herkomst. welke hoort er in jouw keuken, en wat zegt de wetenschap echt? gezondheid gidsen">
-        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gezondheid</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Griekse honing vs. Manuka-honing: een eerlijke vergelijking</h3>
@@ -1051,7 +1168,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-rauwe-griekse-honing.html" data-cats="raw-honey,guides" data-q="rauwe honing: wat rauw écht betekent (en hoe je het herkent) “rauw” is het meest gebruikte en minst beschermde woord in het honingschap. dit betekent het technisch, zo wordt rauwe griekse honing behandeld, en zo controleer je zelf een pot. rauwe honing gidsen">
-        <div class="jrx-card__im"><img src="assets/products-images/acacia-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/acacia-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Rauwe Honing</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Rauwe honing: wat "rauw" écht betekent (en hoe je het herkent)</h3>
@@ -1060,7 +1177,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-is-honing-gezond.html" data-cats="health" data-q="is honing gezond? wat het onderzoek écht zegt antibacteriële werking, antioxidanten, hoest, bloedsuiker, een nuchtere wandeling langs wat de wetenschap onderbouwt, wat niet, en waarom rauw het verschil maakt. gezondheid">
-        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-serving.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-serving.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gezondheid</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Is honing gezond? Wat het onderzoek écht zegt</h3>
@@ -1081,7 +1198,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     <div class="jrx-grid" id="jrxGrid">
 <!-- JR:GRID START -->
       <a class="jrx-card reveal" href="article-griekse-honing-vs-manuka-honing.html" data-cats="health,guides" data-q="griekse honing vs. manuka-honing: een eerlijke vergelijking manuka bouwde een wereldmerk op één molecuul en een keurmerk. griekse honing bouwde drieduizend jaar op smaak en herkomst. welke hoort er in jouw keuken, en wat zegt de wetenschap echt? gezondheid gidsen">
-        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gezondheid</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Griekse honing vs. Manuka-honing: een eerlijke vergelijking</h3>
@@ -1090,7 +1207,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-rauwe-honing-vs-bewerkte-honing.html" data-cats="raw-honey,health" data-q="rauwe honing vs. bewerkte honing: wat is nu echt het verschil? hitte, filtratie en mengen maken van een levend product een houdbare siroop. een nuchtere vergelijking van wat bewerking verwijdert, wat overleeft, en hoe je in het schap ziet welke pot je vasthoudt. rauwe honing gezondheid">
-        <div class="jrx-card__im"><img src="assets/products-images/acacia-serving.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/acacia-serving.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Rauwe Honing</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Rauwe honing vs. bewerkte honing: wat is nu echt het verschil?</h3>
@@ -1099,7 +1216,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-rauwe-griekse-honing.html" data-cats="raw-honey,guides" data-q="rauwe honing: wat rauw écht betekent (en hoe je het herkent) “rauw” is het meest gebruikte en minst beschermde woord in het honingschap. dit betekent het technisch, zo wordt rauwe griekse honing behandeld, en zo controleer je zelf een pot. rauwe honing gidsen">
-        <div class="jrx-card__im"><img src="assets/products-images/acacia-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/acacia-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Rauwe Honing</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Rauwe honing: wat "rauw" écht betekent (en hoe je het herkent)</h3>
@@ -1108,7 +1225,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-is-honing-gezond.html" data-cats="health" data-q="is honing gezond? wat het onderzoek écht zegt antibacteriële werking, antioxidanten, hoest, bloedsuiker, een nuchtere wandeling langs wat de wetenschap onderbouwt, wat niet, en waarom rauw het verschil maakt. gezondheid">
-        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-serving.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/fir-vanilla-serving.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gezondheid</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Is honing gezond? Wat het onderzoek écht zegt</h3>
@@ -1117,7 +1234,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-de-smaak-van-de-griekse-zon.html" data-cats="guides,greek-nature" data-q="proef de griekse zon: een veldgids voor griekse honing wat de griekse zon eigenlijk smaakt, waarom één berg uitmaakt, en hoe je een pot honing leert lezen in drie bewegingen, een proefgids. gidsen griekse natuur">
-        <div class="jrx-card__im"><img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gidsen</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Proef de Griekse zon: een veldgids voor Griekse honing</h3>
@@ -1126,7 +1243,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-hoe-wordt-honing-gemaakt.html" data-cats="beekeeping,greek-nature" data-q="hoe wordt honing gemaakt? van bijenkast naar pot, seizoen voor seizoen trekkende kasten, bergzomers, koud slingeren en een dorpswerkplaats, de echte productiereis van een pot griekse honing, seizoen voor seizoen. imkerij griekse natuur">
-        <div class="jrx-card__im"><img src="assets/products-images/pine-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/pine-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Imkerij</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Hoe wordt honing gemaakt? Van bijenkast naar pot, seizoen voor seizoen</h3>
@@ -1135,7 +1252,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-griekse-imkertraditie.html" data-cats="beekeeping,greek-nature" data-q="drieduizend jaar griekse imkerij: van aristoteles tot vandaag van de bijenkasten van het oude athene tot de bergimkers van nu, hoe griekenland de oudste doorlopende imkertraditie van europa opbouwde en nooit meer losliet. imkerij griekse natuur">
-        <div class="jrx-card__im"><img src="assets/products-images/arbutus-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/arbutus-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Imkerij</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Drieduizend jaar Griekse imkerij: van Aristoteles tot vandaag</h3>
@@ -1144,7 +1261,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-griekse-honingsoorten.html" data-cats="raw-honey,guides" data-q="griekse honingsoorten uitgelegd: tijm, dennen, spar, kastanje & meer acht soorten bepalen de griekse imkerij, en geen twee gedragen zich hetzelfde. kleur, geur, textuur, kristallisatie en waar je elke soort bij eet, een werkgids. rauwe honing gidsen">
-        <div class="jrx-card__im"><img src="assets/products-images/thyme-serving.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/thyme-serving.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Rauwe Honing</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Griekse honingsoorten uitgelegd: tijm, dennen, spar, kastanje & meer</h3>
@@ -1153,7 +1270,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-griekse-honing-smaak.html" data-cats="raw-honey" data-q="waarom griekse honing anders smaakt dan supermarkthoning hoogte, wilde flora en koude slingering, waarom een pot griekse berghoning niets deelt met de knijpfles uit het schap. rauwe honing">
-        <div class="jrx-card__im"><img src="honeycomb.jpg?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="honeycomb.jpg?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Rauwe Honing</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Waarom Griekse honing anders smaakt dan supermarkthoning</h3>
@@ -1162,7 +1279,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-waarom-kristalliseert-honing.html" data-cats="guides,raw-honey" data-q="waarom kristalliseert honing? (en waarom dat goed nieuws is) gekristalliseerde honing is niet bedorven, oud of nep, meestal juist het tegendeel. de wetenschap achter kristallisatie, welke soorten snel vast worden, en hoe je een pot weer vloeibaar maakt zonder hem te bederven. gidsen rauwe honing">
-        <div class="jrx-card__im"><img src="assets/products-images/orange-blossom-origin.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/orange-blossom-origin.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gidsen</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Waarom kristalliseert honing? (En waarom dat goed nieuws is)</h3>
@@ -1171,7 +1288,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-hoe-lang-is-honing-houdbaar.html" data-cats="guides" data-q="hoe lang is honing houdbaar? bewaren, tht & de pot van 3.000 jaar in egyptische graven is eetbare honing van duizenden jaren oud gevonden. waarom honing feitelijk nooit bederft, wat de datum op de pot echt betekent, en de paar bewaarfouten die hem wél kunnen aantasten. gidsen">
-        <div class="jrx-card__im"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/products-images/chestnut-serving.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gidsen</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Hoe lang is honing houdbaar? Bewaren, THT & de pot van 3.000 jaar</h3>
@@ -1180,7 +1297,7 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
         </div>
       </a>
       <a class="jrx-card reveal" href="article-griekse-honing-nederland.html" data-cats="guides" data-q="waar koop je echte griekse honing in nederland? van markt tot webshop: hoe je echte griekse berghoning herkent tussen de “griekse stijl”-blends, en waar je honing koopt die het etiket waarmaakt. gidsen">
-        <div class="jrx-card__im"><img src="assets/markt.webp?v=hd-2026-06-06-182" alt="" loading="lazy" width="800" height="500">
+        <div class="jrx-card__im"><img src="assets/markt.webp?v=hd-2026-06-06-183" alt="" loading="lazy" width="800" height="500">
           <span class="jrx-card__cat">Gidsen</span></div>
         <div class="jrx-card__tx">
           <h3 class="jrx-card__h">Waar koop je echte Griekse honing in Nederland?</h3>
@@ -1208,12 +1325,14 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     </ol>
   </section>
 
-  <!-- ============ Nieuwsbrief ============ -->
-  <section class="newsletter-strip" aria-labelledby="nlH">
-    <div class="eyebrow">De stille brief</div>
-    <h2 id="nlH">Eén brief per oogst.<br>Niets ertussenin.</h2>
-    <p style="max-width:52ch;margin:26px auto 34px;font-size:15px;line-height:1.7;color:rgba(245,239,228,0.78)">Nieuwe artikelen, de stand van de kasten en als eerste toegang tot kleine oogsten. Een paar brieven per jaar, geschreven zoals het Journal, langzaam.</p>
-    <a class="coda-btn" href="mailto:hello@harvestdeli.nl?subject=Inschrijving%20Journal&body=Ik%20ontvang%20graag%20de%20brief%20van%20Harvest%20Deli." style="display:inline-flex;padding:18px 34px;background:var(--gold);color:#1F1A14;text-decoration:none;font-size:10px;letter-spacing:0.28em;text-transform:uppercase;font-weight:600;border-radius:3px">Schrijf je in per e-mail</a>
+  <!-- ============ Nieuwsbrief, floating editorial card ============ -->
+  <section class="jr-nl" aria-labelledby="nlH">
+    <div class="jr-nl__card">
+      <div class="jr-nl__eyebrow">De stille brief</div>
+      <h2 class="jr-nl__h" id="nlH">Eén brief per oogst.<br>Niets ertussenin.</h2>
+      <p class="jr-nl__p">Nieuwe artikelen, de stand van de kasten en als eerste toegang tot kleine oogsten. Een paar brieven per jaar, geschreven zoals het Journal, langzaam.</p>
+      <a class="jr-nl__cta" href="mailto:hello@harvestdeli.nl?subject=Inschrijving%20Journal&body=Ik%20ontvang%20graag%20de%20brief%20van%20Harvest%20Deli.">Schrijf je in per e-mail<span class="arw" aria-hidden="true"></span></a>
+    </div>
   </section>
 
 </main>
@@ -1258,16 +1377,16 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-182"></script>
-<script src="analytics.js?v=hd-2026-06-06-182"></script>
+<script src="shared.js?v=hd-2026-06-06-183"></script>
+<script src="analytics.js?v=hd-2026-06-06-183"></script>
 <!-- CMS / editorial layer (Sanity-ready). Dormant by default: the static
      journal above is untouched unless you opt in with ?cms=1 (mock) or
      ?cms=sanity. See cms/README.md. -->
-<script src="cms/config.js?v=hd-2026-06-06-182"></script>
-<script src="cms/mock-content.js?v=hd-2026-06-06-182"></script>
-<script src="cms/sanity.js?v=hd-2026-06-06-182"></script>
-<script src="cms/index.js?v=hd-2026-06-06-182"></script>
-<script src="cms/journal-render.js?v=hd-2026-06-06-182"></script>
+<script src="cms/config.js?v=hd-2026-06-06-183"></script>
+<script src="cms/mock-content.js?v=hd-2026-06-06-183"></script>
+<script src="cms/sanity.js?v=hd-2026-06-06-183"></script>
+<script src="cms/index.js?v=hd-2026-06-06-183"></script>
+<script src="cms/journal-render.js?v=hd-2026-06-06-183"></script>
 <script>
 (function () {
   const menuBtn = document.getElementById('menuBtn');
@@ -1283,9 +1402,38 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
     entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* Newsletter card: gentle enter (opacity + translateY) and a very
+     subtle 4-6px parallax while it sits in view. Respects reduced motion. */
+  var nlCard = document.querySelector('.jr-nl__card');
+  if (nlCard) {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var nlIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { nlCard.classList.add('in'); nlIO.unobserve(en.target); } });
+    }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+    nlIO.observe(nlCard);
+
+    if (!reduce) {
+      var ticking = false;
+      var onScroll = function () {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(function () {
+          var r = nlCard.getBoundingClientRect();
+          var vh = window.innerHeight || 1;
+          // -1 (below) → 1 (above), 0 when centred; map to ±5px
+          var progress = ((vh / 2) - (r.top + r.height / 2)) / vh;
+          nlCard.style.setProperty('--nl-par', (Math.max(-1, Math.min(1, progress)) * -5).toFixed(1) + 'px');
+          ticking = false;
+        });
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+  }
 })();
 </script>
-<script src="journal-data.js?v=hd-2026-06-06-182"></script>
+<script src="journal-data.js?v=hd-2026-06-06-183"></script>
 <script>
 (function () {
   var grid = document.getElementById('jrxGrid');
