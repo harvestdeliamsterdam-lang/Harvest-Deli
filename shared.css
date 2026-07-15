@@ -6066,7 +6066,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("assets/nav-topo.svg?v=hd-2026-06-06-181") center / cover no-repeat !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-182") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6227,3 +6227,53 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
 @media (prefers-reduced-motion: reduce) {
   .hd-deliver { transition: none; opacity: 1; transform: none; }
 }
+
+/* =================================================================
+   Country selector — custom luxury dropdown (HD_cc), replaces the
+   native <select>. ONE flag (button) + a soft cream list of flag +
+   name + destination price. No native styling; subtle open animation.
+   ================================================================= */
+.hd-cc { position: relative; display: inline-block; }
+.hd-cc-btn {
+  -webkit-appearance: none; appearance: none; cursor: pointer; margin: 0;
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 11px; border-radius: 999px;
+  background: rgba(255, 253, 248, 0.6);
+  border: 1px solid rgba(24, 44, 33, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  font-family: 'Inter', sans-serif; color: inherit;
+  transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.hd-cc-btn:hover { background: rgba(255, 253, 248, 0.92); border-color: rgba(24, 44, 33, 0.28); }
+.hd-cc-btn:focus-visible { outline: 2px solid var(--gold, #C89B4B); outline-offset: 2px; }
+.hd-cc-btn .hd-cc-flag { font-size: 17px; line-height: 1; }
+.hd-cc-btn .hd-cc-name { font-size: 12.5px; font-weight: 600; letter-spacing: 0.01em; white-space: nowrap; }
+.hd-cc-chev { width: 13px; height: 13px; opacity: 0.5; transition: transform 0.3s ease; flex: 0 0 auto; }
+.hd-cc.open .hd-cc-chev { transform: rotate(180deg); }
+
+.hd-cc-menu {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: 60;
+  min-width: 236px; max-height: 302px; overflow-y: auto; overscroll-behavior: contain;
+  background: #FBF7EF; border: 1px solid rgba(184, 148, 90, 0.28); border-radius: 16px;
+  box-shadow: 0 26px 56px -22px rgba(60, 36, 14, 0.42), 0 6px 16px -10px rgba(0, 0, 0, 0.12);
+  padding: 6px;
+  opacity: 0; transform: translateY(-6px) scale(0.985); transform-origin: top left;
+  pointer-events: none; transition: opacity 0.22s ease, transform 0.22s ease;
+}
+.hd-cc.open .hd-cc-menu { opacity: 1; transform: none; pointer-events: auto; }
+.hd-cc-opt {
+  -webkit-appearance: none; appearance: none; cursor: pointer; width: 100%; margin: 0;
+  display: flex; align-items: center; gap: 10px; text-align: left;
+  padding: 9px 12px; border: 0; border-radius: 11px; background: transparent;
+  font-family: 'Inter', sans-serif; color: var(--ink, #1F1A14);
+  transition: background 0.18s ease;
+}
+.hd-cc-opt:hover, .hd-cc-opt:focus-visible { background: rgba(184, 148, 90, 0.13); outline: none; }
+.hd-cc-opt .hd-cc-flag { font-size: 20px; line-height: 1; flex: 0 0 auto; }
+.hd-cc-opt .hd-cc-name { flex: 1 1 auto; font-size: 13px; font-weight: 500; letter-spacing: 0.01em; }
+.hd-cc-opt .hd-cc-price { font-size: 12px; color: var(--ink-warm, #8A7D6B); font-variant-numeric: tabular-nums; opacity: 0.85; }
+.hd-cc-opt.is-sel { background: rgba(184, 148, 90, 0.11); }
+.hd-cc-opt.is-sel .hd-cc-name { font-weight: 600; }
+/* In the cart drawer the line sits low, so open the list upward. */
+#hdCartShip .hd-cc-menu { top: auto; bottom: calc(100% + 8px); transform-origin: bottom left; }
+@media (prefers-reduced-motion: reduce) { .hd-cc-menu, .hd-cc-chev { transition: none; } }

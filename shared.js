@@ -2276,7 +2276,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-182',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2295,7 +2295,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-182',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2314,7 +2314,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-182',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2333,7 +2333,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-182',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2352,7 +2352,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-182',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2371,7 +2371,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-182',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2390,7 +2390,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-182',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2409,7 +2409,7 @@
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-182',
       slug: 'heather',
       url: 'product.html?p=heather'
     },
@@ -2428,7 +2428,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-182',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2481,7 +2481,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-182',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2501,7 +2501,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-181',
+      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-182',
       notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -5551,29 +5551,71 @@
   var TRUCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h10v9H3zM13 9.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>';
   function nl() { return window.HD_lang && window.HD_lang() === 'nl'; }
   function money(n) { var s = (Math.round(n * 100) % 100 === 0) ? String(Math.round(n)) : n.toFixed(2); if (nl()) s = s.replace('.', ','); return '€' + s; }
-  function optionsHTML(sel) {
+  var CHEV = '<svg class="hd-cc-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+  function cname(c) { return nl() ? c.name_nl : c.name_en; }
+  // One custom dropdown, ONE flag (single source of truth = HD_SHIPPING.current()).
+  // Each row: one flag (20px) + country name + the destination's shipping price.
+  function menuHTML(selCode) {
     return window.HD_SHIPPING.list().map(function (c) {
-      var label = c.flag + ' ' + (nl() ? c.name_nl : c.name_en);
-      return '<option value="' + c.code + '"' + (c.code === sel ? ' selected' : '') + '>' + label + '</option>';
+      return '<button type="button" role="option" class="hd-cc-opt' + (c.code === selCode ? ' is-sel' : '') + '" data-code="' + c.code + '" aria-selected="' + (c.code === selCode) + '" tabindex="-1">' +
+        '<span class="hd-cc-flag" aria-hidden="true">' + c.flag + '</span>' +
+        '<span class="hd-cc-name">' + cname(c) + '</span>' +
+        '<span class="hd-cc-price">' + money(c.rate) + '</span>' +
+      '</button>';
     }).join('');
   }
   function fill(el) {
     var s = window.HD_SHIPPING.current();
     var free = nl() ? ('Gratis vanaf ' + money(s.free)) : ('Free from ' + money(s.free));
     var ship = nl() ? ('Verzending ' + money(s.rate)) : ('Shipping ' + money(s.rate));
-    var toLbl = nl() ? 'Bezorgen naar' : 'Deliver to';
+    var toLbl = nl() ? 'Bezorgland kiezen' : 'Choose delivery country';
     el.innerHTML =
       '<span class="hd-ship-ico">' + TRUCK + '</span>' +
       '<span class="hd-ship-body">' +
         '<span class="hd-ship-main">' + ship + '<span class="hd-ship-dot">·</span><span class="hd-ship-free">' + free + '</span></span>' +
-        '<span class="hd-ship-pick"><span class="hd-ship-flag" aria-hidden="true">' + s.flag + '</span>' +
-          '<select class="hd-ship-select" aria-label="' + toLbl + '">' + optionsHTML(s.code) + '</select>' +
-        '</span>' +
+        '<div class="hd-cc" data-hd-cc>' +
+          '<button type="button" class="hd-cc-btn" aria-haspopup="listbox" aria-expanded="false" aria-label="' + toLbl + '">' +
+            '<span class="hd-cc-flag" aria-hidden="true">' + s.flag + '</span>' +
+            '<span class="hd-cc-name">' + cname(s) + '</span>' + CHEV +
+          '</button>' +
+          '<div class="hd-cc-menu" role="listbox">' + menuHTML(s.code) + '</div>' +
+        '</div>' +
       '</span>';
-    var sel = el.querySelector('.hd-ship-select');
-    if (sel) sel.addEventListener('change', function () { window.HD_SHIPPING.setCountry(sel.value); });
   }
   function hydrateAll() { document.querySelectorAll('[data-hd-ship]').forEach(function (el) { if (!el.classList.contains('hd-ship')) el.classList.add('hd-ship'); fill(el); }); }
+
+  /* One delegated handler set (survives re-renders): open / select / dismiss. */
+  function closeAll(except) {
+    document.querySelectorAll('.hd-cc.open').forEach(function (cc) {
+      if (cc === except) return;
+      cc.classList.remove('open');
+      var b = cc.querySelector('.hd-cc-btn'); if (b) b.setAttribute('aria-expanded', 'false');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    var opt = t.closest && t.closest('.hd-cc-opt');
+    if (opt) { e.preventDefault(); window.HD_SHIPPING.setCountry(opt.getAttribute('data-code')); closeAll(); return; }
+    var btn = t.closest && t.closest('.hd-cc-btn');
+    if (btn) {
+      e.preventDefault();
+      var cc = btn.parentNode, wasOpen = cc.classList.contains('open');
+      closeAll(cc); cc.classList.toggle('open', !wasOpen); btn.setAttribute('aria-expanded', String(!wasOpen));
+      if (!wasOpen) { var sel = cc.querySelector('.hd-cc-opt.is-sel'); if (sel) { try { sel.scrollIntoView({ block: 'nearest' }); } catch (x) {} } }
+      return;
+    }
+    if (!(t.closest && t.closest('.hd-cc'))) closeAll();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeAll(); return; }
+    var cc = document.querySelector('.hd-cc.open'); if (!cc) return;
+    var opts = [].slice.call(cc.querySelectorAll('.hd-cc-opt'));
+    var i = opts.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') { e.preventDefault(); (opts[i < 0 ? 0 : Math.min(opts.length - 1, i + 1)] || opts[0]).focus(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); (opts[i < 0 ? opts.length - 1 : Math.max(0, i - 1)] || opts[0]).focus(); }
+    else if ((e.key === 'Enter' || e.key === ' ') && document.activeElement.classList.contains('hd-cc-opt')) { e.preventDefault(); window.HD_SHIPPING.setCountry(document.activeElement.getAttribute('data-code')); closeAll(); }
+  });
+
   window.HD_shipLineRefresh = hydrateAll;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hydrateAll); else hydrateAll();
   window.addEventListener('hd:country', hydrateAll);
@@ -5645,9 +5687,9 @@
   window.addEventListener('hd:lang', hydrateAll);
 })();
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-181'], ['hd-search-js', 'search.js?v=hd-2026-06-06-181'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-181'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-181'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-181'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-181'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-181'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-181'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-181'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-181']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-182'], ['hd-search-js', 'search.js?v=hd-2026-06-06-182'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-182'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-182'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-182'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-182'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-182'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-182'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-182'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-182']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;
