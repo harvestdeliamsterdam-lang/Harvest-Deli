@@ -95,6 +95,15 @@
     var foot = document.querySelector('.cart-foot');
     var totalEl = document.getElementById('cartTotal');
     if (!foot || !totalEl) return;
+    // Country selector + live rate line, so shoppers set their destination in
+    // the cart and the threshold below updates to their zone.
+    if (!document.getElementById('hdCartShip')) {
+      var ship = document.createElement('div');
+      ship.id = 'hdCartShip'; ship.className = 'hd-cart-ship';
+      ship.setAttribute('data-hd-ship', '');
+      foot.insertBefore(ship, foot.firstChild);
+      try { if (window.HD_shipLineRefresh) window.HD_shipLineRefresh(); } catch (e) {}
+    }
     var bar = document.getElementById('hdFreeBar');
     if (!bar) {
       bar = document.createElement('div');
@@ -110,7 +119,7 @@
     }
     // Read the authoritative cart subtotal (HD_CART), DOM-text parsing was unreliable.
     var total = (window.HD_CART && typeof window.HD_CART.total === 'function') ? window.HD_CART.total() : parsePrice(totalEl.textContent);
-    var threshold = window.HD_FREE_SHIP || 65;
+    var threshold = (window.HD_SHIPPING && window.HD_SHIPPING.current().free) || window.HD_FREE_SHIP || 60;
     var remain = Math.max(0, threshold - total);
     var pct = Math.max(0, Math.min(100, threshold > 0 ? (total / threshold) * 100 : 0));
     var msg = bar.querySelector('.hd-free-msg');
@@ -149,6 +158,7 @@
     setTimeout(watchCart, 60);
     document.addEventListener('hd:cart-changed', updateFreeBar);
     window.addEventListener('hd:lang', updateFreeBar);
+    window.addEventListener('hd:country', updateFreeBar);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();

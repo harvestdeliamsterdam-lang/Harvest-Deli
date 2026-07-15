@@ -31,12 +31,16 @@
   'use strict';
 
   /* ----------------------------- Config ---------------------------- */
-  /** Free shipping threshold, single source of truth lives in shared.js. */
-  var FREE_SHIPPING_AT = (typeof window !== 'undefined' && window.HD_FREE_SHIP) || 65;
+  /** Country-aware shipping, mirrors the live Shopify delivery profile via
+   *  HD_SHIPPING (rate + free threshold per destination). The wizard shows an
+   *  estimate; Shopify's hosted checkout is the source of truth for the charge. */
+  function shipCfg() { return (window.HD_SHIPPING && window.HD_SHIPPING.current()) || { rate: 5.95, free: 60, name_nl: 'Nederland', name_en: 'Netherlands', flag: '🇳🇱' }; }
+  function freeShipAt() { return shipCfg().free; }
+  function shipRate() { return shipCfg().rate; }
 
   /** @type {ShippingMethod[]}, order = display order. This is a DISPLAY ESTIMATE
    *  only, verified to match Shopify's live delivery profile (NL/BE: €6.95 flat,
-   *  free ≥ FREE_SHIPPING_AT). Shopify's own checkout is the source of truth for
+   *  free ≥ freeShipAt()). Shopify's own checkout is the source of truth for
    *  the actual charge, do not add carrier-branded or invented methods here
    *  (e.g. a local "Pickup" option) unless Shopify's delivery profile offers it;
    *  verify via a live test cart before adding anything back. */
@@ -183,10 +187,8 @@
   }
   /** Shipping cost given subtotal & method (free-threshold aware). */
   function calcShipping() {
-    var m = shippingMethod();
-    if (m.price === 0) return 0;
-    if (m.free && (subtotal() - discountAmount() - offerAmount()) >= FREE_SHIPPING_AT) return 0;
-    return m.price;
+    if ((subtotal() - discountAmount() - offerAmount()) >= freeShipAt()) return 0;
+    return shipRate();
   }
   function grandTotal() { return Math.max(0, subtotal() - discountAmount() - offerAmount() + calcShipping()); }
 
@@ -324,10 +326,10 @@
     var prog = $('#wzFreeProgress');
     if (prog) {
       var subAfter = subtotal() - discountAmount();
-      var remain = FREE_SHIPPING_AT - subAfter;
+      var remain = freeShipAt() - subAfter;
       if (remain > 0 && (window.HD_CART && window.HD_CART.items.length)) {
         prog.hidden = false;
-        var pct = Math.max(4, Math.min(100, (subAfter / FREE_SHIPPING_AT) * 100));
+        var pct = Math.max(4, Math.min(100, (subAfter / freeShipAt()) * 100));
         var txt = lookup('ck.freeProgress', 'Add {x} more for free shipping').replace('{x}', fmt(remain));
         prog.innerHTML = '<span class="fp-label">' + txt + '</span>' +
           '<span class="fp-track" aria-hidden="true"><span class="fp-fill" style="width:' + pct.toFixed(1) + '%"></span></span>';
@@ -338,17 +340,20 @@
   function renderShipping() {
     var wrap = $('#wzShipOptions');
     if (!wrap) return;
-    var subAfter = subtotal() - discountAmount();
-    wrap.innerHTML = SHIPPING.map(function (m) {
-      var free = m.free && m.price > 0 && subAfter >= FREE_SHIPPING_AT;
-      var priceTxt = m.price === 0 ? lookup('ck.free', 'Free') : (free ? lookup('ck.free', 'Free') : fmt(m.price));
-      return '' +
-        '<button type="button" class="ship-opt' + (m.id === state.shippingId ? ' active' : '') + '" data-ship="' + m.id + '" aria-pressed="' + (m.id === state.shippingId) + '">' +
-          '<span class="radio" aria-hidden="true"></span>' +
-          '<span class="ship-opt-body"><span class="title">' + m.label + '</span><span class="sub">' + m.estimate + '</span></span>' +
-          '<span class="price' + (free ? ' was-free' : '') + '">' + priceTxt + '</span>' +
-        '</button>';
-    }).join('');
+    var subAfter = subtotal() - discountAmount() - offerAmount();
+    var cfg = shipCfg();
+    var nl = (window.HD_lang && window.HD_lang() === 'nl');
+    var free = subAfter >= cfg.free;
+    var toName = nl ? cfg.name_nl : cfg.name_en;
+    var estimate = (cfg.flag ? cfg.flag + ' ' : '') + (nl ? ('Naar ' + toName + ' · gratis vanaf ' + fmt(cfg.free)) : ('To ' + toName + ' · free from ' + fmt(cfg.free)));
+    var priceTxt = free ? lookup('ck.free', 'Free') : fmt(cfg.rate);
+    var label = lookup('ck.shipStd', nl ? 'Standaardverzending' : 'Standard shipping');
+    wrap.innerHTML =
+      '<button type="button" class="ship-opt active" data-ship="standard" aria-pressed="true">' +
+        '<span class="radio" aria-hidden="true"></span>' +
+        '<span class="ship-opt-body"><span class="title">' + label + '</span><span class="sub">' + estimate + '</span></span>' +
+        '<span class="price' + (free ? ' was-free' : '') + '">' + priceTxt + '</span>' +
+      '</button>';
   }
 
   function addrHTML(a) {
@@ -623,6 +628,7 @@
 
     // re-render on language switch (labels) and cart drawer changes
     window.addEventListener('hd:lang', function () { rerenderAll(); renderShipping(); if (state.step === 5) renderReview(); });
+    window.addEventListener('hd:country', function () { rerenderAll(); renderShipping(); if (state.step === 5) renderReview(); });
     document.addEventListener('hd:cart-changed', rerenderAll);
   }
 

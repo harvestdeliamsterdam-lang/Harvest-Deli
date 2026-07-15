@@ -155,7 +155,7 @@
       'menu.item.contact': 'Contact',
       'menu.item.contact_sub': 'Trade & press',
       'menu.estate.h': 'Single origin',
-      'menu.estate.p': 'Single-origin Greek honey, olive oil and mountain tea. Small harvests, shipped quietly within the Netherlands & Belgium.',
+      'menu.estate.p': 'Single-origin Greek honey, olive oil and mountain tea. Small harvests, shipped quietly across the European Union.',
       'menu.social.instagram': 'Instagram',
       'menu.social.journal': 'Journal',
       'menu.social.wholesale': 'Wholesale',
@@ -164,11 +164,11 @@
       'cart.close': 'Close',
       'cart.empty.eyebrow': 'Your cellar',
       'cart.empty.h': 'The cellar awaits.',
-      'cart.empty.p': 'Small-batch Greek harvests, prepared quietly and shipped within the Netherlands & Belgium.',
+      'cart.empty.p': 'Small-batch Greek harvests, prepared quietly and shipped across the European Union.',
       'cart.empty.cta': 'View the collection',
       'cart.empty.suggest': 'Begin with',
       'cart.subtotal': 'Subtotal',
-      'cart.note': 'Shipping calculated at checkout. Free within the Netherlands & Belgium above €65.',
+      'cart.note': 'Shipping calculated at checkout. Free-shipping threshold depends on your country.',
       'cart.checkout': 'Continue to checkout',
       'cart.remove': 'Remove',
       'cart.added': 'Added',
@@ -401,7 +401,7 @@
       'shop.eyebrow': 'The Collection',
       'shop.headline_html': '13 <em>premium</em> Greek delicacies.',
       'shop.intro': 'Raw. Unpasteurised. Direct from origin.',
-      'shop.trustline': 'Raw & unpasteurised · Harvested in Greece · Free shipping in the Netherlands & Belgium above €65',
+      'shop.trustline': 'Raw & unpasteurised · Harvested in Greece · Now shipping across the European Union',
       'shop.filterLabel': 'Filter by',
       'shop.filter.all': 'All',
       'shop.filter.floral': 'Floral',
@@ -464,7 +464,7 @@
       'ck.sameAddr': 'Shipping address is the same as billing',
       'ck.save': 'Save these details for next time',
       'ck.delivery.h_html': 'Delivery &middot; <em>how it travels.</em>',
-      'ck.deliveryNote': 'Free standard shipping on orders over €65. Every parcel ships tracked & insured.',
+      'ck.deliveryNote': 'Free shipping above your country threshold (from €60). Every parcel ships tracked & insured.',
       'ck.freeProgress': 'Add {x} more for free shipping',
       'ck.payment.h_html': 'Payment &middot; <em>quietly secure.</em>',
       'ck.demoPill': 'Demo',
@@ -487,7 +487,7 @@
       'ck.faq.q1': 'When will my order ship?',
       'ck.faq.a1': 'Orders placed before 14:00 CET ship the same business day from the Netherlands, carefully packed and sealed.',
       'ck.faq.q2': 'Do you ship internationally?',
-      'ck.faq.a2': 'We currently ship within the Netherlands and Belgium, with select international destinations available. Your exact shipping option and price are confirmed securely at Shopify checkout.',
+      'ck.faq.a2': 'We ship across the entire European Union. Your exact shipping option and price are confirmed securely at Shopify checkout.',
       'ck.faq.q3': 'Can I return an order?',
       'ck.faq.a3': 'Unopened jars can be returned within 14 days. See our <a href="legal-returns.html">returns policy</a> or write to <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
       'ck.err.required': 'Required',
@@ -723,7 +723,7 @@
       'checkout.package.tag': 'Edition 1 · 2025 Harvest',
       'checkout.trust.stripe1': 'Securely paid',
       'checkout.trust.stripe2': 'Via Mollie & iDEAL',
-      'checkout.trust.intl1': 'Delivery in NL & BE',
+      'checkout.trust.intl1': 'Delivery across the EU',
       'checkout.trust.intl2': 'Shipped fast from the Netherlands',
       'checkout.trust.sealed1': 'Authentic from Greece',
       'checkout.trust.sealed2': 'Direct from local producers',
@@ -740,7 +740,7 @@
       'product.tag.coldExtracted': 'Cold Extracted',
       'product.tag.numbered': 'Numbered by hand',
       'product.desc': 'A raw, unfiltered Greek honey, gathered at the source and bottled in heavy hand-pressed glass. Nothing added, nothing taken away.',
-      'product.priceSub_html': 'incl. VAT &middot; ships within the Netherlands & Belgium',
+      'product.priceSub_html': 'incl. VAT &middot; ships across the EU',
       'product.size.tasting': 'Tasting',
       'product.size.estate': 'Large',
       'product.size.reserve': 'Reserve',
@@ -757,8 +757,8 @@
       'product.acc.origin': 'Origin',
       'product.acc.originBody': 'Gathered at the source in the Greek mountains and countryside, and bottled exactly as it left the comb.',
       'product.acc.ship': 'Shipping',
-      'product.acc.shipBody': 'Shipped from our Amsterdam cellar within 1\u20132 business days. Free shipping within the Netherlands & Belgium above \u20ac65. Carefully packed, track & trace included.',
-      'product.notes_html': 'Free shipping within the Netherlands & Belgium above €65 <span class="dot"></span> Raw, unfiltered, numbered by hand',
+      'product.acc.shipBody': 'Shipped from our Amsterdam cellar within 1\u20132 business days, right across the European Union. Carefully packed, track & trace included.',
+      'product.notes_html': 'Now shipping across the European Union <span class="dot"></span> Raw, unfiltered, numbered by hand',
       'product.tasting.eyebrow': 'The Tasting',
       'product.tasting.h_html': 'What you taste, slowly.',
       'product.tasting.first.h': 'First',
@@ -827,7 +827,7 @@
       'cart.empty.cta': 'Bekijk de collectie',
       'cart.empty.suggest': 'Begin met',
       'cart.subtotal': 'Subtotaal',
-      'cart.note': 'Verzending wordt bij de afrekening berekend. Gratis binnen Nederland & België boven €65.',
+      'cart.note': 'Verzendkosten worden bij de afrekening berekend. De drempel voor gratis verzending hangt af van je land.',
       'cart.checkout': 'Naar de afrekening',
       'cart.remove': 'Verwijderen',
       'cart.added': 'Toegevoegd',
@@ -1058,7 +1058,7 @@
       'shop.eyebrow': 'De Collectie',
       'shop.headline_html': '13 <em>premium</em> Griekse delicatessen.',
       'shop.intro': 'Rauw. Ongepasteuriseerd. Rechtstreeks van de bron.',
-      'shop.trustline': 'Rauw & ongepasteuriseerd · Geoogst in Griekenland · Gratis verzending in Nederland & België boven €65',
+      'shop.trustline': 'Rauw & ongepasteuriseerd · Geoogst in Griekenland · Nu verzending door heel Europa',
       'shop.filterLabel': 'Filter op',
       'shop.filter.all': 'Alles',
       'shop.filter.floral': 'Bloemig',
@@ -1121,7 +1121,7 @@
       'ck.sameAddr': 'Verzendadres is gelijk aan factuuradres',
       'ck.save': 'Bewaar deze gegevens voor de volgende keer',
       'ck.delivery.h_html': 'Bezorging &middot; <em>hoe het reist.</em>',
-      'ck.deliveryNote': 'Gratis standaardverzending boven €65. Elk pakket gaat verzekerd en met track & trace.',
+      'ck.deliveryNote': 'Gratis verzending boven je landdrempel (vanaf €60). Elk pakket gaat verzekerd en met track & trace.',
       'ck.freeProgress': 'Nog {x} voor gratis verzending',
       'ck.payment.h_html': 'Betaling &middot; <em>rustig & veilig.</em>',
       'ck.demoPill': 'Demo',
@@ -1144,7 +1144,7 @@
       'ck.faq.q1': 'Wanneer wordt mijn bestelling verzonden?',
       'ck.faq.a1': 'Bestellingen voor 14:00 uur gaan dezelfde werkdag de deur uit vanuit Nederland, zorgvuldig verpakt en verzegeld.',
       'ck.faq.q2': 'Verzenden jullie internationaal?',
-      'ck.faq.a2': 'Wij verzenden op dit moment binnen Nederland en België, met een beperkt aantal internationale bestemmingen. De exacte verzendoptie en prijs worden veilig bevestigd bij de Shopify-checkout.',
+      'ck.faq.a2': 'Wij verzenden door de hele Europese Unie. De exacte verzendoptie en prijs worden veilig bevestigd bij de Shopify-checkout.',
       'ck.faq.q3': 'Kan ik een bestelling retourneren?',
       'ck.faq.a3': 'Ongeopende potten kun je binnen 14 dagen retourneren. Zie ons <a href="legal-returns.html">retourbeleid</a> of mail naar <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
       'ck.err.required': 'Verplicht',
@@ -1380,7 +1380,7 @@
       'checkout.package.tag': 'Editie 1 · Oogst 2025',
       'checkout.trust.stripe1': 'Veilig betaald',
       'checkout.trust.stripe2': 'Via Mollie & iDEAL',
-      'checkout.trust.intl1': 'Levering in NL & BE',
+      'checkout.trust.intl1': 'Levering in de hele EU',
       'checkout.trust.intl2': 'Snel verzonden vanuit Nederland',
       'checkout.trust.sealed1': 'Authentiek uit Griekenland',
       'checkout.trust.sealed2': 'Rechtstreeks van lokale producenten',
@@ -1397,7 +1397,7 @@
       'product.tag.coldExtracted': 'Koud Gewonnen',
       'product.tag.numbered': 'Met de hand genummerd',
       'product.desc': 'Een rauwe, ongefilterde Griekse honing, verzameld bij de bron en gebotteld in zwaar handgeperst glas. Niets toegevoegd, niets weggehaald.',
-      'product.priceSub_html': 'incl. btw &middot; verzending binnen Nederland & België',
+      'product.priceSub_html': 'incl. btw &middot; verzending door heel Europa',
       'product.size.tasting': 'Proef',
       'product.size.estate': 'Groot',
       'product.size.reserve': 'Reserve',
@@ -1414,8 +1414,8 @@
       'product.acc.origin': 'Herkomst',
       'product.acc.originBody': 'Verzameld bij de bron in de Griekse bergen en op het platteland, en gebotteld precies zoals het de raat verliet.',
       'product.acc.ship': 'Verzending',
-      'product.acc.shipBody': 'Binnen 1\u20132 werkdagen verzonden vanuit onze Amsterdamse kelder. Gratis verzending binnen Nederland & België boven \u20ac65. Zorgvuldig verpakt, met track & trace.',
-      'product.notes_html': 'Gratis verzending binnen Nederland & België boven €65 <span class="dot"></span> Rauw, ongefilterd, met de hand genummerd',
+      'product.acc.shipBody': 'Binnen 1\u20132 werkdagen verzonden vanuit onze Amsterdamse kelder, door de hele Europese Unie. Zorgvuldig verpakt, met track & trace.',
+      'product.notes_html': 'Nu verzending door heel Europa <span class="dot"></span> Rauw, ongefilterd, met de hand genummerd',
       'product.tasting.eyebrow': 'De Proef',
       'product.tasting.h_html': 'Wat je proeft, langzaam.',
       'product.tasting.first.h': 'Eerst',
@@ -1483,7 +1483,7 @@
       'cart.empty.cta': 'Δείτε τη συλλογή',
       'cart.empty.suggest': 'Ξεκινήστε με',
       'cart.subtotal': 'Μερικό σύνολο',
-      'cart.note': 'Τα μεταφορικά υπολογίζονται κατά την πληρωμή. Δωρεάν εντός Ολλανδίας και Βελγίου άνω των €65.',
+      'cart.note': 'Τα μεταφορικά υπολογίζονται κατά την πληρωμή. Το όριο δωρεάν αποστολής εξαρτάται από τη χώρα σας.',
       'cart.checkout': 'Συνέχεια στην πληρωμή',
       'cart.remove': 'Αφαίρεση',
       'cart.added': 'Προστέθηκε',
@@ -1659,7 +1659,7 @@
       'shop.eyebrow': 'Η Συλλογή',
       'shop.headline_html': '13 <em>premium</em> ελληνικές λιχουδιές.',
       'shop.intro': 'Ωμό. Απαστερίωτο. Απευθείας από την πηγή.',
-      'shop.trustline': 'Ωμό & απαστερίωτο · Συγκομιδή στην Ελλάδα · Δωρεάν αποστολή σε Ολλανδία & Βέλγιο άνω των €65',
+      'shop.trustline': 'Ωμό & απαστερίωτο · Συγκομιδή στην Ελλάδα · Αποστολή σε όλη την ΕΕ',
       'shop.filterLabel': 'Φίλτρο κατά',
       'shop.filter.all': 'Όλα',
       'shop.filter.floral': 'Ανθόσπαρτα',
@@ -1806,7 +1806,7 @@
       'checkout.package.tag': 'Έκδοση I · Συγκομιδή 2025',
       'checkout.trust.stripe1': 'Ασφαλής πληρωμή',
       'checkout.trust.stripe2': 'Μέσω Mollie & iDEAL',
-      'checkout.trust.intl1': 'Παράδοση σε Ολλανδία & Βέλγιο',
+      'checkout.trust.intl1': 'Παράδοση σε όλη την ΕΕ',
       'checkout.trust.intl2': 'Γρήγορη αποστολή από Ολλανδία',
       'checkout.trust.sealed1': 'Αυθεντικό από την Ελλάδα',
       'checkout.trust.sealed2': 'Απευθείας από τοπικούς παραγωγούς',
@@ -1822,12 +1822,12 @@
       'product.tag.coldExtracted': 'Ψυχρή Εκχύλιση',
       'product.tag.numbered': 'Αριθμημένα · 384',
       'product.desc': 'Ένα διαυγές, αργό μέλι συγκομισμένο από τους καστανεώνες της νότιας πλαγιάς της Ελλάδας. Νότες ζεστής ρετσίνας, λιοφρυμένου βοτάνου και μια μακρά μεταλλική επίγευση. Εμφιαλωμένο σε βαρύ χειροπίεστο γυαλί, σφραγισμένο με κερί, διατηρημένο ανεπεξέργαστο.',
-      'product.priceSub_html': 'με ΦΠΑ &middot; αποστολή εντός Ολλανδίας & Βελγίου',
+      'product.priceSub_html': 'με ΦΠΑ &middot; αποστολή σε όλη την ΕΕ',
       'product.size.tasting': 'Γευσιγνωσία',
       'product.size.estate': 'Μεγάλο',
       'product.size.reserve': 'Ρεζέρβα',
       'product.cta': 'Προσθήκη στο κελάρι',
-      'product.notes_html': 'Δωρεάν αποστολή στην Ευρώπη άνω των €65 <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
+      'product.notes_html': 'Αποστολή σε όλη την ΕΕ <span class="dot"></span> Περιορισμένη κυκλοφορία · 384 αριθμημένα βάζα',
       'product.tasting.eyebrow': 'Η Γευσιγνωσία',
       'product.tasting.h_html': 'Τι γεύεστε, αργά.',
       'product.tasting.first.h': 'Πρώτη',
@@ -1881,9 +1881,9 @@
     'idx.faq.response': 'Response time, usually within 24 hours',
     'idx.faq.help_html': 'Cannot find your question? Write to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'How quickly do you ship?',
-    'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch you can expect one to two working days inside the Netherlands and Belgium. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.',
+    'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch, delivery takes one to two working days in the Netherlands and Belgium, and about two to five across the rest of the EU. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.',
     'idx.faq.q2': 'Where do you ship to?',
-    'idx.faq.a2_html': 'The Netherlands and Belgium, with a limited number of other destinations available at checkout. Shipping is complimentary within the Netherlands & Belgium above &euro;65.',
+    'idx.faq.a2_html': 'The entire European Union. Delivery rates and free-shipping thresholds (from &euro;60) are shown per country at checkout.',
     'idx.faq.q3': 'Is your honey raw?',
     'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-de-smaak-van-de-griekse-zon.html">tasting essay</a>.',
     'idx.faq.q4': 'How long does the honey keep?',
@@ -1922,9 +1922,9 @@
     'idx.faq.response': 'Reactietijd, meestal binnen 24 uur',
     'idx.faq.help_html': 'Staat uw vraag er niet bij? Schrijf naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> en wij reageren binnen twee werkdagen. Voor bestellingen: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Hoe snel wordt mijn bestelling verzonden?',
-    'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en België. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="legal-shipping.html">verzendpagina</a>.',
+    'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en België, en ongeveer twee tot vijf in de rest van de EU. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="legal-shipping.html">verzendpagina</a>.',
     'idx.faq.q2': 'Waar verzenden jullie naartoe?',
-    'idx.faq.a2_html': 'Nederland en België, met een beperkt aantal overige bestemmingen beschikbaar bij de checkout. Verzending is gratis binnen Nederland & België boven &euro;65.',
+    'idx.faq.a2_html': 'De hele Europese Unie. Verzendkosten en drempels voor gratis verzending (vanaf &euro;60) worden per land bij de checkout getoond.',
     'idx.faq.q3': 'Is jullie honing rauw?',
     'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="article-de-smaak-van-de-griekse-zon.html">proefverslag</a>.',
     'idx.faq.q4': 'Hoe lang blijft de honing goed?',
@@ -1963,9 +1963,9 @@
     'idx.faq.response': 'Χρόνος απάντησης, συνήθως εντός 24 ωρών',
     'idx.faq.help_html': 'Δεν βρίσκετε την ερώτησή σας; Γράψτε στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> και απαντούμε εντός δύο εργάσιμων ημερών. Για παραγγελίες: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Πόσο γρήγορα αποστέλλετε;',
-    'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες εντός Ολλανδίας και Βελγίου. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="legal-shipping.html">σελίδα αποστολών</a>.',
+    'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες σε Ολλανδία και Βέλγιο και περίπου δύο έως πέντε στην υπόλοιπη ΕΕ. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="legal-shipping.html">σελίδα αποστολών</a>.',
     'idx.faq.q2': 'Πού αποστέλλετε;',
-    'idx.faq.a2_html': 'Ολλανδία και Βέλγιο, με περιορισμένο αριθμό άλλων προορισμών διαθέσιμων στο checkout. Δωρεάν αποστολή εντός Ολλανδίας και Βελγίου άνω των &euro;65.',
+    'idx.faq.a2_html': 'Ολόκληρη η Ευρωπαϊκή Ένωση. Τα μεταφορικά και τα όρια δωρεάν αποστολής (από &euro;60) εμφανίζονται ανά χώρα στο checkout.',
     'idx.faq.q3': 'Είναι ωμό το μέλι σας;',
     'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="article-de-smaak-van-de-griekse-zon.html">δοκίμιο γευσιγνωσίας</a>.',
     'idx.faq.q4': 'Πόσο διαρκεί το μέλι;',
@@ -2276,7 +2276,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-178',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2295,7 +2295,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-178',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2314,7 +2314,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-178',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2333,7 +2333,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-178',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2352,7 +2352,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-178',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2371,7 +2371,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-178',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2390,7 +2390,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-178',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2409,7 +2409,7 @@
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-178',
       slug: 'heather',
       url: 'product.html?p=heather'
     },
@@ -2428,7 +2428,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-178',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2481,7 +2481,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-178',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2501,7 +2501,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-177',
+      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-178',
       notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -4159,7 +4159,7 @@
             '<span class="label" data-i18n="cart.subtotal">Subtotal</span>' +
             '<span class="total" id="cartTotal">€0</span>' +
           '</div>' +
-          '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Free within the Netherlands & Belgium above €65.</p>' +
+          '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Free-shipping threshold depends on your country.</p>' +
           '<a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>' +
           '<div class="footer-pay cart-pay" aria-label="Accepted payment methods">' +
             '<span class="hd-pay hd-pay--ideal" title="iDEAL"><b>i</b>DEAL</span>' +
@@ -5302,7 +5302,7 @@
           (p.bundle ? '<div class="qv-bundle">' + p.bundle.qty + (qvLang() === 'nl' ? ' voor ' : qvLang() === 'el' ? ' για ' : ' for ') + qvFmt(p.bundle.price) + '</div>' : '') +
           '<div class="qv-price-row">' +
             '<span class="qv-price">' + qvFmt(p.price) + '</span>' +
-            '<span class="qv-price-sub">' + qvL('Handcrafted harvest &middot; Shipping within the Netherlands & Belgium', 'Ambachtelijk geoogst &middot; Verzending binnen Nederland & België', 'Χειροποίητη συγκομιδή &middot; Αποστολή εντός Ολλανδίας & Βελγίου') + '</span>' +
+            '<span class="qv-price-sub">' + qvL('Handcrafted harvest &middot; Shipping across the EU', 'Ambachtelijk geoogst &middot; Verzending door heel Europa', 'Χειροποίητη συγκομιδή &middot; Αποστολή σε όλη την ΕΕ') + '</span>' +
           '</div>' +
           '<div class="qv-actions">' +
             '<button class="cta qv-add" type="button" data-add-to-cart="' + p.slug + '" data-size="' + p.defaultSize + '">' + qvL('Add to collection', 'Toevoegen aan collectie', 'Προσθήκη στη συλλογή') + ' <span class="arrow" aria-hidden="true"></span></button>' +
@@ -5481,11 +5481,106 @@
    Commerce layer bootstrap (Phase 1), loads commerce.js site-wide
    and pins the free-shipping threshold before checkout.js reads it.
    ================================================================= */
-window.HD_FREE_SHIP = 65; // free shipping threshold (must match Shopify shipping settings)
+/* =================================================================
+   EU SHIPPING ZONES — mirrors the LIVE Shopify delivery profile 1:1.
+   Keep in lockstep with the Shopify zones (change one, change the other).
+     NL €5.95 free≥60 · BE €6.95 free≥60 ·
+     Z3 DE/FR/LU/AT €9.95 free≥100 · Z4 IT/ES/PT/DK/SE €12.95 free≥100 ·
+     Z5 FI/IE/PL/CZ/SK/SI/HU/HR €14.95 free≥100 ·
+     Z6 RO/BG/EE/LV/LT/CY/GR/MT €16.95 free≥100
+   Country selection auto-detects, is switchable, and persists (hd-country).
+   ================================================================= */
+(function () {
+  'use strict';
+  var Z = {  // code: [rate, freeThreshold]
+    NL: [5.95, 60], BE: [6.95, 60],
+    DE: [9.95, 100], FR: [9.95, 100], LU: [9.95, 100], AT: [9.95, 100],
+    IT: [12.95, 100], ES: [12.95, 100], PT: [12.95, 100], DK: [12.95, 100], SE: [12.95, 100],
+    FI: [14.95, 100], IE: [14.95, 100], PL: [14.95, 100], CZ: [14.95, 100], SK: [14.95, 100], SI: [14.95, 100], HU: [14.95, 100], HR: [14.95, 100],
+    RO: [16.95, 100], BG: [16.95, 100], EE: [16.95, 100], LV: [16.95, 100], LT: [16.95, 100], CY: [16.95, 100], GR: [16.95, 100], MT: [16.95, 100]
+  };
+  var C = {  // code: [NL name, EN name, flag]
+    NL: ['Nederland', 'Netherlands', '🇳🇱'], BE: ['België', 'Belgium', '🇧🇪'],
+    DE: ['Duitsland', 'Germany', '🇩🇪'], FR: ['Frankrijk', 'France', '🇫🇷'], LU: ['Luxemburg', 'Luxembourg', '🇱🇺'], AT: ['Oostenrijk', 'Austria', '🇦🇹'],
+    IT: ['Italië', 'Italy', '🇮🇹'], ES: ['Spanje', 'Spain', '🇪🇸'], PT: ['Portugal', 'Portugal', '🇵🇹'], DK: ['Denemarken', 'Denmark', '🇩🇰'], SE: ['Zweden', 'Sweden', '🇸🇪'],
+    FI: ['Finland', 'Finland', '🇫🇮'], IE: ['Ierland', 'Ireland', '🇮🇪'], PL: ['Polen', 'Poland', '🇵🇱'], CZ: ['Tsjechië', 'Czechia', '🇨🇿'], SK: ['Slowakije', 'Slovakia', '🇸🇰'], SI: ['Slovenië', 'Slovenia', '🇸🇮'], HU: ['Hongarije', 'Hungary', '🇭🇺'], HR: ['Kroatië', 'Croatia', '🇭🇷'],
+    RO: ['Roemenië', 'Romania', '🇷🇴'], BG: ['Bulgarije', 'Bulgaria', '🇧🇬'], EE: ['Estland', 'Estonia', '🇪🇪'], LV: ['Letland', 'Latvia', '🇱🇻'], LT: ['Litouwen', 'Lithuania', '🇱🇹'], CY: ['Cyprus', 'Cyprus', '🇨🇾'], GR: ['Griekenland', 'Greece', '🇬🇷'], MT: ['Malta', 'Malta', '🇲🇹']
+  };
+  var KEY = 'hd-country';
+  function valid(c) { return !!(c && Z[c]); }
+  function detect() {
+    try { var s = localStorage.getItem(KEY); if (valid(s)) return s; } catch (e) {}
+    try {
+      var langs = navigator.languages || [navigator.language || ''];
+      for (var i = 0; i < langs.length; i++) { var m = (langs[i] || '').split('-')[1]; if (m && valid(m.toUpperCase())) return m.toUpperCase(); }
+    } catch (e) {}
+    return 'NL';
+  }
+  var current = detect();
+  function forCountry(code) {
+    code = valid(code) ? code : 'NL';
+    var z = Z[code], n = C[code] || [code, code, ''];
+    return { code: code, rate: z[0], free: z[1], name_nl: n[0], name_en: n[1], flag: n[2] };
+  }
+  function nameOf(code) { var nl = (window.HD_lang && window.HD_lang() === 'nl'); var f = forCountry(code); return nl ? f.name_nl : f.name_en; }
+  function setCountry(code) {
+    if (!valid(code) || code === current) return;
+    current = code;
+    try { localStorage.setItem(KEY, code); } catch (e) {}
+    window.HD_FREE_SHIP = Z[code][1];
+    try { window.dispatchEvent(new CustomEvent('hd:country', { detail: forCountry(code) })); } catch (e) {}
+  }
+  function list() { return Object.keys(Z).map(forCountry).sort(function (a, b) { return a.name_nl.localeCompare(b.name_nl, 'nl'); }); }
+  window.HD_FREE_SHIP = Z[current][1]; // seed the (now country-aware) threshold
+  window.HD_SHIPPING = {
+    zones: Z, meta: C, KEY: KEY,
+    country: function () { return current; },
+    setCountry: setCountry, forCountry: forCountry, nameOf: nameOf, list: list,
+    current: function () { return forCountry(current); }
+  };
+})();
+
+/* ---- Premium shipping line + country selector (reusable) ----------------
+   Drop <div data-hd-ship></div> anywhere; it renders a minimalist truck,
+   the live "Verzending €X · Gratis vanaf €Y" for the chosen country, and a
+   country picker. All instances stay in sync via the hd:country event. --- */
+(function () {
+  'use strict';
+  var TRUCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h10v9H3zM13 9.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>';
+  function nl() { return window.HD_lang && window.HD_lang() === 'nl'; }
+  function money(n) { var s = (Math.round(n * 100) % 100 === 0) ? String(Math.round(n)) : n.toFixed(2); if (nl()) s = s.replace('.', ','); return '€' + s; }
+  function optionsHTML(sel) {
+    return window.HD_SHIPPING.list().map(function (c) {
+      var label = c.flag + ' ' + (nl() ? c.name_nl : c.name_en);
+      return '<option value="' + c.code + '"' + (c.code === sel ? ' selected' : '') + '>' + label + '</option>';
+    }).join('');
+  }
+  function fill(el) {
+    var s = window.HD_SHIPPING.current();
+    var free = nl() ? ('Gratis vanaf ' + money(s.free)) : ('Free from ' + money(s.free));
+    var ship = nl() ? ('Verzending ' + money(s.rate)) : ('Shipping ' + money(s.rate));
+    var toLbl = nl() ? 'Bezorgen naar' : 'Deliver to';
+    el.innerHTML =
+      '<span class="hd-ship-ico">' + TRUCK + '</span>' +
+      '<span class="hd-ship-body">' +
+        '<span class="hd-ship-main">' + ship + '<span class="hd-ship-dot">·</span><span class="hd-ship-free">' + free + '</span></span>' +
+        '<span class="hd-ship-pick"><span class="hd-ship-flag" aria-hidden="true">' + s.flag + '</span>' +
+          '<select class="hd-ship-select" aria-label="' + toLbl + '">' + optionsHTML(s.code) + '</select>' +
+        '</span>' +
+      '</span>';
+    var sel = el.querySelector('.hd-ship-select');
+    if (sel) sel.addEventListener('change', function () { window.HD_SHIPPING.setCountry(sel.value); });
+  }
+  function hydrateAll() { document.querySelectorAll('[data-hd-ship]').forEach(function (el) { if (!el.classList.contains('hd-ship')) el.classList.add('hd-ship'); fill(el); }); }
+  window.HD_shipLineRefresh = hydrateAll;
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hydrateAll); else hydrateAll();
+  window.addEventListener('hd:country', hydrateAll);
+  window.addEventListener('hd:lang', hydrateAll);
+})();
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-177'], ['hd-search-js', 'search.js?v=hd-2026-06-06-177'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-177'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-177'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-177'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-177'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-177'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-177'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-177'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-177']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-178'], ['hd-search-js', 'search.js?v=hd-2026-06-06-178'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-178'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-178'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-178'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-178'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-178'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-178'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-178'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-178']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

@@ -345,7 +345,10 @@
           // market context of NL/BE + EUR. The buyer can still switch country in
           // the hosted checkout itself.
           var bi = buildBuyerIdentity(buyer) || {};
-          if (!bi.countryCode) bi.countryCode = 'NL';
+          // Carry the shopper's chosen destination so the hosted checkout opens
+          // on the right EU zone (falls back to NL). An entered address country
+          // still wins (buildBuyerIdentity set it above).
+          if (!bi.countryCode) bi.countryCode = (window.HD_SHIPPING && window.HD_SHIPPING.country()) || 'NL';
           vars.buyerIdentity = bi;
           var d = await SF().safeFetch(SF().QUERIES.cartCreate, vars);
           var cart = d && d.cartCreate && d.cartCreate.cart;

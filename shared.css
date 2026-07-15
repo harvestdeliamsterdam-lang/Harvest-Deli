@@ -6066,7 +6066,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("assets/nav-topo.svg?v=hd-2026-06-06-177") center / cover no-repeat !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-178") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6158,3 +6158,35 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
   body nav.site-nav .hd-lang-mobile button { min-width: 28px !important; padding: 0 6px !important; font-size: 10px !important; }
   body nav.site-nav .nav-search { min-width: 40px !important; }
 }
+
+/* =================================================================
+   Shipping line + country selector (HD_shipLine), premium & minimal.
+   Renders a small truck, the live per-country rate/threshold and a
+   country picker. Colour follows the surrounding text (inherit).
+   ================================================================= */
+.hd-ship { display: flex; align-items: flex-start; gap: 12px; font-family: 'Inter', sans-serif; }
+.hd-ship-ico {
+  flex: 0 0 auto; width: 34px; height: 34px; border-radius: 10px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--gold, #C89B4B); background: rgba(200, 155, 75, 0.10);
+  border: 1px solid rgba(200, 155, 75, 0.22);
+}
+.hd-ship-ico svg { width: 18px; height: 18px; }
+.hd-ship-body { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.hd-ship-main { font-size: 13.5px; letter-spacing: 0.01em; font-weight: 600; color: inherit; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.hd-ship-dot { opacity: 0.4; }
+.hd-ship-free { font-weight: 500; opacity: 0.92; }
+.hd-ship-pick { display: inline-flex; align-items: center; gap: 7px; margin-top: 1px; }
+.hd-ship-flag { font-size: 15px; line-height: 1; }
+.hd-ship-select {
+  -webkit-appearance: none; appearance: none; border: 0; margin: 0;
+  background-color: transparent; font: inherit; font-size: 12.5px; font-weight: 500;
+  letter-spacing: 0.01em; color: inherit; opacity: 0.72; cursor: pointer;
+  padding: 2px 20px 2px 2px; border-radius: 6px; max-width: 200px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C89B4B' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 3px center;
+  transition: opacity 0.25s ease;
+}
+.hd-ship-select:hover { opacity: 1; }
+.hd-ship-select:focus-visible { outline: 2px solid var(--gold, #C89B4B); outline-offset: 2px; opacity: 1; }
+.hd-ship-select option { color: #1a1712; background: #F5EFE4; }
