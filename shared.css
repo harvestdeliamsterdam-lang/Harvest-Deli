@@ -6066,7 +6066,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("assets/nav-topo.svg?v=hd-2026-06-06-184") center / cover no-repeat !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-185") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6236,6 +6236,7 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
 .hd-cc { position: relative; display: inline-block; }
 .hd-cc-btn {
   -webkit-appearance: none; appearance: none; cursor: pointer; margin: 0;
+  touch-action: manipulation;
   display: inline-flex; align-items: center; gap: 8px;
   padding: 6px 11px; border-radius: 999px;
   background: rgba(255, 253, 248, 0.6);
@@ -6263,8 +6264,9 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
 .hd-cc.open .hd-cc-menu { opacity: 1; transform: none; pointer-events: auto; }
 .hd-cc-opt {
   -webkit-appearance: none; appearance: none; cursor: pointer; width: 100%; margin: 0;
+  touch-action: manipulation;
   display: flex; align-items: center; gap: 10px; text-align: left;
-  padding: 9px 12px; border: 0; border-radius: 11px; background: transparent;
+  padding: 11px 12px; min-height: 44px; border: 0; border-radius: 11px; background: transparent;
   font-family: 'Inter', sans-serif; color: var(--ink, #1F1A14);
   transition: background 0.18s ease;
 }
@@ -6276,4 +6278,22 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
 .hd-cc-opt.is-sel .hd-cc-name { font-weight: 600; }
 /* In the cart drawer the line sits low, so open the list upward. */
 #hdCartShip .hd-cc-menu { top: auto; bottom: calc(100% + 8px); transform-origin: bottom left; }
+
+/* Touch devices: comfortable 44px targets so a slightly-off tap still lands
+   on the control instead of dismissing the menu (was ~31-37px → mis-taps on
+   mobile made the list "fall away"). */
+@media (hover: none) and (pointer: coarse) {
+  .hd-cc-btn { min-height: 44px; padding: 8px 14px; }
+  .hd-cc-opt { min-height: 46px; }
+  .hd-cc-menu { min-width: 260px; }
+}
+
+/* In the cart drawer the country picker is a primary control: make it a big,
+   full-width, easy-to-hit target and let the menu fill the drawer width so no
+   option ever sits off to the side. */
+#hdCartShip .hd-cc { display: block; }
+#hdCartShip .hd-cc-btn { width: 100%; justify-content: space-between; min-height: 46px; }
+#hdCartShip .hd-cc-btn .hd-cc-name { flex: 1 1 auto; }
+#hdCartShip .hd-cc-menu { left: 0; right: 0; width: 100%; min-width: 0; }
+
 @media (prefers-reduced-motion: reduce) { .hd-cc-menu, .hd-cc-chev { transition: none; } }
