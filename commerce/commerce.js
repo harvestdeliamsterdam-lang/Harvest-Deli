@@ -499,18 +499,32 @@
     wrap.addEventListener('click', function (e) { if (e.target === wrap) close(); });
   }
 
-  /* Country name (as shown in the wizard <select>) → ISO 3166-1 alpha-2 code that
-     Shopify's CartBuyerIdentityInput.countryCode expects. Unknown → null (omit). */
+  /* Country name → ISO 3166-1 alpha-2 code that Shopify's
+     CartBuyerIdentityInput.countryCode expects. The authoritative EU map lives
+     in HD_SHIPPING (shared.js) — the ONE source of truth for enabled countries;
+     codeName() prefers it and only falls back to this tiny map for the handful
+     of non-EU names the wizard historically accepted. Unknown → null (omit). */
   var COUNTRY_CODES = {
-    'Netherlands': 'NL', 'Nederland': 'NL', 'Belgium': 'BE', 'België': 'BE', 'Belgique': 'BE',
-    'Germany': 'DE', 'Duitsland': 'DE', 'France': 'FR', 'Frankrijk': 'FR',
-    'Greece': 'GR', 'Griekenland': 'GR', 'Italy': 'IT', 'Italië': 'IT',
-    'Spain': 'ES', 'Spanje': 'ES', 'Austria': 'AT', 'Oostenrijk': 'AT',
-    'United Kingdom': 'GB', 'Switzerland': 'CH', 'Zwitserland': 'CH'
+    'United Kingdom': 'GB', 'Verenigd Koninkrijk': 'GB', 'Switzerland': 'CH', 'Zwitserland': 'CH'
   };
+  function codeForCountryName(name) {
+    if (!name) return null;
+    if (window.HD_SHIPPING && window.HD_SHIPPING.codeForName) {
+      var c = window.HD_SHIPPING.codeForName(name);
+      if (c) return c;
+    }
+    return COUNTRY_CODES[String(name).trim()] || null;
+  }
 
-  /* ISO country code → international dialling code, for E.164 phone normalisation. */
-  var DIAL_CODES = { NL:'31', BE:'32', DE:'49', FR:'33', GR:'30', IT:'39', ES:'34', AT:'43', GB:'44', CH:'41' };
+  /* ISO country code → international dialling code, for E.164 phone normalisation.
+     Covers all 27 EU destinations plus GB/CH. */
+  var DIAL_CODES = {
+    NL:'31', BE:'32', DE:'49', FR:'33', LU:'352', AT:'43',
+    IT:'39', ES:'34', PT:'351', DK:'45', SE:'46',
+    FI:'358', IE:'353', PL:'48', CZ:'420', SK:'421', SI:'386', HU:'36', HR:'385',
+    RO:'40', BG:'359', EE:'372', LV:'371', LT:'370', CY:'357', GR:'30', MT:'356',
+    GB:'44', CH:'41'
+  };
 
   /* Normalise a user-typed phone to E.164 (e.g. "06 10 71-50 83" → "+31610715083").
      Shopify's buyerIdentity.phone / address.phone require E.164 or the value is
@@ -536,7 +550,7 @@
   function buildBuyerIdentity(buyer) {
     if (!buyer) return null;
     var a = buyer.shipping && buyer.shipping.line1 ? buyer.shipping : buyer.billing;
-    var code = a && a.country ? COUNTRY_CODES[a.country.trim()] : null;
+    var code = a && a.country ? codeForCountryName(a.country) : null;
     var bi = {};
     var phone = normalizePhone(buyer.phone, code); // E.164, or null
     if (buyer.email) bi.email = buyer.email.trim();
