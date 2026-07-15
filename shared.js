@@ -2276,7 +2276,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-179',
       slug: 'fir-vanilla',
       url: 'product.html?p=fir-vanilla'
     },
@@ -2295,7 +2295,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-179',
       slug: 'acacia',
       url: 'product.html?p=acacia'
     },
@@ -2314,7 +2314,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-179',
       slug: 'pine',
       url: 'product.html?p=pine'
     },
@@ -2333,7 +2333,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-179',
       slug: 'orange-blossom',
       url: 'product.html?p=orange-blossom'
     },
@@ -2352,7 +2352,7 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-179',
       slug: 'chestnut',
       url: 'product.html'
     },
@@ -2371,7 +2371,7 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-179',
       slug: 'oak',
       url: 'product.html?p=oak'
     },
@@ -2390,7 +2390,7 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-179',
       slug: 'arbutus',
       url: 'product.html?p=arbutus'
     },
@@ -2409,7 +2409,7 @@
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-179',
       slug: 'heather',
       url: 'product.html?p=heather'
     },
@@ -2428,7 +2428,7 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-179',
       slug: 'thyme',
       url: 'product.html?p=thyme'
     },
@@ -2481,7 +2481,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-179',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2501,7 +2501,7 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-178',
+      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-179',
       notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -5507,12 +5507,13 @@
     RO: ['Roemenië', 'Romania', '🇷🇴'], BG: ['Bulgarije', 'Bulgaria', '🇧🇬'], EE: ['Estland', 'Estonia', '🇪🇪'], LV: ['Letland', 'Latvia', '🇱🇻'], LT: ['Litouwen', 'Lithuania', '🇱🇹'], CY: ['Cyprus', 'Cyprus', '🇨🇾'], GR: ['Griekenland', 'Greece', '🇬🇷'], MT: ['Malta', 'Malta', '🇲🇹']
   };
   var KEY = 'hd-country';
+  var explicit = false; // true when the country came from a real signal (saved choice or locale), not the NL default
   function valid(c) { return !!(c && Z[c]); }
   function detect() {
-    try { var s = localStorage.getItem(KEY); if (valid(s)) return s; } catch (e) {}
+    try { var s = localStorage.getItem(KEY); if (valid(s)) { explicit = true; return s; } } catch (e) {}
     try {
       var langs = navigator.languages || [navigator.language || ''];
-      for (var i = 0; i < langs.length; i++) { var m = (langs[i] || '').split('-')[1]; if (m && valid(m.toUpperCase())) return m.toUpperCase(); }
+      for (var i = 0; i < langs.length; i++) { var m = (langs[i] || '').split('-')[1]; if (m && valid(m.toUpperCase())) { explicit = true; return m.toUpperCase(); } }
     } catch (e) {}
     return 'NL';
   }
@@ -5524,8 +5525,8 @@
   }
   function nameOf(code) { var nl = (window.HD_lang && window.HD_lang() === 'nl'); var f = forCountry(code); return nl ? f.name_nl : f.name_en; }
   function setCountry(code) {
-    if (!valid(code) || code === current) return;
-    current = code;
+    if (!valid(code) || code === current) { explicit = explicit || valid(code); return; }
+    current = code; explicit = true;
     try { localStorage.setItem(KEY, code); } catch (e) {}
     window.HD_FREE_SHIP = Z[code][1];
     try { window.dispatchEvent(new CustomEvent('hd:country', { detail: forCountry(code) })); } catch (e) {}
@@ -5535,6 +5536,7 @@
   window.HD_SHIPPING = {
     zones: Z, meta: C, KEY: KEY,
     country: function () { return current; },
+    known: function () { return explicit; }, // false = defaulted to NL with no real signal
     setCountry: setCountry, forCountry: forCountry, nameOf: nameOf, list: list,
     current: function () { return forCountry(current); }
   };
@@ -5577,10 +5579,75 @@
   window.addEventListener('hd:country', hydrateAll);
   window.addEventListener('hd:lang', hydrateAll);
 })();
+
+/* ---- European delivery trust row (reusable, product pages) --------------
+   A compact, refined "Delivered across Europe · carefully packed · Track &
+   Trace" detail placed directly under the product price. Auto-inserted after
+   .pd-price-block on any product page; country-aware primary line; subtle
+   once-only entrance motion (respects reduced-motion). Not clickable. ------ */
+(function () {
+  'use strict';
+  var TRUCK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h10v9H3zM13 9.5h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17" cy="17.5" r="1.6"/></svg>';
+  function nl() { return window.HD_lang && window.HD_lang() === 'nl'; }
+  function copy() {
+    var S = window.HD_SHIPPING;
+    var known = S && S.known && S.known();
+    var primary;
+    if (known) {
+      var name = S.nameOf(S.country());
+      primary = nl() ? ('Bezorging in ' + name) : ('Delivery to ' + name);
+    } else {
+      primary = nl() ? 'Bezorgd door heel Europa' : 'Delivered across Europe';
+    }
+    var secondary = nl()
+      ? 'Zorgvuldig verpakt in Nederland • Track & Trace inbegrepen'
+      : 'Carefully packed in the Netherlands • Track & Trace included';
+    return { primary: primary, secondary: secondary };
+  }
+  function fill(el) {
+    var c = copy();
+    el.innerHTML =
+      '<span class="hd-deliver-ico">' + TRUCK + '</span>' +
+      '<span class="hd-deliver-txt">' +
+        '<span class="hd-deliver-primary"></span>' +
+        '<span class="hd-deliver-secondary"></span>' +
+      '</span>';
+    el.querySelector('.hd-deliver-primary').textContent = c.primary;
+    el.querySelector('.hd-deliver-secondary').textContent = c.secondary;
+  }
+  var io = null;
+  function reveal(el) {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce || !('IntersectionObserver' in window)) { el.classList.add('in'); return; }
+    if (!io) io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.2 });
+    io.observe(el);
+  }
+  function ensureInserted() {
+    if (!document.querySelector('meta[name="hd-product-slug"]')) return; // product pages only
+    document.querySelectorAll('.pd-price-block').forEach(function (pb) {
+      if (pb.parentNode && !pb.parentNode.querySelector('[data-hd-deliver]')) {
+        var d = document.createElement('div');
+        d.className = 'hd-deliver'; d.setAttribute('data-hd-deliver', '');
+        pb.insertAdjacentElement('afterend', d);
+        reveal(d);
+      }
+    });
+  }
+  function hydrateAll() {
+    ensureInserted();
+    document.querySelectorAll('[data-hd-deliver]').forEach(function (el) { if (!el.classList.contains('hd-deliver')) el.classList.add('hd-deliver'); fill(el); });
+  }
+  window.HD_deliverRefresh = hydrateAll;
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hydrateAll); else hydrateAll();
+  window.addEventListener('hd:country', hydrateAll);
+  window.addEventListener('hd:lang', hydrateAll);
+})();
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-178'], ['hd-search-js', 'search.js?v=hd-2026-06-06-178'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-178'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-178'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-178'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-178'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-178'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-178'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-178'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-178']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-179'], ['hd-search-js', 'search.js?v=hd-2026-06-06-179'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-179'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-179'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-179'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-179'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-179'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-179'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-179'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-179']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

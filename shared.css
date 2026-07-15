@@ -6066,7 +6066,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("assets/nav-topo.svg?v=hd-2026-06-06-178") center / cover no-repeat !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-179") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6190,3 +6190,40 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
 .hd-ship-select:hover { opacity: 1; }
 .hd-ship-select:focus-visible { outline: 2px solid var(--gold, #C89B4B); outline-offset: 2px; opacity: 1; }
 .hd-ship-select option { color: #1a1712; background: #F5EFE4; }
+
+/* =================================================================
+   European delivery trust row (HD_deliver), compact & refined.
+   Sits directly under the product price. Dark brand primary + muted
+   warm secondary, soft gold truck. Subtle once-only entrance motion.
+   ================================================================= */
+.hd-deliver {
+  display: flex; align-items: flex-start; gap: 11px;
+  margin: 16px 0 6px;
+  opacity: 0; transform: translateY(4px);
+  transition: opacity 0.42s ease, transform 0.42s ease;
+}
+.hd-deliver.in { opacity: 1; transform: none; }
+.hd-deliver-ico {
+  flex: 0 0 auto; width: 34px; height: 34px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--gold, #C89B4B);
+  background: rgba(200, 155, 75, 0.10);
+  border: 1px solid rgba(200, 155, 75, 0.20);
+  margin-top: 1px;
+}
+.hd-deliver-ico svg { width: 21px; height: 21px; display: block; }
+.hd-deliver-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.hd-deliver-primary {
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  letter-spacing: 0.005em; line-height: 1.35; color: var(--ink, #1F1A14);
+}
+.hd-deliver-secondary {
+  font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 400;
+  line-height: 1.5; color: var(--ink-warm, #756859);
+}
+@media (max-width: 520px) {
+  .hd-deliver { gap: 10px; min-height: 44px; margin: 14px 0 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hd-deliver { transition: none; opacity: 1; transform: none; }
+}
