@@ -82,6 +82,7 @@
     orderConfirmation: function (d) {
       return { subject: 'Your Harvest Deli order ' + (d.orderId || ''), preheader: 'We have your order and are wrapping it by hand.',
         body: h('Thank you, ' + (d.firstName || 'friend') + '.') + p('Your order <strong>' + esc(d.orderId) + '</strong> is confirmed. We are already wrapping it by hand and sealing it with wax.') +
+          p('It ships from the Netherlands with Track &amp; Trace, right across the European Union. All prices include VAT.') +
           divider() + lineItems(d.items) + totals(d) + button('View your order', BRAND.site + '/account-orders.html') };
     },
     paymentConfirmation: function (d) {
@@ -90,7 +91,7 @@
     },
     shippingConfirmation: function (d) {
       return { subject: 'Your order has shipped · ' + (d.orderId || ''), preheader: 'On its way from the Netherlands.',
-        body: h('On its way.') + p('Order <strong>' + esc(d.orderId) + '</strong> has left us, carefully packed, via ' + esc(d.carrier || 'our shipping partner') + '.') + button('Track & trace', d.trackUrl || (BRAND.site + '/track-order.html')) };
+        body: h('On its way.') + p('Order <strong>' + esc(d.orderId) + '</strong> has left our Amsterdam depot, carefully packed, via ' + esc(d.carrier || 'our shipping partner') + (d.tracking ? ' (' + esc(d.tracking) + ')' : '') + '. Every parcel travels across the European Union with Track &amp; Trace.') + button('Track & trace', d.trackUrl || (BRAND.site + '/track-order.html')) };
     },
     trackTrace: function (d) {
       return { subject: 'Track your Harvest Deli order', preheader: 'Follow your parcel.',

@@ -582,3 +582,6 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* Small muted note under tables (e.g. shipping zone caveats). */
+.legal-content .fineprint { font-size: 12.5px; line-height: 1.55; color: var(--ink-warm, #756859); margin: 10px 0 0; opacity: 0.9; }
