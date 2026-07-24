@@ -337,7 +337,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-189';
+      var ASSET_V = '?v=hd-2026-06-06-190';
       var base = 'assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
@@ -411,7 +411,7 @@
     var title = name + (nl ? ' · Rauwe Griekse honing · Harvest Deli' : ' · Raw Greek Honey · Harvest Deli');
     var origin = (location.origin && location.origin.indexOf('http') === 0) ? location.origin : 'https://harvestdeli.nl';
     var imgAbs = (p && p.image) ? (origin + '/' + p.image.split('?')[0].replace(/^\//, '')) : '';
-    var url = origin + '/product.html?p=' + slug;
+    var url = origin + (window.HD_urlForSlug ? window.HD_urlForSlug(slug) : '/products/' + slug);
     document.title = title;
     setMeta('meta[name="description"]', 'content', desc);
     setMeta('meta[property="og:title"]', 'content', title);

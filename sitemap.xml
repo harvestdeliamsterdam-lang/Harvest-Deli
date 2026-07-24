@@ -4,18 +4,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://harvestdeli.nl/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://harvestdeli.nl/shop.html</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://harvestdeli.nl/products/chestnut-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/pine-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/oak-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/arbutus-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/vanilla-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/orange-blossom-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/acacia-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/thyme-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/heather-honey</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/wild-oregano</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/extra-virgin-olive-oil</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/greek-mountain-tea</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://harvestdeli.nl/products/greek-chamomile-tea</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
-  <url><loc>https://harvestdeli.nl/product.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=pine</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=oak</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=arbutus</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=fir-vanilla</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=orange-blossom</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=acacia</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=thyme</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product.html?p=heather</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product-olive-oil.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://harvestdeli.nl/product-mountain-tea.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
 
   <url><loc>https://harvestdeli.nl/about.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://harvestdeli.nl/partners.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>

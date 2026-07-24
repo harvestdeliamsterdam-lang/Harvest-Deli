@@ -1,3 +1,10 @@
+/* Clean product routing helper: catalog slug -> permanent /products/<url-slug>.
+   Single source of truth for building product links from any script. */
+window.HD_urlForSlug = function (slug) {
+  var M = { chestnut:'chestnut-honey', pine:'pine-honey', oak:'oak-honey', arbutus:'arbutus-honey', 'fir-vanilla':'vanilla-honey', 'orange-blossom':'orange-blossom-honey', acacia:'acacia-honey', thyme:'thyme-honey', heather:'heather-honey', oregano:'wild-oregano', 'olive-oil':'extra-virgin-olive-oil', 'mountain-tea':'greek-mountain-tea', 'chamomile-tea':'greek-chamomile-tea' };
+  return '/products/' + (M[slug] || slug);
+};
+
 /* ============================================================
    Harvest Deli, shared logic
    Product catalog + cart state + drawer + menu wiring
@@ -2285,9 +2292,9 @@
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-190',
       slug: 'fir-vanilla',
-      url: 'product.html?p=fir-vanilla'
+      url: '/products/vanilla-honey'
     },
     'acacia': {
       name: loc('Acacia Honey', 'Acaciahoning', 'Ακακία Μέλι'),
@@ -2304,9 +2311,9 @@
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/acacia.webp?v=hd-2026-06-06-190',
       slug: 'acacia',
-      url: 'product.html?p=acacia'
+      url: '/products/acacia-honey'
     },
     'pine': {
       name: loc('Pine Honey', 'Dennenhoning', 'Πευκόμελο'),
@@ -2323,9 +2330,9 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/pine.webp?v=hd-2026-06-06-190',
       slug: 'pine',
-      url: 'product.html?p=pine'
+      url: '/products/pine-honey'
     },
     'orange-blossom': {
       name: loc('Orange Blossom Honey', 'Sinaasappelbloesemhoning', 'Πορτοκαλόμελο'),
@@ -2342,9 +2349,9 @@
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/orange-blossom.webp?v=hd-2026-06-06-190',
       slug: 'orange-blossom',
-      url: 'product.html?p=orange-blossom'
+      url: '/products/orange-blossom-honey'
     },
     'chestnut': {
       name: loc('Chestnut Honey', 'Kastanjehoning', 'Καστανόμελο'),
@@ -2361,9 +2368,9 @@
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/chestnut.webp?v=hd-2026-06-06-190',
       slug: 'chestnut',
-      url: 'product.html'
+      url: '/products/chestnut-honey'
     },
     'oak': {
       name: loc('Oak Honey', 'Eikenhoning', 'Βελανιδόμελο'),
@@ -2380,9 +2387,9 @@
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/oak.webp?v=hd-2026-06-06-190',
       slug: 'oak',
-      url: 'product.html?p=oak'
+      url: '/products/oak-honey'
     },
     'arbutus': {
       name: loc('Arbutus Honey', 'Arbutushoning', 'Κουμαρόμελο'),
@@ -2399,9 +2406,9 @@
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/arbutus.webp?v=hd-2026-06-06-190',
       slug: 'arbutus',
-      url: 'product.html?p=arbutus'
+      url: '/products/arbutus-honey'
     },
     'heather': {
       name: loc('Heather Honey', 'Heidehoning', 'Σουσουρόμελο'),
@@ -2418,9 +2425,9 @@
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/heather.webp?v=hd-2026-06-06-190',
       slug: 'heather',
-      url: 'product.html?p=heather'
+      url: '/products/heather-honey'
     },
     'thyme': {
       name: loc('Thyme Honey', 'Tijmhoning', 'Θυμαρίσιο Μέλι'),
@@ -2437,9 +2444,9 @@
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/thyme.webp?v=hd-2026-06-06-190',
       slug: 'thyme',
-      url: 'product.html?p=thyme'
+      url: '/products/thyme-honey'
     },
     'oregano': {
       name: loc('Wild Oregano', 'Wilde oregano', 'Άγρια Ρίγανη'),
@@ -2458,7 +2465,7 @@
       tags: ['herb', 'dried', 'wild'],
       badges: [loc('Hand-Picked', 'Handgeplukt', 'Χειροσυλλεγμένο'), loc('Sun-Dried', 'Zongedroogd', 'Λιαστό')],
       slug: 'oregano',
-      url: 'shop.html'
+      url: '/products/wild-oregano'
     },
     'olive-oil': {
       name: loc('Extra Virgin Olive Oil', 'Extra vierge olijfolie', 'Εξαιρετικό Παρθένο Ελαιόλαδο'),
@@ -2477,7 +2484,7 @@
       tags: ['olive-oil', 'cold-extracted', 'light'],
       badges: [loc('Cold Pressed', 'Koud Geperst', 'Ψυχρής Έκθλιψης'), loc('Extra Virgin', 'Extra Vergine', 'Εξαιρετικό Παρθένο')],
       slug: 'olive-oil',
-      url: 'product-olive-oil.html'
+      url: '/products/extra-virgin-olive-oil'
     },
     'mountain-tea': {
       name: loc('Greek Mountain Tea', 'Griekse Bergthee', 'Τσάι του Βουνού'),
@@ -2490,14 +2497,14 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/mountain-tea.webp?v=hd-2026-06-06-190',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
       tags: ['tea', 'herbal', 'caffeine-free'],
       badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
       slug: 'mountain-tea',
-      url: 'product-mountain-tea.html'
+      url: '/products/greek-mountain-tea'
     },
     'chamomile-tea': {
       name: loc('Greek Chamomile Tea', 'Griekse Kamillethee', 'Χαμομήλι'),
@@ -2510,14 +2517,14 @@
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-189',
+      image: 'assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-190',
       notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
       tags: ['tea', 'herbal', 'caffeine-free'],
       badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
       slug: 'chamomile-tea',
-      url: 'product-chamomile-tea.html'
+      url: '/products/greek-chamomile-tea'
     }
   };
   // Localize on access: returns plain-string clone for current lang.
@@ -5727,9 +5734,9 @@
   window.addEventListener('hd:lang', hydrateAll);
 })();
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-189'], ['hd-search-js', 'search.js?v=hd-2026-06-06-189'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-189'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-189'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-189'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-189'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-189'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-189'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-189'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-189']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-190'], ['hd-search-js', 'search.js?v=hd-2026-06-06-190'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-190'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-190'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-190'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-190'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-190'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-190'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-190'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-190']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = a[1]; s.defer = true;

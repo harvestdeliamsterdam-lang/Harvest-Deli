@@ -453,7 +453,7 @@
           return { id: (sizeOpt ? sizeOpt.value : v.title || 'default').toLowerCase(), label: sizeOpt ? sizeOpt.value : (v.title || ''), price: +((v.price && v.price.amount) || 0) };
         });
         return {
-          slug: n.handle, name: n.title, url: 'product.html?p=' + n.handle,
+          slug: n.handle, name: n.title, url: (window.HD_urlForSlug ? window.HD_urlForSlug(n.handle) : '/products/' + n.handle),
           price: +(n.priceRange.minVariantPrice.amount || 0), priceFrom: +(n.priceRange.minVariantPrice.amount || 0),
           sizes: sizes, defaultSize: sizes[0] && sizes[0].id, multiSize: sizes.length > 1,
           image: (n.images[0] && n.images[0].url) || 'harvestdeli.webp',

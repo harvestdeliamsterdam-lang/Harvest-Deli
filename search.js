@@ -16,8 +16,8 @@
   var EXTRAS = [
     { type: 'Collection', title: 'The Collection', sub: 'All editions', url: 'shop.html' },
     { type: 'Collection', title: 'Honey', sub: 'Nine single-origin honeys', url: 'shop.html' },
-    { type: 'Collection', title: 'Olive Oil', sub: 'Estate pressing', url: 'product-olive-oil.html' },
-    { type: 'Collection', title: 'Tea', sub: 'Wild mountain tea', url: 'product-mountain-tea.html' },
+    { type: 'Collection', title: 'Olive Oil', sub: 'Estate pressing', url: '/products/extra-virgin-olive-oil' },
+    { type: 'Collection', title: 'Tea', sub: 'Wild mountain tea', url: '/products/greek-mountain-tea' },
     { type: 'Story', title: 'Proef de Griekse zon', sub: 'Journal', url: 'article-de-smaak-van-de-griekse-zon.html' },
     { type: 'Story', title: 'The Journal', sub: 'Field notes', url: 'journal.html' },
     { type: 'Story', title: 'The Origin', sub: 'Greece', url: 'about.html' }
