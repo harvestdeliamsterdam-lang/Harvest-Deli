@@ -6066,7 +6066,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("assets/nav-topo.svg?v=hd-2026-06-06-188") center / cover no-repeat !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-189") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6297,3 +6297,24 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
 #hdCartShip .hd-cc-menu { left: 0; right: 0; width: 100%; min-width: 0; }
 
 @media (prefers-reduced-motion: reduce) { .hd-cc-menu, .hd-cc-chev { transition: none; } }
+
+/* =================================================================
+   Product reviews, truthful empty state (no fabricated reviews).
+   Shown until real verified webshop product reviews exist. Premium
+   and restrained: subtle divider, centered, NO stars/counts/badges.
+   ================================================================= */
+.reviews-section.reviews-empty { padding: clamp(64px, 9vh, 104px) 8%; }
+.reviews-empty .reviews-inner { display: block; max-width: 620px; text-align: center; }
+.reviews-empty-card { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.reviews-empty-eyebrow {
+  font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  font-weight: 600; color: var(--gold-deep, #8A6228);
+}
+.reviews-empty-title {
+  font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: clamp(24px, 3vw, 34px);
+  line-height: 1.15; letter-spacing: -0.01em; color: var(--ink, #1F1A14); margin: 2px 0 0;
+}
+.reviews-empty-body {
+  font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7;
+  color: var(--ink-soft, #5C5247); max-width: 42ch; margin: 0;
+}
