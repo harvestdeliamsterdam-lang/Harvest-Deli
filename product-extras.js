@@ -275,7 +275,7 @@
      text, no fixed product names, no mountain tea). Mirrors the live Shopify
      automatic discount: any 3 honeys, or 2 honeys + olive oil, save €5. */
   function ritualPromoHTML() {
-    var bg = 'assets/products-images/thyme-serving.webp';   // lifestyle honey-drizzle image, text lives in HTML
+    var bg = '/assets/products-images/thyme-serving.webp';   // lifestyle honey-drizzle image, text lives in HTML
     return '' +
     '<section class="px-section px-ritual" aria-label="' + L('Build your ritual', 'Stel je ritueel samen') + '">' +
       '<div class="px-ritual-card">' +
@@ -337,8 +337,8 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-190';
-      var base = 'assets/products-images/' + slug;
+      var ASSET_V = '?v=hd-2026-06-06-191';
+      var base = '/assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
       var main0 = document.querySelector('#pdgMain img[data-slide="0"]');
