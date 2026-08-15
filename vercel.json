@@ -145,6 +145,51 @@
       "permanent": true
     },
     {
+      "source": "/product-wild-oregano.html",
+      "destination": "/products/wild-oregano",
+      "permanent": true
+    },
+    {
+      "source": "/product-pine.html",
+      "destination": "/products/pine-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-oak.html",
+      "destination": "/products/oak-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-arbutus.html",
+      "destination": "/products/arbutus-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-fir-vanilla.html",
+      "destination": "/products/vanilla-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-orange-blossom.html",
+      "destination": "/products/orange-blossom-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-acacia.html",
+      "destination": "/products/acacia-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-thyme.html",
+      "destination": "/products/thyme-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-heather.html",
+      "destination": "/products/heather-honey",
+      "permanent": true
+    },
+    {
       "source": "/article-ultimate-guide-greek-honey.html",
       "destination": "/article-griekse-honing-complete-gids.html",
       "permanent": true
@@ -202,40 +247,44 @@
   ],
   "rewrites": [
     {
+      "source": "/feeds/google-merchant.xml",
+      "destination": "/api/merchant-feed"
+    },
+    {
       "source": "/products/chestnut-honey",
       "destination": "/product.html"
     },
     {
       "source": "/products/pine-honey",
-      "destination": "/product.html"
+      "destination": "/product-pine.html"
     },
     {
       "source": "/products/oak-honey",
-      "destination": "/product.html"
+      "destination": "/product-oak.html"
     },
     {
       "source": "/products/arbutus-honey",
-      "destination": "/product.html"
+      "destination": "/product-arbutus.html"
     },
     {
       "source": "/products/vanilla-honey",
-      "destination": "/product.html"
+      "destination": "/product-fir-vanilla.html"
     },
     {
       "source": "/products/orange-blossom-honey",
-      "destination": "/product.html"
+      "destination": "/product-orange-blossom.html"
     },
     {
       "source": "/products/acacia-honey",
-      "destination": "/product.html"
+      "destination": "/product-acacia.html"
     },
     {
       "source": "/products/thyme-honey",
-      "destination": "/product.html"
+      "destination": "/product-thyme.html"
     },
     {
       "source": "/products/heather-honey",
-      "destination": "/product.html"
+      "destination": "/product-heather.html"
     },
     {
       "source": "/products/wild-oregano",
@@ -252,6 +301,10 @@
     {
       "source": "/products/greek-chamomile-tea",
       "destination": "/product-chamomile-tea.html"
+    },
+    {
+      "source": "/feeds/google-merchant-en.xml",
+      "destination": "/api/merchant-feed?lang=en"
     }
   ]
 }

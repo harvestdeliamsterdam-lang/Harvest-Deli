@@ -81,8 +81,8 @@
   /** Redirect guests to login, preserving where they were headed. */
   function requireAuth() {
     if (!current()) {
-      var next = encodeURIComponent(location.pathname.split('/').pop() || 'account.html');
-      location.href = 'login.html?next=' + next;
+      var next = encodeURIComponent(location.pathname.split('/').pop() || '/account.html');
+      location.href = '/login.html?next=' + next;
       return false;
     }
     return true;
@@ -134,7 +134,7 @@
     }
     // logout buttons
     document.querySelectorAll('[data-logout]').forEach(function (b) {
-      b.addEventListener('click', function (e) { e.preventDefault(); signOut(); location.href = 'login.html'; });
+      b.addEventListener('click', function (e) { e.preventDefault(); signOut(); location.href = '/login.html'; });
     });
     // highlight current account-nav link
     var here = (location.pathname.split('/').pop() || '').toLowerCase();

@@ -90,9 +90,25 @@
   }
 
   /* --------------------------- State ------------------------------- */
+  /* The address country must default to the DETECTED destination, never a
+     hardcoded Netherlands. Until 2026-07-28 it was hardcoded, which broke every
+     non-NL order: shipCfg() reads HD_SHIPPING so a German visitor correctly saw
+     "Verzending €9.95", but the address select still said Nederland, so the
+     handoff sent Shopify country=Netherlands with a German postcode. Shopify
+     refused the address with "Enter a valid ZIP / postal code for Netherlands"
+     and the buyer was stuck, before an abandoned checkout was ever recorded.
+     The rate and the address now come from the same source of truth. */
+  function detectedCountryName() {
+    try {
+      var S = window.HD_SHIPPING;
+      if (S && S.known && S.known()) return S.forCountry(S.country()).name_en;
+    } catch (e) {}
+    return 'Netherlands';
+  }
   /** @returns {CustomerDetails} */
   function blankDetails() {
-    var addr = function () { return { line1: '', line2: '', city: '', postcode: '', country: 'Netherlands' }; };
+    var home = detectedCountryName();
+    var addr = function () { return { line1: '', line2: '', city: '', postcode: '', country: home }; };
     return {
       firstName: '', lastName: '', email: '', phone: '', company: '', vat: '',
       billing: addr(), shipping: addr(), shipToBilling: true, saveDetails: false
@@ -465,7 +481,7 @@
       commitDetails(); // freshest contact/address, so the hosted checkout opens pre-filled
       if (btn) { btn.classList.add('loading'); btn.disabled = true; } // existing .loading style
       if (window.HD_startCheckout) { window.HD_startCheckout(state.details); }
-      else { window.location.replace('shop.html'); }
+      else { window.location.replace('/shop.html'); }
       return;
     }
     commitDetails();
@@ -518,7 +534,7 @@
         discountAllocations: disc > 0 ? [{ code: state.discountCode || null, amount: money(disc) }] : []
       },
       shippingMethod: m, paymentLabel: pay ? pay.label : '', customer: state.details,
-      checkoutUrl: snap ? snap.checkoutUrl : 'checkout.html', // SEAM: Shopify off-site URL
+      checkoutUrl: snap ? snap.checkoutUrl : '/checkout.html', // SEAM: Shopify off-site URL
       source: (window.HD_COMMERCE_CONFIG && window.HD_COMMERCE_CONFIG.source) || 'mock'
     };
 
@@ -546,7 +562,7 @@
         shipping: order.shipping, discount: order.discount,
         items: order.items.map(function (i) { return { item_id: i.slug, item_name: i.name, price: i.price, quantity: i.qty }; })
       });
-      window.location.href = 'order-success.html?order=' + encodeURIComponent(order.id);
+      window.location.href = '/order-success.html?order=' + encodeURIComponent(order.id);
     }, 700);
   }
 
@@ -577,6 +593,14 @@
     var wizard = $('#checkoutWizard');
     if (!wizard) return; // not on checkout page
     loadState();
+    /* A draft saved on an earlier visit can still carry the old hardcoded
+       Netherlands, so adopt the detected destination unless the visitor picked
+       a country themselves. */
+    if (!state.details.countryChosen) {
+      var home = detectedCountryName();
+      if (state.details.billing) state.details.billing.country = home;
+      if (state.details.shipping) state.details.shipping.country = home;
+    }
     prefillDetailsInputs();
     rerenderAll();
     // payment tabs preselect
@@ -621,6 +645,28 @@
     // same-as-billing
     var same = $('#ckSameAddr');
     if (same) same.addEventListener('change', toggleShipAddr);
+
+    /* Country drives the shipping rate as well as the address, so keep the two
+       in lockstep. Picking Duitsland here now also moves HD_SHIPPING, which
+       feeds the quoted rate, the free-shipping threshold and the countryCode
+       sent to Shopify. Without this the wizard could quote one country while
+       the address said another. */
+    function syncCountryToShipping() {
+      var shipSeparate = !!(same && !same.checked);
+      var sel = shipSeparate ? $('#shCountry') : $('#ckCountry');
+      var name = sel && sel.value;
+      if (!name) return;
+      state.details.countryChosen = true;
+      saveState();
+      try {
+        var code = window.HD_SHIPPING && window.HD_SHIPPING.codeForName(name);
+        if (code) window.HD_SHIPPING.setCountry(code);
+      } catch (e) {}
+    }
+    $all('select[data-hd-country-select]').forEach(function (sel) {
+      sel.addEventListener('change', syncCountryToShipping);
+    });
+    if (same) same.addEventListener('change', syncCountryToShipping);
 
     // discount on Enter
     var dInput = $('#wzDiscountInput');
@@ -670,7 +716,7 @@
     if (src !== 'shopify') return init(); // dev/mock → local wizard
     // Production: empty cart has nothing to pre-check → send to shop.
     var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
-    if (!has) { window.location.replace('shop.html'); return; }
+    if (!has) { window.location.replace('/shop.html'); return; }
     init(); // render the branded pre-checkout UI; final step → Shopify (placeOrder)
     // Discounts are applied on Shopify's hosted checkout, never here, hide the
     // local code field so a pre-checkout total can never disagree with Shopify.

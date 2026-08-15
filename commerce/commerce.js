@@ -196,7 +196,7 @@
       cost: { subtotalAmount: money(subtotal), totalAmount: money(Math.max(0, subtotal - offer)) },
       discountAmount: money(offer),
       freeShippingThreshold: (CFG().freeShippingThreshold || 65),
-      checkoutUrl: 'checkout.html'   // local wizard; Shopify checkoutUrl is used by Commerce.checkout() when live
+      checkoutUrl: '/checkout.html'   // local wizard; Shopify checkoutUrl is used by Commerce.checkout() when live
     };
   }
 
@@ -361,7 +361,7 @@
         if (window.console) console.warn('[commerce] Shopify checkout could not be created');
         return null;                   // PHASE 3: no checkout.html fallback in production
       }
-      return 'checkout.html';          // dev/mock only (source !== 'shopify')
+      return '/checkout.html';          // dev/mock only (source !== 'shopify')
     },
 
     search: {
@@ -456,7 +456,7 @@
           slug: n.handle, name: n.title, url: (window.HD_urlForSlug ? window.HD_urlForSlug(n.handle) : '/products/' + n.handle),
           price: +(n.priceRange.minVariantPrice.amount || 0), priceFrom: +(n.priceRange.minVariantPrice.amount || 0),
           sizes: sizes, defaultSize: sizes[0] && sizes[0].id, multiSize: sizes.length > 1,
-          image: (n.images[0] && n.images[0].url) || 'harvestdeli.webp',
+          image: (n.images[0] && n.images[0].url) || '/harvestdeli.webp',
           notes: (n.descriptionHtml || '').replace(/<[^>]+>/g, '').trim(),
           tags: n.tags || [], badges: [], type: (n.productType || '').toLowerCase()
           // region/altitude/hue/edition: map from Shopify metafields here when modelled.
@@ -526,22 +526,46 @@
     GB:'44', CH:'41'
   };
 
-  /* Normalise a user-typed phone to E.164 (e.g. "06 10 71-50 83" → "+31610715083").
-     Shopify's buyerIdentity.phone / address.phone require E.164 or the value is
-     dropped. Rules: strip spaces/dashes/parens/dots; keep already-international
-     (+…) unchanged; "00…" → "+…"; a leading national 0 gets the country dial code
-     (default NL when the cart country is unknown). Returns null when not usable. */
+  /* Landen die een nationale trunk-0 gebruiken: daar hoort die 0 er bij het
+     internationale formaat AF. In de rest van de EU niet, en Italië is de
+     uitzondering die het duidelijkst maakt: daar is de leidende 0 van een vast
+     nummer juist ONDERDEEL van het nummer, terwijl mobiele nummers met een 3
+     beginnen en helemaal geen 0 hebben. */
+  var TRUNK_NUL = {
+    NL:1, BE:1, DE:1, FR:1, AT:1, GB:1, CH:1, IE:1, SE:1, FI:1,
+    HU:1, RO:1, BG:1, HR:1, SI:1
+  };
+
+  /* Zet een getypt telefoonnummer om naar E.164 ("06 10 71-50 83" → "+31610715083").
+     Shopify weigert een ongeldig nummer met "Phone is invalid", en dan komt er
+     GEEN cart terug: de klant zag "Checkout temporarily unavailable" en kon niets
+     meer. Dat gebeurde bij elk land zonder trunk-0, want de oude versie plakte
+     het landnummer er alleen voor als het nummer met een 0 begon; een Italiaans
+     mobiel nummer (3331234567) werd zo "+3331234567" en was daarmee onbruikbaar.
+     Twee regels sindsdien: het landnummer wordt altijd toegevoegd, en een nummer
+     dat we niet plausibel krijgen leveren we NIET aan (null), zodat een rare
+     invoer hooguit het telefoonveld leeg laat in plaats van de bestelling te
+     blokkeren. */
   function normalizePhone(raw, isoCode) {
     if (!raw) return null;
     var s = String(raw).replace(/[\s\-().]/g, '');
     if (!s) return null;
-    if (s.charAt(0) === '+') return s;                 // already international
-    if (s.slice(0, 2) === '00') return '+' + s.slice(2); // 0031… → +31…
-    if (s.charAt(0) === '0') {                          // national number
-      var dial = DIAL_CODES[isoCode] || DIAL_CODES.NL; // default to NL
-      return '+' + dial + s.slice(1);
+
+    var uit = null;
+    if (s.charAt(0) === '+') uit = s;                        // al internationaal
+    else if (s.slice(0, 2) === '00') uit = '+' + s.slice(2); // 0031… → +31…
+    else if (/^[0-9]+$/.test(s)) {
+      var dial = DIAL_CODES[isoCode] || DIAL_CODES.NL;
+      if (s.indexOf(dial) === 0 && s.length > dial.length + 6) {
+        uit = '+' + s;                                       // landnummer stond er al
+      } else if (s.charAt(0) === '0' && TRUNK_NUL[isoCode]) {
+        uit = '+' + dial + s.slice(1);                       // trunk-0 eraf
+      } else {
+        uit = '+' + dial + s;                                // geen trunk-0: laten staan
+      }
     }
-    return /^[0-9]+$/.test(s) ? '+' + s : null;         // bare digits → assume already country-prefixed
+    // Laatste zeef: alleen doorgeven wat er als E.164 uitziet, anders weglaten.
+    return (uit && /^\+[1-9][0-9]{7,14}$/.test(uit)) ? uit : null;
   }
 
   /* Map the wizard's state.details → Shopify CartBuyerIdentityInput so the hosted
@@ -580,15 +604,36 @@
      or an error modal. Dev/mock → the local checkout.html wizard.
      @param {object} [buyer] state.details from the wizard, for checkout prefill. */
   function startCheckout(buyer) {
-    if (!useShopify()) { window.location.href = 'checkout.html'; return; } // dev/mock only
+    if (!useShopify()) { window.location.href = '/checkout.html'; return; } // dev/mock only
     var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
-    if (!has) { window.location.href = 'shop.html'; return; }
-    Commerce.checkout(buyer).then(function (url) {
-      if (url && /^https?:\/\//.test(url)) { window.location.href = url; }
-      else { showCheckoutError(); }
-    }).catch(function () { showCheckoutError(); });
+    if (!has) { window.location.href = '/shop.html'; return; }
+    /* Eén mislukte Storefront-aanroep was een doodlopende weg: safeFetch slikt
+       elke fout en geeft null terug, dus een netwerkhapering, een trage
+       catalogus-hydratatie of een door Shopify afgeknepen verzoek liet meteen
+       "Checkout temporarily unavailable" zien zonder weg vooruit. Nu drie
+       pogingen met een oplopende pauze; pas daarna de melding. Een mislukte
+       poging maakt geen order en laat de winkelmand staan, dus opnieuw
+       proberen is veilig. */
+    var poging = 0;
+    function probeer() {
+      poging++;
+      Commerce.checkout(buyer).then(function (url) {
+        if (url && /^https?:\/\//.test(url)) { window.location.href = url; return; }
+        if (poging < 3) { setTimeout(probeer, poging * 800); return; }
+        if (window.console) console.warn('[commerce] checkout gaf na ' + poging + ' pogingen geen URL');
+        showCheckoutError();
+      }).catch(function (e) {
+        if (poging < 3) { setTimeout(probeer, poging * 800); return; }
+        if (window.console) console.warn('[commerce] checkout faalde:', e && e.message);
+        showCheckoutError();
+      });
+    }
+    probeer();
   }
   window.HD_startCheckout = startCheckout;
+  /* Blootgesteld zodat tests/phone-e164.mjs de normalisatie per land kan meten
+     zonder een hele bestelling te hoeven doorlopen. Alleen lezen, geen gedrag. */
+  window.HD_normalizePhone = normalizePhone;
 
   /* Checkout routing. Every checkout entry (the cart drawer "Continue to
      checkout" a.cart-checkout and any [data-shopify-checkout] element) routes
@@ -599,6 +644,6 @@
     var a = e.target.closest && e.target.closest('[data-shopify-checkout], a.cart-checkout');
     if (!a) return;
     e.preventDefault();
-    window.location.href = 'checkout.html';
+    window.location.href = '/checkout.html';
   }, true);
 })();

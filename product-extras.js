@@ -198,6 +198,102 @@
     return '<li><span class="pdb-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' + (SPEC_ICONS[icon] || '') + '</svg></span>' +
       '<span class="pdb-k">' + label + '</span><span class="pdb-v">' + val + '</span></li>';
   }
+  /* ---- Reusable per-product benefit bubbles (hover / in-view reveal around
+     the jar). Keyed by product slug; each is [EN, NL] arrays of 4–5 concise,
+     factual benefits. No medical or unsupported health claims. Add a slug here
+     to give any product its own benefit layer. ---- */
+  /* ---- Reusable per-product BENEFITS (hover / in-view reveal around the jar).
+     Keyed by product slug; each is {en:[], nl:[]} of 5 concise benefits taken
+     from the official Harvest Deli product sheets ("Welzijn & voordelen" /
+     "Wellness & benefits"). These are BENEFITS, not tasting notes: aroma,
+     colour, texture and crystallisation belong in the Smaakprofiel card, not
+     here. Add a slug here to give any product its own benefit layer. ---- */
+  var PRODUCT_BENEFITS = {
+    /* Verbatim from the Harvest Deli product flyers, one list per honey.
+       Ordered DISTINCTIVE FIRST: what sets this honey apart leads, the
+       claims every flyer repeats (antioxidants, 100% natural) close the
+       list. The image bubbles show the opening items, so no two jars read
+       the same; the full list is rendered as text on the page. */
+    'chestnut': {
+      en: ['Supports blood circulation', 'Provides long-lasting energy', 'Rich in minerals (iron, potassium, magnesium, manganese)', 'Natural antibacterial properties', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Ondersteunt de bloedcirculatie', 'Geeft langdurige energie', 'Rijk aan mineralen (ijzer, kalium, magnesium, mangaan)', 'Natuurlijk antibacteriële eigenschappen', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'pine': {
+      en: ['From the unspoiled nature of Thassos', 'Supports the respiratory system', 'Rich in minerals (iron, potassium, magnesium, manganese)', 'Provides natural energy', 'Natural antibacterial properties', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Afkomstig van de ongerepte natuur van Thassos', 'Ondersteunt de luchtwegen', 'Rijk aan mineralen (ijzer, kalium, magnesium, mangaan)', 'Geeft natuurlijke energie', 'Natuurlijke antibacteriële eigenschappen', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'oak': {
+      en: ['From the unspoiled forests of Greece', 'Supports digestion', 'Soothes throat and voice', 'Rich in minerals (iron, potassium, magnesium, manganese)', 'Provides natural energy', 'Natural antibacterial properties', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Afkomstig uit de ongerepte bossen van Griekenland', 'Ondersteunt de spijsvertering', 'Verzacht keel en stem', 'Rijk aan mineralen (ijzer, kalium, magnesium, mangaan)', 'Geeft natuurlijke energie', 'Natuurlijke antibacteriële eigenschappen', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'arbutus': {
+      en: ['Less sweet, ideal for reduced sugar preference', 'Supports digestion', 'Known for its natural antibacterial properties', 'Natural source of energy', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Minder zoet, geschikt voor wie suiker wil beperken', 'Stimuleert de spijsvertering', 'Bekend om zijn natuurlijke antibacteriële eigenschappen', 'Natuurlijke energiebron', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'fir-vanilla': {
+      en: ['Gentle on the stomach, easy to digest', 'Soothes the throat and respiratory system', 'Antibacterial properties', 'Natural source of energy', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Mild voor de maag, licht verteerbaar', 'Werkt verzachtend voor keel en luchtwegen', 'Antibacteriële eigenschappen', 'Natuurlijke energiebron', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'orange-blossom': {
+      en: ['From the unspoiled nature of Greece', 'Supports digestion', 'Soothes throat and voice', 'Rich in minerals (iron, potassium, magnesium, manganese)', 'Provides natural energy', 'Natural antibacterial properties', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Afkomstig uit de ongerepte natuur van Griekenland', 'Ondersteunt de spijsvertering', 'Verzacht keel en stem', 'Rijk aan mineralen (ijzer, kalium, magnesium, mangaan)', 'Geeft natuurlijke energie', 'Natuurlijke antibacteriële eigenschappen', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'acacia': {
+      en: ['Suitable for children and elderly', 'Promotes restful sleep', 'Easy to digest', 'Soothes the throat', 'Natural source of energy', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Geschikt voor kinderen en ouderen', 'Helpt bij een goede nachtrust', 'Licht verteerbaar', 'Werkt verzachtend voor de keel', 'Natuurlijke energiebron', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'heather': {
+      en: ['Rich in minerals (iron, potassium, magnesium, manganese)', 'Raw and unfiltered', 'Produced in Greece', 'Natural source of energy', 'Naturally antibacterial properties', 'Supports the immune system', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Rijk aan mineralen (ijzer, kalium, magnesium, mangaan)', 'Rauw en ongefilterd', 'Geproduceerd in Griekenland', 'Natuurlijke bron van energie', 'Natuurlijke antibacteriële eigenschappen', 'Ondersteunt het immuunsysteem', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    /* FLYER NOG NIET ONTVANGEN: thyme, olive-oil, mountain-tea,
+       chamomile-tea, oregano. Deze lijsten zijn afgeleid van de
+       productbeschrijving, niet van een flyer. Vervangen zodra de flyer er is. */
+    'thyme': {
+      en: ['A prized Greek variety', 'Intensely aromatic', 'Rich in aromatic oils', 'Natural source of energy', 'Rich in antioxidants', '100% natural, no additives'],
+      nl: ['Een gewaardeerde Griekse soort', 'Intens aromatisch', 'Rijk aan aromatische oliën', 'Natuurlijke energiebron', 'Rijk aan antioxidanten', '100% natuurlijk, zonder toevoegingen'] },
+    'olive-oil': {
+      en: ['Cold-pressed extra virgin', 'Single-estate olives', 'Peppery, fresh finish', 'Harvested in Greece', '100% natural, no additives'],
+      nl: ['Koudgeperst, extra vierge', 'Olijven van één landgoed', 'Peperige, frisse afdronk', 'Geoogst in Griekenland', '100% natuurlijk, zonder toevoegingen'] },
+    'mountain-tea': {
+      en: ['Wild-grown sideritis', 'Hand-harvested at altitude', 'Naturally caffeine free', 'Single origin from Greece', '100% natural, no additives'],
+      nl: ['Wilde sideritis', 'Met de hand geoogst op hoogte', 'Van nature cafeïnevrij', 'Single origin uit Griekenland', '100% natuurlijk, zonder toevoegingen'] },
+    'chamomile-tea': {
+      en: ['Whole dried flowers', 'Naturally caffeine free', 'Gentle for the evening', 'Single origin from Greece', '100% natural, no additives'],
+      nl: ['Hele gedroogde bloemen', 'Van nature cafeïnevrij', 'Mild voor de avond', 'Single origin uit Griekenland', '100% natuurlijk, zonder toevoegingen'] },
+    'oregano': {
+      en: ['Wild-picked and sun-dried', 'Dried whole on the stem', 'Intensely aromatic', 'Single origin from Greece', '100% natural, no additives'],
+      nl: ['Wild geplukt en zongedroogd', 'Heel gedroogd aan de steel', 'Intens aromatisch', 'Single origin uit Griekenland', '100% natuurlijk, zonder toevoegingen'] }
+  };
+  /* Delicate 1.6px line marks (drop, leaf, hex, bloom, hills), cycled per bubble. */
+  var BENEFIT_ICONS = [
+    '<path d="M12 3c3.4 4 5.4 6.8 5.4 9.8a5.4 5.4 0 0 1-10.8 0C6.6 9.8 8.6 7 12 3z"/>',
+    '<path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z"/><path d="M5 19 12.5 11.5"/>',
+    '<path d="M12 3l7 4v10l-7 4-7-4V7z"/>',
+    '<circle cx="12" cy="12" r="3.1"/><path d="M12 3.5v3.2M12 17.3v3.2M3.5 12h3.2M17.3 12h3.2"/>',
+    '<path d="M3 18l5-8 3.6 5.2L15 9l6 9z"/>'
+  ];
+  function benefitIcon(i) {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+      BENEFIT_ICONS[i % BENEFIT_ICONS.length] + '</svg>';
+  }
+  function benefitBubblesHTML(slug) {
+    var cfg = PRODUCT_BENEFITS[slug]; if (!cfg) return '';
+    var items = (L(cfg.en, cfg.nl) || cfg.en || []).slice(0, 5);
+    if (!items.length) return '';
+    var pos = ['b1', 'b2', 'b3', 'b4', 'b5'];
+    var lis = items.map(function (t, i) {
+      return '<li class="pd-benefit ' + pos[i] + '" style="transition-delay:' + (0.03 + i * 0.05).toFixed(3) + 's">' +
+        benefitIcon(i) + '<span>' + t + '</span></li>';
+    }).join('');
+    return '<ul class="pd-benefit-layer" aria-label="' + L('Product highlights', 'Productkenmerken') + '">' + lis + '</ul>';
+  }
+  /* Full flyer list as real text. The image bubbles show only the opening
+     items, so everything below the fold of the jar still needs to be
+     readable, crawlable and translatable. */
+  function benefitsListHTML(slug) {
+    var cfg = PRODUCT_BENEFITS[slug]; if (!cfg) return '';
+    var items = (L(cfg.en, cfg.nl) || cfg.en || []);
+    if (!items.length) return '';
+    return '<div class="pd-wellness" id="pdWellness">' +
+      '<div class="pdw-head">' + L('Wellness &amp; benefits', 'Welzijn &amp; voordelen') + '</div>' +
+      '<ul class="pdw-list">' + items.map(function (t) {
+        return '<li>' + t + '</li>';
+      }).join('') + '</ul></div>';
+  }
+
   function benefitsPanelHTML(slug) {
     var s = HONEY_SPEC[slug]; if (!s) return '';
     return '<div class="pd-benefits" id="pdBenefits" aria-label="' + L('Tasting profile', 'Smaakprofiel') + '">' +
@@ -209,7 +305,6 @@
         specRow('crystal', L('Crystallisation', 'Kristallisatie'), L(s.crystal[0], s.crystal[1])) +
         specRow('color', L('Colour', 'Kleur'), L(s.color[0], s.color[1])) +
       '</ul>' +
-      '<p class="pdb-natural">' + L(s.natural[0], s.natural[1]) + '</p>' +
     '</div>';
   }
   function originSectionHTML(slug) {
@@ -226,7 +321,7 @@
   }
 
   /* Honeys with a full 3-shot gallery (hero + origin + serving), generated per-honey */
-  var GALLERY_SET = ['chestnut', 'pine', 'arbutus', 'fir-vanilla', 'orange-blossom', 'acacia', 'thyme', 'heather'];
+  var GALLERY_SET = ['chestnut', 'pine', 'oak', 'arbutus', 'fir-vanilla', 'orange-blossom', 'acacia', 'thyme', 'heather'];
 
   function getDetail(slug) {
     if (DETAILS[slug]) return DETAILS[slug];
@@ -236,18 +331,16 @@
 
   /* ---- builders ---- */
   function compositionHTML(d) {
-    var rows = d.nutrition.map(function (r) {
-      return '<tr><th scope="row">' + r[0] + '</th><td>' + r[1] + '</td></tr>';
-    }).join('');
+    /* The nutrition table was removed at the client's request: the legally
+       required declaration lives on the physical jar label, and the panel added
+       little on a product page that is already rich in detail. */
     return '' +
     '<section class="px-section px-compose" aria-label="' + L('Composition', 'Samenstelling') + '">' +
       '<div class="px-head"><span class="px-eyebrow">' + L('The Particulars', 'Het Detail') + '</span>' +
         '<h2 class="px-title">' + L('What’s inside.', 'Wat erin zit.') + '</h2></div>' +
-      '<div class="px-compose-grid">' +
+      '<div class="px-compose-grid px-compose-2">' +
         '<div class="px-card"><h4>' + L('Ingredients', 'Ingrediënten') + '</h4><p>' + d.ingredients + '</p></div>' +
         '<div class="px-card"><h4>' + L('Allergens', 'Allergenen') + '</h4><p>' + d.allergens + '</p></div>' +
-        '<div class="px-card px-nutri"><h4>' + L('Nutrition', 'Voedingswaarde') + ' <span>' + d.nutritionLabel + '</span></h4>' +
-          '<table><tbody>' + rows + '</tbody></table></div>' +
       '</div>' +
     '</section>';
   }
@@ -286,7 +379,7 @@
           '<h2 class="px-ritual-title">' + L('Build your ritual.', 'Stel je ritueel samen.') + '</h2>' +
           '<p class="px-ritual-copy">' + L('Combine any 3 honeys, or 2 honeys with olive oil, and save €5.',
                                            'Combineer 3 honingen, of 2 honingen met olijfolie, en bespaar €5.') + '</p>' +
-          '<a class="px-ritual-cta" href="shop.html"><span>' + L('Build your ritual', 'Stel je ritueel samen') + '</span> <span class="arrow" aria-hidden="true"></span></a>' +
+          '<a class="px-ritual-cta" href="/shop.html"><span>' + L('Build your ritual', 'Stel je ritueel samen') + '</span> <span class="arrow" aria-hidden="true"></span></a>' +
           '<p class="px-ritual-fine">' + L('One ritual saving per order · applied automatically at checkout.',
                                            'Eén ritueelkorting per bestelling · automatisch verrekend bij het afrekenen.') + '</p>' +
         '</div>' +
@@ -337,7 +430,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-193';
+      var ASSET_V = '?v=hd-2026-06-06-214';
       var base = '/assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;
@@ -412,6 +505,14 @@
     var origin = (location.origin && location.origin.indexOf('http') === 0) ? location.origin : 'https://harvestdeli.nl';
     var imgAbs = (p && p.image) ? (origin + '/' + p.image.split('?')[0].replace(/^\//, '')) : '';
     var url = origin + (window.HD_urlForSlug ? window.HD_urlForSlug(slug) : '/products/' + slug);
+    /* Dedicated static product pages already ship a richer, hand-authored head
+       (per-product title, description, og:* and a Product schema carrying
+       sku/mpn/AggregateOffer). When the served page is already the right one,
+       leave all of that alone; only the query-string fallback needs patching. */
+    var canonEl = document.querySelector('link[rel="canonical"]');
+    var staticLd = document.getElementById('pdProductLd');
+    var hasRichLd = !!(staticLd && staticLd.textContent.indexOf('"sku"') !== -1);
+    if (canonEl && hasRichLd && canonEl.getAttribute('href') === url) return;
     document.title = title;
     setMeta('meta[name="description"]', 'content', desc);
     setMeta('meta[property="og:title"]', 'content', title);
@@ -424,13 +525,14 @@
           return { '@type': 'Offer', name: sz.label, price: String(sz.price), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url };
         })
       : [{ '@type': 'Offer', price: String(price != null ? price : (p && p.price) || ''), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url }];
+    offers.forEach(function (o) { o.itemCondition = 'https://schema.org/NewCondition'; o.seller = { '@type': 'Organization', name: 'Harvest Deli' }; });
     var ld = {
       '@context': 'https://schema.org/', '@type': 'Product',
-      name: name, description: desc,
+      name: name, description: desc, url: url,
       image: imgAbs ? [imgAbs] : undefined,
       brand: { '@type': 'Brand', name: 'Harvest Deli' },
       category: (nl ? 'Rauwe Griekse honing' : 'Raw Greek honey'),
-      offers: offers
+      offers: offers.length === 1 ? offers[0] : offers
     };
     var tag = document.getElementById('pdProductLd');
     if (!tag) { tag = document.createElement('script'); tag.type = 'application/ld+json'; tag.id = 'pdProductLd'; document.head.appendChild(tag); }
@@ -453,11 +555,40 @@
         // story → tasting profile), else directly after the price block.
         var storyAnchor = document.getElementById('pdStory') || priceBlock;
         storyAnchor.insertAdjacentHTML('afterend', benefitsPanelHTML(slug));
+        var bp = document.getElementById('pdBenefits');
+        if (bp && !document.getElementById('pdWellness')) bp.insertAdjacentHTML('afterend', benefitsListHTML(slug));
       }
       window.addEventListener('hd:lang', function () {
         try { hydrateInfo(slug); } catch (e) {}
         var b = document.getElementById('pdBenefits');
         if (b) { b.insertAdjacentHTML('beforebegin', benefitsPanelHTML(slug)); b.remove(); }
+        var w = document.getElementById('pdWellness');
+        if (w) { w.insertAdjacentHTML('beforebegin', benefitsListHTML(slug)); w.remove(); }
+      });
+    }
+
+    // Interactive benefit bubbles around the main product image (all products).
+    var pdgMain = document.getElementById('pdgMain');
+    if (pdgMain && PRODUCT_BENEFITS[slug] && !pdgMain.querySelector('.pd-benefit-layer')) {
+      pdgMain.insertAdjacentHTML('beforeend', benefitBubblesHTML(slug));
+      pdgMain.setAttribute('tabindex', '0');
+      pdgMain.setAttribute('role', 'group');
+      pdgMain.setAttribute('aria-label', L('Product image — highlights on hover or focus', 'Productafbeelding — kenmerken bij hover of focus'));
+      var coarse = window.matchMedia && window.matchMedia('(hover: none)').matches;
+      if (coarse) {
+        if ('IntersectionObserver' in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) { if (en.isIntersecting) pdgMain.classList.add('is-inview'); });
+          }, { threshold: 0.4 });
+          io.observe(pdgMain);
+        } else { pdgMain.classList.add('is-inview'); }
+        // Tap the image to replay / toggle the benefit layer (no hover on touch).
+        pdgMain.addEventListener('click', function () { pdgMain.classList.toggle('is-open'); });
+      }
+      window.addEventListener('hd:lang', function () {
+        var layer = pdgMain.querySelector('.pd-benefit-layer');
+        if (layer) { layer.insertAdjacentHTML('beforebegin', benefitBubblesHTML(slug)); layer.remove(); }
+        pdgMain.setAttribute('aria-label', L('Product image — highlights on hover or focus', 'Productafbeelding — kenmerken bij hover of focus'));
       });
     }
 

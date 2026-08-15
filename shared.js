@@ -435,7 +435,7 @@ window.HD_urlForSlug = function (slug) {
       'access.show': 'Show',
       'access.hide': 'Hide',
       'access.cta': 'Continue Privately',
-      'access.foot_html': 'New to the house? <a href="register.html">Request access</a>',
+      'access.foot_html': 'New to the house? <a href="/register.html">Request access</a>',
       'access.err.email': 'A valid email is needed here.',
       'access.err.pw': 'A small detail is missing here.',
       'ck.step.cart': 'Cart',
@@ -489,8 +489,8 @@ window.HD_urlForSlug = function (slug) {
       'ck.review.delivery': 'Delivery',
       'ck.review.payment': 'Payment',
       'ck.edit': 'Edit',
-      'ck.terms_html': 'I agree to the <a href="legal-terms.html">terms &amp; conditions</a>.',
-      'ck.privacy_html': 'I have read the <a href="legal-privacy.html">privacy statement</a>.',
+      'ck.terms_html': 'I agree to the <a href="/legal-terms.html">terms &amp; conditions</a>.',
+      'ck.privacy_html': 'I have read the <a href="/legal-privacy.html">privacy statement</a>.',
       'ck.consentError': 'Please accept the terms and privacy statement to continue.',
       'ck.secureInline': 'Encrypted & secure',
       'ck.faq.h': 'Questions before you order',
@@ -499,7 +499,7 @@ window.HD_urlForSlug = function (slug) {
       'ck.faq.q2': 'Do you ship internationally?',
       'ck.faq.a2': 'We ship across the entire European Union. Your exact shipping option and price are confirmed securely at Shopify checkout.',
       'ck.faq.q3': 'Can I return an order?',
-      'ck.faq.a3': 'Unopened jars can be returned within 14 days. See our <a href="legal-returns.html">returns policy</a> or write to <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
+      'ck.faq.a3': 'Unopened jars can be returned within 14 days. See our <a href="/legal-returns.html">returns policy</a> or write to <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
       'ck.err.required': 'Required',
       'ck.err.email': 'Enter a valid email',
       'ck.err.postcode': 'Enter a valid postcode',
@@ -520,7 +520,7 @@ window.HD_urlForSlug = function (slug) {
       'auth.register.title_html': 'Join the <em>cellar.</em>',
       'auth.register.sub': 'Create an account to track orders and check out faster next time.',
       'auth.confirm': 'Confirm password',
-      'auth.agree_html': 'I agree to the <a href="legal-terms.html">terms</a> and <a href="legal-privacy.html">privacy statement</a>.',
+      'auth.agree_html': 'I agree to the <a href="/legal-terms.html">terms</a> and <a href="/legal-privacy.html">privacy statement</a>.',
       'auth.createAccount': 'Create account',
       'auth.haveAccount': 'Already have an account?',
       'auth.forgot.title_html': 'Reset your <em>password.</em>',
@@ -1095,7 +1095,7 @@ window.HD_urlForSlug = function (slug) {
       'access.show': 'Toon',
       'access.hide': 'Verberg',
       'access.cta': 'Betreed Privé',
-      'access.foot_html': 'Nieuw bij het huis? <a href="register.html">Vraag toegang aan</a>',
+      'access.foot_html': 'Nieuw bij het huis? <a href="/register.html">Vraag toegang aan</a>',
       'access.err.email': 'Hier is een geldig e-mailadres nodig.',
       'access.err.pw': 'Hier ontbreekt nog een klein detail.',
       'ck.step.cart': 'Mandje',
@@ -1149,8 +1149,8 @@ window.HD_urlForSlug = function (slug) {
       'ck.review.delivery': 'Bezorging',
       'ck.review.payment': 'Betaling',
       'ck.edit': 'Wijzig',
-      'ck.terms_html': 'Ik ga akkoord met de <a href="legal-terms.html">algemene voorwaarden</a>.',
-      'ck.privacy_html': 'Ik heb de <a href="legal-privacy.html">privacyverklaring</a> gelezen.',
+      'ck.terms_html': 'Ik ga akkoord met de <a href="/legal-terms.html">algemene voorwaarden</a>.',
+      'ck.privacy_html': 'Ik heb de <a href="/legal-privacy.html">privacyverklaring</a> gelezen.',
       'ck.consentError': 'Accepteer de voorwaarden en privacyverklaring om verder te gaan.',
       'ck.secureInline': 'Versleuteld & veilig',
       'ck.faq.h': 'Vragen voor je bestelt',
@@ -1159,7 +1159,7 @@ window.HD_urlForSlug = function (slug) {
       'ck.faq.q2': 'Verzenden jullie internationaal?',
       'ck.faq.a2': 'Wij verzenden door de hele Europese Unie. De exacte verzendoptie en prijs worden veilig bevestigd bij de Shopify-checkout.',
       'ck.faq.q3': 'Kan ik een bestelling retourneren?',
-      'ck.faq.a3': 'Ongeopende potten kun je binnen 14 dagen retourneren. Zie ons <a href="legal-returns.html">retourbeleid</a> of mail naar <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
+      'ck.faq.a3': 'Ongeopende potten kun je binnen 14 dagen retourneren. Zie ons <a href="/legal-returns.html">retourbeleid</a> of mail naar <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
       'ck.err.required': 'Verplicht',
       'ck.err.email': 'Voer een geldig e-mailadres in',
       'ck.err.postcode': 'Voer een geldige postcode in',
@@ -1180,7 +1180,7 @@ window.HD_urlForSlug = function (slug) {
       'auth.register.title_html': 'Word lid van de <em>kelder.</em>',
       'auth.register.sub': 'Maak een account om bestellingen te volgen en sneller af te rekenen.',
       'auth.confirm': 'Bevestig wachtwoord',
-      'auth.agree_html': 'Ik ga akkoord met de <a href="legal-terms.html">voorwaarden</a> en <a href="legal-privacy.html">privacyverklaring</a>.',
+      'auth.agree_html': 'Ik ga akkoord met de <a href="/legal-terms.html">voorwaarden</a> en <a href="/legal-privacy.html">privacyverklaring</a>.',
       'auth.createAccount': 'Account aanmaken',
       'auth.haveAccount': 'Heb je al een account?',
       'auth.forgot.title_html': 'Herstel je <em>wachtwoord.</em>',
@@ -1897,15 +1897,15 @@ window.HD_urlForSlug = function (slug) {
     'idx.faq.response': 'Response time, usually within 24 hours',
     'idx.faq.help_html': 'Cannot find your question? Write to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> and we reply within two business days. For order matters, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'How quickly do you ship?',
-    'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch, delivery takes one to two working days in the Netherlands and Belgium, and about two to five across the rest of the EU. Track and trace is shared by e-mail. Full breakdown on the <a href="legal-shipping.html">shipping page</a>.',
+    'idx.faq.a1_html': 'Orders leave our Dutch depot within three working days. From dispatch, delivery takes one to two working days in the Netherlands and Belgium, and about two to five across the rest of the EU. Track and trace is shared by e-mail. Full breakdown on the <a href="/legal-shipping.html">shipping page</a>.',
     'idx.faq.q2': 'Where do you ship to?',
     'idx.faq.a2_html': 'The entire European Union. Delivery rates and free-shipping thresholds (from &euro;60) are shown per country at checkout.',
     'idx.faq.q3': 'Is your honey raw?',
-    'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="article-de-smaak-van-de-griekse-zon.html">tasting essay</a>.',
+    'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="/article-de-smaak-van-de-griekse-zon.html">tasting essay</a>.',
     'idx.faq.q4': 'How long does the honey keep?',
     'idx.faq.a4_html': 'Indefinitely, sealed. Honey contains almost no water and is naturally antibacterial. Store cool, dry and out of direct light. Crystallisation is natural and reversible: warm the jar in a water bath at no more than 35&deg;C to return it to liquid without damaging it.',
     'idx.faq.q5': 'Can I return an order?',
-    'idx.faq.a5_html': 'Within fourteen days of receipt you may return unopened, wax-sealed jars without giving a reason. Once the seal is broken, the jar cannot be returned for hygiene reasons. Full instructions and the model form are on the <a href="legal-returns.html">returns page</a>.',
+    'idx.faq.a5_html': 'Within fourteen days of receipt you may return unopened, wax-sealed jars without giving a reason. Once the seal is broken, the jar cannot be returned for hygiene reasons. Full instructions and the model form are on the <a href="/legal-returns.html">returns page</a>.',
     'idx.faq.q6': 'Do you offer gift packaging?',
     'idx.faq.a6_html': 'Yes. An oak-veneered presentation box, lined in linen, holds one to three jars and travels with a handwritten card. Select gift packaging in the checkout, with a small &euro;9,50 surcharge.',
     'idx.faq.q7': 'Is raw honey safe for young children?',
@@ -1916,19 +1916,19 @@ window.HD_urlForSlug = function (slug) {
     'cnt.faq.eyebrow': 'Before you write',
     'cnt.faq.title_html': 'Frequently <em>asked.</em>',
     'cnt.faq.desc': 'Six small notes that may save you a message. If the answer is not here, write to us. We read every letter.',
-    'cnt.faq.help_html': 'For wholesale or hospitality, the <a href="partners.html">partnership programme</a> has a dedicated form. For privacy and data requests, <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a>.',
+    'cnt.faq.help_html': 'For wholesale or hospitality, the <a href="/partners.html">partnership programme</a> has a dedicated form. For privacy and data requests, <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a>.',
     'cnt.faq.q1': 'How quickly do you reply?',
     'cnt.faq.a1_html': 'Within two working days, often faster. On Monday mornings, Friday afternoons and during harvest weeks it can take a little longer. For urgent order matters, write directly to <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'cnt.faq.q2': 'Which channel should I use?',
     'cnt.faq.a2_html': 'Use <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> for general questions, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> for shipping and delivery, <a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a> for retail and hospitality, and <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a> for data and access requests under the GDPR.',
     'cnt.faq.q3': 'Wholesale or hospitality enquiry?',
-    'cnt.faq.a3_html': 'Send a short note via the form on our <a href="partners.html">partnership programme</a>. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Greece the same week.',
+    'cnt.faq.a3_html': 'Send a short note via the form on our <a href="/partners.html">partnership programme</a>. We answer every request personally and usually respond within 24 to 48 hours, often with a sample box dispatched from Greece the same week.',
     'cnt.faq.q4': 'My order has not arrived or arrived damaged.',
-    'cnt.faq.a4_html': 'Email <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> with your order number and, where possible, a photograph of the outer box. We arrange a free replacement shipment or full refund within two working days. Read more on the <a href="legal-shipping.html">shipping</a> and <a href="legal-returns.html">returns</a> pages.',
+    'cnt.faq.a4_html': 'Email <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> with your order number and, where possible, a photograph of the outer box. We arrange a free replacement shipment or full refund within two working days. Read more on the <a href="/legal-shipping.html">shipping</a> and <a href="/legal-returns.html">returns</a> pages.',
     'cnt.faq.q5': 'Can I visit the depot?',
     'cnt.faq.a5_html': 'By appointment, yes. Press, wholesale partners and existing clients are welcome. Send a request with date and reason to <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Visits are at our Amsterdam depot only; there is no public estate in Greece.',
     'cnt.faq.q6': 'Do you exist on social media?',
-    'cnt.faq.a6_html': 'Quietly, on Instagram. We do not run paid advertising and we do not chase the algorithm. Subscribe to the <a href="journal.html">journal</a> for slower correspondence, three or four times a year.'
+    'cnt.faq.a6_html': 'Quietly, on Instagram. We do not run paid advertising and we do not chase the algorithm. Subscribe to the <a href="/journal.html">journal</a> for slower correspondence, three or four times a year.'
   });
 
   Object.assign(T.nl, {
@@ -1938,15 +1938,15 @@ window.HD_urlForSlug = function (slug) {
     'idx.faq.response': 'Reactietijd, meestal binnen 24 uur',
     'idx.faq.help_html': 'Staat uw vraag er niet bij? Schrijf naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> en wij reageren binnen twee werkdagen. Voor bestellingen: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Hoe snel wordt mijn bestelling verzonden?',
-    'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en België, en ongeveer twee tot vijf in de rest van de EU. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="legal-shipping.html">verzendpagina</a>.',
+    'idx.faq.a1_html': 'Bestellingen verlaten ons Nederlandse depot binnen drie werkdagen. Vanaf verzending duurt het &eacute;&eacute;n tot twee werkdagen binnen Nederland en België, en ongeveer twee tot vijf in de rest van de EU. Track-and-trace ontvangt u per e-mail. Volledig overzicht op de <a href="/legal-shipping.html">verzendpagina</a>.',
     'idx.faq.q2': 'Waar verzenden jullie naartoe?',
     'idx.faq.a2_html': 'De hele Europese Unie. Verzendkosten en drempels voor gratis verzending (vanaf &euro;60) worden per land bij de checkout getoond.',
     'idx.faq.q3': 'Is jullie honing rauw?',
-    'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="article-de-smaak-van-de-griekse-zon.html">proefverslag</a>.',
+    'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="/article-de-smaak-van-de-griekse-zon.html">proefverslag</a>.',
     'idx.faq.q4': 'Hoe lang blijft de honing goed?',
     'idx.faq.a4_html': 'Onbeperkt, mits gesloten bewaard. Honing bevat vrijwel geen water en is van nature antibacterieel. Bewaar koel, droog en uit het licht. Kristallisatie is natuurlijk en omkeerbaar: plaats de pot in een waterbad van maximaal 35&deg;C om hem voorzichtig vloeibaar te maken.',
     'idx.faq.q5': 'Kan ik mijn bestelling retourneren?',
-    'idx.faq.a5_html': 'Binnen veertien dagen na ontvangst kunt u ongeopende, verzegelde potten zonder opgaaf van reden retourneren. Eenmaal verbroken zegel kan om hygi&euml;nische redenen niet meer worden teruggenomen. Volledige instructies en het modelformulier op de <a href="legal-returns.html">retourpagina</a>.',
+    'idx.faq.a5_html': 'Binnen veertien dagen na ontvangst kunt u ongeopende, verzegelde potten zonder opgaaf van reden retourneren. Eenmaal verbroken zegel kan om hygi&euml;nische redenen niet meer worden teruggenomen. Volledige instructies en het modelformulier op de <a href="/legal-returns.html">retourpagina</a>.',
     'idx.faq.q6': 'Hebben jullie cadeauverpakkingen?',
     'idx.faq.a6_html': 'Ja. In een houtfineer cadeaudoos met linnen voering, voor &eacute;&eacute;n tot drie potten, met een handgeschreven kaartje. Selecteer cadeauverpakking in de checkout, met een toeslag van &euro;9,50.',
     'idx.faq.q7': 'Is rauwe honing veilig voor jonge kinderen?',
@@ -1957,19 +1957,19 @@ window.HD_urlForSlug = function (slug) {
     'cnt.faq.eyebrow': 'Voordat u schrijft',
     'cnt.faq.title_html': 'Veel<em>gestelde vragen.</em>',
     'cnt.faq.desc': 'Zes korte notities die u een bericht kunnen besparen. Staat uw antwoord er niet bij, schrijf ons. Wij lezen elke brief.',
-    'cnt.faq.help_html': 'Voor wholesale of horeca heeft het <a href="partners.html">partnership-programma</a> een apart formulier. Voor privacy- en datavragen: <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a>.',
+    'cnt.faq.help_html': 'Voor wholesale of horeca heeft het <a href="/partners.html">partnership-programma</a> een apart formulier. Voor privacy- en datavragen: <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a>.',
     'cnt.faq.q1': 'Hoe snel reageren jullie?',
     'cnt.faq.a1_html': 'Binnen twee werkdagen, vaak sneller. Op maandagochtend, vrijdagmiddag en in oogstweken duurt het soms iets langer. Voor dringende ordervragen schrijft u direct aan <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'cnt.faq.q2': 'Welk kanaal kan ik het beste gebruiken?',
     'cnt.faq.a2_html': 'Gebruik <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> voor algemene vragen, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> voor verzending en levering, <a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a> voor wholesale en horeca, en <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a> voor inzage- en datavragen onder de AVG.',
     'cnt.faq.q3': 'Wholesale- of horeca-aanvraag?',
-    'cnt.faq.a3_html': 'Stuur een korte boodschap via het formulier op het <a href="partners.html">partnership-programma</a>. Wij beantwoorden elke aanvraag persoonlijk en reageren doorgaans binnen 24 tot 48 uur, vaak met een sampledoos die nog dezelfde week vanuit Griekenland vertrekt.',
+    'cnt.faq.a3_html': 'Stuur een korte boodschap via het formulier op het <a href="/partners.html">partnership-programma</a>. Wij beantwoorden elke aanvraag persoonlijk en reageren doorgaans binnen 24 tot 48 uur, vaak met een sampledoos die nog dezelfde week vanuit Griekenland vertrekt.',
     'cnt.faq.q4': 'Mijn bestelling is niet aangekomen of beschadigd.',
-    'cnt.faq.a4_html': 'Mail <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> met uw bestelnummer en, indien mogelijk, een foto van de buitendoos. Wij regelen kosteloos een vervangende zending of volledige terugbetaling binnen twee werkdagen. Lees verder op de <a href="legal-shipping.html">verzend-</a> en <a href="legal-returns.html">retourpagina</a>.',
+    'cnt.faq.a4_html': 'Mail <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> met uw bestelnummer en, indien mogelijk, een foto van de buitendoos. Wij regelen kosteloos een vervangende zending of volledige terugbetaling binnen twee werkdagen. Lees verder op de <a href="/legal-shipping.html">verzend-</a> en <a href="/legal-returns.html">retourpagina</a>.',
     'cnt.faq.q5': 'Kan ik het depot bezoeken?',
     'cnt.faq.a5_html': 'Op afspraak, ja. Pers, wholesale-partners en bestaande klanten zijn welkom. Stuur een verzoek met datum en reden naar <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Bezoeken zijn alleen bij ons depot in Amsterdam; er is geen open locatie in Griekenland.',
     'cnt.faq.q6': 'Bestaan jullie op social media?',
-    'cnt.faq.a6_html': 'Zachtjes, op Instagram. Wij draaien geen betaalde advertenties en jagen niet op het algoritme. Abonneer u op het <a href="journal.html">journal</a> voor langzamere correspondentie, drie tot vier keer per jaar.'
+    'cnt.faq.a6_html': 'Zachtjes, op Instagram. Wij draaien geen betaalde advertenties en jagen niet op het algoritme. Abonneer u op het <a href="/journal.html">journal</a> voor langzamere correspondentie, drie tot vier keer per jaar.'
   });
 
   Object.assign(T.el, {
@@ -1979,15 +1979,15 @@ window.HD_urlForSlug = function (slug) {
     'idx.faq.response': 'Χρόνος απάντησης, συνήθως εντός 24 ωρών',
     'idx.faq.help_html': 'Δεν βρίσκετε την ερώτησή σας; Γράψτε στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> και απαντούμε εντός δύο εργάσιμων ημερών. Για παραγγελίες: <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'idx.faq.q1': 'Πόσο γρήγορα αποστέλλετε;',
-    'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες σε Ολλανδία και Βέλγιο και περίπου δύο έως πέντε στην υπόλοιπη ΕΕ. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="legal-shipping.html">σελίδα αποστολών</a>.',
+    'idx.faq.a1_html': 'Οι παραγγελίες φεύγουν από το ολλανδικό αποθηκευτικό μας χώρο εντός τριών εργάσιμων ημερών. Από την αποστολή χρειάζονται μία έως δύο εργάσιμες σε Ολλανδία και Βέλγιο και περίπου δύο έως πέντε στην υπόλοιπη ΕΕ. Παρακολούθηση μέσω e-mail. Πλήρης ανάλυση στη <a href="/legal-shipping.html">σελίδα αποστολών</a>.',
     'idx.faq.q2': 'Πού αποστέλλετε;',
     'idx.faq.a2_html': 'Ολόκληρη η Ευρωπαϊκή Ένωση. Τα μεταφορικά και τα όρια δωρεάν αποστολής (από &euro;60) εμφανίζονται ανά χώρα στο checkout.',
     'idx.faq.q3': 'Είναι ωμό το μέλι σας;',
-    'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="article-de-smaak-van-de-griekse-zon.html">δοκίμιο γευσιγνωσίας</a>.',
+    'idx.faq.a3_html': 'Ναι. Οι κηρήθρες φυγοκεντρούνται σε θερμοκρασία κελαριού, ποτέ πάνω από δεκαοκτώ βαθμούς. Το μέλι στη συνέχεια ξεκουράζεται για δεκατέσσερις ημέρες σε δεξαμενές δρυός, χωρίς φιλτράρισμα. Κάθε ένζυμο, κάθε γύρη και κάθε αρωματική νότα της εποχής παραμένει ανέπαφη. Διαβάστε περισσότερα στο <a href="/article-de-smaak-van-de-griekse-zon.html">δοκίμιο γευσιγνωσίας</a>.',
     'idx.faq.q4': 'Πόσο διαρκεί το μέλι;',
     'idx.faq.a4_html': 'Επ’ αόριστον, σφραγισμένο. Το μέλι έχει σχεδόν καθόλου νερό και είναι από τη φύση του αντιβακτηριδιακό. Φυλάξτε δροσερό, ξηρό και μακριά από το φως. Η κρυστάλλωση είναι φυσική και αντιστρέψιμη: ζεστάνετε το βάζο σε υδατόλουτρο μέχρι 35&deg;C για να επιστρέψει σε υγρή μορφή.',
     'idx.faq.q5': 'Μπορώ να επιστρέψω μια παραγγελία;',
-    'idx.faq.a5_html': 'Εντός δεκατεσσάρων ημερών από την παραλαβή μπορείτε να επιστρέψετε άθικτα, σφραγισμένα βάζα χωρίς να δώσετε λόγο. Μόλις σπάσει η σφραγίδα, το βάζο δεν μπορεί να επιστραφεί για λόγους υγιεινής. Πλήρεις οδηγίες και έντυπο στη <a href="legal-returns.html">σελίδα επιστροφών</a>.',
+    'idx.faq.a5_html': 'Εντός δεκατεσσάρων ημερών από την παραλαβή μπορείτε να επιστρέψετε άθικτα, σφραγισμένα βάζα χωρίς να δώσετε λόγο. Μόλις σπάσει η σφραγίδα, το βάζο δεν μπορεί να επιστραφεί για λόγους υγιεινής. Πλήρεις οδηγίες και έντυπο στη <a href="/legal-returns.html">σελίδα επιστροφών</a>.',
     'idx.faq.q6': 'Προσφέρετε συσκευασία δώρου;',
     'idx.faq.a6_html': 'Ναι. Ένα κουτί παρουσίασης από καπλαμά δρυός με λινό εσωτερικό, για ένα έως τρία βάζα, με χειρόγραφη κάρτα. Επιλέξτε συσκευασία δώρου στο checkout, με μικρή επιβάρυνση &euro;9,50.',
     'idx.faq.q7': 'Είναι ασφαλές το ωμό μέλι για μικρά παιδιά;',
@@ -1998,19 +1998,19 @@ window.HD_urlForSlug = function (slug) {
     'cnt.faq.eyebrow': 'Πριν γράψετε',
     'cnt.faq.title_html': 'Συχνές <em>ερωτήσεις.</em>',
     'cnt.faq.desc': 'Έξι σύντομες σημειώσεις που ίσως σας γλιτώσουν ένα μήνυμα. Αν δεν είναι εδώ η απάντηση, γράψτε μας. Διαβάζουμε κάθε επιστολή.',
-    'cnt.faq.help_html': 'Για χονδρική ή φιλοξενία, το <a href="partners.html">πρόγραμμα συνεργασίας</a> έχει ξεχωριστή φόρμα. Για ερωτήματα ιδιωτικότητας: <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a>.',
+    'cnt.faq.help_html': 'Για χονδρική ή φιλοξενία, το <a href="/partners.html">πρόγραμμα συνεργασίας</a> έχει ξεχωριστή φόρμα. Για ερωτήματα ιδιωτικότητας: <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a>.',
     'cnt.faq.q1': 'Πόσο γρήγορα απαντάτε;',
     'cnt.faq.a1_html': 'Εντός δύο εργάσιμων ημερών, συχνά γρηγορότερα. Δευτέρα πρωί, Παρασκευή απόγευμα και κατά τη διάρκεια εβδομάδων συγκομιδής μπορεί να καθυστερήσουμε λίγο. Για επείγοντα θέματα παραγγελίας γράψτε απευθείας στο <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a>.',
     'cnt.faq.q2': 'Ποιο κανάλι να χρησιμοποιήσω;',
     'cnt.faq.a2_html': 'Χρησιμοποιήστε <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a> για γενικές ερωτήσεις, <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> για αποστολές και παραδόσεις, <a href="mailto:wholesale@harvestdeli.nl">wholesale@harvestdeli.nl</a> για χονδρική και φιλοξενία, και <a href="mailto:privacy@harvestdeli.nl">privacy@harvestdeli.nl</a> για αιτήματα προσωπικών δεδομένων σύμφωνα με τον ΓΚΠΔ.',
     'cnt.faq.q3': 'Αίτημα χονδρικής ή φιλοξενίας;',
-    'cnt.faq.a3_html': 'Στείλτε ένα σύντομο μήνυμα μέσω της φόρμας στο <a href="partners.html">πρόγραμμα συνεργασίας</a>. Απαντάμε σε κάθε αίτημα προσωπικά, συνήθως εντός 24 έως 48 ωρών, συχνά με μια δειγματοθήκη να φεύγει από την Ελλάδα την ίδια εβδομάδα.',
+    'cnt.faq.a3_html': 'Στείλτε ένα σύντομο μήνυμα μέσω της φόρμας στο <a href="/partners.html">πρόγραμμα συνεργασίας</a>. Απαντάμε σε κάθε αίτημα προσωπικά, συνήθως εντός 24 έως 48 ωρών, συχνά με μια δειγματοθήκη να φεύγει από την Ελλάδα την ίδια εβδομάδα.',
     'cnt.faq.q4': 'Η παραγγελία μου δεν έφτασε ή έφτασε φθαρμένη.',
-    'cnt.faq.a4_html': 'Στείλτε email στο <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> με τον αριθμό παραγγελίας και, αν είναι δυνατόν, μια φωτογραφία του εξωτερικού κουτιού. Κανονίζουμε δωρεάν αντικατάσταση ή πλήρη επιστροφή χρημάτων εντός δύο εργάσιμων ημερών. Διαβάστε περισσότερα στις σελίδες <a href="legal-shipping.html">αποστολών</a> και <a href="legal-returns.html">επιστροφών</a>.',
+    'cnt.faq.a4_html': 'Στείλτε email στο <a href="mailto:orders@harvestdeli.nl">orders@harvestdeli.nl</a> με τον αριθμό παραγγελίας και, αν είναι δυνατόν, μια φωτογραφία του εξωτερικού κουτιού. Κανονίζουμε δωρεάν αντικατάσταση ή πλήρη επιστροφή χρημάτων εντός δύο εργάσιμων ημερών. Διαβάστε περισσότερα στις σελίδες <a href="/legal-shipping.html">αποστολών</a> και <a href="/legal-returns.html">επιστροφών</a>.',
     'cnt.faq.q5': 'Μπορώ να επισκεφθώ την αποθήκη;',
     'cnt.faq.a5_html': 'Κατόπιν ραντεβού, ναι. Δεχόμαστε τύπο, συνεργάτες χονδρικής και υπάρχοντες πελάτες. Στείλτε αίτημα με ημερομηνία και λόγο στο <a href="mailto:hello@harvestdeli.nl">hello@harvestdeli.nl</a>. Οι επισκέψεις γίνονται μόνο στην αποθήκη μας στο Άμστερνταμ· δεν υπάρχει χώρος ανοιχτός στην Ελλάδα.',
     'cnt.faq.q6': 'Είστε στα social media;',
-    'cnt.faq.a6_html': 'Διακριτικά, στο Instagram. Δεν τρέχουμε επί πληρωμή διαφημίσεις και δεν κυνηγάμε τον αλγόριθμο. Εγγραφείτε στο <a href="journal.html">ημερολόγιο</a> για πιο αργή αλληλογραφία, τρεις με τέσσερις φορές τον χρόνο.'
+    'cnt.faq.a6_html': 'Διακριτικά, στο Instagram. Δεν τρέχουμε επί πληρωμή διαφημίσεις και δεν κυνηγάμε τον αλγόριθμο. Εγγραφείτε στο <a href="/journal.html">ημερολόγιο</a> για πιο αργή αλληλογραφία, τρεις με τέσσερις φορές τον χρόνο.'
   });
 
   // =====================================================
@@ -2292,7 +2292,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-214',
       slug: 'fir-vanilla',
       url: '/products/vanilla-honey'
     },
@@ -2311,7 +2311,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-214',
       slug: 'acacia',
       url: '/products/acacia-honey'
     },
@@ -2330,7 +2330,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-214',
       slug: 'pine',
       url: '/products/pine-honey'
     },
@@ -2349,7 +2349,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-214',
       slug: 'orange-blossom',
       url: '/products/orange-blossom-honey'
     },
@@ -2368,7 +2368,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-214',
       slug: 'chestnut',
       url: '/products/chestnut-honey'
     },
@@ -2387,7 +2387,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-214',
       slug: 'oak',
       url: '/products/oak-honey'
     },
@@ -2406,7 +2406,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-214',
       slug: 'arbutus',
       url: '/products/arbutus-honey'
     },
@@ -2425,7 +2425,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-214',
       slug: 'heather',
       url: '/products/heather-honey'
     },
@@ -2444,7 +2444,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-214',
       slug: 'thyme',
       url: '/products/thyme-honey'
     },
@@ -2477,7 +2477,7 @@ window.HD_urlForSlug = function (slug) {
       defaultSize: '500ml',
       price: 15,
       hue: 'pale',
-      image: 'assets/greekoliveoil.webp',
+      image: '/assets/greekoliveoil.webp',
       notes: loc('Green almond, fresh-cut grass, peppery finish.', 'Groene amandel, versgemaaid gras, peperige afdronk.', 'Πράσινο αμύγδαλο, φρεσκοκομμένο χορτάρι, πιπεράτη επίγευση.'),
       texture: loc('Bright, grassy, robust', 'Fris, grasachtig, robuust', 'Ζωηρό, χορταρένιο, εύρωστο'),
       weight: '500ml',
@@ -2497,7 +2497,7 @@ window.HD_urlForSlug = function (slug) {
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-214',
       notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '20g',
@@ -2517,7 +2517,7 @@ window.HD_urlForSlug = function (slug) {
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-193',
+      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-214',
       notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -2545,7 +2545,7 @@ window.HD_urlForSlug = function (slug) {
       multiSize: sizes.length > 1,
       bundle: p.bundle || null,
       hue: p.hue,
-      image: p.image || 'harvestdeli.webp',
+      image: p.image || '/harvestdeli.webp',
       altitude: p.altitude,
       weight: p.weight,
       tags: p.tags,
@@ -2769,7 +2769,7 @@ window.HD_urlForSlug = function (slug) {
             <div class="ce-eyebrow">${lookup('cart.empty.eyebrow')}</div>
             <h4 class="ce-title">${lookup('cart.empty.h')}</h4>
             <p class="ce-sub">${lookup('cart.empty.p')}</p>
-            <a href="shop.html" class="cart-empty-cta"><span>${lookup('cart.empty.cta')}</span><span class="ce-arrow" aria-hidden="true"></span></a>
+            <a href="/shop.html" class="cart-empty-cta"><span>${lookup('cart.empty.cta')}</span><span class="ce-arrow" aria-hidden="true"></span></a>
             ${_sugg ? `<div class="ce-suggest"><div class="ce-suggest-h">${lookup('cart.empty.suggest')}</div><div class="ce-grid">${_sugg}</div></div>` : ''}
           </div>
         `;
@@ -3124,8 +3124,8 @@ window.HD_urlForSlug = function (slug) {
       + '<h3>Even over cookies.</h3>'
       + '<p>We gebruiken alleen strikt noodzakelijke cookies om de winkel te laten werken. '
       + 'Voor analyse en marketing vragen we eerst om je toestemming. '
-      + 'Meer info in onze <a href="legal-cookies.html">cookieverklaring</a> en '
-      + '<a href="legal-privacy.html">privacyverklaring</a>.</p>'
+      + 'Meer info in onze <a href="/legal-cookies.html">cookieverklaring</a> en '
+      + '<a href="/legal-privacy.html">privacyverklaring</a>.</p>'
 
       + '<div class="cb-prefs" id="cbPrefs">'
         + '<div class="cb-row">'
@@ -3713,7 +3713,7 @@ window.HD_urlForSlug = function (slug) {
           '<p class="pa-error" role="alert" aria-live="polite"></p>' +
           '<button class="pa-cta" type="submit"><span data-i18n="access.cta">Continue Privately</span></button>' +
         '</form>' +
-        '<p class="pa-foot" data-i18n-html="access.foot_html">New to the house? <a href="register.html">Request access</a></p>' +
+        '<p class="pa-foot" data-i18n-html="access.foot_html">New to the house? <a href="/register.html">Request access</a></p>' +
       '</div>';
     document.body.appendChild(ov);
 
@@ -3762,7 +3762,7 @@ window.HD_urlForSlug = function (slug) {
         if (window.HD_account && window.HD_account.signIn) { window.HD_account.signIn(emailEl.value); }
         else { localStorage.setItem('hd-account-v1', JSON.stringify({ email: (emailEl.value || '').toLowerCase(), addresses: [], demo: true, createdAt: new Date().toISOString() })); }
       } catch (err) {}
-      window.location.href = 'account.html';
+      window.location.href = '/account.html';
     });
 
     try { if (typeof window.HD_applyTranslations === 'function') window.HD_applyTranslations(); } catch (e) {}
@@ -4101,7 +4101,7 @@ window.HD_urlForSlug = function (slug) {
       return hay.includes(q);
     });
     if (matches.length === 0) {
-      list.innerHTML = '<div class="search-empty">No match for &ldquo;' + escapeHtml(q) + '&rdquo;. Try <a href="shop.html">view all editions</a>.</div>';
+      list.innerHTML = '<div class="search-empty">No match for &ldquo;' + escapeHtml(q) + '&rdquo;. Try <a href="/shop.html">view all editions</a>.</div>';
       return;
     }
     list.innerHTML = matches.map((p, i) =>
@@ -4176,7 +4176,7 @@ window.HD_urlForSlug = function (slug) {
             '<span class="total" id="cartTotal">€0</span>' +
           '</div>' +
           '<p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Free-shipping threshold depends on your country.</p>' +
-          '<a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>' +
+          '<a href="/checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>' +
           '<div class="footer-pay cart-pay" aria-label="Accepted payment methods">' +
             '<span class="hd-pay hd-pay--ideal" title="iDEAL"><b>i</b>DEAL</span>' +
             '<span class="hd-pay hd-pay--bc" role="img" aria-label="Bancontact" title="Bancontact"><svg viewBox="0 0 44 24" aria-hidden="true"><path d="M7 16.5c2.6 0 4.4-1.1 5.8-2.7l4.7-5.6c1.4-1.6 3.2-2.7 5.8-2.7h-12L7 16.5z" fill="#1E3791"/><path d="M31 7.5c-2.6 0-4.4 1.1-5.8 2.7l-4.7 5.6c-1.4 1.6-3.2 2.7-5.8 2.7h12L31 7.5z" fill="#FFCC00"/></svg></span>' +
@@ -4245,7 +4245,7 @@ window.HD_urlForSlug = function (slug) {
       if (!navRight.querySelector('.nav-wishlist')) {
         const a = document.createElement('a');
         a.className = 'nav-wishlist';
-        a.href = 'wishlist.html';
+        a.href = '/wishlist.html';
         const lang = (window.HD_lang && window.HD_lang()) || 'en';
         const label = (window.HD_T && window.HD_T[lang] && window.HD_T[lang]['nav.wishlist']) || 'Wishlist';
         a.setAttribute('aria-label', label);
@@ -4387,9 +4387,9 @@ window.HD_urlForSlug = function (slug) {
     foot.setAttribute('aria-label', 'Social and quick links');
     foot.innerHTML =
       '<a href="https://www.instagram.com/harvest.deli/" target="_blank" rel="noopener">Instagram</a>' +
-      '<a href="journal.html" data-i18n="footer.link.journal">Journal</a>' +
-      '<a href="about.html" data-i18n="footer.link.origin">Origin</a>' +
-      '<a href="contact.html" data-i18n="footer.link.contact">Contact</a>';
+      '<a href="/journal.html" data-i18n="footer.link.journal">Journal</a>' +
+      '<a href="/about.html" data-i18n="footer.link.origin">Origin</a>' +
+      '<a href="/contact.html" data-i18n="footer.link.contact">Contact</a>';
     overlay.appendChild(foot);
 
     // Cursor tracking, only while the menu is open
@@ -5148,7 +5148,7 @@ window.HD_urlForSlug = function (slug) {
       // 13. Continue shopping link in footer
       if (foot && !foot.querySelector('.cart-continue-link')) {
         const a = document.createElement('a');
-        a.href = 'shop.html';
+        a.href = '/shop.html';
         a.className = 'cart-continue-link';
         a.textContent = 'Continue browsing the collection';
         foot.appendChild(a);
@@ -5734,9 +5734,9 @@ window.HD_urlForSlug = function (slug) {
   window.addEventListener('hd:lang', hydrateAll);
 })();
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-193'], ['hd-search-js', 'search.js?v=hd-2026-06-06-193'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-193'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-193'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-193'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-193'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-193'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-193'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-193'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-193']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-214'], ['hd-search-js', 'search.js?v=hd-2026-06-06-214'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-214'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-214'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-214'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-214'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-214'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-214'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-214'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-214']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = '/' + a[1]; s.defer = true;

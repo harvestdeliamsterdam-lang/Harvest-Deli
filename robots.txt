@@ -1,23 +1,15 @@
-# Harvest Deli, robots.txt
-# Documentation: https://www.robotstxt.org/robotstxt.html
+# Harvest Deli — robots.txt
+# Indexation is controlled per-page with <meta name="robots"> (noindex on
+# account/checkout/cart/admin/order/search pages). CSS, JS and image assets
+# are intentionally crawlable so Google can render and evaluate the pages.
 
 User-agent: *
 Allow: /
+
+# Private / transactional endpoints (also carry meta noindex)
 Disallow: /checkout.html
-Disallow: /assets/
-Disallow: /*?v=
-
-# Common AI scrapers, adjust to taste
-User-agent: GPTBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Googlebot-Image
-Allow: /
+Disallow: /admin.html
+Disallow: /invoice.html
+Disallow: /order-success.html
 
 Sitemap: https://harvestdeli.nl/sitemap.xml
