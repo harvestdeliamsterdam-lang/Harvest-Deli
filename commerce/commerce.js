@@ -330,38 +330,98 @@
          when present + complete, the hosted checkout is PRE-FILLED via buyerIdentity.
        @returns {Promise<string|null>} a URL to navigate to, or null on failure. */
     async checkout(buyer) {
-      if (useShopify()) {
-        var lines = shopifyLinesFromCart();
-        if (!lines) {
-          // a cart item has no mapped variant yet → hydrate the whole catalog once, then retry
-          try { await Commerce.products.all(); } catch (e) {}
-          lines = shopifyLinesFromCart();
-        }
-        if (lines && lines.length) {
-          var vars = { lines: lines };
-          // Prefill the hosted checkout (contact + shipping) when we have a usable
-          // address. countryCode is ALWAYS sent (default NL): Shopify only surfaces
-          // local payment methods (iDEAL/Bancontact via Mollie) when the cart has a
-          // market context of NL/BE + EUR. The buyer can still switch country in
-          // the hosted checkout itself.
-          var bi = buildBuyerIdentity(buyer) || {};
-          // Carry the shopper's chosen destination so the hosted checkout opens
-          // on the right EU zone (falls back to NL). An entered address country
-          // still wins (buildBuyerIdentity set it above).
-          if (!bi.countryCode) bi.countryCode = (window.HD_SHIPPING && window.HD_SHIPPING.country()) || 'NL';
-          vars.buyerIdentity = bi;
-          var d = await SF().safeFetch(SF().QUERIES.cartCreate, vars);
-          var cart = d && d.cartCreate && d.cartCreate.cart;
-          if (cart && cart.checkoutUrl) {
-            setCartId(cart.id);
-            clearLocalCart();          // PHASE 5: cart cleared the instant a Shopify checkout URL exists
-            return cart.checkoutUrl;
-          }
-        }
-        if (window.console) console.warn('[commerce] Shopify checkout could not be created');
-        return null;                   // PHASE 3: no checkout.html fallback in production
+      if (!useShopify()) return '/checkout.html'; // dev/mock only (source !== 'shopify')
+
+      /* Waarom dit gefaseerd is. Shopify weigert de HELE cart zodra één veld in
+         buyerIdentity ongeldig is: een telefoonnummer dat net niet klopt, een
+         e-mailadres zonder tld, een landnaam in de verkeerde taal. Er komt dan
+         geen checkoutUrl terug, en tot 2026-08-15 was dat het einde: de klant
+         zag "Checkout temporarily unavailable" en kon niets meer. Live gemeten:
+         "Phone is invalid" en "Email is invalid" blokkeerden echte bestellingen.
+         Die velden zijn een gemak (de betaalpagina staat dan voor-ingevuld),
+         geen voorwaarde. Dus: probeer volledig, en laat bij een fout precies
+         het veld weg dat Shopify aanwijst. Het mandje zelf wordt nooit ingekort. */
+      var lines = shopifyLinesFromCart();
+      if (!lines) {
+        try { await Commerce.products.all(); } catch (e) {}
+        lines = shopifyLinesFromCart();
       }
-      return '/checkout.html';          // dev/mock only (source !== 'shopify')
+      if (!lines || !lines.length) {
+        throw checkoutFailure('geen-varianten', null,
+          'Een artikel in het mandje heeft geen Shopify-variant (kaart leeg of verouderd)');
+      }
+
+      var bi = buildBuyerIdentity(buyer) || {};
+      if (!bi.countryCode) bi.countryCode = (window.HD_SHIPPING && window.HD_SHIPPING.country()) || 'NL';
+
+      /* De volgorde is bewust: elke stap laat alleen weg wat Shopify afkeurde,
+         de laatste twee stappen zijn het vangnet. countryCode blijft zo lang
+         mogelijk staan, want die bepaalt of iDEAL/Bancontact verschijnen. */
+      var stap = 'volledig';
+      var poging = 0;
+      var kaartVernieuwd = false;
+      var laatste = null;
+
+      while (poging < 7) {
+        poging++;
+        var vars = { lines: lines, buyerIdentity: bi };
+        var uitkomst = await roepCartCreate(vars);
+        laatste = uitkomst;
+
+        var cart = uitkomst.data && uitkomst.data.cartCreate && uitkomst.data.cartCreate.cart;
+        if (cart && cart.checkoutUrl) {
+          if (stap !== 'volledig') noteerCheckoutDiag('hersteld', stap, uitkomst, vars);
+          setCartId(cart.id);
+          clearLocalCart();          // PHASE 5: cart cleared the instant a Shopify checkout URL exists
+          return cart.checkoutUrl;
+        }
+
+        /* Netwerkfout of GraphQL-fout zonder userErrors: dat is geen ongeldig
+           veld maar een storing; laat de aanroeper dat met een pauze herhalen. */
+        if (uitkomst.netwerkfout) {
+          throw checkoutFailure('netwerk', uitkomst, uitkomst.fout || 'Storefront niet bereikbaar');
+        }
+
+        var ue = (uitkomst.data && uitkomst.data.cartCreate && uitkomst.data.cartCreate.userErrors) || [];
+        var velden = ue.map(function (e) { return (e.field || []).join('.'); }).join(' ');
+
+        if (/buyerIdentity\.phone/.test(velden) && (bi.phone || heeftAdresTelefoon(bi))) {
+          delete bi.phone; verwijderAdresTelefoon(bi); stap = 'zonder-telefoon'; continue;
+        }
+        if (/buyerIdentity\.email/.test(velden) && bi.email) {
+          delete bi.email; stap = 'zonder-email'; continue;
+        }
+        if (/deliveryAddressPreferences/.test(velden) && bi.deliveryAddressPreferences) {
+          delete bi.deliveryAddressPreferences; stap = 'zonder-adres'; continue;
+        }
+        if (/lines\.\d+\.merchandiseId/.test(velden) && !kaartVernieuwd) {
+          /* Een variant-id uit een oude sessie kan verlopen zijn (product opnieuw
+             aangemaakt in Shopify). Kaart weggooien, catalogus vers ophalen,
+             regels opnieuw opbouwen, één keer opnieuw. */
+          kaartVernieuwd = true;
+          try {
+            VARIANT_MAP = {}; saveVariantMap();
+            try { sessionStorage.removeItem(PCACHE_KEY); } catch (e) {}
+            _pcache = null;
+            await Commerce.products.all();
+          } catch (e) {}
+          var vers = shopifyLinesFromCart();
+          if (vers && vers.length) { lines = vers; stap = 'kaart-vernieuwd'; continue; }
+          throw checkoutFailure('variant-verlopen', uitkomst,
+            'Een artikel bestaat niet meer in Shopify: ' + JSON.stringify(ue).slice(0, 200));
+        }
+        if (Object.keys(bi).length > 1) {
+          bi = { countryCode: bi.countryCode }; stap = 'alleen-land'; continue;
+        }
+        if (bi.countryCode) {
+          bi = {}; stap = 'alleen-regels'; continue;
+        }
+        break; // niets meer om weg te laten
+      }
+
+      throw checkoutFailure('shopify-weigert', laatste,
+        'cartCreate zonder cart na ' + poging + ' pogingen: ' +
+        JSON.stringify((laatste && laatste.data && laatste.data.cartCreate && laatste.data.cartCreate.userErrors) || laatste && laatste.fout || 'onbekend').slice(0, 300));
     },
 
     search: {
@@ -480,17 +540,45 @@
   /* Minimal, brand-neutral error modal (uses existing CSS vars; no stylesheet
      edits). Shown when a Shopify checkout cannot be created, NEVER a silent
      fall-through to a fake order. */
-  function showCheckoutError() {
-    if (document.getElementById('hdCoErr')) { document.getElementById('hdCoErr').style.display = 'flex'; return; }
+  /* Vertaal de technische reden naar iets waar de klant iets mee kan. Met de
+     gefaseerde terugval komt dit venster alleen nog bij een echte storing of
+     een verdwenen artikel; in beide gevallen helpt het als de tekst dat zegt. */
+  function checkoutErrorCopy(detail, nl) {
+    var soort = (detail && detail.soort) || 'onbekend';
+    if (soort === 'netwerk') {
+      return nl
+        ? ['Verbinding met de betaalpagina mislukt', 'We konden Shopify even niet bereiken. Je winkelmandje is bewaard; probeer het over een moment opnieuw.']
+        : ['Could not reach the payment page', 'Shopify was briefly unreachable. Your cart is saved; please try again in a moment.'];
+    }
+    if (soort === 'variant-verlopen' || soort === 'geen-varianten') {
+      return nl
+        ? ['Een artikel is niet meer beschikbaar', 'Een product in je mandje kon niet worden gevonden. Verwijder het en probeer opnieuw, of neem contact met ons op.']
+        : ['An item is no longer available', 'A product in your cart could not be found. Remove it and try again, or contact us.'];
+    }
+    return nl
+      ? ['Checkout tijdelijk niet beschikbaar', 'We konden de betaalpagina niet openen. Je winkelmandje is bewaard. Probeer het zo opnieuw.']
+      : ['Checkout temporarily unavailable', 'We could not open the payment page. Your cart is saved. Please try again in a moment.'];
+  }
+  function showCheckoutError(detail) {
+    var oud = document.getElementById('hdCoErr');
+    if (oud) oud.parentNode.removeChild(oud); // altijd vers opbouwen, de tekst hangt van de reden af
     var nl = (window.HD_lang && window.HD_lang() === 'nl');
+    var copy = checkoutErrorCopy(detail, nl);
+    var techniek = '';
+    try {
+      var ue = detail && detail.userErrors;
+      var reden = ue && ue.length ? ue.map(function (e) { return e.message; }).join('; ') : (detail && detail.fout) || '';
+      if (reden) techniek = '<p style="margin:14px 0 0;font-size:11px;line-height:1.5;color:var(--ink-soft,#8A8075);word-break:break-word;">' + (nl ? 'Technische melding: ' : 'Technical detail: ') + String(reden).replace(/[<>]/g, '').slice(0, 220) + '</p>';
+    } catch (e) {}
     var wrap = document.createElement('div');
     wrap.id = 'hdCoErr';
     wrap.setAttribute('role', 'alertdialog'); wrap.setAttribute('aria-modal', 'true'); wrap.setAttribute('aria-labelledby', 'hdCoErrT');
     wrap.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(20,14,8,0.55);padding:24px;';
     wrap.innerHTML =
       '<div style="max-width:420px;width:100%;background:var(--cream,#FAF6EE);color:var(--ink,#1F1A14);border:1px solid rgba(184,148,90,0.4);border-radius:6px;padding:30px 28px;font-family:Inter,system-ui,sans-serif;box-shadow:0 30px 80px -30px rgba(40,24,8,0.5);">' +
-      '<h2 id="hdCoErrT" style="margin:0 0 10px;font-family:Newsreader,serif;font-weight:400;font-size:22px;">' + (nl ? 'Checkout tijdelijk niet beschikbaar' : 'Checkout temporarily unavailable') + '</h2>' +
-      '<p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:var(--ink-soft,#5C5247);">' + (nl ? 'We konden de betaalpagina niet openen. Je winkelmandje is bewaard. Probeer het zo opnieuw.' : 'We could not open the payment page. Your cart is saved. Please try again in a moment.') + '</p>' +
+      '<h2 id="hdCoErrT" style="margin:0 0 10px;font-family:Newsreader,serif;font-weight:400;font-size:22px;">' + copy[0] + '</h2>' +
+      '<p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:var(--ink-soft,#5C5247);">' + copy[1] + '</p>' +
+      techniek +
       '<button type="button" id="hdCoErrClose" style="cursor:pointer;border:1px solid var(--ink,#1F1A14);background:var(--ink,#1F1A14);color:var(--cream,#FAF6EE);font:inherit;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:13px 24px;border-radius:999px;min-height:44px;">' + (nl ? 'Sluiten' : 'Close') + '</button>' +
       '</div>';
     document.body.appendChild(wrap);
@@ -568,6 +656,69 @@
     return (uit && /^\+[1-9][0-9]{7,14}$/.test(uit)) ? uit : null;
   }
 
+  /* ---- Ruwe cartCreate: verbergt NIETS. ------------------------------------
+     safeFetch slikt elke fout en geeft null terug, en dan is niet meer te zien
+     of Shopify een veld weigerde, een verzoek afkneep of gewoon onbereikbaar
+     was. Hier komt de volledige respons terug, of de echte foutmelding. */
+  async function roepCartCreate(vars) {
+    try {
+      var data = await SF().fetch(SF().QUERIES.cartCreate, vars);
+      return { data: data, netwerkfout: false, fout: null };
+    } catch (e) {
+      var msg = (e && e.message) || String(e);
+      /* Een GraphQL-fout (bv. schema) is geen netwerkfout, maar valt hier ook
+         onder "geen userErrors om op te reageren". Alleen HTTP/timeout/fetch
+         gaan als netwerkfout terug zodat de aanroeper die kan herhalen. */
+      var netwerk = /HTTP \d|timeout|Failed to fetch|NetworkError|Load failed|aborted/i.test(msg);
+      return { data: null, netwerkfout: netwerk, fout: msg };
+    }
+  }
+  function heeftAdresTelefoon(bi) {
+    var p = bi && bi.deliveryAddressPreferences && bi.deliveryAddressPreferences[0];
+    return !!(p && p.deliveryAddress && p.deliveryAddress.phone);
+  }
+  function verwijderAdresTelefoon(bi) {
+    var p = bi && bi.deliveryAddressPreferences && bi.deliveryAddressPreferences[0];
+    if (p && p.deliveryAddress) delete p.deliveryAddress.phone;
+  }
+  function checkoutFailure(soort, uitkomst, tekst) {
+    var err = new Error('[commerce] checkout: ' + tekst);
+    err.detail = {
+      soort: soort,
+      userErrors: (uitkomst && uitkomst.data && uitkomst.data.cartCreate && uitkomst.data.cartCreate.userErrors) || null,
+      fout: (uitkomst && uitkomst.fout) || null
+    };
+    noteerCheckoutDiag('mislukt', soort, uitkomst, null);
+    return err;
+  }
+  /* Diagnose die de volgende storing meteen leesbaar maakt: in de console, in
+     localStorage (hd-checkout-diag) én bij Vercel (api/checkout-diag). Geen
+     persoonsgegevens: alleen veldnamen, foutcodes, aantallen en land. */
+  function noteerCheckoutDiag(status, stap, uitkomst, vars) {
+    try {
+      var ue = (uitkomst && uitkomst.data && uitkomst.data.cartCreate && uitkomst.data.cartCreate.userErrors) || null;
+      var items = (window.HD_CART && window.HD_CART.items) || [];
+      var rec = {
+        t: new Date().toISOString(), status: status, stap: stap,
+        userErrors: ue, fout: (uitkomst && uitkomst.fout) || null,
+        regels: items.length,
+        stuks: items.reduce(function (a, i) { return a + (i.qty || 0); }, 0),
+        land: (window.HD_SHIPPING && window.HD_SHIPPING.country()) || null,
+        kaart: Object.keys(VARIANT_MAP || {}).length,
+        versie: (document.currentScript && document.currentScript.src || '').split('v=')[1] || null,
+        ua: navigator.userAgent.slice(0, 120)
+      };
+      window.HD_lastCheckoutDiag = rec;
+      if (window.console) (status === 'mislukt' ? console.error : console.warn)('[commerce] checkout ' + status + ':', rec);
+      try { localStorage.setItem('hd-checkout-diag', JSON.stringify(rec)); } catch (e) {}
+      try {
+        var body = JSON.stringify(rec);
+        if (navigator.sendBeacon) navigator.sendBeacon('/api/checkout-diag', new Blob([body], { type: 'application/json' }));
+        else fetch('/api/checkout-diag', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body, keepalive: true }).catch(function () {});
+      } catch (e) {}
+    } catch (e) {}
+  }
+
   /* Map the wizard's state.details → Shopify CartBuyerIdentityInput so the hosted
      checkout opens pre-filled (contact + shipping). Returns null when there is no
      usable address, so cartCreate stays exactly as before (purely additive). */
@@ -607,28 +758,40 @@
     if (!useShopify()) { window.location.href = '/checkout.html'; return; } // dev/mock only
     var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
     if (!has) { window.location.href = '/shop.html'; return; }
-    /* Eén mislukte Storefront-aanroep was een doodlopende weg: safeFetch slikt
-       elke fout en geeft null terug, dus een netwerkhapering, een trage
-       catalogus-hydratatie of een door Shopify afgeknepen verzoek liet meteen
-       "Checkout temporarily unavailable" zien zonder weg vooruit. Nu drie
-       pogingen met een oplopende pauze; pas daarna de melding. Een mislukte
-       poging maakt geen order en laat de winkelmand staan, dus opnieuw
-       proberen is veilig. */
+    /* Dubbele klik of dubbel event: één keer tegelijk. Een tweede aanroep terwijl
+       de eerste loopt zou een tweede cart maken en de eerste redirect kunnen
+       kruisen. Er ontstaat nooit een order (dat doet pas de betaalpagina),
+       maar het is rommelig en onnodig. */
+    if (startCheckout._bezig) return;
+    startCheckout._bezig = true;
+    var klaar = function () { startCheckout._bezig = false; };
+
+    /* Alleen een echte storing wordt herhaald. Een geweigerd veld herhaalt
+       Commerce.checkout zelf al gefaseerd; dat drie keer opnieuw doen zou
+       precies dezelfde weigering opleveren. */
     var poging = 0;
     function probeer() {
       poging++;
       Commerce.checkout(buyer).then(function (url) {
         if (url && /^https?:\/\//.test(url)) { window.location.href = url; return; }
-        if (poging < 3) { setTimeout(probeer, poging * 800); return; }
-        if (window.console) console.warn('[commerce] checkout gaf na ' + poging + ' pogingen geen URL');
-        showCheckoutError();
+        klaar();
+        showCheckoutError({ soort: 'geen-url' });
+        meldCheckoutMislukt({ soort: 'geen-url' });
       }).catch(function (e) {
-        if (poging < 3) { setTimeout(probeer, poging * 800); return; }
-        if (window.console) console.warn('[commerce] checkout faalde:', e && e.message);
-        showCheckoutError();
+        var d = (e && e.detail) || { soort: 'onbekend', fout: e && e.message };
+        if (d.soort === 'netwerk' && poging < 3) { setTimeout(probeer, poging * 900); return; }
+        klaar();
+        showCheckoutError(d);
+        meldCheckoutMislukt(d);
       });
     }
     probeer();
+  }
+  /* Laat de pagina weten dat het afrekenen niet doorging, zodat de knop weer
+     vrijkomt. Tot 2026-08-15 bleef die na één mislukking disabled staan en kon
+     de klant zonder herladen niet eens opnieuw proberen. */
+  function meldCheckoutMislukt(detail) {
+    try { document.dispatchEvent(new CustomEvent('hd:checkout-failed', { detail: detail || {} })); } catch (e) {}
   }
   window.HD_startCheckout = startCheckout;
   /* Blootgesteld zodat tests/phone-e164.mjs de normalisatie per land kan meten

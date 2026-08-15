@@ -480,6 +480,14 @@
     if ((window.HD_COMMERCE_CONFIG && window.HD_COMMERCE_CONFIG.source) === 'shopify') {
       commitDetails(); // freshest contact/address, so the hosted checkout opens pre-filled
       if (btn) { btn.classList.add('loading'); btn.disabled = true; } // existing .loading style
+      /* Bij een mislukking moet de klant het gewoon nog eens kunnen proberen.
+         De knop bleef eerder disabled staan na de foutmelding, dus zonder
+         herladen was er geen tweede kans. */
+      var vrijgeven = function () {
+        $all('[data-wz-place], #wzMobileBtn').forEach(function (b) { b.classList.remove('loading'); b.disabled = false; });
+        document.removeEventListener('hd:checkout-failed', vrijgeven);
+      };
+      document.addEventListener('hd:checkout-failed', vrijgeven);
       if (window.HD_startCheckout) { window.HD_startCheckout(state.details); }
       else { window.location.replace('/shop.html'); }
       return;
