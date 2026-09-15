@@ -25,9 +25,10 @@
   function setStock() {
     var el = document.querySelector('.pd-stock'); if (!el || !product) return;
     var dot = el.querySelector('.pd-stock-dot');
-    var st = window.HD_stock && window.HD_stock.get ? window.HD_stock.get(handle) : null;
+    var radio = document.querySelector('input[name="hd-variant"]:checked');
+    var st = window.HD_stock && window.HD_stock.get ? window.HD_stock.get(handle, radio && radio.dataset.size) : null;
     var txt, cls = '';
-    if (!product.availableForSale) { txt = L('Sold out', 'Uitverkocht'); cls = 'is-out'; }
+    if (!product.availableForSale || (st && st.status === 'out')) { txt = L('Sold out', 'Uitverkocht'); cls = 'is-out'; }
     else if (st && st.status === 'backorder') { txt = L('Available to pre-order', 'Beschikbaar voor pre-order') + (st.eta ? ' · ' + st.eta : ''); cls = 'is-backorder'; }
     else if (product.totalInventory > 0 && product.totalInventory <= 6) { txt = L('Only ' + product.totalInventory + ' left · ready to ship', 'Nog ' + product.totalInventory + ' op voorraad · klaar voor verzending'); cls = 'is-low'; }
     else { txt = L('In stock · ready to ship', 'Op voorraad · klaar voor verzending'); }
@@ -42,7 +43,7 @@
       var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
       if (!btn || btn.getAttribute('data-add-to-cart') !== handle) return;  // scope: page product only
       if (!window.HD_CART) return;                                          // fallback: let shared.js handle it
-      if (window.HD_stock) { var s = window.HD_stock.get(handle); if (s && s.status === 'out') return; } // let inventory guard win
+      if (window.HD_stock) { var s = window.HD_stock.get(handle, btn.getAttribute('data-size')); if (s && s.status === 'out') return; } // let inventory guard win
       e.preventDefault(); e.stopImmediatePropagation();                     // prevent the shared.js double-add
       var qty = parseInt(btn.dataset.qty || '1', 10) || 1;
       var size = btn.getAttribute('data-size') || undefined;               // honour selected 480g/950g

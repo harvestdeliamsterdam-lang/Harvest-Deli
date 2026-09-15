@@ -1,120 +1,107 @@
 /* =================================================================
-   Harvest Deli, Inventory / stock (Phase 3)
+   Harvest Deli, stock and the add-to-cart gate
    -----------------------------------------------------------------
-   A client-side stock model with elegant, restrained indicators:
-     • subtle badges on shop cards (low / sold out / pre-order)
-     • real stock status + add-to-cart gating on product pages
-     • oversell guard (can't add beyond available stock)
-     • reservation API (reserve/release), SEAM for warehouse/Supabase
-   Loaded site-wide by shared.js. Bilingual (EN/NL).
+   Shopify is the only source of availability. This file keeps no stock
+   numbers of its own: a local table here drifted from Shopify and silently
+   blocked sellable honeys (fir-vanilla refused as "sold out", heather capped
+   at 2 jars, oak labelled pre-order) while Shopify had every variant on sale.
 
-   SEAM: replace HD_STOCK with live levels from a warehouse / Supabase
-   table and call HD_stock.reserve()/release() against a real endpoint.
+   The Storefront token cannot read inventory quantities, so the site cannot
+   know how many jars are left. It therefore never caps a quantity. It only
+   blocks a variant Shopify explicitly reports as not for sale; the hosted
+   checkout enforces the real tracked stock.
+
+   Until Shopify's answer has loaded, or if it never loads, nothing is
+   blocked. A missed "sold out" is caught at checkout; a false one loses
+   the sale.
    ================================================================= */
 (function () {
   'use strict';
   function L(en, nl) { return (window.HD_lang && window.HD_lang() === 'nl') ? nl : en; }
 
-  var LOW_AT = 6; // at or below this (and > 0) → "low stock"
+  /** handle → { product: boolean, sizes: { '<Shopify Size value>': boolean } } */
+  var AVAIL = {};
 
-  /** @type {Object<string,{qty:number, backorder?:boolean, eta?:string}>} */
-  var HD_STOCK = {
-    'arbutus':        { qty: 3 },
-    'oak':            { qty: 0, backorder: true, eta: L('Ships in 2–3 weeks', 'Levering in 2–3 weken') },
-    'fir-vanilla':    { qty: 0 },
-    'orange-blossom': { qty: 24 },
-    'acacia':         { qty: 12 },
-    'thyme':          { qty: 5 },
-    'chestnut':       { qty: 40 },
-    'pine':           { qty: 18 },
-    'heather':        { qty: 2 },
-    'olive-oil':      { qty: 30 },
-    'mountain-tea':   { qty: 60 }
-  };
-
-  var RES_KEY = 'hd-reservations-v1';
-  function reservations() { try { return JSON.parse(localStorage.getItem(RES_KEY) || '{}'); } catch (e) { return {}; } }
-  function saveReservations(r) { try { localStorage.setItem(RES_KEY, JSON.stringify(r)); } catch (e) {} }
-
-  /** Effective available = base qty − this browser's active reservations. */
-  function available(slug) {
-    var s = HD_STOCK[slug]; if (!s) return 999; // unknown product → don't block
-    var r = reservations()[slug] || 0;
-    return Math.max(0, (s.qty || 0) - r);
-  }
-  /** @returns {{qty:number, status:'in'|'low'|'out'|'backorder', backorder:boolean, eta?:string}} */
-  function statusOf(slug) {
-    var s = HD_STOCK[slug];
-    if (!s) return { qty: 999, status: 'in', backorder: false };
-    var qty = available(slug);
-    var status = qty > LOW_AT ? 'in' : (qty > 0 ? 'low' : (s.backorder ? 'backorder' : 'out'));
-    return { qty: qty, status: status, backorder: !!s.backorder, eta: s.eta };
+  function sizeKey(v) {
+    var opts = (v && v.selectedOptions) || [];
+    for (var i = 0; i < opts.length; i++) if (opts[i].name === 'Size') return opts[i].value;
+    return v && v.title;
   }
 
-  window.HD_stock = {
-    get: statusOf,
-    available: available,
-    LOW_AT: LOW_AT,
-    // SEAM: persist against a real backend; here it's a per-browser hold.
-    reserve: function (slug, qty) { var r = reservations(); r[slug] = (r[slug] || 0) + (qty || 1); saveReservations(r); },
-    release: function (slug, qty) { var r = reservations(); if (r[slug]) { r[slug] = Math.max(0, r[slug] - (qty == null ? r[slug] : qty)); if (!r[slug]) delete r[slug]; saveReservations(r); } },
-    clearReservations: function () { saveReservations({}); }
-  };
-
-  /* ---------- shop cards ---------- */
-  /* Stock/scarcity badges removed: a premium luxury card shows no urgency
-     indicators (no "low stock" / "sold out" / "pre-order" flags). The stock
-     model (HD_stock) stays available for the oversell guard only. */
-  function decorateCards() { /* intentionally no visual badge */ }
-  function watchGrid() {
-    var grid = document.getElementById('shopGrid');
-    if (!grid) return;
-    decorateCards();
-    if (window.MutationObserver) new MutationObserver(function () { decorateCards(); }).observe(grid, { childList: true });
+  function record(list) {
+    (list || []).forEach(function (p) {
+      if (!p || !p.handle) return;
+      var sizes = {};
+      var variants = (p.variants && p.variants.nodes) || p.variants || [];
+      variants.forEach(function (v) {
+        var k = sizeKey(v);
+        if (k) sizes[k] = v.availableForSale !== false;
+      });
+      AVAIL[p.handle] = { product: p.availableForSale !== false, sizes: sizes };
+    });
   }
 
-  /* ---------- product page ---------- */
-  /* No scarcity on product pages: only a calm, localized "in stock · ready to
-     ship" reassurance line. No "low / sold out / pre-order" states, no CTA gating. */
+  /** @returns {{qty:number, status:'in'|'out', backorder:boolean}} */
+  function statusOf(slug, size) {
+    var a = AVAIL[slug];
+    var ok = !a ? true
+      : (size && Object.prototype.hasOwnProperty.call(a.sizes, size)) ? a.sizes[size]
+      : a.product;
+    return ok ? { qty: 999, status: 'in', backorder: false } : { qty: 0, status: 'out', backorder: false };
+  }
+
+  window.HD_stock = { get: statusOf };
+
+  /* ---------- product page stock line ---------- */
   function decorateProduct() {
     var stockEl = document.querySelector('.pd-stock');
     if (!stockEl) return;
+    var slug = (document.querySelector('meta[name="hd-product-slug"]') || {}).content || '';
+    var radio = document.querySelector('input[name="hd-variant"]:checked');
+    var out = statusOf(slug, radio && radio.dataset.size).status === 'out';
     var dot = stockEl.querySelector('.pd-stock-dot');
-    stockEl.classList.remove('is-low', 'is-out', 'is-backorder');
+    stockEl.classList.remove('is-low', 'is-backorder');
+    stockEl.classList.toggle('is-out', out);
     stockEl.innerHTML = '';
     if (dot) stockEl.appendChild(dot);
-    stockEl.appendChild(document.createTextNode(' ' + L('In stock · ready to ship', 'Op voorraad · klaar voor verzending')));
+    stockEl.appendChild(document.createTextNode(' ' + (out
+      ? L('Sold out', 'Uitverkocht')
+      : L('In stock · ready to ship', 'Op voorraad · klaar voor verzending'))));
   }
 
-  /* ---------- oversell guard (capture phase, beats other handlers) ---------- */
+  /* ---------- sold-out gate (capture phase, runs before the add handlers) ---------- */
   document.addEventListener('click', function (e) {
     var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
     if (!btn) return;
-    var slug = btn.getAttribute('data-add-to-cart');
-    var st = statusOf(slug);
-    if (st.backorder) return; // pre-order always allowed
-    if (st.status === 'out') {
-      e.preventDefault(); e.stopImmediatePropagation();
-      if (window.HD_toast) window.HD_toast(L('Sold out', 'Uitverkocht'));
-      return;
-    }
-    var inCart = 0;
-    if (window.HD_CART) (window.HD_CART.items || []).forEach(function (i) { if (i.slug === slug) inCart = i.qty; });
-    if (inCart >= st.qty) {
-      e.preventDefault(); e.stopImmediatePropagation();
-      if (window.HD_toast) window.HD_toast(L('Only {n} available', 'Slechts {n} beschikbaar').replace('{n}', st.qty));
-    }
+    var st = statusOf(btn.getAttribute('data-add-to-cart'), btn.getAttribute('data-size'));
+    if (st.status !== 'out') return;
+    e.preventDefault(); e.stopImmediatePropagation();
+    if (window.HD_toast) window.HD_toast(L('Sold out', 'Uitverkocht'));
   }, true);
 
-  function init() {
-    watchGrid();
+  function ready() {
     decorateProduct();
-    // let dependent UIs (e.g. shop availability facet) recompute now stock is ready
     try { window.dispatchEvent(new CustomEvent('hd:inventory-ready')); } catch (e) {}
-    window.addEventListener('hd:lang', function () {
-      document.querySelectorAll('.stock-flag').forEach(function (f) { f.remove(); });
-      decorateCards(); decorateProduct();
+  }
+
+  /* shared.js injects the add-ons as dynamic scripts, so Commerce may load
+     after this file. Wait for it briefly; give up silently (nothing blocked). */
+  function load(tries) {
+    var C = window.Commerce;
+    if (!(C && C.products && C.products.all)) {
+      if (tries < 40) setTimeout(function () { load(tries + 1); }, 150);
+      return;
+    }
+    C.products.all().then(record, function () {}).then(ready);
+  }
+
+  function init() {
+    ready();
+    window.addEventListener('hd:lang', decorateProduct);
+    document.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'hd-variant') decorateProduct();
     });
+    load(0);
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
