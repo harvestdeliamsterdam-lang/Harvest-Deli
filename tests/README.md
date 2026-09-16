@@ -1,6 +1,6 @@
 # Harvest Deli, regressietests
 
-Vijf tests die bewaken wat op deze site al eens stilletjes is gebroken.
+Zes tests die bewaken wat op deze site al eens stilletjes is gebroken.
 Geen testrunner, geen dependencies om te installeren: het zijn losse Node-scripts
 die Playwright uit de map hierboven gebruiken.
 
@@ -9,6 +9,7 @@ cd honey
 
 node tests/check-paths.mjs                              # statisch, seconden
 node tests/add-to-cart.mjs       https://harvestdeli.nl # 13 producten, ~3 min
+node tests/gtin.mjs              https://harvestdeli.nl --feed # GS1-GTIN's, ~1 min
 node tests/audit-live.mjs        https://harvestdeli.nl # crawl, ~10 min
 node tests/checkout-countries.mjs https://harvestdeli.nl # 9 flows, ~5 min
 node tests/phone-e164.mjs        https://harvestdeli.nl # normalisatie, ~1 min
@@ -17,7 +18,7 @@ node tests/phone-e164.mjs        https://harvestdeli.nl # normalisatie, ~1 min
 Elke test eindigt met exitcode 0 als alles klopt en 1 als er iets stuk is, dus
 ze zijn direct bruikbaar in een pre-deploy stap.
 
-## Waarom deze vijf
+## Waarom deze zes
 
 **`check-paths.mjs`** bewaakt de terugkerende bug van deze site. Sinds producten
 op `/products/<slug>` staan, lost een relatief pad op tegen `/products/` in plaats
@@ -32,6 +33,13 @@ gekoppeld, blokkeerde stil verkoopbare honing: sparrenhoning kon er helemaal nie
 in, heide maximaal 2 potten, en eikenhoning stond op "pre-order". Er kwam geen
 JavaScript-fout, dus geen enkele andere test zag het. De test vraagt eerst aan
 Shopify wat echt te koop is en verwacht precies dat gedrag op de site.
+
+**`gtin.mjs`** bewaakt de GS1-GTIN's. Sinds 16-09-2026 zijn alleen de officiële
+nummers (8721593944...) geldig; de tijdelijke 6156...-EAN's mogen nergens meer
+opduiken. De test leest per productroute de gerenderde JSON-LD en eist per variant
+precies de GTIN uit de GS1-export, nooit dezelfde GTIN op 480 g en 950 g. Met
+`--feed` controleert hij ook beide Merchant-feeds variant voor variant. De
+GS1-tabel staat bovenin het bestand.
 
 **`audit-live.mjs`** bezoekt elke route op mobiel, tablet en desktop en meet
 404's, JS-fouten, gebroken afbeeldingen en dode links. Hij loopt bewust ook vanaf

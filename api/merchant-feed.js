@@ -42,6 +42,32 @@ const TOKEN = 'd3f835bc393675aeb243244e5475f3c6';   // public, read-only
 const API = '2024-10';
 const HARVEST_YEAR = '2025';
 
+/* Real camera photos (iPhone, 4284x5712) of the physical jars. They are the
+   highest-resolution images that exist for these honeys, so they lead in
+   Google Shopping; the Shopify gallery follows as additional images. The jar
+   front shows no weight, so one photo serves both the 480 g and 950 g variant. */
+const REAL_PHOTO = {
+  acacia: 'Acacia Honey .jpeg',
+  arbutus: 'Arbutus Honey.jpeg',
+  chestnut: 'Chestnut.jpeg',
+  'fir-vanilla': 'Fir Honey.jpeg',
+  'orange-blossom': 'Orange Blossom Honey.jpeg',
+  pine: 'Pine Honey.jpeg',
+  thyme: 'Thyme honey.jpeg',
+};
+const realPhotoUrl = (handle) => REAL_PHOTO[handle]
+  ? `${SITE}/assets/new%20pics%20honey/${encodeURIComponent(REAL_PHOTO[handle])}`
+  : null;
+
+/* GS1 is the only source of truth for GTINs. A barcode that is not a valid
+   GTIN-13, or that still carries one of the temporary 6156... numbers, is
+   never published; the item is flagged in X-Feed-GTIN-Rejected instead. */
+function validGtin(g) {
+  if (!/^\d{13}$/.test(g || '') || g.startsWith('6156')) return false;
+  const sum = [...g.slice(0, 12)].reduce((a, d, i) => a + Number(d) * (i % 2 ? 3 : 1), 0);
+  return (10 - (sum % 10)) % 10 === Number(g[12]);
+}
+
 /* ---------- single source of truth for URLs, read from shared.js ---------- */
 let _routes = null;
 function sharedJs() {
@@ -216,6 +242,7 @@ module.exports = async (req, res) => {
     const overridden = [];
     const skipped = [];
     const missingEn = [];
+    const rejectedGtin = [];
     for (const p of nodes) {
       const slug = map[p.handle];
       if (!slug) { skipped.push(p.handle); continue; }
@@ -235,8 +262,11 @@ module.exports = async (req, res) => {
       for (const v of p.variants.nodes) {
         if (!v.sku) continue;
         const title = multi ? `${p.title} ${v.title}` : p.title;
-        const main = (v.image && v.image.url) || (p.featuredImage && p.featuredImage.url) || '';
-        const extra = gallery.filter((u) => u !== main).slice(0, 10)
+        const shopMain = (v.image && v.image.url) || (p.featuredImage && p.featuredImage.url) || '';
+        const main = realPhotoUrl(p.handle) || shopMain;
+        const gtin = validGtin(v.barcode) ? v.barcode : '';
+        if (v.barcode && !gtin) rejectedGtin.push(v.sku);
+        const extra = [shopMain, ...gallery].filter((u, i, a) => u && u !== main && a.indexOf(u) === i).slice(0, 10)
           .map((u) => `\n    <g:additional_image_link>${esc(u)}</g:additional_image_link>`).join('');
 
         const price = Number(v.price.amount);
@@ -283,9 +313,9 @@ module.exports = async (req, res) => {
     <g:availability>${v.availableForSale ? 'in_stock' : 'out_of_stock'}</g:availability>
     <g:price>${listPrice.toFixed(2)} ${esc(cur)}</g:price>${sale}
     <g:brand>${esc(p.vendor || 'Harvest Deli')}</g:brand>
-    <g:mpn>${esc(v.sku)}</g:mpn>${v.barcode ? `
-    <g:gtin>${esc(v.barcode)}</g:gtin>` : ''}
-    <g:identifier_exists>${v.barcode ? 'yes' : 'no'}</g:identifier_exists>
+    <g:mpn>${esc(v.sku)}</g:mpn>${gtin ? `
+    <g:gtin>${esc(gtin)}</g:gtin>` : ''}
+    <g:identifier_exists>${gtin ? 'yes' : 'no'}</g:identifier_exists>
     <g:condition>new</g:condition>
     <g:adult>no</g:adult>
     <g:is_bundle>no</g:is_bundle>
@@ -319,6 +349,7 @@ ${items.join('\n')}
     if (overridden.length) res.setHeader("X-Feed-Shipping-Overrides", overridden.join(","));
     if (skipped.length) res.setHeader('X-Feed-Skipped-Handles', skipped.join(','));
     res.setHeader('X-Feed-Item-Count', String(items.length));
+    if (rejectedGtin.length) res.setHeader('X-Feed-GTIN-Rejected', rejectedGtin.join(','));
     res.status(200).send(xml);
   } catch (e) {
     res.status(500).json({ ok: false, error: String((e && e.message) || e) });

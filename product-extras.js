@@ -512,7 +512,12 @@
     var canonEl = document.querySelector('link[rel="canonical"]');
     var staticLd = document.getElementById('pdProductLd');
     var hasRichLd = !!(staticLd && staticLd.textContent.indexOf('"sku"') !== -1);
-    if (canonEl && hasRichLd && canonEl.getAttribute('href') === url) return;
+    /* Compare paths, not full URLs: on a preview or local host the origin
+       differs from the canonical https://harvestdeli.nl, and the rich
+       per-variant schema (sku + gtin13) must survive there too. */
+    var samePath = false;
+    try { samePath = canonEl && new URL(canonEl.getAttribute('href'), location.href).pathname === new URL(url).pathname; } catch (e) {}
+    if (hasRichLd && samePath) return;
     document.title = title;
     setMeta('meta[name="description"]', 'content', desc);
     setMeta('meta[property="og:title"]', 'content', title);
@@ -522,7 +527,9 @@
     if (imgAbs) setMeta('meta[property="og:image"]', 'content', imgAbs);
     var offers = (p && p.sizes && p.sizes.length)
       ? p.sizes.filter(function (sz) { return sz.price != null; }).map(function (sz) {
-          return { '@type': 'Offer', name: sz.label, price: String(sz.price), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url };
+          var o = { '@type': 'Offer', name: sz.label, price: String(sz.price), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url };
+          if (sz.gtin) o.gtin13 = sz.gtin; // official GS1 GTIN per size, never shared between 480 g and 950 g
+          return o;
         })
       : [{ '@type': 'Offer', price: String(price != null ? price : (p && p.price) || ''), priceCurrency: 'EUR', availability: 'https://schema.org/InStock', url: url }];
     offers.forEach(function (o) { o.itemCondition = 'https://schema.org/NewCondition'; o.seller = { '@type': 'Organization', name: 'Harvest Deli' }; });
