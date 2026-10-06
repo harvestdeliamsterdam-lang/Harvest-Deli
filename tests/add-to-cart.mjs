@@ -92,7 +92,11 @@ async function test(browser, prod, [scherm, w, h], kaart) {
     fouten.push('geen zichtbare add-to-cart knop');
   } else {
     const standaard = (await knop.getAttribute('data-size')) || prod.sizes[0];
-    await knop.click({ timeout: 5000 }).catch((e) => fouten.push('klik faalt: ' + e.message.slice(0, 80)));
+    /* Een uitverkochte maat staat sinds 30-09 als uitgeschakeld (aria-disabled,
+       tekst Uitverkocht). Playwright klikt daar niet op; force klikt toch, zodat
+       we zien dat de klik echt geweigerd wordt. */
+    const uit = (await knop.getAttribute('aria-disabled')) === 'true';
+    await knop.click({ timeout: 5000, force: uit }).catch((e) => fouten.push('klik faalt: ' + e.message.slice(0, 80)));
     await page.waitForTimeout(1200);
     const lade = await page.evaluate(() => {
       const el = document.querySelector('.cart-drawer, #cartDrawer, .cart-panel, [data-cart-drawer]');

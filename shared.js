@@ -34,7 +34,8 @@ window.HD_urlForSlug = function (slug) {
      else (home, shop/collection, about, journal, article*, contact,
      markets, legal) keeps the floating UI. */
   var FLOW = /^(product|checkout|order-success|account|login|register|forgot-password|track-order|private-access|cart)/;
-  if (FLOW.test(page)) document.documentElement.classList.add('hd-flow');
+  /* Clean product routes (/products/<slug>) count as product pages too. */
+  if (FLOW.test(page) || /^\/products\//.test(location.pathname)) document.documentElement.classList.add('hd-flow');
 })();
 
 /* =================================================================
@@ -65,12 +66,13 @@ window.HD_urlForSlug = function (slug) {
 
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  function introLang() { try { return localStorage.getItem('hd-lang') === 'en' ? 'en' : 'nl'; } catch (e) { return 'nl'; } }
+
   // ---- Build the overlay (uses #harvestDeliLogoDark which is defined in each page's <defs>) ----
   function build() {
     const wrap = document.createElement('div');
     wrap.className = 'hd-intro';
     wrap.setAttribute('role', 'presentation');
-    wrap.setAttribute('aria-hidden', 'true');
     wrap.innerHTML =
       '<div class="hd-intro__pattern"  aria-hidden="true"></div>' +
       '<div class="hd-intro__halo"     aria-hidden="true"></div>' +
@@ -84,7 +86,9 @@ window.HD_urlForSlug = function (slug) {
         '</svg>' +
         '<span class="hd-intro__rule hd-intro__rule--bot" aria-hidden="true"></span>' +
         '<span class="hd-intro__tagline">Greece</span>' +
-      '</div>';
+      '</div>' +
+      /* Visible way out; any click or Enter/Escape also skips. */
+      '<button type="button" class="hd-intro__skip">' + (introLang() === 'en' ? 'Skip intro' : 'Overslaan') + '</button>';
     return wrap;
   }
 
@@ -196,6 +200,10 @@ window.HD_urlForSlug = function (slug) {
       'footer.link.journal': 'Journal',
       'footer.link.contact': 'Contact',
       'footer.link.shipping': 'Shipping',
+      'footer.col.legal': 'Legal',
+      'product.size.label': 'Size',
+      'product.recent.eyebrow': 'Lately',
+      'product.recent.h_html': 'Recently <em>viewed.</em>',
       'footer.link.sourcing': 'Sourcing',
       'footer.link.trade': 'Trade',
       'footer.link.press': 'Press',
@@ -236,7 +244,7 @@ window.HD_urlForSlug = function (slug) {
       'jp.a2.title': 'Where to buy real Greek honey in the Netherlands.',
       'jp.a2.excerpt': 'Where to buy raw Greek honey in the Netherlands, and how to tell single-estate mountain honey from the supermarket shelf in Amsterdam.',
       'jp.a3.title': 'Why Greek honey tastes unlike supermarket honey.',
-      'jp.a3.excerpt': 'Why raw honey beats supermarket honey: wild mountain flowers, cold extraction and small batches keep enzymes, pollen and natural antibacterial properties intact.',
+      'jp.a3.excerpt': 'Why raw honey beats supermarket honey: wild mountain flowers, cold extraction and small batches keep enzymes and pollen intact.',
       'jp.read_html': 'Read the essay <span class="arrow" aria-hidden="true"></span>',
       'jp.cta': 'Visit the Journal',
       'ig.h_html': 'From the grove, <em>in slow rotation.</em>',
@@ -380,6 +388,7 @@ window.HD_urlForSlug = function (slug) {
       'idx.scene4.line': 'Taste the origin.',
       'idx.scene4.cta': 'Discover the collection',
       'idx.scrollHint': 'Scroll',
+      'idx.heroSkip': 'Skip to the collection',
       'idx.sel.eyebrow': 'The collection',
       'idx.sel.title': 'Selected harvests.',
       'idx.sel.cta': 'View Full Collection',
@@ -763,7 +772,7 @@ window.HD_urlForSlug = function (slug) {
       'product.trust.q4': 'Natural & unprocessed',
       'product.acc.desc': 'Description',
       'product.acc.ing': 'Ingredients',
-      'product.acc.ingBody': '100% raw Greek honey. Nothing added, never heated above hive temperature, never filtered.',
+      'product.acc.ingBody': '100% raw Greek honey. Nothing added, never heated above hive temperature, never filtered. Not suitable for babies under 12 months.',
       'product.acc.origin': 'Origin',
       'product.acc.originBody': 'Gathered at the source in the Greek mountains and countryside, and bottled exactly as it left the comb.',
       'product.acc.ship': 'Shipping',
@@ -858,6 +867,10 @@ window.HD_urlForSlug = function (slug) {
       'footer.link.journal': 'Dagboek',
       'footer.link.contact': 'Contact',
       'footer.link.shipping': 'Verzending',
+      'footer.col.legal': 'Juridisch',
+      'product.size.label': 'Formaat',
+      'product.recent.eyebrow': 'Onlangs',
+      'product.recent.h_html': 'Onlangs <em>bekeken.</em>',
       'footer.link.sourcing': 'Herkomst',
       'footer.link.trade': 'Handel',
       'footer.link.press': 'Pers',
@@ -1040,6 +1053,7 @@ window.HD_urlForSlug = function (slug) {
       'idx.scene4.line': 'Proef de oorsprong.',
       'idx.scene4.cta': 'Ontdek de collectie',
       'idx.scrollHint': 'Scroll',
+      'idx.heroSkip': 'Direct naar de collectie',
       'idx.sel.eyebrow': 'De collectie',
       'idx.sel.title': 'Geselecteerde oogsten.',
       'idx.sel.cta': 'Bekijk de volledige collectie',
@@ -1423,7 +1437,7 @@ window.HD_urlForSlug = function (slug) {
       'product.trust.q4': 'Natuurlijk & onbewerkt',
       'product.acc.desc': 'Beschrijving',
       'product.acc.ing': 'Ingredi\u00ebnten',
-      'product.acc.ingBody': '100% rauwe Griekse honing. Niets toegevoegd, nooit verwarmd boven kasttemperatuur, nooit gefilterd.',
+      'product.acc.ingBody': '100% rauwe Griekse honing. Niets toegevoegd, nooit warmer dan in de bijenkast, nooit gefilterd. Niet geschikt voor baby’s jonger dan 12 maanden.',
       'product.acc.origin': 'Herkomst',
       'product.acc.originBody': 'Verzameld bij de bron in de Griekse bergen en op het platteland, en gebotteld precies zoals het de raat verliet.',
       'product.acc.ship': 'Verzending',
@@ -1886,6 +1900,12 @@ window.HD_urlForSlug = function (slug) {
     }
   };
   window.HD_T = T;
+  /* Page-specific strings. A page may define window.HD_PAGE_T = { en: {}, nl: {} }
+     before shared.js loads (the generated product pages do); those keys join the
+     dictionary so the language switch covers product copy too. */
+  if (window.HD_PAGE_T) {
+    Object.keys(window.HD_PAGE_T).forEach(function (l) { T[l] = Object.assign(T[l] || {}, window.HD_PAGE_T[l]); });
+  }
 
   // =====================================================
   //  FAQ i18n bundle (homepage + contact), extends T
@@ -1903,7 +1923,7 @@ window.HD_urlForSlug = function (slug) {
     'idx.faq.q3': 'Is your honey raw?',
     'idx.faq.a3_html': 'Yes. Combs are spun at cellar temperature, never above eighteen degrees. The honey is then settled, never filtered, for fourteen days in oak. Every enzyme, every grain of pollen, every aromatic note of the season remains intact. Read more in the <a href="/article-de-smaak-van-de-griekse-zon.html">tasting essay</a>.',
     'idx.faq.q4': 'How long does the honey keep?',
-    'idx.faq.a4_html': 'Indefinitely, sealed. Honey contains almost no water and is naturally antibacterial. Store cool, dry and out of direct light. Crystallisation is natural and reversible: warm the jar in a water bath at no more than 35&deg;C to return it to liquid without damaging it.',
+    'idx.faq.a4_html': 'Indefinitely, sealed. Honey contains almost no water, so it keeps naturally. Store cool, dry and out of direct light. Crystallisation is natural and reversible: warm the jar in a water bath at no more than 35&deg;C to return it to liquid without damaging it.',
     'idx.faq.q5': 'Can I return an order?',
     'idx.faq.a5_html': 'Within fourteen days of receipt you may return unopened, wax-sealed jars without giving a reason. Once the seal is broken, the jar cannot be returned for hygiene reasons. Full instructions and the model form are on the <a href="/legal-returns.html">returns page</a>.',
     'idx.faq.q6': 'Do you offer gift packaging?',
@@ -1944,7 +1964,7 @@ window.HD_urlForSlug = function (slug) {
     'idx.faq.q3': 'Is jullie honing rauw?',
     'idx.faq.a3_html': 'Ja. Onze kammen worden gecentrifugeerd op keldertemperatuur, nooit boven achttien graden. De honing rust daarna veertien dagen in eikenhouten vaten, ongefilterd. Elk enzym, elke pollenkorrel en elke aromatische noot van het seizoen blijft intact. Lees meer in het <a href="/article-de-smaak-van-de-griekse-zon.html">proefverslag</a>.',
     'idx.faq.q4': 'Hoe lang blijft de honing goed?',
-    'idx.faq.a4_html': 'Onbeperkt, mits gesloten bewaard. Honing bevat vrijwel geen water en is van nature antibacterieel. Bewaar koel, droog en uit het licht. Kristallisatie is natuurlijk en omkeerbaar: plaats de pot in een waterbad van maximaal 35&deg;C om hem voorzichtig vloeibaar te maken.',
+    'idx.faq.a4_html': 'Onbeperkt, mits gesloten bewaard. Honing bevat vrijwel geen water en blijft daardoor van nature goed. Bewaar koel, droog en uit het licht. Kristallisatie is natuurlijk en omkeerbaar: plaats de pot in een waterbad van maximaal 35&deg;C om hem voorzichtig vloeibaar te maken.',
     'idx.faq.q5': 'Kan ik mijn bestelling retourneren?',
     'idx.faq.a5_html': 'Binnen veertien dagen na ontvangst kunt u ongeopende, verzegelde potten zonder opgaaf van reden retourneren. Eenmaal verbroken zegel kan om hygi&euml;nische redenen niet meer worden teruggenomen. Volledige instructies en het modelformulier op de <a href="/legal-returns.html">retourpagina</a>.',
     'idx.faq.q6': 'Hebben jullie cadeauverpakkingen?',
@@ -2027,7 +2047,7 @@ window.HD_urlForSlug = function (slug) {
     'shop.fp.eyebrow': 'Refine the collection',
     'shop.fp.title_html': 'Nine honeys, <em>one mountain at a time.</em>',
     'shop.fp.close': 'Close',
-    'shop.fp.g.type': 'Honey type', 'shop.fp.g.region': 'Origin region',
+    'shop.fp.g.price': 'Price', 'shop.fp.g.type': 'Honey type', 'shop.fp.g.region': 'Origin region',
     'shop.fp.g.flavor': 'Flavour profile', 'shop.fp.g.color': 'Colour',
     'shop.fp.g.texture': 'Texture', 'shop.fp.g.season': 'Harvest season',
     'shop.fp.g.house': 'House attributes', 'shop.fp.g.pairings': 'Pairings',
@@ -2070,7 +2090,7 @@ window.HD_urlForSlug = function (slug) {
     'shop.fp.eyebrow': 'Verfijn de collectie',
     'shop.fp.title_html': 'Negen honingen, <em>één berg per keer.</em>',
     'shop.fp.close': 'Sluiten',
-    'shop.fp.g.type': 'Honingsoort', 'shop.fp.g.region': 'Herkomstregio',
+    'shop.fp.g.price': 'Prijs', 'shop.fp.g.type': 'Honingsoort', 'shop.fp.g.region': 'Herkomstregio',
     'shop.fp.g.flavor': 'Smaakprofiel', 'shop.fp.g.color': 'Kleur',
     'shop.fp.g.texture': 'Textuur', 'shop.fp.g.season': 'Oogstseizoen',
     'shop.fp.g.house': 'Huiskenmerken', 'shop.fp.g.pairings': 'Combinaties',
@@ -2111,7 +2131,7 @@ window.HD_urlForSlug = function (slug) {
     'shop.fp.eyebrow': 'Βελτιώστε τη συλλογή',
     'shop.fp.title_html': 'Εννέα μέλια, <em>ένα βουνό κάθε φορά.</em>',
     'shop.fp.close': 'Κλείσιμο',
-    'shop.fp.g.type': 'Τύπος μελιού', 'shop.fp.g.region': 'Περιοχή προέλευσης',
+    'shop.fp.g.price': 'Price', 'shop.fp.g.type': 'Τύπος μελιού', 'shop.fp.g.region': 'Περιοχή προέλευσης',
     'shop.fp.g.flavor': 'Προφίλ γεύσης', 'shop.fp.g.color': 'Χρώμα',
     'shop.fp.g.texture': 'Υφή', 'shop.fp.g.season': 'Εποχή συγκομιδής',
     'shop.fp.g.house': 'Χαρακτηριστικά οίκου', 'shop.fp.g.pairings': 'Συνδυασμοί',
@@ -2283,7 +2303,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Mt Olympus · Greece', 'Berg Olympus · Griekenland', 'Όλυμπος · Ελλάδα'),
       altitude: '1300m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 22, gtin: '8721593944145' }, { id: '950g', label: '950g', price: 40, gtin: '8721593944152' }],
+      sizes: [{ id: '480g', label: '480g', price: 22, gtin: '8721593944145', sku: 'HD-HON-FIR-480', vid: '54140256059733' }, { id: '950g', label: '950g', price: 40, gtin: '8721593944152', sku: 'HD-HON-FIR-950', vid: '54140256092501' }],
       defaultSize: '480g',
       price: 22,
       hue: 'amber',
@@ -2292,8 +2312,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-221',
       slug: 'fir-vanilla',
+      pid: '11364330438997',
       url: '/products/vanilla-honey'
     },
     'acacia': {
@@ -2302,7 +2323,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Macedonia · Greece', 'Macedonië · Griekenland', 'Μακεδονία · Ελλάδα'),
       altitude: '500m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 17, gtin: '8721593944008' }, { id: '950g', label: '950g', price: 30, gtin: '8721593944015' }],
+      sizes: [{ id: '480g', label: '480g', price: 17, gtin: '8721593944008', sku: 'HD-HON-ACACIA-480', vid: '54140257272149' }, { id: '950g', label: '950g', price: 30, gtin: '8721593944015', sku: 'HD-HON-ACACIA-950', vid: '54140257304917' }],
       defaultSize: '480g',
       price: 17,
       hue: 'pale',
@@ -2311,8 +2332,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-221',
       slug: 'acacia',
+      pid: '11364330701141',
       url: '/products/acacia-honey'
     },
     'pine': {
@@ -2321,7 +2343,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Halkidiki · Greece', 'Halkidiki · Griekenland', 'Χαλκιδική · Ελλάδα'),
       altitude: '400m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 16, gtin: '8721593944046' }, { id: '950g', label: '950g', price: 28, gtin: '8721593944053' }],
+      sizes: [{ id: '480g', label: '480g', price: 16, gtin: '8721593944046', sku: 'HD-HON-PINE-480', vid: '54140258582869' }, { id: '950g', label: '950g', price: 28, gtin: '8721593944053', sku: 'HD-HON-PINE-950', vid: '54140258615637' }],
       defaultSize: '480g',
       price: 16,
       hue: 'bronze',
@@ -2330,8 +2352,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-221',
       slug: 'pine',
+      pid: '11364330864981',
       url: '/products/pine-honey'
     },
     'orange-blossom': {
@@ -2340,7 +2363,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Peloponnese · Greece', 'Peloponnesos · Griekenland', 'Πελοπόννησος · Ελλάδα'),
       altitude: '200m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 15, gtin: '8721593944121' }, { id: '950g', label: '950g', price: 26, gtin: '8721593944138' }],
+      sizes: [{ id: '480g', label: '480g', price: 15, gtin: '8721593944121', sku: 'HD-HON-ORANGE-480', vid: '54140258779477' }, { id: '950g', label: '950g', price: 26, gtin: '8721593944138', sku: 'HD-HON-ORANGE-950', vid: '54140258812245' }],
       defaultSize: '480g',
       price: 15,
       hue: 'pale',
@@ -2349,8 +2372,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-221',
       slug: 'orange-blossom',
+      pid: '11364330930517',
       url: '/products/orange-blossom-honey'
     },
     'chestnut': {
@@ -2359,7 +2383,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Greece', 'Griekenland', 'Ελλάδα'),
       altitude: '950m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 18, gtin: '8721593944107' }, { id: '950g', label: '950g', price: 32, gtin: '8721593944114' }],
+      sizes: [{ id: '480g', label: '480g', price: 18, gtin: '8721593944107', sku: 'HD-HON-CHESTNUT-480', vid: '54140251767125' }, { id: '950g', label: '950g', price: 32, gtin: '8721593944114', sku: 'HD-HON-CHESTNUT-950', vid: '54140251799893' }],
       defaultSize: '480g',
       price: 18,
       hue: 'amber',
@@ -2368,8 +2392,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-221',
       slug: 'chestnut',
+      pid: '11364329128277',
       url: '/products/chestnut-honey'
     },
     'oak': {
@@ -2378,7 +2403,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Epirus · Greece', 'Epirus · Griekenland', 'Ήπειρος · Ελλάδα'),
       altitude: '900m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 17, gtin: '8721593944060' }, { id: '950g', label: '950g', price: 30, gtin: '8721593944077' }],
+      sizes: [{ id: '480g', label: '480g', price: 17, gtin: '8721593944060', sku: 'HD-HON-OAK-480', vid: '54140259270997' }, { id: '950g', label: '950g', price: 30, gtin: '8721593944077', sku: 'HD-HON-OAK-950', vid: '54140259303765' }],
       defaultSize: '480g',
       price: 17,
       hue: 'bronze',
@@ -2387,8 +2412,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-221',
       slug: 'oak',
+      pid: '11364331028821',
       url: '/products/oak-honey'
     },
     'arbutus': {
@@ -2397,7 +2423,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
       altitude: '600m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 19, gtin: '8721593944022' }, { id: '950g', label: '950g', price: 34, gtin: '8721593944039' }],
+      sizes: [{ id: '480g', label: '480g', price: 19, gtin: '8721593944022', sku: 'HD-HON-ARBUTUS-480', vid: '54140259991893' }, { id: '950g', label: '950g', price: 34, gtin: '8721593944039', sku: 'HD-HON-ARBUTUS-950', vid: '54140260024661' }],
       defaultSize: '480g',
       price: 19,
       hue: 'deep',
@@ -2406,8 +2432,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-221',
       slug: 'arbutus',
+      pid: '11364331225429',
       url: '/products/arbutus-honey'
     },
     'heather': {
@@ -2416,7 +2443,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Evia · Greece', 'Evia · Griekenland', 'Εύβοια · Ελλάδα'),
       altitude: '700m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 18, gtin: '8721593944084' }, { id: '950g', label: '950g', price: 32, gtin: '8721593944091' }],
+      sizes: [{ id: '480g', label: '480g', price: 18, gtin: '8721593944084', sku: 'HD-HON-HEATHER-480', vid: '54336272400725' }, { id: '950g', label: '950g', price: 32, gtin: '8721593944091', sku: 'HD-HON-HEATHER-950', vid: '54336272433493' }],
       defaultSize: '480g',
       price: 18,
       hue: 'deep',
@@ -2425,8 +2452,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-221',
       slug: 'heather',
+      pid: '11422012604757',
       url: '/products/heather-honey'
     },
     'thyme': {
@@ -2435,7 +2463,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Crete · Greece', 'Kreta · Griekenland', 'Κρήτη · Ελλάδα'),
       altitude: '400m',
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 19, gtin: '8721593944169' }, { id: '950g', label: '950g', price: 34, gtin: '8721593944176' }],
+      sizes: [{ id: '480g', label: '480g', price: 19, gtin: '8721593944169', sku: 'HD-HON-THYME-480', vid: '54140260286805' }, { id: '950g', label: '950g', price: 34, gtin: '8721593944176', sku: 'HD-HON-THYME-950', vid: '54140260319573' }],
       defaultSize: '480g',
       price: 19,
       hue: 'straw',
@@ -2444,8 +2472,9 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-218',
+      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-221',
       slug: 'thyme',
+      pid: '11364331290965',
       url: '/products/thyme-honey'
     },
     'oregano': {
@@ -2454,7 +2483,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Wild hills · Greece', 'Wilde heuvels · Griekenland', 'Άγριοι λόφοι · Ελλάδα'),
       altitude: '700m',
       type: 'herb',
-      sizes: [{ id: '15g', label: '15g', price: 2.5, gtin: '8721593944213' }],
+      sizes: [{ id: '15g', label: '15g', price: 2.5, gtin: '8721593944213', sku: 'HD-HERB-OREGANO-15', vid: '54140261040469' }],
       defaultSize: '15g',
       bundle: { qty: 2, price: 4 },
       price: 2.5,
@@ -2465,6 +2494,7 @@ window.HD_urlForSlug = function (slug) {
       tags: ['herb', 'dried', 'wild'],
       badges: [loc('Hand-Picked', 'Handgeplukt', 'Χειροσυλλεγμένο'), loc('Sun-Dried', 'Zongedroogd', 'Λιαστό')],
       slug: 'oregano',
+      pid: '11364331389269',
       url: '/products/wild-oregano'
     },
     'olive-oil': {
@@ -2473,7 +2503,7 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Greece', 'Griekenland', 'Ελλάδα'),
       altitude: '400m',
       type: 'oil',
-      sizes: [{ id: '500ml', label: '500ml', price: 15, gtin: '8721593944183' }],
+      sizes: [{ id: '500ml', label: '500ml', price: 15, gtin: '8721593944183', sku: 'HD-OIL-EVOO-500', vid: '54140261302613' }],
       defaultSize: '500ml',
       price: 15,
       hue: 'pale',
@@ -2484,6 +2514,7 @@ window.HD_urlForSlug = function (slug) {
       tags: ['olive-oil', 'cold-extracted', 'light'],
       badges: [loc('Cold Pressed', 'Koud Geperst', 'Ψυχρής Έκθλιψης'), loc('Extra Virgin', 'Extra Vergine', 'Εξαιρετικό Παρθένο')],
       slug: 'olive-oil',
+      pid: '11364331422037',
       url: '/products/extra-virgin-olive-oil'
     },
     'mountain-tea': {
@@ -2492,18 +2523,19 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Wild mountains · Greece', 'Wilde bergen · Griekenland', 'Άγρια βουνά · Ελλάδα'),
       altitude: '1100m',
       type: 'tea',
-      sizes: [{ id: 'bag', label: '1 bag', price: 5, gtin: '8721593944190' }],
+      sizes: [{ id: 'bag', label: '1 bag', price: 5, gtin: '8721593944190', sku: 'HD-TEA-MOUNTAIN-1', vid: '54140261531989' }],
       defaultSize: 'bag',
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-218',
-      notes: loc('Floral, herbal, naturally soothing.', 'Bloemig, kruidig, van nature kalmerend.', 'Άνθινο, βοτανικό, φυσικά καταπραϋντικό.'),
+      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-221',
+      notes: loc('Floral, herbal, gently aromatic.', 'Bloemig, kruidig, zacht aromatisch.', 'Άνθινο, βοτανικό, απαλά αρωματικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '25g',
       tags: ['tea', 'herbal', 'caffeine-free'],
       badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
       slug: 'mountain-tea',
+      pid: '11364331487573',
       url: '/products/greek-mountain-tea'
     },
     'chamomile-tea': {
@@ -2512,18 +2544,19 @@ window.HD_urlForSlug = function (slug) {
       region: loc('Wild fields · Greece', 'Wilde velden · Griekenland', 'Άγροι · Ελλάδα'),
       altitude: '300m',
       type: 'tea',
-      sizes: [{ id: '25g', label: '25g', price: 5, gtin: '8721593944206' }],
+      sizes: [{ id: '25g', label: '25g', price: 5, gtin: '8721593944206', sku: 'HD-TEA-CHAMOMILE-25', vid: '54337683030357' }],
       defaultSize: '25g',
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-218',
-      notes: loc('Soft, apple-sweet, calming.', 'Zacht, appelzoet, kalmerend.', 'Απαλό, μηλόγλυκο, καταπραϋντικό.'),
+      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-221',
+      notes: loc('Soft, apple-sweet, floral.', 'Zacht, appelzoet, bloemig.', 'Απαλό, μηλόγλυκο, ανθώδες.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
       tags: ['tea', 'herbal', 'caffeine-free'],
       badges: [loc('Caffeine Free', 'Cafeïnevrij', 'Χωρίς Καφεΐνη'), loc('Hand-Harvested', 'Handgeplukt', 'Χειροσυλλεγμένο')],
       slug: 'chamomile-tea',
+      pid: '11422223368533',
       url: '/products/greek-chamomile-tea'
     }
   };
@@ -2674,6 +2707,13 @@ window.HD_urlForSlug = function (slug) {
   }
 
   // ---------- Cart state ----------
+  /* Every change a shopper makes to a cart line is announced once, with the
+     exact size and the signed quantity. analytics.js turns this into
+     add_to_cart / remove_from_cart, so each add path (product page, sticky
+     bar, cards, articles, wishlist) reports the same way. */
+  function cartLine(slug, size, delta) {
+    try { window.dispatchEvent(new CustomEvent('hd:cart-line', { detail: { slug: slug, size: size, delta: delta } })); } catch (e) {}
+  }
   const STORAGE = 'hd-cart-v1';
   const cart = {
     items: [],
@@ -2698,19 +2738,30 @@ window.HD_urlForSlug = function (slug) {
       if (existing) existing.qty += qty;
       else this.items.push({ slug: slug, qty: qty, size: size });
       this.save(); render();
+      cartLine(slug, size, qty);
     },
     remove(slug, size) {
+      const gone = this.items.filter(i => (size == null) ? i.slug === slug : sameLine(i, slug, size));
       this.items = (size == null)
         ? this.items.filter(i => i.slug !== slug)
         : this.items.filter(i => !sameLine(i, slug, size));
       this.save(); render();
+      gone.forEach(i => cartLine(i.slug, sizeOf(i), -i.qty));
     },
     setQty(slug, qty, size) {
       const item = (size == null) ? this.items.find(i => i.slug === slug)
                                   : this.items.find(i => sameLine(i, slug, size));
       if (!item) return;
       if (qty < 1) return this.remove(slug, item.size);
+      const delta = qty - item.qty;
       item.qty = qty;
+      this.save(); render();
+      if (delta) cartLine(slug, sizeOf(item), delta);
+    },
+    /* Empties the cart without reporting removals. Used once Shopify has turned
+       the cart into an order: those lines were bought, not removed. */
+    clear() {
+      this.items = [];
       this.save(); render();
     },
     count() { return this.items.reduce((s, i) => s + i.qty, 0); },
@@ -2891,6 +2942,7 @@ window.HD_urlForSlug = function (slug) {
     // Cart is the conversion surface, let the floating-UI controller fade out
     // distractions (chat / scroll-to-top) on mobile while it is open.
     document.documentElement.classList.add('hd-cart-open');
+    try { window.dispatchEvent(new CustomEvent('hd:cart-open')); } catch (e) {}
   }
   function closeCart() {
     const drawer = document.getElementById('cartDrawer');
@@ -4456,6 +4508,86 @@ window.HD_urlForSlug = function (slug) {
 })();
 
 /* =================================================================
+   MENU COLLECTION FILM, desktop only
+   A quiet product loop to the right of the index. It appears when the
+   pointer or keyboard focus reaches "The Collection" and stays until the
+   menu closes or another menu item becomes active. Touch devices and
+   narrow windows never load it. Reduced motion or Save-Data shows the
+   still frame (the photograph the film starts and ends on).
+   ================================================================= */
+(function () {
+  'use strict';
+  var V = 'hd-2026-06-06-221';
+  var SRC = '/assets/menu/collection-film.mp4?v=' + V;
+  var POSTER = '/assets/menu/collection-film.webp?v=' + V;
+  var desk = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function still() { return reduce.matches || !!(navigator.connection && navigator.connection.saveData); }
+
+  function setup(overlay) {
+    var link = overlay.querySelector('.menu-items a[href$="shop.html"]');
+    if (!link || overlay.querySelector('.hd-menu-film')) return;
+    var box = document.createElement('div');
+    box.className = 'hd-menu-film';
+    box.setAttribute('aria-hidden', 'true');
+    var vid = document.createElement('video');
+    vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
+    ['muted', 'playsinline', 'disablepictureinpicture'].forEach(function (a) { vid.setAttribute(a, ''); });
+    box.appendChild(vid);
+    overlay.appendChild(box);
+    var on = false;
+
+    /* Nothing is fetched until a desktop visitor opens the menu. */
+    function prime() {
+      if (!desk.matches || vid.getAttribute('poster')) return;
+      vid.setAttribute('poster', POSTER);
+      if (!still()) { vid.preload = 'auto'; vid.src = SRC; }
+    }
+    /* The picture drifts a few px against the pointer (CSS reads --px/--py). */
+    function drift(e) {
+      box.style.setProperty('--px', ((0.5 - e.clientX / window.innerWidth) * 22).toFixed(1) + 'px');
+      box.style.setProperty('--py', ((0.5 - e.clientY / window.innerHeight) * 16).toFixed(1) + 'px');
+    }
+    function show() {
+      if (!desk.matches || !overlay.classList.contains('open')) return;
+      prime();
+      if (!on) {
+        on = true;
+        /* every reveal starts on the calm frame, so the light swells with the curtain */
+        if (vid.readyState > 0) { try { vid.currentTime = 0; } catch (err) {} }
+        overlay.classList.add('hd-film-on');
+        if (!reduce.matches) overlay.addEventListener('mousemove', drift, { passive: true });
+      }
+      if (vid.src && !still()) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+    }
+    function hide() {
+      if (!on) return;
+      on = false;
+      overlay.classList.remove('hd-film-on');
+      overlay.removeEventListener('mousemove', drift);
+      setTimeout(function () { if (!on) vid.pause(); }, 500); // after the fade-out
+    }
+    /* Delegated, so links injected later (the footer row) count too. */
+    function activate(e) {
+      var a = e.target.closest && e.target.closest('a');
+      if (!a || !overlay.contains(a)) return;
+      if (a === link) show();
+      else if (a.closest('.menu-items, .hd-menu-foot')) hide();
+    }
+    overlay.addEventListener('mouseover', activate);
+    overlay.addEventListener('focusin', activate);
+    new MutationObserver(function () {
+      if (overlay.classList.contains('open')) prime(); else hide();
+    }).observe(overlay, { attributes: true, attributeFilter: ['class'] });
+    if (desk.addEventListener) desk.addEventListener('change', function () { if (!desk.matches) hide(); });
+  }
+
+  function init() { document.querySelectorAll('.menu-overlay').forEach(setup); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* =================================================================
    GLOBAL BUTTON SYSTEM, soft, rounded, premium
    Injected as <style> after existing inline styles so it wins
    the cascade on equal specificity (no !important needed).
@@ -5005,6 +5137,7 @@ window.HD_urlForSlug = function (slug) {
     }
 
     function openCartDrawer() {
+      if (typeof window.HD_openCart === 'function') { window.HD_openCart(); return; }
       const d = document.querySelector('.cart-drawer');
       if (d) {
         d.classList.add('open');
@@ -5028,10 +5161,10 @@ window.HD_urlForSlug = function (slug) {
       toast.innerHTML =
         '<span class="check"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6 L5 9 L10 3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span>' +
         '<span class="toast-text">' +
-          '<span class="toast-title">Added to your cellar</span>' +
+          '<span class="toast-title">' + ((window.HD_lang && window.HD_lang() === 'en') ? 'Added to your cellar' : 'Toegevoegd aan je winkelmand') + '</span>' +
           '<span class="toast-name">' + p.name + '</span>' +
         '</span>' +
-        '<button type="button" class="toast-cta" data-toast-view>View cart</button>';
+        '<button type="button" class="toast-cta" data-toast-view>' + ((window.HD_lang && window.HD_lang() === 'en') ? 'View cart' : 'Bekijk mandje') + '</button>';
       requestAnimationFrame(() => requestAnimationFrame(() => toast.classList.add('show')));
       toast.querySelector('[data-toast-view]').addEventListener('click', () => {
         toast.classList.remove('show');
@@ -5050,13 +5183,19 @@ window.HD_urlForSlug = function (slug) {
       }
     }
 
+    /* The toast confirms a real add only. It used to fire on every click of an
+       add button, so a sold-out product (blocked by inventory.js) still showed
+       "Added to your cellar" while the cart stayed empty. */
+    let lastAddClick = null;
     document.addEventListener('click', e => {
-      const t = e.target.closest('[data-add-to-cart]');
-      if (!t) return;
-      const slug = t.dataset.addToCart;
-      // small delay so existing shared.js handler runs first
-      setTimeout(() => showRich(slug, e), 60);
+      if (e.target.closest && e.target.closest('[data-add-to-cart]')) lastAddClick = e;
     }, true);
+    window.addEventListener('hd:cart-line', e => {
+      const d = e.detail || {};
+      if (!d.slug || !(d.delta > 0)) return;
+      const ev = lastAddClick; lastAddClick = null;
+      setTimeout(() => showRich(d.slug, ev), 60);
+    });
   })();
 
   /* 7. Free-shipping celebration, observe progress bar text */
@@ -5726,20 +5865,26 @@ window.HD_urlForSlug = function (slug) {
   }
   function hydrateAll() {
     ensureInserted();
-    document.querySelectorAll('[data-hd-deliver]').forEach(function (el) { if (!el.classList.contains('hd-deliver')) el.classList.add('hd-deliver'); fill(el); });
+    /* The slot may already be in the HTML (space reserved against layout shift); fade it in once filled. */
+    document.querySelectorAll('[data-hd-deliver]').forEach(function (el) { if (!el.classList.contains('hd-deliver')) el.classList.add('hd-deliver'); fill(el); if (!el.classList.contains('in')) reveal(el); });
   }
   window.HD_deliverRefresh = hydrateAll;
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', hydrateAll); else hydrateAll();
   window.addEventListener('hd:country', hydrateAll);
   window.addEventListener('hd:lang', hydrateAll);
 })();
+/* Injected scripts are async by default and ran in arrival order, so
+   commerce/commerce.js could run before config.js or storefront.js. It then
+   answered from the local catalogue, which marks everything in stock, and a
+   sold-out honey could go into the cart. async=false keeps the parallel
+   download but executes them in this list's order. */
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-218'], ['hd-search-js', 'search.js?v=hd-2026-06-06-218'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-218'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-218'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-218'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-218'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-218'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-218'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-218'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-218']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-221'], ['hd-search-js', 'search.js?v=hd-2026-06-06-221'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-221'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-221'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-221'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-221'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-221'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-221'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-221'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-221']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
-    s.id = a[0]; s.src = '/' + a[1]; s.defer = true;
+    s.id = a[0]; s.src = '/' + a[1]; s.async = false;
     document.head.appendChild(s);
   });
 })();

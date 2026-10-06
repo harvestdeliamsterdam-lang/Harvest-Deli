@@ -715,6 +715,19 @@
   // payment, the final button hands off to Shopify hosted checkout (see
   // placeOrder). Empty cart → shop.html. In production (source==='shopify') the
   // wizard is purely presentational; the real payment happens on Shopify (Mollie).
+  function handoffToShopify() {
+    var root = document.getElementById('checkoutWizard');
+    if (root) root.style.display = 'none';
+    var nl = !(window.HD_lang && window.HD_lang() === 'en');
+    var box = document.createElement('div');
+    box.className = 'hd-handoff';
+    box.setAttribute('role', 'status');
+    box.innerHTML = '<p class="hd-handoff-t">' + (nl ? 'Je gaat naar de beveiligde betaalomgeving van Shopify…' : 'Taking you to Shopify’s secure checkout…') + '</p>' +
+      '<a class="hd-handoff-back" href="/shop.html">' + (nl ? 'Terug naar de winkel' : 'Back to the shop') + '</a>';
+    (document.querySelector('main') || document.body).appendChild(box);
+    function go() { if (window.HD_startCheckout) window.HD_startCheckout(); else setTimeout(go, 60); }
+    go();
+  }
   function bootCheckout(tries) {
     var src = (window.HD_COMMERCE_CONFIG && window.HD_COMMERCE_CONFIG.source);
     if (!src) { // config not loaded yet → wait briefly, then assume mock/dev
@@ -725,7 +738,11 @@
     // Production: empty cart has nothing to pre-check → send to shop.
     var has = window.HD_CART && window.HD_CART.items && window.HD_CART.items.length;
     if (!has) { window.location.replace('/shop.html'); return; }
-    init(); // render the branded pre-checkout UI; final step → Shopify (placeOrder)
+    /* Straight on to Shopify's secure checkout: the five-step form below asked
+       for everything Shopify asks again, so it only added friction. The page
+       stays as a landing point for old links and bookmarks. */
+    handoffToShopify();
+    return;
     // Discounts are applied on Shopify's hosted checkout, never here, hide the
     // local code field so a pre-checkout total can never disagree with Shopify.
     try { document.querySelectorAll('.wz-discount, .wz-discount-msg').forEach(function (el) { el.style.display = 'none'; }); } catch (e) {}

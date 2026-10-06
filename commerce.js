@@ -3,77 +3,39 @@
    -----------------------------------------------------------------
    Site-wide, non-invasive add-ons loaded on every page (injected by
    shared.js). Pure front-end; backend integrations are marked `// SEAM`.
-     • Consent-gated analytics (GA4 + Meta) on top of the existing
-       HD_cookies consent system + a vendor-neutral dataLayer (HD_track).
+     • Consent-gated Meta pixel seam (Google lives in analytics.js).
      • Floating WhatsApp support button.
      • Free-shipping progress bar inside the cart drawer.
    ================================================================= */
 (function () {
   'use strict';
 
-  /* Single source of truth for the free-shipping threshold (€65, unified). */
-  if (typeof window.HD_FREE_SHIP !== 'number') window.HD_FREE_SHIP = 65;
+  /* The free-shipping threshold comes from HD_SHIPPING in shared.js, which
+     mirrors the Shopify delivery zones (NL/BE €60, rest of the EU €100).
+     This only covers the moment before shared.js has set it. */
+  if (typeof window.HD_FREE_SHIP !== 'number') window.HD_FREE_SHIP = 60;
 
-  /* --- config: replace with real IDs/number in production --- */
-  var GA4_ID = 'G-XXXXXXXXXX';          // SEAM: Google Analytics 4 measurement ID
-  var META_PIXEL_ID = '0000000000';      // SEAM: Meta Pixel ID
+  /* --- config --- */
+  var META_PIXEL_ID = '0000000000';      // SEAM: Meta Pixel ID (not in use yet)
   var WHATSAPP_NUMBER = '31610715083';   // Harvest Deli WhatsApp (+31 6 10715083)
 
-  /* ============================ Analytics ============================ */
-  window.dataLayer = window.dataLayer || [];
-  /** Vendor-neutral event bus, always records to dataLayer; forwards to
-   *  GA4/Meta only once the matching consent category is granted. */
-  window.HD_track = function (event, params) {
-    var payload = Object.assign({ event: event }, params || {});
-    window.dataLayer.push(payload);
-    var c = (window.HD_cookies && window.HD_cookies.get && window.HD_cookies.get()) || null;
-    if (c && c.analytics && typeof window.gtag === 'function') {
-      window.gtag('event', event, params || {});
-    }
-    if (c && c.marketing && typeof window.fbq === 'function') {
-      var map = { view_item: 'ViewContent', add_to_cart: 'AddToCart', begin_checkout: 'InitiateCheckout', add_payment_info: 'AddPaymentInfo', purchase: 'Purchase' };
-      if (map[event]) window.fbq('track', map[event], params || {});
-    }
-  };
-
-  var loaded = { ga: false, meta: false };
-  function loadGA() {
-    if (loaded.ga || /XXXX/.test(GA4_ID)) return; // skip while placeholder
-    loaded.ga = true;
-    var s = document.createElement('script'); s.async = true;
-    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_ID;
-    document.head.appendChild(s);
-    window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
-    window.gtag('js', new Date()); window.gtag('config', GA4_ID, { anonymize_ip: true });
-  }
+  /* ============================ Analytics ============================
+     Google (Consent Mode v2, GA4 and every ecommerce event) lives in
+     analytics.js, together with HD_track. Only the Meta pixel seam stays
+     here; it loads nothing while META_PIXEL_ID is a placeholder. */
+  var metaLoaded = false;
   function loadMeta() {
-    if (loaded.meta || META_PIXEL_ID === '0000000000') return; // skip while placeholder
-    loaded.meta = true;
+    if (metaLoaded || META_PIXEL_ID === '0000000000') return; // skip while placeholder
+    metaLoaded = true;
     /* eslint-disable */ // SEAM: standard Meta Pixel snippet
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     window.fbq('init', META_PIXEL_ID); window.fbq('track', 'PageView');
   }
   function applyConsent() {
     var c = (window.HD_cookies && window.HD_cookies.get && window.HD_cookies.get()) || null;
-    if (!c) return; // no choice yet → nothing loads (privacy-first / consent mode default deny)
-    if (c.analytics) loadGA();
-    if (c.marketing) loadMeta();
+    if (c && c.marketing) loadMeta();
   }
   window.addEventListener('hd:cookie-consent', applyConsent);
-
-  /* page_view on every load (recorded to dataLayer regardless; forwarded on consent) */
-  function firePageView() {
-    window.HD_track('page_view', { page_path: location.pathname, page_title: document.title });
-  }
-
-  /* add_to_cart, delegated, no edits to the cart internals */
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
-    if (!btn) return;
-    var slug = btn.getAttribute('data-add-to-cart');
-    var p = (window.HD_product && window.HD_product(slug)) || null;
-    window.HD_track('add_to_cart', { currency: 'EUR', value: p ? p.price : undefined, items: [{ item_id: slug, item_name: p ? p.name : slug, price: p ? p.price : undefined, quantity: 1 }] });
-  });
 
   /* ========================= WhatsApp button ========================= */
   function injectWhatsApp() {
@@ -148,7 +110,6 @@
   }
 
   function init() {
-    firePageView();
     applyConsent();
     /* WhatsApp floating button removed by request, the concierge "Schrijf ons"
        pill (bottom-right) is the contact affordance. injectWhatsApp() kept for

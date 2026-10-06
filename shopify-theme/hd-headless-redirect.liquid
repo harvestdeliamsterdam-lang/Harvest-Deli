@@ -1,0 +1,71 @@
+{%- comment -%}
+  Harvest Deli: the Shopify online store is not the shop, harvestdeli.nl is.
+
+  Shopify's own storefront (su08c4-v4.myshopify.com, later shop.harvestdeli.nl)
+  runs the default Horizon theme: "Welcome to our store", English titles, no
+  Harvest Deli design. The Google & YouTube app links Shopping ads there. This
+  snippet sends every storefront page to the matching page on harvestdeli.nl
+  and keeps the query string, so ?variant=<id> (opens the right jar size),
+  gclid and utm_* survive.
+
+  Checkout, cart, account, policy and password pages are NOT touched: the
+  checkout keeps working exactly as before.
+
+  Install: Online Store > Themes > (live theme) ... > Edit code >
+  layout/theme.liquid, first line inside <head>:
+      {% render 'hd-headless-redirect' %}
+  and add this file as snippets/hd-headless-redirect.liquid.
+  Do this only after the steps in GOOGLE-ADS-OWNER-ACTIONS.md, section 4.
+{%- endcomment -%}
+{%- liquid
+  assign hd_home = 'https://harvestdeli.nl'
+  assign hd_target = ''
+  case request.page_type
+    when 'product'
+      case product.handle
+        when 'chestnut'
+          assign hd_slug = 'chestnut-honey'
+        when 'fir-vanilla'
+          assign hd_slug = 'vanilla-honey'
+        when 'acacia'
+          assign hd_slug = 'acacia-honey'
+        when 'pine'
+          assign hd_slug = 'pine-honey'
+        when 'orange-blossom'
+          assign hd_slug = 'orange-blossom-honey'
+        when 'oak'
+          assign hd_slug = 'oak-honey'
+        when 'arbutus'
+          assign hd_slug = 'arbutus-honey'
+        when 'thyme'
+          assign hd_slug = 'thyme-honey'
+        when 'heather'
+          assign hd_slug = 'heather-honey'
+        when 'oregano'
+          assign hd_slug = 'wild-oregano'
+        when 'olive-oil'
+          assign hd_slug = 'extra-virgin-olive-oil'
+        when 'mountain-tea'
+          assign hd_slug = 'greek-mountain-tea'
+        when 'chamomile-tea'
+          assign hd_slug = 'greek-chamomile-tea'
+        else
+          assign hd_slug = ''
+      endcase
+      if hd_slug != ''
+        assign hd_target = hd_home | append: '/products/' | append: hd_slug
+      else
+        assign hd_target = hd_home | append: '/shop.html'
+      endif
+    when 'collection', 'list-collections', 'search'
+      assign hd_target = hd_home | append: '/shop.html'
+    when 'index', 'page', 'blog', 'article', '404'
+      assign hd_target = hd_home | append: '/'
+  endcase
+-%}
+{%- if hd_target != '' -%}
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="{{ hd_target }}">
+  <script>location.replace({{ hd_target | json }} + location.search);</script>
+  <meta http-equiv="refresh" content="0; url={{ hd_target }}">
+{%- endif -%}

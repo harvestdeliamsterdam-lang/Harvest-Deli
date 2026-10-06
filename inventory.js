@@ -67,10 +67,28 @@
     stockEl.appendChild(document.createTextNode(' ' + (out
       ? L('Sold out', 'Uitverkocht')
       : L('In stock · ready to ship', 'Op voorraad · klaar voor verzending'))));
+    soldOutButtons(out);
+  }
+
+  /* The buy buttons say so when the chosen size is sold out, instead of looking
+     buyable until the click is refused. */
+  function soldOutButtons(out) {
+    var lang = (window.HD_lang && window.HD_lang()) || 'nl';
+    var dict = (window.HD_T && (window.HD_T[lang] || window.HD_T.nl)) || {};
+    document.querySelectorAll('.pd-cta[data-add-to-cart], .sticky-buy button[data-add-to-cart], #pdExpress').forEach(function (b) {
+      var label = b.querySelector('[data-i18n]') || (b.hasAttribute('data-i18n') ? b : null);
+      b.classList.toggle('is-soldout', out);
+      if (out) b.setAttribute('aria-disabled', 'true'); else b.removeAttribute('aria-disabled');
+      if (!label) return;
+      if (out) label.textContent = L('Sold out', 'Uitverkocht');
+      else if (dict[label.getAttribute('data-i18n')]) label.textContent = dict[label.getAttribute('data-i18n')];
+    });
   }
 
   /* ---------- sold-out gate (capture phase, runs before the add handlers) ---------- */
   document.addEventListener('click', function (e) {
+    var ex = e.target.closest && e.target.closest('#pdExpress.is-soldout');
+    if (ex) { e.preventDefault(); e.stopImmediatePropagation(); if (window.HD_toast) window.HD_toast(L('Sold out', 'Uitverkocht')); return; }
     var btn = e.target.closest && e.target.closest('[data-add-to-cart]');
     if (!btn) return;
     var st = statusOf(btn.getAttribute('data-add-to-cart'), btn.getAttribute('data-size'));

@@ -39,7 +39,7 @@ const path = require('path');
 const SITE = 'https://harvestdeli.nl';
 const SHOP = 'su08c4-v4.myshopify.com';
 const TOKEN = 'd3f835bc393675aeb243244e5475f3c6';   // public, read-only
-const API = '2024-10';
+const API = '2026-07';
 const HARVEST_YEAR = '2025';
 
 /* Real camera photos (iPhone, 4284x5712) of the physical jars. They are the
@@ -130,7 +130,7 @@ const EN_DESCRIPTIONS = {
   acacia: 'Crystal-clear acacia honey from Macedonia, gently floral and pure. Raw and cold-extracted, silky in texture. Bottled in hand-pressed glass, wax-sealed.',
   pine: 'Resinous pine honey from Halkidiki carrying the warmth of sea air, thick and smooth. Raw and unfiltered, cold-extracted. Bottled in hand-pressed glass, wax-sealed.',
   'orange-blossom': 'Bright orange blossom honey from the Peloponnese, fresh and floral with citrus. Raw and extracted while liquid. Bottled in hand-pressed glass, wax-sealed.',
-  oak: 'Deep oak honey from Epirus, woody and rich in minerals. Raw, unfiltered and cold-extracted. Bottled in hand-pressed glass, wax-sealed.',
+  oak: 'Deep oak honey from Epirus, woody and full-bodied. Raw, unfiltered and cold-extracted. Bottled in hand-pressed glass, wax-sealed.',
   arbutus: 'Rare arbutus honey from Crete, bittersweet and herbal with earthy depth. Raw and naturally creamy. Bottled in hand-pressed glass, wax-sealed.',
   thyme: 'Aromatic thyme honey from Crete, warm and floral. Raw, unfiltered and cold-extracted. Bottled in hand-pressed glass, wax-sealed.',
   heather: 'Raw Greek heather honey from wild heather on the hills of Evia. Rich, floral and warm, with a naturally creamy texture. Cold-extracted, unfiltered and unpasteurised. Single origin, Greece.',
@@ -140,7 +140,9 @@ const EN_DESCRIPTIONS = {
   'chamomile-tea': 'Greek chamomile tea from carefully dried chamomile flowers, with a soft floral aroma and a mild, rounded taste. Naturally caffeine free and lovely as a warm infusion, on its own or with a little honey. Contents: 25 g.',
 };
 
-const GQL = `{
+/* Language context: Dutch titles come from the nl translations in Shopify
+   ("Harvest Deli Acaciahoning"), English from the base titles. */
+const gql = (lang) => `query Feed @inContext(language: ${lang === 'en' ? 'EN' : 'NL'}) {
   products(first: 50) {
     nodes {
       handle title description productType vendor
@@ -216,8 +218,29 @@ const esc = (s) => String(s == null ? '' : s)
   .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
 
 /* "480g" -> {value:480, unit:'g'}  ·  "500ml" -> {value:500, unit:'ml'} */
-function measure(title) {
-  const m = String(title || '').match(/^\s*([\d.]+)\s*(g|kg|ml|l)\s*$/i);
+/* Variants whose option value is not a weight ("1 bag") still need a
+   unit price; the net contents come from the GS1 registration. */
+const MEASURE_BY_SKU = { 'HD-TEA-MOUNTAIN-1': '25g' };
+/* Until the Shopify descriptions are updated, these Dutch texts replace the
+   ones that carried health or nutrition wording ("mineraalrijk",
+   "kalmerend", "rustgevend"), which Merchant Center and EU law do not allow. */
+const NL_DESCRIPTIONS = {
+  oak: 'Diepe eikenhoning uit Epirus, houtig en vol van smaak. Rauw, ongefilterd en koud geslingerd. Gebotteld in handgeperst glas, verzegeld in was.',
+  'mountain-tea': 'Griekse bergthee, met de hand geplukt op grote hoogte. Bloemig, kruidig en zacht aromatisch. Van nature cafeïnevrij, een gouden, lichte infusie.',
+  'chamomile-tea': 'Griekse kamillethee van zorgvuldig gedroogde kamillebloemen, met een zachte bloemige geur en een milde, ronde smaak. Van nature cafeïnevrij en heerlijk als warme kruidenthee, puur of met een beetje honing. Inhoud: 25 g.',
+};
+/* Title = brand + product + what it is + size, the order Google reads. */
+const TITLE_KIND = {
+  nl: { Honey: 'rauwe Griekse honing', 'Olive Oil': 'uit Griekenland', Tea: 'losse kruidenthee', Herb: 'Grieks gedroogd kruid' },
+  en: { Honey: 'raw Greek honey', 'Olive Oil': 'from Greece', Tea: 'loose herbal tea', Herb: 'Greek dried herb' },
+};
+function feedTitle(lang, productTitle, type, size) {
+  const base = /^harvest deli\b/i.test(productTitle) ? productTitle : 'Harvest Deli ' + productTitle;
+  const kind = (TITLE_KIND[lang] || TITLE_KIND.nl)[type] || '';
+  return [base + (kind ? ', ' + kind : ''), size].filter(Boolean).join(' ');
+}
+function measure(title, sku) {
+  const m = String((sku && MEASURE_BY_SKU[sku]) || title || '').match(/^\s*([\d.]+)\s*(g|kg|ml|l)\s*$/i);
   if (!m) return null;
   const unit = m[2].toLowerCase();
   return { value: Number(m[1]), unit, base: unit === 'g' || unit === 'kg' ? 'kg' : 'l' };
@@ -228,7 +251,7 @@ module.exports = async (req, res) => {
     const r = await fetch(`https://${SHOP}/api/${API}/graphql.json`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': TOKEN },
-      body: JSON.stringify({ query: GQL }),
+      body: JSON.stringify({ query: gql(/(^|[?&])lang=en\b/.test(req.url || '') ? 'en' : 'nl') }),
     });
     const json = await r.json();
     const nodes = (json.data && json.data.products && json.data.products.nodes) || [];
@@ -253,7 +276,7 @@ module.exports = async (req, res) => {
         .map((h) => `\n    <g:product_highlight>${esc(h)}</g:product_highlight>`).join('');
       const multi = p.variants.nodes.length > 1;
       /* Dutch comes live from Shopify; English from the map above. */
-      let desc = p.description;
+      let desc = (lang === 'nl' && NL_DESCRIPTIONS[p.handle]) || p.description;
       if (lang === 'en') {
         if (EN_DESCRIPTIONS[p.handle]) desc = EN_DESCRIPTIONS[p.handle];
         else missingEn.push(p.handle);
@@ -261,7 +284,8 @@ module.exports = async (req, res) => {
 
       for (const v of p.variants.nodes) {
         if (!v.sku) continue;
-        const title = multi ? `${p.title} ${v.title}` : p.title;
+        const mTitle = measure(v.title, v.sku);
+        const title = feedTitle(lang, p.title, type, mTitle ? `${mTitle.value} ${mTitle.unit}` : (multi ? v.title : ''));
         const shopMain = (v.image && v.image.url) || (p.featuredImage && p.featuredImage.url) || '';
         const main = realPhotoUrl(p.handle) || shopMain;
         const gtin = validGtin(v.barcode) ? v.barcode : '';
@@ -278,7 +302,7 @@ module.exports = async (req, res) => {
           : '';
         const listPrice = onSale ? cmp : price;
 
-        const m = measure(v.title);
+        const m = mTitle;
         const unitXml = m ? `
     <g:unit_pricing_measure>${m.value} ${m.unit}</g:unit_pricing_measure>
     <g:unit_pricing_base_measure>1 ${m.base}</g:unit_pricing_base_measure>` : '';

@@ -26,12 +26,12 @@
 
     currency: 'EUR',
     locale: 'nl-NL',
-    freeShippingThreshold: (typeof window.HD_FREE_SHIP === 'number' ? window.HD_FREE_SHIP : 65),
+    freeShippingThreshold: (typeof window.HD_FREE_SHIP === 'number' ? window.HD_FREE_SHIP : 60), // live value: HD_SHIPPING in shared.js
 
     shopify: {
       domain: 'su08c4-v4.myshopify.com',   // the connected store (public)
       storefrontToken: 'd3f835bc393675aeb243244e5475f3c6',  // public, read-only Storefront token
-      apiVersion: '2024-10'
+      apiVersion: '2026-07'   // 2025-10+ is needed for visitorConsent on checkout carts
     }
   };
 })();

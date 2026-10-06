@@ -6,14 +6,14 @@
 <title>Shop | Griekse Honing, Olijfolie &amp; Thee · Harvest Deli</title>
 <meta name="description" content="Ontdek de collectie: negen single-origin Griekse honingen, koudgeperste olijfolie, wilde bergthee en kamillethee. Rauw en ambachtelijk, direct uit Griekenland.">
 <link rel="canonical" href="https://harvestdeli.nl/shop.html">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-218">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-218" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-218">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-218">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-218">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-218" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-218">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-218">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-221">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-221" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-221">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-221">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-221">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-221" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-221">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-221">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Shop | Griekse Honing, Olijfolie &amp; Thee · Harvest Deli">
 <meta property="og:description" content="Ontdek de collectie: negen single-origin Griekse honingen, koudgeperste olijfolie, wilde bergthee en kamillethee. Rauw en ambachtelijk, direct uit Griekenland.">
@@ -56,12 +56,18 @@
   }
 }
 </script>
+<link rel="preload" as="image" href="/assets/products-images/chestnut-960.webp?v=hd-2026-06-06-221" imagesrcset="/assets/products-images/chestnut-640.webp?v=hd-2026-06-06-221 640w, /assets/products-images/chestnut-960.webp?v=hd-2026-06-06-221 960w, /assets/products-images/chestnut.webp?v=hd-2026-06-06-221 1228w" imagesizes="(max-width: 600px) 90vw, (max-width: 1100px) 45vw, 30vw" fetchpriority="high">
+<!-- Fonts used above the fold, fetched early so the headline does not re-wrap when they arrive (layout shift). If Fontshare changes these file names the preload is simply unused. -->
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/intertight/v9/NGSwv5HMAFg6IuGlBNMjxLsH8ahuQ2e8.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="https://cdn.fontshare.com/wf/K46YRH762FH3QJ25IQM3VAXAKCHEXXW4/ISLWQPUZHZF33LRIOTBMFOJL57GBGQ4B/3ZLMEXZEQPLTEPMHTQDAUXP5ZZXCZAEN.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="https://cdn.fontshare.com/wf/3RZHWSNONLLWJK3RLPEKUZOMM56GO4LJ/BPDRY7AHVI3MCDXXVXTQQ76H3UXA63S3/SB2OEB6IKZPRR6JT4GFJ2TFT6HBB6AZN.woff2" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-218">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-221">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -1267,6 +1273,9 @@ nav.site-nav .nav-right { display: flex; align-items: center; gap: 32px; }
 /* ---- Original product grid (kept) ---- */
 .shop-grid-wrap .shop-meta { display: none; } /* deprecated, replaced by toolbar */
 
+/* The grid is filled by script; until then it keeps its space, so the footer
+   does not sit under an empty grid and jump away (layout shift on phones). */
+.shop-grid:empty { min-height: 160vh; }
 .shop-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1567,6 +1576,8 @@ footer.site-footer {
 .p-card .badges { top: 40px; left: 16px; }
 /* availability flag sits top-right */
 .p-card .stock-flag { top: 14px; right: 14px; left: auto; bottom: auto; }
+/* sold out sits bottom-left: the wishlist heart owns the top-right corner */
+.p-card .stock-flag.stock-out { top: auto; right: auto; left: 16px; bottom: 16px; }
 
 /* body becomes a calm vertical rhythm: region → name → note → foot */
 .p-card .info { display: block; }
@@ -1807,7 +1818,7 @@ footer.site-footer {
         <span class="label" data-i18n="cart.subtotal">Subtotal</span>
         <span class="total" id="cartTotal">€0</span>
       </div>
-      <p class="cart-note" data-i18n="cart.note">Shipping calculated at checkout. Free across the European Union above €65.</p>
+      <p class="cart-note" data-i18n="cart.note">All prices include VAT. Shipping is calculated at checkout; the free-shipping threshold depends on your country.</p>
       <a href="checkout.html" class="cart-checkout"><span data-i18n="cart.checkout">Continue to checkout</span> <span class="arrow"></span></a>
     </footer>
   </aside>
@@ -1815,37 +1826,37 @@ footer.site-footer {
 
 <!-- ============ Shop hero ============ -->
 <section class="shop-hero">
-  <div class="shop-eyebrow" data-i18n="shop.eyebrow">The Collection</div>
-  <h1 class="shop-headline" data-i18n-html="shop.headline_html">11 <em>premium</em> Greek delicacies.</h1>
-  <p class="shop-intro" data-i18n="shop.intro">Raw. Unpasteurised. Direct from origin.</p>
-  <div class="shop-trustline" data-i18n="shop.trustline">Raw &amp; unpasteurised &middot; Harvested in Greece &middot; Free shipping in the Netherlands &amp; Belgium above €65</div>
+  <div class="shop-eyebrow" data-i18n="shop.eyebrow">De Collectie</div>
+  <h1 class="shop-headline" data-i18n-html="shop.headline_html">13 <em>premium</em> Griekse delicatessen.</h1>
+  <p class="shop-intro" data-i18n="shop.intro">Rauw. Ongepasteuriseerd. Rechtstreeks van de bron.</p>
+  <div class="shop-trustline" data-i18n="shop.trustline">Rauw &amp; ongepasteuriseerd · Geoogst in Griekenland · Nu verzending door heel Europa</div>
 </section>
 
 <!-- ============ Sticky toolbar ============ -->
 <section class="shop-toolbar" id="shopToolbar" aria-label="Collection filters and sort">
   <div class="shop-toolbar-inner">
     <div class="toolbar-left">
-      <span class="t-count"><strong id="visibleCount">6</strong> <span class="t-of" data-i18n="shop.tb.of">of</span> <span class="t-total">6</span></span>
+      <span class="t-count"><strong id="visibleCount">6</strong> <span class="t-of" data-i18n="shop.tb.of">van</span> <span class="t-total">6</span></span>
       <span class="t-divider" aria-hidden="true"></span>
-      <span class="t-label" data-i18n="shop.tb.editions">editions</span>
+      <span class="t-label" data-i18n="shop.tb.editions">edities</span>
     </div>
     <div class="toolbar-right">
 
       <!-- Sort dropdown -->
       <div class="sort-dropdown" id="sortDropdown">
         <button class="sort-trigger" type="button" id="sortTrigger" aria-haspopup="listbox" aria-expanded="false" aria-controls="sortMenu">
-          <span class="sort-label" data-i18n="shop.tb.sortLabel">Sort</span>
+          <span class="sort-label" data-i18n="shop.tb.sortLabel">Sorteren</span>
           <span class="sort-divider" aria-hidden="true"></span>
-          <span class="sort-value" id="sortValue" data-i18n="shop.sort.recommended">Recommended</span>
+          <span class="sort-value" id="sortValue" data-i18n="shop.sort.recommended">Aanbevolen</span>
           <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1" fill="none"/></svg>
         </button>
         <ul class="sort-menu" id="sortMenu" role="listbox" aria-label="Sort the collection" hidden>
-          <li role="option" data-sort="recommended" aria-selected="true"><span data-i18n="shop.sort.recommended">Recommended</span><span class="tick" aria-hidden="true"></span></li>
-          <li role="option" data-sort="popular" aria-selected="false"><span data-i18n="shop.sort.popular">Most popular</span><span class="tick" aria-hidden="true"></span></li>
-          <li role="option" data-sort="harvest" aria-selected="false"><span data-i18n="shop.sort.harvest">Latest harvest</span><span class="tick" aria-hidden="true"></span></li>
-          <li role="option" data-sort="lightest" aria-selected="false"><span data-i18n="shop.sort.lightest">Lightest flavour</span><span class="tick" aria-hidden="true"></span></li>
-          <li role="option" data-sort="richest" aria-selected="false"><span data-i18n="shop.sort.richest">Richest flavour</span><span class="tick" aria-hidden="true"></span></li>
-          <li role="option" data-sort="limited" aria-selected="false"><span data-i18n="shop.sort.limited">Limited editions</span><span class="tick" aria-hidden="true"></span></li>
+          <li role="option" data-sort="recommended" aria-selected="true"><span data-i18n="shop.sort.recommended">Aanbevolen</span><span class="tick" aria-hidden="true"></span></li>
+          <li role="option" data-sort="popular" aria-selected="false"><span data-i18n="shop.sort.popular">Meest populair</span><span class="tick" aria-hidden="true"></span></li>
+          <li role="option" data-sort="harvest" aria-selected="false"><span data-i18n="shop.sort.harvest">Laatste oogst</span><span class="tick" aria-hidden="true"></span></li>
+          <li role="option" data-sort="lightest" aria-selected="false"><span data-i18n="shop.sort.lightest">Lichtste smaak</span><span class="tick" aria-hidden="true"></span></li>
+          <li role="option" data-sort="richest" aria-selected="false"><span data-i18n="shop.sort.richest">Rijkste smaak</span><span class="tick" aria-hidden="true"></span></li>
+          <li role="option" data-sort="limited" aria-selected="false"><span data-i18n="shop.sort.limited">Beperkte edities</span><span class="tick" aria-hidden="true"></span></li>
         </ul>
       </div>
 
@@ -1864,9 +1875,9 @@ footer.site-footer {
   <!-- Active filter chips strip -->
   <div class="active-chips" id="activeChips" hidden aria-label="Active filters">
     <div class="ac-inner">
-      <span class="ac-label" data-i18n="shop.chips.refining">Refining by</span>
+      <span class="ac-label" data-i18n="shop.chips.refining">Verfijnen op</span>
       <div class="ac-list" id="activeChipsList"></div>
-      <button type="button" class="ac-reset" id="activeChipsReset" data-i18n="shop.chips.clearAll">Clear all</button>
+      <button type="button" class="ac-reset" id="activeChipsReset" data-i18n="shop.chips.clearAll">Alles wissen</button>
     </div>
   </div>
 </section>
@@ -1874,7 +1885,7 @@ footer.site-footer {
 <!-- ============ Grid ============ -->
 <div class="shop-body">
 <section class="shop-grid-wrap">
-  <div class="shop-grid" id="shopGrid"></div>
+  <div class="shop-grid" id="shopGrid" data-ga-list="shop|Collectie"></div>
   <!-- Empty state (revealed by JS when no matches) -->
   <div class="empty-state" id="emptyState" hidden>
     <div class="es-mark" aria-hidden="true">
@@ -1969,12 +1980,12 @@ footer.site-footer {
       <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
       <a href="index.html#process" data-i18n="footer.link.estate">Process</a>
       <a href="journal.html" data-i18n="footer.link.journal">Journal</a>
-      <a href="partners.html">Wholesale</a>
-      <a href="legal-shipping.html">Shipping</a>
+      <a href="partners.html" data-i18n="menu.social.wholesale">Wholesale</a>
+      <a href="legal-shipping.html" data-i18n="footer.link.shipping">Shipping</a>
       <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4>Legal</h4>
+      <h4 data-i18n="footer.col.legal">Legal</h4>
       <a href="legal-terms.html">Algemene voorwaarden</a>
       <a href="legal-privacy.html">Privacyverklaring</a>
       <a href="legal-cookies.html">Cookieverklaring</a>
@@ -1990,8 +2001,8 @@ footer.site-footer {
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-218"></script>
-<script src="analytics.js?v=hd-2026-06-06-218"></script>
+<script src="shared.js?v=hd-2026-06-06-221"></script>
+<script src="analytics.js?v=hd-2026-06-06-221"></script>
 <script>
 (function () {
   /* Menu */
@@ -2007,7 +2018,10 @@ footer.site-footer {
 
   /* Render grid using localized product accessor */
   const grid = document.getElementById('shopGrid');
-  const order = ['fir-vanilla', 'acacia', 'pine', 'orange-blossom', 'chestnut', 'oak', 'arbutus', 'thyme', 'heather', 'oregano', 'olive-oil', 'mountain-tea', 'chamomile-tea'];
+  /* Already in the editorial ("Aanbevolen") order that sortSlugs applies, so the
+     first paint and the re-render with Shopify data show the same grid: no
+     cards jumping and no second largest paint. */
+  const order = ['chestnut', 'orange-blossom', 'fir-vanilla', 'acacia', 'pine', 'oak', 'arbutus', 'thyme', 'heather', 'oregano', 'olive-oil', 'mountain-tea', 'chamomile-tea'];
   const FROM_WORD = { nl: 'vanaf', el: 'από', en: 'from' };
   function fromWord() { return FROM_WORD[(window.HD_lang && window.HD_lang()) || 'en'] || 'from'; }
 
@@ -2055,7 +2069,18 @@ footer.site-footer {
     // localized catalog name wins (Dutch/Greek). Shopify still drives price/image/stock.
     const name    = (p && p.name) || (cp && cp.title) || slug;
     const price   = cp ? (+cp.priceRange.minVariantPrice.amount) : (p ? p.price : 0);
-    const image   = (cp && cp.images && cp.images[0] && cp.images[0].url) || (p && p.image) || '';
+    /* Our own copy of the product photo first: same image, served from this
+       site, with phone sizes. Swapping it for Shopify's full-size copy after
+       load made every card download twice and pushed the largest paint to
+       6 s on phones. Shopify's photo is used only when there is no local one. */
+    const local   = (p && p.image && !/\/harvestdeli\.webp/.test(p.image)) ? p.image : '';
+    const image   = local || (cp && cp.images && cp.images[0] && cp.images[0].url) || (p && p.image) || '';
+    const sized   = /\/assets\/products-images\/(chestnut|fir-vanilla|acacia|pine|orange-blossom|oak|arbutus|thyme|heather)\.webp/.test(local);
+    const srcset  = sized ? ` srcset="${local.replace('.webp', '-640.webp')} 640w, ${local.replace('.webp', '-960.webp')} 960w, ${local} 1228w" sizes="(max-width: 600px) 90vw, (max-width: 1100px) 45vw, 30vw"` : '';
+    const eager   = (i || 0) < 3;
+    /* Every size unavailable in Shopify: say so on the card, not only on the
+       product page (re-rendered when inventory.js reports hd:inventory-ready). */
+    const soldOut = availOf(slug) === 'soldout';
     const tags    = (cp && cp.tags && cp.tags.length ? cp.tags : (p && p.tags) || []);
     const region  = (cp && cp.metafields && cp.metafields.region) || (p && p.region) || '';
     const hue     = (p && p.hue) || '';
@@ -2064,11 +2089,12 @@ footer.site-footer {
     const altImage = p && p.altImage;
     const num = String((i || 0) + 1).padStart(2, '0');
     return `
-      <a class="p-card" href="${url}" data-slug="${slug}" data-tags="${tags.join(' ')}"${altImage ? ` data-alt-src="${altImage}"` : ''}>
+      <a class="p-card${soldOut ? ' is-soldout' : ''}" href="${url}" data-slug="${slug}" data-tags="${tags.join(' ')}"${altImage ? ` data-alt-src="${altImage}"` : ''}>
         <div class="jar-wrap">
           <div class="card-edition">N<span>o</span> <b>${num}</b></div>
+          ${soldOut ? `<span class="stock-flag stock-out">${isNL() ? 'Uitverkocht' : 'Sold out'}</span>` : ''}
           <button class="wishlist-btn" type="button" data-wishlist-toggle="${slug}" aria-label="Add to wishlist" onclick="event.preventDefault();"></button>
-          <img class="card-photo ${hue}" src="${image}" alt="${name}" loading="lazy">
+          <img class="card-photo ${hue}" src="${image}"${srcset} alt="${name}" width="1228" height="2200"${eager ? ((i || 0) === 0 ? ' fetchpriority="high"' : '') : ' loading="lazy"'} decoding="async">
           <button class="qv-trigger" type="button" data-quick-view="${slug}" onclick="event.preventDefault();event.stopPropagation();" aria-label="Quick view ${name}">
             <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3"/><path d="M1 8 C 3 4 5.5 2.5 8 2.5 S 13 4 15 8 C 13 12 10.5 13.5 8 13.5 S 3 12 1 8 Z"/></svg>
             <span>Quick view</span>
@@ -2567,6 +2593,8 @@ footer.site-footer {
   // Stock loads async (inventory.js) → recompute the availability facet once ready
   // (event + timed fallback so counts are correct regardless of load order)
   window.addEventListener('hd:inventory-ready', () => applyFilters({ animate: false }));
+  /* Language switch: re-render the cards so names, notes and the sold-out label follow. */
+  window.addEventListener('hd:lang', () => applyFilters({ animate: false }));
   setTimeout(() => { if (window.HD_stock) applyFilters({ animate: false }); }, 700);
 
   /* ---- Price range (dual slider) ---- */

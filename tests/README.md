@@ -1,19 +1,42 @@
 # Harvest Deli, regressietests
 
-Zes tests die bewaken wat op deze site al eens stilletjes is gebroken.
+Acht tests die bewaken wat op deze site al eens stilletjes is gebroken.
 Geen testrunner, geen dependencies om te installeren: het zijn losse Node-scripts
 die Playwright uit de map hierboven gebruiken.
 
+Lokaal testen kan tegen `scripts/serve.mjs`: die past de redirects, rewrites en
+headers uit vercel.json toe en draait api/ zoals Vercel. (Niet tegen
+`python3 -m http.server`: die kent /products/<slug> niet.)
+
 ```bash
 cd honey
+node scripts/serve.mjs 4400 &                            # lokale "Vercel"
 
 node tests/check-paths.mjs                              # statisch, seconden
-node tests/add-to-cart.mjs       https://harvestdeli.nl # 13 producten, ~3 min
-node tests/gtin.mjs              https://harvestdeli.nl --feed # GS1-GTIN's, ~1 min
-node tests/audit-live.mjs        https://harvestdeli.nl # crawl, ~10 min
-node tests/checkout-countries.mjs https://harvestdeli.nl # 9 flows, ~5 min
-node tests/phone-e164.mjs        https://harvestdeli.nl # normalisatie, ~1 min
+node tests/product-html.mjs      http://localhost:4400  # HTML vóór JavaScript, 13 producten, ~10 s
+node tests/tracking.mjs          http://localhost:4400  # consent + GA4-events, ~2 min
+node tests/add-to-cart.mjs       http://localhost:4400  # 13 producten, ~3 min
+node tests/gtin.mjs              http://localhost:4400 --feed # GS1-GTIN's, ~1 min
+node tests/audit-live.mjs        http://localhost:4400  # crawl, ~10 min
+node tests/checkout-countries.mjs http://localhost:4400 # mandje > Shopify, 9 flows, ~5 min
+node tests/phone-e164.mjs        http://localhost:4400  # normalisatie, ~1 min
 ```
+
+Na een deploy dezelfde tests met https://harvestdeli.nl als basis-url;
+`tests/tracking.mjs https://harvestdeli.nl --checkout` loopt dan ook de echte
+Shopify-checkout in en controleert dat de Google-pixel daar met consent vuurt.
+
+**`product-html.mjs`** leest de ruwe HTML (zonder JavaScript) van alle 13
+productpagina's: naam, prijs en schema tegen Shopify, maten, SKU's, GTIN's,
+canonical, taal, geen tekst van een ander product, geen gezondheidsclaims.
+De negen honingpagina's worden gemaakt door `scripts/build-product-pages.mjs`
+uit `templates/product-honey.html`; bij een fout daar, niet in de pagina zelf.
+
+**`tracking.mjs`** leest de echte hits naar google-analytics.com: niets vóór
+een keuze, Consent Mode v2-signalen, één page_view per pagina, view_item,
+add_to_cart en remove_from_cart met de juiste maat, prijs en aantal,
+view_cart, view_item_list en select_item, en dat de keuze in de checkout-URL
+(_cs) meereist.
 
 Elke test eindigt met exitcode 0 als alles klopt en 1 als er iets stuk is, dus
 ze zijn direct bruikbaar in een pre-deploy stap.

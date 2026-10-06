@@ -52,7 +52,6 @@
       var p = window.HD_product && window.HD_product(handle);
       if (window.HD_toast) window.HD_toast(L('Added to the cellar', 'Toegevoegd aan de kelder') + (p ? ', ' + p.name : ''));
       if (btn.dataset.openCart !== 'false' && window.HD_openCart) setTimeout(window.HD_openCart, 240);
-      if (window.HD_track) window.HD_track('add_to_cart', { currency: 'EUR', value: p ? p.price : undefined, items: [{ item_id: handle, quantity: qty }] });
     }, true);
   }
 

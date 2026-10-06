@@ -997,7 +997,7 @@ body nav.site-nav .logo-mark.nav-size {
   left: 24px;
   right: 24px;
   bottom: 24px;
-  z-index: 200;
+  z-index: 240; /* above the shop filter panel (220), or its consent buttons were unreachable */
   max-width: 400px;
   background: rgba(247, 242, 233, 0.85);
   backdrop-filter: blur(22px) saturate(150%);
@@ -2946,6 +2946,76 @@ body .menu-overlay .menu-items a.current::after { transform: scaleX(1); }
   opacity: 0.04;
 }
 @media (max-width: 900px) { .menu-overlay .hd-menu-ghost { display: none; } }
+
+/* --- Collection film (desktop only, injected by shared.js) ---
+   Sits where the ghost type is, which steps aside while it shows.
+   Enter: the frame opens bottom-up like a curtain while a warm sheen
+   rises with it and the picture settles from a slight zoom. While it
+   plays the picture drifts a few px against the pointer (--px/--py,
+   set by shared.js), like looking through a window. Exit: a short fade,
+   then the curtain resets unseen. Reduced motion: fade only. */
+.menu-overlay .hd-menu-film { display: none; }
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  .menu-overlay .hd-menu-film {
+    display: block;
+    position: absolute !important;
+    z-index: 2 !important;
+    right: clamp(28px, 5vw, 112px);
+    top: 50%;
+    width: min(30vw, 440px, calc((100vh - 300px) * 0.8));
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: 2px;
+    background: #3A2A18;
+    box-shadow: 0 34px 70px -38px rgba(42, 30, 16, 0.55), 0 0 0 1px rgba(138, 98, 40, 0.14);
+    pointer-events: none;
+    transform: translateY(-50%);
+    opacity: 0;
+    visibility: hidden;
+    clip-path: inset(100% 0 0 0);
+    transition: opacity 0.45s var(--ease), clip-path 0s linear 0.45s, visibility 0s linear 0.45s;
+  }
+  .menu-overlay.hd-film-on .hd-menu-film {
+    opacity: 1;
+    visibility: visible;
+    clip-path: inset(0 0 0 0);
+    transition: opacity 0.3s var(--ease), clip-path 1.3s cubic-bezier(0.19, 1, 0.22, 1), visibility 0s;
+  }
+  .menu-overlay .hd-menu-film video {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0) scale(1.16);
+    transition: transform 0s linear 0.45s;
+  }
+  .menu-overlay.hd-film-on .hd-menu-film video {
+    transform: translate3d(var(--px, 0px), var(--py, 0px), 0) scale(1.06);
+    transition: transform 1.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  /* warm sheen that rises with the curtain, once per reveal */
+  .menu-overlay .hd-menu-film::after {
+    content: '';
+    position: absolute; left: 0; right: 0; top: -40%; height: 80%;
+    background: linear-gradient(0deg, rgba(255, 214, 150, 0) 0%, rgba(255, 214, 150, 0.30) 50%, rgba(255, 214, 150, 0) 100%);
+    mix-blend-mode: screen;
+    transform: translateY(160%);
+    opacity: 0;
+  }
+  .menu-overlay.hd-film-on .hd-menu-film::after { animation: hdFilmSheen 1.6s cubic-bezier(0.19, 1, 0.22, 1) both; }
+  .menu-overlay .hd-menu-ghost { transition: opacity 0.6s var(--ease); }
+  .menu-overlay.hd-film-on .hd-menu-ghost { opacity: 0; }
+}
+@keyframes hdFilmSheen {
+  0%   { transform: translateY(160%); opacity: 0; }
+  20%  { opacity: 1; }
+  100% { transform: translateY(-20%); opacity: 0; }
+}
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: reduce) {
+  .menu-overlay .hd-menu-film,
+  .menu-overlay.hd-film-on .hd-menu-film { clip-path: none; transition: opacity 0.3s linear, visibility 0s linear 0.3s; }
+  .menu-overlay.hd-film-on .hd-menu-film { transition: opacity 0.3s linear, visibility 0s; }
+  .menu-overlay .hd-menu-film video,
+  .menu-overlay.hd-film-on .hd-menu-film video { transform: none; transition: none; }
+  .menu-overlay.hd-film-on .hd-menu-film::after { animation: none; }
+}
 
 /* --- Mobile language switcher inside the fullscreen menu (Option A) ---
    Injected into every .menu-overlay just below the logo. Desktop keeps
@@ -6068,7 +6138,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("/assets/nav-topo.svg?v=hd-2026-06-06-218") center / cover no-repeat !important;
+  background: url("/assets/nav-topo.svg?v=hd-2026-06-06-221") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -6398,3 +6468,37 @@ body nav.site-nav .logo-mark.nav-size { height: 61px; }
   width: 6px; height: 6px; border-radius: 50%; background: var(--gold, #b7893f);
 }
 @media (min-width: 700px) { .pdw-list { grid-template-columns: 1fr 1fr; gap: 9px 22px; } }
+
+/* Checkout hand-off (28-09-2026): the cart goes straight to Shopify's checkout.
+   The button shows it is working; checkout.html only forwards old links. */
+a.cart-checkout.is-loading { opacity: 0.6; pointer-events: none; cursor: progress; }
+.hd-handoff { max-width: 520px; margin: 24vh auto 20vh; padding: 0 24px; text-align: center; font-family: 'Inter', sans-serif; }
+.hd-handoff-t { font-size: 16px; line-height: 1.6; color: var(--ink, #1A1612); margin: 0 0 20px; }
+.hd-handoff-back { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-soft, #5A5048); }
+
+/* The delivery line is filled by script; its space is kept from the first paint
+   so the buy button does not jump down when it appears (layout shift). */
+.hd-deliver:empty { min-height: 40px; }
+@media (max-width: 540px) { .hd-deliver:empty { min-height: 50px; } }
+
+/* Intro: a visible "Overslaan" (any click, Enter or Escape also skips). */
+.hd-intro__skip {
+  position: absolute; left: 50%; bottom: calc(34px + env(safe-area-inset-bottom));
+  transform: translateX(-50%); z-index: 5;
+  padding: 12px 22px 12px calc(22px + 0.22em);
+  border-radius: 999px; border: 1px solid rgba(232, 201, 130, 0.55);
+  background: rgba(15, 42, 31, 0.35); color: #F5EFE4;
+  font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase; cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.hd-intro__skip:hover { background: rgba(15, 42, 31, 0.6); border-color: #E8C982; }
+.hd-intro__skip:focus-visible { outline: 2px solid #E8C982; outline-offset: 3px; }
+.hd-intro.exiting .hd-intro__skip { opacity: 0; transition: opacity 0.3s ease; }
+
+/* Menu hover paints the word with a gold gradient clipped to the text. With the
+   tight line-height the gradient box ended at the baseline, so the tails of
+   g, p and j were cut off (menu descenders). Extra room below, taken back with a
+   negative margin so nothing moves; the underline keeps its place. */
+body .menu-overlay .menu-items a { padding-bottom: 0.16em; margin-bottom: -0.16em; }
+body .menu-overlay .menu-items a::after { bottom: calc(0.16em - 8px); }

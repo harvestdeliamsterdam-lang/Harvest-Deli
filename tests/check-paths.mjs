@@ -37,6 +37,8 @@ const UITZONDERINGEN = [
   { bestand: 'shared.js', bevat: '?v=hd-', reden: 'loadAddons prefixt zelf een slash' },
   // pathname-vergelijkingen, geen URLs
   { bestand: 'shared.js', bevat: "'index.html'", reden: 'vergelijking met location.pathname' },
+  // CSS-attribuutselector die de collectielink in het menu vindt, geen URL
+  { bestand: 'shared.js', bevat: '[href$="shop.html"]', reden: 'selector voor de menufilm, leest alleen' },
 ];
 
 /* Waarden die op bouwtijd niet vaststaan (string-concatenatie of een template)

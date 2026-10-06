@@ -1,134 +1,119 @@
 /* Regressietest voor de checkout, per land en per schermformaat.
  *
- * Bewaakt twee dingen die eerder stilletjes braken:
- *  1. "Continue to checkout" vanaf een GENESTE productroute (/products/<slug>)
- *     gaf een 404 omdat de link relatief was.
- *  2. Een niet-Nederlandse klant kon niet bestellen: het adresland stond
- *     hardgecodeerd op Netherlands, waardoor Shopify de postcode weigerde met
- *     "Enter a valid ZIP / postal code for Netherlands".
+ * Sinds 28-09-2026 gaat de klant van het mandje rechtstreeks naar de
+ * Shopify-checkout (de vijfstaps-wizard op checkout.html is weg). Deze test
+ * loopt dat pad zoals een klant: productpagina (geneste route) > in het mandje >
+ * land kiezen in het mandje > "Naar de afrekening" > Shopify.
  *
- * Draaien:  node tests/checkout-countries.mjs [basis-url]
- * Standaard https://harvestdeli.nl
+ * Bewaakt:
+ *  1. de knop in het mandje leidt naar Shopify, ook vanaf /products/<slug>
+ *     (eerder gaf een relatieve link daar een 404);
+ *  2. Shopify opent met het gekozen land (eerder stond het adresland vast op
+ *     Netherlands en weigerde Shopify Duitse postcodes);
+ *  3. het verzendtarief bij Shopify klopt met het land;
+ *  4. de cookiekeuze reist mee (_cs in de checkout-URL);
+ *  5. terug uit de checkout is het mandje nog gevuld.
  *
- * Let op: dit maakt echte carts aan bij Shopify (geen orders, geen betaling).
+ *   node tests/checkout-countries.mjs [basis-url]      standaard http://localhost:4400
+ *
+ * Maakt echte carts bij Shopify en vult een testadres in (example.com),
+ * maar plaatst nooit een bestelling.
  */
 import { chromium } from '/Users/thecreativitylab/Projects/products/node_modules/playwright/index.mjs';
 
-const BASE = process.argv[2] || 'https://harvestdeli.nl';
+const BASE = (process.argv[2] || 'http://localhost:4400').replace(/\/$/, '');
 
 const LANDEN = [
-  { code: 'NL', locale: 'nl-NL', naam: 'Netherlands', stad: 'Amsterdam', zip: '1012LG',
-    straat: 'Damrak 1', tel: '0612345678', tarief: 5.95 },
-  { code: 'DE', locale: 'de-DE', naam: 'Germany', stad: 'Berlin', zip: '10435',
-    straat: 'Kastanienallee 12', tel: '015123456789', tarief: 9.95 },
-  { code: 'IT', locale: 'it-IT', naam: 'Italy', stad: 'Milano', zip: '20121',
-    straat: 'Via Dante 5', tel: '3331234567', tarief: 12.95 },
+  { code: 'NL', locale: 'nl-NL', stad: 'Amsterdam', zip: '1012 LG', straat: 'Damrak 1', tarief: '5,95' },
+  { code: 'BE', locale: 'nl-BE', stad: 'Antwerpen', zip: '2000', straat: 'Meir 10', tarief: '6,95' },
+  { code: 'DE', locale: 'de-DE', stad: 'Berlin', zip: '10435', straat: 'Kastanienallee 12', tarief: '9,95' },
 ];
-
 const SCHERMEN = [['mobiel', 393, 852], ['tablet', 768, 1024], ['desktop', 1440, 900]];
 
-const CART = [{ slug: 'chestnut', size: '480g', qty: 1, price: 18, name: 'Chestnut Honey' }];
+/* Testproduct: de eerste honing die Shopify nu echt verkoopt. Een vaste keuze
+   (eerst kastanje) liet de test falen zodra die honing uitverkocht was. */
+const KANDIDATEN = [['acacia', 'acacia-honey'], ['thyme', 'thyme-honey'], ['pine', 'pine-honey'], ['chestnut', 'chestnut-honey'], ['oak', 'oak-honey']];
+const TEST_ROUTE = await (async () => {
+  const r = await fetch('https://su08c4-v4.myshopify.com/api/2026-07/graphql.json', {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Shopify-Storefront-Access-Token': 'd3f835bc393675aeb243244e5475f3c6' },
+    body: JSON.stringify({ query: '{ products(first: 50) { nodes { handle availableForSale } } }' }) });
+  const te = new Set((await r.json()).data.products.nodes.filter(n => n.availableForSale).map(n => n.handle));
+  const k = KANDIDATEN.find(([h]) => te.has(h));
+  if (!k) throw new Error('geen enkele testhoning te koop');
+  return k[1];
+})();
 
-async function flow(browser, land, [snaam, w, h]) {
-  const ctx = await browser.newContext({
-    locale: land.locale, viewport: { width: w, height: h },
-    timezoneId: land.code === 'DE' ? 'Europe/Berlin' : land.code === 'IT' ? 'Europe/Rome' : 'Europe/Amsterdam',
-  });
+async function flow(browser, land, [, w, h]) {
+  const ctx = await browser.newContext({ locale: land.locale, viewport: { width: w, height: h } });
   const page = await ctx.newPage();
-  const verstuurd = [];
-  page.on('response', async (r) => {
-    if (r.url().includes('myshopify.com/api/') && r.request().method() === 'POST') {
-      let req = null;
-      try { req = r.request().postData(); } catch (e) {}
-      if (req && req.includes('cartCreate')) {
-        let res = null; try { res = await r.text(); } catch (e) {}
-        verstuurd.push({
-          land: (req.match(/"country":"([^"]*)"/) || [])[1],
-          code: (req.match(/"countryCode":"([^"]*)"/) || [])[1],
-          schoon: (res || '').includes('"userErrors":[]'),
-        });
-      }
-    }
-  });
+  const r = {};
 
-  // 1. start op een GENESTE productroute, daar zat de 404
-  await page.goto(`${BASE}/products/chestnut-honey`, { waitUntil: 'load' });
-  await page.waitForTimeout(2000);
-  await page.evaluate((c) => localStorage.setItem('hd-cart-v1', JSON.stringify(c)), CART);
-  try {
-    const c = page.locator('button:has-text("Alles accepteren")').first();
-    if (await c.count()) await c.click({ timeout: 2500 });
-  } catch (e) {}
-  await page.reload({ waitUntil: 'load' });
-  await page.waitForTimeout(2500);
+  await page.goto(`${BASE}/products/${TEST_ROUTE}`, { waitUntil: 'networkidle' });
+  await page.locator('[data-cb-action="accept"]').click({ timeout: 4000 }).catch(() => {});
+  await page.locator('.pd-cta[data-add-to-cart]').first().click();
+  await page.waitForTimeout(1200);
+  if (!(await page.locator('#cartDrawer.open').count())) await page.evaluate(() => window.HD_openCart());
+  await page.waitForTimeout(600);
 
-  // 2. de checkout-link moet absoluut zijn en niet 404'en
-  const href = await page.evaluate(() => {
-    const a = document.querySelector('.cart-checkout');
-    return a ? a.getAttribute('href') : null;
-  });
-  const linkOk = href === '/checkout.html';
+  /* Land kiezen zoals de klant: de keuzelijst in het mandje. */
+  const knop = page.locator('#hdCartShip .hd-cc-btn').first();
+  if (await knop.count()) {
+    await knop.click().catch(() => {});
+    await page.locator(`#hdCartShip .hd-cc-opt[data-code="${land.code}"]`).first().click().catch(() => {});
+  } else await page.evaluate((c) => window.HD_SHIPPING && window.HD_SHIPPING.setCountry(c), land.code);
+  await page.waitForTimeout(400);
+  r.gekozen = await page.evaluate(() => window.HD_SHIPPING && window.HD_SHIPPING.country());
 
-  // 3. door de wizard, zonder het landveld aan te raken
-  await page.goto(`${BASE}/checkout.html`, { waitUntil: 'load' });
-  await page.waitForTimeout(2500);
-  await page.locator('[data-wz-next][data-step1]').first().click().catch(() => {});
-  await page.waitForTimeout(900);
-  const landStandaard = await page.inputValue('#ckCountry').catch(() => null);
+  await Promise.all([
+    page.waitForURL(/\/checkouts\/cn\//, { timeout: 30000 }),
+    page.locator('#cartDrawer .cart-checkout').click()
+  ]).catch(() => {});
+  r.opShopify = /\/checkouts\/cn\//.test(page.url());
+  r.consent = /[?&]_cs=/.test(page.url());
+  await page.waitForTimeout(3000);
 
-  for (const [sel, val] of [['#ckFirst', 'Test'], ['#ckLast', 'Koper'],
-    ['#ckEmail', 'test@example.com'], ['#ckPhone', land.tel],
-    ['#ckAddr1', land.straat], ['#ckCity', land.stad], ['#ckPostcode', land.zip]]) {
-    await page.fill(sel, val).catch(() => {});
-  }
-  for (let i = 0; i < 4; i++) {
-    const b = page.locator('.wz-step:not([hidden]) [data-wz-next]').first();
-    if (!(await b.count())) break;
-    await b.click().catch(() => {});
-    await page.waitForTimeout(1200);
-  }
-  await page.locator('[data-wz-place]').first().click().catch(() => {});
-  await page.waitForTimeout(9000);
-
-  // 4. de betaalstap bij Shopify moet het adres accepteren
-  const tekst = await page.evaluate(() => document.body.innerText).catch(() => '');
-  const zipFout = /valid ZIP|valid postal|ungültige|ongeldige postcode/i.test(tekst);
-  const opShopify = /myshopify\.com\/checkouts|\/checkouts\/cn\//.test(page.url());
-  const betaalt = ['iDeal', 'Bancontact', 'Card', 'Kreditkarte', 'PayPal'].some((b) => tekst.includes(b));
-  const tarief = (tekst.match(/Verzending[\s\S]{0,60}?€\s?([\d.,]+)/) || [])[1];
-
-  await ctx.close();
-  const stuur = verstuurd[verstuurd.length - 1] || {};
-  return {
-    linkOk, href, landStandaard,
-    verstuurdLand: stuur.land, verstuurdCode: stuur.code, cartSchoon: stuur.schoon,
-    opShopify, zipFout, betaalt, tarief,
+  /* Adres invullen bij Shopify om de verzendtarieven te zien. */
+  const vul = async (naam, waarde) => {
+    const el = page.locator(`input[name="${naam}"]:visible`).first();
+    if (await el.count()) await el.fill(waarde).catch(() => {});
   };
+  r.landVeld = await page.locator('select[name="countryCode"]').first().inputValue().catch(() => null);
+  await vul('email', 'test-checkout@example.com');
+  await vul('firstName', 'Test'); await vul('lastName', 'Koper');
+  await vul('address1', land.straat); await vul('postalCode', land.zip); await vul('city', land.stad);
+  await page.keyboard.press('Tab');
+  await page.waitForTimeout(6000);
+  const tekst = await page.evaluate(() => document.body.innerText).catch(() => '');
+  r.zipFout = /valid ZIP|valid postal|ungültige|ongeldige postcode|Voer een geldige postcode/i.test(tekst);
+  r.tarief = new RegExp('€\\s?' + land.tarief.replace(',', ',')).test(tekst);   // Shopify zet een harde spatie na €
+  r.betaalt = /iDEAL|Bancontact|Creditcard|Credit card|Kaart|Klarna|PayPal/i.test(tekst);
+
+  await page.goBack({ waitUntil: 'networkidle' }).catch(() => {});
+  await page.waitForTimeout(1500);
+  r.mandjeNaTerug = await page.evaluate(() => (window.HD_CART && window.HD_CART.count()) || 0).catch(() => 0);
+  await ctx.close();
+  return r;
 }
 
 const browser = await chromium.launch();
 let fouten = 0;
-console.log(`CHECKOUT-REGRESSIE tegen ${BASE}\n${'='.repeat(104)}`);
-console.log('land scherm    checkoutlink  landveld      verstuurd      zipfout  shopify  betaalopties  tarief  uitkomst');
-console.log('-'.repeat(104));
-
+console.log(`CHECKOUT-REGRESSIE tegen ${BASE} (testproduct /products/${TEST_ROUTE})\n${'='.repeat(100)}`);
+console.log('land scherm    gekozen shopify consent landveld zipfout tarief betaalopties terug-mandje uitkomst');
+console.log('-'.repeat(100));
 for (const land of LANDEN) {
   for (const scherm of SCHERMEN) {
     let r;
     try { r = await flow(browser, land, scherm); }
-    catch (e) { console.log(`${land.code} ${scherm[0]}: crash ${String(e).slice(0, 60)}`); fouten++; continue; }
-    const ok = r.linkOk && r.landStandaard === land.naam && r.verstuurdLand === land.naam &&
-               r.verstuurdCode === land.code && r.cartSchoon && r.opShopify && !r.zipFout && r.betaalt;
+    catch (e) { console.log(`${land.code} ${scherm[0]}: crash ${String(e).slice(0, 80)}`); fouten++; continue; }
+    const ok = r.gekozen === land.code && r.opShopify && r.consent && r.landVeld === land.code &&
+               !r.zipFout && r.tarief && r.betaalt && r.mandjeNaTerug > 0;
     if (!ok) fouten++;
-    console.log(
-      `${land.code}   ${scherm[0].padEnd(10)}${String(r.linkOk).padEnd(14)}` +
-      `${String(r.landStandaard).padEnd(14)}${String(r.verstuurdLand).padEnd(15)}` +
-      `${String(r.zipFout).padEnd(9)}${String(r.opShopify).padEnd(9)}` +
-      `${String(r.betaalt).padEnd(14)}${String(r.tarief || '-').padEnd(8)}${ok ? 'OK' : 'FOUT'}`);
+    console.log(`${land.code}   ${scherm[0].padEnd(10)}${String(r.gekozen).padEnd(8)}${String(r.opShopify).padEnd(8)}${String(r.consent).padEnd(8)}` +
+      `${String(r.landVeld).padEnd(9)}${String(r.zipFout).padEnd(8)}${String(r.tarief).padEnd(7)}${String(r.betaalt).padEnd(13)}` +
+      `${String(r.mandjeNaTerug).padEnd(12)}${ok ? 'OK' : 'FOUT'}`);
   }
 }
-
-console.log('-'.repeat(104));
+console.log('-'.repeat(100));
 console.log(fouten === 0 ? 'Alle landen en schermformaten correct.' : `${fouten} scenario(s) FOUT.`);
 await browser.close();
 process.exit(fouten ? 1 : 0);

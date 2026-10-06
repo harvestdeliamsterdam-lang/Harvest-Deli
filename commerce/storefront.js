@@ -28,7 +28,7 @@
     var ctrl = (typeof AbortController !== 'undefined') ? new AbortController() : null;
     var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, TIMEOUT_MS) : null;
     try {
-      var res = await fetch('https://' + s.domain + '/api/' + (s.apiVersion || '2024-10') + '/graphql.json', {
+      var res = await fetch('https://' + s.domain + '/api/' + (s.apiVersion || '2026-07') + '/graphql.json', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -107,7 +107,12 @@
     }`,
 
     /* ---- cart + checkout ---- */
-    cartCreate: `mutation cartCreate($lines: [CartLineInput!], $buyerIdentity: CartBuyerIdentityInput) {
+    /* @inContext carries the visitor's cookie choice (visitorConsent, API
+       2025-10+), country and language into the checkoutUrl. Shopify reads it
+       (the _cs parameter) and only runs checkout pixels, such as the Google &
+       YouTube pixel that reports purchases, when the visitor agreed. */
+    cartCreate: `mutation cartCreate($lines: [CartLineInput!], $buyerIdentity: CartBuyerIdentityInput, $country: CountryCode, $language: LanguageCode, $consent: VisitorConsent)
+      @inContext(country: $country, language: $language, visitorConsent: $consent) {
       cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
         cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } } }
         userErrors { field message }

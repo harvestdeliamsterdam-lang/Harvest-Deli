@@ -243,6 +243,221 @@
       "source": "/article-taste-the-greek-sun.html",
       "destination": "/article-de-smaak-van-de-griekse-zon.html",
       "permanent": true
+    },
+    {
+      "source": "/products/chestnut",
+      "destination": "/products/chestnut-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/chestnut",
+      "destination": "/products/chestnut-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/fir-vanilla",
+      "destination": "/products/vanilla-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/fir-vanilla",
+      "destination": "/products/vanilla-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/acacia",
+      "destination": "/products/acacia-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/acacia",
+      "destination": "/products/acacia-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/pine",
+      "destination": "/products/pine-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/pine",
+      "destination": "/products/pine-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/orange-blossom",
+      "destination": "/products/orange-blossom-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/orange-blossom",
+      "destination": "/products/orange-blossom-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/oak",
+      "destination": "/products/oak-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/oak",
+      "destination": "/products/oak-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/arbutus",
+      "destination": "/products/arbutus-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/arbutus",
+      "destination": "/products/arbutus-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/thyme",
+      "destination": "/products/thyme-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/thyme",
+      "destination": "/products/thyme-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/heather",
+      "destination": "/products/heather-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/heather",
+      "destination": "/products/heather-honey",
+      "permanent": true
+    },
+    {
+      "source": "/products/oregano",
+      "destination": "/products/wild-oregano",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/oregano",
+      "destination": "/products/wild-oregano",
+      "permanent": true
+    },
+    {
+      "source": "/products/olive-oil",
+      "destination": "/products/extra-virgin-olive-oil",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/olive-oil",
+      "destination": "/products/extra-virgin-olive-oil",
+      "permanent": true
+    },
+    {
+      "source": "/products/mountain-tea",
+      "destination": "/products/greek-mountain-tea",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/mountain-tea",
+      "destination": "/products/greek-mountain-tea",
+      "permanent": true
+    },
+    {
+      "source": "/products/chamomile-tea",
+      "destination": "/products/greek-chamomile-tea",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/chamomile-tea",
+      "destination": "/products/greek-chamomile-tea",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/chestnut-honey",
+      "destination": "/products/chestnut-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/vanilla-honey",
+      "destination": "/products/vanilla-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/acacia-honey",
+      "destination": "/products/acacia-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/pine-honey",
+      "destination": "/products/pine-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/orange-blossom-honey",
+      "destination": "/products/orange-blossom-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/oak-honey",
+      "destination": "/products/oak-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/arbutus-honey",
+      "destination": "/products/arbutus-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/thyme-honey",
+      "destination": "/products/thyme-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/heather-honey",
+      "destination": "/products/heather-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/wild-oregano",
+      "destination": "/products/wild-oregano",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/extra-virgin-olive-oil",
+      "destination": "/products/extra-virgin-olive-oil",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/greek-mountain-tea",
+      "destination": "/products/greek-mountain-tea",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/greek-chamomile-tea",
+      "destination": "/products/greek-chamomile-tea",
+      "permanent": true
+    },
+    {
+      "source": "/collections",
+      "destination": "/shop.html",
+      "permanent": true
+    },
+    {
+      "source": "/collections/(.*)",
+      "destination": "/shop.html",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/collections/(.*)",
+      "destination": "/shop.html",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [

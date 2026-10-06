@@ -195,7 +195,7 @@
       totalQuantity: items.reduce(function (a, it) { return a + it.qty; }, 0),
       cost: { subtotalAmount: money(subtotal), totalAmount: money(Math.max(0, subtotal - offer)) },
       discountAmount: money(offer),
-      freeShippingThreshold: (CFG().freeShippingThreshold || 65),
+      freeShippingThreshold: ((window.HD_SHIPPING && window.HD_SHIPPING.current && window.HD_SHIPPING.current().free) || CFG().freeShippingThreshold || 60),
       checkoutUrl: '/checkout.html'   // local wizard; Shopify checkoutUrl is used by Commerce.checkout() when live
     };
   }
@@ -364,7 +364,7 @@
 
       while (poging < 7) {
         poging++;
-        var vars = { lines: lines, buyerIdentity: bi };
+        var vars = { lines: lines, buyerIdentity: bi, country: bi.countryCode || landVoorCheckout(), language: taalVoorCheckout(), consent: toestemmingVoorCheckout() };
         var uitkomst = await roepCartCreate(vars);
         laatste = uitkomst;
 
@@ -372,7 +372,10 @@
         if (cart && cart.checkoutUrl) {
           if (stap !== 'volledig') noteerCheckoutDiag('hersteld', stap, uitkomst, vars);
           setCartId(cart.id);
-          clearLocalCart();          // PHASE 5: cart cleared the instant a Shopify checkout URL exists
+          /* Keep the shopper's cart: pressing Back from checkout must not show an
+             empty basket. It is emptied once Shopify has turned this cart into
+             an order (see naAfrekenen below). */
+          markeerOvergave(cart.id);
           return cart.checkoutUrl;
         }
 
@@ -527,10 +530,37 @@
 
   window.Commerce = Commerce;
 
+  /* ---- Na het afrekenen ------------------------------------------------------
+     Shopify verwijdert een cart zodra er een bestelling van is gemaakt
+     ("Completed carts are deleted upon order creation", Storefront Cart API).
+     Bij de overgave naar de checkout onthouden we welke cart het was; komt de
+     klant daarna terug op de site, dan vragen we die cart op. Bestaat hij niet
+     meer, dan is er besteld (of is hij na 10 dagen verlopen) en legen we het
+     mandje. Bestaat hij nog, dan kwam de klant terug zonder te betalen en blijft
+     alles staan. */
+  var OVERGAVE_KEY = 'hd-checkout-handoff';
+  function markeerOvergave(id) {
+    try { localStorage.setItem(OVERGAVE_KEY, JSON.stringify({ id: id, t: Date.now() })); } catch (e) {}
+  }
+  async function naAfrekenen() {
+    var o = null;
+    try { o = JSON.parse(localStorage.getItem(OVERGAVE_KEY) || 'null'); } catch (e) {}
+    if (!o || !o.id || !useShopify()) return;
+    var data = await SF().safeFetch('query HandoffCart($id: ID!) { cart(id: $id) { id } }', { id: o.id });
+    if (!data) return;                       // storing of geen antwoord: niets doen
+    if (data.cart === null) {
+      clearLocalCart();
+      setCartId(null);
+      try { localStorage.removeItem(OVERGAVE_KEY); } catch (e) {}
+    }
+  }
+  window.HD_reconcileCheckout = naAfrekenen;
+
   /* PHASE 5 helper: empty the local HD_CART (size-aware). Called once a Shopify
      checkout URL is created, the items now live in the Shopify cart. */
   function clearLocalCart() {
     try {
+      if (window.HD_CART && typeof window.HD_CART.clear === 'function') { window.HD_CART.clear(); return; }
       if (window.HD_CART && window.HD_CART.items) {
         window.HD_CART.items.slice().forEach(function (it) { window.HD_CART.remove(it.slug, it.size); });
       }
@@ -656,6 +686,19 @@
     return (uit && /^\+[1-9][0-9]{7,14}$/.test(uit)) ? uit : null;
   }
 
+  /* ---- Context voor de Shopify-checkout --------------------------------------
+     De checkout draait op een ander domein en ziet de cookiebanner van deze
+     site niet. Zonder deze keuze bleef de Google-pixel in de checkout stil en
+     kwam geen enkele aankoop in GA4 (gemeten 28-09-2026). Shopify leest de
+     keuze uit de checkoutUrl (@inContext visitorConsent, parameter _cs). */
+  function toestemmingVoorCheckout() {
+    if (typeof window.HD_visitorConsent === 'function') return window.HD_visitorConsent();
+    var c = (window.HD_cookies && window.HD_cookies.get && window.HD_cookies.get()) || null;
+    return { analytics: !!(c && c.analytics), marketing: !!(c && c.marketing), preferences: !!c, saleOfData: !!(c && c.marketing) };
+  }
+  function taalVoorCheckout() { return (window.HD_lang && window.HD_lang() === 'en') ? 'EN' : 'NL'; }
+  function landVoorCheckout() { return (window.HD_SHIPPING && window.HD_SHIPPING.country()) || 'NL'; }
+
   /* ---- Ruwe cartCreate: verbergt NIETS. ------------------------------------
      safeFetch slikt elke fout en geeft null terug, en dan is niet meer te zien
      of Shopify een veld weigerde, een verzoek afkneep of gewoon onbereikbaar
@@ -773,7 +816,10 @@
     function probeer() {
       poging++;
       Commerce.checkout(buyer).then(function (url) {
-        if (url && /^https?:\/\//.test(url)) { window.location.href = url; return; }
+        if (url && /^https?:\/\//.test(url)) {
+          if (typeof window.HD_navigate === 'function') window.HD_navigate(url); else window.location.href = url;
+          return;
+        }
         klaar();
         showCheckoutError({ soort: 'geen-url' });
         meldCheckoutMislukt({ soort: 'geen-url' });
@@ -798,15 +844,30 @@
      zonder een hele bestelling te hoeven doorlopen. Alleen lezen, geen gedrag. */
   window.HD_normalizePhone = normalizePhone;
 
-  /* Checkout routing. Every checkout entry (the cart drawer "Continue to
-     checkout" a.cart-checkout and any [data-shopify-checkout] element) routes
-     through the branded pre-checkout wizard (checkout.html). The wizard's final
-     step hands off to Shopify hosted checkout (Mollie) for the actual payment
-   , see startCheckout()/HD_startCheckout, invoked from checkout.js placeOrder. */
+  /* Checkout routing. The cart drawer button (a.cart-checkout) and any
+     [data-shopify-checkout] element go straight to Shopify's secure checkout.
+     Until 28-09-2026 they first went through a five-step form on checkout.html
+     that asked for the same details Shopify asks for again; that step is gone.
+     Only the mock/dev source still uses the local wizard. */
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('[data-shopify-checkout], a.cart-checkout');
     if (!a) return;
     e.preventDefault();
-    window.location.href = '/checkout.html';
+    if (!useShopify()) { window.location.href = '/checkout.html'; return; }
+    a.classList.add('is-loading');
+    a.setAttribute('aria-busy', 'true');
+    var vrij = function () { a.classList.remove('is-loading'); a.removeAttribute('aria-busy'); document.removeEventListener('hd:checkout-failed', vrij); };
+    document.addEventListener('hd:checkout-failed', vrij);
+    startCheckout();
   }, true);
+  /* Terug van de checkout (ook via de terugknop uit de bfcache): mandje bijwerken. */
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { naAfrekenen(); });
+  else naAfrekenen();
+  window.addEventListener('pageshow', function (e) {
+    if (e.persisted) {
+      naAfrekenen();
+      document.querySelectorAll('a.cart-checkout.is-loading').forEach(function (a) { a.classList.remove('is-loading'); a.removeAttribute('aria-busy'); });
+      startCheckout._bezig = false;
+    }
+  });
 })();
