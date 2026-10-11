@@ -41,6 +41,28 @@
 
   var DETAILS = {
     'chestnut': honeyDetail('Chestnut'),
+    /* Wildflower: only what the supplier sheet states (raw, unfiltered,
+       nothing added); "unpasteurised" from the generic honey copy is not on it. */
+    'wildflower': {
+      ingredients: L('100% raw, unfiltered Greek honey. Nothing added.', '100% rauwe, ongefilterde Griekse honing. Niets toegevoegd.'),
+      allergens: L('Honey is not suitable for children under 12 months.', 'Honing is niet geschikt voor kinderen jonger dan 12 maanden.'),
+      nutritionLabel: L('Per 100 g', 'Per 100 g'),
+      nutrition: HONEY_NUTRITION,
+      faqs: [
+        [L('What is wildflower honey?', 'Wat is bloesemhoning?'),
+         L('Wildflower honey, anthómelo in Greek, comes from bees gathering nectar from many different wildflowers rather than a single plant. So you taste not one flower, but the whole landscape in balance.',
+           'Bloesemhoning, in het Grieks anthómelo, ontstaat wanneer bijen nectar verzamelen van verschillende wilde bloemen in plaats van één enkele plant. Je proeft daardoor niet één bloem, maar het samenspel van het landschap.')],
+        [L('Is this honey raw?', 'Is deze honing rauw?'),
+         L('Yes. This wildflower honey is raw and unfiltered, with nothing added. It stays just as the bees make it.',
+           'Ja. Deze bloesemhoning is rauw en ongefilterd, zonder toevoegingen. Zo blijft de honing zoals de bijen hem maken.')],
+        [L('Why is my honey thickening?', 'Waarom wordt mijn honing vaster?'),
+         L('Crystallisation is a natural process in honey, and this wildflower honey crystallises relatively slowly. To make it liquid again, stand the jar in lukewarm water for a while. Never heat honey strongly.',
+           'Kristallisatie is een natuurlijk proces bij honing. Deze bloesemhoning kristalliseert relatief langzaam. Wil je hem weer vloeibaar, zet de pot dan even in lauwwarm water. Verhit honing nooit sterk.')],
+        [L('How should I store it?', 'Hoe bewaar ik de honing?'),
+         L('Tightly closed, dry and out of direct sunlight, at room temperature. In the fridge, honey thickens faster.',
+           'Goed gesloten, droog en uit direct zonlicht, op kamertemperatuur. In de koelkast wordt honing sneller vast.')]
+      ]
+    },
     'olive-oil': {
       ingredients: L('100% cold-pressed extra virgin olive oil, Koroneiki &amp; Athinolia olives, single estate.',
                      '100% koudgeperste extra vergine olijfolie, Koroneiki &amp; Athinolia olijven, één herkomst.'),
@@ -92,7 +114,9 @@
     'chestnut': ['mountain-tea', 'olive-oil', 'thyme'],
     'olive-oil': ['chestnut', 'thyme', 'mountain-tea'],
     'mountain-tea': ['chestnut', 'acacia', 'orange-blossom'],
-    'chamomile-tea': ['acacia', 'orange-blossom', 'mountain-tea']
+    'chamomile-tea': ['acacia', 'orange-blossom', 'mountain-tea'],
+    /* the other light, floral honeys of the line */
+    'wildflower': ['orange-blossom', 'acacia', 'thyme']
   };
 
   /* ---- Per-honey tasting spec (source of truth: Harvest Deli honey PDF) ----
@@ -174,7 +198,21 @@
       lede: ['A rich, naturally creamy honey with beautiful depth, bees gather nectar from thousands of tiny heather blossoms across the Greek hills.', 'Een rijke, van nature romige honing met prachtige diepte, bijen verzamelen nectar uit duizenden kleine heidebloesems op de Griekse heuvels.'],
       origin: ['When wild heather blooms across the Greek hills and mountains, bees gather nectar from thousands of tiny blossoms.', 'Wanneer wilde heide bloeit op de Griekse heuvels en bergen, verzamelen bijen nectar uit duizenden kleine bloesems.'],
       result: ['Heather honey develops a rich floral aroma and a naturally creamy texture with beautiful depth.', 'Heidehoning ontwikkelt een rijk bloemig aroma en een van nature romige textuur met prachtige diepte.'],
-      tagline: ['A beautiful raw Greek honey full of life.', 'Een prachtige rauwe Griekse honing vol leven.'] }
+      tagline: ['A beautiful raw Greek honey full of life.', 'Een prachtige rauwe Griekse honing vol leven.'] },
+    /* Wildflower (anthómelo), from the supplier sheet "Greek Blossom Honey /
+       Griekse Bloesemhoning (Anthomelo)" (10-10-2026): raw and unfiltered,
+       mountains and fields of Greece, thyme/oregano/citrus/wild herbs and
+       other seasonal flowers, harvested in spring and early summer. The
+       sheet's health claims are left out (EU 1924/2006). English written after
+       the Dutch approval (10-10-2026). */
+    'wildflower': { greek: 'Anthómelo',
+      color: ['Light amber to golden', 'Licht amber tot goudkleurig'], aroma: ['Fresh, floral and balanced', 'Fris, bloemig en in balans'],
+      texture: ['Smooth, creamy and velvety', 'Glad, romig en fluweelzacht'], crystal: ['Natural and relatively slow', 'Natuurlijk en relatief langzaam'],
+      sweetness: ['Mild and delicately sweet', 'Mild en subtiel zoet'],
+      lede: ['Raw honey from Greek wildflowers. Mild, floral and delicately sweet.', 'Rauwe honing van wilde Griekse bloemen. Mild, bloemig en subtiel zoet.'],
+      origin: ['Greece. Bees gather nectar from wildflowers across the mountains and fields of Greece: thyme, oregano, citrus blossom, wild herbs and many other seasonal flowers. Harvested in spring and early summer.', 'Griekenland. Bijen verzamelen nectar van wilde bloemen in de bergen en velden van Griekenland: tijm, oregano, citrusbloesem, wilde kruiden en vele andere seizoensbloemen. Geoogst in het voorjaar en de vroege zomer.'],
+      result: ['Raw, unfiltered blossom honey, known in Greece as anthómelo, made from the nectar of many different wildflowers. The result is a unique, well-balanced honey with a delicate floral profile: mild and delicately sweet, fresh in aroma, light amber to golden, and smooth, creamy and velvety.', 'Rauwe, ongefilterde bloesemhoning, in Griekenland anthómelo genoemd, van de nectar van uiteenlopende wilde bloemen. Het resultaat is een unieke, evenwichtige honing met een fijn bloemig profiel: mild en subtiel zoet, fris van aroma, licht amber tot goudkleurig en glad, romig en fluweelzacht.'],
+      tagline: ['A taste of Greek nature in every spoonful.', 'Een vleugje Griekse natuur in iedere lepel.'] }
   };
 
   /* Read by scripts/build-product-pages.mjs, which writes each honey page with
@@ -228,6 +266,10 @@
     'heather': {
       en: ['From wild heather on Greek hills', 'Floral and warm', 'Naturally creamy texture', 'Raw and unfiltered', '100% honey, nothing added'],
       nl: ['Van wilde heide op de Griekse heuvels', 'Bloemig en warm', 'Van nature romige textuur', 'Rauw en ongefilterd', '100% honing, niets toegevoegd'] },
+    /* Order = the hotspots on the photo (see product-experience.js). */
+    'wildflower': {
+      en: ['100% Greek honey', 'Floral, gentle flavour', 'From Greek wildflowers', 'Raw and unfiltered', 'Versatile in the kitchen'],
+      nl: ['100% Griekse honing', 'Bloemige, zachte smaak', 'Van wilde Griekse bloemen', 'Rauw en ongefilterd', 'Veelzijdig in gebruik'] },
     'thyme': {
       en: ['From wild Greek thyme', 'Herbal and intensely floral', 'Warm, balanced sweetness', 'A classic Greek variety', '100% honey, nothing added'],
       nl: ['Van wilde Griekse tijm', 'Kruidig en intens bloemig', 'Warme, gebalanceerde zoetheid', 'Een klassieke Griekse soort', '100% honing, niets toegevoegd'] },
@@ -567,9 +609,15 @@
       });
     }
 
+    /* Product experience pages (<html data-hd-experience>, e.g. wildflower)
+       carry their own anchored highlights, story, origin, details and closing
+       purchase line in the HTML (scripts/build-product-pages.mjs). Here they
+       only get the shared blocks that are not already on the page. */
+    var isExperience = document.documentElement.hasAttribute('data-hd-experience');
+
     // Interactive benefit bubbles around the main product image (all products).
     var pdgMain = document.getElementById('pdgMain');
-    if (pdgMain && PRODUCT_BENEFITS[slug] && !pdgMain.querySelector('.pd-benefit-layer')) {
+    if (pdgMain && PRODUCT_BENEFITS[slug] && !isExperience && !pdgMain.querySelector('.pd-benefit-layer')) {
       pdgMain.insertAdjacentHTML('beforeend', benefitBubblesHTML(slug));
       pdgMain.setAttribute('tabindex', '0');
       pdgMain.setAttribute('role', 'group');
@@ -594,9 +642,11 @@
 
     var wrap = document.createElement('div');
     wrap.id = 'pxExtras';
-    wrap.innerHTML = compositionHTML(d) + originSectionHTML(slug) + pairsHTML(slug) + ritualPromoHTML() + faqHTML(d);
+    wrap.innerHTML = isExperience
+      ? pairsHTML(slug) + ritualPromoHTML() + faqHTML(d)
+      : compositionHTML(d) + originSectionHTML(slug) + pairsHTML(slug) + ritualPromoHTML() + faqHTML(d);
 
-    var anchor = document.querySelector('.reviews-section') || document.querySelector('.also') || null;
+    var anchor = (isExperience && document.getElementById('pdxReminder')) || document.querySelector('.reviews-section') || document.querySelector('.also') || null;
     if (anchor && anchor.parentNode) anchor.parentNode.insertBefore(wrap, anchor);
     else (document.querySelector('main') || document.body).appendChild(wrap);
 

@@ -1,7 +1,7 @@
 /* Clean product routing helper: catalog slug -> permanent /products/<url-slug>.
    Single source of truth for building product links from any script. */
 window.HD_urlForSlug = function (slug) {
-  var M = { chestnut:'chestnut-honey', pine:'pine-honey', oak:'oak-honey', arbutus:'arbutus-honey', 'fir-vanilla':'vanilla-honey', 'orange-blossom':'orange-blossom-honey', acacia:'acacia-honey', thyme:'thyme-honey', heather:'heather-honey', oregano:'wild-oregano', 'olive-oil':'extra-virgin-olive-oil', 'mountain-tea':'greek-mountain-tea', 'chamomile-tea':'greek-chamomile-tea' };
+  var M = { chestnut:'chestnut-honey', pine:'pine-honey', oak:'oak-honey', arbutus:'arbutus-honey', 'fir-vanilla':'vanilla-honey', 'orange-blossom':'orange-blossom-honey', acacia:'acacia-honey', thyme:'thyme-honey', heather:'heather-honey', wildflower:'wildflower-honey', oregano:'wild-oregano', 'olive-oil':'extra-virgin-olive-oil', 'mountain-tea':'greek-mountain-tea', 'chamomile-tea':'greek-chamomile-tea' };
   return '/products/' + (M[slug] || slug);
 };
 
@@ -2053,7 +2053,7 @@ window.HD_urlForSlug = function (slug) {
     'shop.fp.g.house': 'House attributes', 'shop.fp.g.pairings': 'Pairings',
     'shop.fp.type.arbutus': 'Arbutus', 'shop.fp.type.oak': 'Oak',
     'shop.fp.type.fir': 'Fir &amp; vanilla', 'shop.fp.type.orange': 'Orange blossom',
-    'shop.fp.type.acacia': 'Acacia', 'shop.fp.type.thyme': 'Thyme',
+    'shop.fp.type.acacia': 'Acacia', 'shop.fp.type.thyme': 'Thyme', 'shop.fp.type.wildflower': 'Wildflowers',
     'shop.fp.type.chestnut': 'Chestnut', 'shop.fp.type.pine': 'Pine',
     'shop.fp.type.heather': 'Heather',
     'shop.fp.flavor.warm': 'Warm & resinous', 'shop.fp.flavor.floral': 'Floral',
@@ -2094,7 +2094,7 @@ window.HD_urlForSlug = function (slug) {
     'shop.fp.g.flavor': 'Smaakprofiel', 'shop.fp.g.color': 'Kleur',
     'shop.fp.g.texture': 'Textuur', 'shop.fp.g.season': 'Oogstseizoen',
     'shop.fp.g.house': 'Huiskenmerken', 'shop.fp.g.pairings': 'Combinaties',
-    'shop.fp.type.chestnut': 'Tamme kastanje', 'shop.fp.type.thyme': 'Wilde tijm',
+    'shop.fp.type.chestnut': 'Tamme kastanje', 'shop.fp.type.thyme': 'Wilde tijm', 'shop.fp.type.wildflower': 'Wilde bloemen',
     'shop.fp.type.pine_html': 'Den &amp; heide', 'shop.fp.type.wildflower': 'Wilde bloem',
     'shop.fp.type.mountain': 'Berg reserve', 'shop.fp.type.orange': 'Sinaasappelbloesem',
     'shop.fp.flavor.warm': 'Warm & harsig', 'shop.fp.flavor.floral': 'Bloemig',
@@ -2135,7 +2135,7 @@ window.HD_urlForSlug = function (slug) {
     'shop.fp.g.flavor': 'Προφίλ γεύσης', 'shop.fp.g.color': 'Χρώμα',
     'shop.fp.g.texture': 'Υφή', 'shop.fp.g.season': 'Εποχή συγκομιδής',
     'shop.fp.g.house': 'Χαρακτηριστικά οίκου', 'shop.fp.g.pairings': 'Συνδυασμοί',
-    'shop.fp.type.chestnut': 'Καστανιά', 'shop.fp.type.thyme': 'Άγριο θυμάρι',
+    'shop.fp.type.chestnut': 'Καστανιά', 'shop.fp.type.thyme': 'Άγριο θυμάρι', 'shop.fp.type.wildflower': 'Αγριολούλουδα',
     'shop.fp.type.pine_html': 'Πεύκο &amp; ρείκι', 'shop.fp.type.wildflower': 'Αγριολούλουδα',
     'shop.fp.type.mountain': 'Ορεινή ρεζέρβα', 'shop.fp.type.orange': 'Άνθος πορτοκαλιάς',
     'shop.fp.flavor.warm': 'Ζεστό & ρετσινάτο', 'shop.fp.flavor.floral': 'Λουλουδάτο',
@@ -2476,6 +2476,30 @@ window.HD_urlForSlug = function (slug) {
       slug: 'thyme',
       pid: '11364331290965',
       url: '/products/thyme-honey'
+    },
+    /* Greek Wildflower Honey (anthómelo), live since 10-10-2026. Shopify
+       "Wildflower Honey", handle wildflower. Prices set by the owner on
+       11-10-2026 (480 g €14, 950 g €24); the page generator checks them
+       against Shopify. No GTIN until GS1 has issued the numbers (never copy
+       another product's EAN). */
+    'wildflower': {
+      name: loc('Greek Wildflower Honey', 'Griekse Bloesemhoning', 'Ανθόμελο'),
+      edition: loc('Wildflower', 'Wilde bloemen', 'Αγριολούλουδα'),
+      region: loc('Greece', 'Griekenland', 'Ελλάδα'),
+      type: 'honey',
+      sizes: [{ id: '480g', label: '480g', price: 14, sku: 'HD-HON-WILDFLOWER-480', vid: '55291190968661' }, { id: '950g', label: '950g', price: 24, sku: 'HD-HON-WILDFLOWER-950', vid: '55291191001429' }],
+      defaultSize: '480g',
+      price: 14,
+      hue: 'straw',
+      notes: loc('Mild, floral and delicately sweet.', 'Mild, bloemig en subtiel zoet.', 'Ήπιο, ανθώδες και διακριτικά γλυκό.'),
+      texture: loc('Smooth, creamy and velvety', 'Glad, romig en fluweelzacht', 'Απαλό, κρεμώδες και βελούδινο'),
+      weight: '480g · 950g',
+      tags: ['floral', 'light', 'raw', 'spring', 'wildflower'],
+      badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Wildflower Honey', 'Bloesemhoning', 'Ανθόμελο')],
+      image: '/assets/products-images/wildflower.webp?v=hd-2026-06-06-221',
+      slug: 'wildflower',
+      pid: '11688548696405',
+      url: '/products/wildflower-honey'
     },
     'oregano': {
       name: loc('Wild Oregano', 'Wilde oregano', 'Άγρια Ρίγανη'),
@@ -4145,7 +4169,7 @@ window.HD_urlForSlug = function (slug) {
   function render() {
     if (!window.HD_product) return;
     const q = (input.value || '').toLowerCase().trim();
-    const slugs = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','chestnut','pine','heather','olive-oil','mountain-tea','chamomile-tea'];
+    const slugs = ['arbutus','oak','fir-vanilla','orange-blossom','acacia','thyme','wildflower','chestnut','pine','heather','olive-oil','mountain-tea','chamomile-tea'];
     const matches = slugs.map(s => window.HD_product(s)).filter(p => {
       if (!p) return false;
       if (!q) return true;

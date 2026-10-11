@@ -118,6 +118,18 @@
         {
           "type": "query",
           "key": "p",
+          "value": "wildflower"
+        }
+      ],
+      "destination": "/products/wildflower-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product.html",
+      "has": [
+        {
+          "type": "query",
+          "key": "p",
           "value": "heather"
         }
       ],
@@ -182,6 +194,11 @@
     {
       "source": "/product-thyme.html",
       "destination": "/products/thyme-honey",
+      "permanent": true
+    },
+    {
+      "source": "/product-wildflower.html",
+      "destination": "/products/wildflower-honey",
       "permanent": true
     },
     {
@@ -320,8 +337,18 @@
       "permanent": true
     },
     {
+      "source": "/products/wildflower",
+      "destination": "/products/wildflower-honey",
+      "permanent": true
+    },
+    {
       "source": "/(nl|en)/products/thyme",
       "destination": "/products/thyme-honey",
+      "permanent": true
+    },
+    {
+      "source": "/(nl|en)/products/wildflower",
+      "destination": "/products/wildflower-honey",
       "permanent": true
     },
     {
@@ -415,6 +442,11 @@
       "permanent": true
     },
     {
+      "source": "/(nl|en)/products/wildflower-honey",
+      "destination": "/products/wildflower-honey",
+      "permanent": true
+    },
+    {
       "source": "/(nl|en)/products/heather-honey",
       "destination": "/products/heather-honey",
       "permanent": true
@@ -496,6 +528,10 @@
     {
       "source": "/products/thyme-honey",
       "destination": "/product-thyme.html"
+    },
+    {
+      "source": "/products/wildflower-honey",
+      "destination": "/product-wildflower.html"
     },
     {
       "source": "/products/heather-honey",

@@ -61,6 +61,9 @@
     if (!(window.Commerce && window.Commerce.products)) return;
     var host = document.querySelector('#pxExtras .px-pairs');
     if (!host) return; // product-extras section not present → skip
+    /* Product experience pages keep their curated pairs (product-extras.js
+       PAIRS): the type-based list here is the same three honeys everywhere. */
+    if (document.documentElement.hasAttribute('data-hd-experience')) return;
     var recs;
     try { recs = await window.Commerce.products.recommendations(handle, 3); } catch (e) { return; }
     if (!recs || !recs.length) return;

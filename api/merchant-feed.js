@@ -133,6 +133,7 @@ const EN_DESCRIPTIONS = {
   oak: 'Deep oak honey from Epirus, woody and full-bodied. Raw, unfiltered and cold-extracted. Bottled in hand-pressed glass, wax-sealed.',
   arbutus: 'Rare arbutus honey from Crete, bittersweet and herbal with earthy depth. Raw and naturally creamy. Bottled in hand-pressed glass, wax-sealed.',
   thyme: 'Aromatic thyme honey from Crete, warm and floral. Raw, unfiltered and cold-extracted. Bottled in hand-pressed glass, wax-sealed.',
+  wildflower: 'Raw, unfiltered Greek wildflower honey (anthómelo), from the nectar of wildflowers across the mountains and fields of Greece: thyme, oregano, citrus blossom, wild herbs and many other seasonal flowers. Harvested in spring and early summer. Mild, floral and delicately sweet, light amber to golden, with a smooth, creamy texture. Nothing added. Bottled in glass.',
   heather: 'Raw Greek heather honey from wild heather on the hills of Evia. Rich, floral and warm, with a naturally creamy texture. Cold-extracted, unfiltered and unpasteurised. Single origin, Greece.',
   oregano: 'Sun-dried wild Greek oregano, hand-picked on the hillsides. Warm, intense flowering tops. 15 grams.',
   'olive-oil': 'Extra virgin olive oil from the estate on Pelion, 2025 pressing. Green almond, freshly cut grass and a peppery finish. Cold-pressed. 500 ml.',
@@ -193,6 +194,20 @@ const HIGHLIGHTS = {
     'Olive Oil': ['Koud geperst, extra vergine', 'Olijven van één landgoed',
                   `Persing ${HARVEST_YEAR}`, 'Gebotteld in glas'],
     Herb: ['Wild geplukt en zongedroogd', 'Heel gedroogd aan de steel', 'Single origin uit Griekenland'],
+  },
+};
+
+/* Products whose supplier sheet differs from the line's standard honey facts
+   (no cold extraction, single origin or harvest year stated): their own
+   verified highlights and details replace the generic ones above. */
+const PRODUCT_FACTS = {
+  wildflower: {
+    highlights: {
+      nl: ['Rauw en ongefilterd', 'Van wilde Griekse bloemen', 'Geoogst in voorjaar en vroege zomer', 'Mild, bloemig en subtiel zoet', 'Gebotteld in glas'],
+      en: ['Raw and unfiltered', 'From Greek wildflowers', 'Harvested in spring and early summer', 'Mild, floral and delicately sweet', 'Bottled in glass'],
+    },
+    harvest: { nl: 'Voorjaar en vroege zomer', en: 'Spring and early summer' },
+    process: { nl: 'Rauw, ongefilterd', en: 'Raw, unfiltered' },
   },
 };
 
@@ -272,7 +287,8 @@ module.exports = async (req, res) => {
       const link = `${SITE}/products/${slug}`;
       const type = p.productType || 'Honey';
       const gallery = (p.images && p.images.nodes ? p.images.nodes : []).map((i) => i.url);
-      const highlights = (H[type] || H.Honey)
+      const F = PRODUCT_FACTS[p.handle];
+      const highlights = ((F && F.highlights[lang]) || H[type] || H.Honey)
         .map((h) => `\n    <g:product_highlight>${esc(h)}</g:product_highlight>`).join('');
       const multi = p.variants.nodes.length > 1;
       /* Dutch comes live from Shopify; English from the map above. */
@@ -309,8 +325,8 @@ module.exports = async (req, res) => {
 
         const details = [
           [D.origin, D.country, D.greece],
-          [D.origin, D.harvest, HARVEST_YEAR],
-          [D.production, D.process, type === 'Olive Oil' ? D.pressed : D.extracted],
+          [D.origin, D.harvest, F ? F.harvest[lang] : HARVEST_YEAR],
+          [D.production, D.process, F ? F.process[lang] : (type === 'Olive Oil' ? D.pressed : D.extracted)],
           [D.packaging, D.net, v.title],
         ].map(([sec, name, val]) => `
     <g:product_detail>

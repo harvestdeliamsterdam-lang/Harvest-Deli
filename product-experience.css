@@ -1,0 +1,282 @@
+/* =================================================================
+   Harvest Deli, product experience (Greek Wildflower Honey and later
+   honeys with an entry in scripts/experiences.mjs).
+   Loaded only by pages with <html data-hd-experience>. Builds on the honey
+   page's own tokens (--bg, --ink, --gold, --ease, --track-label) and the
+   global type system in shared.css (General Sans display, Inter Tight text,
+   no italics).
+   ================================================================= */
+
+/* ------------------------------------------------------------------
+   1. Highlights anchored to the product photo
+   A point on the jar, a hairline, and the same frosted label the other
+   honey pages use. Desktop: all appear when the photo is hovered or
+   focused; hovering a line in the list beside the photo lights up just
+   that one. Touch: the points stay visible, a tap opens one label.
+   ------------------------------------------------------------------ */
+.pdx-spots {
+  position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+}
+.pdx-main[data-slide]:not([data-slide="0"]) .pdx-spots { opacity: 0; visibility: hidden; }
+.pdx-spot { position: absolute; left: 0; top: 0; width: 0; height: 0; --len: 30px; }
+.pdx-dot {
+  position: absolute; left: -5px; top: -5px; width: 10px; height: 10px; border-radius: 50%;
+  background: rgba(250, 246, 238, 0.95);
+  box-shadow: 0 0 0 1px rgba(31, 26, 20, 0.28), 0 0 0 5px rgba(250, 246, 238, 0.30), 0 4px 10px rgba(31, 26, 20, 0.25);
+}
+/* left/width of the line and left/top of the label are set by product-experience.js */
+.pdx-line {
+  position: absolute; top: -0.5px; left: 0; height: 1px; width: 0;
+  background: rgba(250, 246, 238, 0.9);
+  box-shadow: 0 0 2px rgba(31, 26, 20, 0.35);
+}
+.pdx-r .pdx-line { transform-origin: left center; }
+.pdx-l .pdx-line { transform-origin: right center; }
+.pdx-pill {
+  position: absolute; top: 0;
+  display: inline-flex; align-items: center; gap: 8px;
+  width: max-content; max-width: 152px; padding: 8px 12px 8px 10px;
+  border-radius: 14px;
+  background: rgba(247, 242, 233, 0.78);
+  -webkit-backdrop-filter: blur(15px) saturate(118%);
+  backdrop-filter: blur(15px) saturate(118%);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 14px 34px -16px rgba(41, 28, 12, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  color: var(--ink, #1F1A14);
+  font-size: 12.5px; font-weight: 500; letter-spacing: 0.002em; line-height: 1.28;
+  transform: translateY(-50%);
+}
+.pdx-pill svg { width: 15px; height: 15px; flex: 0 0 auto; color: var(--gold, #B8945A); opacity: 0.95; }
+.pdx-pill svg { align-self: flex-start; margin-top: 1px; }
+.pdx-pill-txt { display: flex; flex-direction: column; min-width: 0; }
+/* the detail line: folded away until this point is in focus (the label grows
+   evenly around its point, so it stays on the hairline) */
+.pdx-pill-detail {
+  display: grid; grid-template-rows: 0fr; opacity: 0; margin-top: 0;
+  font-size: 11.5px; font-weight: 400; line-height: 1.38; color: var(--ink-soft, #5C5247);
+  transition: grid-template-rows 0.38s var(--ease), opacity 0.3s ease, margin-top 0.38s var(--ease);
+}
+.pdx-pill-detail > span { overflow: hidden; }
+.pdx-spot.is-on .pdx-pill-detail { grid-template-rows: 1fr; opacity: 1; margin-top: 4px; }
+/* tooltip mode shows one label at a time, so its detail is always open */
+.pdx-main.pdx-tip .pdx-pill-detail { grid-template-rows: 1fr; opacity: 1; margin-top: 4px; transition: none; }
+
+/* hidden until asked for */
+.pdx-dot, .pdx-line, .pdx-pill { opacity: 0; transition: opacity 0.38s ease, transform 0.46s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.3s ease, border-color 0.3s ease; }
+.pdx-line { transform: scaleX(0); }
+.pdx-pill { transform: translateY(-50%) translateX(var(--nudge, 6px)); }
+.pdx-l .pdx-pill { --nudge: -6px; }
+
+.pdx-main.pdx-all .pdx-spot > *,
+.pdx-main.pdx-one .pdx-spot.is-on > * { opacity: 1; }
+.pdx-main.pdx-all .pdx-line,
+.pdx-main.pdx-one .pdx-spot.is-on .pdx-line { transform: scaleX(1); }
+.pdx-main.pdx-all .pdx-pill,
+.pdx-main.pdx-one .pdx-spot.is-on .pdx-pill { transform: translateY(-50%); }
+/* staggered in, in the order of the list */
+.pdx-main.pdx-all .pdx-spot[data-i="1"] > * { transition-delay: 0.05s; }
+.pdx-main.pdx-all .pdx-spot[data-i="2"] > * { transition-delay: 0.10s; }
+.pdx-main.pdx-all .pdx-spot[data-i="3"] > * { transition-delay: 0.15s; }
+.pdx-main.pdx-all .pdx-spot[data-i="4"] > * { transition-delay: 0.20s; }
+/* one in focus: the others step back */
+.pdx-main.pdx-all.pdx-one .pdx-spot:not(.is-on) > * { opacity: 0.32; transition-delay: 0s; }
+.pdx-spot.is-on .pdx-pill { border-color: rgba(184, 148, 90, 0.75); box-shadow: 0 18px 38px -16px rgba(41, 28, 12, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.5); }
+.pdx-spot.is-on .pdx-dot { box-shadow: 0 0 0 1px rgba(138, 98, 40, 0.75), 0 0 0 6px rgba(250, 246, 238, 0.42), 0 4px 10px rgba(31, 26, 20, 0.28); }
+
+/* the other honey pages zoom the photo on hover; with points anchored to the
+   jar the photo holds still, so every point stays exactly on its spot */
+.pdg-main.pdx-main:hover img.active { transform: none; }
+
+/* tooltip mode (touch, or a small photo): one label above its point, no line */
+.pdx-main.pdx-tip .pdx-line { display: none; }
+.pdx-main.pdx-tip .pdx-pill { transform: translateY(5px); }
+.pdx-main.pdx-tip.pdx-one .pdx-spot.is-on .pdx-pill,
+.pdx-main.pdx-tip.pdx-all .pdx-pill { transform: none; }
+/* with a pointer on a small photo: the points show, only the nearest label opens */
+.pdx-main.pdx-tip.pdx-all .pdx-spot:not(.is-on) .pdx-pill { opacity: 0; }
+
+/* touch: points always visible as tap targets, one label at a time */
+@media (hover: none) {
+  .pdx-main .pdx-dot { opacity: 1; pointer-events: auto; cursor: pointer; }
+  .pdx-main .pdx-dot::after { content: ''; position: absolute; inset: -17px; border-radius: 50%; }  /* 44px target */
+  .pdx-pill { max-width: 170px; font-size: 12px; padding: 7px 11px 7px 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pdx-spots, .pdx-dot, .pdx-line, .pdx-pill, .pdx-pill-detail { transition: opacity 0.2s linear !important; transition-delay: 0s !important; }
+  .pdx-line, .pdx-main .pdx-line { transform: none !important; }
+  .pdx-pill, .pdx-main .pdx-pill { transform: translateY(-50%) !important; }
+  .pdx-main.pdx-tip .pdx-pill { transform: none !important; }
+}
+
+/* ------------------------------------------------------------------
+   2. The same highlights beside the photo (buy column)
+   ------------------------------------------------------------------ */
+.pdx-hl { margin: 24px 0 4px; padding-top: 18px; border-top: 1px solid rgba(26, 22, 18, 0.08); }
+.pdx-hl-head {
+  font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase;
+  color: var(--ink-soft, #5C5247); font-weight: 500; margin-bottom: 6px;
+}
+.pdx-hl-list { list-style: none; margin: 0; padding: 0; }
+.pdx-hl-list li {
+  position: relative; display: grid; grid-template-columns: 22px 1fr; align-items: center; gap: 12px;
+  padding: 11px 18px 11px 0; border-bottom: 1px solid rgba(26, 22, 18, 0.06);
+  font-family: var(--font-display) !important; font-size: 15px; font-weight: 480; letter-spacing: -0.01em; line-height: 1.35;
+  color: var(--ink, #1F1A14);
+  transition: color 0.35s var(--ease);
+}
+.pdx-hl-list li:last-child { border-bottom: 0; }
+.pdx-hl-ic { color: var(--gold, #B8945A); display: inline-flex; transition: transform 0.45s var(--ease); }
+.pdx-hl-ic svg { width: 17px; height: 17px; }
+/* a small point at the end of the line echoes the point on the photo */
+.pdx-hl-list li::after {
+  content: ''; position: absolute; right: 2px; top: 50%; width: 6px; height: 6px; margin-top: -3px; border-radius: 50%;
+  background: var(--gold, #B8945A); opacity: 0; transform: scale(0.4);
+  transition: opacity 0.3s ease, transform 0.4s var(--ease);
+}
+@media (hover: hover) {
+  .pdx-hl-list li:hover { color: var(--gold-deep, #8A6228); }
+  .pdx-hl-list li:hover .pdx-hl-ic { transform: translateX(2px); }
+  .pdx-hl-list li:hover::after { opacity: 1; transform: scale(1); }
+}
+
+/* ------------------------------------------------------------------
+   3. Editorial sections
+   ------------------------------------------------------------------ */
+.pdx-wrap {
+  max-width: 1180px; margin: 0 auto;
+  display: grid; grid-template-columns: 5fr 7fr; gap: clamp(40px, 6vw, 104px); align-items: center;
+}
+.pdx-h2 {
+  font-size: clamp(32px, 3.3vw, 50px); line-height: 1.06; color: var(--ink, #1F1A14);
+  margin: 0 0 26px; max-width: 16ch;
+}
+.pdx-p { font-size: 16px; line-height: 1.75; color: var(--ink-soft, #5C5247); max-width: 46ch; margin: 0 0 16px; }
+.pdx-story .section-eyebrow, .pdx-char .section-eyebrow, .pdx-origin .section-eyebrow, .pdx-enjoy .section-eyebrow { margin-bottom: 22px; }
+.pdx-char-media, .pdx-origin-media, .pdx-enjoy-media { margin: 0; }
+.pdx-char-media img, .pdx-origin-media img, .pdx-enjoy-media img {
+  display: block; width: 100%; height: auto; border-radius: 16px;
+  box-shadow: 0 40px 80px -48px rgba(41, 28, 12, 0.45);
+}
+
+/* 3a. Story */
+.pdx-story { padding: 15vh 8% 12vh; background: var(--bg, #F5EFE4); text-align: center; }
+.pdx-story .section-headline { margin: 0 auto 6vh; max-width: 17ch; }
+.pdx-story-copy {
+  max-width: 940px; margin: 0 auto; text-align: left;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 26px 56px;
+}
+.pdx-story-copy p { font-size: 17px; line-height: 1.75; color: var(--ink-soft, #5C5247); margin: 0; }
+
+/* 3b. Taste and character */
+.pdx-char { padding: 13vh 8%; background: #F1E8D9; }
+.pdx-char-media { justify-self: center; width: 100%; max-width: 440px; }
+.pdx-notes { margin: 8px 0 0; }
+.pdx-note {
+  display: grid; grid-template-columns: 112px 1fr; gap: 20px; align-items: baseline;
+  padding: 22px 0; border-top: 1px solid rgba(26, 22, 18, 0.10);
+}
+.pdx-note:last-child { border-bottom: 1px solid rgba(26, 22, 18, 0.10); }
+.pdx-note dt { font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500; }
+.pdx-note dd { margin: 0; }
+.pdx-note-v {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+  font-family: var(--font-display) !important; font-size: clamp(19px, 1.6vw, 23px); font-weight: 500; letter-spacing: -0.015em; line-height: 1.25;
+  color: var(--ink, #1F1A14);
+}
+.pdx-note-p { display: block; margin-top: 7px; font-size: 14.5px; line-height: 1.65; color: var(--ink-soft, #5C5247); max-width: 48ch; }
+/* the colour range from the supplier sheet (light amber to golden); the words carry the meaning */
+.pdx-swatch {
+  display: inline-block; width: 56px; height: 8px; border-radius: 4px;
+  background: linear-gradient(90deg, #ECC57E 0%, #D69A33 100%);
+  box-shadow: inset 0 0 0 1px rgba(31, 26, 20, 0.10);
+}
+
+/* 3c. Origin */
+.pdx-origin { padding: 14vh 8%; background: var(--bg, #F5EFE4); }
+.pdx-origin .pdx-wrap { grid-template-columns: 7fr 5fr; }
+.pdx-facts {
+  display: grid; grid-template-columns: repeat(3, auto); justify-content: start; gap: 18px 40px;
+  margin: 30px 0 0; padding-top: 22px; border-top: 1px solid rgba(26, 22, 18, 0.10);
+}
+.pdx-facts dt { font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500; margin-bottom: 8px; }
+.pdx-facts dd { margin: 0; font-family: var(--font-display) !important; font-size: 18px; font-weight: 500; color: var(--ink, #1F1A14); letter-spacing: -0.01em; }
+
+/* 3d. Ways to enjoy */
+.pdx-enjoy { padding: 4vh 8% 14vh; background: var(--bg, #F5EFE4); }
+.pdx-enjoy .pdx-wrap { grid-template-columns: 5fr 7fr; }
+.pdx-uses { list-style: none; margin: 10px 0 0; padding: 0; }
+.pdx-uses li {
+  display: grid; grid-template-columns: 44px 1fr; column-gap: 8px; row-gap: 4px;
+  padding: 16px 0; border-top: 1px solid rgba(26, 22, 18, 0.09);
+}
+.pdx-uses li:last-child { border-bottom: 1px solid rgba(26, 22, 18, 0.09); }
+.pdx-use-n { grid-row: span 2; font-size: 10.5px; letter-spacing: 0.14em; color: var(--gold, #B8945A); font-weight: 600; padding-top: 5px; }
+.pdx-use-t { font-family: var(--font-display) !important; font-size: 19px; font-weight: 500; letter-spacing: -0.012em; color: var(--ink, #1F1A14); }
+.pdx-use-d { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft, #5C5247); }
+
+/* 3e. Details: the honey pages' own details strip, six cells */
+.pdx-details { padding-top: 12vh; padding-bottom: 12vh; }
+.pdx-details .section-headline { margin-bottom: 0; }
+.details .pdx-details-grid { grid-template-columns: repeat(3, 1fr); row-gap: 6vh; }
+.pdx-det-note { margin: 6vh 0 0; font-size: 13px; line-height: 1.6; color: var(--ink-soft, #5C5247); }
+
+/* 3f. Closing purchase line */
+.pdx-reminder { padding: 6vh 8% 12vh; background: var(--bg, #F5EFE4); }
+.pdx-rem-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 88px 1fr auto auto; align-items: center; gap: 28px;
+  padding: 20px 22px 20px 20px; border-radius: 18px;
+  background: rgba(250, 246, 238, 0.75); border: 1px solid rgba(26, 22, 18, 0.08);
+  box-shadow: 0 30px 70px -50px rgba(41, 28, 12, 0.45);
+}
+.pdx-rem-img { width: 88px; height: 88px; object-fit: cover; border-radius: 12px; display: block; }
+.pdx-rem-name { font-family: var(--font-display) !important; font-size: 22px; font-weight: 540; letter-spacing: -0.02em; color: var(--ink, #1F1A14); line-height: 1.15; }
+.pdx-rem-note { margin-top: 5px; font-size: 14px; color: var(--ink-soft, #5C5247); }
+.pdx-rem-buy { text-align: right; }
+.pdx-rem-price { font-family: var(--font-display) !important; font-size: 22px; font-weight: 540; color: var(--ink, #1F1A14); letter-spacing: -0.02em; white-space: nowrap; }
+.pdx-rem-size { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft, #5C5247); font-weight: 500; }
+.pdx-rem-ship { margin-top: 4px; font-size: 9.5px; letter-spacing: var(--track-label); text-transform: uppercase; color: var(--ink-soft, #5C5247); }
+.pdx-reminder .pdx-rem-cta { width: auto; min-width: 230px; margin: 0; }
+
+/* ------------------------------------------------------------------
+   4. Tablet and phone
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .pdx-wrap, .pdx-origin .pdx-wrap, .pdx-enjoy .pdx-wrap { grid-template-columns: 1fr; gap: 34px; }
+  .pdx-enjoy-media { order: -1; }
+  .pdx-story-copy { grid-template-columns: 1fr; gap: 18px; max-width: 620px; }
+  .details .pdx-details-grid { grid-template-columns: repeat(2, 1fr); }
+  .pdx-rem-inner { grid-template-columns: 72px 1fr; gap: 16px 18px; }
+  .pdx-rem-img { width: 72px; height: 72px; }
+  .pdx-rem-buy { text-align: left; grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .pdx-reminder .pdx-rem-cta { grid-column: 1 / -1; width: 100%; min-width: 0; }
+}
+@media (max-width: 540px) {
+  .pdx-story { padding: 10vh 6% 9vh; }
+  .pdx-story-copy p { font-size: 16px; }
+  .pdx-char, .pdx-origin { padding: 9vh 6%; }
+  .pdx-enjoy { padding: 2vh 6% 10vh; }
+  .pdx-note { grid-template-columns: 1fr; gap: 8px; padding: 18px 0; }
+  .pdx-facts { grid-template-columns: repeat(2, auto); }
+  .details .pdx-details-grid { grid-template-columns: 1fr 1fr; column-gap: 6%; }
+  .pdx-reminder { padding: 4vh 5% 9vh; }
+  .pdx-rem-inner { padding: 16px; }
+  .pdx-hl-list li { font-size: 14.5px; }
+}
+@media (max-width: 360px) {
+  .details .pdx-details-grid { grid-template-columns: 1fr; }
+}
+
+/* ------------------------------------------------------------------
+   5. Title: a longer product name than the other honeys ("Griekse
+   Bloesemhoning"), so a touch smaller and always broken after the comma.
+   Two lines keep the add button on the first screen at 1280 x 800.
+   ------------------------------------------------------------------ */
+html[data-hd-experience] .pd-title { font-size: clamp(30px, 3.3vw, 50px); max-width: none; }
+html[data-hd-experience] .pd-title em { display: block; }
+/* the English name is longer: keep two lines on the smallest phones */
+@media (max-width: 360px) {
+  html[data-hd-experience] .pd-title { font-size: 26px; }
+}

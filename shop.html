@@ -2021,7 +2021,7 @@ footer.site-footer {
   /* Already in the editorial ("Aanbevolen") order that sortSlugs applies, so the
      first paint and the re-render with Shopify data show the same grid: no
      cards jumping and no second largest paint. */
-  const order = ['chestnut', 'orange-blossom', 'fir-vanilla', 'acacia', 'pine', 'oak', 'arbutus', 'thyme', 'heather', 'oregano', 'olive-oil', 'mountain-tea', 'chamomile-tea'];
+  const order = ['chestnut', 'orange-blossom', 'fir-vanilla', 'acacia', 'pine', 'oak', 'arbutus', 'thyme', 'heather', 'wildflower', 'oregano', 'olive-oil', 'mountain-tea', 'chamomile-tea'];
   const FROM_WORD = { nl: 'vanaf', el: 'από', en: 'from' };
   function fromWord() { return FROM_WORD[(window.HD_lang && window.HD_lang()) || 'en'] || 'from'; }
 
@@ -2036,6 +2036,7 @@ footer.site-footer {
     'chestnut':       { cat:'honey', htype:'mountain',region:'greece',        process:['raw'] },
     'pine':           { cat:'honey', htype:'forest',  region:'halkidiki',     process:['raw'] },
     'heather':        { cat:'honey', htype:'creamy',  region:'evia',          process:['raw'] },
+    'wildflower':     { cat:'honey', htype:'blossom', region:'greece',        process:['raw', 'spring'] },
     'oregano':        { cat:'herbs', htype:null,      region:'greece',        process:['handpicked'] },
     'olive-oil':      { cat:'oil',   htype:null,      region:'greece',        process:['coldpressed'] },
     'mountain-tea':   { cat:'tea',   htype:null,      region:'wildmountains', process:['caffeinefree'] },
@@ -2264,6 +2265,18 @@ footer.site-footer {
       pairings: ['cheese', 'bread'],
       popularity: 72, harvestDate: '2025-10-18', flavorIntensity: 3
     },
+    /* Supplier sheet: raw, light amber to golden, smooth/creamy, mild, spring
+       and early summer. The year is not on the sheet: harvestDate only feeds
+       the "harvest" sort, so it carries the season. popularity = sort weight
+       for a new product, mid-range until there is sales data. */
+    'wildflower': {
+      type: 'wildflower', region: 'greece',
+      flavor: ['floral', 'herbal'],
+      color: 'light-amber', texture: 'creamy',
+      season: 'spring', limited: false, raw: true,
+      pairings: ['bread', 'cheese', 'tea'],
+      popularity: 75, harvestDate: '2025-05-15', flavorIntensity: 1
+    },
     'olive-oil': {
       type: 'olive-oil', region: 'greece',
       flavor: ['herbal'],
@@ -2292,7 +2305,7 @@ footer.site-footer {
 
   // Filter group/value -> i18n key (resolved at render time so chips re-translate on lang switch)
   const CHIP_KEY = {
-    type:    { arbutus: 'shop.fp.type.arbutus', oak: 'shop.fp.type.oak', fir: 'shop.fp.type.fir', orange: 'shop.fp.type.orange', acacia: 'shop.fp.type.acacia', thyme: 'shop.fp.type.thyme', chestnut: 'shop.fp.type.chestnut', pine: 'shop.fp.type.pine', heather: 'shop.fp.type.heather' },
+    type:    { arbutus: 'shop.fp.type.arbutus', oak: 'shop.fp.type.oak', fir: 'shop.fp.type.fir', orange: 'shop.fp.type.orange', acacia: 'shop.fp.type.acacia', thyme: 'shop.fp.type.thyme', chestnut: 'shop.fp.type.chestnut', pine: 'shop.fp.type.pine', heather: 'shop.fp.type.heather', wildflower: 'shop.fp.type.wildflower' },
     region:  { greece: 'Greece', crete: 'Crete', epirus: 'Epirus', olympus: 'Mt Olympus', peloponnese: 'Peloponnese', macedonia: 'Macedonia', halkidiki: 'Halkidiki', evia: 'Evia', pindos: 'Pindos' },
     flavor:  { 'warm-resinous': 'shop.fp.flavor.warm', floral: 'shop.fp.flavor.floral', citrus: 'shop.fp.flavor.citrus', herbal: 'shop.fp.flavor.herbal', smoky: 'shop.fp.flavor.smoky', mineral: 'shop.fp.flavor.mineral', woody: 'shop.fp.flavor.woody' },
     color:   { pale: 'shop.fp.color.pale', 'light-amber': 'shop.fp.color.light', 'dark-amber': 'shop.fp.color.dark', mahogany: 'shop.fp.color.mahogany' },
