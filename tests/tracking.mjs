@@ -181,6 +181,7 @@ console.log('\n5. Naar de Shopify-checkout: keuze reist mee');
   await page.evaluate(() => window.HD_startCheckout());
   await page.waitForTimeout(CHECKOUT ? 9000 : 5000);
   check(!!checkoutUrl && /[?&]_cs=/.test(checkoutUrl), 'checkoutUrl bevat de consent (_cs)', checkoutUrl ? checkoutUrl.replace(/key=[^&]+/, 'key=…').slice(0, 140) : 'geen');
+  check(!!checkoutUrl && /[?&]_gl=/.test(checkoutUrl), 'Google-linker zet _gl op de checkoutlink (na toestemming)');
   if (CHECKOUT) {
     const co = hits.filter(h => /checkouts/.test(h.dl || ''));
     check(co.some(h => h.en === 'begin_checkout' && h.gcs === 'G111'), 'Shopify-checkout stuurt begin_checkout met consent', co.map(h => h.en + ':' + h.gcs).join(','));

@@ -2312,7 +2312,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-222',
       slug: 'fir-vanilla',
       pid: '11364330438997',
       url: '/products/vanilla-honey'
@@ -2332,7 +2332,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-222',
       slug: 'acacia',
       pid: '11364330701141',
       url: '/products/acacia-honey'
@@ -2352,7 +2352,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-222',
       slug: 'pine',
       pid: '11364330864981',
       url: '/products/pine-honey'
@@ -2372,7 +2372,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-222',
       slug: 'orange-blossom',
       pid: '11364330930517',
       url: '/products/orange-blossom-honey'
@@ -2392,7 +2392,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-222',
       slug: 'chestnut',
       pid: '11364329128277',
       url: '/products/chestnut-honey'
@@ -2412,7 +2412,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-222',
       slug: 'oak',
       pid: '11364331028821',
       url: '/products/oak-honey'
@@ -2432,7 +2432,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-222',
       slug: 'arbutus',
       pid: '11364331225429',
       url: '/products/arbutus-honey'
@@ -2452,7 +2452,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-222',
       slug: 'heather',
       pid: '11422012604757',
       url: '/products/heather-honey'
@@ -2472,7 +2472,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-222',
       slug: 'thyme',
       pid: '11364331290965',
       url: '/products/thyme-honey'
@@ -2487,7 +2487,7 @@ window.HD_urlForSlug = function (slug) {
       edition: loc('Wildflower', 'Wilde bloemen', 'Αγριολούλουδα'),
       region: loc('Greece', 'Griekenland', 'Ελλάδα'),
       type: 'honey',
-      sizes: [{ id: '480g', label: '480g', price: 14, sku: 'HD-HON-WILDFLOWER-480', vid: '55291190968661' }, { id: '950g', label: '950g', price: 24, sku: 'HD-HON-WILDFLOWER-950', vid: '55291191001429' }],
+      sizes: [{ id: '480g', label: '480g', price: 14, gtin: '8721593944220', sku: 'HD-HON-WILDFLOWER-480', vid: '55291190968661' }, { id: '950g', label: '950g', price: 24, gtin: '8721593944237', sku: 'HD-HON-WILDFLOWER-950', vid: '55291191001429' }],
       defaultSize: '480g',
       price: 14,
       hue: 'straw',
@@ -2496,7 +2496,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'light', 'raw', 'spring', 'wildflower'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Wildflower Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/wildflower.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/wildflower.webp?v=hd-2026-06-06-222',
       slug: 'wildflower',
       pid: '11688548696405',
       url: '/products/wildflower-honey'
@@ -2552,7 +2552,7 @@ window.HD_urlForSlug = function (slug) {
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-222',
       notes: loc('Floral, herbal, gently aromatic.', 'Bloemig, kruidig, zacht aromatisch.', 'Άνθινο, βοτανικό, απαλά αρωματικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '25g',
@@ -2573,7 +2573,7 @@ window.HD_urlForSlug = function (slug) {
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-221',
+      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-222',
       notes: loc('Soft, apple-sweet, floral.', 'Zacht, appelzoet, bloemig.', 'Απαλό, μηλόγλυκο, ανθώδες.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -4541,7 +4541,7 @@ window.HD_urlForSlug = function (slug) {
    ================================================================= */
 (function () {
   'use strict';
-  var V = 'hd-2026-06-06-221';
+  var V = 'hd-2026-06-06-222';
   var SRC = '/assets/menu/collection-film.mp4?v=' + V;
   var POSTER = '/assets/menu/collection-film.webp?v=' + V;
   var desk = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
@@ -5903,9 +5903,9 @@ window.HD_urlForSlug = function (slug) {
    sold-out honey could go into the cart. async=false keeps the parallel
    download but executes them in this list's order. */
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-221'], ['hd-search-js', 'search.js?v=hd-2026-06-06-221'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-221'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-221'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-221'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-221'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-221'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-221'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-221'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-221']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-222'], ['hd-search-js', 'search.js?v=hd-2026-06-06-222'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-222'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-222'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-222'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-222'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-222'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-222'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-222'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-222']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = '/' + a[1]; s.async = false;

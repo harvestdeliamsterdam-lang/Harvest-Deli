@@ -298,7 +298,9 @@
   });
 
   /* Navigate to an external checkout through a real link, so the Google
-     linker can add its _gl parameter for the checkout domain. */
+     linker can add its _gl parameter for the checkout domain. The linker
+     decorates on mousedown, which a.click() alone never fires (measured
+     30-10-2026: no _gl without it). It only acts after analytics consent. */
   window.HD_navigate = function (url) {
     try {
       var a = document.createElement('a');
@@ -306,6 +308,7 @@
       a.rel = 'noopener';
       a.style.display = 'none';
       document.body.appendChild(a);
+      a.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
       a.click();
     } catch (e) { location.href = url; }
   };

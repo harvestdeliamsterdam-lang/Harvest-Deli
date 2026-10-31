@@ -1,0 +1,66 @@
+lijst,niveau,zoekwoord,matchtype,reden
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),gratis,Broad,geen koopintentie
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),recept,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),recepten,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),wat is,Phrase,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),betekenis,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),wikipedia,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),calorieen,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),calorieën,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),kcal,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),gezond,Broad,gezondheidsvraag; wij doen geen gezondheidsclaims
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),keelpijn,Broad,gezondheidsvraag
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),hoest,Broad,gezondheidsvraag
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),baby,Broad,gezondheidsvraag (honing onder 1 jaar)
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),zwanger,Broad,gezondheidsvraag
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),allergie,Broad,gezondheidsvraag
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),wond,Broad,medisch gebruik
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),kristalliseert,Broad,informatief (eigen journal bestaat)
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),houdbaar,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),houdbaarheid,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),bewaren,Broad,informatief
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),manuka,Broad,"ander product, niet in assortiment"
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),imker,Broad,zoekt lokale imker
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),imker worden,Phrase,hobby
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),bijenkast,Broad,hobby
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),bijen houden,Phrase,hobby
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honingraat,Broad,niet in assortiment
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),vacature,Broad,werk
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),vacatures,Broad,werk
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),baan,Broad,werk
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),groothandel,Broad,"B2B, we verkopen per pot"
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),bulk,Broad,B2B
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),emmer,Broad,grootverpakking
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),5 kg,Phrase,grootverpakking
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),10 kg,Phrase,grootverpakking
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),albert heijn,Phrase,supermarkt
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),ah,Exact,supermarkt
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),jumbo,Broad,supermarkt
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),lidl,Broad,supermarkt
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),aldi,Broad,supermarkt
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),plus,Exact,supermarkt
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),kruidvat,Broad,drogist
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),etos,Broad,drogist
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),action,Broad,discounter
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honingmosterd,Broad,ander product
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honing mosterd,Phrase,ander product
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),mede,Exact,honingwijn
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honingwijn,Broad,ander product
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honingdrop,Broad,ander product
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honingmeloen,Broad,ander product
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),kaars,Broad,bijenwas
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),kaarsen,Broad,bijenwas
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),gezichtsmasker,Broad,cosmetica
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),shampoo,Broad,cosmetica
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),zalf,Broad,cosmetica
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),nep,Broad,onderzoek/nieuws
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),test,Broad,onderzoek/nieuws
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),consumentenbond,Broad,onderzoek
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),zelf maken,Phrase,DIY
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),tattoo,Broad,irrelevant
+HD - Uitsluitingen basis,gedeelde lijst (alle campagnes),honey singh,Phrase,irrelevant
+HD - Uitsluitingen olijfolie,alleen campagne C,olijfolie in de buurt,Phrase,"lokaal, behalve als winkels meetellen"
+HD - Uitsluitingen olijfolie,alleen campagne C,frituren,Broad,ander gebruik
+HD - Uitsluitingen olijfolie,alleen campagne C,olijfolie tegen,Phrase,gezondheid/cosmetica
+HD - Uitsluitingen olijfolie,alleen campagne C,haar,Broad,cosmetica
+HD - Uitsluitingen olijfolie,alleen campagne C,huid,Broad,cosmetica

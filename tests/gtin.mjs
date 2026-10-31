@@ -29,6 +29,7 @@ const GS1 = {
   'HD-HON-THYME-480': '8721593944169',    'HD-HON-THYME-950': '8721593944176',
   'HD-OIL-EVOO-500': '8721593944183',     'HD-TEA-MOUNTAIN-1': '8721593944190',
   'HD-TEA-CHAMOMILE-25': '8721593944206', 'HD-HERB-OREGANO-15': '8721593944213',
+  'HD-HON-WILDFLOWER-480': '8721593944220', 'HD-HON-WILDFLOWER-950': '8721593944237', // owner, 31-10-2026
 };
 
 const ROUTES = {
@@ -41,6 +42,7 @@ const ROUTES = {
   'arbutus-honey': ['HD-HON-ARBUTUS-480', 'HD-HON-ARBUTUS-950'],
   'thyme-honey': ['HD-HON-THYME-480', 'HD-HON-THYME-950'],
   'heather-honey': ['HD-HON-HEATHER-480', 'HD-HON-HEATHER-950'],
+  'wildflower-honey': ['HD-HON-WILDFLOWER-480', 'HD-HON-WILDFLOWER-950'],
   'wild-oregano': ['HD-HERB-OREGANO-15'],
   'extra-virgin-olive-oil': ['HD-OIL-EVOO-500'],
   'greek-mountain-tea': ['HD-TEA-MOUNTAIN-1'],
@@ -59,7 +61,7 @@ const fout = (m) => { fouten++; console.log('  FOUT ' + m); };
 
 // statische zelfcontrole van de tabel
 const alle = Object.values(GS1);
-if (new Set(alle).size !== 22 || !alle.every(geldig)) fout('GS1-tabel in de test is zelf ongeldig');
+if (new Set(alle).size !== alle.length || !alle.every(geldig)) fout('GS1-tabel in de test is zelf ongeldig');
 
 console.log(`GTIN-TEST tegen ${BASE}${FEED ? ' (met feed)' : ''}`);
 const browser = await chromium.launch();
@@ -105,7 +107,7 @@ if (FEED) {
     }));
     const voor = fouten;
     if (r.status !== 200) fout(`${f}: HTTP ${r.status}`);
-    if (items.length !== 22) fout(`${f}: ${items.length} items, verwacht 22`);
+    if (items.length !== alle.length) fout(`${f}: ${items.length} items, verwacht ${alle.length}`);
     for (const it of items) {
       if (it.gtin !== GS1[it.id]) fout(`${f}: ${it.id} gtin=${it.gtin}, verwacht ${GS1[it.id]}`);
       if (it.brand !== 'Harvest Deli') fout(`${f}: ${it.id} brand=${it.brand}`);
@@ -116,7 +118,7 @@ if (FEED) {
     if (OUD.test(xml)) fout(`${f}: oude 6156-EAN in feed`);
     const rej = r.headers.get('x-feed-gtin-rejected');
     if (rej) fout(`${f}: Shopify levert nog ongeldige barcodes voor ${rej}`);
-    console.log(`${fouten === voor ? 'OK  ' : 'FOUT'} ${f}: ${items.filter((i) => i.gtin === GS1[i.id]).length}/22 GTIN's correct`);
+    console.log(`${fouten === voor ? 'OK  ' : 'FOUT'} ${f}: ${items.filter((i) => i.gtin === GS1[i.id]).length}/${alle.length} GTIN's correct`);
   }
 }
 
