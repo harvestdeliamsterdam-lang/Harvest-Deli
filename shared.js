@@ -150,6 +150,8 @@ window.HD_urlForSlug = function (slug) {
   const T = {
     en: {
       'nav.menu': 'Menu',
+      'nav.home': 'Harvest Deli, to the homepage',
+      'product.sticky.region': 'Quick add',
       'nav.shop': 'Collection',
       'nav.acquire': 'Acquire',
       'nav.cellar': 'Cellar',
@@ -213,6 +215,7 @@ window.HD_urlForSlug = function (slug) {
       'footer.link.chestnut': 'Chestnut Honey',
       'footer.bottom1': '© Harvest Deli · Greece',
       'footer.bottom2': 'Crafted slowly',
+      'footer.credit_html': 'Website by <a href="https://thecreativitylab.nl" rel="noopener">The Creativity Lab</a>',
       'footer.builtBy': 'Designed & built by',
       'footer.news.eyebrow': 'The Harvest Letter',
       'footer.news.lead': 'Occasional notes from the mountain: new harvests, quiet stories, nothing more.',
@@ -389,6 +392,19 @@ window.HD_urlForSlug = function (slug) {
       'idx.scene4.cta': 'Discover the collection',
       'idx.scrollHint': 'Scroll',
       'idx.heroSkip': 'Skip to the collection',
+      'idx.hero.eyebrow': 'From Greek soil',
+      'idx.hero.title': 'From the Greek mountains to your table.',
+      'idx.hero.sub': 'Honey, olive oil and mountain tea. Straight from Greece.',
+      'idx.hero.cta': 'Discover the collection',
+      'idx.hero.replay': 'Watch the film again',
+      'idx.hero.stop': 'Skip the film',
+      'idx.hero.alt': 'Harvest Deli honey, olive oil and Greek mountain tea on a stone table, with the Greek mountains behind',
+      'nav.link.collection': 'The Collection',
+      'nav.link.origin': 'The Origin',
+      'nav.link.markets': 'The Markets',
+      'nav.link.journal': 'Journal',
+      'nav.links.aria': 'Main pages',
+      'menu.search': 'Search',
       'idx.sel.eyebrow': 'The collection',
       'idx.sel.title': 'Selected harvests.',
       'idx.sel.cta': 'View Full Collection',
@@ -817,6 +833,8 @@ window.HD_urlForSlug = function (slug) {
     },
     nl: {
       'nav.menu': 'Menu',
+      'nav.home': 'Harvest Deli, naar de homepage',
+      'product.sticky.region': 'Snel toevoegen',
       'nav.shop': 'Collectie',
       'nav.acquire': 'Bestellen',
       'nav.cellar': 'Winkelmand',
@@ -880,6 +898,7 @@ window.HD_urlForSlug = function (slug) {
       'footer.link.chestnut': 'Tamme Kastanje',
       'footer.bottom1': '© Harvest Deli · Griekenland',
       'footer.bottom2': 'Met zorg gemaakt',
+      'footer.credit_html': 'Website door <a href="https://thecreativitylab.nl" rel="noopener">The Creativity Lab</a>',
       'footer.news.eyebrow': 'De Oogstbrief',
       'footer.news.lead': 'Af en toe een brief uit de bergen: nieuwe oogsten, stille verhalen, niets meer.',
       'footer.news.placeholder': 'Je e-mailadres',
@@ -1054,6 +1073,19 @@ window.HD_urlForSlug = function (slug) {
       'idx.scene4.cta': 'Ontdek de collectie',
       'idx.scrollHint': 'Scroll',
       'idx.heroSkip': 'Direct naar de collectie',
+      'idx.hero.eyebrow': 'Van Griekse bodem',
+      'idx.hero.title': 'Van de Griekse bergen naar jouw tafel.',
+      'idx.hero.sub': 'Honing, olijfolie en bergthee. Rechtstreeks uit Griekenland.',
+      'idx.hero.cta': 'Ontdek de collectie',
+      'idx.hero.replay': 'Film opnieuw bekijken',
+      'idx.hero.stop': 'Film overslaan',
+      'idx.hero.alt': 'Harvest Deli honing, olijfolie en Griekse bergthee op een stenen tafel, met de Griekse bergen op de achtergrond',
+      'nav.link.collection': 'De collectie',
+      'nav.link.origin': 'De oorsprong',
+      'nav.link.markets': 'De markten',
+      'nav.link.journal': 'Journal',
+      'nav.links.aria': 'Hoofdpagina’s',
+      'menu.search': 'Zoeken',
       'idx.sel.eyebrow': 'De collectie',
       'idx.sel.title': 'Geselecteerde oogsten.',
       'idx.sel.cta': 'Bekijk de volledige collectie',
@@ -1481,6 +1513,8 @@ window.HD_urlForSlug = function (slug) {
     },
     el: {
       'nav.menu': 'Μενού',
+      'nav.home': 'Harvest Deli, στην αρχική σελίδα',
+      'product.sticky.region': 'Γρήγορη προσθήκη',
       'nav.shop': 'Συλλογή',
       'nav.acquire': 'Αγορά',
       'nav.cellar': 'Κελάρι',
@@ -1540,6 +1574,7 @@ window.HD_urlForSlug = function (slug) {
       'footer.link.chestnut': 'Καστανόμελο',
       'footer.bottom1': '© Harvest Deli · Ελλάδα',
       'footer.bottom2': 'Φτιαγμένο με φροντίδα',
+      'footer.credit_html': 'Ιστοσελίδα από <a href="https://thecreativitylab.nl" rel="noopener">The Creativity Lab</a>',
       'footer.builtBy': 'Σχεδιασμός & κατασκευή από',
       'a11y.skipLink': 'Μετάβαση στο περιεχόμενο',
       'idx.h1': 'Harvest Deli, μονοπροέλευσης ελληνικό μέλι',
@@ -2169,22 +2204,22 @@ window.HD_urlForSlug = function (slug) {
     'menu.item.wishlist_html': 'The <em>Cellar Notes</em>',
     'menu.item.wishlist_sub': 'Your wishlist',
     'wl.eyebrow': 'The cellar',
-    'wl.title_html': 'Your reserved <em>collection.</em>',
-    'wl.sub': 'Products you set aside quietly, for later.',
+    'wl.title_html': 'Your <em>wishlist.</em>',
+    'wl.sub': 'Saved for later.',
     'wl.itemsLabel': 'reserved',
     'wl.privacyNote': 'Stored locally · never sent',
     'wl.toolbarInfo': 'Your reserved editions',
-    'wl.clearAll': 'Release all',
+    'wl.clearAll': 'Remove all',
     'wl.remove': 'Remove',
-    'wl.release': 'Release',
+    'wl.release': 'Remove',
     'wl.addToCart': 'Add to Cart',
     'wl.metaHarvest': 'Harvest',
     'wl.metaOrigin': 'Origin',
     'wl.metaElevation': 'Elevation',
     'wl.moveToCellar': 'Add to Cart',
     'wl.view': 'View',
-    'wl.empty.title_html': 'The cellar <em>awaits.</em>',
-    'wl.empty.desc': 'Products you quietly set aside will remain here for later. Nothing leaves this browser.',
+    'wl.empty.title_html': 'Nothing <em>saved yet.</em>',
+    'wl.empty.desc': 'Tap the heart on a product to keep it here.',
     'wl.empty.cta': 'Explore the collection'
   });
   Object.assign(T.nl, {
@@ -2192,22 +2227,22 @@ window.HD_urlForSlug = function (slug) {
     'menu.item.wishlist_html': 'De <em>Kelder&shy;notities</em>',
     'menu.item.wishlist_sub': 'Jouw verlanglijst',
     'wl.eyebrow': 'De kelder',
-    'wl.title_html': 'Uw gereserveerde <em>collectie.</em>',
-    'wl.sub': 'Producten die u stil opzij heeft gezet, voor later.',
+    'wl.title_html': 'Je <em>verlanglijst.</em>',
+    'wl.sub': 'Bewaard voor later.',
     'wl.itemsLabel': 'gereserveerd',
     'wl.privacyNote': 'Lokaal bewaard · nooit verzonden',
     'wl.toolbarInfo': 'Uw gereserveerde edities',
-    'wl.clearAll': 'Alles vrijgeven',
+    'wl.clearAll': 'Alles verwijderen',
     'wl.remove': 'Verwijderen',
-    'wl.release': 'Vrijgeven',
+    'wl.release': 'Verwijderen',
     'wl.addToCart': 'In winkelmand',
     'wl.metaHarvest': 'Oogst',
     'wl.metaOrigin': 'Herkomst',
     'wl.metaElevation': 'Hoogte',
     'wl.moveToCellar': 'In winkelmand',
     'wl.view': 'Bekijken',
-    'wl.empty.title_html': 'De kelder <em>wacht.</em>',
-    'wl.empty.desc': 'Producten die u stil opzij zet, blijven hier bewaard voor later. Niets verlaat deze browser.',
+    'wl.empty.title_html': 'Nog niets <em>bewaard.</em>',
+    'wl.empty.desc': 'Tik op het hartje bij een product om het hier te bewaren.',
     'wl.empty.cta': 'Ontdek de collectie'
   });
   Object.assign(T.el, {
@@ -2312,7 +2347,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'raw', 'forest', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/fir-vanilla.webp?v=hd-2026-06-06-229',
       slug: 'fir-vanilla',
       pid: '11364330438997',
       url: '/products/vanilla-honey'
@@ -2332,7 +2367,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/acacia.webp?v=hd-2026-06-06-229',
       slug: 'acacia',
       pid: '11364330701141',
       url: '/products/acacia-honey'
@@ -2352,7 +2387,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'honeydew', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/pine.webp?v=hd-2026-06-06-229',
       slug: 'pine',
       pid: '11364330864981',
       url: '/products/pine-honey'
@@ -2372,7 +2407,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'citrus', 'light', 'spring'],
       badges: [loc('Spring Harvest', 'Voorjaarsoogst', 'Ανοιξιάτικη Συγκομιδή'), loc('Blossom Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/orange-blossom.webp?v=hd-2026-06-06-229',
       slug: 'orange-blossom',
       pid: '11364330930517',
       url: '/products/orange-blossom-honey'
@@ -2392,7 +2427,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['mountain', 'forest', 'raw', 'dark'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Mountain Honey', 'Berghoning', 'Ορεινό Μέλι')],
-      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/chestnut.webp?v=hd-2026-06-06-229',
       slug: 'chestnut',
       pid: '11364329128277',
       url: '/products/chestnut-honey'
@@ -2412,7 +2447,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['forest', 'raw', 'dark', 'honeydew'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Forest Honey', 'Boshoning', 'Δασικό Μέλι')],
-      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/oak.webp?v=hd-2026-06-06-229',
       slug: 'oak',
       pid: '11364331028821',
       url: '/products/oak-honey'
@@ -2432,7 +2467,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['rare', 'raw', 'dark', 'herbal'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Rare Harvest', 'Zeldzame Oogst', 'Σπάνια Συγκομιδή')],
-      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/arbutus.webp?v=hd-2026-06-06-229',
       slug: 'arbutus',
       pid: '11364331225429',
       url: '/products/arbutus-honey'
@@ -2452,7 +2487,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['raw', 'creamy', 'floral'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Autumn Harvest', 'Najaarsoogst', 'Φθινοπωρινή Συγκομιδή')],
-      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/heather.webp?v=hd-2026-06-06-229',
       slug: 'heather',
       pid: '11422012604757',
       url: '/products/heather-honey'
@@ -2472,7 +2507,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'herbal', 'light', 'summer'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Island Honey', 'Eilandhoning', 'Νησιώτικο Μέλι')],
-      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/thyme.webp?v=hd-2026-06-06-229',
       slug: 'thyme',
       pid: '11364331290965',
       url: '/products/thyme-honey'
@@ -2496,7 +2531,7 @@ window.HD_urlForSlug = function (slug) {
       weight: '480g · 950g',
       tags: ['floral', 'light', 'raw', 'spring', 'wildflower'],
       badges: [loc('Raw', 'Rauw', 'Ωμό'), loc('Wildflower Honey', 'Bloesemhoning', 'Ανθόμελο')],
-      image: '/assets/products-images/wildflower.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/wildflower.webp?v=hd-2026-06-06-229',
       slug: 'wildflower',
       pid: '11688548696405',
       url: '/products/wildflower-honey'
@@ -2552,7 +2587,7 @@ window.HD_urlForSlug = function (slug) {
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/mountain-tea.webp?v=hd-2026-06-06-229',
       notes: loc('Floral, herbal, gently aromatic.', 'Bloemig, kruidig, zacht aromatisch.', 'Άνθινο, βοτανικό, απαλά αρωματικό.'),
       texture: loc('Golden, light infusion', 'Gouden, lichte infusie', 'Χρυσή, ελαφριά έγχυση'),
       weight: '25g',
@@ -2573,7 +2608,7 @@ window.HD_urlForSlug = function (slug) {
       bundle: { qty: 2, price: 8 },
       price: 5,
       hue: 'straw',
-      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-222',
+      image: '/assets/products-images/chamomile-tea.webp?v=hd-2026-06-06-229',
       notes: loc('Soft, apple-sweet, floral.', 'Zacht, appelzoet, bloemig.', 'Απαλό, μηλόγλυκο, ανθώδες.'),
       texture: loc('Golden, gentle infusion', 'Gouden, zachte infusie', 'Χρυσή, απαλή έγχυση'),
       weight: '25g',
@@ -2639,11 +2674,11 @@ window.HD_urlForSlug = function (slug) {
     return s ? s.label : '';
   }
   // Line total, applying the 2-for bundle price where a product carries one.
-  function lineTotalFor(slug, qty, size) {
+  function lineTotalFor(slug, qty, size, noBundle) {
     const p = PRODUCTS[slug];
     if (!p) return 0;
     const unit = unitPrice(slug, size);
-    if (p.bundle && p.bundle.qty > 0 && p.bundle.price != null) {
+    if (!(noBundle && TWO_FOR_IN_SHOPIFY[slug]) && p.bundle && p.bundle.qty > 0 && p.bundle.price != null) {
       const sets = Math.floor(qty / p.bundle.qty);
       const rem = qty - sets * p.bundle.qty;
       return sets * p.bundle.price + rem * unit;
@@ -2668,6 +2703,37 @@ window.HD_urlForSlug = function (slug) {
      you must change the other (Shopify discount nodes: "3/6/9/12 honingpotten").
      ============================================================ */
   var RITUAL_SAVING = 5;
+  /* The 2-for offers ("2 voor €8" tea) are automatic BxGy discounts in
+     Shopify since 01-11-2026. They combine with each other but not with the
+     ritual saving, so Shopify applies either the ritual saving or all 2-for
+     savings together, whichever is larger; on a tie the ritual saving
+     (measured: 6 honey €10 vs tea €10 → ritual). */
+  // Only offers that exist in Shopify take part (oregano "2 voor €4" does not yet).
+  var TWO_FOR_IN_SHOPIFY = { 'mountain-tea': 1, 'chamomile-tea': 1 };
+  function twoForSaving(items) {
+    return (items || []).reduce(function (sum, it) {
+      var p = PRODUCTS[it.slug];
+      if (!p || !p.bundle || !TWO_FOR_IN_SHOPIFY[it.slug]) return sum;
+      var size = sizeOf(it);
+      return sum + (it.qty * unitPrice(it.slug, size) - lineTotalFor(it.slug, it.qty, size));
+    }, 0);
+  }
+  function ritualAmount(items) {
+    var honey = 0, oil = 0;
+    (items || []).forEach(function (it) {
+      var p = PRODUCTS[it.slug]; var type = (p && p.type) || '';
+      if (type === 'honey') honey += it.qty || 0; else if (type === 'oil' || type === 'olive-oil') oil += it.qty || 0;
+    });
+    return Math.max(honey >= 3 ? Math.min(Math.floor(honey / 3), 4) * RITUAL_SAVING : 0, (honey >= 2 && oil >= 1) ? RITUAL_SAVING : 0);
+  }
+  // true → the ritual saving applies and the tea lines are charged in full
+  function welcomeReplaces() { try { return !!(window.HD_WELCOME && window.HD_WELCOME.dropsAutomatic && window.HD_WELCOME.dropsAutomatic()); } catch (e) { return false; } }
+  function twoForSuppressed(items) {
+    if (welcomeReplaces()) return true;
+    var b = twoForSaving(items);
+    return b > 0 && ritualAmount(items) >= b;
+  }
+  window.HD_twoForSuppressed = twoForSuppressed;
   function calculateHarvestBundleDiscount(cartItems) {
     var nl = currentLang === 'nl';
     function T(en, nlS) { return nl ? nlS : en; }
@@ -2689,14 +2755,30 @@ window.HD_urlForSlug = function (slug) {
     var honeyTier = honeyGroups * RITUAL_SAVING;
     var oilBundle = (honey >= 2 && oil >= 1) ? RITUAL_SAVING : 0;
     var discountAmount = Math.max(honeyTier, oilBundle);
+    // A larger 2-for saving wins in Shopify; the ritual saving then does not apply.
+    var twoFor = twoForSaving(cartItems);
+    var twoForWins = discountAmount > 0 && twoFor > discountAmount;
+    var ritualWouldBe = discountAmount;
+    if (twoForWins) discountAmount = 0;
+    // The welcome code beat the automatic savings in Shopify (welcome.js).
+    var welcomeWins = welcomeReplaces() && (ritualWouldBe > 0 || twoFor > 0);
+    if (welcomeWins) { discountAmount = 0; twoForWins = false; }
     var rule = discountAmount === 0 ? null
              : (honeyTier >= oilBundle ? honeyGroups + '_honey' : '2_honey_1_oil');
     var bundleCount = discountAmount > 0 ? 1 : 0;
 
     var message, upsell = null;
-    if (discountAmount > 0) {
+    if (welcomeWins) {
+      message = T('Your welcome discount saves more here than the ritual or 2-for saving. Discounts do not stack, so the better one applies.',
+                  'Je welkomstkorting levert hier meer op dan de ritueel- of theekorting. Kortingen stapelen niet, dus de voordeligste geldt.');
+    } else if (twoForWins) {
+      message = T('Your 2-for tea offer saves more (€' + twoFor + ') than the ritual saving (€' + ritualWouldBe + '). Discounts do not stack, so the better one applies.',
+                  'Je theeaanbieding (2 voor €8) levert meer op (€' + twoFor + ') dan de ritueelkorting (€' + ritualWouldBe + '). Kortingen stapelen niet, dus de voordeligste geldt.');
+    } else if (discountAmount > 0) {
       message = T('Ritual saving applied: €' + discountAmount + ' off.',
                   'Ritueelkorting toegepast: €' + discountAmount + ' eraf.');
+      if (twoFor > 0) message += ' ' + T('It replaces the 2-for tea offer here (€' + twoFor + '), as discounts do not stack.',
+                                         'Die vervangt hier de theeaanbieding (€' + twoFor + '), want kortingen stapelen niet.');
       // gentle nudge to the next €5 tier while the honey groups aren't maxed
       if (honeyTier >= oilBundle && honeyGroups >= 1 && honeyGroups < 4) {
         var need = (honeyGroups + 1) * 3 - honey;
@@ -2720,7 +2802,8 @@ window.HD_urlForSlug = function (slug) {
     }
     return {
       discountAmount: discountAmount, bundleCount: bundleCount,
-      matchedRule: rule, message: message, upsellMessage: upsell,
+      matchedRule: (twoForWins || welcomeWins) ? null : rule, message: message, upsellMessage: (twoForWins || welcomeWins) ? null : upsell,
+      twoForSaving: twoFor, twoForWins: twoForWins,
       honeyCount: honey, oilCount: oil
     };
   }
@@ -2789,13 +2872,13 @@ window.HD_urlForSlug = function (slug) {
       this.save(); render();
     },
     count() { return this.items.reduce((s, i) => s + i.qty, 0); },
-    lineTotal(item) { return lineTotalFor(item.slug, item.qty, sizeOf(item)); },
+    lineTotal(item) { return lineTotalFor(item.slug, item.qty, sizeOf(item), twoForSuppressed(this.items)); },
     unitPrice: unitPrice,
     sizeLabel: function (item) { return sizeLabel(item.slug, sizeOf(item)); },
     offerDiscount: offerDiscount,
     // Raw line sum (pre-offer). Keep this as total() for back-compat (checkout
     // subtotal reads it); the offer is surfaced as its own discount line.
-    total() { return this.items.reduce((s, i) => s + lineTotalFor(i.slug, i.qty, sizeOf(i)), 0); },
+    total() { const off = twoForSuppressed(this.items); return this.items.reduce((s, i) => s + lineTotalFor(i.slug, i.qty, sizeOf(i), off), 0); },
     net() { return Math.max(0, this.total() - offerDiscount()); }
   };
   cart.load();
@@ -2826,6 +2909,14 @@ window.HD_urlForSlug = function (slug) {
     const _drawer = document.getElementById('cartDrawer');
     if (_drawer) _drawer.classList.toggle('is-empty', _lines.length === 0);
 
+    // Cart photos are shown 50-78 px wide: serve the 160/640 px copies made by
+    // scripts/make-image-sizes.py instead of the 1228 px originals.
+    function thumbAttrs(src, cssW) {
+      var m = /^(\/assets\/(?:products-images\/)?[a-z-]+)\.(?:webp|png)(\?.*)?$/.exec(src || '');
+      if (!m || !/(honey|chestnut|vanilla|acacia|pine|blossom|oak|arbutus|heather|thyme|wildflower|tea|greekoliveoil)$/.test(m[1])) return ' src="' + src + '"';
+      var q = m[2] || '';
+      return ' src="' + m[1] + '-160.webp' + q + '" srcset="' + m[1] + '-160.webp' + q + ' 160w, ' + m[1] + '-640.webp' + q + ' 640w" sizes="' + (typeof cssW === 'number' ? cssW + 'px' : cssW) + '"';
+    }
     const itemsWrap = document.getElementById('cartItems');
     if (itemsWrap) {
       if (_lines.length === 0) {
@@ -2833,7 +2924,7 @@ window.HD_urlForSlug = function (slug) {
           var p; try { p = localizedProduct(sl); } catch (e) { p = null; }
           if (!p) return '';
           return '<a class="ce-card" href="' + p.url + '">' +
-            '<span class="ce-card-img"><img src="' + p.image + '" alt="' + p.name + '" loading="lazy"></span>' +
+            '<span class="ce-card-img"><img' + thumbAttrs(p.image, 50) + ' width="160" height="287" alt="' + p.name + '" loading="lazy"></span>' +
             '<span class="ce-card-meta"><span class="ce-card-name">' + p.name + '</span>' +
             '<span class="ce-card-price">' + formatPrice(p.price) + '</span></span>' +
           '</a>';
@@ -2842,7 +2933,7 @@ window.HD_urlForSlug = function (slug) {
           <div class="cart-empty">
             <span class="ce-glow" aria-hidden="true"></span>
             <div class="ce-eyebrow">${lookup('cart.empty.eyebrow')}</div>
-            <h4 class="ce-title">${lookup('cart.empty.h')}</h4>
+            <h2 class="ce-title">${lookup('cart.empty.h')}</h2>
             <p class="ce-sub">${lookup('cart.empty.p')}</p>
             <a href="/shop.html" class="cart-empty-cta"><span>${lookup('cart.empty.cta')}</span><span class="ce-arrow" aria-hidden="true"></span></a>
             ${_sugg ? `<div class="ce-suggest"><div class="ce-suggest-h">${lookup('cart.empty.suggest')}</div><div class="ce-grid">${_sugg}</div></div>` : ''}
@@ -2856,7 +2947,7 @@ window.HD_urlForSlug = function (slug) {
           const subline = sizeLbl || p.edition;
           return `
             <div class="cart-line" data-slug="${l.slug}" data-size="${l.size || ''}">
-              <a class="thumb" href="${p.url}"><img class="mini-photo ${p.hue}" src="${p.image}" alt="${p.name}"></a>
+              <a class="thumb" href="${p.url}"><img class="mini-photo ${p.hue}"${thumbAttrs(p.image, '(max-width: 760px) 92px, 132px')} alt="${p.name}"></a>
               <div class="meta">
                 <a class="name" href="${p.url}" style="text-decoration:none;color:inherit;">${p.name}</a>
                 <div class="edition">${subline}</div>
@@ -2891,7 +2982,7 @@ window.HD_urlForSlug = function (slug) {
        One saving per order, mirroring the non-stacking Shopify discount. ---- */
     let offerRow = document.getElementById('cartOffer');
     if (!offerRow) {
-      const totalsEl = document.querySelector('.cart-foot .cart-totals');
+      const totalsEl = document.querySelector('#cartDrawer .cart-totals');
       if (totalsEl && totalsEl.parentNode) {
         offerRow = document.createElement('div');
         offerRow.id = 'cartOffer';
@@ -2930,12 +3021,18 @@ window.HD_urlForSlug = function (slug) {
     }
 
     // When the saving applies, the headline becomes the (discounted) Total.
-    const subLabel = document.querySelector('.cart-foot .cart-totals .label');
+    // Welcome code (welcome.js): only counted once Shopify confirmed it for
+    // exactly this cart; otherwise 0 and the total stays as it was.
+    const codeOff = (window.HD_WELCOME && window.HD_WELCOME.cartDiscount && window.HD_WELCOME.cartDiscount()) || 0;
+    // What Shopify measures the free-shipping threshold against (after the
+    // ritual saving and an applied code), read by the free-shipping bar.
+    window.HD_CART_PAYABLE = Math.max(0, sub - offer - codeOff);
+    const subLabel = document.querySelector('#cartDrawer .cart-totals .label');
     if (subLabel) {
-      if (offer > 0) { subLabel.textContent = lw(L.totalW); subLabel.removeAttribute('data-i18n'); }
+      if (offer > 0 || codeOff > 0) { subLabel.textContent = lw(L.totalW); subLabel.removeAttribute('data-i18n'); }
       else if (!subLabel.getAttribute('data-i18n')) { subLabel.setAttribute('data-i18n', 'cart.subtotal'); subLabel.textContent = lookup('cart.subtotal'); }
     }
-    if (total) total.textContent = formatPrice(Math.max(0, sub - offer));
+    if (total) total.textContent = formatPrice(window.HD_CART_PAYABLE);
 
     /* Cart nudge / celebration: fire only on a STATE TRANSITION (not every render),
        so it feels like a reward, not spam. */
@@ -2992,6 +3089,7 @@ window.HD_urlForSlug = function (slug) {
     }
     // variant: 'ritual' (gold, saving applied) | 'nudge' (one away) | default
     el.className = 'cart-toast' + (variant ? ' cart-toast--' + variant : '');
+    el.setAttribute('role', 'status');
     el.textContent = msg;
     requestAnimationFrame(() => el.classList.add('show'));
     clearTimeout(toastT);
@@ -3997,8 +4095,16 @@ window.HD_urlForSlug = function (slug) {
       const btn = e.target.closest('[data-wishlist-toggle]');
       if (!btn) return;
       e.preventDefault();
-      toggle(btn.dataset.wishlistToggle);
+      const on = toggle(btn.dataset.wishlistToggle);
       render();
+      // Say where it went: the heart in the nav opens the list (01-11-2026).
+      const en = window.HD_lang && window.HD_lang() === 'en';
+      if (window.HD_toast) window.HD_toast(on
+        ? (en ? 'Saved to your wishlist, under the heart at the top.' : 'Bewaard in je verlanglijst, onder het hartje bovenaan.')
+        : (en ? 'Removed from your wishlist.' : 'Uit je verlanglijst gehaald.'));
+      if (on) document.querySelectorAll('.nav-wishlist').forEach(function (w) {
+        w.classList.remove('is-pulse'); void w.offsetWidth; w.classList.add('is-pulse');
+      });
     });
     window.addEventListener('hd:wishlist-change', render);
     render();
@@ -4239,7 +4345,7 @@ window.HD_urlForSlug = function (slug) {
       '<aside class="cart-panel">' +
         '<header class="cart-head">' +
           '<span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>' +
-          '<button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>' +
+          '<button type="button" class="cart-close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>' +
         '</header>' +
         '<div class="cart-items" id="cartItems"></div>' +
         '<footer class="cart-foot">' +
@@ -4477,7 +4583,8 @@ window.HD_urlForSlug = function (slug) {
     function setBehind(on) {
       var frame = document.querySelector('.hd-menu-frame');
       if (frame) frame.style.opacity = on ? '1' : '';
-      if (reduce) return;
+      // Phones/tablets: the 0.96 → 1 rescale read as the page zooming; skip it.
+      if (reduce || window.innerWidth <= 900) return;
       ['#content', 'nav.site-nav', 'footer.site-footer', 'body > footer'].forEach(function (sel) {
         var el = document.querySelector(sel);
         if (!el) return;
@@ -4496,8 +4603,10 @@ window.HD_urlForSlug = function (slug) {
       var foot = overlay.querySelector('.hd-menu-foot');
       if (!list || !top) return;
       var footShown = foot && getComputedStyle(foot).display !== 'none';
-      var floor = footShown ? foot.getBoundingClientRect().top : (window.innerHeight - 18);
-      var avail = floor - top.getBoundingClientRect().bottom - 46;
+      var floor = footShown ? foot.getBoundingClientRect().top - 12 : (window.innerHeight - 18);
+      // Measure from the list itself: the language switcher and search entry
+      // now sit between the logo row and the index, so top.bottom undercounts.
+      var avail = floor - list.getBoundingClientRect().top - 8;
       var fs = 32;
       overlay.style.setProperty('--hd-nav-fs', fs + 'px');
       for (var i = 0; i < 6; i++) {
@@ -4508,11 +4617,32 @@ window.HD_urlForSlug = function (slug) {
       }
     }
 
+    // iOS Safari ignores body{overflow:hidden}, so the page kept scrolling
+    // behind the open menu. Pin the body in place instead and restore the
+    // exact scroll position on close (phones and tablets only).
+    var lockedY = null;
+    function lockScroll(on) {
+      var b = document.body, d = document.documentElement;
+      if (on) {
+        if (window.innerWidth > 900 || lockedY !== null) return;
+        lockedY = window.scrollY || d.scrollTop || 0;
+        b.style.position = 'fixed'; b.style.top = (-lockedY) + 'px';
+        b.style.left = '0'; b.style.right = '0'; b.style.width = '100%';
+      } else if (lockedY !== null) {
+        var y = lockedY; lockedY = null;
+        b.style.position = ''; b.style.top = ''; b.style.left = ''; b.style.right = ''; b.style.width = '';
+        var prev = d.style.scrollBehavior; d.style.scrollBehavior = 'auto';
+        window.scrollTo(0, y);
+        d.style.scrollBehavior = prev;
+      }
+    }
+
     var open = false;
     var obs = new MutationObserver(function () {
       var isOpen = overlay.classList.contains('open');
       if (isOpen === open) return;
       open = isOpen;
+      lockScroll(isOpen);
       document.body.classList.toggle('hd-menu-open', isOpen);
       setBehind(isOpen);
       if (isOpen) { fitMobileNav(); window.addEventListener('mousemove', move, { passive: true }); }
@@ -4532,78 +4662,142 @@ window.HD_urlForSlug = function (slug) {
 })();
 
 /* =================================================================
-   MENU COLLECTION FILM, desktop only
-   A quiet product loop to the right of the index. It appears when the
-   pointer or keyboard focus reaches "The Collection" and stays until the
-   menu closes or another menu item becomes active. Touch devices and
-   narrow windows never load it. Reduced motion or Save-Data shows the
-   still frame (the photograph the film starts and ends on).
+   SITE NAVIGATION LINKS, every page (31-10-2026)
+   Adds the four main links to every nav (shown from 1280px, styles in
+   shared.css) and a "Search" entry to every menu overlay (phones, where
+   the nav itself has no search icon). Pages that already carry them in
+   their HTML are left alone.
    ================================================================= */
 (function () {
   'use strict';
-  var V = 'hd-2026-06-06-222';
-  var SRC = '/assets/menu/collection-film.mp4?v=' + V;
-  var POSTER = '/assets/menu/collection-film.webp?v=' + V;
-  var desk = window.matchMedia('(min-width: 1024px) and (hover: hover) and (pointer: fine)');
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
-  function still() { return reduce.matches || !!(navigator.connection && navigator.connection.saveData); }
+  var LINKS = [
+    ['/shop.html', 'nav.link.collection', 'De collectie'],
+    ['/about.html', 'nav.link.origin', 'De oorsprong'],
+    ['/find-us-amsterdam.html', 'nav.link.markets', 'De markten'],
+    ['/journal.html', 'nav.link.journal', 'Journal']
+  ];
+  function t(key, fallback) {
+    var d = (window.HD_T && window.HD_lang && window.HD_T[window.HD_lang()]) || {};
+    return d[key] || fallback;
+  }
+  function init() {
+    document.querySelectorAll('nav.site-nav').forEach(function (nav) {
+      if (nav.querySelector('.nav-links')) return;
+      var ul = document.createElement('ul');
+      ul.className = 'nav-links';
+      ul.setAttribute('data-i18n-attr', 'aria-label:nav.links.aria');
+      ul.setAttribute('aria-label', t('nav.links.aria', 'Hoofdpagina’s'));
+      LINKS.forEach(function (l) {
+        var li = document.createElement('li'), a = document.createElement('a');
+        a.href = l[0];
+        a.setAttribute('data-i18n', l[1]);
+        a.textContent = t(l[1], l[2]);
+        if (location.pathname === l[0] || (l[0] === '/about.html' && /about/.test(location.pathname))) a.setAttribute('aria-current', 'page');
+        li.appendChild(a); ul.appendChild(li);
+      });
+      var right = nav.querySelector('.nav-right');
+      nav.insertBefore(ul, right || null);
+    });
+    document.querySelectorAll('.menu-overlay').forEach(function (ov) {
+      if (ov.querySelector('.hd-menu-search')) return;
+      var top = ov.querySelector('.menu-top');
+      if (!top) return;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'hd-menu-search';
+      b.innerHTML = '<svg viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9.5" cy="9.5" r="6.5"/><path d="M19 19l-4.5-4.5"/></svg><span data-i18n="menu.search">' + t('menu.search', 'Zoeken') + '</span>';
+      b.addEventListener('click', function () {
+        var close = ov.querySelector('.menu-close');
+        if (close) close.click();
+        setTimeout(function () { if (window.HD_search) window.HD_search.open(); }, 350);
+      });
+      /* after the language row that shared.js adds below the header */
+      var lang = ov.querySelector('.hd-menu-lang');
+      var after = lang || top;
+      after.parentNode.insertBefore(b, after.nextSibling);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* =================================================================
+   MENU PICTURE PANEL, screens from 1024px
+   The right part of the open menu is one large photograph. It follows
+   the menu item under the pointer or keyboard focus (soft cross-fade),
+   with the item's subtitle as a caption. It opens on the current page's
+   item, or "The Collection". Nothing is fetched before the menu opens;
+   phones never load it. Replaces the collection film (31-10-2026).
+   ================================================================= */
+(function () {
+  'use strict';
+  var V = 'hd-2026-06-06-229';
+  var PICS = [
+    { re: /shop\.html$/,               src: '/assets/menu/menu-collectie.webp', pos: '50% 55%' },
+    { re: /about\.html$/,              src: '/assets/menu/menu-oorsprong.webp', pos: '40% 50%' },
+    { re: /find-us-amsterdam\.html$/,  src: '/assets/markt.webp',               pos: '50% 50%' },
+    { re: /journal\.html$/,            src: '/assets/menu/menu-dagboek.webp',   pos: '50% 50%' },
+    { re: /contact\.html$/,            src: '/assets/menu/menu-contact.webp',   pos: '50% 50%' }
+  ];
+  var wide = window.matchMedia('(min-width: 1024px)');
 
   function setup(overlay) {
-    var link = overlay.querySelector('.menu-items a[href$="shop.html"]');
-    if (!link || overlay.querySelector('.hd-menu-film')) return;
-    var box = document.createElement('div');
-    box.className = 'hd-menu-film';
-    box.setAttribute('aria-hidden', 'true');
-    var vid = document.createElement('video');
-    vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = 'none';
-    ['muted', 'playsinline', 'disablepictureinpicture'].forEach(function (a) { vid.setAttribute(a, ''); });
-    box.appendChild(vid);
-    overlay.appendChild(box);
-    var on = false;
+    if (overlay.querySelector('.hd-menu-pane')) return;
+    var links = Array.prototype.slice.call(overlay.querySelectorAll('.menu-items a'));
+    var items = [];
+    links.forEach(function (a) {
+      var href = (a.getAttribute('href') || '').split('#')[0];
+      for (var i = 0; i < PICS.length; i++) if (PICS[i].re.test(href)) { items.push({ a: a, pic: PICS[i] }); return; }
+    });
+    if (!items.length) return;
+    var pane = document.createElement('div');
+    pane.className = 'hd-menu-pane';
+    pane.setAttribute('aria-hidden', 'true');
+    items.forEach(function (it) {
+      var img = document.createElement('img');
+      img.alt = ''; img.decoding = 'async';
+      img.style.objectPosition = it.pic.pos;
+      it.img = img;
+      pane.appendChild(img);
+    });
+    var cap = document.createElement('span');
+    cap.className = 'hd-menu-pane__cap';
+    pane.appendChild(cap);
+    overlay.appendChild(pane);
+    overlay.classList.add('hd-has-pane');
 
-    /* Nothing is fetched until a desktop visitor opens the menu. */
-    function prime() {
-      if (!desk.matches || vid.getAttribute('poster')) return;
-      vid.setAttribute('poster', POSTER);
-      if (!still()) { vid.preload = 'auto'; vid.src = SRC; }
+    var loaded = false, current = null;
+    function load() {
+      if (loaded || !wide.matches) return;
+      loaded = true;
+      items.forEach(function (it) { it.img.src = it.pic.src + '?v=' + V; });
     }
-    /* The picture drifts a few px against the pointer (CSS reads --px/--py). */
-    function drift(e) {
-      box.style.setProperty('--px', ((0.5 - e.clientX / window.innerWidth) * 22).toFixed(1) + 'px');
-      box.style.setProperty('--py', ((0.5 - e.clientY / window.innerHeight) * 16).toFixed(1) + 'px');
+    function show(it) {
+      if (!it || it === current) return;
+      current = it;
+      items.forEach(function (x) { x.img.classList.toggle('is-on', x === it); x.a.closest('li') && x.a.closest('li').classList.toggle('hd-pane-on', x === it); });
+      var sub = it.a.closest('li') && it.a.closest('li').querySelector('.sub');
+      cap.textContent = sub ? sub.textContent.trim() : '';
     }
-    function show() {
-      if (!desk.matches || !overlay.classList.contains('open')) return;
-      prime();
-      if (!on) {
-        on = true;
-        /* every reveal starts on the calm frame, so the light swells with the curtain */
-        if (vid.readyState > 0) { try { vid.currentTime = 0; } catch (err) {} }
-        overlay.classList.add('hd-film-on');
-        if (!reduce.matches) overlay.addEventListener('mousemove', drift, { passive: true });
-      }
-      if (vid.src && !still()) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+    function start() {
+      var here = location.pathname.replace(/\/$/, '/index.html');
+      var match = null;
+      items.forEach(function (it) { if (!match && here.indexOf((it.a.getAttribute('href') || '').replace(/^\.?\//, '')) > -1) match = it; });
+      current = null;
+      show(match || items[0]);
     }
-    function hide() {
-      if (!on) return;
-      on = false;
-      overlay.classList.remove('hd-film-on');
-      overlay.removeEventListener('mousemove', drift);
-      setTimeout(function () { if (!on) vid.pause(); }, 500); // after the fade-out
-    }
-    /* Delegated, so links injected later (the footer row) count too. */
     function activate(e) {
-      var a = e.target.closest && e.target.closest('a');
-      if (!a || !overlay.contains(a)) return;
-      if (a === link) show();
-      else if (a.closest('.menu-items, .hd-menu-foot')) hide();
+      var a = e.target.closest && e.target.closest('.menu-items a');
+      if (!a) return;
+      for (var i = 0; i < items.length; i++) if (items[i].a === a) { show(items[i]); return; }
     }
     overlay.addEventListener('mouseover', activate);
     overlay.addEventListener('focusin', activate);
     new MutationObserver(function () {
-      if (overlay.classList.contains('open')) prime(); else hide();
+      if (overlay.classList.contains('open')) { load(); start(); }
     }).observe(overlay, { attributes: true, attributeFilter: ['class'] });
-    if (desk.addEventListener) desk.addEventListener('change', function () { if (!desk.matches) hide(); });
+    if (wide.addEventListener) wide.addEventListener('change', function () { if (overlay.classList.contains('open')) load(); });
+    window.addEventListener('hd:lang', function () { if (current) { var c = current; current = null; show(c); } });
   }
 
   function init() { document.querySelectorAll('.menu-overlay').forEach(setup); }
@@ -4683,7 +4877,7 @@ window.HD_urlForSlug = function (slug) {
   padding: 18px 36px;
   padding-left: calc(36px + 0.18em);
   min-height: 52px;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -4803,7 +4997,7 @@ window.HD_urlForSlug = function (slug) {
   padding: 16px 28px;
   padding-left: calc(28px + 0.18em);
   min-height: 48px;
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Inter Tight', -apple-system, sans-serif;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -4961,6 +5155,10 @@ window.HD_urlForSlug = function (slug) {
 
   /* 10. Page transition, gentle fade-out on internal navigation clicks (no flash on initial load) */
   document.addEventListener('click', e => {
+    // Clicks another script already handles (checkout hand-off, "continue
+    // shopping" closing the drawer) are not page loads: fading the body there
+    // made the page blink back before Shopify loaded.
+    if (e.defaultPrevented) return;
     const a = e.target.closest('a[href]');
     if (!a) return;
     const href = a.getAttribute('href');
@@ -5103,7 +5301,8 @@ window.HD_urlForSlug = function (slug) {
     // those methods actually exist in the Shopify checkout.
     var ORDER = ['ideal', 'bancontact', 'visa', 'mastercard', 'maestro'];
     function init() {
-      var footers = document.querySelectorAll('.site-footer');
+      // Every page footer with a bottom row (product pages use <footer id="contact">).
+      var footers = Array.prototype.map.call(document.querySelectorAll('footer > .footer-bottom'), function (b) { return b.parentNode; });
       for (var i = 0; i < footers.length; i++) {
         var footer = footers[i];
         if (footer.querySelector('.footer-pay')) continue;
@@ -5111,10 +5310,15 @@ window.HD_urlForSlug = function (slug) {
         for (var k = 0; k < ORDER.length; k++) html += ICONS[ORDER[k]];
         var wrap = document.createElement('div');
         wrap.className = 'footer-pay';
-        wrap.setAttribute('aria-label', 'Accepted payment methods');
+        wrap.setAttribute('role', 'img');
+        wrap.setAttribute('aria-label', (window.HD_lang && window.HD_lang() === 'nl' ? 'Betaalmethoden' : 'Payment methods') + ': iDEAL, Bancontact, Visa, Mastercard, Maestro');
         wrap.innerHTML = html;
+        // Centre slot of the bottom row (copyright | payment | credit), so the
+        // badges sit below the divider in normal flow instead of on top of it.
         var bottom = footer.querySelector('.footer-bottom');
-        if (bottom) footer.insertBefore(wrap, bottom);
+        var credit = bottom && bottom.querySelector('.footer-credit');
+        if (credit) bottom.insertBefore(wrap, credit);
+        else if (bottom) footer.insertBefore(wrap, bottom);
         else footer.appendChild(wrap);
       }
       // Compact strip under the cart-drawer checkout button (pages with a
@@ -5667,7 +5871,7 @@ window.HD_urlForSlug = function (slug) {
      Z3 DE/FR/LU/AT €9.95 free≥100 · Z4 IT/ES/PT/DK/SE €12.95 free≥100 ·
      Z5 FI/IE/PL/CZ/SK/SI/HU/HR €14.95 free≥100 ·
      Z6 RO/BG/EE/LV/LT/CY/GR/MT €16.95 free≥100
-   Country selection auto-detects, is switchable, and persists (hd-country).
+   Country selection auto-detects, is switchable, and persists (hd-country-v2).
    ================================================================= */
 (function () {
   'use strict';
@@ -5685,15 +5889,17 @@ window.HD_urlForSlug = function (slug) {
     FI: ['Finland', 'Finland', '🇫🇮'], IE: ['Ierland', 'Ireland', '🇮🇪'], PL: ['Polen', 'Poland', '🇵🇱'], CZ: ['Tsjechië', 'Czechia', '🇨🇿'], SK: ['Slowakije', 'Slovakia', '🇸🇰'], SI: ['Slovenië', 'Slovenia', '🇸🇮'], HU: ['Hongarije', 'Hungary', '🇭🇺'], HR: ['Kroatië', 'Croatia', '🇭🇷'],
     RO: ['Roemenië', 'Romania', '🇷🇴'], BG: ['Bulgarije', 'Bulgaria', '🇧🇬'], EE: ['Estland', 'Estonia', '🇪🇪'], LV: ['Letland', 'Latvia', '🇱🇻'], LT: ['Litouwen', 'Lithuania', '🇱🇹'], CY: ['Cyprus', 'Cyprus', '🇨🇾'], GR: ['Griekenland', 'Greece', '🇬🇷'], MT: ['Malta', 'Malta', '🇲🇹']
   };
-  var KEY = 'hd-country';
+  // v2 (01-11-2026): drops values persisted by the old browser-language guess
+  // or an autofilled checkout field (a Dutch visitor saw "Bezorging in Letland").
+  var KEY = 'hd-country-v2';
   var explicit = false; // true when the country came from a real signal (saved choice or locale), not the NL default
   function valid(c) { return !!(c && Z[c]); }
   function detect() {
     try { var s = localStorage.getItem(KEY); if (valid(s)) { explicit = true; return s; } } catch (e) {}
-    try {
-      var langs = navigator.languages || [navigator.language || ''];
-      for (var i = 0; i < langs.length; i++) { var m = (langs[i] || '').split('-')[1]; if (m && valid(m.toUpperCase())) { explicit = true; return m.toUpperCase(); } }
-    } catch (e) {}
+    // No guessing from the browser language: its region says nothing about
+    // where someone lives. Without an explicit choice we default to NL and
+    // the product line reads "Bezorgd door heel Europa".
+    try { localStorage.removeItem('hd-country'); } catch (e) {}
     return 'NL';
   }
   var current = detect();
@@ -5903,9 +6109,9 @@ window.HD_urlForSlug = function (slug) {
    sold-out honey could go into the cart. async=false keeps the parallel
    download but executes them in this list's order. */
 (function loadAddons() {
-  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-222'], ['hd-search-js', 'search.js?v=hd-2026-06-06-222'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-222'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-222'],
-   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-222'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-222'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-222'],
-   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-222'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-222'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-222']].forEach(function (a) {
+  [['hd-commerce-js', 'commerce.js?v=hd-2026-06-06-229'], ['hd-search-js', 'search.js?v=hd-2026-06-06-229'], ['hd-extras-js', 'product-extras.js?v=hd-2026-06-06-229'], ['hd-inventory-js', 'inventory.js?v=hd-2026-06-06-229'],
+   ['hd-cfg-js', 'commerce/config.js?v=hd-2026-06-06-229'], ['hd-storefront-js', 'commerce/storefront.js?v=hd-2026-06-06-229'], ['hd-commerce-adapter-js', 'commerce/commerce.js?v=hd-2026-06-06-229'],
+   ['hd-product-commerce-js', 'product-commerce.js?v=hd-2026-06-06-229'], ['hd-cart-commerce-js', 'cart-commerce.js?v=hd-2026-06-06-229'], ['hd-seo-js', 'seo.js?v=hd-2026-06-06-229'], ['hd-welcome-js', 'welcome.js?v=hd-2026-06-06-229']].forEach(function (a) {
     if (document.getElementById(a[0])) return;
     var s = document.createElement('script');
     s.id = a[0]; s.src = '/' + a[1]; s.async = false;
@@ -6239,6 +6445,7 @@ window.HD_urlForSlug = function (slug) {
       if (flying || document.hidden) { schedule(); return; }
       flying = true;
       if (!bee) bee = make();
+      bee.classList.add('is-flying');
       bee.style.opacity = '0';
       var fromLeft = Math.random() < 0.5;
       var sX = fromLeft ? -50 : vw() + 50, eX = fromLeft ? vw() + 50 : -50;
@@ -6259,7 +6466,7 @@ window.HD_urlForSlug = function (slug) {
       run(legs, 0);
     }
     function run(legs, i) {
-      if (i >= legs.length) { bee.style.opacity = '0'; flying = false; schedule(); return; }
+      if (i >= legs.length) { bee.style.opacity = '0'; bee.classList.remove('is-flying'); flying = false; schedule(); return; }
       var leg = legs[i];
       if (leg.hold) {
         bee.classList.add('hd-bee--land');
@@ -6292,4 +6499,246 @@ window.HD_urlForSlug = function (slug) {
     });
     setTimeout(flight, 9000 + Math.random() * 7000);
   })();
+})();
+
+/* ---------- Pause looping animations nobody can see (01-11-2026) ----------
+   Infinite CSS animations (floating cards, bees, drifting quotes) kept
+   running below the fold and in background tabs. Each looping element's
+   section gets .hd-anim-off while it is off-screen; the whole page pauses
+   while the tab is hidden. Reduced motion already disables these loops. */
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  document.addEventListener('visibilitychange', function () { root.classList.toggle('hd-tab-hidden', document.hidden); });
+  if (!('IntersectionObserver' in window) || !document.getAnimations) return;
+  var seen = typeof WeakSet === 'function' ? new WeakSet() : null;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { e.target.classList.toggle('hd-anim-off', !e.isIntersecting); });
+  }, { rootMargin: '120px 0px' });
+  function scan() {
+    document.getAnimations().forEach(function (a) {
+      var t = a.effect && a.effect.target;
+      if (!t || !t.closest || a.effect.getTiming().iterations !== Infinity) return;
+      if (t.closest('.menu-overlay, .hd-bee, .hd-menu-frame')) return; // handled in CSS
+      var box = t.closest('section, footer, .hd-reviews') || t;
+      if (seen) { if (seen.has(box)) return; seen.add(box); }
+      io.observe(box);
+    });
+  }
+  function start() { scan(); setTimeout(scan, 2500); }
+  if (document.readyState === 'complete') start(); else window.addEventListener('load', start);
+})();
+
+/* ---------- Cart drawer layout (01-11-2026) ----------
+   Presentation only. Rearranges the drawer that already exists (static on
+   20 pages, injected by ensureDrawer elsewhere) into: header with title,
+   item count and close; a main column (lines, ritual saving, continue
+   shopping); a summary column (country + shipping, free-shipping progress);
+   and a checkout block (subtotal, note, the same a.cart-checkout, payment
+   chips). No cart, price, discount, shipping or checkout logic lives here:
+   every node is the existing one, moved, so ids, handlers and the Shopify
+   handoff on a.cart-checkout stay intact. Also adds dialog semantics and
+   focus handling (focus in, Tab trap, Escape, focus back to the opener). */
+(function () {
+  'use strict';
+  function lang() { return (window.HD_lang && window.HD_lang()) || 'nl'; }
+  var TXT = {
+    nl: { summary: 'Overzicht', cont: 'Verder winkelen', ship: 'Bezorgen in', items: function (n) { return n === 1 ? '1 artikel' : n + ' artikelen'; } },
+    en: { summary: 'Summary', cont: 'Continue shopping', ship: 'Deliver to', items: function (n) { return n === 1 ? '1 item' : n + ' items'; } },
+    el: { summary: 'Σύνοψη', cont: 'Συνέχεια αγορών', ship: 'Παράδοση σε', items: function (n) { return n === 1 ? '1 προϊόν' : n + ' προϊόντα'; } }
+  };
+  function t() { return TXT[lang()] || TXT.en; }
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>';
+
+  function count() {
+    var c = window.HD_CART;
+    if (!c || !c.items) return 0;
+    return c.items.reduce(function (a, i) { return a + (i.qty || 0); }, 0);
+  }
+
+  function arrange() {
+    var drawer = document.getElementById('cartDrawer');
+    var panel = drawer && drawer.querySelector('.cart-panel');
+    var foot = panel && panel.querySelector('.cart-foot');
+    var items = document.getElementById('cartItems');
+    if (!panel || !foot || !items) return;
+    var tx = t();
+
+    panel.setAttribute('role', 'dialog');
+    panel.setAttribute('aria-modal', 'true');
+    var title = panel.querySelector('.cart-title');
+    if (title) { title.id = title.id || 'cartTitle'; panel.setAttribute('aria-labelledby', title.id); }
+    var head = panel.querySelector('.cart-head');
+    if (head && title && !head.querySelector('.cart-headline')) {
+      var hl = document.createElement('div'); hl.className = 'cart-headline';
+      head.insertBefore(hl, title); hl.appendChild(title);
+      var cnt = document.createElement('span'); cnt.className = 'cart-count-label'; cnt.setAttribute('aria-live', 'polite');
+      hl.appendChild(cnt);
+    }
+    var cl = head && head.querySelector('.cart-count-label');
+    if (cl) { var n = count(), lbl = n ? tx.items(n) : ''; if (cl.textContent !== lbl) cl.textContent = lbl; }
+
+    var body = panel.querySelector('.cart-body');
+    if (!body) {
+      body = document.createElement('div'); body.className = 'cart-body';
+      panel.insertBefore(body, items);
+      var main = document.createElement('div'); main.className = 'cart-main';
+      body.appendChild(main); main.appendChild(items);
+      body.appendChild(foot);
+    }
+    var mainEl = body.querySelector('.cart-main');
+
+    // Ritual saving and "continue shopping" belong under the lines.
+    var offer = document.getElementById('cartOffer');
+    if (offer && offer.parentNode !== mainEl) mainEl.appendChild(offer);
+    var cont = panel.querySelector('.cart-continue-link');
+    if (cont && cont.parentNode !== mainEl) mainEl.appendChild(cont);
+    if (cont && !cont.dataset.hdBound) {
+      cont.dataset.hdBound = '1';
+      cont.addEventListener('click', function (e) { e.preventDefault(); if (window.HD_closeCart) window.HD_closeCart(); });
+    }
+    if (cont && cont.textContent !== tx.cont) { cont.innerHTML = ARROW + '<span>' + tx.cont + '</span>'; }
+    var legacy = document.getElementById('cartProgress'); if (legacy && !legacy.hidden) legacy.hidden = true;
+
+    // Summary heading
+    var h = foot.querySelector('.cart-summary-h');
+    if (!h) { h = document.createElement('h2'); h.className = 'cart-summary-h'; foot.insertBefore(h, foot.firstChild); }
+    if (h.textContent !== tx.summary) h.textContent = tx.summary;
+    var ship = document.getElementById('hdCartShip');
+    if (ship && ship.getAttribute('data-label') !== tx.ship) ship.setAttribute('data-label', tx.ship);
+
+    // Checkout block: subtotal, note, button, payment chips (same nodes).
+    var block = panel.querySelector('.cart-checkout-block');
+    if (!block) { block = document.createElement('div'); block.className = 'cart-checkout-block'; panel.appendChild(block); }
+    // Phones: only subtotal + button stay pinned; the note and payment chips
+    // move into the scrolling summary so the pinned block stays compact.
+    var phone = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
+    ['.cart-totals', 'a.cart-checkout'].forEach(function (sel) {
+      var el = panel.querySelector('.cart-body ' + sel);
+      if (el) block.appendChild(el);
+    });
+    var totals = block.querySelector('.cart-totals'), btn = block.querySelector('a.cart-checkout');
+    ['.cart-note', '.cart-pay'].forEach(function (sel) {
+      var el = panel.querySelector(sel);
+      if (!el) return;
+      if (phone) { if (el.parentNode !== foot) foot.appendChild(el); }
+      else if (el.parentNode !== block) {
+        if (sel === '.cart-note' && btn) block.insertBefore(el, btn); else block.appendChild(el);
+      }
+    });
+    drawer.classList.toggle('is-empty-cart', !count());
+    fitLines(drawer);
+  }
+
+  /* Two-column drawer: shrink the lines (--cl-s 1 → 0.56) until the list
+     fits the column; only below that floor does the column scroll. */
+  var MIN_S = 0.56;
+  function fitLines(drawer) {
+    var main = drawer.querySelector('.cart-main');
+    var wide = window.matchMedia && window.matchMedia('(min-width: 1180px)').matches;
+    if (!main || !wide || !drawer.classList.contains('open') || !drawer.querySelector('.cart-line')) {
+      if (drawer.style.getPropertyValue('--cl-s')) { drawer.style.removeProperty('--cl-s'); drawer.classList.remove('is-compact'); }
+      return;
+    }
+    function fits(sc) {
+      drawer.style.setProperty('--cl-s', sc.toFixed(3));
+      drawer.classList.toggle('is-compact', sc < 0.8);
+      return main.scrollHeight <= main.clientHeight + 1;
+    }
+    if (fits(1)) return;
+    if (!fits(MIN_S)) return;               // even the floor overflows: scroll
+    var lo = MIN_S, hi = 1;
+    for (var i = 0; i < 7; i++) { var mid = (lo + hi) / 2; if (fits(mid)) lo = mid; else hi = mid; }
+    fits(lo);
+  }
+
+  /* Focus handling */
+  var opener = null;
+  document.addEventListener('pointerdown', function (e) { var b = e.target.closest && e.target.closest('.nav-cart'); if (b) opener = b; }, true);
+  document.addEventListener('focusin', function (e) { var b = e.target.closest && e.target.closest('.nav-cart'); if (b) opener = b; });
+  function focusables(panel) {
+    return [].slice.call(panel.querySelectorAll('a[href], button:not([disabled]), select, input, [tabindex]:not([tabindex="-1"])'))
+      .filter(function (el) { return el.offsetParent !== null || el === document.activeElement; });
+  }
+  function onOpenChange(drawer) {
+    var panel = drawer.querySelector('.cart-panel');
+    if (drawer.classList.contains('open')) {
+      if (!opener) opener = document.activeElement;
+      setTimeout(function () { var c = drawer.querySelector('.cart-close'); if (c) c.focus({ preventScroll: true }); }, 60);
+    } else if (opener && document.contains(opener)) {
+      try { opener.focus({ preventScroll: true }); } catch (e) {}
+      opener = null;
+    }
+  }
+  document.addEventListener('keydown', function (e) {
+    var drawer = document.getElementById('cartDrawer');
+    if (!drawer || !drawer.classList.contains('open')) return;
+    if (e.key === 'Escape') { if (!document.querySelector('#cartDrawer .hd-cc.open') && window.HD_closeCart) { e.preventDefault(); window.HD_closeCart(); } return; }
+    if (e.key !== 'Tab') return;
+    var f = focusables(drawer.querySelector('.cart-panel'));
+    if (!f.length) return;
+    var first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && (document.activeElement === first || !drawer.contains(document.activeElement))) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && (document.activeElement === last || !drawer.contains(document.activeElement))) { e.preventDefault(); first.focus(); }
+  });
+
+  function start() {
+    var drawer = document.getElementById('cartDrawer');
+    if (!drawer) return;
+    arrange();
+    var busy = false;
+    new MutationObserver(function (muts) {
+      var openChanged = muts.some(function (m) { return m.type === 'attributes' && m.target === drawer; });
+      if (openChanged) onOpenChange(drawer);
+      if (busy) return; busy = true;
+      requestAnimationFrame(function () { arrange(); busy = false; });
+    }).observe(drawer, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    ['hd:lang', 'hd:country', 'hd:cart-changed'].forEach(function (ev) { window.addEventListener(ev, arrange); document.addEventListener(ev, arrange); });
+    if (window.matchMedia) { var mq = window.matchMedia('(max-width: 760px)'); if (mq.addEventListener) mq.addEventListener('change', arrange); }
+    var rz = 0;
+    window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(arrange, 120); });
+    window.addEventListener('hd:cart-open', function () { setTimeout(arrange, 60); });
+  }
+  if (document.readyState === 'complete') setTimeout(start, 120);
+  else window.addEventListener('load', function () { setTimeout(start, 120); });
+})();
+
+/* ---------- Calm hand-off to Shopify (01-11-2026) ----------
+   Presentation only. commerce/commerce.js still decides where the checkout
+   goes (capture-phase click on a.cart-checkout / [data-shopify-checkout] →
+   HD_startCheckout → Shopify). This veil fades in on that click so the jump
+   from the site to Shopify's own page no longer feels abrupt; the browser
+   keeps showing it until Shopify paints. Removed again on failure
+   (hd:checkout-failed) and when returning via the back button (bfcache). */
+(function () {
+  'use strict';
+  function nl() { return !(window.HD_lang && window.HD_lang() === 'en'); }
+  var veil = null;
+  function show() {
+    if (!veil) {
+      veil = document.createElement('div');
+      veil.className = 'hd-handoff-veil';
+      veil.setAttribute('role', 'status');
+      veil.setAttribute('aria-live', 'polite');
+      document.body.appendChild(veil);
+    }
+    veil.innerHTML =
+      '<div class="hd-hv-inner">' +
+        '<svg class="hd-hv-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>' +
+        '<p class="hd-hv-t">' + (nl() ? 'Je gaat naar de beveiligde betaalomgeving' : 'Taking you to the secure checkout') + '</p>' +
+        '<p class="hd-hv-s">' + (nl() ? 'Even geduld, je winkelmand gaat mee.' : 'One moment, your cart comes along.') + '</p>' +
+        '<span class="hd-hv-bar" aria-hidden="true"><span></span></span>' +
+      '</div>';
+    void veil.offsetWidth;
+    veil.classList.add('is-on');
+  }
+  function hide() { if (veil) { veil.classList.remove('is-on'); } }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.cart-checkout, [data-shopify-checkout]');
+    if (!a) return;
+    if (!(window.HD_CART && window.HD_CART.items && window.HD_CART.items.length)) return;
+    show();
+  });
+  document.addEventListener('hd:checkout-failed', hide);
+  window.addEventListener('pageshow', function (e) { if (e.persisted) hide(); });
 })();

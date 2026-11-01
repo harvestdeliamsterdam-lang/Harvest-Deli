@@ -52,7 +52,7 @@
 
   /* ====================== Free-shipping progress ===================== */
   function parsePrice(txt) { return parseFloat(String(txt || '').replace(/[^0-9.,]/g, '').replace(',', '.')) || 0; }
-  function fmt(n) { n = Math.round((n || 0) * 100) / 100; return Number.isInteger(n) ? '€' + n : '€' + n.toFixed(2); }
+  function fmt(n) { n = Math.round((n || 0) * 100) / 100; var s = Number.isInteger(n) ? String(n) : n.toFixed(2); if (((window.HD_lang && window.HD_lang()) || 'nl') !== 'en') s = s.replace('.', ','); return '€' + s; }
   function updateFreeBar() {
     var foot = document.querySelector('.cart-foot');
     var totalEl = document.getElementById('cartTotal');
@@ -80,7 +80,12 @@
       foot.insertBefore(bar, foot.firstChild);
     }
     // Read the authoritative cart subtotal (HD_CART), DOM-text parsing was unreliable.
-    var total = (window.HD_CART && typeof window.HD_CART.total === 'function') ? window.HD_CART.total() : parsePrice(totalEl.textContent);
+    // Shopify sets free shipping on the amount AFTER discounts (measured
+    // 01-11-2026: €62 with the €5 ritual saving pays shipping), so prefer the
+    // payable total that shared.js render() publishes.
+    var total = (typeof window.HD_CART_PAYABLE === 'number' && window.HD_CART && window.HD_CART.items && window.HD_CART.items.length)
+      ? window.HD_CART_PAYABLE
+      : (window.HD_CART && typeof window.HD_CART.total === 'function') ? window.HD_CART.total() : parsePrice(totalEl.textContent);
     var threshold = (window.HD_SHIPPING && window.HD_SHIPPING.current().free) || window.HD_FREE_SHIP || 60;
     var remain = Math.max(0, threshold - total);
     var pct = Math.max(0, Math.min(100, threshold > 0 ? (total / threshold) * 100 : 0));

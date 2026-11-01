@@ -111,10 +111,27 @@
        2025-10+), country and language into the checkoutUrl. Shopify reads it
        (the _cs parameter) and only runs checkout pixels, such as the Google &
        YouTube pixel that reports purchases, when the visitor agreed. */
-    cartCreate: `mutation cartCreate($lines: [CartLineInput!], $buyerIdentity: CartBuyerIdentityInput, $country: CountryCode, $language: LanguageCode, $consent: VisitorConsent)
+    /* $discountCodes / $attributes (01-11-2026): the welcome code chosen in
+       welcome.js and its test group travel with the cart; Shopify alone
+       decides whether the code applies (discountCodes.applicable). */
+    cartCreate: `mutation cartCreate($lines: [CartLineInput!], $buyerIdentity: CartBuyerIdentityInput, $discountCodes: [String!], $attributes: [AttributeInput!], $country: CountryCode, $language: LanguageCode, $consent: VisitorConsent)
       @inContext(country: $country, language: $language, visitorConsent: $consent) {
-      cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity }) {
-        cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } } }
+      cartCreate(input: { lines: $lines, buyerIdentity: $buyerIdentity, discountCodes: $discountCodes, attributes: $attributes }) {
+        cart { id checkoutUrl totalQuantity cost { subtotalAmount { amount currencyCode } } discountCodes { code applicable } }
+        userErrors { field message }
+      } }`,
+    /* Read-only preview for the cart drawer: a throwaway cart with the same
+       lines and code, so the drawer can say "toegepast" only once Shopify has
+       confirmed it. Its id is never stored and it never becomes the checkout. */
+    cartPreview: `mutation cartPreview($lines: [CartLineInput!], $discountCodes: [String!], $country: CountryCode)
+      @inContext(country: $country) {
+      cartCreate(input: { lines: $lines, discountCodes: $discountCodes, buyerIdentity: { countryCode: $country } }) {
+        cart {
+          discountCodes { code applicable }
+          discountAllocations { discountedAmount { amount } ... on CartCodeDiscountAllocation { code } }
+          cost { subtotalAmount { amount } }
+          lines(first: 50) { nodes { discountAllocations { discountedAmount { amount } } } }
+        }
         userErrors { field message }
       } }`,
     cartGet: `query cart($cartId: ID!) {

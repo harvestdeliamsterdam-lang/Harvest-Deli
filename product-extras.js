@@ -381,7 +381,7 @@
     var cards = list.map(function (s) {
       var p = window.HD_product && window.HD_product(s); if (!p) return '';
       return '<a class="px-pair" href="' + p.url + '">' +
-        '<span class="px-pair-img"><img src="' + p.image + '" alt="" loading="lazy"></span>' +
+        '<span class="px-pair-img"><img src="' + String(p.image).replace(/^(\/assets\/(?:products-images\/)?[a-z-]+)\.webp/, '$1-160.webp') + '" alt="" loading="lazy"></span>' +
         '<span class="px-pair-meta"><span class="px-pair-name">' + p.name + '</span>' +
         '<span class="px-pair-note">' + (p.notes || p.region || '') + '</span>' +
         '<span class="px-pair-price">' + fmt(p.price) + '</span></span></a>';
@@ -461,7 +461,7 @@
     }
     if (p && p.image) {
       var hasGallery = GALLERY_SET.indexOf(slug) !== -1;
-      var ASSET_V = '?v=hd-2026-06-06-222';
+      var ASSET_V = '?v=hd-2026-06-06-229';
       var base = '/assets/products-images/' + slug;
       var originSrc = base + '-origin.webp' + ASSET_V;
       var servingSrc = base + '-serving.webp' + ASSET_V;

@@ -2,7 +2,13 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<!-- Hero film, decided before first paint: the film plays once per browser
+     (localStorage hd-hero-film-v1), never again by itself after it has
+     started. Returning visitors, reduced motion, data saver and 2G get the
+     fixed photo at once, and also skip the logo intro so the photo is the
+     first thing they see. ?hero=video / ?hero=poster force either way. -->
+<script>(function(){var d=document.documentElement,film=false;try{var f=new URLSearchParams(location.search).get('hero');var c=navigator.connection||{};var less=!!c.saveData||/(^|-)2g$/.test(c.effectiveType||'')||!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);var seen=localStorage.getItem('hd-hero-film-v1')==='seen';film=f==='video'||(f!=='poster'&&!seen&&!less);if(seen){try{sessionStorage.setItem('hd-intro-played-v1','1');}catch(e){}}}catch(e){film=false;}d.classList.add(film?'hd-film':'hd-still');if(film){var l=document.createElement('link');l.rel='preload';l.as='image';l.href='hero-poster.jpg?v=hd-2026-06-06-229';document.head.appendChild(l);}})();</script>
 <!-- Cinematic intro pre-paint shield, runs before first paint to prevent any homepage flash.
      Safety net: if shared.js fails to load within 8 s (network drop, blocked script), the shield
      drops itself so the body is never permanently hidden. -->
@@ -25,14 +31,14 @@
 <title>Harvest Deli | Premium Griekse Honing, Olijfolie &amp; Delicatessen</title>
 <meta name="description" content="Single-origin Griekse honing, koudgeperste extra vierge olijfolie en wilde bergthee. Rauw en ambachtelijk, direct van kleine Griekse producenten.">
 <link rel="canonical" href="https://harvestdeli.nl/">
-<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-222">
-<link rel="icon" href="favicon.svg?v=hd-2026-06-06-222" type="image/svg+xml">
-<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-222">
-<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-222">
-<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-222">
-<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-222" color="#10281f">
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-222">
-<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-222">
+<link rel="icon" type="image/gif" sizes="32x32" href="favicon.gif?v=hd-2026-06-06-229">
+<link rel="icon" href="favicon.svg?v=hd-2026-06-06-229" type="image/svg+xml">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="favicon-32.png?v=hd-2026-06-06-229">
+<link rel="alternate icon" type="image/png" sizes="16x16" href="favicon-16.png?v=hd-2026-06-06-229">
+<link rel="shortcut icon" href="favicon.ico?v=hd-2026-06-06-229">
+<link rel="mask-icon" href="safari-pinned-tab.svg?v=hd-2026-06-06-229" color="#10281f">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=hd-2026-06-06-229">
+<link rel="manifest" href="site.webmanifest?v=hd-2026-06-06-229">
 <meta name="theme-color" content="#10281f">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Harvest Deli | Premium Griekse Honing, Olijfolie &amp; Delicatessen">
@@ -117,7 +123,8 @@
      without waiting for the heavy video. We deliberately do NOT preload the
      video itself (it would saturate the connection ahead of shared.js and
      stall the intro IIFE). The <video preload="auto" fetchpriority="low"> below is enough. -->
-<link rel="preload" as="image" href="hero-poster.jpg?v=hd-2026-06-06-222" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="(max-width: 699px) and (orientation: portrait)" imagesizes="100vw" imagesrcset="assets/hero/hero-staand-720.webp?v=hd-2026-06-06-229 720w, assets/hero/hero-staand-1080.webp?v=hd-2026-06-06-229 1080w, assets/hero/hero-staand-1440.webp?v=hd-2026-06-06-229 1440w">
+<link rel="preload" as="image" type="image/webp" fetchpriority="high" media="not all and (max-width: 699px) and (orientation: portrait)" imagesizes="100vw" imagesrcset="assets/hero/hero-tafel-828.webp?v=hd-2026-06-06-229 828w, assets/hero/hero-tafel-1280.webp?v=hd-2026-06-06-229 1280w, assets/hero/hero-tafel-1920.webp?v=hd-2026-06-06-229 1920w, assets/hero/hero-tafel-2560.webp?v=hd-2026-06-06-229 2560w">
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap">
 <link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap">
 <!-- Fonts loaded non-render-blocking (media=print swap); display=swap shows text immediately. -->
@@ -127,7 +134,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400..600&display=swap" rel="stylesheet">
 <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap" rel="stylesheet">
 </noscript>
-<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-222">
+<link rel="stylesheet" href="shared.css?v=hd-2026-06-06-229">
 <style>
 :root {
   --bg: #F5EFE4;
@@ -175,9 +182,9 @@ body {
 ::selection { background: var(--gold-soft); color: var(--ink); }
 
 /* Editorial type primitives */
-.serif { font-family: 'Newsreader', 'EB Garamond', Garamond, serif; }
+.serif { font-family: var(--font-display); }
 .label {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -189,7 +196,7 @@ body {
 .logo-svg { display: block; height: 100%; width: auto; }
 .logo-svg .arched,
 .logo-svg .deli,
-.logo-svg .tagline { font-family: 'Newsreader', serif; }
+.logo-svg .tagline { font-family: var(--font-display); }
 .logo-mark.nav-size { height: 53px; }
 .logo-mark.loader-size { height: 120px; }
 .logo-mark.hero-size {
@@ -275,7 +282,7 @@ nav.site-nav .nav-right {
   border: none;
   color: inherit;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 13px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
@@ -356,7 +363,7 @@ nav.site-nav .nav-cart {
   border: none;
   color: currentColor;
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px;
   letter-spacing: 0.4em;
   text-transform: uppercase;
@@ -414,7 +421,7 @@ nav.site-nav .nav-cart {
 .menu-overlay.open .menu-items li:nth-child(5) { transition-delay: 0.58s; }
 
 .menu-items .roman {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: 14px;
@@ -422,7 +429,7 @@ nav.site-nav .nav-cart {
   letter-spacing: 0.1em;
 }
 .menu-items a {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(40px, 5vw, 72px);
   line-height: 1.04;
@@ -445,7 +452,7 @@ nav.site-nav .nav-cart {
 .menu-items a:hover { color: var(--gold-light); }
 .menu-items a:hover::after { width: 100%; }
 .menu-items .sub {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -464,7 +471,7 @@ nav.site-nav .nav-cart {
 }
 .menu-overlay.open .menu-side { opacity: 1; transform: translateX(0); }
 .menu-side h5 {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 9.5px;
   letter-spacing: 0.45em;
   text-transform: uppercase;
@@ -473,7 +480,7 @@ nav.site-nav .nav-cart {
   font-weight: 500;
 }
 .menu-side p {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -536,7 +543,7 @@ nav.site-nav .nav-cart {
   /* The poster (= the video's exact first frame) is ALWAYS the backdrop, so the
      hero is the cinematic still instantly, never a beige/empty gap while the
      heavy video loads. The video sits on top and 'comes alive' seamlessly. */
-  background: #0E0B08 url("hero-poster.jpg?v=hd-2026-06-06-222") center/cover no-repeat;
+  background: #0E0B08 url("hero-poster.jpg?v=hd-2026-06-06-229") center/cover no-repeat;
 }
 .video-stage video {
   width: 100%;
@@ -597,7 +604,7 @@ nav.site-nav .nav-cart {
 }
 
 .display {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-weight: 400;
   color: #F5EFE4;
   line-height: 1.04;
@@ -654,7 +661,7 @@ nav.site-nav .nav-cart {
 .scene-brand.active .brand-reveal .brand-glow { opacity: 1; }
 .brand-reveal .est {
   position: relative;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10.5px;
   letter-spacing: 0.7em;
   text-transform: uppercase;
@@ -739,7 +746,7 @@ nav.site-nav .nav-cart {
 .glass-cards.active .glass-card:nth-child(3) { transition-delay: 0.40s; }
 
 .glass-card .num {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-style: italic;
   font-size: 15px;
@@ -749,7 +756,7 @@ nav.site-nav .nav-cart {
   opacity: 0.95;
 }
 .glass-card h3 {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: 30px;
   letter-spacing: -0.018em;
@@ -758,7 +765,7 @@ nav.site-nav .nav-cart {
   color: #F8EDD6;
 }
 .glass-card p {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 13px;
   line-height: 1.85;
   letter-spacing: 0.008em;
@@ -774,7 +781,7 @@ nav.site-nav .nav-cart {
   align-items: center;
   gap: 24px;
   padding: 22px 44px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px;
   letter-spacing: var(--track-button);
   text-transform: uppercase;
@@ -843,7 +850,7 @@ nav.site-nav .nav-cart {
   background: rgba(14, 11, 8, 0.30);
   -webkit-backdrop-filter: blur(10px) saturate(130%); backdrop-filter: blur(10px) saturate(130%);
   color: #F5EFE4;
-  font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 500;
+  font-family: 'Inter Tight', sans-serif; font-size: 10.5px; font-weight: 500;
   letter-spacing: 0.22em; text-transform: uppercase; white-space: nowrap;
   cursor: pointer;
   transition: opacity 0.6s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease);
@@ -882,7 +889,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   padding-left: var(--track-label);
 }
 .chapter-headline {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(42px, 5.6vw, 92px);
   line-height: 1.08;
@@ -893,7 +900,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 }
 .chapter-headline em { font-style: italic; font-weight: 400; color: var(--ink-warm); letter-spacing: -0.012em; }
 .chapter-body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 15.5px;
   line-height: 1.85;
   font-weight: 400;
@@ -964,7 +971,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 }
 .origin__caption {
   position: absolute; bottom: 22px; left: 24px; z-index: 2;
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 9.5px; letter-spacing: var(--track-label, 0.36em);
+  font-family: 'Inter Tight', sans-serif; font-size: 9.5px; letter-spacing: var(--track-label, 0.36em);
   text-transform: uppercase; color: rgba(255, 250, 240, 0.92); font-weight: 500; padding-left: var(--track-label, 0.36em);
 }
 @media (max-width: 860px) {
@@ -1003,12 +1010,12 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 
 .proc__head { text-align: center; max-width: 680px; margin: 0 auto clamp(44px, 6vh, 78px); }
 .proc__eyebrow {
-  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase;
   color: var(--gold-deep); font-weight: 600; margin-bottom: 18px;
 }
 .proc__title {
-  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-weight: 540;
   font-size: clamp(29px, 4vw, 52px);
   line-height: 1.08; letter-spacing: -0.03em; color: var(--ink);
@@ -1085,19 +1092,19 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   padding-left: clamp(18px, 3.4vw, 52px);
 }
 .proc__num {
-  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 12px; letter-spacing: 0.22em; font-weight: 600;
   color: var(--gold-deep); font-variant-numeric: tabular-nums;
   margin-bottom: 14px; display: block;
 }
 .proc__name {
-  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-weight: 540; font-size: clamp(24px, 2.6vw, 34px);
   line-height: 1.1; letter-spacing: -0.022em; color: var(--ink);
   margin-bottom: 14px;
 }
 .proc__desc {
-  font-family: 'Inter Tight', 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 14.5px; line-height: 1.62; color: var(--ink-soft);
   font-weight: 400; letter-spacing: 0.002em;
 }
@@ -1127,7 +1134,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 
 .taste { text-align: center; padding: 28vh 12%; }
 .taste blockquote {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
   font-size: clamp(32px, 4.2vw, 62px);
@@ -1143,7 +1150,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
 .taste cite {
   display: block;
   margin-top: 44px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-style: normal;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
@@ -1252,7 +1259,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   color: var(--ink);
 }
 .card-region {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 11px;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -1272,7 +1279,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   color: var(--ink);
   border: 1px solid rgba(26, 22, 18, 0.18);
   cursor: pointer;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px;
   letter-spacing: var(--track-button);
   text-transform: uppercase;
@@ -1309,7 +1316,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   align-items: center;
   gap: 18px;
   padding: 14px 0 18px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px;
   letter-spacing: var(--track-button);
   text-transform: uppercase;
@@ -1475,7 +1482,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   padding-left: var(--track-label);
 }
 .product-meta h2 {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-weight: 400;
   font-size: clamp(40px, 5vw, 72px);
   line-height: 1.06;
@@ -1504,7 +1511,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   transform: translateY(-2px);
 }
 .product-meta .desc {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 15px;
   line-height: 1.9;
   color: var(--ink-soft);
@@ -1518,7 +1525,7 @@ section.chapter { padding: var(--sp-y) var(--sp-x); position: relative; }
   align-items: center;
   gap: 24px;
   padding: 22px 44px;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 10px;
   letter-spacing: var(--track-button);
   text-transform: uppercase;
@@ -1568,7 +1575,7 @@ footer {
 }
 .footer-brand { margin-bottom: 28px; }
 .footer-tagline {
-  font-family: 'Newsreader', 'EB Garamond', Garamond, serif;
+  font-family: var(--font-display);
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -1577,8 +1584,8 @@ footer {
   line-height: 1.5;
   letter-spacing: -0.006em;
 }
-.footer-col h4 {
-  font-family: 'Inter', sans-serif;
+.footer-col h2 {
+  font-family: 'Inter Tight', sans-serif;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
   text-transform: uppercase;
@@ -1589,7 +1596,7 @@ footer {
 }
 .footer-col a {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 13px;
   color: var(--ink-soft);
   text-decoration: none;
@@ -1603,7 +1610,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter Tight', sans-serif;
   font-size: 9.5px;
   letter-spacing: var(--track-label);
   color: var(--ink-soft);
@@ -1677,8 +1684,8 @@ footer {
 /* ============ Curated selection (below hero) ============ */
 .idx-selection { max-width: var(--page-max); margin: 0 auto; padding: var(--sp-y) var(--sp-x) var(--sp-y-tight); }
 .idx-sel-head { margin-bottom: clamp(40px, 5vw, 48px); }
-.idx-sel-eyebrow { display: block; font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500; margin-bottom: 16px; }
-.idx-sel-title { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540; font-size: clamp(30px, 4.2vw, 52px); letter-spacing: -0.028em; line-height: 1.04; color: var(--ink, #1F1A14); max-width: 16ch; }
+.idx-sel-eyebrow { display: block; font-family: 'Inter Tight', sans-serif; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500; margin-bottom: 16px; }
+.idx-sel-title { font-family: 'Inter Tight', sans-serif; font-weight: 540; font-size: clamp(30px, 4.2vw, 52px); letter-spacing: -0.028em; line-height: 1.04; color: var(--ink, #1F1A14); max-width: 16ch; }
 /* Horizontal cinematic carousel: drag (desktop) + native swipe (mobile),
    scroll-snap, cards reveal as the rail enters view, then vertical flow resumes. */
 /* Centred, exclusive 3-up showcase, no horizontal scroll */
@@ -1735,14 +1742,14 @@ footer {
 .idx-sel-photo.deep   { filter: brightness(0.8) saturate(1.18) contrast(1.04); }
 .idx-sel-info { padding: 19px 4px 2px; }
 .idx-sel-name { font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif); font-weight: 600; font-size: 18.5px; letter-spacing: -0.014em; color: var(--ink, #1F1A14); }
-.idx-sel-desc { font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 12.5px; line-height: 1.55; color: var(--ink-soft, #5C5247); margin: 7px 0 12px; }
-.idx-sel-price { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 600; font-size: 13px; color: var(--gold-deep, #8A6228); font-variant-numeric: tabular-nums; margin-top: auto; }
+.idx-sel-desc { font-family: 'Inter Tight', sans-serif; font-size: 12.5px; line-height: 1.55; color: var(--ink-soft, #5C5247); margin: 7px 0 12px; }
+.idx-sel-price { font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 13px; color: var(--gold-deep, #8A6228); font-variant-numeric: tabular-nums; margin-top: auto; }
 .idx-sel-price .from { font-weight: 400; color: var(--ink-soft, #5C5247); }
 /* premium liquid-gold CTA */
 .idx-sel-cta-wrap { margin-top: clamp(52px, 6vw, 64px); text-align: center; }
 .idx-sel-cta {
   position: relative; display: inline-flex; align-items: center; gap: 14px; overflow: hidden;
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
+  font-family: 'Inter Tight', sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600;
   color: var(--ink, #1F1A14); text-decoration: none;
   padding: 17px 38px; min-height: 54px;
   background: rgba(255, 253, 248, 0.5);
@@ -1801,19 +1808,19 @@ footer {
   gap: clamp(36px, 6vw, 92px); align-items: center;
 }
 .oo__eyebrow {
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 10px;
+  font-family: 'Inter Tight', sans-serif; font-size: 10px;
   letter-spacing: 0.34em; text-transform: uppercase; font-weight: 600;
   color: var(--gold-deep, #8A6228); margin-bottom: 26px;
 }
 .oo__title {
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 520;
+  font-family: 'Inter Tight', sans-serif; font-weight: 520;
   font-size: clamp(32px, 4.6vw, 60px); line-height: 1.06; letter-spacing: -0.03em;
   color: var(--ink, #1F1A14); margin-bottom: 34px; text-wrap: balance;
 }
 .oo__title em { font-style: normal; color: var(--gold-deep, #8A6228); }
 .oo__lines { margin-bottom: 40px; }
 .oo__lines p {
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(14.5px, 1.05vw, 16.5px);
+  font-family: 'Inter Tight', sans-serif; font-size: clamp(14.5px, 1.05vw, 16.5px);
   line-height: 1.5; color: var(--ink-soft, #5C5247); margin: 0 0 7px;
 }
 .oo__words {
@@ -1823,7 +1830,7 @@ footer {
 }
 .oo__cta {
   display: inline-flex; align-items: center; gap: 13px; position: relative; isolation: isolate;
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.2em;
+  font-family: 'Inter Tight', sans-serif; font-size: 11px; letter-spacing: 0.2em;
   text-transform: uppercase; font-weight: 600; color: var(--ink, #1F1A14); text-decoration: none;
   padding: 15px 28px; border: 1px solid var(--gold, #B8945A); border-radius: 999px;
   overflow: hidden; transition: color 0.5s var(--ease);
@@ -1882,8 +1889,8 @@ footer {
 /* ============ Editorial journal, magazine layout (Kinfolk × Aesop × Apple) ============ */
 .journal-preview { max-width: var(--page-max); margin: 0 auto; padding: var(--sp-y-tight) var(--sp-x) var(--sp-y); }
 .jp-head { text-align: center; margin: 0 auto clamp(44px, 6vw, 78px); max-width: none; }
-.jp-eyebrow { font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 600; margin-bottom: 16px; }
-.jp-title { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540; font-size: clamp(32px, 4.6vw, 60px); letter-spacing: -0.032em; line-height: 1.04; color: var(--ink, #1F1A14); }
+.jp-eyebrow { font-family: 'Inter Tight', sans-serif; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 600; margin-bottom: 16px; }
+.jp-title { font-family: 'Inter Tight', sans-serif; font-weight: 540; font-size: clamp(32px, 4.6vw, 60px); letter-spacing: -0.032em; line-height: 1.04; color: var(--ink, #1F1A14); }
 
 .jp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.4vw, 38px); }
 .jp-card {
@@ -1915,23 +1922,23 @@ footer {
   display: inline-flex; align-items: center; padding: 7px 13px; border-radius: 999px;
   background: rgba(16, 40, 31, 0.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   border: 1px solid rgba(212, 172, 106, 0.4); color: #EBDBB8;
-  font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 9px; font-weight: 600;
+  font-family: 'Inter Tight', sans-serif; font-size: 9px; font-weight: 600;
   letter-spacing: 0.2em; text-transform: uppercase;
 }
 
 .jp-body { display: flex; flex-direction: column; flex: 1; padding: clamp(20px, 1.9vw, 30px) clamp(20px, 1.9vw, 30px) clamp(24px, 2.2vw, 32px); }
-.jp-metar { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft, #5C5247); font-weight: 500; }
+.jp-metar { display: flex; align-items: center; flex-wrap: wrap; gap: 9px; margin-bottom: 14px; font-family: 'Inter Tight', sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-soft, #5C5247); font-weight: 500; }
 .jp-metar .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold, #B8945A); }
-.jp-headline { display: inline-block; position: relative; font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540; font-size: clamp(20px, 1.5vw, 25px); letter-spacing: -0.02em; line-height: 1.14; color: var(--ink, #1F1A14); margin-bottom: 14px; }
+.jp-headline { display: inline-block; position: relative; font-family: 'Inter Tight', sans-serif; font-weight: 540; font-size: clamp(20px, 1.5vw, 25px); letter-spacing: -0.02em; line-height: 1.14; color: var(--ink, #1F1A14); margin-bottom: 14px; }
 .jp-headline::after { content: ''; position: absolute; left: 0; bottom: -7px; height: 1.5px; width: 34px; background: linear-gradient(90deg, var(--gold-deep, #8A6228), var(--gold-light, #D4AC6A)); transition: width 0.55s var(--ease, cubic-bezier(0.22,1,0.36,1)); }
 .jp-card:hover .jp-headline::after { width: 100%; }
-.jp-dek { font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 14px; line-height: 1.6; color: var(--ink-soft, #5C5247); margin-bottom: 20px; }
-.jp-more { margin-top: auto; display: inline-flex; align-items: center; gap: 11px; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--ink, #1F1A14); }
+.jp-dek { font-family: 'Inter Tight', sans-serif; font-size: 14px; line-height: 1.6; color: var(--ink-soft, #5C5247); margin-bottom: 20px; }
+.jp-more { margin-top: auto; display: inline-flex; align-items: center; gap: 11px; font-family: 'Inter Tight', sans-serif; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; color: var(--ink, #1F1A14); }
 .jp-more .arrow { width: 22px; height: 1px; background: currentColor; transition: width 0.4s var(--ease); display: inline-block; }
 .jp-card:hover .jp-more .arrow { width: 34px; }
 
 .jp-cta-wrap { margin-top: clamp(40px, 5vw, 66px); text-align: center; }
-.jp-cta { display: inline-flex; align-items: center; gap: 12px; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--ink, #1F1A14); text-decoration: none; padding: 15px 30px; border: 1px solid rgba(26,22,18,0.28); border-radius: var(--radius-pill, 999px); transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease); }
+.jp-cta { display: inline-flex; align-items: center; gap: 12px; font-family: 'Inter Tight', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: var(--ink, #1F1A14); text-decoration: none; padding: 15px 30px; border: 1px solid rgba(26,22,18,0.28); border-radius: var(--radius-pill, 999px); transition: background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease); }
 .jp-cta .arrow { width: 18px; height: 1px; background: currentColor; transition: width 0.4s var(--ease); display: inline-block; }
 .jp-cta:hover { background: var(--ink, #1F1A14); color: var(--cream, #FAF6EE); border-color: var(--ink, #1F1A14); }
 .jp-cta:hover .arrow { width: 28px; }
@@ -1982,7 +1989,7 @@ body nav.site-nav::before {
   display: block !important;
   content: "" !important;
   position: absolute !important; inset: 0 !important;
-  background: url("assets/nav-topo.svg?v=hd-2026-06-06-222") center / cover no-repeat !important;
+  background: url("assets/nav-topo.svg?v=hd-2026-06-06-229") center / cover no-repeat !important;
   opacity: 0.5 !important;
   pointer-events: none !important;
   z-index: 0 !important;
@@ -2133,7 +2140,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     padding: 0 11px !important;
     border-radius: 999px !important;
     background: transparent;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 10.5px !important; letter-spacing: 0.14em; font-weight: 600; line-height: 1;
     text-transform: uppercase;
     color: rgba(24, 44, 33, 0.52) !important;
@@ -2170,9 +2177,186 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
   body nav.site-nav .hd-lang-mobile button { min-width: 28px !important; padding: 0 6px !important; font-size: 10px !important; }
   body nav.site-nav .nav-search { min-width: 40px !important; }
 }
+
+/* ============================================================
+   Homepage hero (31-10-2026): the film plays once per browser, then
+   cross-fades into the fixed product-table photo. Copy and button are
+   real HTML on top. Two compositions:
+   - overlay: wide landscape screens, copy in the free space on the left
+   - stacked: phones, tablets and tall windows, photo on top and the copy
+     on a cream panel below (the products reach the right edge, so copy on
+     top of the photo would sit on the labels there)
+   ============================================================ */
+body.hd-home {
+  --hh-ink: #FBF6EC;            /* warm white on the photo */
+  --hh-green: #182C21;          /* label green */
+  --hh-ivory: #F4ECDD;          /* button */
+  --hh-cream: #F3ECDF;          /* panel under the photo */
+  --hh-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.hd-hero { position: relative; height: auto; min-height: 0; overflow: visible; background: var(--hh-cream); }
+.hd-hero__media { position: relative; overflow: hidden; background: #2B2A20; aspect-ratio: 1 / 1; }
+.hd-hero__still, .hd-hero__still img,
+.hd-hero__film, .hd-hero__film video {
+  position: absolute; inset: 0; width: 100%; height: 100%; display: block;
+}
+.hd-hero__still img { object-fit: cover; object-position: 96% 50%; }
+/* The film sits on top of the photo. Its own backdrop is the film's first
+   frame, so a slow start never shows an empty layer. */
+.hd-hero__film {
+  z-index: 1; opacity: 0; visibility: hidden;
+  background: #0E0B08 center / cover no-repeat;
+  transition: opacity 0.9s var(--hh-ease), visibility 0s linear 0.9s;
+}
+html.hd-film .hd-hero__film { background-image: url("hero-poster.jpg?v=hd-2026-06-06-229"); opacity: 1; visibility: visible; transition: opacity 0.9s var(--hh-ease), visibility 0s; }
+.hd-hero__film video { object-fit: cover; }
+/* Readability: a soft dark band behind the navigation only */
+.hd-hero__media::after {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 132px; z-index: 2; pointer-events: none;
+  background: linear-gradient(180deg, rgba(12, 14, 10, 0.5) 0%, rgba(12, 14, 10, 0.2) 58%, rgba(12, 14, 10, 0) 100%);
+}
+.hd-hero__copy {
+  position: relative; z-index: 3;
+  padding: 30px 22px calc(40px + env(safe-area-inset-bottom));
+  color: var(--hh-green);
+}
+.hd-hero__eyebrow {
+  margin: 0 0 14px; font-family: 'Inter Tight', sans-serif;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(24, 44, 33, 0.72);
+}
+.hd-hero__heading {
+  margin: 0; font-family: var(--font-display, 'General Sans', 'Inter Tight', sans-serif);
+  font-weight: 500; font-size: clamp(31px, 8.4vw, 40px); line-height: 1.06; letter-spacing: -0.022em;
+  text-wrap: balance; max-width: 15ch;
+}
+.hd-hero__sub {
+  margin: 14px 0 0; font-family: 'Inter Tight', sans-serif;
+  font-size: 16px; line-height: 1.5; color: rgba(24, 44, 33, 0.8); max-width: 34ch;
+}
+.hd-hero__cta {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: 26px; min-height: 54px; padding: 0 26px 0 28px; border-radius: 999px;
+  background: var(--hh-green); color: var(--hh-ivory); text-decoration: none;
+  font-family: 'Inter Tight', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.01em;
+  box-shadow: 0 10px 26px rgba(24, 44, 33, 0.18);
+  transition: background-color 0.35s var(--hh-ease), box-shadow 0.35s var(--hh-ease), transform 0.35s var(--hh-ease);
+}
+.hd-hero__cta svg { width: 18px; height: 18px; flex: none; transition: transform 0.35s var(--hh-ease); }
+.hd-hero__cta:hover svg { transform: translateX(4px); }
+.hd-hero__cta:focus-visible { outline: 2px solid var(--hh-green); outline-offset: 4px; }
+/* Small, findable film control, bottom right of the picture */
+.hd-hero__replay {
+  position: absolute; z-index: 4; right: 14px; bottom: 14px;
+  display: inline-flex; align-items: center; gap: 9px;
+  min-height: 44px; padding: 0 16px 0 12px; border-radius: 999px; cursor: pointer;
+  font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.01em;
+  color: var(--hh-ink); background: rgba(16, 18, 13, 0.34);
+  border: 1px solid rgba(255, 250, 240, 0.32);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1); backdrop-filter: blur(10px) saturate(1.1);
+  transition: background-color 0.3s var(--hh-ease), border-color 0.3s var(--hh-ease);
+}
+.hd-hero__replay:hover { background: rgba(16, 18, 13, 0.52); border-color: rgba(255, 250, 240, 0.55); }
+.hd-hero__replay:focus-visible { outline: 2px solid var(--hh-ink); outline-offset: 3px; }
+.hd-hero__replay svg { width: 18px; height: 18px; flex: none; }
+.hd-hero__replay .i-skip, html.hd-film .hd-hero__replay .i-play { display: none; }
+html.hd-film .hd-hero__replay .i-skip { display: block; }
+.hd-hero__replay[hidden] { display: none; }
+@media (max-width: 699px) { .hd-hero__replay { right: 12px; bottom: 12px; min-height: 40px; padding: 0 13px 0 10px; font-size: 12.5px; gap: 7px; } .hd-hero__replay svg { width: 16px; height: 16px; } }
+
+/* Phones (portrait): the picture fills the whole screen, copy over the
+   lower part on a soft dark scrim, ivory button (31-10-2026). */
+@media (max-width: 699px) {
+  .hd-hero { height: 100vh; height: 100svh; min-height: 560px; overflow: hidden; background: #1C1D16; }
+  .hd-hero__media { position: absolute; inset: 0; aspect-ratio: auto; }
+  .hd-hero__media::before {
+    content: ""; position: absolute; inset: auto 0 0 0; height: 68%; z-index: 2; pointer-events: none;
+    background: linear-gradient(0deg, rgba(12, 14, 10, 0.82) 0%, rgba(12, 14, 10, 0.62) 42%, rgba(12, 14, 10, 0.24) 74%, rgba(12, 14, 10, 0) 100%);
+  }
+  .hd-hero__copy {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 0 22px calc(36px + env(safe-area-inset-bottom));
+    color: var(--hh-ink);
+  }
+  .hd-hero__eyebrow { color: rgba(251, 246, 236, 0.86); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4); }
+  .hd-hero__heading { text-shadow: 0 2px 22px rgba(0, 0, 0, 0.35); max-width: 13ch; }
+  .hd-hero__sub { color: rgba(251, 246, 236, 0.9); text-shadow: 0 1px 14px rgba(0, 0, 0, 0.42); max-width: 30ch; }
+  .hd-hero__cta { margin-top: 24px; background: var(--hh-ivory); color: var(--hh-green); box-shadow: 0 14px 34px rgba(8, 10, 6, 0.3); }
+  .hd-hero__cta:focus-visible { outline-color: var(--hh-ink); }
+  /* Film control top right, clear of the copy and the concierge button */
+  .hd-hero__replay { top: calc(96px + env(safe-area-inset-top)); bottom: auto; }
+}
+
+/* Portrait phones: the vertical photo keeps its full width (no side crop),
+   is pinned to the top and fades into the dark ground below, so the
+   products sit above the copy. Short phones lift it a little further. */
+@media (max-width: 699px) and (orientation: portrait) {
+  .hd-hero__still img {
+    inset: 0 0 auto 0; height: auto; aspect-ratio: 9 / 16; object-position: 50% 50%;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 84%, transparent 100%);
+  }
+}
+@media (max-width: 699px) and (orientation: portrait) and (min-aspect-ratio: 10/19) {
+  .hd-hero__still img { transform: translateY(-11%); }
+  .hd-hero__heading { font-size: clamp(29px, 7.8vw, 34px); }
+  .hd-hero__sub { margin-top: 10px; }
+  .hd-hero__cta { margin-top: 18px; }
+}
+@media (max-width: 699px) and (orientation: portrait) and (max-height: 600px) { .hd-hero__eyebrow { display: none; } }
+
+/* Tablets, tall windows and phones held sideways: whole photo, no crop */
+@media (min-width: 700px) {
+  .hd-hero__media { aspect-ratio: 1672 / 941; max-height: 64svh; width: 100%; }
+  .hd-hero__still img { object-position: 50% 62%; }
+  .hd-hero__copy { padding: 44px clamp(28px, 6vw, 72px) 64px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 48px; align-items: end; }
+  .hd-hero__copy > .hd-hero__eyebrow, .hd-hero__copy > .hd-hero__heading { grid-column: 1; }
+  .hd-hero__copy > .hd-hero__sub, .hd-hero__copy > .hd-hero__cta { grid-column: 2; justify-self: start; }
+  .hd-hero__heading { font-size: clamp(36px, 4.6vw, 52px); }
+  .hd-hero__sub { margin-top: 0; }
+  .hd-hero__replay { right: 20px; bottom: 20px; }
+}
+
+/* Wide landscape screens: the photo fills the screen, copy in the free
+   space on the left (olive tree and wall); the products stay clear. */
+@media (min-width: 1100px) and (min-aspect-ratio: 3/2) {
+  .hd-hero { height: 100vh; height: 100svh; min-height: 640px; background: #1C1D16; }
+  .hd-hero__media { position: absolute; inset: 0; aspect-ratio: auto; max-height: none; }
+  /* Products sit in the right 57% of the photo: anchor right so the tea bag stays whole */
+  .hd-hero__still img { object-position: 100% 42%; }
+  /* Left-hand scrim for the copy; the right half (the products) stays untouched */
+  .hd-hero__media::before {
+    content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+    background: linear-gradient(90deg, rgba(14, 16, 11, 0.62) 0%, rgba(14, 16, 11, 0.42) 22%, rgba(14, 16, 11, 0.14) 36%, rgba(14, 16, 11, 0) 46%);
+  }
+  .hd-hero__media::after { height: 150px; }
+  .hd-hero__copy {
+    position: absolute; z-index: 3; left: 0; top: 0; bottom: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    width: min(36vw, 540px); padding: 96px 0 72px clamp(48px, 5vw, 96px);
+    color: var(--hh-ink);
+  }
+  .hd-hero__eyebrow { color: rgba(251, 246, 236, 0.86); text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
+  .hd-hero__heading { font-size: clamp(42px, 3.6vw, 64px); max-width: 12ch; text-shadow: 0 2px 24px rgba(0, 0, 0, 0.32); }
+  .hd-hero__sub { color: rgba(251, 246, 236, 0.9); font-size: 17px; margin-top: 18px; max-width: 30ch; text-shadow: 0 1px 14px rgba(0, 0, 0, 0.38); }
+  .hd-hero__cta {
+    align-self: flex-start; margin-top: 34px; min-height: 56px; padding: 0 28px 0 30px;
+    background: var(--hh-ivory); color: var(--hh-green);
+    box-shadow: 0 14px 34px rgba(8, 10, 6, 0.28);
+  }
+  .hd-hero__cta:hover { background: #FFF9EE; box-shadow: 0 18px 40px rgba(8, 10, 6, 0.34); }
+  .hd-hero__cta:focus-visible { outline-color: var(--hh-ink); }
+  /* Left of the concierge button, on its centre line */
+  .hd-hero__replay { right: 104px; bottom: calc(35px + env(safe-area-inset-bottom)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hd-hero__film, html.hd-film .hd-hero__film { transition: none; }
+  .hd-hero__cta, .hd-hero__cta svg { transition: none; }
+}
 </style>
 </head>
-<body>
+<body class="hd-home">
 <!-- ============ SVG: reusable logo ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
@@ -2184,16 +2368,16 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     </linearGradient>
     <path id="harvestArc" d="M 16 60 Q 130 14 244 60" fill="none"/>
     <symbol id="harvestDeliLogo" viewBox="0 0 260 100">
-      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="var(--hd-logo-fill, url(#goldFoil))"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="var(--hd-logo-fill, url(#goldFoil))">DELI</text>
+      <path d="M53.98 46.2Q55.14 45.88 55.57 45.5Q56.28 44.85 55.99 43.58L52.77 29.43Q52.48 28.18 51.66 27.91Q51.15 27.75 49.82 27.92L49.66 27.18L59.55 24.92L59.72 25.67Q58.45 26.03 58.02 26.42Q57.29 27.06 57.58 28.33L58.96 34.39L65.93 32.8L64.55 26.75Q64.26 25.48 63.38 25.21Q62.83 25.05 61.48 25.27L61.31 24.52L71.27 22.26L71.44 23Q70.17 23.39 69.76 23.77Q69.08 24.39 69.36 25.65L72.58 39.81Q72.88 41.09 73.85 41.35Q74.41 41.51 75.59 41.29L75.76 42.03L65.81 44.29L65.64 43.55Q66.89 43.22 67.35 42.8Q68.06 42.16 67.77 40.9L66.24 34.16L59.27 35.75L60.8 42.49Q61.1 43.79 62.09 44.04Q62.66 44.18 63.88 43.95L64.05 44.69L54.15 46.94ZM88.53 32.89 84.7 26.43 84.45 26.47 82.76 33.73ZM78.29 40.75Q79.35 40.52 79.88 39.53Q80.22 38.9 80.72 36.86L84.98 19.66L85.8 19.54L94.68 34.19Q96.17 36.65 96.83 37.33Q97.49 38.01 98.5 37.84L98.61 38.59L89 39.98L88.89 39.22Q90.33 38.95 90.76 38.7Q91.19 38.45 91.08 37.68Q91.03 37.33 90.7 36.65Q90.49 36.25 90.16 35.69L89.15 34L82.48 34.96Q82.08 36.83 81.97 37.39Q81.74 38.59 81.82 39.11Q81.91 39.75 82.8 39.92Q83.33 40.01 84.35 39.87L84.46 40.63L78.4 41.5ZM85.8 19.49ZM101.22 37.49Q102.74 37.32 103.26 36.79Q103.79 36.26 103.68 34.59L102.84 21.36Q102.73 19.62 102.04 19.14Q101.58 18.82 100.04 18.78L99.99 18.02L109.62 17.41Q112.62 17.22 114.52 17.73Q118.19 18.77 118.4 22.08Q118.56 24.52 116.85 26.04Q115.54 27.18 114.02 27.57L120.59 35.71Q120.86 36.04 121.14 36.14Q121.43 36.23 121.84 36.23L121.88 36.95L115.76 37.34L108.95 28.37L108.16 28.42L108.53 34.29Q108.63 35.86 109.19 36.38Q109.76 36.89 111.34 36.85L111.39 37.61L101.27 38.25ZM113.29 22.67Q113.18 20.93 112.63 19.95Q111.69 18.29 109.48 18.43Q108.28 18.51 107.93 18.83Q107.57 19.15 107.62 19.84L108.1 27.46Q111.04 27.23 112.25 26.37Q113.47 25.5 113.29 22.67ZM134.28 16.76 134.27 17.52Q132.65 17.58 132.17 17.75Q131.69 17.93 131.68 18.66Q131.68 18.9 131.71 19.09Q131.75 19.29 131.84 19.53L136.2 30.68L136.37 30.68L140.47 20.61Q140.61 20.28 140.72 19.93Q140.9 19.36 140.91 19.01Q140.92 18.16 140.42 17.94Q139.92 17.71 138.37 17.59L138.38 16.82L144.76 16.93L144.75 17.66Q143.65 17.76 143.09 18.27Q142.54 18.78 142 20.08L134.87 37.6L134.08 37.59L126.66 19.49Q126.21 18.39 125.72 17.91Q125.24 17.43 124.2 17.32L124.22 16.59ZM146.55 37.3 146.62 36.54Q147.91 36.62 148.48 36.36Q149.35 35.98 149.47 34.69L150.84 20.24Q150.97 18.93 150.15 18.39Q149.68 18.07 148.39 17.87L148.46 17.12L165.67 18.75L165.1 24.77L164.37 24.7Q164.08 21.76 162.81 20.57Q161.55 19.37 157.95 19.03Q156.58 18.9 156.18 19.15Q155.78 19.4 155.7 20.25L155.04 27.16Q157.59 27.43 158.59 26.56Q159.58 25.69 160.31 23.2L161.06 23.27L160.11 33.36L159.35 33.29Q159.27 30.71 158.38 29.57Q157.5 28.43 154.95 28.19L154.26 35.43Q154.17 36.37 154.63 36.76Q155.08 37.15 156.6 37.3Q159.46 37.57 161.37 36.63Q163.28 35.69 164.97 32.78L165.81 32.86L164.01 38.95ZM158.23 17.59ZM169.61 32.6 170.46 32.74Q170.64 36.17 172.01 37.94Q173.37 39.7 175.45 40.05Q177.48 40.38 178.5 39.49Q179.52 38.59 179.71 37.45Q179.93 36.12 179.17 35.13Q178.67 34.49 177.02 33.31L175.26 32.04Q172.63 30.16 171.68 28.57Q170.74 26.99 171.08 24.96Q171.43 22.79 173.29 21.16Q175.16 19.54 178.37 20.07Q180 20.34 181.44 21.08Q182.89 21.82 183.1 21.86Q183.6 21.94 183.83 21.69Q184.06 21.44 184.26 20.99L185.14 21.14L184.08 27.58L183.25 27.45Q183.03 25.11 181.8 23.25Q180.57 21.38 178.43 21.03Q176.93 20.78 175.92 21.46Q174.91 22.13 174.72 23.3Q174.49 24.7 175.2 25.53Q175.89 26.37 178.45 28.2L180.5 29.67Q181.87 30.65 182.6 31.69Q183.97 33.64 183.58 36.04Q183.21 38.28 181.11 39.97Q179.02 41.67 175.11 41.03Q174.22 40.88 173.33 40.57Q172.44 40.25 171.6 39.75L171.06 39.44Q170.86 39.35 170.68 39.28Q170.5 39.22 170.37 39.2Q169.91 39.12 169.69 39.36Q169.47 39.6 169.26 40.07L168.41 39.93ZM179.02 20.24ZM190.77 22.67 208.36 26.77 207.02 32.67 206.18 32.48Q206.5 29.23 204.8 27.66Q203.85 26.79 201.68 26.22L198.09 41.6Q197.72 43.21 198.16 43.87Q198.6 44.53 200.38 44.95L200.21 45.69L189.79 43.26L189.97 42.52Q191.68 42.92 192.37 42.52Q193.06 42.11 193.43 40.51L197.01 25.14Q194.86 24.69 193.58 25.04Q191.21 25.69 190.21 28.75L189.37 28.56Z" fill="var(--hd-logo-fill, url(#goldFoil))"/>
+      <path d="M79.31 69.19Q80.52 69.11 81.05 68.84Q81.98 68.36 81.98 67.08V51.3Q81.98 50.06 81.09 49.58Q80.58 49.3 79.31 49.19V48.38H89.09Q95.02 48.38 98.12 51.53Q100.95 54.41 100.95 59.25Q100.95 63.59 98.11 66.61Q94.91 70 89.42 70H79.31ZM88.89 68.91Q91.73 68.91 93.56 66.9Q95.39 64.89 95.39 59.19Q95.39 55.8 94.41 53.36Q92.81 49.44 89.03 49.44Q87.78 49.44 87.41 49.97Q87.16 50.31 87.16 51.3V67.05Q87.2 68.03 87.52 68.47Q87.84 68.91 88.89 68.91ZM108.5 70V69.19Q109.88 69.14 110.45 68.81Q111.34 68.31 111.34 66.94V51.45Q111.34 50.05 110.42 49.56Q109.89 49.27 108.5 49.19V48.38H126.94V54.83H126.16Q125.55 51.73 124.09 50.59Q122.62 49.45 118.77 49.45Q117.3 49.45 116.9 49.76Q116.5 50.06 116.5 50.97V58.38Q119.23 58.41 120.2 57.38Q121.17 56.36 121.69 53.64H122.5V64.45H121.69Q121.34 61.72 120.29 60.6Q119.23 59.48 116.5 59.48V67.23Q116.5 68.25 117.02 68.62Q117.55 68.98 119.17 68.98Q122.23 68.98 124.17 67.8Q126.11 66.61 127.61 63.34H128.5L127.2 70ZM118.92 47.89ZM135.91 69.19Q137.22 69.14 137.78 68.84Q138.73 68.34 138.73 66.94V51.45Q138.73 50.05 137.83 49.56Q137.3 49.27 135.91 49.19V48.38H147.09V49.19Q145.14 49.25 144.49 49.73Q143.84 50.22 143.84 52.12V67.23Q143.84 68.3 144.4 68.64Q144.95 68.98 146.56 68.98Q149.45 68.98 151.41 67.71Q153.38 66.44 154.8 62.75H155.73L154.44 70H135.91ZM163.19 69.19Q164.55 69.16 165.14 68.86Q166.11 68.36 166.11 66.94V51.45Q166.11 50.03 165.19 49.55Q164.62 49.25 163.19 49.19V48.38H174.38V49.19Q172.88 49.25 172.31 49.53Q171.38 50.02 171.38 51.45V66.94Q171.38 68.28 172.12 68.73Q172.88 69.19 174.38 69.19V70H163.19ZM168.75 47.89Z" fill="var(--hd-logo-fill, url(#goldFoil))"/>
       <line x1="80" y1="80" x2="180" y2="80" stroke="var(--hd-logo-fill, url(#goldFoil))" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="var(--hd-logo-fill, url(#goldFoil))">PREMIUM GREEK PRODUCTS</text>
+      <path d="M52.25 88.24Q51.98 88.13 51.58 88.13Q51.39 88.13 51.35 88.17Q51.3 88.2 51.3 88.33V89.95Q51.47 89.97 51.52 89.97Q51.57 89.97 51.62 89.97Q52.05 89.97 52.29 89.85Q52.74 89.63 52.74 89.02Q52.74 88.45 52.25 88.24ZM50.15 91.89Q50.51 91.85 50.6 91.75Q50.68 91.64 50.68 91.26V88.57Q50.68 88.25 50.59 88.14Q50.49 88.04 50.15 88.01V87.9H51.79Q52.58 87.9 52.99 88.2Q53.41 88.51 53.41 89.01Q53.41 89.64 52.95 89.93Q52.49 90.21 51.79 90.21Q51.69 90.21 51.53 90.21Q51.38 90.2 51.3 90.2V91.33Q51.3 91.68 51.41 91.77Q51.52 91.86 51.89 91.89V92H50.15ZM59.09 89.74Q59.58 89.54 59.58 88.98Q59.58 88.44 59.14 88.24Q58.9 88.13 58.51 88.13Q58.25 88.13 58.19 88.17Q58.13 88.21 58.13 88.35V89.88Q58.8 89.85 59.09 89.74ZM56.97 91.89Q57.33 91.85 57.41 91.75Q57.5 91.64 57.5 91.26V88.57Q57.5 88.24 57.4 88.14Q57.3 88.04 56.97 88.01V87.9H58.68Q59.22 87.9 59.58 88.03Q60.26 88.29 60.26 88.98Q60.26 89.44 59.95 89.69Q59.65 89.94 59.14 90.02L60.41 91.59Q60.53 91.74 60.65 91.8Q60.77 91.87 60.95 91.89V92H59.95L58.48 90.09L58.13 90.11V91.33Q58.13 91.67 58.24 91.77Q58.34 91.86 58.69 91.89V92H56.97ZM64.5 91.89Q64.84 91.85 64.94 91.77Q65.04 91.68 65.04 91.33V88.57Q65.04 88.24 64.94 88.14Q64.84 88.04 64.5 88.01V87.9H67.79L67.81 88.79H67.66Q67.58 88.38 67.42 88.26Q67.26 88.13 66.72 88.13H65.88Q65.74 88.13 65.71 88.18Q65.68 88.22 65.68 88.34V89.73H66.63Q67.03 89.73 67.14 89.61Q67.25 89.49 67.31 89.13H67.46V90.57H67.31Q67.24 90.2 67.13 90.09Q67.02 89.97 66.63 89.97H65.68V91.51Q65.68 91.69 65.79 91.72Q65.91 91.76 66.49 91.76Q67.12 91.76 67.42 91.62Q67.72 91.48 67.96 90.95H68.13L67.85 92H64.5ZM66.33 87.9ZM71.69 91.89Q72.07 91.85 72.18 91.71Q72.29 91.58 72.29 91.09V88.57Q72.29 88.23 72.18 88.13Q72.08 88.03 71.7 88.01V87.9H72.93L74.36 91.03L75.73 87.9H76.97V88.01Q76.62 88.04 76.52 88.14Q76.42 88.24 76.42 88.57V91.33Q76.42 91.67 76.52 91.76Q76.62 91.86 76.97 91.89V92H75.23V91.89Q75.61 91.86 75.7 91.75Q75.79 91.65 75.79 91.26V88.47L74.21 92H74.12L72.56 88.62V91.09Q72.56 91.6 72.71 91.75Q72.81 91.85 73.14 91.89V92H71.69ZM80.62 91.89Q81 91.86 81.11 91.77Q81.23 91.69 81.23 91.33V88.57Q81.23 88.23 81.11 88.13Q81 88.03 80.62 88.01V87.9H82.46V88.01Q82.08 88.03 81.97 88.13Q81.86 88.23 81.86 88.57V91.33Q81.86 91.69 81.97 91.77Q82.08 91.86 82.46 91.89V92H80.62ZM81.54 87.9ZM87.84 87.9V88.01Q87.48 88.04 87.37 88.13Q87.27 88.23 87.27 88.57V90.55Q87.27 91.04 87.4 91.31Q87.65 91.81 88.34 91.81Q89.1 91.81 89.36 91.3Q89.51 91.02 89.51 90.42V88.81Q89.51 88.3 89.39 88.17Q89.26 88.05 88.93 88.01V87.9H90.36V88.01Q90 88.05 89.89 88.19Q89.78 88.32 89.78 88.81V90.42Q89.78 91.06 89.58 91.42Q89.22 92.09 88.2 92.09Q87.2 92.09 86.83 91.43Q86.64 91.08 86.64 90.51V88.57Q86.64 88.23 86.53 88.14Q86.43 88.04 86.08 88.01V87.9ZM88.24 87.9ZM93.94 91.89Q94.32 91.85 94.43 91.71Q94.54 91.58 94.54 91.09V88.57Q94.54 88.23 94.43 88.13Q94.33 88.03 93.95 88.01V87.9H95.18L96.61 91.03L97.98 87.9H99.22V88.01Q98.87 88.04 98.77 88.14Q98.67 88.24 98.67 88.57V91.33Q98.67 91.67 98.77 91.76Q98.87 91.86 99.22 91.89V92H97.48V91.89Q97.86 91.86 97.95 91.75Q98.04 91.65 98.04 91.26V88.47L96.46 92H96.37L94.81 88.62V91.09Q94.81 91.6 94.96 91.75Q95.06 91.85 95.39 91.89V92H93.94ZM111.14 88.03Q111.28 88.03 111.33 87.97Q111.39 87.92 111.43 87.83H111.57L111.61 89.13H111.47Q111.28 88.68 111.08 88.46Q110.71 88.07 110.12 88.07Q109.53 88.07 109.08 88.52Q108.62 88.98 108.62 90.01Q108.62 90.87 109.07 91.35Q109.53 91.83 110.19 91.83Q110.3 91.83 110.45 91.81Q110.6 91.79 110.74 91.75Q110.96 91.67 111.01 91.62Q111.07 91.57 111.07 91.46V90.47Q111.07 90.12 110.97 90.03Q110.87 89.94 110.52 89.92V89.81H112.1V89.92Q111.87 89.94 111.8 90Q111.67 90.09 111.67 90.4V91.62Q111.67 91.72 111.14 91.91Q110.6 92.09 110.11 92.09Q109.2 92.09 108.58 91.56Q107.89 90.97 107.89 89.99Q107.89 89.12 108.44 88.51Q109.04 87.83 110.04 87.83Q110.4 87.83 110.75 87.93Q111.09 88.03 111.14 88.03ZM109.94 87.83ZM117.81 89.74Q118.3 89.54 118.3 88.98Q118.3 88.44 117.86 88.24Q117.62 88.13 117.23 88.13Q116.97 88.13 116.91 88.17Q116.85 88.21 116.85 88.35V89.88Q117.52 89.85 117.81 89.74ZM115.69 91.89Q116.04 91.85 116.13 91.75Q116.22 91.64 116.22 91.26V88.57Q116.22 88.24 116.12 88.14Q116.02 88.04 115.69 88.01V87.9H117.4Q117.94 87.9 118.3 88.03Q118.97 88.29 118.97 88.98Q118.97 89.44 118.67 89.69Q118.37 89.94 117.85 90.02L119.13 91.59Q119.25 91.74 119.37 91.8Q119.49 91.87 119.67 91.89V92H118.67L117.19 90.09L116.85 90.11V91.33Q116.85 91.67 116.95 91.77Q117.06 91.86 117.41 91.89V92H115.69ZM123.22 91.89Q123.56 91.85 123.66 91.77Q123.76 91.68 123.76 91.33V88.57Q123.76 88.24 123.66 88.14Q123.56 88.04 123.22 88.01V87.9H126.51L126.53 88.79H126.38Q126.3 88.38 126.14 88.26Q125.98 88.13 125.44 88.13H124.6Q124.46 88.13 124.43 88.18Q124.4 88.22 124.4 88.34V89.73H125.35Q125.75 89.73 125.85 89.61Q125.96 89.49 126.03 89.13H126.18V90.57H126.03Q125.96 90.2 125.85 90.09Q125.74 89.97 125.35 89.97H124.4V91.51Q124.4 91.69 124.51 91.72Q124.63 91.76 125.21 91.76Q125.84 91.76 126.14 91.62Q126.44 91.48 126.68 90.95H126.85L126.57 92H123.22ZM125.05 87.9ZM130.41 91.89Q130.75 91.85 130.85 91.77Q130.95 91.68 130.95 91.33V88.57Q130.95 88.24 130.85 88.14Q130.75 88.04 130.41 88.01V87.9H133.7L133.72 88.79H133.56Q133.48 88.38 133.33 88.26Q133.17 88.13 132.62 88.13H131.78Q131.65 88.13 131.61 88.18Q131.58 88.22 131.58 88.34V89.73H132.54Q132.93 89.73 133.04 89.61Q133.15 89.49 133.22 89.13H133.36V90.57H133.22Q133.15 90.2 133.04 90.09Q132.93 89.97 132.54 89.97H131.58V91.51Q131.58 91.69 131.7 91.72Q131.82 91.76 132.4 91.76Q133.03 91.76 133.33 91.62Q133.63 91.48 133.87 90.95H134.04L133.76 92H130.41ZM132.23 87.9ZM137.64 91.89Q138.01 91.86 138.1 91.75Q138.2 91.65 138.2 91.26V88.57Q138.2 88.23 138.09 88.14Q137.99 88.04 137.64 88.01V87.9H139.4V88.01Q139.04 88.03 138.93 88.13Q138.83 88.24 138.83 88.57V89.84Q139.4 89.35 139.76 89.01Q140.41 88.39 140.41 88.22Q140.41 88.09 140.3 88.05Q140.19 88.01 139.99 88.01V87.9H141.61V88Q141.32 88.03 141.15 88.12Q140.97 88.2 140.67 88.5L139.49 89.65L140.94 91.21Q141.34 91.65 141.49 91.75Q141.63 91.86 141.91 91.89V92H140.02V91.89Q140.28 91.88 140.37 91.85Q140.46 91.82 140.46 91.72Q140.46 91.67 140.4 91.56Q140.34 91.46 140.21 91.32L139.04 90.03L138.83 90.21V91.33Q138.83 91.67 138.93 91.77Q139.04 91.86 139.39 91.89V92H137.64ZM152.54 88.24Q152.28 88.13 151.88 88.13Q151.69 88.13 151.64 88.17Q151.6 88.2 151.6 88.33V89.95Q151.77 89.97 151.82 89.97Q151.87 89.97 151.92 89.97Q152.34 89.97 152.59 89.85Q153.03 89.63 153.03 89.02Q153.03 88.45 152.54 88.24ZM150.45 91.89Q150.81 91.85 150.89 91.75Q150.98 91.64 150.98 91.26V88.57Q150.98 88.25 150.88 88.14Q150.78 88.04 150.45 88.01V87.9H152.09Q152.87 87.9 153.29 88.2Q153.71 88.51 153.71 89.01Q153.71 89.64 153.25 89.93Q152.78 90.21 152.09 90.21Q151.99 90.21 151.83 90.21Q151.67 90.2 151.6 90.2V91.33Q151.6 91.68 151.71 91.77Q151.81 91.86 152.19 91.89V92H150.45ZM159.38 89.74Q159.88 89.54 159.88 88.98Q159.88 88.44 159.44 88.24Q159.2 88.13 158.81 88.13Q158.55 88.13 158.49 88.17Q158.43 88.21 158.43 88.35V89.88Q159.1 89.85 159.38 89.74ZM157.26 91.89Q157.62 91.85 157.71 91.75Q157.8 91.64 157.8 91.26V88.57Q157.8 88.24 157.7 88.14Q157.6 88.04 157.26 88.01V87.9H158.98Q159.52 87.9 159.87 88.03Q160.55 88.29 160.55 88.98Q160.55 89.44 160.25 89.69Q159.95 89.94 159.43 90.02L160.71 91.59Q160.83 91.74 160.95 91.8Q161.06 91.87 161.25 91.89V92H160.25L158.77 90.09L158.43 90.11V91.33Q158.43 91.67 158.53 91.77Q158.64 91.86 158.99 91.89V92H157.26ZM166.94 91.86Q167.49 91.86 167.88 91.41Q168.27 90.95 168.27 89.95Q168.27 88.94 167.88 88.49Q167.48 88.03 166.94 88.03Q166.39 88.03 166 88.5Q165.61 88.97 165.61 89.95Q165.61 90.93 166 91.4Q166.38 91.86 166.94 91.86ZM165.53 88.36Q166.11 87.81 166.94 87.81Q167.78 87.81 168.35 88.36Q168.97 88.96 168.97 89.95Q168.97 90.96 168.33 91.55Q167.76 92.09 166.94 92.09Q166.07 92.09 165.5 91.5Q164.91 90.9 164.91 89.95Q164.91 88.96 165.53 88.36ZM166.94 87.81ZM174.27 91.77Q175 91.77 175.47 91.48Q176.19 91.04 176.19 89.97Q176.19 89.02 175.6 88.54Q175.09 88.12 174.25 88.12Q174.04 88.12 173.97 88.17Q173.89 88.22 173.89 88.37V91.52Q173.89 91.67 173.97 91.72Q174.04 91.77 174.27 91.77ZM172.72 91.89Q173.06 91.85 173.16 91.77Q173.26 91.68 173.26 91.33V88.57Q173.26 88.23 173.16 88.13Q173.06 88.04 172.72 88.01V87.9H174.39Q175.23 87.9 175.82 88.18Q176.87 88.68 176.87 89.96Q176.87 90.43 176.68 90.84Q176.49 91.26 176.11 91.55Q175.87 91.73 175.61 91.82Q175.13 92 174.44 92H172.72ZM182.34 87.9V88.01Q181.98 88.04 181.87 88.13Q181.77 88.23 181.77 88.57V90.55Q181.77 91.04 181.9 91.31Q182.15 91.81 182.84 91.81Q183.6 91.81 183.86 91.3Q184.01 91.02 184.01 90.42V88.81Q184.01 88.3 183.89 88.17Q183.76 88.05 183.43 88.01V87.9H184.86V88.01Q184.5 88.05 184.39 88.19Q184.28 88.32 184.28 88.81V90.42Q184.28 91.06 184.08 91.42Q183.72 92.09 182.7 92.09Q181.7 92.09 181.33 91.43Q181.14 91.08 181.14 90.51V88.57Q181.14 88.23 181.03 88.14Q180.93 88.04 180.58 88.01V87.9ZM182.74 87.9ZM191.75 88.03Q191.84 88.03 191.92 87.98Q191.99 87.93 192.02 87.83H192.15L192.21 89.22H192.07Q191.95 88.8 191.75 88.55Q191.36 88.07 190.72 88.07Q190.07 88.07 189.66 88.59Q189.24 89.1 189.24 90Q189.24 90.83 189.68 91.33Q190.11 91.82 190.78 91.82Q191.26 91.82 191.66 91.59Q191.9 91.46 192.18 91.2L192.29 91.31Q192.08 91.57 191.78 91.77Q191.26 92.1 190.65 92.1Q189.65 92.1 189.06 91.46Q188.52 90.87 188.52 89.99Q188.52 89.08 189.09 88.47Q189.7 87.83 190.66 87.83Q191 87.83 191.35 87.93Q191.71 88.03 191.75 88.03ZM190.64 87.83Q190.64 87.83 190.64 87.83ZM196.02 87.9H199.52L199.56 88.95H199.41Q199.3 88.45 199.13 88.31Q198.96 88.16 198.42 88.16H198.08V91.33Q198.08 91.69 198.19 91.77Q198.3 91.86 198.68 91.89V92H196.87V91.89Q197.27 91.86 197.36 91.76Q197.46 91.66 197.46 91.26V88.16H197.12Q196.6 88.16 196.41 88.3Q196.23 88.45 196.13 88.95H195.98ZM203.49 90.75Q203.64 91.17 203.85 91.42Q204.22 91.85 204.77 91.85Q205.07 91.85 205.29 91.66Q205.5 91.48 205.5 91.14Q205.5 90.84 205.28 90.61Q205.14 90.47 204.68 90.19L204.15 89.86Q203.92 89.71 203.77 89.55Q203.51 89.26 203.51 88.9Q203.51 88.43 203.82 88.12Q204.13 87.81 204.65 87.81Q204.86 87.81 205.16 87.91Q205.46 88.02 205.5 88.02Q205.61 88.02 205.66 87.96Q205.7 87.91 205.73 87.81H205.85L205.99 89.13H205.84Q205.69 88.53 205.35 88.3Q205.02 88.06 204.69 88.06Q204.44 88.06 204.25 88.21Q204.06 88.36 204.06 88.63Q204.06 88.87 204.21 89.04Q204.35 89.21 204.66 89.4L205.2 89.73Q205.71 90.05 205.92 90.31Q206.13 90.58 206.13 90.94Q206.13 91.43 205.76 91.75Q205.39 92.08 204.82 92.08Q204.53 92.08 204.22 91.97Q203.91 91.86 203.86 91.86Q203.75 91.86 203.71 91.93Q203.68 92 203.66 92.07H203.53L203.34 90.75ZM204.81 87.81Z" fill="var(--hd-logo-fill, url(#goldFoil))"/>
     </symbol>
     <symbol id="harvestDeliLogoDark" viewBox="0 0 260 100">
-      <text font-family="Newsreader, serif" font-weight="600" font-size="30" letter-spacing="1.5" fill="url(#goldFoilDark)"><textPath href="#harvestArc" startOffset="50%" text-anchor="middle">HARVEST</textPath></text>
-      <text x="130" y="70" text-anchor="middle" font-family="Newsreader, serif" font-weight="600" font-size="32" letter-spacing="6" fill="url(#goldFoilDark)">DELI</text>
+      <path d="M53.98 46.2Q55.14 45.88 55.57 45.5Q56.28 44.85 55.99 43.58L52.77 29.43Q52.48 28.18 51.66 27.91Q51.15 27.75 49.82 27.92L49.66 27.18L59.55 24.92L59.72 25.67Q58.45 26.03 58.02 26.42Q57.29 27.06 57.58 28.33L58.96 34.39L65.93 32.8L64.55 26.75Q64.26 25.48 63.38 25.21Q62.83 25.05 61.48 25.27L61.31 24.52L71.27 22.26L71.44 23Q70.17 23.39 69.76 23.77Q69.08 24.39 69.36 25.65L72.58 39.81Q72.88 41.09 73.85 41.35Q74.41 41.51 75.59 41.29L75.76 42.03L65.81 44.29L65.64 43.55Q66.89 43.22 67.35 42.8Q68.06 42.16 67.77 40.9L66.24 34.16L59.27 35.75L60.8 42.49Q61.1 43.79 62.09 44.04Q62.66 44.18 63.88 43.95L64.05 44.69L54.15 46.94ZM88.53 32.89 84.7 26.43 84.45 26.47 82.76 33.73ZM78.29 40.75Q79.35 40.52 79.88 39.53Q80.22 38.9 80.72 36.86L84.98 19.66L85.8 19.54L94.68 34.19Q96.17 36.65 96.83 37.33Q97.49 38.01 98.5 37.84L98.61 38.59L89 39.98L88.89 39.22Q90.33 38.95 90.76 38.7Q91.19 38.45 91.08 37.68Q91.03 37.33 90.7 36.65Q90.49 36.25 90.16 35.69L89.15 34L82.48 34.96Q82.08 36.83 81.97 37.39Q81.74 38.59 81.82 39.11Q81.91 39.75 82.8 39.92Q83.33 40.01 84.35 39.87L84.46 40.63L78.4 41.5ZM85.8 19.49ZM101.22 37.49Q102.74 37.32 103.26 36.79Q103.79 36.26 103.68 34.59L102.84 21.36Q102.73 19.62 102.04 19.14Q101.58 18.82 100.04 18.78L99.99 18.02L109.62 17.41Q112.62 17.22 114.52 17.73Q118.19 18.77 118.4 22.08Q118.56 24.52 116.85 26.04Q115.54 27.18 114.02 27.57L120.59 35.71Q120.86 36.04 121.14 36.14Q121.43 36.23 121.84 36.23L121.88 36.95L115.76 37.34L108.95 28.37L108.16 28.42L108.53 34.29Q108.63 35.86 109.19 36.38Q109.76 36.89 111.34 36.85L111.39 37.61L101.27 38.25ZM113.29 22.67Q113.18 20.93 112.63 19.95Q111.69 18.29 109.48 18.43Q108.28 18.51 107.93 18.83Q107.57 19.15 107.62 19.84L108.1 27.46Q111.04 27.23 112.25 26.37Q113.47 25.5 113.29 22.67ZM134.28 16.76 134.27 17.52Q132.65 17.58 132.17 17.75Q131.69 17.93 131.68 18.66Q131.68 18.9 131.71 19.09Q131.75 19.29 131.84 19.53L136.2 30.68L136.37 30.68L140.47 20.61Q140.61 20.28 140.72 19.93Q140.9 19.36 140.91 19.01Q140.92 18.16 140.42 17.94Q139.92 17.71 138.37 17.59L138.38 16.82L144.76 16.93L144.75 17.66Q143.65 17.76 143.09 18.27Q142.54 18.78 142 20.08L134.87 37.6L134.08 37.59L126.66 19.49Q126.21 18.39 125.72 17.91Q125.24 17.43 124.2 17.32L124.22 16.59ZM146.55 37.3 146.62 36.54Q147.91 36.62 148.48 36.36Q149.35 35.98 149.47 34.69L150.84 20.24Q150.97 18.93 150.15 18.39Q149.68 18.07 148.39 17.87L148.46 17.12L165.67 18.75L165.1 24.77L164.37 24.7Q164.08 21.76 162.81 20.57Q161.55 19.37 157.95 19.03Q156.58 18.9 156.18 19.15Q155.78 19.4 155.7 20.25L155.04 27.16Q157.59 27.43 158.59 26.56Q159.58 25.69 160.31 23.2L161.06 23.27L160.11 33.36L159.35 33.29Q159.27 30.71 158.38 29.57Q157.5 28.43 154.95 28.19L154.26 35.43Q154.17 36.37 154.63 36.76Q155.08 37.15 156.6 37.3Q159.46 37.57 161.37 36.63Q163.28 35.69 164.97 32.78L165.81 32.86L164.01 38.95ZM158.23 17.59ZM169.61 32.6 170.46 32.74Q170.64 36.17 172.01 37.94Q173.37 39.7 175.45 40.05Q177.48 40.38 178.5 39.49Q179.52 38.59 179.71 37.45Q179.93 36.12 179.17 35.13Q178.67 34.49 177.02 33.31L175.26 32.04Q172.63 30.16 171.68 28.57Q170.74 26.99 171.08 24.96Q171.43 22.79 173.29 21.16Q175.16 19.54 178.37 20.07Q180 20.34 181.44 21.08Q182.89 21.82 183.1 21.86Q183.6 21.94 183.83 21.69Q184.06 21.44 184.26 20.99L185.14 21.14L184.08 27.58L183.25 27.45Q183.03 25.11 181.8 23.25Q180.57 21.38 178.43 21.03Q176.93 20.78 175.92 21.46Q174.91 22.13 174.72 23.3Q174.49 24.7 175.2 25.53Q175.89 26.37 178.45 28.2L180.5 29.67Q181.87 30.65 182.6 31.69Q183.97 33.64 183.58 36.04Q183.21 38.28 181.11 39.97Q179.02 41.67 175.11 41.03Q174.22 40.88 173.33 40.57Q172.44 40.25 171.6 39.75L171.06 39.44Q170.86 39.35 170.68 39.28Q170.5 39.22 170.37 39.2Q169.91 39.12 169.69 39.36Q169.47 39.6 169.26 40.07L168.41 39.93ZM179.02 20.24ZM190.77 22.67 208.36 26.77 207.02 32.67 206.18 32.48Q206.5 29.23 204.8 27.66Q203.85 26.79 201.68 26.22L198.09 41.6Q197.72 43.21 198.16 43.87Q198.6 44.53 200.38 44.95L200.21 45.69L189.79 43.26L189.97 42.52Q191.68 42.92 192.37 42.52Q193.06 42.11 193.43 40.51L197.01 25.14Q194.86 24.69 193.58 25.04Q191.21 25.69 190.21 28.75L189.37 28.56Z" fill="url(#goldFoilDark)"/>
+      <path d="M79.31 69.19Q80.52 69.11 81.05 68.84Q81.98 68.36 81.98 67.08V51.3Q81.98 50.06 81.09 49.58Q80.58 49.3 79.31 49.19V48.38H89.09Q95.02 48.38 98.12 51.53Q100.95 54.41 100.95 59.25Q100.95 63.59 98.11 66.61Q94.91 70 89.42 70H79.31ZM88.89 68.91Q91.73 68.91 93.56 66.9Q95.39 64.89 95.39 59.19Q95.39 55.8 94.41 53.36Q92.81 49.44 89.03 49.44Q87.78 49.44 87.41 49.97Q87.16 50.31 87.16 51.3V67.05Q87.2 68.03 87.52 68.47Q87.84 68.91 88.89 68.91ZM108.5 70V69.19Q109.88 69.14 110.45 68.81Q111.34 68.31 111.34 66.94V51.45Q111.34 50.05 110.42 49.56Q109.89 49.27 108.5 49.19V48.38H126.94V54.83H126.16Q125.55 51.73 124.09 50.59Q122.62 49.45 118.77 49.45Q117.3 49.45 116.9 49.76Q116.5 50.06 116.5 50.97V58.38Q119.23 58.41 120.2 57.38Q121.17 56.36 121.69 53.64H122.5V64.45H121.69Q121.34 61.72 120.29 60.6Q119.23 59.48 116.5 59.48V67.23Q116.5 68.25 117.02 68.62Q117.55 68.98 119.17 68.98Q122.23 68.98 124.17 67.8Q126.11 66.61 127.61 63.34H128.5L127.2 70ZM118.92 47.89ZM135.91 69.19Q137.22 69.14 137.78 68.84Q138.73 68.34 138.73 66.94V51.45Q138.73 50.05 137.83 49.56Q137.3 49.27 135.91 49.19V48.38H147.09V49.19Q145.14 49.25 144.49 49.73Q143.84 50.22 143.84 52.12V67.23Q143.84 68.3 144.4 68.64Q144.95 68.98 146.56 68.98Q149.45 68.98 151.41 67.71Q153.38 66.44 154.8 62.75H155.73L154.44 70H135.91ZM163.19 69.19Q164.55 69.16 165.14 68.86Q166.11 68.36 166.11 66.94V51.45Q166.11 50.03 165.19 49.55Q164.62 49.25 163.19 49.19V48.38H174.38V49.19Q172.88 49.25 172.31 49.53Q171.38 50.02 171.38 51.45V66.94Q171.38 68.28 172.12 68.73Q172.88 69.19 174.38 69.19V70H163.19ZM168.75 47.89Z" fill="url(#goldFoilDark)"/>
       <line x1="80" y1="80" x2="180" y2="80" stroke="url(#goldFoilDark)" stroke-width="0.5" opacity="0.5"/>
-      <text x="130" y="92" text-anchor="middle" font-family="Newsreader, serif" font-weight="500" font-size="6.2" letter-spacing="3.4" fill="url(#goldFoilDark)">PREMIUM GREEK PRODUCTS</text>
+      <path d="M52.25 88.24Q51.98 88.13 51.58 88.13Q51.39 88.13 51.35 88.17Q51.3 88.2 51.3 88.33V89.95Q51.47 89.97 51.52 89.97Q51.57 89.97 51.62 89.97Q52.05 89.97 52.29 89.85Q52.74 89.63 52.74 89.02Q52.74 88.45 52.25 88.24ZM50.15 91.89Q50.51 91.85 50.6 91.75Q50.68 91.64 50.68 91.26V88.57Q50.68 88.25 50.59 88.14Q50.49 88.04 50.15 88.01V87.9H51.79Q52.58 87.9 52.99 88.2Q53.41 88.51 53.41 89.01Q53.41 89.64 52.95 89.93Q52.49 90.21 51.79 90.21Q51.69 90.21 51.53 90.21Q51.38 90.2 51.3 90.2V91.33Q51.3 91.68 51.41 91.77Q51.52 91.86 51.89 91.89V92H50.15ZM59.09 89.74Q59.58 89.54 59.58 88.98Q59.58 88.44 59.14 88.24Q58.9 88.13 58.51 88.13Q58.25 88.13 58.19 88.17Q58.13 88.21 58.13 88.35V89.88Q58.8 89.85 59.09 89.74ZM56.97 91.89Q57.33 91.85 57.41 91.75Q57.5 91.64 57.5 91.26V88.57Q57.5 88.24 57.4 88.14Q57.3 88.04 56.97 88.01V87.9H58.68Q59.22 87.9 59.58 88.03Q60.26 88.29 60.26 88.98Q60.26 89.44 59.95 89.69Q59.65 89.94 59.14 90.02L60.41 91.59Q60.53 91.74 60.65 91.8Q60.77 91.87 60.95 91.89V92H59.95L58.48 90.09L58.13 90.11V91.33Q58.13 91.67 58.24 91.77Q58.34 91.86 58.69 91.89V92H56.97ZM64.5 91.89Q64.84 91.85 64.94 91.77Q65.04 91.68 65.04 91.33V88.57Q65.04 88.24 64.94 88.14Q64.84 88.04 64.5 88.01V87.9H67.79L67.81 88.79H67.66Q67.58 88.38 67.42 88.26Q67.26 88.13 66.72 88.13H65.88Q65.74 88.13 65.71 88.18Q65.68 88.22 65.68 88.34V89.73H66.63Q67.03 89.73 67.14 89.61Q67.25 89.49 67.31 89.13H67.46V90.57H67.31Q67.24 90.2 67.13 90.09Q67.02 89.97 66.63 89.97H65.68V91.51Q65.68 91.69 65.79 91.72Q65.91 91.76 66.49 91.76Q67.12 91.76 67.42 91.62Q67.72 91.48 67.96 90.95H68.13L67.85 92H64.5ZM66.33 87.9ZM71.69 91.89Q72.07 91.85 72.18 91.71Q72.29 91.58 72.29 91.09V88.57Q72.29 88.23 72.18 88.13Q72.08 88.03 71.7 88.01V87.9H72.93L74.36 91.03L75.73 87.9H76.97V88.01Q76.62 88.04 76.52 88.14Q76.42 88.24 76.42 88.57V91.33Q76.42 91.67 76.52 91.76Q76.62 91.86 76.97 91.89V92H75.23V91.89Q75.61 91.86 75.7 91.75Q75.79 91.65 75.79 91.26V88.47L74.21 92H74.12L72.56 88.62V91.09Q72.56 91.6 72.71 91.75Q72.81 91.85 73.14 91.89V92H71.69ZM80.62 91.89Q81 91.86 81.11 91.77Q81.23 91.69 81.23 91.33V88.57Q81.23 88.23 81.11 88.13Q81 88.03 80.62 88.01V87.9H82.46V88.01Q82.08 88.03 81.97 88.13Q81.86 88.23 81.86 88.57V91.33Q81.86 91.69 81.97 91.77Q82.08 91.86 82.46 91.89V92H80.62ZM81.54 87.9ZM87.84 87.9V88.01Q87.48 88.04 87.37 88.13Q87.27 88.23 87.27 88.57V90.55Q87.27 91.04 87.4 91.31Q87.65 91.81 88.34 91.81Q89.1 91.81 89.36 91.3Q89.51 91.02 89.51 90.42V88.81Q89.51 88.3 89.39 88.17Q89.26 88.05 88.93 88.01V87.9H90.36V88.01Q90 88.05 89.89 88.19Q89.78 88.32 89.78 88.81V90.42Q89.78 91.06 89.58 91.42Q89.22 92.09 88.2 92.09Q87.2 92.09 86.83 91.43Q86.64 91.08 86.64 90.51V88.57Q86.64 88.23 86.53 88.14Q86.43 88.04 86.08 88.01V87.9ZM88.24 87.9ZM93.94 91.89Q94.32 91.85 94.43 91.71Q94.54 91.58 94.54 91.09V88.57Q94.54 88.23 94.43 88.13Q94.33 88.03 93.95 88.01V87.9H95.18L96.61 91.03L97.98 87.9H99.22V88.01Q98.87 88.04 98.77 88.14Q98.67 88.24 98.67 88.57V91.33Q98.67 91.67 98.77 91.76Q98.87 91.86 99.22 91.89V92H97.48V91.89Q97.86 91.86 97.95 91.75Q98.04 91.65 98.04 91.26V88.47L96.46 92H96.37L94.81 88.62V91.09Q94.81 91.6 94.96 91.75Q95.06 91.85 95.39 91.89V92H93.94ZM111.14 88.03Q111.28 88.03 111.33 87.97Q111.39 87.92 111.43 87.83H111.57L111.61 89.13H111.47Q111.28 88.68 111.08 88.46Q110.71 88.07 110.12 88.07Q109.53 88.07 109.08 88.52Q108.62 88.98 108.62 90.01Q108.62 90.87 109.07 91.35Q109.53 91.83 110.19 91.83Q110.3 91.83 110.45 91.81Q110.6 91.79 110.74 91.75Q110.96 91.67 111.01 91.62Q111.07 91.57 111.07 91.46V90.47Q111.07 90.12 110.97 90.03Q110.87 89.94 110.52 89.92V89.81H112.1V89.92Q111.87 89.94 111.8 90Q111.67 90.09 111.67 90.4V91.62Q111.67 91.72 111.14 91.91Q110.6 92.09 110.11 92.09Q109.2 92.09 108.58 91.56Q107.89 90.97 107.89 89.99Q107.89 89.12 108.44 88.51Q109.04 87.83 110.04 87.83Q110.4 87.83 110.75 87.93Q111.09 88.03 111.14 88.03ZM109.94 87.83ZM117.81 89.74Q118.3 89.54 118.3 88.98Q118.3 88.44 117.86 88.24Q117.62 88.13 117.23 88.13Q116.97 88.13 116.91 88.17Q116.85 88.21 116.85 88.35V89.88Q117.52 89.85 117.81 89.74ZM115.69 91.89Q116.04 91.85 116.13 91.75Q116.22 91.64 116.22 91.26V88.57Q116.22 88.24 116.12 88.14Q116.02 88.04 115.69 88.01V87.9H117.4Q117.94 87.9 118.3 88.03Q118.97 88.29 118.97 88.98Q118.97 89.44 118.67 89.69Q118.37 89.94 117.85 90.02L119.13 91.59Q119.25 91.74 119.37 91.8Q119.49 91.87 119.67 91.89V92H118.67L117.19 90.09L116.85 90.11V91.33Q116.85 91.67 116.95 91.77Q117.06 91.86 117.41 91.89V92H115.69ZM123.22 91.89Q123.56 91.85 123.66 91.77Q123.76 91.68 123.76 91.33V88.57Q123.76 88.24 123.66 88.14Q123.56 88.04 123.22 88.01V87.9H126.51L126.53 88.79H126.38Q126.3 88.38 126.14 88.26Q125.98 88.13 125.44 88.13H124.6Q124.46 88.13 124.43 88.18Q124.4 88.22 124.4 88.34V89.73H125.35Q125.75 89.73 125.85 89.61Q125.96 89.49 126.03 89.13H126.18V90.57H126.03Q125.96 90.2 125.85 90.09Q125.74 89.97 125.35 89.97H124.4V91.51Q124.4 91.69 124.51 91.72Q124.63 91.76 125.21 91.76Q125.84 91.76 126.14 91.62Q126.44 91.48 126.68 90.95H126.85L126.57 92H123.22ZM125.05 87.9ZM130.41 91.89Q130.75 91.85 130.85 91.77Q130.95 91.68 130.95 91.33V88.57Q130.95 88.24 130.85 88.14Q130.75 88.04 130.41 88.01V87.9H133.7L133.72 88.79H133.56Q133.48 88.38 133.33 88.26Q133.17 88.13 132.62 88.13H131.78Q131.65 88.13 131.61 88.18Q131.58 88.22 131.58 88.34V89.73H132.54Q132.93 89.73 133.04 89.61Q133.15 89.49 133.22 89.13H133.36V90.57H133.22Q133.15 90.2 133.04 90.09Q132.93 89.97 132.54 89.97H131.58V91.51Q131.58 91.69 131.7 91.72Q131.82 91.76 132.4 91.76Q133.03 91.76 133.33 91.62Q133.63 91.48 133.87 90.95H134.04L133.76 92H130.41ZM132.23 87.9ZM137.64 91.89Q138.01 91.86 138.1 91.75Q138.2 91.65 138.2 91.26V88.57Q138.2 88.23 138.09 88.14Q137.99 88.04 137.64 88.01V87.9H139.4V88.01Q139.04 88.03 138.93 88.13Q138.83 88.24 138.83 88.57V89.84Q139.4 89.35 139.76 89.01Q140.41 88.39 140.41 88.22Q140.41 88.09 140.3 88.05Q140.19 88.01 139.99 88.01V87.9H141.61V88Q141.32 88.03 141.15 88.12Q140.97 88.2 140.67 88.5L139.49 89.65L140.94 91.21Q141.34 91.65 141.49 91.75Q141.63 91.86 141.91 91.89V92H140.02V91.89Q140.28 91.88 140.37 91.85Q140.46 91.82 140.46 91.72Q140.46 91.67 140.4 91.56Q140.34 91.46 140.21 91.32L139.04 90.03L138.83 90.21V91.33Q138.83 91.67 138.93 91.77Q139.04 91.86 139.39 91.89V92H137.64ZM152.54 88.24Q152.28 88.13 151.88 88.13Q151.69 88.13 151.64 88.17Q151.6 88.2 151.6 88.33V89.95Q151.77 89.97 151.82 89.97Q151.87 89.97 151.92 89.97Q152.34 89.97 152.59 89.85Q153.03 89.63 153.03 89.02Q153.03 88.45 152.54 88.24ZM150.45 91.89Q150.81 91.85 150.89 91.75Q150.98 91.64 150.98 91.26V88.57Q150.98 88.25 150.88 88.14Q150.78 88.04 150.45 88.01V87.9H152.09Q152.87 87.9 153.29 88.2Q153.71 88.51 153.71 89.01Q153.71 89.64 153.25 89.93Q152.78 90.21 152.09 90.21Q151.99 90.21 151.83 90.21Q151.67 90.2 151.6 90.2V91.33Q151.6 91.68 151.71 91.77Q151.81 91.86 152.19 91.89V92H150.45ZM159.38 89.74Q159.88 89.54 159.88 88.98Q159.88 88.44 159.44 88.24Q159.2 88.13 158.81 88.13Q158.55 88.13 158.49 88.17Q158.43 88.21 158.43 88.35V89.88Q159.1 89.85 159.38 89.74ZM157.26 91.89Q157.62 91.85 157.71 91.75Q157.8 91.64 157.8 91.26V88.57Q157.8 88.24 157.7 88.14Q157.6 88.04 157.26 88.01V87.9H158.98Q159.52 87.9 159.87 88.03Q160.55 88.29 160.55 88.98Q160.55 89.44 160.25 89.69Q159.95 89.94 159.43 90.02L160.71 91.59Q160.83 91.74 160.95 91.8Q161.06 91.87 161.25 91.89V92H160.25L158.77 90.09L158.43 90.11V91.33Q158.43 91.67 158.53 91.77Q158.64 91.86 158.99 91.89V92H157.26ZM166.94 91.86Q167.49 91.86 167.88 91.41Q168.27 90.95 168.27 89.95Q168.27 88.94 167.88 88.49Q167.48 88.03 166.94 88.03Q166.39 88.03 166 88.5Q165.61 88.97 165.61 89.95Q165.61 90.93 166 91.4Q166.38 91.86 166.94 91.86ZM165.53 88.36Q166.11 87.81 166.94 87.81Q167.78 87.81 168.35 88.36Q168.97 88.96 168.97 89.95Q168.97 90.96 168.33 91.55Q167.76 92.09 166.94 92.09Q166.07 92.09 165.5 91.5Q164.91 90.9 164.91 89.95Q164.91 88.96 165.53 88.36ZM166.94 87.81ZM174.27 91.77Q175 91.77 175.47 91.48Q176.19 91.04 176.19 89.97Q176.19 89.02 175.6 88.54Q175.09 88.12 174.25 88.12Q174.04 88.12 173.97 88.17Q173.89 88.22 173.89 88.37V91.52Q173.89 91.67 173.97 91.72Q174.04 91.77 174.27 91.77ZM172.72 91.89Q173.06 91.85 173.16 91.77Q173.26 91.68 173.26 91.33V88.57Q173.26 88.23 173.16 88.13Q173.06 88.04 172.72 88.01V87.9H174.39Q175.23 87.9 175.82 88.18Q176.87 88.68 176.87 89.96Q176.87 90.43 176.68 90.84Q176.49 91.26 176.11 91.55Q175.87 91.73 175.61 91.82Q175.13 92 174.44 92H172.72ZM182.34 87.9V88.01Q181.98 88.04 181.87 88.13Q181.77 88.23 181.77 88.57V90.55Q181.77 91.04 181.9 91.31Q182.15 91.81 182.84 91.81Q183.6 91.81 183.86 91.3Q184.01 91.02 184.01 90.42V88.81Q184.01 88.3 183.89 88.17Q183.76 88.05 183.43 88.01V87.9H184.86V88.01Q184.5 88.05 184.39 88.19Q184.28 88.32 184.28 88.81V90.42Q184.28 91.06 184.08 91.42Q183.72 92.09 182.7 92.09Q181.7 92.09 181.33 91.43Q181.14 91.08 181.14 90.51V88.57Q181.14 88.23 181.03 88.14Q180.93 88.04 180.58 88.01V87.9ZM182.74 87.9ZM191.75 88.03Q191.84 88.03 191.92 87.98Q191.99 87.93 192.02 87.83H192.15L192.21 89.22H192.07Q191.95 88.8 191.75 88.55Q191.36 88.07 190.72 88.07Q190.07 88.07 189.66 88.59Q189.24 89.1 189.24 90Q189.24 90.83 189.68 91.33Q190.11 91.82 190.78 91.82Q191.26 91.82 191.66 91.59Q191.9 91.46 192.18 91.2L192.29 91.31Q192.08 91.57 191.78 91.77Q191.26 92.1 190.65 92.1Q189.65 92.1 189.06 91.46Q188.52 90.87 188.52 89.99Q188.52 89.08 189.09 88.47Q189.7 87.83 190.66 87.83Q191 87.83 191.35 87.93Q191.71 88.03 191.75 88.03ZM190.64 87.83Q190.64 87.83 190.64 87.83ZM196.02 87.9H199.52L199.56 88.95H199.41Q199.3 88.45 199.13 88.31Q198.96 88.16 198.42 88.16H198.08V91.33Q198.08 91.69 198.19 91.77Q198.3 91.86 198.68 91.89V92H196.87V91.89Q197.27 91.86 197.36 91.76Q197.46 91.66 197.46 91.26V88.16H197.12Q196.6 88.16 196.41 88.3Q196.23 88.45 196.13 88.95H195.98ZM203.49 90.75Q203.64 91.17 203.85 91.42Q204.22 91.85 204.77 91.85Q205.07 91.85 205.29 91.66Q205.5 91.48 205.5 91.14Q205.5 90.84 205.28 90.61Q205.14 90.47 204.68 90.19L204.15 89.86Q203.92 89.71 203.77 89.55Q203.51 89.26 203.51 88.9Q203.51 88.43 203.82 88.12Q204.13 87.81 204.65 87.81Q204.86 87.81 205.16 87.91Q205.46 88.02 205.5 88.02Q205.61 88.02 205.66 87.96Q205.7 87.91 205.73 87.81H205.85L205.99 89.13H205.84Q205.69 88.53 205.35 88.3Q205.02 88.06 204.69 88.06Q204.44 88.06 204.25 88.21Q204.06 88.36 204.06 88.63Q204.06 88.87 204.21 89.04Q204.35 89.21 204.66 89.4L205.2 89.73Q205.71 90.05 205.92 90.31Q206.13 90.58 206.13 90.94Q206.13 91.43 205.76 91.75Q205.39 92.08 204.82 92.08Q204.53 92.08 204.22 91.97Q203.91 91.86 203.86 91.86Q203.75 91.86 203.71 91.93Q203.68 92 203.66 92.07H203.53L203.34 90.75ZM204.81 87.81Z" fill="url(#goldFoilDark)"/>
     </symbol>
   </defs>
 </svg>
@@ -2206,9 +2390,15 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
 
 <!-- ============ Nav ============ -->
 <nav class="site-nav">
-  <a href="#" class="nav-brand">
+  <a href="/" class="nav-brand" aria-label="Harvest Deli, naar de homepage" data-i18n-attr="aria-label:nav.home">
     <svg class="logo-svg logo-mark nav-size"><use href="#harvestDeliLogo"/></svg>
   </a>
+  <ul class="nav-links" aria-label="Hoofdpagina’s" data-i18n-attr="aria-label:nav.links.aria">
+    <li><a href="shop.html" data-i18n="nav.link.collection">De collectie</a></li>
+    <li><a href="about.html" data-i18n="nav.link.origin">De oorsprong</a></li>
+    <li><a href="find-us-amsterdam.html" data-i18n="nav.link.markets">De markten</a></li>
+    <li><a href="journal.html" data-i18n="nav.link.journal">Journal</a></li>
+  </ul>
   <div class="nav-right">
     <div class="lang-toggle" role="group" aria-label="Language">
       <button data-lang="en">EN</button>
@@ -2231,7 +2421,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
   <aside class="cart-panel">
     <header class="cart-head">
       <span class="cart-title" data-i18n-html="cart.title_html">Your <em>Cellar</em></span>
-      <button class="cart-close" aria-label="Close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>
+      <button type="button" class="cart-close"><span data-i18n="cart.close">Close</span> <span class="x"></span></button>
     </header>
     <div class="cart-items" id="cartItems"></div>
     <footer class="cart-foot">
@@ -2248,7 +2438,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
 <!-- ============ Menu overlay ============ -->
 <div class="menu-overlay" id="menuOverlay" aria-hidden="true">
   <div class="menu-top">
-    <a href="#" class="nav-brand"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
+    <a href="/" class="nav-brand" aria-label="Harvest Deli, naar de homepage" data-i18n-attr="aria-label:nav.home"><svg class="logo-svg logo-mark menu-size"><use href="#harvestDeliLogo"/></svg></a>
     <button class="menu-close" id="menuClose"><span data-i18n="menu.close">Close</span> <span class="x"></span></button>
   </div>
 
@@ -2299,32 +2489,41 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
 </div>
 
 <!-- ============ Hero ============ -->
-<section class="hero" aria-labelledby="homepageH1">
-  <!-- Visually-hidden top-level heading anchors the document for screen readers and SEO.
-       The cinematic scene language is preserved as-is below. -->
-  <h1 id="homepageH1" class="vh" data-i18n="idx.h1">Harvest Deli, Single-estate Greek honey</h1>
-  <div class="video-stage">
-    <video id="heroVideo" muted loop playsinline webkit-playsinline preload="none" poster="hero-poster.jpg?v=hd-2026-06-06-222">
-      <!-- Large screens: the 2560 master. Portrait phones: video-mobile.mp4, the
-           centre strip a phone shows anyway, as 720x1280 (2 MB instead of 10 MB).
-           Everything else (tablets, phones held sideways): the 1920 version. -->
-      <source src="video-2k.mp4?v=hd-2026-06-06-222" type="video/mp4" media="(min-width: 900px)">
-      <source src="video-mobile.mp4?v=hd-2026-06-06-222" type="video/mp4" media="(orientation: portrait)">
-      <source src="video.mp4?v=hd-2026-06-06-222" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="scene align-center scene-brand active">
-    <div class="brand-reveal">
-      <div class="brand-glow" aria-hidden="true"></div>
-      <div class="est" data-i18n="idx.scene0.est">Established &middot; Greece</div>
-      <svg class="logo-svg logo-mark hero-size"><use href="#harvestDeliLogo"/></svg>
-      <div class="est-line"></div>
+<!-- The film plays once per browser (localStorage hd-hero-film-v1), then
+     cross-fades into the fixed photo. The photo is the hero for everyone else:
+     returning visitors, reduced motion, data saver, blocked or failed video. -->
+<section class="hero hd-hero" id="hero" aria-labelledby="homepageH1">
+  <div class="hd-hero__media">
+    <picture class="hd-hero__still">
+      <!-- Portrait phones: a vertical recomposition of the same shoot (Higgsfield, 31-10-2026) -->
+      <source type="image/webp" sizes="100vw" media="(max-width: 699px) and (orientation: portrait)"
+              srcset="assets/hero/hero-staand-720.webp?v=hd-2026-06-06-229 720w, assets/hero/hero-staand-1080.webp?v=hd-2026-06-06-229 1080w, assets/hero/hero-staand-1440.webp?v=hd-2026-06-06-229 1440w">
+      <source type="image/webp" sizes="100vw"
+              srcset="assets/hero/hero-tafel-828.webp?v=hd-2026-06-06-229 828w, assets/hero/hero-tafel-1280.webp?v=hd-2026-06-06-229 1280w, assets/hero/hero-tafel-1920.webp?v=hd-2026-06-06-229 1920w, assets/hero/hero-tafel-2560.webp?v=hd-2026-06-06-229 2560w">
+      <img src="assets/hero/hero-tafel-1920.jpg?v=hd-2026-06-06-229" width="1920" height="1080" fetchpriority="high" decoding="async"
+           alt="Harvest Deli honing, olijfolie en Griekse bergthee op een stenen tafel, met de Griekse bergen op de achtergrond" data-i18n-attr="alt:idx.hero.alt">
+    </picture>
+    <div class="hd-hero__film" aria-hidden="true">
+      <video id="heroVideo" muted playsinline webkit-playsinline preload="none" disablepictureinpicture disableremoteplayback tabindex="-1">
+        <!-- Large screens: the 2560 master. Portrait phones: video-mobile.mp4,
+             720x1280. Everything else: the 1920 version. -->
+        <source src="video-2k.mp4?v=hd-2026-06-06-229" type="video/mp4" media="(min-width: 900px)">
+        <source src="video-mobile.mp4?v=hd-2026-06-06-229" type="video/mp4" media="(orientation: portrait)">
+        <source src="video.mp4?v=hd-2026-06-06-229" type="video/mp4">
+      </video>
     </div>
+    <button type="button" class="hd-hero__replay" id="heroReplay" hidden>
+      <svg class="i-play" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.6" stroke="currentColor" stroke-width="1.2"/><path d="M8.3 6.9v6.2l5-3.1-5-3.1Z" fill="currentColor"/></svg>
+      <svg class="i-skip" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="8.6" stroke="currentColor" stroke-width="1.2"/><path d="M7.4 7v6M10.6 7v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span class="hd-hero__replay-label" data-i18n="idx.hero.replay">Film opnieuw bekijken</span>
+    </button>
   </div>
-
-  <div class="scroll-hint" id="scrollHint" data-i18n="idx.scrollHint">Scroll</div>
-  <button type="button" class="hero-skip" id="heroSkip"><span data-i18n="idx.heroSkip">Skip to the collection</span><span class="hero-skip__arrow" aria-hidden="true"></span></button>
+  <div class="hd-hero__copy">
+    <p class="hd-hero__eyebrow" data-i18n="idx.hero.eyebrow">Van Griekse bodem</p>
+    <h1 class="hd-hero__heading" id="homepageH1" data-i18n="idx.hero.title">Van de Griekse bergen naar jouw tafel.</h1>
+    <p class="hd-hero__sub" data-i18n="idx.hero.sub">Honing, olijfolie en bergthee. Rechtstreeks uit Griekenland.</p>
+    <a class="hd-hero__cta" href="shop.html"><span data-i18n="idx.hero.cta">Ontdek de collectie</span><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11.5M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
 </section>
 
 <!-- ============ Curated selection ============ -->
@@ -2373,7 +2572,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     grid.innerHTML = SLUGS.map(function (slug) {
       var p = window.HD_product(slug); if (!p) return '';
       return '<a class="idx-sel-card" data-slug="' + slug + '" href="' + p.url + '" aria-label="' + p.name + '">' +
-        '<div class="idx-sel-img"><img class="idx-sel-photo ' + (p.hue || '') + '" src="' + p.image + '" alt="' + p.name + '" loading="lazy"></div>' +
+        '<div class="idx-sel-img"><img class="idx-sel-photo ' + (p.hue || '') + '" src="' + String(p.image).replace(/^(\/assets\/(?:products-images\/)?[a-z-]+)\.webp/, '$1-640.webp') + '" alt="' + p.name + '" loading="lazy"></div>' +
         '<div class="idx-sel-info">' +
           '<h3 class="idx-sel-name">' + p.name + '</h3>' +
           '<p class="idx-sel-desc">' + (p.notes || '') + '</p>' +
@@ -2423,8 +2622,8 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     </div>
     <div class="origin__media reveal delay-1">
       <div class="origin__video-wrap">
-        <video class="origin__video" id="originVideo" muted loop playsinline webkit-playsinline preload="none" poster="hero-poster.jpg?v=hd-2026-06-06-222" aria-hidden="true">
-          <source src="origin.mp4?v=hd-2026-06-06-222" type="video/mp4">
+        <video class="origin__video" id="originVideo" muted loop playsinline webkit-playsinline preload="none" data-poster="assets/origin-poster.webp?v=hd-2026-06-06-229" aria-hidden="true">
+          <source src="origin.mp4?v=hd-2026-06-06-229" type="video/mp4">
         </video>
         <span class="origin__caption" data-i18n="idx.ch1.caption">Greece &middot; Spring harvest</span>
       </div>
@@ -2488,7 +2687,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
       <a class="jp-card reveal" href="article-de-smaak-van-de-griekse-zon.html">
         <div class="jp-figure">
           <span class="jp-tag" data-i18n="jp.cat.tasting">Tasting</span>
-          <img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-222" width="1300" height="731" alt="Golden light over a Greek grove at sunrise" loading="lazy">
+          <img src="assets/olive-sunrise-poster.webp?v=hd-2026-06-06-229" width="1300" height="731" alt="Golden light over a Greek grove at sunrise" loading="lazy">
         </div>
         <div class="jp-body">
           <div class="jp-metar"><span data-i18n="jp.a1.read">8 min read</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.a1.date">March 2025</span></div>
@@ -2500,7 +2699,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
       <a class="jp-card reveal delay-1" href="article-griekse-honing-smaak.html">
         <div class="jp-figure">
           <span class="jp-tag" data-i18n="jp.cat.health">Health benefits</span>
-          <img src="honeycomb.jpg?v=hd-2026-06-06-222" width="1200" height="2150" alt="Raw Greek honeycomb dripping with unfiltered honey" loading="lazy">
+          <img src="honeycomb.jpg?v=hd-2026-06-06-229" width="1200" height="2150" alt="Raw Greek honeycomb dripping with unfiltered honey" loading="lazy">
         </div>
         <div class="jp-body">
           <div class="jp-metar"><span data-i18n="jp.a3.read">6 min read</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.a3.date">January 2025</span></div>
@@ -2512,7 +2711,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
       <a class="jp-card reveal delay-2" href="article-griekse-honing-nederland.html">
         <div class="jp-figure">
           <span class="jp-tag" data-i18n="jp.cat.guide">Guide</span>
-          <img src="assets/markt.webp?v=hd-2026-06-06-222" width="1300" height="975" alt="Amsterdam market stall with single-estate Greek honey" loading="lazy">
+          <img src="assets/markt.webp?v=hd-2026-06-06-229" width="1300" height="975" alt="Amsterdam market stall with single-estate Greek honey" loading="lazy">
         </div>
         <div class="jp-body">
           <div class="jp-metar"><span data-i18n="jp.a2.read">7 min read</span><span class="dot" aria-hidden="true"></span><span data-i18n="jp.a2.date">February 2025</span></div>
@@ -2542,7 +2741,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
       <div class="oo__stage reveal delay-1">
         <div class="oo__bottle" id="ooBottle">
           <div class="oo__card">
-            <img class="oo__bottle-img" src="assets/greekoliveoil.webp?v=hd-2026-06-06-222" width="1086" height="1448" alt="Single-estate Harvest extra virgin olive oil, first cold pressing from Greece" loading="lazy">
+            <img class="oo__bottle-img" src="assets/greekoliveoil.webp?v=hd-2026-06-06-229" width="1086" height="1448" alt="Single-estate Harvest extra virgin olive oil, first cold pressing from Greece" loading="lazy">
             <span class="oo__shimmer" aria-hidden="true"></span>
           </div>
         </div>
@@ -2562,28 +2761,28 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     </div>
     <div class="lhw__wall reveal delay-1">
       <div class="lhw__item" style="--l:0%;--t:3%;--w:25%;--ar:4/5;--rot:-3deg;--dur:8.5s;--delay:-1s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-1.jpg?v=hd-2026-06-06-222" width="618" height="826" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-1.jpg?v=hd-2026-06-06-229" width="618" height="826" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:27%;--t:0%;--w:20%;--ar:2/3;--rot:2.4deg;--dur:9.5s;--delay:-3s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-2.jpg?v=hd-2026-06-06-222" width="616" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-2.jpg?v=hd-2026-06-06-229" width="616" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:50%;--t:7%;--w:23%;--ar:1/1;--rot:-2deg;--dur:7.5s;--delay:-2s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-3.jpg?v=hd-2026-06-06-222" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-3.jpg?v=hd-2026-06-06-229" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:76%;--t:2%;--w:21%;--ar:4/5;--rot:3deg;--dur:8s;--delay:-4s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-4.jpg?v=hd-2026-06-06-222" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-4.jpg?v=hd-2026-06-06-229" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:4%;--t:54%;--w:21%;--ar:1/1;--rot:2.6deg;--dur:9s;--delay:-2.5s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-5.jpg?v=hd-2026-06-06-222" width="622" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-5.jpg?v=hd-2026-06-06-229" width="622" height="824" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:28%;--t:49%;--w:24%;--ar:4/5;--rot:-2.4deg;--dur:8.8s;--delay:0s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-6.jpg?v=hd-2026-06-06-222" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-6.jpg?v=hd-2026-06-06-229" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:57%;--t:53%;--w:21%;--ar:3/4;--rot:2.8deg;--dur:7.8s;--delay:-3.5s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-7.jpg?v=hd-2026-06-06-222" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-7.jpg?v=hd-2026-06-06-229" width="622" height="828" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
       <div class="lhw__item" style="--l:81%;--t:47%;--w:17%;--ar:4/5;--rot:-3deg;--dur:9.2s;--delay:-1.5s">
-        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-8.jpg?v=hd-2026-06-06-222" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
+        <a class="lhw__card" href="https://www.instagram.com/harvest.deli/" target="_blank" rel="external noopener" aria-label="Harvest Deli on Instagram"><img src="assets/instagram/ig-8.jpg?v=hd-2026-06-06-229" width="622" height="830" alt="Harvest Deli moment from the grove" loading="lazy"></a>
       </div>
     </div>
   </div>
@@ -2615,7 +2814,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     box-shadow: 0 44px 96px -58px rgba(31, 26, 20, 0.42);
     background:
       linear-gradient(180deg, rgba(20, 14, 8, 0.08) 40%, rgba(20, 14, 8, 0.46) 100%),
-      url("assets/markt.webp?v=hd-2026-06-06-222") center / cover no-repeat,
+      url("assets/markt.webp?v=hd-2026-06-06-229") center / cover no-repeat,
       radial-gradient(120% 80% at 30% 30%, #C58F3F 0%, #8E5B23 38%, #4F3415 80%, #2A1B0A 100%);
   }
   .idx-markets__media::after {
@@ -2635,7 +2834,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 9.5px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
@@ -2657,14 +2856,14 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     z-index: 2;
     display: flex;
     justify-content: space-between;
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-style: italic;
     font-size: 14px;
     color: rgba(250, 246, 238, 0.78);
   }
   .idx-markets__media-foot small {
     display: block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-style: normal;
     font-size: 9px;
     letter-spacing: 0.32em;
@@ -2675,7 +2874,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
   .idx-markets__body { max-width: 56ch; }
   .idx-markets__eyebrow {
     display: inline-block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 9.5px;
     letter-spacing: 0.42em;
     text-transform: uppercase;
@@ -2684,7 +2883,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     margin-bottom: 24px;
   }
   .idx-markets__h {
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-variation-settings: 'opsz' 48, 'wght' 400;
     font-weight: 400;
     font-size: clamp(34px, 5vw, 60px);
@@ -2699,7 +2898,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     font-variation-settings: 'opsz' 48, 'wght' 350;
   }
   .idx-markets__lead {
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-size: 17px;
     line-height: 1.66;
     color: rgba(31, 26, 20, 0.72);
@@ -2716,7 +2915,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
   }
   .idx-markets__row strong {
     display: block;
-    font-family: 'Newsreader', serif;
+    font-family: var(--font-display);
     font-variation-settings: 'opsz' 24, 'wght' 500;
     font-weight: 500;
     font-size: 16px;
@@ -2726,7 +2925,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
   }
   .idx-markets__row span {
     display: block;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 10.5px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -2738,7 +2937,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     align-items: center;
     gap: 14px;
     padding: 14px 26px;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter Tight', sans-serif;
     font-size: 10px;
     letter-spacing: 0.36em;
     text-transform: uppercase;
@@ -2899,18 +3098,19 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
 .hd-reviews__head { text-align: center; max-width: 640px; margin: 0 auto clamp(44px, 5.4vw, 64px);
   opacity: 0; transform: translateY(16px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
 .hd-reviews__head.in { opacity: 1; transform: none; }
-.hd-reviews__eyebrow { display: block; font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: 0.2em;
+.hd-reviews__eyebrow { display: block; font-family: 'Inter Tight', sans-serif; font-size: 10px; letter-spacing: 0.2em;
   text-transform: uppercase; color: var(--gold-deep, #8A6228); font-weight: 500; margin-bottom: 18px; }
 .hd-reviews__stars { display: inline-flex; gap: 5px; margin-bottom: 20px; }
 .hd-reviews__stars .hd-star { width: 18px; height: 18px; }
-.hd-reviews__title { font-family: 'Inter Tight', 'Inter', sans-serif; font-weight: 540;
+.hd-reviews__title { font-family: 'Inter Tight', sans-serif; font-weight: 540;
   font-size: clamp(30px, 4.2vw, 52px); letter-spacing: -0.028em; line-height: 1.05; color: var(--ink, #1F1A14);
   margin: 0 auto; max-width: 18ch; }
-.hd-reviews__trust { margin: 16px 0 0; font-family: 'Inter', sans-serif; font-size: 14px; letter-spacing: 0.02em;
+.hd-reviews__trust { margin: 16px 0 0; font-family: 'Inter Tight', sans-serif; font-size: 14px; letter-spacing: 0.02em;
   color: var(--ink-soft, #5C5247); font-variant-numeric: tabular-nums; }
 .hd-star { fill: var(--gold-light, #D4AC6A); display: block; }
 
 .hd-reviews__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2vw, 28px); }
+.hd-reviews__grid:focus-visible { outline: 2px solid var(--gold-deep, #8A6228); outline-offset: 4px; border-radius: 12px; }
 .hd-rev-card { position: relative; background: var(--cream, #FAF6EE);
   border: 1px solid rgba(184, 148, 90, 0.18); border-radius: 22px; padding: 32px;
   box-shadow: 0 20px 44px -26px rgba(60, 40, 16, 0.26); display: flex; flex-direction: column; gap: 18px;
@@ -2923,17 +3123,17 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
 .hd-rev-card__g .hd-g { width: 17px; height: 17px; display: block; }
 .hd-rev-card__stars { display: flex; gap: 4px; }
 .hd-rev-card__stars .hd-star { width: 15px; height: 15px; }
-.hd-rev-card__text { margin: 0; font-family: 'Newsreader', Georgia, serif; font-weight: 400;
+.hd-rev-card__text { margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 400;
   font-size: 18px; line-height: 1.6; letter-spacing: -0.003em; color: var(--ink, #1F1A14); }
 .hd-rev-card__foot { margin-top: auto; display: flex; flex-direction: column; gap: 3px; padding-top: 4px; }
-.hd-rev-card__name { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+.hd-rev-card__name { font-family: 'Inter Tight', sans-serif; font-size: 13px; font-weight: 600;
   letter-spacing: 0.01em; color: var(--ink, #1F1A14); }
-.hd-rev-card__loc { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em;
+.hd-rev-card__loc { font-family: 'Inter Tight', sans-serif; font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em;
   text-transform: uppercase; color: var(--ink-warm, #756859); }
 
 .hd-reviews__cta-wrap { text-align: center; margin-top: clamp(42px, 5vw, 58px); }
 .hd-reviews__cta { display: inline-flex; align-items: center; gap: 13px; text-decoration: none;
-  font-family: 'Inter', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+  font-family: 'Inter Tight', sans-serif; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
   font-weight: 600; color: var(--ink, #1F1A14); transition: color .4s var(--ease); }
 .hd-reviews__cta .arw { width: 20px; height: 1px; background: currentColor; position: relative;
   transition: width .4s var(--ease); }
@@ -3031,7 +3231,10 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     }).join('');
     var cta = '<div class="hd-reviews__cta-wrap"><a class="hd-reviews__cta" href="' + esc(CFG.googleUrl)
       + '" target="_blank" rel="noopener noreferrer">' + T.cta[L] + '<span class="arw" aria-hidden="true"></span></a></div>';
-    inner.innerHTML = head + '<div class="hd-reviews__grid">' + cards + '</div>' + cta;
+    // On phones the grid is a horizontal scroller: make it a named, focusable
+    // region so keyboard users can scroll it with the arrow keys.
+    var gridLabel = L === 'nl' ? 'Klantreviews, scroll horizontaal' : 'Customer reviews, scroll horizontally';
+    inner.innerHTML = head + '<div class="hd-reviews__grid" role="region" tabindex="0" aria-label="' + gridLabel + '">' + cards + '</div>' + cta;
     reveal();
   }
 
@@ -3085,14 +3288,14 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
       <p class="footer-tagline" data-i18n="footer.tagline">Liquid sunlight, kept slow and small, from the mountains of Greece.</p>
     </div>
     <div class="footer-col">
-      <h4 data-i18n="footer.col.collection">Collection</h4>
+      <h2 data-i18n="footer.col.collection">Collection</h2>
       <a href="shop.html" data-i18n="footer.link.allEditions">All editions</a>
       <a href="shop.html#raw" data-i18n="footer.link.rawHoney">Raw honey</a>
       <a href="shop.html#limited" data-i18n="footer.link.limited">Limited reserves</a>
       <a href="shop.html#gift" data-i18n="footer.link.gift">Gift sets</a>
     </div>
     <div class="footer-col">
-      <h4 data-i18n="footer.col.house">House</h4>
+      <h2 data-i18n="footer.col.house">House</h2>
       <a href="about.html" data-i18n="footer.link.origin">Origin</a>
       <a href="find-us-amsterdam.html" data-i18n="markets.nav">Markets</a>
       <a href="#process" data-i18n="footer.link.estate">Process</a>
@@ -3102,7 +3305,7 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
       <a href="contact.html" data-i18n="footer.link.contact">Contact</a>
     </div>
     <div class="footer-col">
-      <h4 data-i18n="footer.col.legal">Legal</h4>
+      <h2 data-i18n="footer.col.legal">Legal</h2>
       <a href="legal-terms.html">Algemene voorwaarden</a>
       <a href="legal-privacy.html">Privacyverklaring</a>
       <a href="legal-cookies.html">Cookieverklaring</a>
@@ -3113,13 +3316,13 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     </div>
   </div>
   <div class="footer-bottom">
-    <span data-i18n="footer.bottom1">© Harvest Deli · Greece</span>
-    <span data-i18n="footer.bottom2">Crafted slowly</span>
+    <p class="footer-copy"><span data-i18n="footer.bottom1">© Harvest Deli · Greece</span></p>
+    <p class="footer-credit" data-i18n-html="footer.credit_html">Website door <a href="https://thecreativitylab.nl" rel="noopener">The Creativity Lab</a></p>
   </div>
 </footer>
 
-<script src="shared.js?v=hd-2026-06-06-222"></script>
-<script defer src="analytics.js?v=hd-2026-06-06-222"></script>
+<script src="shared.js?v=hd-2026-06-06-229"></script>
+<script defer src="analytics.js?v=hd-2026-06-06-229"></script>
 <script>
 (function() {
   const video = document.getElementById('heroVideo');
@@ -3161,94 +3364,134 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  /* Hero video, simple autoplay loop */
+  /* ---- Hero: the film once, then the fixed photo ----------------------
+     The head script already chose: html.hd-film (first visit, the film may
+     play) or html.hd-still (photo). The photo is always underneath and
+     preloaded, so every way out of the film (ended, skipped, blocked, failed,
+     scrolled away) is a fade to a picture that is already there. */
+  const FILM_KEY = 'hd-hero-film-v1';
+  const root = document.documentElement;
+  const hero = document.getElementById('hero');
+  const replay = document.getElementById('heroReplay');
+  const replayLabel = replay && replay.querySelector('.hd-hero__replay-label');
+  const stillImg = hero && hero.querySelector('.hd-hero__still img');
+  let filmState = 'idle';      // idle | waiting | playing | done
+  let watchdog = 0;
+
   function hideLoader() {
-    if (loader.classList.contains('hidden')) return;
+    if (!loader || loader.classList.contains('hidden')) return;
     loader.classList.add('hidden');
     setTimeout(() => { loader.style.display = 'none'; }, 1800);
   }
-  /* Hide the loader as soon as the hero is VISUALLY ready, the poster is the
-     video's exact first frame, so it fills the stage instantly. No reason to
-     wait for the heavy video to be playable; it crosses in seamlessly when
-     ready. This kills the long "loading" wait on returning visits. */
-  /* The poster backdrop (on .video-stage) is the cinematic still instantly, so
-     the loader can lift as soon as it's ready, no waiting on the heavy video,
-     no beige/empty gap. The video plays on top; poster = its first frame, so it
-     'comes alive' seamlessly. */
-  var hp = new Image();
-  hp.onload = hideLoader;          // poster backdrop ready → lift the loader fast
-  hp.onerror = hideLoader;
-  hp.src = video.getAttribute('poster');
-  if (video.readyState >= 2) hideLoader();
-  else {
-    video.addEventListener('loadeddata', hideLoader, { once: true });
-    video.addEventListener('playing', hideLoader, { once: true });
-  }
-  setTimeout(hideLoader, 1200);    // safety fallback (was 5000)
-  /* The hero video is preload="none": the preloaded poster is the LCP and fills
-     the stage instantly. We start fetching + playing the video only AFTER first
-     paint (load + idle), so its weight never competes on the critical path. The
-     poster is the video's exact first frame, so it crosses in seamlessly. */
-  /* The film plays on every screen, phones included (they get the light
-     portrait cut, see the <source> list). The still stays only for visitors
-     who asked for less: reduced motion, data saver, or a 2G connection.
-     A/B testing: ?hero=video forces the film on, ?hero=poster forces it off. */
-  const heroFlag = new URLSearchParams(location.search).get('hero');
-  const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection || {};
-  const lessData = !!conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
-  const lessMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  const heroFilm = heroFlag === 'video' ? true
-                 : heroFlag === 'poster' ? false
-                 : !(lessData || lessMotion);
+  if (stillImg && stillImg.complete) hideLoader();
+  else if (stillImg) { stillImg.addEventListener('load', hideLoader, { once: true }); stillImg.addEventListener('error', hideLoader, { once: true }); }
+  setTimeout(hideLoader, 1200);
 
-  if (!heroFilm) {
-    /* Strip the sources so the file cannot be fetched at all, not even
-       speculatively. preload="none" already holds it back, this makes it final. */
-    video.querySelectorAll('source').forEach(s => s.remove());
-    video.removeAttribute('src');
-    video.load();
-    document.documentElement.classList.add('hero-still');
-  } else {
-    const tryPlay = () => { try { video.play().catch(() => {}); } catch (e) {} };
-    let heroStarted = false;
-    const startHero = () => { if (heroStarted) return; heroStarted = true; tryPlay(); };
-    const idle = window.requestIdleCallback || function (f) { return setTimeout(f, 200); };
-    if (document.readyState === 'complete') idle(startHero, { timeout: 1500 });
-    else window.addEventListener('load', () => idle(startHero, { timeout: 1500 }), { once: true });
-    document.addEventListener('touchstart', startHero, { once: true, passive: true });
-    document.addEventListener('click', startHero, { once: true });
-    /* Only play while the hero is on screen: saves battery and data on phones. */
-    const heroSection = document.querySelector('.hero');
-    if (heroSection && 'IntersectionObserver' in window) {
-      new IntersectionObserver((ents) => {
-        ents.forEach((en) => {
-          if (!heroStarted) return;
-          if (en.isIntersecting) tryPlay(); else { try { video.pause(); } catch (e) {} }
-        });
-      }, { threshold: 0.2 }).observe(heroSection);
-    }
+  function remember() { try { localStorage.setItem(FILM_KEY, 'seen'); } catch (e) {} }
+  function setReplay(mode) {
+    if (!replay) return;
+    const key = mode === 'stop' ? 'idx.hero.stop' : 'idx.hero.replay';
+    const fallback = mode === 'stop' ? 'Film overslaan' : 'Film opnieuw bekijken';
+    const dict = (window.HD_T && window.HD_lang && window.HD_T[window.HD_lang()]) || {};
+    const txt = dict[key] || fallback;
+    if (replayLabel) { replayLabel.dataset.i18n = key; replayLabel.textContent = txt; }
+    replay.hidden = false;
   }
-
-  /* "Direct naar de collectie": for visitors who don't want to watch. */
-  const heroSkip = document.getElementById('heroSkip');
-  if (heroSkip) heroSkip.addEventListener('click', () => {
-    const target = document.getElementById('collectie');
-    if (!target) return;
-    /* offsetTop, not getBoundingClientRect: the section still carries its fade-in
-       offset (translateY) until it reveals, which would land the scroll too far. */
-    let top = 0; for (let el = target; el; el = el.offsetParent) top += el.offsetTop;
-    top -= (nav && nav.offsetHeight) || 0;
-    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
+  function showStill() {
+    clearTimeout(watchdog);
+    filmState = 'done';
+    root.classList.remove('hd-film');
+    root.classList.add('hd-still');
+    setReplay('replay');
+    /* Let the 0.9 s cross-fade finish before the film stops on its last frame */
+    setTimeout(() => { if (filmState === 'done') { try { video.pause(); } catch (e) {} } }, 950);
+  }
+  function playFilm(manual) {
+    if (!video || filmState === 'playing' || filmState === 'waiting') return;
+    filmState = 'waiting';
+    root.classList.remove('hd-still');
+    root.classList.add('hd-film');
+    setReplay('stop');
+    try { if (video.readyState > 0) video.currentTime = 0; } catch (e) {}
+    /* No first frame within this time (slow network, stalled decode): photo */
+    clearTimeout(watchdog);
+    watchdog = setTimeout(() => { if (filmState === 'waiting') showStill(); }, manual ? 9000 : 6000);
+    let p;
+    try { p = video.play(); } catch (e) { showStill(); return; }
+    if (p && p.catch) p.catch(() => { if (filmState !== 'done') showStill(); });
+  }
+  if (video) {
+    video.loop = false;                       // once, never on repeat
+    video.addEventListener('playing', () => {
+      if (filmState !== 'waiting' && filmState !== 'playing') return;
+      clearTimeout(watchdog);
+      filmState = 'playing';
+      remember();                             // started = seen, also when skipped halfway
+    });
+    video.addEventListener('ended', showStill);
+    video.addEventListener('error', () => { if (filmState !== 'done') showStill(); });
+    const sources = video.querySelectorAll('source');
+    if (sources.length) sources[sources.length - 1].addEventListener('error', () => { if (filmState !== 'done') showStill(); });
+  }
+  if (replay) replay.addEventListener('click', () => {
+    if (filmState === 'playing' || filmState === 'waiting') showStill();
+    else playFilm(true);
   });
+
+  if (!root.classList.contains('hd-film') || !video) {
+    setReplay('replay');
+  } else {
+    setReplay('stop');
+    /* Start after first paint and after the logo intro has lifted, and only
+       while the hero is on screen (a restored scroll position skips it). */
+    const introBusy = () => root.classList.contains('hd-intro-pending') || root.classList.contains('hd-intro-active');
+    const heroVisible = () => !hero || hero.getBoundingClientRect().bottom > window.innerHeight * 0.35;
+    const go = () => {
+      if (filmState !== 'idle') return;
+      if (!heroVisible()) { showStill(); return; }
+      playFilm(false);
+    };
+    const whenIntroDone = (cb) => {
+      if (!introBusy()) { cb(); return; }
+      const mo = new MutationObserver(() => { if (!introBusy()) { mo.disconnect(); cb(); } });
+      mo.observe(root, { attributes: true, attributeFilter: ['class'] });
+      setTimeout(() => { mo.disconnect(); cb(); }, 9000);   // never wait forever on the intro
+    };
+    const idle = window.requestIdleCallback || function (f) { return setTimeout(f, 200); };
+    const start = () => whenIntroDone(() => idle(go, { timeout: 1200 }));
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+  }
+  /* Scrolled away during the film: end it on the photo (saves data and battery). */
+  if (hero && 'IntersectionObserver' in window) {
+    new IntersectionObserver((ents) => {
+      ents.forEach((en) => { if (!en.isIntersecting && (filmState === 'playing' || filmState === 'waiting')) showStill(); });
+    }, { threshold: 0.15 }).observe(hero);
+  }
+  /* Back/forward cache: never resume a half-played film */
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted && filmState !== 'done' && root.classList.contains('hd-film')) showStill();
+  });
+  /* Keep the button text in the chosen language */
+  window.addEventListener('hd:lang', () => setReplay(filmState === 'playing' || filmState === 'waiting' ? 'stop' : 'replay'));
 
   /* Origin video (below the fold) is preload="none": only fetch + play it when
      it nears the viewport, so it never loads on the initial critical path. */
+  /* Its poster is its own first frame (assets/origin-poster.webp), set only
+     when the section nears the viewport; it used to borrow hero-poster.jpg,
+     which every visitor downloaded even after the hero film was retired.
+     Playback pauses off-screen and stays off under reduced motion. */
   const originVid = document.getElementById('originVideo');
   if (originVid && 'IntersectionObserver' in window) {
+    const originCalm = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     const ovo = new IntersectionObserver((ents) => {
       ents.forEach(e => {
-        if (e.isIntersecting) { try { originVid.play().catch(() => {}); } catch (err) {} ovo.unobserve(e.target); }
+        if (e.isIntersecting) {
+          if (!originVid.poster && originVid.dataset.poster) originVid.poster = originVid.dataset.poster;
+          if (!originCalm) { try { originVid.play().catch(() => {}); } catch (err) {} }
+        } else if (!originVid.paused) {
+          originVid.pause();
+        }
       });
     }, { rootMargin: '200px' });
     ovo.observe(originVid);
@@ -3260,9 +3503,8 @@ body nav.site-nav .nav-cart span[data-i18n] { display: none !important; }
     const scrollY = window.scrollY;
     if (scrollY > 80) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
-    if (scrollY > 140) scrollHint.classList.add('hidden');
-    else scrollHint.classList.remove('hidden');
-    if (heroSkip) heroSkip.classList.toggle('hidden', scrollY > 140);
+    if (scrollHint) scrollHint.classList.toggle('hidden', scrollY > 140);
+    if (hero && nav) nav.classList.toggle('hd-past-hero', hero.getBoundingClientRect().bottom <= nav.getBoundingClientRect().bottom + 8);
     ticking = false;
   }
   window.addEventListener('scroll', () => {

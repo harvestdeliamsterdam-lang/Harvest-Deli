@@ -107,9 +107,9 @@ ${X ? experienceGallery(d, X) : `    <div class="pd-gallery" id="pdGallery">
         </div>
       </div>
       <div class="pdg-thumbs" id="pdgThumbs">
-        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="${esc(d.T.nl['pp.thumb.product'] || 'Productfoto')}" data-i18n-attr="aria-label:pp.thumb.product"><img src="${img('', 640)}" width="640" height="1147" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Herkomst" data-i18n-attr="aria-label:pp.thumb.origin"><img src="${img('-origin', 640)}" width="640" height="1147" alt="" loading="lazy"></button>
-        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Geserveerd" data-i18n-attr="aria-label:pp.thumb.serving"><img src="${img('-serving', 640)}" width="640" height="1147" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb active" data-slide="0" aria-label="${esc(d.T.nl['pp.thumb.product'] || 'Productfoto')}" data-i18n-attr="aria-label:pp.thumb.product"><img src="${img('', 160)}" width="160" height="287" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="1" aria-label="Herkomst" data-i18n-attr="aria-label:pp.thumb.origin"><img src="${img('-origin', 160)}" width="160" height="287" alt="" loading="lazy"></button>
+        <button type="button" class="pdg-thumb" data-slide="2" aria-label="Geserveerd" data-i18n-attr="aria-label:pp.thumb.serving"><img src="${img('-serving', 160)}" width="160" height="287" alt="" loading="lazy"></button>
       </div>
     </div>
 `}
@@ -214,14 +214,14 @@ const ICONS = {
 
 function sticky(d) {
   return `<!-- Sticky buy bar (phones and tablets) -->
-<div class="sticky-buy" id="stickyBuy">
+<aside class="sticky-buy" id="stickyBuy" aria-label="Snel toevoegen" data-i18n-attr="aria-label:product.sticky.region">
   <div class="sb-thumb"><img src="/assets/products-images/${d.slug}-640.webp?v=${d.v}" width="640" height="${d.X ? Math.round(d.X.gallery[0].h * 640 / d.X.gallery[0].w) : 1147}" alt="" loading="lazy"></div>
   <div class="sb-meta">
     <div class="sb-name" data-i18n="pp.name">${esc(d.nl.name)}</div>
     <div class="sb-price" id="sbPrice">&euro;${money(d.sizes[0].price)} &middot; ${d.sizes[0].label}</div>
   </div>
   <button data-add-to-cart="${d.slug}" data-size="${d.sizes[0].id}" data-i18n="product.sticky.add">${esc(d.T.nl['product.sticky.add'])}</button>
-</div>`;
+</aside>`;
 }
 
 /* ------------------------------------------------- product experiences

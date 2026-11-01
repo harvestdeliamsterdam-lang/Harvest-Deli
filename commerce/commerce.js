@@ -358,6 +358,7 @@
          de laatste twee stappen zijn het vangnet. countryCode blijft zo lang
          mogelijk staan, want die bepaalt of iDEAL/Bancontact verschijnen. */
       var stap = 'volledig';
+      var zonderCode = false;
       var poging = 0;
       var kaartVernieuwd = false;
       var laatste = null;
@@ -365,6 +366,11 @@
       while (poging < 7) {
         poging++;
         var vars = { lines: lines, buyerIdentity: bi, country: bi.countryCode || landVoorCheckout(), language: taalVoorCheckout(), consent: toestemmingVoorCheckout() };
+        /* Welkomstcode en testgroep uit welcome.js. Alleen meegeven wat er is;
+           Shopify beslist zelf of de code geldt. */
+        var welkom = await welkomVoorCheckout();
+        if (welkom.codes && !zonderCode) vars.discountCodes = welkom.codes;
+        if (welkom.attributes && !zonderCode) vars.attributes = welkom.attributes;
         var uitkomst = await roepCartCreate(vars);
         laatste = uitkomst;
 
@@ -376,6 +382,9 @@
              empty basket. It is emptied once Shopify has turned this cart into
              an order (see naAfrekenen below). */
           markeerOvergave(cart.id);
+          if (vars.discountCodes && window.HD_WELCOME && window.HD_WELCOME.onCheckout) {
+            try { window.HD_WELCOME.onCheckout(cart.discountCodes || []); } catch (e) {}
+          }
           return cart.checkoutUrl;
         }
 
@@ -388,6 +397,10 @@
         var ue = (uitkomst.data && uitkomst.data.cartCreate && uitkomst.data.cartCreate.userErrors) || [];
         var velden = ue.map(function (e) { return (e.field || []).join('.'); }).join(' ');
 
+        /* Een kortingscode mag de checkout nooit tegenhouden. */
+        if (/discountCodes|attributes/.test(velden) && !zonderCode) {
+          zonderCode = true; stap = 'zonder-code'; continue;
+        }
         if (/buyerIdentity\.phone/.test(velden) && (bi.phone || heeftAdresTelefoon(bi))) {
           delete bi.phone; verwijderAdresTelefoon(bi); stap = 'zonder-telefoon'; continue;
         }
@@ -549,6 +562,10 @@
     var data = await SF().safeFetch('query HandoffCart($id: ID!) { cart(id: $id) { id } }', { id: o.id });
     if (!data) return;                       // storing of geen antwoord: niets doen
     if (data.cart === null) {
+      /* Shopify heeft deze cart in een bestelling omgezet: welcome.js toont
+         het welkomstaanbod daarna niet meer in deze browser. */
+      try { localStorage.setItem('hd-order-seen', String(Date.now())); } catch (e) {}
+      try { window.dispatchEvent(new CustomEvent('hd:order-placed')); } catch (e) {}
       clearLocalCart();
       setCartId(null);
       try { localStorage.removeItem(OVERGAVE_KEY); } catch (e) {}
@@ -605,8 +622,8 @@
     wrap.setAttribute('role', 'alertdialog'); wrap.setAttribute('aria-modal', 'true'); wrap.setAttribute('aria-labelledby', 'hdCoErrT');
     wrap.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(20,14,8,0.55);padding:24px;';
     wrap.innerHTML =
-      '<div style="max-width:420px;width:100%;background:var(--cream,#FAF6EE);color:var(--ink,#1F1A14);border:1px solid rgba(184,148,90,0.4);border-radius:6px;padding:30px 28px;font-family:Inter,system-ui,sans-serif;box-shadow:0 30px 80px -30px rgba(40,24,8,0.5);">' +
-      '<h2 id="hdCoErrT" style="margin:0 0 10px;font-family:Newsreader,serif;font-weight:400;font-size:22px;">' + copy[0] + '</h2>' +
+      '<div style="max-width:420px;width:100%;background:var(--cream,#FAF6EE);color:var(--ink,#1F1A14);border:1px solid rgba(184,148,90,0.4);border-radius:6px;padding:30px 28px;font-family:Inter Tight, system-ui, sans-serif;box-shadow:0 30px 80px -30px rgba(40,24,8,0.5);">' +
+      '<h2 id="hdCoErrT" style="margin:0 0 10px;font-family:var(--font-display);font-weight:400;font-size:22px;">' + copy[0] + '</h2>' +
       '<p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:var(--ink-soft,#5C5247);">' + copy[1] + '</p>' +
       techniek +
       '<button type="button" id="hdCoErrClose" style="cursor:pointer;border:1px solid var(--ink,#1F1A14);background:var(--ink,#1F1A14);color:var(--cream,#FAF6EE);font:inherit;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;padding:13px 24px;border-radius:999px;min-height:44px;">' + (nl ? 'Sluiten' : 'Close') + '</button>' +
@@ -697,6 +714,37 @@
     return { analytics: !!(c && c.analytics), marketing: !!(c && c.marketing), preferences: !!c, saleOfData: !!(c && c.marketing) };
   }
   function taalVoorCheckout() { return (window.HD_lang && window.HD_lang() === 'en') ? 'EN' : 'NL'; }
+  /* welcome.js decides (with Shopify's own numbers) whether the code makes
+     this order cheaper including shipping; only then does it travel along. */
+  async function welkomVoorCheckout() {
+    try { return (window.HD_WELCOME && window.HD_WELCOME.forCheckout && await window.HD_WELCOME.forCheckout()) || {}; }
+    catch (e) { return {}; }
+  }
+
+  /* Voorbeeldberekening voor de winkelmand (welcome.js). Maakt een losse
+     Shopify-cart met dezelfde regels en code en geeft terug wat Shopify er
+     zelf van maakt. Raakt de echte cart-id en de checkout niet.
+     @returns {Promise<null|{applicable:boolean, amount:number, ritual:number, subtotal:number}>} */
+  /* code '' = the same cart without a code (ritual / 2-for savings only), so
+     welcome.js can compare both outcomes including shipping. */
+  async function previewDiscount(code) {
+    if (!useShopify()) return null;
+    var lines = shopifyLinesFromCart();
+    if (!lines || !lines.length) return null;
+    var data = await SF().safeFetch(SF().QUERIES.cartPreview, { lines: lines, discountCodes: code ? [code] : [], country: landVoorCheckout() });
+    var cart = data && data.cartCreate && data.cartCreate.cart;
+    if (!cart) return null;
+    var dc = code ? (cart.discountCodes || []).filter(function (d) { return String(d.code).toUpperCase() === String(code).toUpperCase(); })[0] : null;
+    var amount = (cart.discountAllocations || []).reduce(function (a, d) {
+      return a + (code && d.code && String(d.code).toUpperCase() === String(code).toUpperCase() ? +d.discountedAmount.amount : 0);
+    }, 0);
+    var ritual = (cart.lines && cart.lines.nodes || []).reduce(function (a, n) {
+      return a + (n.discountAllocations || []).reduce(function (b, d) { return b + (+d.discountedAmount.amount || 0); }, 0);
+    }, 0);
+    return { applicable: !!(dc && dc.applicable), amount: Math.round(amount * 100) / 100, ritual: Math.round(ritual * 100) / 100, subtotal: +cart.cost.subtotalAmount.amount };
+  }
+  window.HD_previewDiscount = previewDiscount;
+
   function landVoorCheckout() { return (window.HD_SHIPPING && window.HD_SHIPPING.country()) || 'NL'; }
 
   /* ---- Ruwe cartCreate: verbergt NIETS. ------------------------------------

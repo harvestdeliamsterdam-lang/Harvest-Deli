@@ -95,6 +95,11 @@
     state.marketing = !!(c && c.marketing);
     if (!c) return;
 
+    /* Withdrawn on an open page: Google's documented opt-out flag stops this
+       page's tag from sending anything more (it otherwise flushed one last
+       hit and a cookieless engagement ping on leaving). Cleared on re-consent. */
+    window['ga-disable-' + GA4_ID] = !state.analytics;
+
     gtag('consent', 'update', {
       analytics_storage: state.analytics ? 'granted' : 'denied',
       ad_storage: state.marketing ? 'granted' : 'denied',

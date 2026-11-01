@@ -1,8 +1,8 @@
 """Smaller copies of the product photos for srcset.
 
 The honey photos are 1228 x 2200. A phone shows them about 350 px wide, so
-it needs roughly 640 px (x1.75 density) and at most 960 px. Writes
-<name>-640.webp and <name>-960.webp next to each original; existing copies
+it needs roughly 640 px (x1.75 density) and at most 960 px; the cart shows
+them ~55 px wide (160 px copy). Writes <name>-160/-640/-960.webp next to each original; existing copies
 are only rebuilt when the original is newer.
 
     ~/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3.12 scripts/make-image-sizes.py
@@ -15,8 +15,9 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 DIR = os.path.join(ROOT, 'assets', 'products-images')
-HONEYS = ['chestnut', 'fir-vanilla', 'acacia', 'pine', 'orange-blossom', 'oak', 'arbutus', 'thyme', 'heather']
-WIDTHS = [640, 960]
+HONEYS = ['chestnut', 'fir-vanilla', 'acacia', 'pine', 'orange-blossom', 'oak', 'arbutus', 'thyme', 'heather', 'wildflower']
+# 160: cart thumbnails (shown 50-64 px wide, sharp up to 3x density)
+WIDTHS = [160, 640, 960]
 # Pantry photos: (source, base name for the WebP copies). oregano.png was a
 # 2.3 MB PNG used as the page's main photo.
 PANTRY = [
